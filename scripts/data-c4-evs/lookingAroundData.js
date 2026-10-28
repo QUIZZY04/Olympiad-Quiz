@@ -64,6 +64,162 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Bridge Engineering • Cement vs Bamboo",
+        "q": "How is a permanent cement bridge different from a temporary bamboo bridge? Which one is safer and why?",
+        "ans": "<strong>Comparison of Bridges:</strong><br>• <strong>Cement Bridge:</strong> Made of strong baked bricks, cement, concrete, and iron rods. It is wide, has sturdy railings, can carry heavy vehicular loads, and lasts for decades safely.<br>• <strong>Bamboo Bridge:</strong> Made by tying long bamboo poles and ropes across streams. It is narrow, shaky, slippery during monsoon, and requires regular repairs.<br>• <strong>Verdict:</strong> A cement bridge is far safer and more durable.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cement bridge materials and strength",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bamboo bridge fragility and safety contrast",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Simple Machines • The Pulley",
+        "q": "What is a pulley? How does a pulley help in drawing water from a deep village well or sliding a trolley across a canyon?",
+        "ans": "<strong>The Pulley:</strong><br>A pulley is a grooved wheel with a rope passing over it.<br>• <strong>Advantage:</strong> It changes the direction of pulling force. Instead of lifting a heavy load upwards against gravity, a person pulls the rope downwards using their own body weight, making lifting much easier and safer.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of grooved wheel pulley",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Downward force redirection and mechanical ease",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Desert Transport • The Camel Cart",
+        "q": "Why is the camel called the 'Ship of the Desert'? How does a camel cart help school children in Rajasthan?",
+        "ans": "<strong>Camel in Desert:</strong><br>• <strong>Adaptations:</strong> Camels have wide, padded feet that do not sink into soft desert sand, and thick skin that withstands extreme heat. They can survive days without drinking water.<br>• <strong>School Cart:</strong> In Rajasthan, sand dunes make walking exhausting. A camel cart pulls children comfortably across hot shifting sands to school.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Padded feet and desert adaptations",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Camel cart function for school children",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Rural Transport • Bullock Carts",
+        "q": "Describe the experience of children traveling to school on a bullock cart in the plains during summer and rain.",
+        "ans": "<strong>Bullock Cart Journey:</strong><br>Children sit together on a wooden cart pulled slowly by two bullocks through green village fields. On hot sunny afternoons or during rains, they hold colourful umbrellas overhead to protect themselves from the sun and downpours.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Slow journey through fields described",
+            "marks": "1 M"
+          },
+          {
+            "key": "Use of umbrellas for weather protection",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Bicycle Empowerment • Rural Girls",
+        "q": "How has riding bicycles transformed the lives of young village girls going to secondary schools located far away?",
+        "ans": "<strong>Bicycle Empowerment:</strong><br>Earlier, village girls dropped out of school because secondary schools were 7 to 8 km away through lonely roads. Now, riding bicycles in confident groups, girls travel fast, reach school punctually, and achieve higher education.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Overcoming long distances and dropouts",
+            "marks": "1 M"
+          },
+          {
+            "key": "Group confidence and educational access",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Mountain Terrain • Rocky Paths of Uttarakhand",
+        "q": "Children living in the plains find it hard to walk on mountain paths, but mountain children run up and down easily. Why?",
+        "ans": "<strong>Mountain Paths:</strong><br>The paths in Uttarakhand are uneven, steep, and strewn with loose stones. Children born in the hills have strong calf muscles, keen balance, and daily practice navigating rocky slopes effortlessly.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Uneven rocky paths described",
+            "marks": "1 M"
+          },
+          {
+            "key": "Physical balance and habituation explained",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Winter Challenges • Walking on Snow",
+        "q": "What precautions must children take while walking on knee-deep snow in northern hills to avoid accidents?",
+        "ans": "<strong>Walking on Snow Precautions:</strong><br>1. Hold hands tightly in a line to support each other.<br>2. Step carefully: if snow is fresh and soft, feet sink deep; if frozen hard, it is dangerously slippery like glass, requiring slow, deliberate steps.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Holding hands in line",
+            "marks": "1 M"
+          },
+          {
+            "key": "Soft snow vs frozen slippery ice contrast",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Forest Navigation • Sensory Hearing",
+        "q": "Why must children listen with sharp concentration while walking through dense jungles on their way to school?",
+        "ans": "<strong>Jungle Navigation:</strong><br>In dense jungles, sunlight is blocked and paths are obscured. Listening intently helps identify bird warning calls, animal rustling, and falling branches, warning children of dangers like wild boars or snakes.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Obscured paths and bird/animal sound cues",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "School Inclusion • Physical Barriers",
+        "q": "What difficulties do children with physical disabilities face if their school has no ramps or paved paths?",
+        "ans": "<strong>Barriers to Education:</strong><br>Wheelchairs cannot climb flights of stairs or navigate mud tracks. Without ramps, railings, and wide doors, children with disabilities are forced to rely on others or stay excluded from school.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Stairs and unpaved mud barriers explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Need for ramps and equal access",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Child Rights • Positive Classroom Environment",
+        "q": "Why has physical punishment been strictly banned in schools? What is the right way for teachers to guide students?",
+        "ans": "<strong>Ban on Corporal Punishment:</strong><br>Physical punishment creates fear, anxiety, and school dropout. Teachers should guide students with patient dialogue, constructive encouragement, and understanding why a mistake occurred.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Harmful fear/anxiety caused by punishment",
+            "marks": "1 M"
+          },
+          {
+            "key": "Patient constructive dialogue recommended",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -134,6 +290,154 @@ const lookingAroundChapters = [
           {
             "key": "Scientific explanation of ground vibration detection via jawbone",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "External Ears • Mammals vs Non-Mammals",
+        "q": "Why can we see the external ears of dogs, cows, and elephants, but not the ears of birds, frogs, and lizards?",
+        "ans": "<strong>External Ears vs Hidden Holes:</strong><br>• Mammals like dogs and elephants have prominent outer ear flaps (called <em>pinnae</em>) that collect sound waves.<br>• Birds, frogs, and lizards do not have external ear flaps. Instead, they have tiny ear openings on both sides of their heads covered and protected by feathers or thin skin membranes.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mammalian pinnae explained",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Hidden holes covered with feathers/skin",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Biological Rule • Hair and Birth",
+        "q": "State the universal biological rule relating animal skin hair, external ears, and how they reproduce.",
+        "ans": "<strong>Biological Rule:</strong><br>1. <strong>Viviparous (Give Birth):</strong> Animals that have visible external ears and hair on their bodies give birth to live young ones (e.g., Cow, Cat, Human, Elephant).<br>2. <strong>Oviparous (Lay Eggs):</strong> Animals that do not have external ears and have feathers or scales instead of hair lay eggs (e.g., Birds, Snakes, Lizards, Crocodiles).",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "Rule for live-bearing animals (hair + external ears)",
+            "marks": "2 M"
+          },
+          {
+            "key": "Rule for egg-laying animals (no hair + hidden ears)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Avian Ears • Birds",
+        "q": "How do birds hear faint sounds in the forest even though they lack outer ears?",
+        "ans": "<strong>Bird Hearing:</strong><br>Birds have tiny ear holes located just behind their eyes, shielded by specialized contour feathers that reduce wind noise while funneling subtle acoustic vibrations directly into their inner eardrums.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Position behind eyes and feather protection",
+            "marks": "1 M"
+          },
+          {
+            "key": "Acoustic funneling to inner ear",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Animal Camouflage • Skin Patterns",
+        "q": "Why do tigers, zebras, and leopards have stripes and spots on their skin and fur?",
+        "ans": "<strong>Skin Patterns & Camouflage:</strong><br>The distinct stripes of a tiger and spots of a leopard break up their visual outline in tall grass and forest shadows. This camouflage hides them from prey while stalking and protects young cubs from predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Breaking visual outline in grass/shadows",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Predatory advantage and cub protection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "National Animal • Royal Bengal Tiger",
+        "q": "Which animal is the National Animal of India? Why has its population decreased drastically, and what is 'Project Tiger'?",
+        "ans": "<strong>The Royal Bengal Tiger:</strong><br>• <strong>National Animal:</strong> The Tiger.<br>• <strong>Decline:</strong> Illegal poaching for skin and bones, and deforestation destroying natural prey and habitats.<br>• <strong>Project Tiger:</strong> A nationwide conservation program launched by the Indian Government to establish dedicated tiger reserves and protect tigers from extinction.",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "Tiger identified as National Animal",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reasons for decline (poaching, deforestation)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Project Tiger conservation explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Extinct Animals • Dinosaurs",
+        "q": "What are dinosaurs? Which modern living reptiles resemble them, and why did dinosaurs disappear?",
+        "ans": "<strong>Dinosaurs:</strong><br>Dinosaurs were giant prehistoric reptiles that lived millions of years ago. Modern lizards, crocodiles, and birds are their closest relatives. They became extinct due to massive asteroid impacts and catastrophic climate changes.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Prehistoric reptiles and living relatives",
+            "marks": "1 M"
+          },
+          {
+            "key": "Asteroid/climate extinction cause",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Reptilian Ears • Lizards and Crocodiles",
+        "q": "Can you see the ears of a lizard or crocodile if you look very closely?",
+        "ans": "<strong>Lizard & Crocodile Ears:</strong><br>Yes, on close observation, one can see two tiny dot-like holes on the sides of their head behind the eyes, which serve as their ears.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Tiny dot-like holes identified behind eyes",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Classification • Oviparous vs Viviparous",
+        "q": "Classify the following animals into Egg-layers and Live-young bearers: Duck, Buffalo, Peacock, Bat, Frog, Whale.",
+        "ans": "<strong>Classification:</strong><br>• <strong>Egg-layers (Oviparous):</strong> Duck, Peacock, Frog.<br>• <strong>Live-young bearers (Viviparous):</strong> Buffalo, Bat, Whale (Bats and whales are mammals with hair and milk glands).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Correct classification of all six animals",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Sensory Function • Ear Direction",
+        "q": "Why can animals like deer, dogs, and horses turn their external ears in different directions?",
+        "ans": "<strong>Movable Pinnae:</strong><br>Animals have ear muscles that allow them to swivel their pinnae independently towards the source of a sound to pinpoint danger without turning their heads.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Independent ear rotation to locate predators",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Wildlife Protection • Legal Sanctuaries",
+        "q": "Why are hunting and poaching of wild animals strictly banned by law in India?",
+        "ans": "<strong>Wildlife Conservation Law:</strong><br>Every species plays a vital role in maintaining the ecological food web. The Wildlife Protection Act bans hunting to prevent extinction, preserve biodiversity, and safeguard national heritage.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Ecological balance and prevention of extinction",
+            "marks": "2 M"
           }
         ]
       }
@@ -212,6 +516,154 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 3 ('A Day with Nandu'), explain the central environmental and social theme highlighted through the story of A Day with Nandu.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Elephant Herds & Animal Freedom, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'A Day with Nandu', describe how children can conduct an inquiry in their local community regarding Elephant Herds & Animal Freedom. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'A Day with Nandu', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'A Day with Nandu'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'A Day with Nandu'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 3 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'A Day with Nandu' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'A Day with Nandu'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 3 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'A Day with Nandu'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'A Day with Nandu'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -282,6 +734,154 @@ const lookingAroundChapters = [
           {
             "key": "Principles of non-violence toward trees and animals",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 4 ('The Story of Amrita'), explain the central environmental and social theme highlighted through the story of The Story of Amrita.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Khejadi Trees & Bishnoi Conservation, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'The Story of Amrita', describe how children can conduct an inquiry in their local community regarding Khejadi Trees & Bishnoi Conservation. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'The Story of Amrita', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'The Story of Amrita'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'The Story of Amrita'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 4 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'The Story of Amrita' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'The Story of Amrita'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 4 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'The Story of Amrita'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'The Story of Amrita'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -360,6 +960,154 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 5 ('Anita and the Honeybees'), explain the central environmental and social theme highlighted through the story of Anita and the Honeybees.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Beekeeping, Girl Star & RTE Act, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Anita and the Honeybees', describe how children can conduct an inquiry in their local community regarding Beekeeping, Girl Star & RTE Act. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Anita and the Honeybees', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Anita and the Honeybees'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Anita and the Honeybees'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 5 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Anita and the Honeybees' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Anita and the Honeybees'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 5 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Anita and the Honeybees'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Anita and the Honeybees'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -421,6 +1169,154 @@ const lookingAroundChapters = [
           {
             "key": "Three or more practical civic etiquettes listed",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 6 ('Omana's Journey'), explain the central environmental and social theme highlighted through the story of Omana's Journey.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Train Travel, Stations & Level Crossings, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Omana's Journey', describe how children can conduct an inquiry in their local community regarding Train Travel, Stations & Level Crossings. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Omana's Journey', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Omana's Journey'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Omana's Journey'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 6 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Omana's Journey' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Omana's Journey'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 6 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Omana's Journey'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Omana's Journey'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -494,6 +1390,154 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 7 ('From the Window'), explain the central environmental and social theme highlighted through the story of From the Window.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Western Ghats, Tunnels & Bridges in Goa, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'From the Window', describe how children can conduct an inquiry in their local community regarding Western Ghats, Tunnels & Bridges in Goa. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'From the Window', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'From the Window'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'From the Window'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 7 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'From the Window' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'From the Window'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 7 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'From the Window'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'From the Window'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -555,6 +1599,154 @@ const lookingAroundChapters = [
           {
             "key": "Role of ferry as public water transit in canal geography",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 8 ('Reaching Grandmother's House'), explain the central environmental and social theme highlighted through the story of Reaching Grandmother's House.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Train Tickets, Timetables & Ferry Boats, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Reaching Grandmother's House', describe how children can conduct an inquiry in their local community regarding Train Tickets, Timetables & Ferry Boats. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Reaching Grandmother's House', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Reaching Grandmother's House'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Reaching Grandmother's House'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 8 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Reaching Grandmother's House' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Reaching Grandmother's House'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 8 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Reaching Grandmother's House'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Reaching Grandmother's House'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -623,6 +1815,154 @@ const lookingAroundChapters = [
           {
             "key": "Health and educational consequences of child marriage",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 9 ('Changing Families'), explain the central environmental and social theme highlighted through the story of Changing Families.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Family Transitions, Newborns & Marriage Laws, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Changing Families', describe how children can conduct an inquiry in their local community regarding Family Transitions, Newborns & Marriage Laws. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Changing Families', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Changing Families'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Changing Families'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 9 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Changing Families' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Changing Families'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 9 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Changing Families'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Changing Families'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -694,6 +2034,154 @@ const lookingAroundChapters = [
           {
             "key": "Formation of club and national competitive success",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 10 ('Hu Tu Tu, Hu Tu Tu'), explain the central environmental and social theme highlighted through the story of Hu Tu Tu, Hu Tu Tu.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Kabaddi Rules & Karnam Malleswari, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Hu Tu Tu, Hu Tu Tu', describe how children can conduct an inquiry in their local community regarding Kabaddi Rules & Karnam Malleswari. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Hu Tu Tu, Hu Tu Tu', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Hu Tu Tu, Hu Tu Tu'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Hu Tu Tu, Hu Tu Tu'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 10 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Hu Tu Tu, Hu Tu Tu' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Hu Tu Tu, Hu Tu Tu'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 10 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Hu Tu Tu, Hu Tu Tu'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Hu Tu Tu, Hu Tu Tu'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -772,6 +2260,154 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 11 ('The Valley of Flowers'), explain the central environmental and social theme highlighted through the story of The Valley of Flowers.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Garhwal Himalayas, Madhubani & Ittr, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'The Valley of Flowers', describe how children can conduct an inquiry in their local community regarding Garhwal Himalayas, Madhubani & Ittr. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'The Valley of Flowers', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'The Valley of Flowers'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'The Valley of Flowers'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 11 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'The Valley of Flowers' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'The Valley of Flowers'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 11 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'The Valley of Flowers'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'The Valley of Flowers'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -837,6 +2473,154 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 12 ('Changing Times'), explain the central environmental and social theme highlighted through the story of Changing Times.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Partition Migration, Mud Houses & Modern Toilets, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Changing Times', describe how children can conduct an inquiry in their local community regarding Partition Migration, Mud Houses & Modern Toilets. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Changing Times', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Changing Times'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Changing Times'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 12 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Changing Times' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Changing Times'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 12 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Changing Times'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Changing Times'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -899,6 +2683,154 @@ const lookingAroundChapters = [
           {
             "key": "Three logical steps: sedimentation, alum treatment, boiling",
             "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 13 ('A River's Tale'), explain the central environmental and social theme highlighted through the story of A River's Tale.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines River Course, Industrial Pollution & Safe Water, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'A River's Tale', describe how children can conduct an inquiry in their local community regarding River Course, Industrial Pollution & Safe Water. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'A River's Tale', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'A River's Tale'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'A River's Tale'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 13 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'A River's Tale' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'A River's Tale'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 13 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'A River's Tale'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'A River's Tale'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -975,6 +2907,154 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 14 ('Basva's Farm'), explain the central environmental and social theme highlighted through the story of Basva's Farm.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Onion Farming, Khunti, Kurige & Illige, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Basva's Farm', describe how children can conduct an inquiry in their local community regarding Onion Farming, Khunti, Kurige & Illige. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Basva's Farm', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Basva's Farm'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Basva's Farm'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 14 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Basva's Farm' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Basva's Farm'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 14 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Basva's Farm'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Basva's Farm'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1041,6 +3121,154 @@ const lookingAroundChapters = [
           {
             "key": "Accurate division into perishable and long-lasting categories",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 15 ('From Market to Home'), explain the central environmental and social theme highlighted through the story of From Market to Home.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Vegetable Vendor Routine & Perishable Foods, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'From Market to Home', describe how children can conduct an inquiry in their local community regarding Vegetable Vendor Routine & Perishable Foods. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'From Market to Home', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'From Market to Home'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'From Market to Home'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 15 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'From Market to Home' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'From Market to Home'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 15 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'From Market to Home'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'From Market to Home'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -1114,6 +3342,154 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 16 ('A Busy Month'), explain the central environmental and social theme highlighted through the story of A Busy Month.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Gijubhai's Birds, Nests, Beaks & Teeth, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'A Busy Month', describe how children can conduct an inquiry in their local community regarding Gijubhai's Birds, Nests, Beaks & Teeth. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'A Busy Month', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'A Busy Month'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'A Busy Month'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 16 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'A Busy Month' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'A Busy Month'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 16 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'A Busy Month'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'A Busy Month'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1177,6 +3553,154 @@ const lookingAroundChapters = [
           {
             "key": "Lift experience and amazement at indoor plumbing contrast",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 17 ('Nandita in Mumbai'), explain the central environmental and social theme highlighted through the story of Nandita in Mumbai.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Slum Life vs High-Rises & Water Hardships, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Nandita in Mumbai', describe how children can conduct an inquiry in their local community regarding Slum Life vs High-Rises & Water Hardships. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Nandita in Mumbai', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Nandita in Mumbai'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Nandita in Mumbai'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 17 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Nandita in Mumbai' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Nandita in Mumbai'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 17 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Nandita in Mumbai'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Nandita in Mumbai'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -1244,6 +3768,154 @@ const lookingAroundChapters = [
           {
             "key": "Articulating right to clean water over luxury recreational waste",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 18 ('Too Much Water, Too Little Water'), explain the central environmental and social theme highlighted through the story of Too Much Water, Too Little Water.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Water Inequality, ORS & Bhima Sangh, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Too Much Water, Too Little Water', describe how children can conduct an inquiry in their local community regarding Water Inequality, ORS & Bhima Sangh. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Too Much Water, Too Little Water', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Too Much Water, Too Little Water'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Too Much Water, Too Little Water'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 18 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Too Much Water, Too Little Water' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Too Much Water, Too Little Water'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 18 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Too Much Water, Too Little Water'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Too Much Water, Too Little Water'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -1318,6 +3990,154 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 19 ('Abdul in the Garden'), explain the central environmental and social theme highlighted through the story of Abdul in the Garden.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Roots, Banyan Prop Roots & Desert Oak, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Abdul in the Garden', describe how children can conduct an inquiry in their local community regarding Roots, Banyan Prop Roots & Desert Oak. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Abdul in the Garden', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Abdul in the Garden'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Abdul in the Garden'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 19 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Abdul in the Garden' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Abdul in the Garden'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 19 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Abdul in the Garden'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Abdul in the Garden'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1390,6 +4210,154 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 20 ('Eating Together'), explain the central environmental and social theme highlighted through the story of Eating Together.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Magh Bihu Feast, Bhela Ghar & Mid-Day Meals, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Eating Together', describe how children can conduct an inquiry in their local community regarding Magh Bihu Feast, Bhela Ghar & Mid-Day Meals. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Eating Together', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Eating Together'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Eating Together'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 20 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Eating Together' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Eating Together'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 20 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Eating Together'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Eating Together'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1459,6 +4427,154 @@ const lookingAroundChapters = [
           {
             "key": "Wheat flour, ghee, sugar, and water preparation described",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 21 ('Food and Fun'), explain the central environmental and social theme highlighted through the story of Food and Fun.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Gurudwara Langar, Karah Prasad & Sewa, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Food and Fun', describe how children can conduct an inquiry in their local community regarding Gurudwara Langar, Karah Prasad & Sewa. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Food and Fun', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Food and Fun'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Food and Fun'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 21 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Food and Fun' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Food and Fun'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 21 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Food and Fun'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Food and Fun'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -1533,6 +4649,154 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 22 ('The World in My Home'), explain the central environmental and social theme highlighted through the story of The World in My Home.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Gender Stereotypes, Honesty & Good Touch, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'The World in My Home', describe how children can conduct an inquiry in their local community regarding Gender Stereotypes, Honesty & Good Touch. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'The World in My Home', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'The World in My Home'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'The World in My Home'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 22 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'The World in My Home' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'The World in My Home'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 22 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'The World in My Home'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'The World in My Home'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1599,6 +4863,154 @@ const lookingAroundChapters = [
             "marks": "3.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 23 ('Pochampalli'), explain the central environmental and social theme highlighted through the story of Pochampalli.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Ikat Silk Weaving & Traditional Artisans, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Pochampalli', describe how children can conduct an inquiry in their local community regarding Ikat Silk Weaving & Traditional Artisans. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Pochampalli', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Pochampalli'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Pochampalli'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 23 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Pochampalli' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Pochampalli'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 23 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Pochampalli'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Pochampalli'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1662,6 +5074,154 @@ const lookingAroundChapters = [
           {
             "key": "Sun reflection, cotton air circulation, and AC architectural adaptation",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 24 ('Home and Abroad'), explain the central environmental and social theme highlighted through the story of Home and Abroad.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Abu Dhabi vs Kerala: Desert vs Tropics, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Home and Abroad', describe how children can conduct an inquiry in their local community regarding Abu Dhabi vs Kerala: Desert vs Tropics. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Home and Abroad', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Home and Abroad'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Home and Abroad'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 24 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Home and Abroad' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Home and Abroad'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 24 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Home and Abroad'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Home and Abroad'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -1733,6 +5293,154 @@ const lookingAroundChapters = [
           {
             "key": "Western Ghats microclimate and list of 4 key spices",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 25 ('Spicy Riddles'), explain the central environmental and social theme highlighted through the story of Spicy Riddles.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Indian Spices: Clove, Turmeric, Pepper & Saunf, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Spicy Riddles', describe how children can conduct an inquiry in their local community regarding Indian Spices: Clove, Turmeric, Pepper & Saunf. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Spicy Riddles', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Spicy Riddles'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Spicy Riddles'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 25 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Spicy Riddles' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Spicy Riddles'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 25 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Spicy Riddles'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Spicy Riddles'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }
@@ -1811,6 +5519,154 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 26 ('Defence Officer: Wahida'), explain the central environmental and social theme highlighted through the story of Defence Officer: Wahida.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Surgeon Commander Wahida & Naval Parades, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Defence Officer: Wahida', describe how children can conduct an inquiry in their local community regarding Surgeon Commander Wahida & Naval Parades. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Defence Officer: Wahida', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Defence Officer: Wahida'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Defence Officer: Wahida'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 26 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Defence Officer: Wahida' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Defence Officer: Wahida'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 26 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Defence Officer: Wahida'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Defence Officer: Wahida'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1881,6 +5737,154 @@ const lookingAroundChapters = [
           {
             "key": "Barrier-free ramps and RTE constitutional rights",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Core Concept Analysis",
+        "q": "In Chapter 27 ('Chuskit Goes to School'), explain the central environmental and social theme highlighted through the story of Chuskit Goes to School.",
+        "ans": "<strong>Core Theme & Learning:</strong><br>1. <strong>Context:</strong> The chapter examines Inclusive Education, Wheelchair & Ladakh, showing how human communities interact with nature, resources, and civic structures.<br>2. <strong>Social & Ecological Value:</strong> It teaches students about empathy, scientific inquiry, resource conservation, and social equality.<br>3. <strong>Application:</strong> Students learn to observe real-world surroundings critically and apply sustainable habits in everyday life.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Contextual theme accurately explained",
+            "marks": "1 M"
+          },
+          {
+            "key": "Social/ecological values articulated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Real-world civic application",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Environmental Observation",
+        "q": "Based on 'Chuskit Goes to School', describe how children can conduct an inquiry in their local community regarding Inclusive Education, Wheelchair & Ladakh. What key facts should they record?",
+        "ans": "<strong>Community Inquiry Steps:</strong><br>• <strong>Observation:</strong> Identify how local residents manage resources, traditional occupations, or civic facilities.<br>• <strong>Field Interview:</strong> Ask elders and workers about changes over the past decades.<br>• <strong>Recording:</strong> Document observations in a field notebook with drawings, dates, and action ideas.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Systematic inquiry method",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Field documentation and reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Analytical Reasoning",
+        "q": "What difficulties or ethical dilemmas are presented in 'Chuskit Goes to School', and how were they resolved through community cooperation?",
+        "ans": "<strong>Conflict & Resolution:</strong><br>• <strong>Dilemma/Difficulty:</strong> Challenges arising from geographic barriers, scarcity of resources, social prejudices, or modern lifestyle changes.<br>• <strong>Cooperative Solution:</strong> Resolving issues through collective unity, empathetic leadership, dialogue, and mutual support among community members.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Clear identification of dilemma",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cooperative resolution explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Activity • Tabular Comparison",
+        "q": "Create a two-column comparison highlighting the key differences between traditional practices and modern methods discussed in 'Chuskit Goes to School'.",
+        "ans": "<strong>Comparative Analysis:</strong><br>• <strong>Traditional Practices:</strong> Grounded in natural materials, local wisdom, slower pace, and harmony with seasonal cycles.<br>• <strong>Modern Methods:</strong> Utilize technological equipment, faster processing, commercial scale, but require careful management to prevent environmental degradation.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Traditional practices characterized",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Modern methods and sustainability balance",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Reasoning • Cause and Effect",
+        "q": "Explain the scientific cause-and-effect relationship behind the natural phenomena or human activities explored in 'Chuskit Goes to School'.",
+        "ans": "<strong>Scientific Mechanism:</strong><br>1. <strong>Cause:</strong> Natural environmental conditions (climate, soil, water availability) or specific human interventions.<br>2. <strong>Effect:</strong> Biological adaptations in plants/animals or cultural adaptations in human shelter, clothing, and diet to maintain equilibrium.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Causal environmental factor identified",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Adaptive biological/cultural outcome",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Sense & Values • Responsible Citizenship",
+        "q": "What moral duty or civic responsibility does Chapter 27 encourage every young student to practice?",
+        "ans": "<strong>Civic Responsibility:</strong><br>• Respecting biodiversity, natural resources, and the dignity of every working person.<br>• Rejecting discrimination based on caste, gender, or disability, and actively contributing to an inclusive, clean, and compassionate society.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Respect for resources and human dignity",
+            "marks": "1 M"
+          },
+          {
+            "key": "Inclusivity and active civic action",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Geographical Adaptation • Regional Realities",
+        "q": "How does the geography (terrain, climate, water bodies) in 'Chuskit Goes to School' shape the daily lifestyle of the people living there?",
+        "ans": "<strong>Geographical Influence:</strong><br>Geography dictates the materials used for shelter, types of crops cultivated, modes of transport developed, and daily occupations, showing human resilience and nature's influence.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Link between geography and shelter/transport/food",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Resource Conservation • Action Plan",
+        "q": "List three practical conservation measures that students can implement at school inspired by the lessons of 'Chuskit Goes to School'.",
+        "ans": "<strong>Action Plan:</strong><br>1. <strong>Conserve Resources:</strong> Turn off unattended taps, fans, and reduce paper waste.<br>2. <strong>Green Initiatives:</strong> Plant native shrubs in school gardens and compost fallen leaves.<br>3. <strong>Community Awareness:</strong> Share posters and talk to peers about sustainable daily choices.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic school-level actions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary & Terms • Environmental Terminology",
+        "q": "Define two key environmental or socio-cultural terms introduced in Chapter 27 and use them in sentences.",
+        "ans": "<strong>Key Terminology:</strong><br>• <strong>Ecosystem / Habitat:</strong> The natural home or environment of a plant, animal, or organism where all living and non-living elements interact.<br>• <strong>Conservation:</strong> The careful protection and preservation of natural resources to prevent their depletion or destruction.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two terms defined accurately with context",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Reflection • Empathy Journal",
+        "q": "Imagine you were present in the events of 'Chuskit Goes to School'. Write a 3-sentence personal diary entry expressing your feelings and commitment to positive change.",
+        "ans": "<strong>Diary Entry:</strong><br><em>Dear Diary,</em><br>Today I learned deeply about the real-life struggles and bravery shown in 'Chuskit Goes to School'. Seeing how unity and respect for nature transform communities inspires me to always protect the weak and care for the environment. I promise to take responsibility every day.<br>— <em>Student Reflection</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thoughtful, reflective, and empathetic diary entry",
+            "marks": "2 M"
           }
         ]
       }

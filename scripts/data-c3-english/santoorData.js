@@ -139,6 +139,158 @@ const santoorChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Picture Story",
+        "q": "Who are the children playing together in the park, and what games are they playing?",
+        "ans": "<strong>Model Answer:</strong><br>The children playing in the park are <strong>Rohan, Meena, and Ali</strong>. They are playing on the swings, sliding down the slide, and playing catch with a red ball.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Names of children",
+            "marks": "1 M"
+          },
+          {
+            "key": "Games played (swings/ball)",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Outdoor Fun",
+        "q": "Which game do you like to play most with your friends in the playground? Describe in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>I love playing <strong>hide-and-seek</strong> with my friends. It is exciting to find good hiding spots behind trees while our friend counts to twenty.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Favorite game mentioned",
+            "marks": "1 M"
+          },
+          {
+            "key": "Personal description",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyming Sounds",
+        "q": "Listen and find words from the chapter that rhyme with: (a) Play (b) Ball (c) Swing.",
+        "ans": "<strong>Rhyming Words:</strong><br>• (a) Play — <strong>Day, May, Say</strong>.<br>• (b) Ball — <strong>Call, Tall, Fall</strong>.<br>• (c) Swing — <strong>Ring, Wing, Sing</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Play rhyming word",
+            "marks": "1 M"
+          },
+          {
+            "key": "Ball rhyming word",
+            "marks": "1 M"
+          },
+          {
+            "key": "Swing rhyming word",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Action Verbs",
+        "q": "Identify the action words (verbs) in the sentence: 'The happy children run, jump, and laugh in the garden.'",
+        "ans": "<strong>Action Verbs:</strong><br>The action words are: <strong>run</strong>, <strong>jump</strong>, and <strong>laugh</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Run, jump, laugh identified",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Complete the Sentences",
+        "q": "Fill in the blanks with suitable words from the chapter:<br>(a) A park has green ___ and colourful flowers.<br>(b) Friends share their ___ during lunch break.",
+        "ans": "<strong>Answers:</strong><br>• (a) A park has green <strong>grass</strong> and colourful flowers.<br>• (b) Friends share their <strong>tiffin (or toys)</strong> during lunch break.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "grass",
+            "marks": "1 M"
+          },
+          {
+            "key": "tiffin / toys",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Articles (A / An)",
+        "q": "Fill in 'a' or 'an':<br>(a) ___ red swing<br>(b) ___ apple tree<br>(c) ___ orange balloon<br>(d) ___ friendly dog.",
+        "ans": "<strong>Articles:</strong><br>• (a) <strong>a</strong> red swing (consonant sound 'r')<br>• (b) <strong>an</strong> apple tree (vowel sound 'a')<br>• (c) <strong>an</strong> orange balloon (vowel sound 'o')<br>• (d) <strong>a</strong> friendly dog (consonant sound 'f').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 articles correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Sharing and Caring",
+        "q": "Why is it important to share swings and sports equipment with other children in a public park?",
+        "ans": "<strong>Model Answer:</strong><br>Sharing ensures that <strong>every child gets a fair turn to play and enjoy</strong>. It teaches patience, builds friendships, and prevents quarrels in the playground.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Fair turn for everyone",
+            "marks": "1 M"
+          },
+          {
+            "key": "Builds friendship and kindness",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Opposites",
+        "q": "Write the opposites of: (a) Happy (b) High (c) Come (d) Friend.",
+        "ans": "<strong>Opposites:</strong><br>• (a) Happy — <strong>Sad</strong><br>• (b) High — <strong>Low</strong><br>• (c) Come — <strong>Go</strong><br>• (d) Friend — <strong>Enemy</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Sad, Low, Go, Enemy",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Punctuation • Capital Letters and Full Stops",
+        "q": "Rewrite with proper capital letters and full stop: 'rohan and ali play together every evening in the park'",
+        "ans": "<strong>Corrected Sentence:</strong><br><strong>R</strong>ohan and <strong>A</strong>li play together every evening in the park<strong>.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Capitals on Rohan and Ali",
+            "marks": "1 M"
+          },
+          {
+            "key": "Full stop at end",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • My Best Friend",
+        "q": "Write two sentences about your best friend mentioning their name and why you like them.",
+        "ans": "<strong>Model Answer:</strong><br>My best friend's name is <strong>Aarav</strong>. I like him because he always shares his storybooks with me and helps me whenever I find math sums difficult.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Friend's name stated",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reason for liking explained",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -272,6 +424,138 @@ const santoorChapters = [
           {
             "key": "Correct antonyms for (c) and (d)",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Story Comprehension",
+        "q": "Who was Badal, and who was Moti? Describe their friendship.",
+        "ans": "<strong>Model Answer:</strong><br>Badal was a young shepherd boy and Moti was his faithful pet dog. They went everywhere together, grazed sheep in the meadow, and protected each other from danger.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Badal (boy) and Moti (dog)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Description of friendship",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Plot Event",
+        "q": "What happened when Badal accidentally slipped into the deep river?",
+        "ans": "<strong>Model Answer:</strong><br>When Badal fell into the rushing water and could not swim out, Moti barked loudly to alert the villagers and jumped in, holding Badal's shirt collar until help arrived.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Badal fell into river",
+            "marks": "1 M"
+          },
+          {
+            "key": "Moti barked for help and held him",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Pet Care",
+        "q": "Do you have a pet at home or in your neighbourhood? How do you take care of animals around you?",
+        "ans": "<strong>Model Answer:</strong><br>We have a community dog named Tommy. We provide clean drinking water in a bowl outside our gate, give him fresh chapatis, and never tease or throw stones at him.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Pet/animal mentioned",
+            "marks": "1 M"
+          },
+          {
+            "key": "Caring action (food/water/kindness)",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Animal Sounds",
+        "q": "Match each animal to its sound:<br>(a) Dog — (1) Bleat<br>(b) Sheep — (2) Bark<br>(c) Horse — (3) Neigh.",
+        "ans": "<strong>Matching:</strong><br>• (a) Dog — <strong>(2) Bark</strong><br>• (b) Sheep — <strong>(1) Bleat</strong><br>• (c) Horse — <strong>(3) Neigh</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 animal sounds correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Past Tense",
+        "q": "Write the past tense forms of: (a) Bark (b) Jump (c) Help (d) Fall.",
+        "ans": "<strong>Past Tense:</strong><br>• (a) Bark — <strong>Barked</strong><br>• (b) Jump — <strong>Jumped</strong><br>• (c) Help — <strong>Helped</strong><br>• (d) Fall — <strong>Fell</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Barked, Jumped, Helped, Fell",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Describing Words (Adjectives)",
+        "q": "Choose describing words for: (a) Moti the dog (b) The river water (c) Badal the boy.",
+        "ans": "<strong>Adjectives:</strong><br>• (a) Moti: <strong>Brave, loyal, faithful</strong>.<br>• (b) River water: <strong>Deep, cold, flowing</strong>.<br>• (c) Badal: <strong>Kind, loving, caring</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Suitable adjectives for all 3",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • True or False",
+        "q": "Write True or False:<br>(a) Moti ran away when Badal was in trouble.<br>(b) The villagers praised Moti for his courage.<br>(c) Animals can be our most faithful companions.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Moti stayed by Badal and saved him.<br>• (b) <strong>True:</strong> The villagers patted and praised Moti.<br>• (c) <strong>True:</strong> Faithful animals often protect humans.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with reasoning",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Making • Using New Words",
+        "q": "Make meaningful sentences using: (a) Brave (b) River.",
+        "ans": "<strong>Sentences:</strong><br>• (a) <strong>Brave:</strong> The brave firefighter rescued the little kitten from the roof.<br>• (b) <strong>River:</strong> The villagers fetch clean water from the river.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two grammatically correct sentences",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Courage",
+        "q": "What does the story 'Badal and Moti' teach us about courage and loyalty?",
+        "ans": "<strong>Moral / Learning:</strong><br>It teaches us that <strong>true friends never abandon each other during tough times</strong>. Even animals understand love and show immense loyalty when treated with kindness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Loyalty and kindness explained",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Phonics • 'Sh' Sound Words",
+        "q": "List four words from the story containing the 'sh' sound (like Shepherd).",
+        "ans": "<strong>'Sh' Words:</strong><br>1. <strong>Shepherd</strong><br>2. <strong>Sheep</strong><br>3. <strong>Shirt</strong><br>4. <strong>Shout</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four correct words with 'sh'",
+            "marks": "2 M"
           }
         ]
       }
@@ -417,6 +701,138 @@ const santoorChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 3 ('Best Friends'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Best Friends': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Best Friends' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Best Friends'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Best Friends' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Best Friends' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Best Friends':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -550,6 +966,138 @@ const santoorChapters = [
           {
             "key": "Correct plural spelling for (c) and (d)",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 4 ('Out in the Garden'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Out in the Garden': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Out in the Garden' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Out in the Garden'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Out in the Garden' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Out in the Garden' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Out in the Garden':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -687,6 +1235,138 @@ const santoorChapters = [
             "marks": "3.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 5 ('Talking Toys'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Talking Toys': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Talking Toys' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Talking Toys'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Talking Toys' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Talking Toys' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Talking Toys':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -814,6 +1494,138 @@ const santoorChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 6 ('Paper Boats'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Paper Boats': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Paper Boats' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Paper Boats'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Paper Boats' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Paper Boats' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Paper Boats':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -927,6 +1739,138 @@ const santoorChapters = [
           {
             "key": "Correct collective nouns for all three items",
             "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 7 ('The Big Laddoo'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'The Big Laddoo': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'The Big Laddoo' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'The Big Laddoo'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'The Big Laddoo' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'The Big Laddoo' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'The Big Laddoo':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -1054,6 +1998,138 @@ const santoorChapters = [
           {
             "key": "Grammatically sound, heartfelt expression of filial gratitude",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 8 ('Thank God!'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Thank God!': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Thank God!' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Thank God!'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Thank God!' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Thank God!' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Thank God!':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -1187,6 +2263,138 @@ const santoorChapters = [
             "marks": "4.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 9 ('Madhu's Wish'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Madhu's Wish': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Madhu's Wish' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Madhu's Wish'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Madhu's Wish' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Madhu's Wish' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Madhu's Wish':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1312,6 +2520,138 @@ const santoorChapters = [
           {
             "key": "Two practical, healthy bedtime habits described",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 10 ('Night'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Night': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Night' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Night'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Night' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Night' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Night':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -1453,6 +2793,138 @@ const santoorChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 11 ('Chanda Mama Counts the Stars'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Chanda Mama Counts the Stars': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Chanda Mama Counts the Stars' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Chanda Mama Counts the Stars'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Chanda Mama Counts the Stars' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Chanda Mama Counts the Stars' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Chanda Mama Counts the Stars':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1590,6 +3062,138 @@ const santoorChapters = [
           {
             "key": "Mention of ISRO logo imprint",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Comprehension",
+        "q": "In Chapter 12 ('Chandrayaan'), what is the central theme of the story/poem? Summarize in two sentences.",
+        "ans": "<strong>Summary:</strong><br>The chapter highlights <strong>the joy of learning, friendship, and understanding the world around us</strong>. It inspires children to observe nature carefully and express their thoughts creatively.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate central theme",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear two-sentence summary",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Classroom Discussion",
+        "q": "Share your thoughts about 'Chandrayaan': What was the most interesting part of the chapter, and why?",
+        "ans": "<strong>Model Response:</strong><br>The most interesting part was when the characters <strong>discovered a creative solution to their problem through teamwork</strong>. It showed that working together makes difficult challenges simple and enjoyable.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Specific part identified",
+            "marks": "1 M"
+          },
+          {
+            "key": "Valid personal reason",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Vocabulary Enhancement",
+        "q": "Find words from 'Chandrayaan' that have similar meanings (synonyms) to: (a) Glad (b) Quick (c) Huge.",
+        "ans": "<strong>Synonyms:</strong><br>• (a) Glad — <strong>Happy / Joyful</strong>.<br>• (b) Quick — <strong>Fast / Rapid</strong>.<br>• (c) Huge — <strong>Big / Enormous</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 synonyms correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Rhyme and Phonics",
+        "q": "Identify rhyming pairs from the poem or text in 'Chandrayaan'. Give two examples with their rhyming sounds.",
+        "ans": "<strong>Rhyming Pairs:</strong><br>1. <strong>Light - Night</strong> (rhyming sound '-ight').<br>2. <strong>Round - Sound</strong> (rhyming sound '-ound').",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid rhyming pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Prepositions",
+        "q": "Fill in the blanks with in, on, or under:<br>(a) The bird sits ___ the branch.<br>(b) The water is ___ the jug.<br>(c) The tired dog rested ___ the shady tree.",
+        "ans": "<strong>Prepositions:</strong><br>• (a) on<br>• (b) in<br>• (c) under.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "on, in, under correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence Formation",
+        "q": "Rearrange the jumbled words to make a meaningful sentence: 'gives / warmth / the / sun / us / light / and'",
+        "ans": "<strong>Correct Sentence:</strong><br><strong>The sun gives us light and warmth.</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct grammatical word order and punctuation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Compound Words",
+        "q": "Combine the two words to form a compound word:<br>(a) Sun + shine = ___<br>(b) Rain + bow = ___<br>(c) Class + room = ___.",
+        "ans": "<strong>Compound Words:</strong><br>• (a) Sun + shine = <strong>Sunshine</strong><br>• (b) Rain + bow = <strong>Rainbow</strong><br>• (c) Class + room = <strong>Classroom</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Sunshine, Rainbow, Classroom",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • Picture Description",
+        "q": "Look at the illustration of 'Chandrayaan' in your textbook and describe what the characters are doing in two sentences.",
+        "ans": "<strong>Model Answer:</strong><br>In the illustration, the children are gathered excitedly in a circle observing their project. Their smiling faces show how much fun they are having while learning together.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Description of character actions",
+            "marks": "1 M"
+          },
+          {
+            "key": "Complete sentences",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Reflect • Value Question",
+        "q": "What important value or moral lesson does 'Chandrayaan' teach us?",
+        "ans": "<strong>Value Learned:</strong><br>It teaches us <strong>perseverance, gratitude, and empathy</strong> towards people and nature around us. Being curious and kind makes our world a happier place.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear moral/value stated with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Time • True or False",
+        "q": "State whether each statement is True or False based on 'Chandrayaan':<br>(a) The main character solved the problem alone without any help.<br>(b) Practicing every day helps us become better at what we do.<br>(c) We should always be polite when speaking to others.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>False:</strong> Cooperation and teamwork were essential.<br>• (b) <strong>True:</strong> Practice builds skill and confidence.<br>• (c) <strong>True:</strong> Politeness and good manners are important.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "False, True, True with explanations",
+            "marks": "3 M"
           }
         ]
       }

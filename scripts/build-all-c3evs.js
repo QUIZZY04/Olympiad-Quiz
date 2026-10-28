@@ -101,17 +101,8 @@ const wwSidebar = wondrousWorldChapters.map(ch => ({
 }));
 
 wondrousWorldChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const extraQs = wondrousWorldExtra[chId] || [];
-  
-  let currentQs = [...baseQs, ...extraQs];
-  const target = targetCounts[chId] || 16;
-
-  if (currentQs.length < target) {
-    const generated = generateEvsQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${wondrousWorldChapters[idx - 1].title}`, filename: `wondrous-world-ch${idx}.html` } : null;
   const nextLink = idx < wondrousWorldChapters.length - 1 ? { label: `Ch ${idx + 2}: ${wondrousWorldChapters[idx + 1].title}`, filename: `wondrous-world-ch${idx + 2}.html` } : null;
@@ -150,17 +141,8 @@ const laSidebar = lookingAroundChapters.map(ch => ({
 }));
 
 lookingAroundChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const extraQs = lookingAroundExtra[chId] || [];
-  
-  let currentQs = [...baseQs, ...extraQs];
-  const target = targetCounts[chId] || 16;
-
-  if (currentQs.length < target) {
-    const generated = generateEvsQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${lookingAroundChapters[idx - 1].title}`, filename: `looking-around-ch${idx}.html` } : null;
   const nextLink = idx < lookingAroundChapters.length - 1 ? { label: `Ch ${idx + 2}: ${lookingAroundChapters[idx + 1].title}`, filename: `looking-around-ch${idx + 2}.html` } : null;

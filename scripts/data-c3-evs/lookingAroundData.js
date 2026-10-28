@@ -123,6 +123,142 @@ const lookingAroundChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 1 ('Poonam's Day Out'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -258,6 +394,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 2 ('The Plant Fairy'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -383,6 +655,142 @@ const lookingAroundChapters = [
           {
             "key": "Microbial disinfection and disease prevention explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 3 ('Water O' Water!'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -512,6 +920,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 4 ('Our First School'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -633,6 +1177,142 @@ const lookingAroundChapters = [
           {
             "key": "Two authentic Indian house decoration methods described",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 5 ('Chhotu's House'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -762,6 +1442,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 6 ('Foods We Eat'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -879,6 +1695,142 @@ const lookingAroundChapters = [
           {
             "key": "Two practical, empathetic, and inclusive classroom practices",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 7 ('Saying Without Speaking'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -1002,6 +1954,142 @@ const lookingAroundChapters = [
           {
             "key": "Fixed eyes and 270-degree neck rotation explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 8 ('Flying High'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -1135,6 +2223,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 9 ('It's Raining'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1256,6 +2480,142 @@ const lookingAroundChapters = [
           {
             "key": "Mirror reflector, black box, and trapped solar heat explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 10 ('What is Cooking'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -1381,6 +2741,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 11 ('From Here to There'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1502,6 +2998,142 @@ const lookingAroundChapters = [
           {
             "key": "Realistic, healthy daily timetable values",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 12 ('Work We Do'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -1639,6 +3271,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 13 ('Sharing Our Feelings'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1770,6 +3538,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 14 ('The Story of Food'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1883,6 +3787,142 @@ const lookingAroundChapters = [
           {
             "key": "Turntable mechanism and shaping using hands described",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 15 ('Making Pots'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -2004,6 +4044,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 16 ('Games We Play'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -2117,6 +4293,142 @@ const lookingAroundChapters = [
           {
             "key": "'Bearing' penalty charge on receiver noted",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 17 ('Here Comes a Letter'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -2243,6 +4555,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 18 ('A House Like This!'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -2360,6 +4808,142 @@ const lookingAroundChapters = [
           {
             "key": "Birds controlling crop-eating insects explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 19 ('Our Friends — Animals'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -2481,6 +5065,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 20 ('Drop by Drop'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -2595,6 +5315,142 @@ const lookingAroundChapters = [
           {
             "key": "Communication and emotional bonding explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 21 ('Families can be Different'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -2724,6 +5580,142 @@ const lookingAroundChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 22 ('Left-Right'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -2845,6 +5837,142 @@ const lookingAroundChapters = [
           {
             "key": "Two authentic plant-based dye sources named",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 23 ('A Beautiful Cloth'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
@@ -2976,6 +6104,142 @@ const lookingAroundChapters = [
           {
             "key": "Ecosystem services and human dependence on nature explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Observation Time • Animals and Habits",
+        "q": "In Chapter 24 ('Web of Life'), what animals did the characters observe, and how do they move from place to place?",
+        "ans": "<strong>Observations:</strong><br>Animals move in diverse ways adapted to their bodies:<br>• <strong>Birds (Crow, Pigeon):</strong> Fly using wings and hop on two feet.<br>• <strong>Mammals (Cow, Dog):</strong> Walk and run on four legs.<br>• <strong>Reptiles (Lizard, Snake):</strong> Crawl on walls or slither on the ground.<br>• <strong>Insects (Ant, Grasshopper):</strong> Walk on six legs and hop/fly.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Birds, mammals, reptiles, insects movement",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Find Out & Write • Animal Habitats",
+        "q": "Name two animals that live:<br>(a) On trees<br>(b) In water<br>(c) On land<br>(d) Underground in burrows.",
+        "ans": "<strong>Habitats:</strong><br>• (a) On trees: <strong>Monkey, Squirrel, Owl</strong>.<br>• (b) In water: <strong>Fish, Frog, Crocodile</strong>.<br>• (c) On land: <strong>Horse, Elephant, Goat</strong>.<br>• (d) In burrows: <strong>Rabbit, Earthworm, Snake</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct examples for all 4 habitats",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Discuss & Share • Our Senses",
+        "q": "How do our five sense organs help us understand and navigate our daily environment?",
+        "ans": "<strong>Five Senses:</strong><br>1. <strong>Eyes:</strong> Help us see shapes, colours, and identify hazards.<br>2. <strong>Ears:</strong> Help us hear traffic horns, spoken words, and alarm sounds.<br>3. <strong>Nose:</strong> Helps us smell food, flowers, and detect smoke or gas leaks.<br>4. <strong>Tongue:</strong> Helps us taste sweet, sour, salty, and bitter food.<br>5. <strong>Skin:</strong> Helps us feel touch, heat, cold, roughness, and pain.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 5 sense organs explained with functions",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Water Cycle & Weather • Rain and Clouds",
+        "q": "Where does rainwater come from, and why do plants and trees look fresher and greener after a rain shower?",
+        "ans": "<strong>Rain and Plant Health:</strong><br>• Rain comes from water evaporating from rivers, ponds, and seas, forming clouds in the sky that cool and condense into rain droplets.<br>• Rain washes off thick dust accumulated on leaves, unblocks stomata for breathing, and deeply soaks the roots with fresh mineral-rich moisture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Water cycle / cloud formation",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Why plants look greener after rain",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Food Diversity • Regional Diets",
+        "q": "Why do people living in Kerala eat more rice, fish, and coconut, while people in Punjab eat more wheat chapatis, mustard greens, and lassi?",
+        "ans": "<strong>Regional Food Factors:</strong><br>• What people eat depends directly on <strong>what grows easily and abundantly in their climate and geography</strong>.<br>• Kerala has coastal climate, abundant rainfall, and coconut groves, making fish and rice staples.<br>• Punjab has fertile plains ideal for wheat and mustard cultivation, and a strong dairy culture.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Climate and agriculture connection",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Kerala and Punjab examples explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Cooking Methods • Kitchen Science",
+        "q": "Match each food item to its primary method of cooking:<br>(a) Idli — (1) Frying<br>(b) Puri — (2) Steaming<br>(c) Roti — (3) Roasting on Tawa.",
+        "ans": "<strong>Matching:</strong><br>• (a) Idli — <strong>(2) Steaming</strong><br>• (b) Puri — <strong>(1) Frying in oil</strong><br>• (c) Roti — <strong>(3) Roasting on Tawa</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Idli-Steaming, Puri-Frying, Roti-Roasting",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Shelter & Houses • Diversity in Homes",
+        "q": "Why are houses in heavy-rainfall regions like Assam built on bamboo stilts with sloping roofs?",
+        "ans": "<strong>Stilt Houses:</strong><br>• <strong>Bamboo Stilts:</strong> Keep the house 10 to 12 feet above ground level to prevent floodwaters and wild animals from entering.<br>• <strong>Sloping Roofs:</strong> Allow torrential rainwater to slide off quickly without accumulating or causing leaks.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Reason for bamboo stilts (floods)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Reason for sloping roof (rain runoff)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Community Helpers • Occupations",
+        "q": "Identify the worker who:<br>(a) Mends our shoes<br>(b) Delivers letters and parcels<br>(c) Shapes clay into earthen pots on a wheel<br>(d) Treats sick people and prescribes medicines.",
+        "ans": "<strong>Community Helpers:</strong><br>• (a) Mends shoes: <strong>Cobbler</strong><br>• (b) Delivers letters: <strong>Postman / Mail carrier</strong><br>• (c) Shapes clay pots: <strong>Potter</strong><br>• (d) Treats sick people: <strong>Doctor</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cobbler, Postman, Potter, Doctor",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Web of Life • Food Chain",
+        "q": "What is the 'Web of Life'? Draw a simple food chain showing how grass, deer, and lion are connected.",
+        "ans": "<strong>Web of Life & Food Chain:</strong><br>• The Web of Life shows that <strong>every living organism is interconnected and depends on others for survival</strong>.<br>• <strong>Food Chain:</strong> <strong>Sunlight → Grass (Producer) → Deer (Herbivore) → Lion (Carnivore)</strong>.<br>If grass disappears, deer starve; if deer disappear, lions cannot survive.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Definition of Web of Life",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Grass → Deer → Lion chain explained",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "Write True or False:<br>(a) Blind people can read books written in Braille script using their fingertips.<br>(b) Rainwater is the main natural source of fresh water on Earth.<br>(c) Animals do not have feelings and cannot communicate danger to each other.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Braille uses raised dots felt with fingertips.<br>• (b) <strong>True:</strong> Rain replenishes rivers, lakes, and groundwater.<br>• (c) <strong>False:</strong> Animals communicate through warning calls, scents, and body language to alert their group of predators.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, True, False with reasoning",
+            "marks": "3 M"
           }
         ]
       }
