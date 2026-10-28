@@ -20,6 +20,32 @@
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 12.1: Diagonal AC Divides Parallelogram ABCD into Congruent ΔABC ≅ ΔCDA</div>
+  <svg viewBox="0 0 460 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+    <!-- Parallelogram: A(80, 160), B(280, 160), C(360, 50), D(160, 50) -->
+    <polygon points="80,160 280,160 360,50 160,50" fill="#f8fafc" stroke="#1e293b" stroke-width="2.5"/>
+    <!-- Diagonal AC: (80, 160) to (360, 50) -->
+    <line x1="80" y1="160" x2="360" y2="50" stroke="#dc2626" stroke-width="2.5"/>
+    
+    <!-- Alternate interior angle arcs -->
+    <path d="M 120 160 A 40 40 0 0 1 112 147" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="130" y="152" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#2563eb">∠1</text>
+    <path d="M 320 50 A 40 40 0 0 1 328 63" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="310" y="68" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#2563eb">∠2</text>
+    
+    <!-- Vertices -->
+    <circle cx="80" cy="160" r="4.5" fill="#1e293b"/><text x="65" y="170" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">A</text>
+    <circle cx="280" cy="160" r="4.5" fill="#1e293b"/><text x="290" y="170" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">B</text>
+    <circle cx="360" cy="50" r="4.5" fill="#1e293b"/><text x="370" y="55" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">C</text>
+    <circle cx="160" cy="50" r="4.5" fill="#1e293b"/><text x="150" y="42" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">D</text>
+    
+    <!-- Summary note -->
+    <rect x="290" y="90" width="155" height="50" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="367" y="110" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">ΔABC ≅ ΔCDA (ASA)</text>
+    <text x="367" y="128" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#1e40af" text-anchor="middle">⟹ AB = CD &amp; AD = BC</text>
+  </svg>
+</div>
 <p><strong>Given:</strong> ABCD is a parallelogram (AB &#8741; CD and AD &#8741; BC). <strong>To prove:</strong> AB = CD and AD = BC.</p>
 <div class="step"><strong>Construction:</strong> Draw diagonal AC.</div>
 <div class="step"><strong>In &#9651;ABC and &#9651;CDA:</strong><br>&#8736;BAC = &#8736;DCA (alternate interior angles, AB&#8741;CD)<br>&#8736;BCA = &#8736;DAC (alternate interior angles, AD&#8741;BC)<br>AC = AC (common)</div>
@@ -73,6 +99,37 @@
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 12.2: Midpoint Theorem: DE ∥ BC and DE = ½ BC in ΔABC</div>
+  <svg viewBox="0 0 460 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+    <!-- Triangle ABC: A(200, 30), B(60, 180), C(340, 180) -->
+    <polygon points="200,30 60,180 340,180" fill="#f8fafc" stroke="#1e293b" stroke-width="2.5"/>
+    
+    <!-- Midpoints: D on AB (130, 105), E on AC (270, 105) -->
+    <!-- Midpoint segment DE -->
+    <line x1="130" y1="105" x2="270" y2="105" stroke="#2563eb" stroke-width="3"/>
+    
+    <!-- Construction extension: extend DE to F such that EF = DE, join CF -->
+    <line x1="270" y1="105" x2="410" y2="105" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+    <line x1="340" y1="180" x2="410" y2="105" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+    <circle cx="410" cy="105" r="4" fill="#dc2626"/><text x="420" y="110" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626">F</text>
+    
+    <!-- Vertices & Points -->
+    <circle cx="200" cy="30" r="4.5" fill="#1e293b"/><text x="200" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b" text-anchor="middle">A</text>
+    <circle cx="60" cy="180" r="4.5" fill="#1e293b"/><text x="45" y="185" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">B</text>
+    <circle cx="340" cy="180" r="4.5" fill="#1e293b"/><text x="350" y="185" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">C</text>
+    <circle cx="130" cy="105" r="4.5" fill="#2563eb"/><text x="110" y="105" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#2563eb">D</text>
+    <circle cx="270" cy="105" r="4.5" fill="#2563eb"/><text x="260" y="95" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#2563eb">E</text>
+    
+    <!-- Midpoint markings -->
+    <text x="85" y="65" font-family="system-ui, sans-serif" font-size="10.5" fill="#64748b">AD = DB</text>
+    <text x="245" y="65" font-family="system-ui, sans-serif" font-size="10.5" fill="#64748b">AE = EC</text>
+    
+    <!-- Theorem Badge -->
+    <rect x="70" y="130" width="160" height="36" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="150" y="152" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#15803d" text-anchor="middle">DE ∥ BC  and  DE = ½ BC</text>
+  </svg>
+</div>
 <p><strong>Statement:</strong> The line segment joining the midpoints of two sides of a triangle is parallel to the third side and equal to half of it.</p>
 <p><strong>Given:</strong> In &#9651;ABC, M and N are midpoints of AB and AC. <strong>To prove:</strong> MN &#8741; BC and MN = BC/2.</p>
 <div class="step"><strong>Construction:</strong> Extend MN to point D such that MN = ND. Join CD.</div>

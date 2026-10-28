@@ -107,6 +107,36 @@ Put y = &#8722;1: x = 6&#8722;3 = 3 &#8594; Solution (3, &#8722;1)</div>
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 13.1: Graphical Solution of x + y = 5 and x - y = 1 Intersecting at (3, 2)</div>
+  <svg viewBox="0 0 460 230" width="100%" height="230" xmlns="http://www.w3.org/2000/svg">
+    <!-- Axes: Origin at (100, 180), scale: 28px per unit -->
+    <line x1="60" y1="180" x2="420" y2="180" stroke="#334155" stroke-width="2"/>
+    <line x1="100" y1="30" x2="100" y2="210" stroke="#334155" stroke-width="2"/>
+    <text x="425" y="185" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">X</text>
+    <text x="105" y="35" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">Y</text>
+    
+    <!-- Line 1: x + y = 5 -> passes through (0, 5)->(100, 40) and (5, 0)->(240, 180) -->
+    <line x1="80" y1="20" x2="260" y2="200" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="260" y="195" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#2563eb">x + y = 5</text>
+    
+    <!-- Line 2: x - y = 1 -> passes through (1, 0)->(128, 180) and (0, -1)->(100, 208), (3, 2)->(184, 124), (5, 4)->(240, 68) -->
+    <line x1="90" y1="216" x2="260" y2="48" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="265" y="60" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#16a34a">x - y = 1</text>
+    
+    <!-- Intersection point at (3, 2) -> (100 + 3*28 = 184, 180 - 2*28 = 124) -->
+    <circle cx="184" cy="124" r="6" fill="#dc2626"/>
+    <!-- Projection lines to axes -->
+    <line x1="184" y1="124" x2="184" y2="180" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <line x1="184" y1="124" x2="100" y2="124" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="195" y="120" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626">P(3, 2) Solution</text>
+    
+    <!-- Solution box -->
+    <rect x="290" y="90" width="150" height="60" rx="6" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="365" y="112" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#b91c1c" text-anchor="middle">Unique Intersection:</text>
+    <text x="365" y="134" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#991b1b" text-anchor="middle">x = 3, y = 2</text>
+  </svg>
+</div>
 <p><strong>Line 1: x + y = 5 &#8594;</strong> points: (0,5), (5,0), (2,3)</p>
 <p><strong>Line 2: x &#8722; y = 1 &#8594;</strong> points: (0,&#8722;1), (1,0), (3,2)</p>
 <div class="step">Plot both lines. They intersect at a common point.</div>

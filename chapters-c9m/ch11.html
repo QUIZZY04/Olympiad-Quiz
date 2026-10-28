@@ -51,6 +51,43 @@ Step 6: Stop.</div>
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 11.1: Flowchart Logic for Euclid's Division Algorithm to Find HCF(a, b)</div>
+  <svg viewBox="0 0 460 240" width="100%" height="240" xmlns="http://www.w3.org/2000/svg">
+    <!-- Start oval -->
+    <rect x="180" y="10" width="100" height="30" rx="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="230" y="30" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#15803d" text-anchor="middle">START</text>
+    <line x1="230" y1="40" x2="230" y2="60" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Input block -->
+    <polygon points="170,60 290,60 275,90 155,90" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="222" y="79" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">Input a, b (a &gt; b)</text>
+    <line x1="222" y1="90" x2="222" y2="110" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Division step: a = bq + r -->
+    <rect x="150" y="110" width="145" height="32" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <text x="222" y="130" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#0f172a" text-anchor="middle">Divide: a = bq + r</text>
+    <line x1="222" y1="142" x2="222" y2="160" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Decision diamond: Is r = 0? -->
+    <polygon points="222,160 280,185 222,210 164,185" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="222" y="189" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#b45309" text-anchor="middle">r = 0 ?</text>
+    
+    <!-- Yes branch to HCF = b -->
+    <line x1="280" y1="185" x2="350" y2="185" stroke="#16a34a" stroke-width="2"/>
+    <text x="310" y="178" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#16a34a">Yes</text>
+    <rect x="350" y="170" width="95" height="30" rx="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="397" y="189" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#15803d" text-anchor="middle">HCF = b</text>
+    
+    <!-- No branch loop back: a = b, b = r -->
+    <line x1="164" y1="185" x2="90" y2="185" stroke="#dc2626" stroke-width="2"/>
+    <text x="125" y="178" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#dc2626">No</text>
+    <line x1="90" y1="185" x2="90" y2="126" stroke="#dc2626" stroke-width="2"/>
+    <line x1="90" y1="126" x2="150" y2="126" stroke="#dc2626" stroke-width="2"/>
+    <polygon points="148,126 140,121 140,131" fill="#dc2626"/>
+    <text x="80" y="155" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">a = b, b = r</text>
+  </svg>
+</div>
 <p><strong>Euclid&#8217;s Algorithm:</strong> HCF(a, b) = HCF(b, a mod b) until remainder = 0.</p>
 <div class="step"><strong>Step 1:</strong> 252 = 105 &#215; 2 + 42 &#8594; HCF(252,105) = HCF(105, 42)</div>
 <div class="step"><strong>Step 2:</strong> 105 = 42 &#215; 2 + 21 &#8594; HCF(105, 42) = HCF(42, 21)</div>

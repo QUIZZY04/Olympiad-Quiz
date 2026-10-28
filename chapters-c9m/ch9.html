@@ -71,6 +71,41 @@
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 9.1: Proof: Base Angles of Isosceles Triangle are Equal (AB = AC ⟹ ∠B = ∠C)</div>
+  <svg viewBox="0 0 460 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+    <!-- Triangle ABC: A(230, 25), B(120, 185), C(340, 185) -->
+    <polygon points="230,25 120,185 340,185" fill="#f8fafc" stroke="#1e293b" stroke-width="2.5"/>
+    
+    <!-- Angle bisector AD: (230, 25) to (230, 185) -->
+    <line x1="230" y1="25" x2="230" y2="185" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+    
+    <!-- Angle bisector arcs at A: ∠BAD = ∠CAD -->
+    <path d="M 218 55 A 35 35 0 0 0 228 58" fill="none" stroke="#dc2626" stroke-width="1.8"/>
+    <path d="M 232 58 A 35 35 0 0 0 242 55" fill="none" stroke="#dc2626" stroke-width="1.8"/>
+    
+    <!-- Base angle arcs at B and C -->
+    <path d="M 150 185 A 30 30 0 0 0 140 157" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="155" y="172" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#2563eb">∠B</text>
+    <path d="M 310 185 A 30 30 0 0 1 320 157" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="295" y="172" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#2563eb">∠C</text>
+    
+    <!-- Vertices -->
+    <circle cx="230" cy="25" r="4.5" fill="#1e293b"/><text x="230" y="15" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b" text-anchor="middle">A</text>
+    <circle cx="120" cy="185" r="4.5" fill="#1e293b"/><text x="105" y="195" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">B</text>
+    <circle cx="340" cy="185" r="4.5" fill="#1e293b"/><text x="350" y="195" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">C</text>
+    <circle cx="230" cy="185" r="4" fill="#dc2626"/><text x="230" y="202" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">D</text>
+    
+    <!-- Equality ticks on AB and AC -->
+    <text x="160" y="105" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#1e293b">AB</text>
+    <text x="280" y="105" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#1e293b">AC</text>
+    
+    <!-- Congruence note -->
+    <rect x="15" y="40" width="135" height="50" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="82" y="60" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">By SAS Criterion:</text>
+    <text x="82" y="78" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#1e40af" text-anchor="middle">ΔABD ≅ ΔACD</text>
+  </svg>
+</div>
 <p><strong>Given:</strong> Triangle ABC with AB = AC. <strong>To prove:</strong> &#8736;B = &#8736;C.</p>
 <div class="step"><strong>Construction:</strong> Draw AD, the bisector of &#8736;A, meeting BC at D.</div>
 <div class="step"><strong>In &#9651;ABD and &#9651;ACD:</strong><br>AB = AC (given)<br>AD = AD (common)<br>&#8736;BAD = &#8736;CAD (AD bisects &#8736;A)</div>
@@ -152,6 +187,38 @@
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 9.2: Angle Sum Property: ∠A + ∠B + ∠C = 180° via Parallel Construction XY ∥ BC</div>
+  <svg viewBox="0 0 460 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+    <!-- Parallel Line XY through A(230, 60): (60, 60) to (400, 60) -->
+    <line x1="60" y1="60" x2="400" y2="60" stroke="#0284c7" stroke-width="2"/>
+    <text x="60" y="52" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#0284c7">X</text>
+    <text x="395" y="52" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#0284c7">Y</text>
+    
+    <!-- Triangle ABC: A(230, 60), B(110, 185), C(350, 185) -->
+    <polygon points="230,60 110,185 350,185" fill="#f8fafc" stroke="#1e293b" stroke-width="2.5"/>
+    <line x1="110" y1="185" x2="350" y2="185" stroke="#1e293b" stroke-width="2.5"/>
+    
+    <!-- Angle 1 at XAB: alternate to ∠B -->
+    <path d="M 190 60 A 40 40 0 0 1 202 85" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="180" y="52" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#2563eb">∠1</text>
+    <!-- Angle 2 at A: interior ∠A -->
+    <path d="M 215 76 A 25 25 0 0 0 245 76" fill="none" stroke="#dc2626" stroke-width="2"/>
+    <text x="230" y="95" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">∠A</text>
+    <!-- Angle 3 at YAC: alternate to ∠C -->
+    <path d="M 258 85 A 40 40 0 0 1 270 60" fill="none" stroke="#059669" stroke-width="2"/>
+    <text x="275" y="52" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#059669">∠3</text>
+    
+    <!-- Base interior angles -->
+    <text x="135" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#2563eb">∠B (= ∠1)</text>
+    <text x="305" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#059669">∠C (= ∠3)</text>
+    
+    <!-- Summary -->
+    <rect x="290" y="105" width="155" height="52" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="367" y="125" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">∠1 + ∠A + ∠3 = 180°</text>
+    <text x="367" y="145" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#1e40af" text-anchor="middle">⟹ ∠A + ∠B + ∠C = 180°</text>
+  </svg>
+</div>
           <div class="step"><strong>Given:</strong> A triangle ABC.</div>
           <div class="step"><strong>Construction:</strong> Draw line XY through A parallel to BC.</div>
           <div class="step">Since XY || BC and AB is transversal: &#8736;XAB = &#8736;B (alternate interior angles).</div>
