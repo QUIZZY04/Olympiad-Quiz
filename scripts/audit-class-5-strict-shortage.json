@@ -184,21 +184,21 @@
     "track": "Classic CBSE",
     "totalChapters": 14,
     "actualNCERT": 360,
-    "currentQs": 364,
+    "currentQs": 336,
     "currentCBQs": 14,
-    "currentItems": 378,
-    "shortage": -4,
-    "coveragePct": "101.1%",
+    "currentItems": 350,
+    "shortage": 24,
+    "coveragePct": "93.3%",
     "chapters": [
       {
         "num": 1,
         "id": "magic1",
         "title": "The Fish Tale",
         "actualNCERT": 28,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 2,
-        "coveragePct": "92.9%",
+        "shortage": 4,
+        "coveragePct": "85.7%",
         "sections": "Fishermen boat types & speeds, Log boat vs motor boat travel time, Fish drying cost calculations, Women's Meenkar Bank loans"
       },
       {
@@ -206,10 +206,10 @@
         "id": "magic2",
         "title": "Shapes and Angles",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "92.3%",
         "sections": "Matchstick polygons, Angle tester craft, Degrees clock (45°, 90°, 180°), Paper airplane fold angles, Yoga posture angles"
       },
       {
@@ -217,10 +217,10 @@
         "id": "magic3",
         "title": "How Many Squares?",
         "actualNCERT": 24,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": -2,
-        "coveragePct": "108.3%",
+        "shortage": 0,
+        "coveragePct": "100.0%",
         "sections": "Postage stamps on grid, Perimeter of irregular leaves, 5-square shapes (Pentominoes), Rectangle divided by diagonal into triangles"
       },
       {
@@ -228,10 +228,10 @@
         "id": "magic4",
         "title": "Parts and Wholes",
         "actualNCERT": 30,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 4,
-        "coveragePct": "86.7%",
+        "shortage": 6,
+        "coveragePct": "80.0%",
         "sections": "Rani's chocolate sharing, Colored parts of circle, Greedy gatekeepers story, Cutting halwa equally, Equivalent fraction chart"
       },
       {
@@ -239,10 +239,10 @@
         "id": "magic5",
         "title": "Does it Look the Same?",
         "actualNCERT": 22,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": -4,
-        "coveragePct": "118.2%",
+        "shortage": -2,
+        "coveragePct": "109.1%",
         "sections": "Mirror reflections, Half turns of letters & numbers, Windmill blade turns, Completing symmetrical drawings along mirror line"
       },
       {
@@ -250,10 +250,10 @@
         "id": "magic6",
         "title": "Be My Multiple, I'll be Your Factor",
         "actualNCERT": 28,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 2,
-        "coveragePct": "92.9%",
+        "shortage": 4,
+        "coveragePct": "85.7%",
         "sections": "Mouse and Cat stepping grid, Meow game, Tamarind seed rectangular arrays, Common factor rings, Factor trees"
       },
       {
@@ -261,10 +261,10 @@
         "id": "magic7",
         "title": "Can You See the Pattern?",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "92.3%",
         "sections": "Magic hexagrams, Calendar 3x3 magic grid (sum=9x center), Secret number riddles, Adding consecutive numbers trick"
       },
       {
@@ -272,10 +272,10 @@
         "id": "magic8",
         "title": "Mapping Your Way",
         "actualNCERT": 22,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": -4,
-        "coveragePct": "118.2%",
+        "shortage": -2,
+        "coveragePct": "109.1%",
         "sections": "Central Hexagon Rashtrapati Bhavan map, Red Fort tourist tour map, Scaling 1cm=200m, State distance matrix"
       },
       {
@@ -283,10 +283,10 @@
         "id": "magic9",
         "title": "Boxes and Sketches",
         "actualNCERT": 22,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": -4,
-        "coveragePct": "118.2%",
+        "shortage": -2,
+        "coveragePct": "109.1%",
         "sections": "Cube nets test, Floor plan to 3D deep drawing, Bridge front/top/side views, Dice opposite sides sum to 7"
       },
       {
@@ -294,10 +294,10 @@
         "id": "magic10",
         "title": "Tenths and Hundredths",
         "actualNCERT": 28,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 2,
-        "coveragePct": "92.9%",
+        "shortage": 4,
+        "coveragePct": "85.7%",
         "sections": "Frog leap length, Decimal currency, Thermometer readings in Srinagar vs Chennai, Olympic hundredths race timer"
       },
       {
@@ -305,10 +305,10 @@
         "id": "magic11",
         "title": "Area and its Boundary",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "92.3%",
         "sections": "Arbaz floor tiling, Tablecloth lace boundary, Cheering card border, Postcard thread loop puzzle"
       },
       {
@@ -316,10 +316,10 @@
         "id": "magic12",
         "title": "Smart Charts",
         "actualNCERT": 24,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": -2,
-        "coveragePct": "108.3%",
+        "shortage": 0,
+        "coveragePct": "100.0%",
         "sections": "Yamini pet tally chart, Rabbit population doubling table, City temperature hot/cold bar graphs, Family tree generations"
       },
       {
@@ -327,10 +327,10 @@
         "id": "magic13",
         "title": "Ways to Multiply and Divide",
         "actualNCERT": 30,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": 4,
-        "coveragePct": "86.7%",
+        "shortage": 6,
+        "coveragePct": "80.0%",
         "sections": "Bela's multi-digit multiplication, Shantaram cook daily pay, Sukhi farm debt division, 576 books packed in boxes"
       },
       {
@@ -338,10 +338,10 @@
         "id": "magic14",
         "title": "How Big? How Heavy?",
         "actualNCERT": 24,
-        "currentBaseQs": 26,
+        "currentBaseQs": 24,
         "cbqCount": 1,
-        "shortage": -2,
-        "coveragePct": "108.3%",
+        "shortage": 0,
+        "coveragePct": "100.0%",
         "sections": "Matchbox stage volume, 1cm cube packing in carton, Post office parcel rates, 5-rupee coin weight calculation"
       }
     ]
@@ -476,21 +476,21 @@
     "track": "Classic CBSE",
     "totalChapters": 10,
     "actualNCERT": 260,
-    "currentQs": 260,
+    "currentQs": 218,
     "currentCBQs": 10,
-    "currentItems": 270,
-    "shortage": 0,
-    "coveragePct": "100.0%",
+    "currentItems": 228,
+    "shortage": 42,
+    "coveragePct": "83.8%",
     "chapters": [
       {
         "num": 1,
         "id": "m1",
         "title": "Ice-cream Man & Wonderful Waste!",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Ice-cream flavors vocabulary, Avial dish recipe sequencing, Waste recycling dialogue"
       },
       {
@@ -498,10 +498,10 @@
         "id": "m2",
         "title": "Teamwork & Flying Together",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Rhyming teamwork words, Geese and hunter trap escape, Contractions ('don't', 'can't')"
       },
       {
@@ -509,10 +509,10 @@
         "id": "m3",
         "title": "My Shadow & Robinson Crusoe",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Shadow behavior at noon vs evening, Footprint discovery emotions, Island diary entry"
       },
       {
@@ -520,10 +520,10 @@
         "id": "m4",
         "title": "Crying & My Elder Brother",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Emotion words, Munna vs Bhaiya study schedules, Idioms on study and hard work"
       },
       {
@@ -531,10 +531,10 @@
         "id": "m5",
         "title": "The Lazy Frog & Rip Van Winkle",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 21,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 5,
+        "coveragePct": "80.8%",
         "sections": "Reading is Fun, Fred the frog laziness, Rip's 20-year sleep timeline, Village changes description"
       },
       {
@@ -542,10 +542,10 @@
         "id": "m6",
         "title": "Class Discussion & The Talkative Barber",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 21,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 5,
+        "coveragePct": "80.8%",
         "sections": "Reading is Fun, Jane's quietness discussion, Sultan and talkative barber humor, Exclamatory sentences"
       },
       {
@@ -553,10 +553,10 @@
         "id": "m7",
         "title": "Topsy-Turvy Land & Gulliver's Travels",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Inverted world poem, Giant farmers of Brobdingnag, Similes ('as tall as...')"
       },
       {
@@ -564,10 +564,10 @@
         "id": "m8",
         "title": "Nobody's Friend & The Little Bully",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Sharing toys and sweets, Hari the crab pinch bully, Anti-bullying school pledge"
       },
       {
@@ -575,10 +575,10 @@
         "id": "m9",
         "title": "Sing a Song of People & Around the World",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Bustling city crowd speed, Phileas Fogg 80-day route map, Train vs steamer travel"
       },
       {
@@ -586,10 +586,10 @@
         "id": "m10",
         "title": "Malu Bhalu & Who Will be Ningthou?",
         "actualNCERT": 26,
-        "currentBaseQs": 26,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 4,
+        "coveragePct": "84.6%",
         "sections": "Reading is Fun, Polar bear swimming lessons, Manipur kingdom succession contest, Sanatombi environmental love"
       }
     ]
@@ -746,21 +746,21 @@
     "track": "Classic CBSE",
     "totalChapters": 14,
     "actualNCERT": 308,
-    "currentQs": 322,
+    "currentQs": 286,
     "currentCBQs": 14,
-    "currentItems": 336,
-    "shortage": -14,
-    "coveragePct": "104.5%",
+    "currentItems": 300,
+    "shortage": 22,
+    "coveragePct": "92.9%",
     "chapters": [
       {
         "num": 1,
         "id": "r1",
         "title": "राख की रस्सी",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 0,
+        "coveragePct": "100.0%",
         "sections": "लोनपो गार का बेटा, तिब्बत की वेशभूषा, राख की रस्सी का रहस्य, समझदारी और चालाकी"
       },
       {
@@ -768,10 +768,10 @@
         "id": "r2",
         "title": "फसलों के त्योहार",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 0,
+        "coveragePct": "100.0%",
         "sections": "खिचड़ी, मकर संक्रांति, पोंगल, बीहू, सरहुल, विभिन्न प्रांतों की फसल उत्सव तालिका"
       },
       {
@@ -779,10 +779,10 @@
         "id": "r3",
         "title": "खिलौनेवाला",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 21,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 1,
+        "coveragePct": "95.5%",
         "sections": "कविता से, खिलौनों की सूची, राम-सीता-ताड़का प्रसंग, माँ और बालक का संवाद"
       },
       {
@@ -790,10 +790,10 @@
         "id": "r4",
         "title": "नन्हा फ़नकार",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 21,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 1,
+        "coveragePct": "95.5%",
         "sections": "केशव की नक्काशी, बादशाह अकबर की मुलाकात, संगतराश के औजार, घंटी के डिजाइन"
       },
       {
@@ -801,10 +801,10 @@
         "id": "r5",
         "title": "जहाँ चाह वहाँ राह",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "इला सचानी की कसीदाकारी, पैरों से कढ़ाई, हिम्मत और लगन, काठियावाड़ी टाँके"
       },
       {
@@ -812,10 +812,10 @@
         "id": "r6",
         "title": "चिट्ठी का सफर",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "संदेश भेजने के साधन, कबूतर से इंटरनेट, पिन कोड (PIN Code) का महत्व, डाक टिकट संग्रह"
       },
       {
@@ -823,10 +823,10 @@
         "id": "r7",
         "title": "डाकिए की कहानी, कँवरसिंह की जुबानी",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "हिमाचल के डाकिए का साक्षात्कार, पहाड़ी डाक सेवा, डाकिए का जीवन, कर्तव्यनिष्ठा"
       },
       {
@@ -834,10 +834,10 @@
         "id": "r8",
         "title": "वे दिन भी क्या दिन थे",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "भविष्य के स्कूल, रोबोट शिक्षक बनाम मानवीय शिक्षक, कागजी किताबें, विज्ञान कथा"
       },
       {
@@ -845,10 +845,10 @@
         "id": "r9",
         "title": "एक माँ की बेबसी",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "बोलने में असमर्थ रतन, माँ की आँखों की चिंता, दिव्यांग बच्चों के प्रति संवेदनशीलता"
       },
       {
@@ -856,10 +856,10 @@
         "id": "r10",
         "title": "एक दिन की बादशाहत",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "आरिफ और सलीम की एक दिन की हुकूमत, बड़ों और बच्चों की भूमिका बदलना, उर्दू शब्द"
       },
       {
@@ -867,10 +867,10 @@
         "id": "r11",
         "title": "चावल की रोटियाँ",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "कोको का नाटक, चावल की रोटियाँ छिपाने की जुगत, चार मित्रों का हास्य संवाद नाटक"
       },
       {
@@ -878,10 +878,10 @@
         "id": "r12",
         "title": "गुरु और चेला",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "अंधेर नगरी टके सेर भाजी, राजा की मूर्खता, फांसी का फंदा, गुरु की चतुराई"
       },
       {
@@ -889,10 +889,10 @@
         "id": "r13",
         "title": "स्वामी की दादी",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "राजम और मणि की कहानियां, दादी का बटुआ और इलायची, स्वामीनाथन का बचपन"
       },
       {
@@ -900,10 +900,10 @@
         "id": "r14",
         "title": "बाघ आया उस रात",
         "actualNCERT": 22,
-        "currentBaseQs": 23,
+        "currentBaseQs": 20,
         "cbqCount": 1,
-        "shortage": -1,
-        "coveragePct": "104.5%",
+        "shortage": 2,
+        "coveragePct": "90.9%",
         "sections": "कविता से, बाघ का परिवार, झरने के पास पहरा, वन्यजीव सुरक्षा, बच्चों का डर"
       }
     ]
@@ -1038,21 +1038,21 @@
     "track": "Classic CBSE",
     "totalChapters": 22,
     "actualNCERT": 528,
-    "currentQs": 528,
+    "currentQs": 484,
     "currentCBQs": 22,
-    "currentItems": 550,
-    "shortage": 0,
-    "coveragePct": "100.0%",
+    "currentItems": 506,
+    "shortage": 44,
+    "coveragePct": "91.7%",
     "chapters": [
       {
         "num": 1,
         "id": "la_1",
         "title": "Super Senses",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Ant pheromone trails, Eagle vision 4x, Silkworm smell, Bat echolocation, Tiger whiskers & sanctuaries"
       },
       {
@@ -1060,10 +1060,10 @@
         "id": "la_2",
         "title": "A Snake Charmer's Story",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Kalbeliyas community, Snake venom & fangs, 4 poisonous snakes in India, Snakebite medicine"
       },
       {
@@ -1071,10 +1071,10 @@
         "id": "la_3",
         "title": "From Tasting to Digesting",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Taste bud map, Digestive system organs, Dr. Beaumont's stomach experiments, Glucose drip, ORS solution"
       },
       {
@@ -1082,10 +1082,10 @@
         "id": "la_4",
         "title": "Mangoes Round the Year",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Making Mamidi Tandra (Aam Papad), Food spoilage signs, Bread mold observation, Preserving pickles"
       },
       {
@@ -1093,10 +1093,10 @@
         "id": "la_5",
         "title": "Seeds and Seeds",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Seed germination conditions, Sprouting chana, Seed dispersal by wind/water/animals, Pitcher plant (Nepenthes)"
       },
       {
@@ -1104,10 +1104,10 @@
         "id": "la_6",
         "title": "Every Drop Counts",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Ghadsisar lake of Jaisalmer, Stepwells (Bawris), Water harvesting, Custom of welcoming bride at spring"
       },
       {
@@ -1115,10 +1115,10 @@
         "id": "la_7",
         "title": "Experiments with Water",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Dead Sea extreme salinity, Floating vs sinking test, Evaporation of salt pans, Dandi March salt satyagraha"
       },
       {
@@ -1126,10 +1126,10 @@
         "id": "la_8",
         "title": "A Treat for Mosquitoes",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Malaria parasite (Plasmodium), Ronald Ross Nobel discovery, Blood test report reading, Anemia & iron foods"
       },
       {
@@ -1137,10 +1137,10 @@
         "id": "la_9",
         "title": "Up You Go!",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Nehru Institute of Mountaineering, Bachendri Pal Everest ascent, Leader responsibilities, Rappelling"
       },
       {
@@ -1148,10 +1148,10 @@
         "id": "la_10",
         "title": "Walls Tell Stories",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Golconda Fort architecture, Bastions and cannons, Water lifting mechanisms, Museum artifact insights"
       },
       {
@@ -1159,10 +1159,10 @@
         "id": "la_11",
         "title": "Sunita in Space",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Astronaut Sunita Williams, Microgravity experiences, Floating food and hair, Globe and latitude lines"
       },
       {
@@ -1170,10 +1170,10 @@
         "id": "la_12",
         "title": "What if it Finishes...?",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Adalaj stepwell traffic, Petroleum refining products, Electric cars, CNG vehicles, Chulha smoke health"
       },
       {
@@ -1181,10 +1181,10 @@
         "id": "la_13",
         "title": "A Shelter so High!",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Gaurav Jani motorcycle journey, Changpa tribe of Ladakh, Pashmina goat wool, Rebo tents and Lekha"
       },
       {
@@ -1192,10 +1192,10 @@
         "id": "la_14",
         "title": "When the Earth Shook!",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Gujarat Bhuj earthquake 2001, Earthquake safety drills, Rescue teams, Rebuilding disaster-resilient houses"
       },
       {
@@ -1203,10 +1203,10 @@
         "id": "la_15",
         "title": "Blow Hot, Blow Cold",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Dr. Zakir Husain story, Woodcutter warming hands, Cooling hot potatoes, Stethoscope heartbeat resonance"
       },
       {
@@ -1214,10 +1214,10 @@
         "id": "la_16",
         "title": "Who will do this Work?",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Sanitation workers dignity of labour, Mahatma Gandhi Sabarmati ashram rules, Untouchability eradication"
       },
       {
@@ -1225,10 +1225,10 @@
         "id": "la_17",
         "title": "Across the Wall",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Nagpada Basketball Association girls team, Gender bias breaking in sports, Team spirit over individual score"
       },
       {
@@ -1236,10 +1236,10 @@
         "id": "la_18",
         "title": "No Place for Us?",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Jatrya Bhai displacement from Khedi village, Dam construction relocation, Rural vs urban struggles"
       },
       {
@@ -1247,10 +1247,10 @@
         "id": "la_19",
         "title": "A Seed tells a Farmer's Story",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Damjibhai traditional organic farming, Undhiyu winter dish, Chemical fertilizers debt, Tractor vs bullock"
       },
       {
@@ -1258,10 +1258,10 @@
         "id": "la_20",
         "title": "Whose Forests?",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Suryamani Jharkhand Kuduk community, Torang cultural center, Forest Rights Act 2007, Right over jungle"
       },
       {
@@ -1269,10 +1269,10 @@
         "id": "la_21",
         "title": "Like Father, Like Daughter",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Inherited traits vs acquired habits, Gregor Mendel pea plant genetics, Polio non-genetic disease awareness"
       },
       {
@@ -1280,10 +1280,10 @@
         "id": "la_22",
         "title": "On the Move Again",
         "actualNCERT": 24,
-        "currentBaseQs": 24,
+        "currentBaseQs": 22,
         "cbqCount": 1,
-        "shortage": 0,
-        "coveragePct": "100.0%",
+        "shortage": 2,
+        "coveragePct": "91.7%",
         "sections": "Mukadam moneylender, Sugarcane harvest migration, Caravan life, Education disruption of migrant children"
       }
     ]
