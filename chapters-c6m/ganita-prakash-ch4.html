@@ -907,7 +907,53 @@
   <div class="q-card" id="c6m-ch4-q4">
     <div class="q-head" onclick="toggleQ('c6m-ch4-q4')">
       <div class="q-num">Q4</div>
-      <div class="q-text">Observe the bar graph given in Figure 4.1 and answer the following questions:<br>(a) What information does the bar graph give?<br>(b) In which subject has the student scored maximum marks?<br>(c) In which subject has the student scored minimum marks?<br>(d) State the marks obtained in Science and Social Studies.</div>
+      <div class="q-text">Observe the bar graph given in Figure 4.1 and answer the following questions:<br>(a) What information does the bar graph give?<br>(b) In which subject has the student scored maximum marks?<br>(c) In which subject has the student scored minimum marks?<br>(d) State the marks obtained in Science and Social Studies.
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 600px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 6px;">Figure 4.1: Examination Marks Obtained by a Student</div>
+  <svg viewBox="0 0 540 260" width="100%" height="260" xmlns="http://www.w3.org/2000/svg">
+    <!-- Gridlines & Y-axis labels (Scale: 1 unit = 10 marks, height 20px per 10 marks) -->
+    <!-- Base y = 210 (0 marks), Top y = 30 (90 marks) -->
+    <line x1="70" y1="210" x2="510" y2="210" stroke="#334155" stroke-width="2"/>
+    <line x1="70" y1="20" x2="70" y2="210" stroke="#334155" stroke-width="2"/>
+    <text x="25" y="115" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" transform="rotate(-90 25 115)" text-anchor="middle">Marks Obtained</text>
+    
+    <!-- Y Marks: 0, 20, 40, 60, 80 -->
+    <line x1="65" y1="210" x2="510" y2="210" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="214" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">0</text>
+    <line x1="65" y1="170" x2="510" y2="170" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="174" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">20</text>
+    <line x1="65" y1="130" x2="510" y2="130" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="134" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">40</text>
+    <line x1="65" y1="90" x2="510" y2="90" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="94" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">60</text>
+    <line x1="65" y1="50" x2="510" y2="50" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="54" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">80</text>
+    
+    <!-- Bars: Width = 48px, Gap = 36px -->
+    <!-- 1. Hindi: 45 marks -> Height = 45 * 2 = 90px -> y = 210 - 90 = 120 -->
+    <rect x="95" y="120" width="50" height="90" rx="4" fill="#f59e0b"/>
+    <text x="120" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#b45309" text-anchor="middle">45</text>
+    <text x="120" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Hindi</text>
+    
+    <!-- 2. English: 60 marks -> Height = 120px -> y = 210 - 120 = 90 -->
+    <rect x="180" y="90" width="50" height="120" rx="4" fill="#3b82f6"/>
+    <text x="205" y="82" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1d4ed8" text-anchor="middle">60</text>
+    <text x="205" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">English</text>
+    
+    <!-- 3. Mathematics: 75 marks (MAX) -> Height = 150px -> y = 210 - 150 = 60 -->
+    <rect x="265" y="60" width="50" height="150" rx="4" fill="#10b981"/>
+    <text x="290" y="52" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#047857" text-anchor="middle">75 ⭐</text>
+    <text x="290" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Maths</text>
+    
+    <!-- 4. Science: 65 marks -> Height = 130px -> y = 210 - 130 = 80 -->
+    <rect x="350" y="80" width="50" height="130" rx="4" fill="#8b5cf6"/>
+    <text x="375" y="72" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#6d28d9" text-anchor="middle">65</text>
+    <text x="375" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Science</text>
+    
+    <!-- 5. Social Studies: 50 marks -> Height = 100px -> y = 210 - 100 = 110 -->
+    <rect x="435" y="110" width="50" height="100" rx="4" fill="#ec4899"/>
+    <text x="460" y="102" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#be185d" text-anchor="middle">50</text>
+    <text x="460" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Soc. Studies</text>
+    
+    <!-- X-axis Label -->
+    <text x="290" y="252" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">School Subjects (1 cm = 10 marks)</text>
+  </svg>
+</div></div>
       <div class="q-marks">[3 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
