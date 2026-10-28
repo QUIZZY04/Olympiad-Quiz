@@ -59,7 +59,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"Express as rupees using decimals: (a) 5 paise (b) 75 paise (c) 50 rupees 90 paise. Express as metres: (d) 15 cm (e) 2 m 45 cm.","acceptedAnswer":{"@type":"Answer","text":"Decimal Conversions: • (a) 5 paise = 5/100 = ₹0.05 . • (b) 75 paise = 75/100 = ₹0.75 . • (c) 50 rupees 90 paise = 50 + 90/100 = ₹50.90 . • (d) 15 cm = 15/100 = 0.15 m . • (e) 2 m 45 cm = 2 + 45/100 = 2.45 m ."}},{"@type":"Question","name":"Which is greater: (a) 0.5 or 0.05 (b) 1.23 or 1.2 (c) 0.099 or 0.19? Arrange in ascending order: 0.8, 0.08, 0.88, 0.808.","acceptedAnswer":{"@type":"Answer","text":"Decimal Comparison: • (a) 0.50 > 0.05 -> 0.5 is greater . • (b) 1.23 > 1.20 -> 1.23 is greater . • (c) 0.099 0.19 is greater . • Ascending Order: 0.08 < 0.808 < 0.8 < 0.88."}},{"@type":"Question","name":"Sunita travelled 15 km 268 m by bus, 7 km 7 m by car and 500 m on foot in order to reach her school. How far is her school from her residence?","acceptedAnswer":{"@type":"Answer","text":"Decimal Addition: • By bus = 15.268 km. • By car = 7.007 km. • On foot = 500 m = 0.500 km. • Total distance = 15.268 + 7.007 + 0.500 = 22.775 km . Her school is 22 km 775 m (22.775 km) from her residence."}},{"@type":"Question","name":"Grocery Billing & Accounting: Supermarket Audit: Raju bought vegetables weighing 10 kg. Out of this, 3 kg 500 g is onions, 2 kg 75 g is tomatoes and the rest is","acceptedAnswer":{"@type":"Answer","text":"(a) Decimal Weights: Onions = 3.500 kg; Tomatoes = 2.075 kg. (b) Potatoes Weight: Total onions + tomatoes = 3.500 + 2.075 = 5.575 kg. Potatoes = 10.000 - 5.575 = 4.425 kg . (c) Cost: 4.425 × ₹28.50 = ₹126.11 ."}}]
+    "mainEntity": [{"@type":"Question","name":"Express as rupees using decimals: (a) 5 paise (b) 75 paise (c) 50 rupees 90 paise. Express as metres: (d) 15 cm (e) 2 m 45 cm.","acceptedAnswer":{"@type":"Answer","text":"Decimal Conversions: • (a) 5 paise = 5/100 = ₹0.05 . • (b) 75 paise = 75/100 = ₹0.75 . • (c) 50 rupees 90 paise = 50 + 90/100 = ₹50.90 . • (d) 15 cm = 15/100 = 0.15 m . • (e) 2 m 45 cm = 2 + 45/100 = 2.45 m ."}},{"@type":"Question","name":"Which is greater: (a) 0.5 or 0.05 (b) 1.23 or 1.2 (c) 0.099 or 0.19? Arrange in ascending order: 0.8, 0.08, 0.88, 0.808.","acceptedAnswer":{"@type":"Answer","text":"Decimal Comparison: • (a) 0.50 > 0.05 -> 0.5 is greater . • (b) 1.23 > 1.20 -> 1.23 is greater . • (c) 0.099 0.19 is greater . • Ascending Order: 0.08 < 0.808 < 0.8 < 0.88."}},{"@type":"Question","name":"Sunita travelled 15 km 268 m by bus, 7 km 7 m by car and 500 m on foot in order to reach her school. How far is her school from her residence?","acceptedAnswer":{"@type":"Answer","text":"Decimal Addition: • By bus = 15.268 km. • By car = 7.007 km. • On foot = 500 m = 0.500 km. • Total distance = 15.268 + 7.007 + 0.500 = 22.775 km . Her school is 22 km 775 m (22.775 km) from her residence."}},{"@type":"Question","name":"Grocery Billing &amp; Accounting: Supermarket Audit: Raju bought vegetables weighing 10 kg. Out of this, 3 kg 500 g is onions, 2 kg 75 g is tomatoes and the rest is","acceptedAnswer":{"@type":"Answer","text":"(a) Decimal Weights: Onions = 3.500 kg; Tomatoes = 2.075 kg. (b) Potatoes Weight: Total onions + tomatoes = 3.500 + 2.075 = 5.575 kg. Potatoes = 10.000 - 5.575 = 4.425 kg . (c) Cost: 4.425 × ₹28.50 = ₹126.11 ."}}]
   }
   </script>
   
@@ -540,6 +540,20 @@
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
   </style>
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -717,7 +731,7 @@
         <div class="ch-badge">8</div>
         <div class="chapter-header-info">
           <h2>Chapter 8: Decimals</h2>
-          <p>NCERT Mathematics (Classic) (Class 6) — Tenths & Hundredths, Place Value Chart for Decimals, Comparing Decimals, Money, Length & Weight Conversions, Addition & Subtraction of Decimals | CBSE 2026-27</p>
+          <p>NCERT Mathematics (Classic) (Class 6) — Tenths &amp; Hundredths, Place Value Chart for Decimals, Comparing Decimals, Money, Length &amp; Weight Conversions, Addition &amp; Subtraction of Decimals | CBSE 2026-27</p>
         </div>
       </div>
       
@@ -818,7 +832,7 @@
       
     <div class="cbq-card">
       <div class="cbq-badge">CBSE Competency-Based Case Study (NEP 2020)</div>
-      <div class="q-text"><strong>Grocery Billing & Accounting: Supermarket Audit:</strong><br>Raju bought vegetables weighing 10 kg. Out of this, 3 kg 500 g is onions, 2 kg 75 g is tomatoes and the rest is potatoes. (a) Express onion and tomato weights in kg using decimals. (b) Find the weight of potatoes in decimals. (c) If potatoes cost ₹28.50 per kg, calculate total cost of potatoes.</div>
+      <div class="q-text"><strong>Grocery Billing &amp; Accounting: Supermarket Audit:</strong><br>Raju bought vegetables weighing 10 kg. Out of this, 3 kg 500 g is onions, 2 kg 75 g is tomatoes and the rest is potatoes. (a) Express onion and tomato weights in kg using decimals. (b) Find the weight of potatoes in decimals. (c) If potatoes cost ₹28.50 per kg, calculate total cost of potatoes.</div>
       <div class="answer-box" style="margin-top: 15px;">
         <div class="answer-label">Detailed Analytical Solution &amp; Rubric</div>
         <div class="answer-text"><strong>(a) Decimal Weights:</strong> Onions = 3.500 kg; Tomatoes = 2.075 kg.<br><strong>(b) Potatoes Weight:</strong> Total onions + tomatoes = 3.500 + 2.075 = 5.575 kg. Potatoes = 10.000 - 5.575 = <strong>4.425 kg</strong>.<br><strong>(c) Cost:</strong> 4.425 × ₹28.50 = <strong>₹126.11</strong>.</div>
@@ -857,7 +871,12 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
+      if (el) {
+        el.classList.toggle('open');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([el]);
+        }
+      }
     }
 
     // Toggle Competency Answer

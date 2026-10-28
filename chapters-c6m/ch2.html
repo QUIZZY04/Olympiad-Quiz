@@ -540,6 +540,20 @@
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
   </style>
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -709,7 +723,7 @@
   <div class="concept-card">
     <div class="concept-header">📌 Key Geometric Concepts &amp; Angle Classifications</div>
     <ul class="concept-list">
-      <li><strong>Point, Line, Ray &amp; Line Segment:</strong> A point marks a fixed position with zero dimensions. A line extends infinitely in both directions ($overleftrightarrow{AB}$). A line segment has two fixed endpoints ($overline{AB}$). A ray has one initial point and extends indefinitely in one direction ($ec{AB}$).</li>
+      <li><strong>Point, Line, Ray &amp; Line Segment:</strong> A point marks a fixed position with zero dimensions. A line extends infinitely in both directions ($overleftrightarrow{AB}$). A line segment has two fixed endpoints ($overline{AB}$). A ray has one initial point and extends indefinitely in one direction ($\vec{AB}$).</li>
       <li><strong>Angle Classifications:</strong>
         <ul>
           <li><em>Acute Angle:</em> Greater than 0° and less than 90°.</li>
@@ -1190,7 +1204,7 @@
     - North to East = 90°<br>
     - East to South-East = 45°<br>
     - Total angle = $90^\circ + 45^\circ = \mathbf{135^\circ}$.<br>
-    Since $90^\circ &lt; 135^\circ &lt; 180^\circ$, it is an <strong>Obtuse Angle</strong>.</p>
+    Since $90^\circ < 135^\circ < 180^\circ$, it is an <strong>Obtuse Angle</strong>.</p>
     <p><strong>(b) West turning anti-clockwise through 270°:</strong><br>
     - West to South = 90°<br>
     - South to East = 90° (cumulative 180°)<br>
@@ -1233,7 +1247,12 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
+      if (el) {
+        el.classList.toggle('open');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([el]);
+        }
+      }
     }
 
     // Toggle Competency Answer

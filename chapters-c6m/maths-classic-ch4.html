@@ -59,7 +59,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"Use the figure to name: (a) Five points (b) A line (c) Four rays (d) Five line segments.","acceptedAnswer":{"@type":"Answer","text":"Geometrical Components: • (a) Five points: O, B, C, D, E . • (b) A line: $\\overleftrightarrow{BD}$ (or $\\overleftrightarrow{DE}$ or $\\overleftrightarrow{BE}$). • (c) Four rays: $\\vec{OD}, \\vec{OE}, \\vec{OC}, \\vec{OB}$. • (d) Five line segments: $\\overline{DE}, \\overline{EO}, \\overline{OB}, \\overline"}},{"@type":"Question","name":"Draw a rough sketch of a quadrilateral ABCD. State: (a) Two pairs of opposite sides. (b) Two pairs of opposite angles. (c) Two pairs of adjacent sides. (d) Two ","acceptedAnswer":{"@type":"Answer","text":"Quadrilateral Relations: • (a) Opposite sides: (AB, DC) and (AD, BC). • (b) Opposite angles: (∠A, ∠C) and (∠B, ∠D). • (c) Adjacent sides: (AB, BC) and (BC, CD). • (d) Adjacent angles: (∠A, ∠B) and (∠B, ∠C)."}},{"@type":"Question","name":"From the figure of a circle with center O, identify: (a) its centre (b) three radii (c) a diameter (d) a chord (e) two points in the interior (f) a point in the","acceptedAnswer":{"@type":"Answer","text":"Circle Terminology: • (a) Centre: Point O. • (b) Three radii: $\\overline{OA}, \\overline{OB}, \\overline{OC}$. • (c) Diameter: $\\overline{AC}$. • (d) Chord: $\\overline{ED}$ (and diameter $\\overline{AC}$). • (e) Interior points: O and P. • (f) Exterior point: Q. • (g) Sector: Shaded region OAB (bounded"}},{"@type":"Question","name":"Civil Engineering: Circular Traffic Rotary Design: A municipal road junction features a circular roundabout of radius 14 m with a central statue. (a) Find diame","acceptedAnswer":{"@type":"Answer","text":"(a) Diameter: d = 2 × 14 = 28 m . (b) Central Passage: No, because the longest chord passing through the center is the diameter (28 m). Since length is 20 m, it does not pass through the center. (c) Sector vs Segment: A sector is enclosed by two radii and an arc (wedge shape), while a segment is bou"}}]
+    "mainEntity": [{"@type":"Question","name":"Use the figure to name: (a) Five points (b) A line (c) Four rays (d) Five line segments.","acceptedAnswer":{"@type":"Answer","text":"Geometrical Components: • (a) Five points: O, B, C, D, E . • (b) A line: $\\overleftrightarrow{BD}$ (or $\\overleftrightarrow{DE}$ or $\\overleftrightarrow{BE}$). • (c) Four rays: $\\vec{OD}, \\vec{OE}, \\vec{OC}, \\vec{OB}$. • (d) Five line segments: $\\overline{DE}, \\overline{EO}, \\overline{OB}, \\overline{OC}, \\overline{OD}$."}},{"@type":"Question","name":"Draw a rough sketch of a quadrilateral ABCD. State: (a) Two pairs of opposite sides. (b) Two pairs of opposite angles. (c) Two pairs of adjacent sides. (d) Two ","acceptedAnswer":{"@type":"Answer","text":"Quadrilateral Relations: • (a) Opposite sides: (AB, DC) and (AD, BC). • (b) Opposite angles: (∠A, ∠C) and (∠B, ∠D). • (c) Adjacent sides: (AB, BC) and (BC, CD). • (d) Adjacent angles: (∠A, ∠B) and (∠B, ∠C)."}},{"@type":"Question","name":"From the figure of a circle with center O, identify: (a) its centre (b) three radii (c) a diameter (d) a chord (e) two points in the interior (f) a point in the","acceptedAnswer":{"@type":"Answer","text":"Circle Terminology: • (a) Centre: Point O. • (b) Three radii: $\\overline{OA}, \\overline{OB}, \\overline{OC}$. • (c) Diameter: $\\overline{AC}$. • (d) Chord: $\\overline{ED}$ (and diameter $\\overline{AC}$). • (e) Interior points: O and P. • (f) Exterior point: Q. • (g) Sector: Shaded region OAB (bounded"}},{"@type":"Question","name":"Civil Engineering: Circular Traffic Rotary Design: A municipal road junction features a circular roundabout of radius 14 m with a central statue. (a) Find diame","acceptedAnswer":{"@type":"Answer","text":"(a) Diameter: d = 2 × 14 = 28 m . (b) Central Passage: No, because the longest chord passing through the center is the diameter (28 m). Since length is 20 m, it does not pass through the center. (c) Sector vs Segment: A sector is enclosed by two radii and an arc (wedge shape), while a segment is bou"}}]
   }
   </script>
   
@@ -540,6 +540,20 @@
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
   </style>
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -717,7 +731,7 @@
         <div class="ch-badge">4</div>
         <div class="chapter-header-info">
           <h2>Chapter 4: Basic Geometrical Ideas</h2>
-          <p>NCERT Mathematics (Classic) (Class 6) — Points, Line Segments, Lines, Rays, Intersecting Lines, Parallel Lines, Curves (Open & Closed), Polygons, Angles, Triangles, Quadrilaterals, Circles | CBSE 2026-27</p>
+          <p>NCERT Mathematics (Classic) (Class 6) — Points, Line Segments, Lines, Rays, Intersecting Lines, Parallel Lines, Curves (Open &amp; Closed), Polygons, Angles, Triangles, Quadrilaterals, Circles | CBSE 2026-27</p>
         </div>
       </div>
       
@@ -861,7 +875,12 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
+      if (el) {
+        el.classList.toggle('open');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([el]);
+        }
+      }
     }
 
     // Toggle Competency Answer

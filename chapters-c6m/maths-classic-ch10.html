@@ -59,7 +59,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"Find the perimeter of: (a) A rectangle of length 40 cm and breadth 10 cm. (b) A square of side 15 cm. (c) An equilateral triangle of side 9 cm. (d) A regular he","acceptedAnswer":{"@type":"Answer","text":"Perimeter Formulas: • (a) Rectangle = 2 × (l + b) = 2 × (40 + 10) = 2 × 50 = 100 cm . • (b) Square = 4 × side = 4 × 15 = 60 cm . • (c) Equilateral triangle = 3 × side = 3 × 9 = 27 cm . • (d) Regular hexagon = 6 × side = 6 × 8 = 48 cm ."}},{"@type":"Question","name":"A piece of string is 30 cm long. What will be the length of each side if the string is used to form: (a) a square? (b) an equilateral triangle? (c) a regular he","acceptedAnswer":{"@type":"Answer","text":"Equating Perimeter to 30 cm: • (a) Square: 4s = 30 -> s = 30/4 = 7.5 cm . • (b) Equilateral triangle: 3s = 30 -> s = 30/3 = 10 cm . • (c) Regular hexagon: 6s = 30 -> s = 30/6 = 5 cm ."}},{"@type":"Question","name":"How many tiles whose length and breadth are 12 cm and 5 cm respectively will be needed to fit in a rectangular region whose length and breadth are respectively:","acceptedAnswer":{"@type":"Answer","text":"Tiling Calculation: Area of 1 tile = 12 × 5 = 60 sq cm. • (a) Area of region = 100 × 144 = 14,400 sq cm. &nbsp;&nbsp;Number of tiles = 14,400 ÷ 60 = 240 tiles . • (b) Area of region = 70 × 36 = 2,520 sq cm. &nbsp;&nbsp;Number of tiles = 2,520 ÷ 60 = 42 tiles ."}},{"@type":"Question","name":"Public Park Renovation: Fencing & Turf Grassing: A municipal rectangular park is 250 m long and 175 m wide. (a) Find cost of fencing park with 3 rows of barbed ","acceptedAnswer":{"@type":"Answer","text":"(a) Fencing Cost: Perimeter = 2 × (250 + 175) = 2 × 425 = 850 m. For 3 rounds: 3 × 850 = 2,550 m. Cost = 2,550 × ₹12 = ₹30,600 . (b) Grassing Cost: Area = 250 × 175 = 43,750 sq m. Cost = 43,750 × ₹45 = ₹19,68,750 ."}}]
+    "mainEntity": [{"@type":"Question","name":"Find the perimeter of: (a) A rectangle of length 40 cm and breadth 10 cm. (b) A square of side 15 cm. (c) An equilateral triangle of side 9 cm. (d) A regular he","acceptedAnswer":{"@type":"Answer","text":"Perimeter Formulas: • (a) Rectangle = 2 × (l + b) = 2 × (40 + 10) = 2 × 50 = 100 cm . • (b) Square = 4 × side = 4 × 15 = 60 cm . • (c) Equilateral triangle = 3 × side = 3 × 9 = 27 cm . • (d) Regular hexagon = 6 × side = 6 × 8 = 48 cm ."}},{"@type":"Question","name":"A piece of string is 30 cm long. What will be the length of each side if the string is used to form: (a) a square? (b) an equilateral triangle? (c) a regular he","acceptedAnswer":{"@type":"Answer","text":"Equating Perimeter to 30 cm: • (a) Square: 4s = 30 -> s = 30/4 = 7.5 cm . • (b) Equilateral triangle: 3s = 30 -> s = 30/3 = 10 cm . • (c) Regular hexagon: 6s = 30 -> s = 30/6 = 5 cm ."}},{"@type":"Question","name":"How many tiles whose length and breadth are 12 cm and 5 cm respectively will be needed to fit in a rectangular region whose length and breadth are respectively:","acceptedAnswer":{"@type":"Answer","text":"Tiling Calculation: Area of 1 tile = 12 × 5 = 60 sq cm. • (a) Area of region = 100 × 144 = 14,400 sq cm. &nbsp;&nbsp;Number of tiles = 14,400 ÷ 60 = 240 tiles . • (b) Area of region = 70 × 36 = 2,520 sq cm. &nbsp;&nbsp;Number of tiles = 2,520 ÷ 60 = 42 tiles ."}},{"@type":"Question","name":"Public Park Renovation: Fencing &amp; Turf Grassing: A municipal rectangular park is 250 m long and 175 m wide. (a) Find cost of fencing park with 3 rows of barbed ","acceptedAnswer":{"@type":"Answer","text":"(a) Fencing Cost: Perimeter = 2 × (250 + 175) = 2 × 425 = 850 m. For 3 rounds: 3 × 850 = 2,550 m. Cost = 2,550 × ₹12 = ₹30,600 . (b) Grassing Cost: Area = 250 × 175 = 43,750 sq m. Cost = 43,750 × ₹45 = ₹19,68,750 ."}}]
   }
   </script>
   
@@ -540,6 +540,20 @@
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
   </style>
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -717,7 +731,7 @@
         <div class="ch-badge">10</div>
         <div class="chapter-header-info">
           <h2>Chapter 10: Mensuration</h2>
-          <p>NCERT Mathematics (Classic) (Class 6) — Perimeter of Rectangle, Square & Regular Polygons, Area of Rectangle & Square, Word Problems on Fencing & Tiling | CBSE 2026-27</p>
+          <p>NCERT Mathematics (Classic) (Class 6) — Perimeter of Rectangle, Square & Regular Polygons, Area of Rectangle & Square, Word Problems on Fencing &amp; Tiling | CBSE 2026-27</p>
         </div>
       </div>
       
@@ -820,7 +834,7 @@
       
     <div class="cbq-card">
       <div class="cbq-badge">CBSE Competency-Based Case Study (NEP 2020)</div>
-      <div class="q-text"><strong>Public Park Renovation: Fencing & Turf Grassing:</strong><br>A municipal rectangular park is 250 m long and 175 m wide. (a) Find cost of fencing park with 3 rows of barbed wire at ₹12 per metre. (b) Find cost of laying Korean turf grass over entire park at ₹45 per square metre.</div>
+      <div class="q-text"><strong>Public Park Renovation: Fencing &amp; Turf Grassing:</strong><br>A municipal rectangular park is 250 m long and 175 m wide. (a) Find cost of fencing park with 3 rows of barbed wire at ₹12 per metre. (b) Find cost of laying Korean turf grass over entire park at ₹45 per square metre.</div>
       <div class="answer-box" style="margin-top: 15px;">
         <div class="answer-label">Detailed Analytical Solution &amp; Rubric</div>
         <div class="answer-text"><strong>(a) Fencing Cost:</strong> Perimeter = 2 × (250 + 175) = 2 × 425 = 850 m. For 3 rounds: 3 × 850 = 2,550 m. Cost = 2,550 × ₹12 = <strong>₹30,600</strong>.<br><strong>(b) Grassing Cost:</strong> Area = 250 × 175 = 43,750 sq m. Cost = 43,750 × ₹45 = <strong>₹19,68,750</strong>.</div>
@@ -859,7 +873,12 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
+      if (el) {
+        el.classList.toggle('open');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([el]);
+        }
+      }
     }
 
     // Toggle Competency Answer

@@ -59,7 +59,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"Find the number of lines of symmetry for each of the following shapes: (a) An equilateral triangle (b) An isosceles triangle (c) A scalene triangle (d) A square","acceptedAnswer":{"@type":"Answer","text":"Lines of Symmetry: • (a) Equilateral triangle: 3 . • (b) Isosceles triangle: 1 . • (c) Scalene triangle: 0 . • (d) Square: 4 . • (e) Rectangle: 2 . • (f) Rhombus: 2 . • (g) Regular hexagon: 6 . • (h) Circle: Infinitely many ."}},{"@type":"Question","name":"Which English letters of the alphabet have reflectional symmetry (i.e., symmetry related to mirror reflection) about: (a) a vertical mirror (b) a horizontal mir","acceptedAnswer":{"@type":"Answer","text":"Alphabet Symmetry: • (a) Vertical Mirror: A, H, I, M, O, T, U, V, W, X, Y . • (b) Horizontal Mirror: B, C, D, E, H, I, K, O, X . • (c) Both Horizontal and Vertical Mirrors: H, I, O, X ."}},{"@type":"Question","name":"Traditional Architecture: Rangoli & Tile Tessellations: An artisan creates a square festive rangoli design. (a) State how many lines of symmetry the square canv","acceptedAnswer":{"@type":"Answer","text":"(a) Canvas Symmetry: A square has 4 lines of symmetry (2 along midpoints of sides, 2 along diagonals). (b) Preserving Symmetry: Since identical motifs are placed symmetrically about both diagonal and horizontal/vertical axes, the 4-fold symmetry is maintained. (c) Disruption: The overall symmetry is"}}]
+    "mainEntity": [{"@type":"Question","name":"Find the number of lines of symmetry for each of the following shapes: (a) An equilateral triangle (b) An isosceles triangle (c) A scalene triangle (d) A square","acceptedAnswer":{"@type":"Answer","text":"Lines of Symmetry: • (a) Equilateral triangle: 3 . • (b) Isosceles triangle: 1 . • (c) Scalene triangle: 0 . • (d) Square: 4 . • (e) Rectangle: 2 . • (f) Rhombus: 2 . • (g) Regular hexagon: 6 . • (h) Circle: Infinitely many ."}},{"@type":"Question","name":"Which English letters of the alphabet have reflectional symmetry (i.e., symmetry related to mirror reflection) about: (a) a vertical mirror (b) a horizontal mir","acceptedAnswer":{"@type":"Answer","text":"Alphabet Symmetry: • (a) Vertical Mirror: A, H, I, M, O, T, U, V, W, X, Y . • (b) Horizontal Mirror: B, C, D, E, H, I, K, O, X . • (c) Both Horizontal and Vertical Mirrors: H, I, O, X ."}},{"@type":"Question","name":"Traditional Architecture: Rangoli &amp; Tile Tessellations: An artisan creates a square festive rangoli design. (a) State how many lines of symmetry the square canv","acceptedAnswer":{"@type":"Answer","text":"(a) Canvas Symmetry: A square has 4 lines of symmetry (2 along midpoints of sides, 2 along diagonals). (b) Preserving Symmetry: Since identical motifs are placed symmetrically about both diagonal and horizontal/vertical axes, the 4-fold symmetry is maintained. (c) Disruption: The overall symmetry is"}}]
   }
   </script>
   
@@ -540,6 +540,20 @@
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
   </style>
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -792,7 +806,7 @@
       
     <div class="cbq-card">
       <div class="cbq-badge">CBSE Competency-Based Case Study (NEP 2020)</div>
-      <div class="q-text"><strong>Traditional Architecture: Rangoli & Tile Tessellations:</strong><br>An artisan creates a square festive rangoli design. (a) State how many lines of symmetry the square canvas possesses. (b) If four identical floral motifs are painted at the corners, explain how symmetry is preserved. (c) If one motif is accidentally replaced with an asymmetrical paisley, what happens to the overall symmetry?</div>
+      <div class="q-text"><strong>Traditional Architecture: Rangoli &amp; Tile Tessellations:</strong><br>An artisan creates a square festive rangoli design. (a) State how many lines of symmetry the square canvas possesses. (b) If four identical floral motifs are painted at the corners, explain how symmetry is preserved. (c) If one motif is accidentally replaced with an asymmetrical paisley, what happens to the overall symmetry?</div>
       <div class="answer-box" style="margin-top: 15px;">
         <div class="answer-label">Detailed Analytical Solution &amp; Rubric</div>
         <div class="answer-text"><strong>(a) Canvas Symmetry:</strong> A square has <strong>4 lines of symmetry</strong> (2 along midpoints of sides, 2 along diagonals).<br><strong>(b) Preserving Symmetry:</strong> Since identical motifs are placed symmetrically about both diagonal and horizontal/vertical axes, the 4-fold symmetry is maintained.<br><strong>(c) Disruption:</strong> The overall symmetry is completely broken; zero lines of symmetry remain.</div>
@@ -831,7 +845,12 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
+      if (el) {
+        el.classList.toggle('open');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([el]);
+        }
+      }
     }
 
     // Toggle Competency Answer
