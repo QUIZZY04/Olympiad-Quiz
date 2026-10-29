@@ -86,7 +86,7 @@ const auditData = {
     parseSubjectHtml(englishHtmlPath, "santoor", "Santoor", "Track 1 (New NCF 2023 / NEP 2020)", "English", "s", 10),
     parseSubjectHtml(englishHtmlPath, "marigold", "Marigold", "Track 2 (Classic CBSE)", "English", "m", 10, true),
     parseSubjectHtml(hindiHtmlPath, "veena", "Veena (वीणा भाग 2)", "Track 1 (New NCF 2023 / NEP 2020)", "Hindi", "v", 12),
-    parseSubjectHtml(hindiHtmlPath, "rimjhim", "Rimjhim (रिमझिम भाग 5)", "Track 2 (Classic CBSE)", "Hindi", "r", 14),
+    parseSubjectHtml(hindiHtmlPath, "rimjhim", "Rimjhim (रिमझिम भाग 5)", "Track 2 (Classic CBSE)", "Hindi", "r", 18),
     parseSubjectHtml(evsHtmlPath, "wondrous_world", "Our Wondrous World", "Track 1 (New NCF 2023 / NEP 2020)", "The World Around Us / EVS", "oww", 10),
     parseSubjectHtml(evsHtmlPath, "looking_around", "Looking Around (आस-पास)", "Track 2 (Classic CBSE)", "The World Around Us / EVS", "la_", 22)
   ]

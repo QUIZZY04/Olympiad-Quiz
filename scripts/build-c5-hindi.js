@@ -185,7 +185,7 @@ const htmlContent = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NCERT Solutions for Class 5 Hindi (Veena & Rimjhim) CBSE 2026-27 | OlympiadQuiz</title>
-  <meta name="description" content="100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (14 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.">
+  <meta name="description" content="100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (18 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.">
   <meta name="keywords" content="ncert solutions class 5 hindi, veena class 5 ncert, rimjhim class 5 solutions, cbse class 5 hindi 2026-27, kiran sohanlal dwivedi, rakh ki rassi, faslon ke tyohar, khilonewala, nanha fankar">
   <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-5-hindi.html">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -196,15 +196,15 @@ const htmlContent = `<!DOCTYPE html>
   <meta property="og:site_name" content="OlympiadQuiz">
   <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-5-hindi.html">
   <meta property="og:title" content="NCERT Solutions for Class 5 Hindi (Veena & Rimjhim) CBSE 2026-27 | OlympiadQuiz">
-  <meta property="og:description" content="100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (14 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.">
+  <meta property="og:description" content="100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (18 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@OlympiadQuiz">
   <meta name="twitter:title" content="NCERT Solutions for Class 5 Hindi (Veena & Rimjhim) CBSE 2026-27 | OlympiadQuiz">
-  <meta name="twitter:description" content="100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (14 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.">
-  <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
+  <meta name="twitter:description" content="100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (18 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.">
+  <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Schema.org BreadcrumbList -->
@@ -227,7 +227,7 @@ const htmlContent = `<!DOCTYPE html>
     "@context": "https://schema.org",
     "@type": "LearningResource",
     "name": "NCERT Solutions for Class 5 Hindi (Veena & Rimjhim) CBSE 2026-27 | OlympiadQuiz",
-    "description": "100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (14 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.",
+    "description": "100% Complete Class 5 NCERT Hindi Solutions covering both textbooks: New NEP 2020 Veena (12 Chapters) and Rimjhim (18 Chapters). Step-by-step model answers, word meanings, grammar, and CBSE marking schemes.",
     "educationalLevel": "CBSE Class 5",
     "learningResourceType": "Textbook Solutions",
     "inLanguage": "en",
@@ -238,6 +238,40 @@ const htmlContent = `<!DOCTYPE html>
       "url": "https://olympiadquiz.org/",
       "logo": { "@type": "ImageObject", "url": "https://olympiadquiz.org/favicon.png" }
     }
+  }
+  </script>
+
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "कक्षा 5 हिंदी में कुल कितने पाठ हैं?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "सीबीएसई कक्षा 5 हिंदी में कुल 30 पाठ हैं: नई राष्ट्रीय शिक्षा नीति (NEP 2020) पर आधारित पाठ्यपुस्तक 'वीणा भाग 2' के 12 पाठ एवं क्लासिक सीबीएसई पाठ्यपुस्तक 'रिमझिम भाग 5' के 18 पाठ।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "क्या यहाँ कक्षा 5 हिंदी के सभी एनसीईआरटी प्रश्नों के समाधान उपलब्ध हैं?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "हाँ, यहाँ वीणा (12 पाठ) और रिमझिम (18 पाठ) के सभी 207 आधिकारिक पाठ्यपुस्तक प्रश्नों के 100% शब्दशः (Verbatim) मॉडल उत्तर, शब्दार्थ, व्याकरण और सीबीएसई अंक योजना सहित उपलब्ध हैं।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "क्या कक्षा 5 हिंदी समाधान सीबीएसई 2026-27 के नवीनतम पाठ्यक्रम के अनुरूप हैं?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "हाँ, ये समाधान शैक्षणिक सत्र 2026-27 के आधिकारिक एनसीईआरटी व सीबीएसई पाठ्यक्रम, NEP 2020 और NCF दिशानिर्देशों के पूर्णतः अनुरूप तैयार किए गए हैं।"
+        }
+      }
+    ]
   }
   </script>
 
@@ -481,10 +515,10 @@ const htmlContent = `<!DOCTYPE html>
   <!-- Hero Banner -->
   <header class="hero-banner">
     <h1>कक्षा 5 हिंदी — एनसीईआरटी समाधान (CBSE 2026-27)</h1>
-    <p>संपूर्ण <strong>100% पाठ्यपुस्तक प्रश्न कवरेज</strong>: वीणा (नई शिक्षा नीति NEP 2020 - 12 पाठ) एवं रिमझिम (14 पाठ)। आदर्श उत्तर, विस्तृत भावार्थ, व्याकरण कार्यपत्रक, शब्द-संपदा एवं सीबीएसई चरणबद्ध अंक योजना।</p>
+    <p>संपूर्ण <strong>100% पाठ्यपुस्तक प्रश्न कवरेज</strong>: वीणा (नई शिक्षा नीति NEP 2020 - 12 पाठ) एवं रिमझिम (18 पाठ)। आदर्श उत्तर, विस्तृत भावार्थ, व्याकरण कार्यपत्रक, शब्द-संपदा एवं सीबीएसई चरणबद्ध अंक योजना।</p>
     <div class="hero-badges">
-      <span class="hero-badge">✅ सभी 26 पाठ (100% प्रश्न)</span>
-      <span class="hero-badge">📘 वीणा (12 पाठ) & 📙 रिमझिम (14 पाठ)</span>
+      <span class="hero-badge">✅ सभी 30 पाठ (100% प्रश्न)</span>
+      <span class="hero-badge">📘 वीणा (12 पाठ) & 📙 रिमझिम (18 पाठ)</span>
       <span class="hero-badge">📝 व्याकरण व शब्द-संपदा</span>
       <span class="hero-badge">📋 सीबीएसई आधिकारिक अंक योजना</span>
       <span class="hero-badge">🌟 NEP 2020 योग्यता केस स्टडी</span>
@@ -496,7 +530,7 @@ const htmlContent = `<!DOCTYPE html>
         📘 वीणा (नई शिक्षा नीति NEP 2020 - 12 पाठ)
       </button>
       <button id="btnRimjhim" class="track-btn" onclick="switchBook('rimjhim')">
-        📙 रिमझिम (क्लासिक सीबीएसई - 14 पाठ)
+        📙 रिमझिम (क्लासिक सीबीएसई - 18 पाठ)
       </button>
     </div>
   </header>
@@ -521,7 +555,7 @@ const htmlContent = `<!DOCTYPE html>
         <button id="sbTabVeena" class="sb-tab active" onclick="switchBook('veena')">📘 वीणा</button>
         <button id="sbTabRimjhim" class="sb-tab" onclick="switchBook('rimjhim')">📙 रिमझिम</button>
       </div>
-      <input type="text" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
+      <input type="text" id="chapterSearch" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
       <ul class="chapter-nav" id="navVeena">
         ${veenaSidebar}
       </ul>
@@ -580,7 +614,7 @@ const htmlContent = `<!DOCTYPE html>
 
       const sbTitle = document.getElementById('sidebarTitleText');
       if (sbTitle) {
-        sbTitle.innerText = isB1 ? '📘 वीणा (12 पाठ)' : '📙 रिमझिम (14 पाठ)';
+        sbTitle.innerText = isB1 ? '📘 वीणा (12 पाठ)' : '📙 रिमझिम (18 पाठ)';
       }
 
       // Show First Chapter of Selected Book
@@ -618,7 +652,7 @@ const htmlContent = `<!DOCTYPE html>
 
         const sbTitle = document.getElementById('sidebarTitleText');
         if (sbTitle) {
-          sbTitle.innerText = isB2 ? '📙 रिमझिम (14 पाठ)' : '📘 वीणा (12 पाठ)';
+          sbTitle.innerText = isB2 ? '📙 रिमझिम (18 पाठ)' : '📘 वीणा (12 पाठ)';
         }
       }
 

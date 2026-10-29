@@ -55,7 +55,7 @@ veenaChapters.forEach((ch, idx) => {
   console.log(`[Veena] Built Chapter ${ch.num}: ${ch.title} -> ${currentQs.length} Qs (${pageHtml.length.toLocaleString()} bytes)`);
 });
 
-// 2. Build Rimjhim (14 Chapters)
+// 2. Build Rimjhim (18 Chapters)
 const rjSidebar = rimjhimChapters.map(ch => ({
   num: ch.num,
   title: ch.title,
@@ -76,7 +76,7 @@ rimjhimChapters.forEach((ch, idx) => {
     bookSlug: 'rimjhim',
     trackName: 'Classic CBSE Track',
     chNum: ch.num,
-    totalChs: 14,
+    totalChs: rimjhimChapters.length,
     chId: ch.id,
     title: ch.title,
     subtitle: ch.subtitle,
@@ -95,4 +95,5 @@ rimjhimChapters.forEach((ch, idx) => {
   console.log(`[Rimjhim] Built Chapter ${ch.num}: ${ch.title} -> ${currentQs.length} Qs (${pageHtml.length.toLocaleString()} bytes)`);
 });
 
-console.log("✅ All 26 Class 5 Hindi modular chapters successfully generated in chapters-c5h/!");
+console.log("✅ All 30 Class 5 Hindi modular chapters successfully generated in chapters-c5h/!");
+
