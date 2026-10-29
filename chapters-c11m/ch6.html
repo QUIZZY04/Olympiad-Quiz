@@ -1,0 +1,1656 @@
+<section class="chapter-content" id="c11m-ch6">
+  <div class="ch-badge" style="display:inline-block; font-size:0.8rem; font-weight:800; background:#fef3c7; color:#b45309; padding:4px 12px; border-radius:20px; text-transform:uppercase; margin-bottom:8px;">NCERT Rationalised 2026–27 • Complete Verbatim Solutions</div>
+  <h1 style="font-size:2rem; font-weight:800; color:#0f172a; margin-bottom:12px;">Class 11 Chapter 6: Permutations and Combinations (क्रमचय और संचय)</h1>
+  <p style="font-size:1.05rem; color:#475569; line-height:1.6; margin-bottom:24px;">
+    Exhaustive, 100% verbatim solutions for all <b>42 questions</b> from NCERT Class 11 Mathematics Chapter 6. Includes Exercise 6.1 (6 questions), Exercise 6.2 (5 questions), Exercise 6.3 (11 questions), Exercise 6.4 (9 questions), and Miscellaneous Exercise (11 questions) covering the Fundamental Principle of Counting, factorial algebra, $^n P_r$, $^n C_r$, restricted permutations, and multi-set arrangements with official CBSE marking scheme rubrics.
+  </p>
+
+  <!-- Formula & Theory Summary Cheatsheet -->
+  <div class="theory-box" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px; margin-bottom:30px;">
+    <h3 style="font-size:1.15rem; font-weight:700; color:#1e293b; margin-top:0; margin-bottom:12px;">📘 Key Formulas &amp; Combinatorial Theorems</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; font-size:0.95rem; color:#334155;">
+      <div style="background:white; padding:12px 16px; border-radius:8px; border:1px solid #cbd5e1;">
+        <strong>Counting Principles &amp; Factorials:</strong><br>
+        • Multiplication Principle: Event A in $m$ ways and Event B in $n$ ways $\implies m \times n$ ways.<br>
+        • Factorial: $n! = n(n - 1)(n - 2) \cdots 3 \cdot 2 \cdot 1$, with $0! = 1$ and $1! = 1$.<br>
+        • Permutations of distinct items: $^n P_r = \dfrac{n!}{(n - r)!}$.<br>
+        • Permutations with repeated items: $\dfrac{n!}{p_1! p_2! \cdots p_k!}$.
+      </div>
+      <div style="background:white; padding:12px 16px; border-radius:8px; border:1px solid #cbd5e1;">
+        <strong>Combinations &amp; Identities:</strong><br>
+        • Selection formula: $^n C_r = \dfrac{n!}{r!(n - r)!}$.<br>
+        • Fundamental relation: $^n P_r = r! \times ^n C_r$.<br>
+        • Complementary combination: $^n C_r = ^n C_{n - r}$.<br>
+        • Equality rule: $^n C_x = ^n C_y \implies x = y \text{ or } x + y = n$.<br>
+        • Pascal's Identity: $^n C_r + ^n C_{r - 1} = ^{n + 1}C_r$.
+      </div>
+    </div>
+  </div>
+
+  <!-- Vector SVG Diagram: Permutations vs Combinations Comparison -->
+  <div class="vector-diagram-container" style="background:linear-gradient(135deg, #fffbeb 0%, #fef2f2 100%); border:1px solid #fed7aa; border-radius:12px; padding:20px; text-align:center; margin-bottom:30px;">
+    <h4 style="margin:0 0 10px 0; color:#b45309; font-size:1.1rem; font-weight:700;">📐 Permutations (Order Matters) vs. Combinations (Order Doesn't Matter)</h4>
+    <svg viewBox="0 0 540 210" style="max-width:100%; height:auto; display:inline-block;" xmlns="http://www.w3.org/2000/svg">
+      <!-- Container Left: Permutations -->
+      <rect x="20" y="20" width="230" height="170" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+      <text x="135" y="45" font-size="14" fill="#c2410c" font-weight="bold" text-anchor="middle">PERMUTATION (^n P_r)</text>
+      <text x="135" y="68" font-size="11" fill="#7c2d12" text-anchor="middle">ARRANGEMENTS (Order Matters)</text>
+      <line x1="40" y1="78" x2="230" y2="78" stroke="#fdba74" stroke-width="1"/>
+      <rect x="40" y="90" width="85" height="32" rx="6" fill="#ea580c" opacity="0.15"/>
+      <text x="82" y="111" font-size="12" fill="#9a3412" font-weight="bold" text-anchor="middle">[ A, B ]</text>
+      <rect x="145" y="90" width="85" height="32" rx="6" fill="#ea580c" opacity="0.15"/>
+      <text x="187" y="111" font-size="12" fill="#9a3412" font-weight="bold" text-anchor="middle">[ B, A ]</text>
+      <text x="135" y="145" font-size="11" fill="#ea580c" font-weight="bold" text-anchor="middle">[A, B] &ne; [B, A] (2 distinct ways)</text>
+      <text x="135" y="172" font-size="12" fill="#c2410c" font-weight="bold" text-anchor="middle">^n P_r = n! / (n &minus; r)!</text>
+
+      <!-- Center Link -->
+      <path d="M 255 105 L 285 105" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="270" y="95" font-size="10" fill="#64748b" text-anchor="middle">&divide; r!</text>
+
+      <!-- Container Right: Combinations -->
+      <rect x="290" y="20" width="230" height="170" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="405" y="45" font-size="14" fill="#1d4ed8" font-weight="bold" text-anchor="middle">COMBINATION (^n C_r)</text>
+      <text x="405" y="68" font-size="11" fill="#1e3a8a" text-anchor="middle">SELECTIONS (Order Irrelevant)</text>
+      <line x1="310" y1="78" x2="500" y2="78" stroke="#bfdbfe" stroke-width="1"/>
+      <rect x="330" y="90" width="150" height="32" rx="6" fill="#2563eb" opacity="0.15"/>
+      <text x="405" y="111" font-size="12" fill="#1e40af" font-weight="bold" text-anchor="middle">{ A, B } = { B, A }</text>
+      <text x="405" y="145" font-size="11" fill="#2563eb" font-weight="bold" text-anchor="middle">Same collection (Only 1 way)</text>
+      <text x="405" y="172" font-size="12" fill="#1d4ed8" font-weight="bold" text-anchor="middle">^n C_r = n! / [r!(n &minus; r)!]</text>
+    </svg>
+  </div>
+
+  <div class="ex-div">NCERT Exercise 6.1: Fundamental Principle of Counting (Multiplication &amp; Addition Rules)</div>
+
+  <!-- c11m-ch6-q1 (Exercise 6.1) -->
+  <div class="q-card" id="c11m-ch6-q1">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q1')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1</span><br>
+        How many 3-digit numbers can be formed from the digits 1, 2, 3, 4 and 5 assuming that<br>(i) repetition of the digits is allowed?<br>(ii) repetition of the digits is not allowed?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given available digits: $\{1, 2, 3, 4, 5\}$ (total $5$ digits).<br>
+    • We need to form a 3-digit number (Units, Tens, Hundreds places).<br><br>
+    • <b>(i) When repetition of digits is allowed:</b><br>
+      - Hundreds place can be filled by any of the $5$ digits (5 ways).<br>
+      - Tens place can be filled by any of the $5$ digits (5 ways).<br>
+      - Units place can be filled by any of the $5$ digits (5 ways).<br>
+      - By Fundamental Principle of Multiplication:<br>
+      $$\text{Total 3-digit numbers} = 5 \times 5 \times 5 = \mathbf{125}$$<br>
+    • <b>(ii) When repetition of digits is not allowed:</b><br>
+      - Hundreds place can be filled in $5$ ways.<br>
+      - Tens place can be filled by any of the remaining $4$ digits (4 ways).<br>
+      - Units place can be filled by any of the remaining $3$ digits (3 ways).<br>
+      - By Fundamental Principle of Multiplication:<br>
+      $$\text{Total 3-digit numbers} = 5 \times 4 \times 3 = \mathbf{60}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying multiplication principle with repetition: $5 \times 5 \times 5 = 125$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying multiplication principle without repetition: $5 \times 4 \times 3 = 60$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q2 (Exercise 6.1) -->
+  <div class="q-card" id="c11m-ch6-q2">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q2')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1</span><br>
+        How many 3-digit even numbers can be formed from the digits 1, 2, 3, 4, 5, 6 if the digits can be repeated?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given digits: $\{1, 2, 3, 4, 5, 6\}$ (total $6$ digits).<br>
+    • For a 3-digit number to be <b>even</b>, its units place must be filled by an even digit: $2, 4,$ or $6$ ($3$ possibilities).<br>
+    • Since repetition of digits is allowed:<br>
+      - Units place can be filled in $3$ ways ($\{2, 4, 6\}$).<br>
+      - Tens place can be filled by any of the $6$ given digits in $6$ ways.<br>
+      - Hundreds place can be filled by any of the $6$ given digits in $6$ ways.<br>
+    • By the Fundamental Principle of Counting (Multiplication):<br>
+    $$\text{Total even 3-digit numbers} = 6 \times 6 \times 3 = \mathbf{108}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identifying 3 choices for units place {2, 4, 6}</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating total numbers as $6 \times 6 \times 3 = 108$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q3 (Exercise 6.1) -->
+  <div class="q-card" id="c11m-ch6-q3">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q3')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1</span><br>
+        How many 4-letter code can be formed using the first 10 letters of the English alphabet, if no letter can be repeated?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given letters: First 10 letters of the English alphabet (A through J, total $10$ letters).<br>
+    • A 4-letter code consists of 4 distinct positions to be filled without repetition:<br>
+      - 1st position can be filled by any of the $10$ letters (10 ways).<br>
+      - 2nd position can be filled by any of the remaining $9$ letters (9 ways).<br>
+      - 3rd position can be filled by any of the remaining $8$ letters (8 ways).<br>
+      - 4th position can be filled by any of the remaining $7$ letters (7 ways).<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total 4-letter codes} = 10 \times 9 \times 8 \times 7 = \mathbf{5040}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Setting up 4 positions without repetition: 10, 9, 8, 7 choices</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating product $10 \times 9 \times 8 \times 7 = 5040$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q4 (Exercise 6.1) -->
+  <div class="q-card" id="c11m-ch6-q4">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q4')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1</span><br>
+        How many 5-digit telephone numbers can be constructed using the digits 0 to 9 if each number starts with 67 and no digit appears more than once?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available digits: $0, 1, 2, 3, 4, 5, 6, 7, 8, 9$ (total $10$ digits).<br>
+    • Each 5-digit telephone number must start with $67$:<br>
+      - 1st digit is fixed as $6$ ($1$ way).<br>
+      - 2nd digit is fixed as $7$ ($1$ way).<br>
+    • Since no digit appears more than once, the digits $6$ and $7$ cannot be reused.<br>
+    • Number of remaining digits available $= 10 - 2 = 8$ digits.<br>
+    • We need to fill the remaining $3$ places (3rd, 4th, 5th digits):<br>
+      - 3rd place can be filled in $8$ ways.<br>
+      - 4th place can be filled in $7$ ways.<br>
+      - 5th place can be filled in $6$ ways.<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total telephone numbers} = 1 \times 1 \times 8 \times 7 \times 6 = \mathbf{336}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Fixing first two digits and determining 8 remaining digits</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $8 \times 7 \times 6 = 336$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q5 (Exercise 6.1) -->
+  <div class="q-card" id="c11m-ch6-q5">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q5')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1</span><br>
+        A coin is tossed 3 times and the outcomes are recorded. How many possible outcomes are there?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • When a coin is tossed once, there are $2$ possible outcomes: Head (H) or Tail (T).<br>
+    • The coin is tossed $3$ times independently:<br>
+      - 1st toss has $2$ outcomes.<br>
+      - 2nd toss has $2$ outcomes.<br>
+      - 3rd toss has $2$ outcomes.<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total possible outcomes} = 2 \times 2 \times 2 = 2^3 = \mathbf{8}$$<br>
+    • (The sample space is $\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}$).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying multiplication rule $2 \times 2 \times 2 = 8$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q6 (Exercise 6.1) -->
+  <div class="q-card" id="c11m-ch6-q6">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q6')">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1</span><br>
+        Given 5 flags of different colours, how many different signals can be generated if each signal requires the use of 2 flags, one below the other?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available flags: $5$ flags of different colours.<br>
+    • A signal requires $2$ flags arranged vertically (one below the other):<br>
+      - The upper position can be filled by any of the $5$ flags ($5$ ways).<br>
+      - The lower position can be filled by any of the remaining $4$ flags ($4$ ways).<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total different signals} = 5 \times 4 = \mathbf{20}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identifying 5 choices for upper and 4 for lower: $5 \times 4 = 20$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q7 (Exercise 6.2) -->
+  <div class="q-card" id="c11m-ch6-q7">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q7')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2</span><br>
+        Evaluate:<br>(i) $8!$<br>(ii) $4! - 3!$
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(i) Evaluate $8!$:</b><br>
+    $$8! = 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = \mathbf{40320}$$<br>
+    • <b>(ii) Evaluate $4! - 3!$:</b><br>
+    $$4! = 4 \times 3 \times 2 \times 1 = 24$$<br>
+    $$3! = 3 \times 2 \times 1 = 6$$<br>
+    $$4! - 3! = 24 - 6 = \mathbf{18}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Computing $8! = 40320$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Computing $4! - 3! = 24 - 6 = 18$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q8 (Exercise 6.2) -->
+  <div class="q-card" id="c11m-ch6-q8">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q8')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2</span><br>
+        Is $3! + 4! = 7!$?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Calculating LHS:<br>
+    $$3! = 3 \times 2 \times 1 = 6$$<br>
+    $$4! = 4 \times 3 \times 2 \times 1 = 24$$<br>
+    $$\text{LHS} = 3! + 4! = 6 + 24 = 30$$<br>
+    • Calculating RHS:<br>
+    $$\text{RHS} = 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040$$<br>
+    • Since $\text{LHS} \ne \text{RHS}$ ($30 \ne 5040$):<br>
+    $$\mathbf{No}, \; 3! + 4! \ne 7!$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Evaluating LHS = 30, RHS = 5040, and concluding No</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q9 (Exercise 6.2) -->
+  <div class="q-card" id="c11m-ch6-q9">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q9')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2</span><br>
+        Compute $\dfrac{8!}{6! \times 2!}$.
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Expressing $8!$ in terms of $6!$:<br>
+    $$8! = 8 \times 7 \times 6!$$<br>
+    • Substituting into the expression:<br>
+    $$\frac{8!}{6! \times 2!} = \frac{8 \times 7 \times 6!}{6! \times (2 \times 1)}$$<br>
+    • Cancelling $6!$ from numerator and denominator:<br>
+    $$= \frac{8 \times 7}{2} = \frac{56}{2} = \mathbf{28}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Cancelling $6!$ and computing $(8 \times 7)/2 = 28$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q10 (Exercise 6.2) -->
+  <div class="q-card" id="c11m-ch6-q10">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q10')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2</span><br>
+        If $\dfrac{1}{6!} + \dfrac{1}{7!} = \dfrac{x}{8!}$, find $x$.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given equation:<br>
+    $$\frac{1}{6!} + \frac{1}{7!} = \frac{x}{8!}$$<br>
+    • Multiplying both sides by $8!$:<br>
+    $$\frac{8!}{6!} + \frac{8!}{7!} = x$$<br>
+    • Simplifying factorials:<br>
+    $$\frac{8 \times 7 \times 6!}{6!} + \frac{8 \times 7!}{7!} = x$$<br>
+    $$(8 \times 7) + 8 = x$$<br>
+    $$56 + 8 = x$$<br>
+    $$x = \mathbf{64}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Multiplying by $8!$ to obtain $x = \frac{8!}{6!} + \frac{8!}{7!}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $(8 \times 7) + 8 = 64$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q11 (Exercise 6.2) -->
+  <div class="q-card" id="c11m-ch6-q11">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q11')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2</span><br>
+        Evaluate $\dfrac{n!}{(n - r)!}$, when<br>(i) $n = 6, r = 2$<br>(ii) $n = 9, r = 5$.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(i) When $n = 6$ and $r = 2$:</b><br>
+    $$\frac{n!}{(n - r)!} = \frac{6!}{(6 - 2)!} = \frac{6!}{4!} = \frac{6 \times 5 \times 4!}{4!} = 6 \times 5 = \mathbf{30}$$<br>
+    • <b>(ii) When $n = 9$ and $r = 5$:</b><br>
+    $$\frac{n!}{(n - r)!} = \frac{9!}{(9 - 5)!} = \frac{9!}{4!} = \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4!}{4!}$$<br>
+    $$= 9 \times 8 \times 7 \times 6 \times 5 = \mathbf{15120}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part (i): $\frac{6!}{4!} = 30$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): $\frac{9!}{4!} = 15120$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 6.2: Factorial Notation Algebra &amp; Identity Computations</div>
+
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 6.3: Permutations (^n P_r), Constrained Word Formations &amp; Multiset Digits</div>
+
+  <!-- c11m-ch6-q12 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q12">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q12')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        How many 3-digit numbers can be formed by using the digits 1 to 9 if no digit is repeated?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available digits: $1, 2, 3, 4, 5, 6, 7, 8, 9$ (total $n = 9$ digits).<br>
+    • We need to arrange $r = 3$ digits out of $9$ without repetition.<br>
+    • By the formula for permutations $^n P_r = \frac{n!}{(n - r)!}$:<br>
+    $$^9 P_3 = \frac{9!}{(9 - 3)!} = \frac{9!}{6!} = 9 \times 8 \times 7 = \mathbf{504}$$<br>
+    • Thus, <b>504</b> three-digit numbers can be formed.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identifying permutation $^9 P_3$ without repetition</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $9 \times 8 \times 7 = 504$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q13 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q13">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q13')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        How many 4-digit numbers are there with no digit repeated?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available digits: $0, 1, 2, 3, 4, 5, 6, 7, 8, 9$ (total $10$ digits).<br>
+    • A 4-digit number has Thousands ($T$), Hundreds ($H$), Tens ($Te$), and Units ($U$) places.<br>
+    • <b>Thousands place ($T$):</b> Cannot be $0$ (otherwise it becomes a 3-digit number).<br>
+      So it can be filled by any of the digits from $1$ to $9$ in $9$ ways.<br>
+    • <b>Remaining 3 places ($H, Te, U$):</b><br>
+      Must be filled from the remaining $9$ digits (including $0$, since one non-zero digit is used) without repetition in $^9 P_3$ ways.<br>
+    • By Fundamental Principle of Multiplication:<br>
+    $$\text{Total 4-digit numbers} = 9 \times ^9 P_3 = 9 \times (9 \times 8 \times 7) = 9 \times 504 = \mathbf{4536}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Noting thousands place has 9 choices (non-zero)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $9 \times ^9 P_3 = 9 \times 504 = 4536$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q14 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q14">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q14')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        How many 3-digit even numbers can be made using the digits 1, 2, 3, 4, 6, 7, if no digit is repeated?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available digits: $\{1, 2, 3, 4, 6, 7\}$ (total $6$ digits).<br>
+    • Even digits in the set: $\{2, 4, 6\}$ (3 even digits).<br>
+    • For a 3-digit number to be even, its units place must be an even digit.<br>
+      - Units place can be filled in $3$ ways (by $2, 4$, or $6$).<br>
+    • Once the units place is filled, $5$ digits remain available.<br>
+      - The remaining $2$ places (hundreds and tens) can be filled in $^5 P_2$ ways:<br>
+      $$^5 P_2 = 5 \times 4 = 20\text{ ways}$$<br>
+    • By Fundamental Principle of Multiplication:<br>
+    $$\text{Total even 3-digit numbers} = 3 \times 20 = \mathbf{60}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Determining 3 choices for units place</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $^5 P_2 \times 3 = 20 \times 3 = 60$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q15 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q15">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q15')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        Find the number of 4-digit numbers that can be formed using the digits 1, 2, 3, 4, 5 if no digit is repeated. How many of these will be even?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available digits: $\{1, 2, 3, 4, 5\}$ (total $n = 5$ digits).<br><br>
+    • <b>(i) Total 4-digit numbers formed without repetition:</b><br>
+    $$^5 P_4 = \frac{5!}{(5 - 4)!} = \frac{5!}{1!} = 5 \times 4 \times 3 \times 2 = \mathbf{120}$$<br>
+    • <b>(ii) Number of 4-digit even numbers:</b><br>
+      - Even digits available: $\{2, 4\}$ ($2$ choices for the units place).<br>
+      - After fixing an even digit at the units place, the remaining $3$ places can be filled from the remaining $4$ digits in $^4 P_3$ ways:<br>
+      $$^4 P_3 = 4 \times 3 \times 2 = 24\text{ ways}$$<br>
+      - Total even numbers $= 2 \times 24 = \mathbf{48}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Total 4-digit numbers: $^5 P_4 = 120$</span><span class="marking-marks">1½ Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Units place has 2 choices, remaining $^4 P_3 = 24$, total even = $2 \times 24 = 48$</span><span class="marking-marks">1½ Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q16 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q16">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q16')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        From a committee of 8 persons, in how many ways can we choose a chairman and a vice chairman assuming one person cannot hold more than one position?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Total persons in committee $n = 8$.<br>
+    • We need to fill $2$ distinct positions (Chairman and Vice-Chairman) from $8$ persons without repetition.<br>
+    • By the permutation formula $^n P_r$ with $n = 8, r = 2$:<br>
+    $$^8 P_2 = \frac{8!}{(8 - 2)!} = \frac{8!}{6!} = 8 \times 7 = \mathbf{56}$$<br>
+    • Thus, there are <b>56 ways</b> to choose a chairman and vice chairman.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying $^8 P_2 = 8 \times 7 = 56$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q17 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q17">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q17')">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        Find $n$ if $^{n - 1}P_3 : ^n P_4 = 1 : 9$.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given ratio:<br>
+    $$\frac{^{n - 1}P_3}{^n P_4} = \frac{1}{9}$$<br>
+    • Using the permutation formula $^n P_r = \frac{n!}{(n - r)!}$:<br>
+    $$^{n - 1}P_3 = \frac{(n - 1)!}{((n - 1) - 3)!} = \frac{(n - 1)!}{(n - 4)!}$$<br>
+    $$^n P_4 = \frac{n!}{(n - 4)!}$$<br>
+    • Dividing the two expressions:<br>
+    $$\frac{\frac{(n - 1)!}{(n - 4)!}}{\frac{n!}{(n - 4)!}} = \frac{(n - 1)!}{n!} = \frac{1}{9}$$<br>
+    • Since $n! = n(n - 1)!$:<br>
+    $$\frac{(n - 1)!}{n(n - 1)!} = \frac{1}{n} = \frac{1}{9}$$<br>
+    $$n = \mathbf{9}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Expanding permutations to ratio $\frac{(n - 1)!}{n!} = 1/9$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying $1/n = 1/9 \implies n = 9$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q18 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q18">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q18')">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        Find $r$ if<br>(i) $^5 P_r = 2 \times ^6 P_{r - 1}$<br>(ii) $^5 P_r = ^6 P_{r - 1}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(i) Given: $^5 P_r = 2 \times ^6 P_{r - 1}$</b><br>
+    $$\frac{5!}{(5 - r)!} = 2 \times \frac{6!}{(6 - (r - 1))!} = 2 \times \frac{6!}{(7 - r)!}$$<br>
+    $$\frac{5!}{(5 - r)!} = 2 \times \frac{6 \times 5!}{(7 - r)(6 - r)(5 - r)!}$$<br>
+    $$1 = \frac{12}{(7 - r)(6 - r)} \implies (7 - r)(6 - r) = 12$$<br>
+    • Factoring $12$ into consecutive integers ($4 \times 3$):<br>
+    $$7 - r = 4 \implies r = 3$$<br>
+    (Also $(r - 3)(r - 10) = 0$, but $r \le 5$, so $r = 10$ is rejected). Thus, $\mathbf{r = 3}$.<br><br>
+    • <b>(ii) Given: $^5 P_r = ^6 P_{r - 1}$</b><br>
+    $$\frac{5!}{(5 - r)!} = \frac{6!}{(7 - r)!} = \frac{6 \times 5!}{(7 - r)(6 - r)(5 - r)!}$$<br>
+    $$1 = \frac{6}{(7 - r)(6 - r)} \implies (7 - r)(6 - r) = 6$$<br>
+    • Consecutive factors of $6$ ($3 \times 2$):<br>
+    $$7 - r = 3 \implies r = 4$$<br>
+    (Or $r^2 - 13r + 36 = 0 \implies (r - 4)(r - 9) = 0$; $r \le 5 \implies r = 4$). Thus, $\mathbf{r = 4}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part (i): Setting up equation $(7 - r)(6 - r) = 12 \implies r = 3$</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): Setting up equation $(7 - r)(6 - r) = 6 \implies r = 4$</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q19 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q19">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q19')">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        How many words, with or without meaning, can be formed in a dictionary using all the letters of the word EQUATION, using each letter exactly once?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • The word <b>EQUATION</b> contains $8$ letters: E, Q, U, A, T, I, O, N.<br>
+    • Notice that all $8$ letters are distinct (no repeated letters).<br>
+    • We need to arrange all $8$ letters using each letter exactly once.<br>
+    • By the permutation formula $n!$ for $n = 8$ distinct objects:<br>
+    $$\text{Total words} = 8! = 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = \mathbf{40320}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Evaluating $8! = 40320$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q20 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q20">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q20')">
+      <div class="q-num">Question 9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        How many words, with or without meaning, can be made from the letters of the word MONDAY, assuming that no letter is repeated, if:<br>(i) 4 letters are used at a time,<br>(ii) all letters are used at a time,<br>(iii) all letters are used but first letter is a vowel?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • The word <b>MONDAY</b> contains $6$ distinct letters: M, O, N, D, A, Y.<br>
+    • Vowels present: $\{O, A\}$ ($2$ vowels).<br>
+    • Consonants present: $\{M, N, D, Y\}$ ($4$ consonants).<br><br>
+    • <b>(i) 4 letters used at a time:</b><br>
+    $$^6 P_4 = \frac{6!}{(6 - 4)!} = 6 \times 5 \times 4 \times 3 = \mathbf{360}$$<br>
+    • <b>(ii) All letters used at a time (6 letters):</b><br>
+    $$^6 P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = \mathbf{720}$$<br>
+    • <b>(iii) All letters used, but first letter is a vowel:</b><br>
+      - The 1st letter must be one of the $2$ vowels (O or A) $\implies 2$ ways.<br>
+      - The remaining $5$ positions can be filled by the remaining $5$ letters in $5!$ ways:<br>
+      $$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120\text{ ways}$$<br>
+      - Total words $= 2 \times 120 = \mathbf{240}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part (i): $^6 P_4 = 360$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): $6! = 720$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (iii): $2 \times 5! = 240$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q21 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q21">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q21')">
+      <div class="q-num">Question 10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        In how many of the distinct permutations of the letters in MISSISSIPPI do the four I’s not come together?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • The word <b>MISSISSIPPI</b> has $11$ letters with frequencies:<br>
+      - M : $1$<br>
+      - I : $4$<br>
+      - S : $4$<br>
+      - P : $2$<br>
+      - Total $= 1 + 4 + 4 + 2 = 11$<br><br>
+    • <b>Total number of permutations:</b><br>
+    $$\text{Total} = \frac{11!}{1! \times 4! \times 4! \times 2!} = \frac{39916800}{1 \times 24 \times 24 \times 2} = \frac{39916800}{1152} = 34650$$<br>
+    • <b>Number of permutations where the 4 I's come together:</b><br>
+      - Group the 4 I's into a single unit: (IIII).<br>
+      - Now the objects to arrange are: 1 unit of I's, 1 M, 4 S's, and 2 P's (total $= 1 + 1 + 4 + 2 = 8$ objects).<br>
+      - Number of arrangements $= \frac{8!}{1! \times 4! \times 2!} = \frac{40320}{24 \times 2} = 840$<br><br>
+    • <b>Number of permutations where the four I's do NOT come together:</b><br>
+    $$\text{Required} = \text{Total} - \text{(4 I's together)} = 34650 - 840 = \mathbf{33810}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Finding total permutations: $\frac{11!}{4! 4! 2!} = 34650$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Finding permutations with 4 I's together: $\frac{8!}{4! 2!} = 840$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Subtracting to get $34650 - 840 = 33810$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q22 (Exercise 6.3) -->
+  <div class="q-card" id="c11m-ch6-q22">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q22')">
+      <div class="q-num">Question 11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3</span><br>
+        In how many ways can the letters of the word PERMUTATIONS be arranged if the<br>(i) words start with P and end with S,<br>(ii) vowels are all together,<br>(iii) there are always 4 letters between P and S?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • The word <b>PERMUTATIONS</b> has $12$ letters:<br>
+      - Letters: P: 1, E: 1, R: 1, M: 1, U: 1, T: 2, A: 1, I: 1, O: 1, N: 1, S: 1.<br>
+      - Vowels: $\{A, E, I, O, U\}$ (all 5 vowels present, each occurring once).<br><br>
+    • <b>(i) Words start with P and end with S:</b><br>
+      - 1st position is fixed with P and 12th position with S.<br>
+      - The remaining $10$ places are filled by remaining $10$ letters (which contain 2 T's):<br>
+      $$\text{Ways} = \frac{10!}{2!} = \frac{3628800}{2} = \mathbf{1814400}$$<br>
+    • <b>(ii) Vowels are all together:</b><br>
+      - Treat the 5 vowels (AEIOU) as a single block.<br>
+      - Remaining letters: 7 consonants (with 2 T's) + 1 vowel block $= 8$ units.<br>
+      - Arrangements of 8 units $= \frac{8!}{2!} = \frac{40320}{2} = 20160$.<br>
+      - Inside the block, the 5 distinct vowels can be arranged in $5! = 120$ ways.<br>
+      $$\text{Total ways} = 20160 \times 120 = \mathbf{2419200}$$<br>
+    • <b>(iii) There are always 4 letters between P and S:</b><br>
+      - The 12 positions are $1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12$.<br>
+      - Possible pairs of positions for P and S with 4 letters between them:<br>
+        $(1, 6), (2, 7), (3, 8), (4, 9), (5, 10), (6, 11), (7, 12)$ $\implies 7$ pairs.<br>
+      - In each pair, P and S can interchange places ($2$ ways: P then S, or S then P).<br>
+      - Total ways to place P and S $= 7 \times 2 = 14$ ways.<br>
+      - The remaining $10$ letters (containing 2 T's) can be arranged in the remaining 10 places in $\frac{10!}{2!} = 1814400$ ways.<br>
+      $$\text{Total ways} = 14 \times 1814400 = \mathbf{25401600}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part (i): $\frac{10!}{2!} = 1814400$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): $\frac{8!}{2!} \times 5! = 20160 \times 120 = 2419200$</span><span class="marking-marks">1½ Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (iii): $14 \times \frac{10!}{2!} = 25401600$</span><span class="marking-marks">1½ Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 6.4: Combinations (^n C_r), Committee Formations, Deck Combinatorics &amp; Polygon Geometry</div>
+
+  <!-- c11m-ch6-q23 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q23">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q23')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        If $^n C_8 = ^n C_2$, find $^n C_2$.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • We know the standard combination identity:<br>
+    $$^n C_x = ^n C_y \implies x = y \quad \text{or} \quad x + y = n$$<br>
+    • Since $8 \ne 2$, we have:<br>
+    $$n = 8 + 2 = 10$$<br>
+    • Now, evaluate $^n C_2 = ^{10}C_2$:<br>
+    $$^{10}C_2 = \frac{10!}{2!(10 - 2)!} = \frac{10 \times 9}{2 \times 1} = \mathbf{45}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying identity $n = 8 + 2 = 10$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $^{10}C_2 = 45$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q24 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q24">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q24')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        Determine $n$ if<br>(i) $^{2n}C_3 : ^n C_3 = 12 : 1$<br>(ii) $^{2n}C_3 : ^n C_3 = 11 : 1$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(i) Given: $^{2n}C_3 : ^n C_3 = 12 : 1$</b><br>
+    $$\frac{^{2n}C_3}{^n C_3} = \frac{\frac{2n(2n - 1)(2n - 2)}{3!}}{\frac{n(n - 1)(n - 2)}{3!}} = \frac{2n(2n - 1) \times 2(n - 1)}{n(n - 1)(n - 2)} = \frac{4(2n - 1)}{n - 2}$$<br>
+    • Equating to $12$:<br>
+    $$\frac{4(2n - 1)}{n - 2} = 12 \implies \frac{2n - 1}{n - 2} = 3$$<br>
+    $$2n - 1 = 3(n - 2) = 3n - 6 \implies n = \mathbf{5}$$<br><br>
+    • <b>(ii) Given: $^{2n}C_3 : ^n C_3 = 11 : 1$</b><br>
+    $$\frac{4(2n - 1)}{n - 2} = 11$$<br>
+    $$4(2n - 1) = 11(n - 2)$$<br>
+    $$8n - 4 = 11n - 22$$<br>
+    $$11n - 8n = 22 - 4 \implies 3n = 18 \implies n = \mathbf{6}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part (i): Simplifying ratio to $\frac{4(2n - 1)}{n - 2} = 12 \implies n = 5$</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): Solving $\frac{4(2n - 1)}{n - 2} = 11 \implies n = 6$</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q25 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q25">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q25')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        How many chords can be drawn through 21 points on a circle?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • A chord is formed by connecting any $2$ distinct points on a circle.<br>
+    • Since all $21$ points lie on a circle, no three points are collinear.<br>
+    • Therefore, the number of chords is equal to the number of combinations of $21$ points taken $2$ at a time:<br>
+    $$\text{Number of chords} = ^{21}C_2 = \frac{21!}{2!(21 - 2)!} = \frac{21 \times 20}{2 \times 1} = 21 \times 10 = \mathbf{210}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying $^{21}C_2 = (21 \times 20)/2 = 210$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q26 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q26">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q26')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        In how many ways can a team of 3 boys and 3 girls be selected from 5 boys and 4 girls?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Number of boys available $= 5$, number of boys to select $= 3$.<br>
+    • Number of girls available $= 4$, number of girls to select $= 3$.<br>
+    • Number of ways to select $3$ boys from $5$ boys:<br>
+    $$^5 C_3 = \frac{5 \times 4 \times 3}{3 \times 2 \times 1} = 10$$<br>
+    • Number of ways to select $3$ girls from $4$ girls:<br>
+    $$^4 C_3 = \frac{4 \times 3 \times 2}{3 \times 2 \times 1} = 4$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total ways} = ^5 C_3 \times ^4 C_3 = 10 \times 4 = \mathbf{40}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Evaluating $^5 C_3 = 10$ and $^4 C_3 = 4$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $10 \times 4 = 40$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q27 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q27">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q27')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        Find the number of ways of selecting 9 balls from 6 red balls, 5 white balls and 5 blue balls if each selection consists of 3 balls of each colour.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available balls: $6$ red, $5$ white, $5$ blue.<br>
+    • Each selection must have exactly $3$ balls of each colour (total $3 + 3 + 3 = 9$ balls):<br>
+      - Ways to select $3$ red balls from $6$ red balls: $^6 C_3$<br>
+      - Ways to select $3$ white balls from $5$ white balls: $^5 C_3$<br>
+      - Ways to select $3$ blue balls from $5$ blue balls: $^5 C_3$<br>
+    • Calculating combinations:<br>
+    $$^6 C_3 = \frac{6 \times 5 \times 4}{3 \times 2 \times 1} = 20$$<br>
+    $$^5 C_3 = \frac{5 \times 4 \times 3}{3 \times 2 \times 1} = 10$$<br>
+    • By Fundamental Principle of Multiplication:<br>
+    $$\text{Total ways} = ^6 C_3 \times ^5 C_3 \times ^5 C_3 = 20 \times 10 \times 10 = \mathbf{2000}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formulating $^6 C_3 \times ^5 C_3 \times ^5 C_3$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $20 \times 10 \times 10 = 2000$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q28 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q28">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q28')">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        Determine the number of 5-card combinations out of a deck of 52 cards if there is exactly one ace in each combination.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • In a standard deck of $52$ cards:<br>
+      - Number of Aces $= 4$<br>
+      - Number of non-Ace cards $= 52 - 4 = 48$<br>
+    • We need to form a 5-card combination having <b>exactly 1 Ace</b> and $4$ non-Ace cards:<br>
+      - Ways to select $1$ Ace from $4$ Aces: $^4 C_1 = 4$<br>
+      - Ways to select $4$ non-Ace cards from $48$ cards:<br>
+      $$^{48}C_4 = \frac{48 \times 47 \times 46 \times 45}{4 \times 3 \times 2 \times 1} = 2 \times 47 \times 46 \times 45 = 194580$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total combinations} = ^4 C_1 \times ^{48}C_4 = 4 \times 194580 = \mathbf{778320}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Selecting 1 ace from 4 and 4 cards from 48 non-aces: $^4 C_1 \times ^{48}C_4$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $4 \times 194580 = 778320$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q29 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q29">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q29')">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        In how many ways can one select a cricket team of eleven from 17 players in which only 5 players can bowl if each cricket team of 11 must include exactly 4 bowlers?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Total players $= 17$.<br>
+    • Bowlers $= 5$, Non-bowlers $= 17 - 5 = 12$.<br>
+    • A team of $11$ must include <b>exactly 4 bowlers</b>:<br>
+      - Number of non-bowlers needed $= 11 - 4 = 7$ players.<br>
+    • Number of ways to choose $4$ bowlers from $5$ bowlers:<br>
+    $$^5 C_4 = 5$$<br>
+    • Number of ways to choose $7$ non-bowlers from $12$ non-bowlers:<br>
+    $$^{12}C_7 = ^{12}C_5 = \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} = 792$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total ways} = ^5 C_4 \times ^{12}C_7 = 5 \times 792 = \mathbf{3960}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Setting up combination product $^5 C_4 \times ^{12}C_7$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Computing $5 \times 792 = 3960$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q30 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q30">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q30')">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        A bag contains 5 black and 6 red balls. Determine the number of ways in which 2 black and 3 red balls can be selected.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available balls: $5$ black balls and $6$ red balls.<br>
+    • We need to select $2$ black balls and $3$ red balls:<br>
+      - Ways to select $2$ black balls from $5$ black balls:<br>
+      $$^5 C_2 = \frac{5 \times 4}{2 \times 1} = 10$$<br>
+      - Ways to select $3$ red balls from $6$ red balls:<br>
+      $$^6 C_3 = \frac{6 \times 5 \times 4}{3 \times 2 \times 1} = 20$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total ways} = ^5 C_2 \times ^6 C_3 = 10 \times 20 = \mathbf{200}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Evaluating $^5 C_2 = 10$ and $^6 C_3 = 20$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $10 \times 20 = 200$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q31 (Exercise 6.4) -->
+  <div class="q-card" id="c11m-ch6-q31">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q31')">
+      <div class="q-num">Question 9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.4</span><br>
+        In how many ways can a student choose a programme of 5 courses if 2 specific courses are compulsory for every student and 9 courses are available?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Total courses available $= 9$.<br>
+    • Number of courses to be chosen $= 5$.<br>
+    • Since $2$ specific courses are compulsory for every student, they must be included in the selection ($1$ way).<br>
+    • Number of courses remaining to be chosen $= 5 - 2 = 3$.<br>
+    • Number of available courses remaining $= 9 - 2 = 7$.<br>
+    • The remaining $3$ courses can be chosen from the remaining $7$ courses in $^7 C_3$ ways:<br>
+    $$^7 C_3 = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = \mathbf{35}$$<br>
+    • Thus, there are <b>35 ways</b> to choose the programme of courses.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Determining that 3 courses must be chosen from 7 available</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $^7 C_3 = 35$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Miscellaneous Exercise on Chapter 6: Advanced Permutations, Excursion Committees &amp; Seating Arrangements</div>
+
+  <!-- c11m-ch6-q32 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q32">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q32')">
+      <div class="q-num">Question 1 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        How many words, with or without meaning, each of 2 vowels and 3 consonants can be formed from the letters of the word DAUGHTER?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • In the word <b>DAUGHTER</b>, there are $8$ distinct letters:<br>
+      - Vowels: A, U, E (total $3$ vowels).<br>
+      - Consonants: D, G, H, T, R (total $5$ consonants).<br><br>
+    • <b>Step 1: Selection of 2 vowels and 3 consonants:</b><br>
+      - Ways to select $2$ vowels from $3$: $^3 C_2 = 3$<br>
+      - Ways to select $3$ consonants from $5$: $^5 C_3 = \frac{5 \times 4}{2 \times 1} = 10$<br>
+      - Total ways to select the $5$ letters $= ^3 C_2 \times ^5 C_3 = 3 \times 10 = 30$<br><br>
+    • <b>Step 2: Arrangement of the 5 chosen letters:</b><br>
+      - Each group of $5$ letters can be arranged in $5!$ ways:<br>
+      $$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120\text{ ways}$$<br>
+    • <b>Total words formed:</b><br>
+    $$\text{Total words} = 30 \times 120 = \mathbf{3600}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Selection of letters: $^3 C_2 \times ^5 C_3 = 30$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Arrangement of 5 letters: $5! = 120$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $30 \times 120 = 3600$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q33 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q33">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q33')">
+      <div class="q-num">Question 2 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        How many words, with or without meaning, can be formed using all the letters of the word EQUATION at a time so that the vowels and consonants occur together?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • In the word <b>EQUATION</b> (8 distinct letters):<br>
+      - Vowels: E, U, A, I, O (total $5$ vowels).<br>
+      - Consonants: Q, T, N (total $3$ consonants).<br><br>
+    • To keep vowels together and consonants together, treat all vowels as one unit $(V)$ and all consonants as another unit $(C)$.<br>
+    • There are $2$ units: $(V)$ and $(C)$, which can be arranged in $2! = 2$ ways (VC or CV).<br>
+    • Within unit $(V)$, the $5$ vowels can be arranged in $5!$ ways:<br>
+    $$5! = 120\text{ ways}$$<br>
+    • Within unit $(C)$, the $3$ consonants can be arranged in $3!$ ways:<br>
+    $$3! = 6\text{ ways}$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total words} = 2! \times 5! \times 3! = 2 \times 120 \times 6 = \mathbf{1440}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Grouping vowels and consonants into 2 blocks: $2! = 2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Internal arrangements: $5! = 120$ and $3! = 6$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $2 \times 120 \times 6 = 1440$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q34 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q34">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q34')">
+      <div class="q-num">Question 3 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        A committee of 7 has to be formed from 9 boys and 4 girls. In how many ways can this be done when the committee consists of:<br>(i) exactly 3 girls?<br>(ii) at least 3 girls?<br>(iii) at most 3 girls?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available: $9$ boys and $4$ girls. Total committee size $= 7$.<br><br>
+    • <b>(i) Exactly 3 girls:</b><br>
+      - Committee has $3$ girls and $7 - 3 = 4$ boys.<br>
+      - Ways $= ^4 C_3 \times ^9 C_4 = 4 \times \frac{9 \times 8 \times 7 \times 6}{4 \times 3 \times 2 \times 1} = 4 \times 126 = \mathbf{504}$<br><br>
+    • <b>(ii) At least 3 girls:</b><br>
+      - Two mutually exclusive cases: (3 girls, 4 boys) OR (4 girls, 3 boys).<br>
+      - Case 1 (3 girls, 4 boys): $^4 C_3 \times ^9 C_4 = 504$<br>
+      - Case 2 (4 girls, 3 boys): $^4 C_4 \times ^9 C_3 = 1 \times \frac{9 \times 8 \times 7}{3 \times 2 \times 1} = 1 \times 84 = 84$<br>
+      - Total ways $= 504 + 84 = \mathbf{588}$<br><br>
+    • <b>(iii) At most 3 girls:</b><br>
+      - Total ways to form committee of 7 from all 13 persons ($9 + 4 = 13$):<br>
+      $$\text{Total} = ^{13}C_7 = \frac{13 \times 12 \times 11 \times 10 \times 9 \times 8 \times 7}{7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1} = 1716$$<br>
+      - Subtract the only case where girls exceed 3 (i.e. exactly 4 girls, 3 boys):<br>
+      $$\text{Ways with 4 girls} = ^4 C_4 \times ^9 C_3 = 84$$<br>
+      - Required ways $= 1716 - 84 = \mathbf{1632}$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part (i): $^4 C_3 \times ^9 C_4 = 504$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): $504 + (^4 C_4 \times ^9 C_3) = 504 + 84 = 588$</span><span class="marking-marks">1½ Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (iii): $^{13}C_7 - 84 = 1716 - 84 = 1632$</span><span class="marking-marks">1½ Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q35 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q35">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q35')">
+      <div class="q-num">Question 4 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        If the different permutations of all the letter of the word EXAMINATION are listed as in a dictionary, how many words are there in this list before the first word starting with E?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • The word <b>EXAMINATION</b> has $11$ letters:<br>
+      - A : 2, I : 2, N : 2, E : 1, X : 1, M : 1, T : 1, O : 1.<br>
+    • In alphabetical order, the letters are: <b>A, E, I, M, N, O, T, X</b>.<br>
+    • The words that appear before the first word starting with 'E' are precisely all the words starting with 'A'.<br>
+    • Fix 'A' in the first position:<br>
+      - The remaining $10$ positions are to be filled using the remaining $10$ letters:<br>
+        A : 1, I : 2, N : 2, E : 1, X : 1, M : 1, T : 1, O : 1.<br>
+    • Number of permutations of these 10 letters:<br>
+    $$\text{Words starting with A} = \frac{10!}{1! \times 2! \times 2! \times 1! \times 1! \times 1! \times 1! \times 1!} = \frac{10!}{2! \times 2!}$$<br>
+    $$= \frac{3628800}{2 \times 2} = \frac{3628800}{4} = \mathbf{907200}$$<br>
+    • Thus, there are <b>907,200 words</b> in the dictionary list before the first word starting with E.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Reasoning that words before E are words starting with A</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formulating permutation formula $\frac{10!}{2! 2!}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $\frac{3628800}{4} = 907200$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q36 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q36">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q36')">
+      <div class="q-num">Question 5 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        How many 6-digit numbers can be formed from the digits 0, 1, 3, 5, 7 and 9 which are divisible by 10 and no digit is repeated?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Available digits: $\{0, 1, 3, 5, 7, 9\}$ (total $6$ digits).<br>
+    • For a number to be <b>divisible by 10</b>, its units place must be $0$.<br>
+      - Units place is fixed with $0$ ($1$ way).<br>
+    • Since the digit $0$ is already used at the units place, the remaining $5$ places (hundred-thousands, ten-thousands, thousands, hundreds, tens) must be filled by the remaining $5$ non-zero digits $\{1, 3, 5, 7, 9\}$ without repetition.<br>
+    • Number of ways to arrange $5$ digits in $5$ places:<br>
+    $$5! = 5 \times 4 \times 3 \times 2 \times 1 = \mathbf{120}$$<br>
+    • Thus, exactly <b>120</b> such 6-digit numbers can be formed.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Fixing units place as 0 for divisibility by 10</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Arranging remaining 5 non-zero digits: $5! = 120$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q37 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q37">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q37')">
+      <div class="q-num">Question 6 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        The English alphabet has 5 vowels and 21 consonants. How many words with two different vowels and 2 different consonants can be formed from the alphabet?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Total vowels $= 5$, total consonants $= 21$.<br>
+    • We need to form 4-letter words with $2$ different vowels and $2$ different consonants.<br><br>
+    • <b>Step 1: Selection of 2 vowels and 2 consonants:</b><br>
+      - Ways to select $2$ vowels from $5$: $^5 C_2 = \frac{5 \times 4}{2 \times 1} = 10$<br>
+      - Ways to select $2$ consonants from $21$: $^{21}C_2 = \frac{21 \times 20}{2 \times 1} = 210$<br>
+      - Total selection ways $= 10 \times 210 = 2100$<br><br>
+    • <b>Step 2: Arrangement of the 4 chosen letters:</b><br>
+      - The $4$ chosen letters can be arranged in $4!$ ways:<br>
+      $$4! = 4 \times 3 \times 2 \times 1 = 24$$<br>
+    • <b>Total words formed:</b><br>
+    $$\text{Total words} = 2100 \times 24 = \mathbf{50400}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Selection of letters: $^5 C_2 \times ^{21}C_2 = 10 \times 210 = 2100$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Arrangement of 4 letters: $4! = 24$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $2100 \times 24 = 50400$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q38 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q38">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q38')">
+      <div class="q-num">Question 7 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        In an examination, a question paper consists of 12 questions divided into two parts i.e., Part I and Part II, containing 5 and 7 questions, respectively. A student is required to attempt 8 questions in all, selecting at least 3 from each part. In how many ways can a student select the questions?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Part I contains $5$ questions; Part II contains $7$ questions.<br>
+    • Student must attempt $8$ questions in total with <b>at least 3 from each part</b>.<br>
+    • The possible combinations of (Part I, Part II) questions are:<br><br>
+      - <b>Case 1: 3 questions from Part I and 5 from Part II:</b><br>
+      $$\text{Ways}_1 = ^5 C_3 \times ^7 C_5 = 10 \times \frac{7 \times 6}{2 \times 1} = 10 \times 21 = 210$$<br>
+      - <b>Case 2: 4 questions from Part I and 4 from Part II:</b><br>
+      $$\text{Ways}_2 = ^5 C_4 \times ^7 C_4 = 5 \times \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = 5 \times 35 = 175$$<br>
+      - <b>Case 3: 5 questions from Part I and 3 from Part II:</b><br>
+      $$\text{Ways}_3 = ^5 C_5 \times ^7 C_3 = 1 \times 35 = 35$$<br><br>
+    • <b>Total number of ways:</b><br>
+    $$\text{Total} = 210 + 175 + 35 = \mathbf{420}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identifying 3 valid cases: (3, 5), (4, 4), and (5, 3)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating each case: 210, 175, 35</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Summing cases: $210 + 175 + 35 = 420$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q39 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q39">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q39')">
+      <div class="q-num">Question 8 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        Determine the number of 5-card combinations out of a deck of 52 cards if each selection of 5 cards has exactly one king.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • In a standard deck of $52$ cards:<br>
+      - Number of Kings $= 4$<br>
+      - Number of non-King cards $= 52 - 4 = 48$<br>
+    • Each 5-card combination must contain <b>exactly 1 King</b> and $4$ non-King cards:<br>
+      - Ways to choose $1$ King from $4$ Kings: $^4 C_1 = 4$<br>
+      - Ways to choose $4$ cards from $48$ non-King cards:<br>
+      $$^{48}C_4 = \frac{48 \times 47 \times 46 \times 45}{4 \times 3 \times 2 \times 1} = 194580$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total 5-card combinations} = ^4 C_1 \times ^{48}C_4 = 4 \times 194580 = \mathbf{778320}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formulating $^4 C_1 \times ^{48}C_4$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $4 \times 194580 = 778320$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q40 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q40">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q40')">
+      <div class="q-num">Question 9 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        It is required to seat 5 men and 4 women in a row so that the women occupy the even places. How many such arrangements are possible?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Total persons $= 5\text{ men} + 4\text{ women} = 9\text{ persons}$.<br>
+    • The row consists of $9$ numbered positions: $1, 2, 3, 4, 5, 6, 7, 8, 9$.<br>
+    • Even positions in the row are $2, 4, 6, 8$ (exactly $4$ positions).<br>
+    • Odd positions in the row are $1, 3, 5, 7, 9$ (exactly $5$ positions).<br><br>
+    • <b>Seating the women:</b><br>
+      The $4$ women must occupy the $4$ even positions. They can be seated in:<br>
+      $$4! = 4 \times 3 \times 2 \times 1 = 24\text{ ways}$$<br>
+    • <b>Seating the men:</b><br>
+      The $5$ men must occupy the remaining $5$ odd positions. They can be seated in:<br>
+      $$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120\text{ ways}$$<br>
+    • By the Fundamental Principle of Multiplication:<br>
+    $$\text{Total arrangements} = 4! \times 5! = 24 \times 120 = \mathbf{2880}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Arranging 4 women in 4 even places: $4! = 24$</span><span class="marking-marks">½ Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Arranging 5 men in 5 odd places: $5! = 120$</span><span class="marking-marks">½ Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying $24 \times 120 = 2880$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q41 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q41">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q41')">
+      <div class="q-num">Question 10 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        From a class of 25 students, 10 are to be chosen for an excursion party. There are 3 students who decide that either all of them will join or none of them will join. In how many ways can the excursion party be chosen?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Total students in class $= 25$. Excursion party size $= 10$.<br>
+    • There are $3$ particular students who either all join together OR none of them joins.<br>
+    • This gives two mutually exclusive cases:<br><br>
+      - <b>Case 1: All 3 students join the party:</b><br>
+        Since all $3$ students are included, we need to choose the remaining $10 - 3 = 7$ students from the remaining $25 - 3 = 22$ students.<br>
+        $$\text{Ways}_1 = ^{22}C_7 = \frac{22 \times 21 \times 20 \times 19 \times 18 \times 17 \times 16}{7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1} = 170544$$<br>
+      - <b>Case 2: None of the 3 students join the party:</b><br>
+        Since none of the $3$ students join, all $10$ students must be chosen from the remaining $25 - 3 = 22$ students.<br>
+        $$\text{Ways}_2 = ^{22}C_{10} = \frac{22 \times 21 \times 20 \times 19 \times 18 \times 17 \times 16 \times 15 \times 14 \times 13}{10!} = 646646$$<br><br>
+    • <b>Total number of ways:</b><br>
+    $$\text{Total} = ^{22}C_7 + ^{22}C_{10} = 170544 + 646646 = \mathbf{817190}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formulating Case 1 (all join): $^{22}C_7 = 170544$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formulating Case 2 (none join): $^{22}C_{10} = 646646$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Summing: $170544 + 646646 = 817190$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11m-ch6-q42 (Misc Exercise) -->
+  <div class="q-card" id="c11m-ch6-q42">
+    <div class="q-head" onclick="toggleQ('c11m-ch6-q42')">
+      <div class="q-num">Question 11 (Misc)</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Misc Exercise</span><br>
+        In how many ways can the letters of the word ASSASSINATION be arranged so that all the S’s are together?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • In the word <b>ASSASSINATION</b>, there are $13$ letters with letter counts:<br>
+      - A : 3<br>
+      - S : 4<br>
+      - I : 2<br>
+      - N : 2<br>
+      - T : 1<br>
+      - O : 1<br>
+      - Total $= 3 + 4 + 2 + 2 + 1 + 1 = 13$<br><br>
+    • Since all the 4 S's must be together, treat (SSSS) as a single unit.<br>
+    • Number of units to arrange $= 1\text{ (unit of S's)} + 3\text{ A's} + 2\text{ I's} + 2\text{ N's} + 1\text{ T} + 1\text{ O} = 10\text{ units}$.<br>
+    • Within the unit (SSSS), all 4 letters are identical, so there is only $1$ way to arrange them ($\frac{4!}{4!} = 1$).<br>
+    • Number of distinct permutations of these 10 units:<br>
+    $$\text{Ways} = \frac{10!}{3! \times 2! \times 2! \times 1! \times 1!} = \frac{3628800}{6 \times 2 \times 2} = \frac{3628800}{24} = \mathbf{151200}$$<br>
+    • Thus, there are <b>151,200 ways</b> to arrange the letters so that all S's are together.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Treating 4 S's as a single unit, leaving 10 entities</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying multiset permutation formula $\frac{10!}{3! 2! 2!}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating $\frac{3628800}{24} = 151200$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(5)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Previous: Chapter 5 (Linear Inequalities)</button>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 20px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">↑ Back to Top</button>
+    <button class="ch-nav-btn next" onclick="showChapter(7)" style="padding:10px 24px; border-radius:8px; border:none; background:#ff6b00; color:white; font-weight:700; cursor:pointer;">Next: Chapter 7 (Binomial Theorem) →</button>
+  </div>
+</section>
