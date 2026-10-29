@@ -1,0 +1,1262 @@
+// scripts/builders/gen-c11m-ch5.js
+// Complete, verbatim NCERT generator for Class 11 Mathematics Chapter 5: Linear Inequalities (All 40 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11m');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// Store questions grouped by exercise
+const ex5_1 = [];
+const misc = [];
+
+// ============================================================================
+// EXERCISE 5.1 (Questions 1 to 26)
+// ============================================================================
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q1', 'Question 1', 'Exercise 5.1',
+  'Solve $24x < 100$, when<br>(i) $x$ is a natural number<br>(ii) $x$ is an integer.',
+  `<div class="step">
+    • Given linear inequality:<br>
+    $$24x < 100$$<br>
+    • Dividing both sides by the positive number $24$:<br>
+    $$x < \\frac{100}{24} = \\frac{25}{6} = 4\\frac{1}{6} \\approx 4.167$$<br>
+    • <b>(i) When $x$ is a natural number ($x \\in \\mathbb{N} = \\{1, 2, 3, \\dots\\}$):</b><br>
+    The natural numbers satisfying $x < \\frac{25}{6}$ are $1, 2, 3, 4$.<br>
+    $$\\text{Solution set} = \\mathbf{\\{1, 2, 3, 4\\}}$$<br>
+    • <b>(ii) When $x$ is an integer ($x \\in \\mathbb{Z} = \\{\\dots, -2, -1, 0, 1, 2, \\dots\\}$):</b><br>
+    The integers satisfying $x < \\frac{25}{6}$ are all integers less than or equal to $4$.<br>
+    $$\\text{Solution set} = \\mathbf{\\{\\dots, -3, -2, -1, 0, 1, 2, 3, 4\\}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Dividing by 24 to obtain $x < 25/6$', '½ Mark'],
+    ['Writing natural number solution set {1, 2, 3, 4}', '½ Mark'],
+    ['Writing integer solution set {..., -1, 0, 1, 2, 3, 4}', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q2', 'Question 2', 'Exercise 5.1',
+  'Solve $-12x > 30$, when<br>(i) $x$ is a natural number<br>(ii) $x$ is an integer.',
+  `<div class="step">
+    • Given linear inequality:<br>
+    $$-12x > 30$$<br>
+    • Dividing both sides by $-12$ (reversing the sign of inequality):<br>
+    $$x < -\\frac{30}{12} = -\\frac{5}{2} = -2.5$$<br>
+    • <b>(i) When $x$ is a natural number ($x \\in \\mathbb{N}$):</b><br>
+    Since all natural numbers are positive ($\\{1, 2, 3, \\dots\\}$), none is less than $-2.5$.<br>
+    $$\\text{Solution set} = \\mathbf{\\emptyset} \\quad (\\text{No solution})$$<br>
+    • <b>(ii) When $x$ is an integer ($x \\in \\mathbb{Z}$):</b><br>
+    The integers strictly less than $-2.5$ are $\\dots, -5, -4, -3$.<br>
+    $$\\text{Solution set} = \\mathbf{\\{\\dots, -5, -4, -3\\}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Dividing by -12 and reversing inequality sign to get $x < -5/2$', '½ Mark'],
+    ['Reasoning that no natural number is < -2.5 (empty set)', '½ Mark'],
+    ['Writing integer solution set {..., -5, -4, -3}', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q3', 'Question 3', 'Exercise 5.1',
+  'Solve $5x - 3 < 7$, when<br>(i) $x$ is an integer<br>(ii) $x$ is a real number.',
+  `<div class="step">
+    • Given linear inequality:<br>
+    $$5x - 3 < 7$$<br>
+    • Adding $3$ to both sides:<br>
+    $$5x < 7 + 3 \\implies 5x < 10$$<br>
+    • Dividing both sides by $5$:<br>
+    $$x < 2$$<br>
+    • <b>(i) When $x$ is an integer ($x \\in \\mathbb{Z}$):</b><br>
+    $$\\text{Solution set} = \\mathbf{\\{\\dots, -2, -1, 0, 1\\}}$$<br>
+    • <b>(ii) When $x$ is a real number ($x \\in \\mathbb{R}$):</b><br>
+    All real numbers strictly less than $2$ are represented as an open interval:<br>
+    $$\\text{Solution set} = \\mathbf{(-\\infty, 2)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Simplifying $5x - 3 < 7$ to $x < 2$', '½ Mark'],
+    ['Writing integer solution set {..., -1, 0, 1}', '½ Mark'],
+    ['Expressing real solution in interval notation $(-\\infty, 2)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q4', 'Question 4', 'Exercise 5.1',
+  'Solve $3x + 8 > 2$, when<br>(i) $x$ is an integer<br>(ii) $x$ is a real number.',
+  `<div class="step">
+    • Given linear inequality:<br>
+    $$3x + 8 > 2$$<br>
+    • Subtracting $8$ from both sides:<br>
+    $$3x > 2 - 8 \\implies 3x > -6$$<br>
+    • Dividing by $3$:<br>
+    $$x > -2$$<br>
+    • <b>(i) When $x$ is an integer ($x \\in \\mathbb{Z}$):</b><br>
+    The integers strictly greater than $-2$ are $-1, 0, 1, 2, \\dots$<br>
+    $$\\text{Solution set} = \\mathbf{\\{-1, 0, 1, 2, \\dots\\}}$$<br>
+    • <b>(ii) When $x$ is a real number ($x \\in \\mathbb{R}$):</b><br>
+    All real numbers strictly greater than $-2$ form an open interval:<br>
+    $$\\text{Solution set} = \\mathbf{(-2, \\infty)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Simplifying $3x + 8 > 2$ to $x > -2$', '½ Mark'],
+    ['Writing integer solution set {-1, 0, 1, 2, ...}', '½ Mark'],
+    ['Expressing real solution set in interval notation $(-2, \\infty)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q5', 'Question 5', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$4x + 3 < 5x + 7$$',
+  `<div class="step">
+    • Given inequality:<br>
+    $$4x + 3 < 5x + 7$$<br>
+    • Transposing variable terms to LHS and constants to RHS:<br>
+    $$4x - 5x < 7 - 3$$<br>
+    $$-x < 4$$<br>
+    • Multiplying both sides by $-1$ and reversing the inequality sign:<br>
+    $$x > -4$$<br>
+    • In interval notation, the solution set for real $x$ is:<br>
+    $$\\mathbf{(-4, \\infty)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Transposing terms to get $-x < 4$', '1 Mark'],
+    ['Multiplying by -1 and writing interval notation $(-4, \\infty)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q6', 'Question 6', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$3x - 7 > 5x - 1$$',
+  `<div class="step">
+    • Given inequality:<br>
+    $$3x - 7 > 5x - 1$$<br>
+    • Rearranging terms:<br>
+    $$3x - 5x > -1 + 7$$<br>
+    $$-2x > 6$$<br>
+    • Dividing both sides by $-2$ and reversing the inequality sign:<br>
+    $$x < -\\frac{6}{2} \\implies x < -3$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, -3)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Transposing terms to obtain $-2x > 6$', '1 Mark'],
+    ['Dividing by -2 and stating interval $(-\\infty, -3)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q7', 'Question 7', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$3(x - 1) \\le 2(x - 3)$$',
+  `<div class="step">
+    • Expanding brackets on both sides:<br>
+    $$3x - 3 \\le 2x - 6$$<br>
+    • Transposing terms:<br>
+    $$3x - 2x \\le -6 + 3$$<br>
+    $$x \\le -3$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, -3]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Expanding brackets correctly to $3x - 3 \\le 2x - 6$', '1 Mark'],
+    ['Simplifying to $x \\le -3$ and writing $(-\\infty, -3]$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q8', 'Question 8', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$3(2 - x) \\ge 2(1 - x)$$',
+  `<div class="step">
+    • Expanding the brackets:<br>
+    $$6 - 3x \\ge 2 - 2x$$<br>
+    • Rearranging terms:<br>
+    $$-3x + 2x \\ge 2 - 6$$<br>
+    $$-x \\ge -4$$<br>
+    • Multiplying both sides by $-1$ and reversing the inequality:<br>
+    $$x \\le 4$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, 4]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Expanding brackets to $6 - 3x \\ge 2 - 2x$', '½ Mark'],
+    ['Simplifying to $-x \\ge -4$', '½ Mark'],
+    ['Reversing inequality to get $x \\le 4$ and writing $(-\\infty, 4]$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q9', 'Question 9', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$x + \\dfrac{x}{2} + \\dfrac{x}{3} < 11$$',
+  `<div class="step">
+    • Multiply through by the LCM of denominators $2$ and $3$, which is $6$:<br>
+    $$6\\left(x + \\frac{x}{2} + \\frac{x}{3}\\right) < 6 \\times 11$$<br>
+    $$6x + 3x + 2x < 66$$<br>
+    $$11x < 66$$<br>
+    • Dividing by $11$:<br>
+    $$x < 6$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, 6)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Multiplying by LCM 6 to clear fractions: $6x + 3x + 2x < 66$', '1 Mark'],
+    ['Solving $11x < 66$ to get $x < 6$ and writing $(-\\infty, 6)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q10', 'Question 10', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$\\dfrac{x}{3} > \\dfrac{x}{2} + 1$$',
+  `<div class="step">
+    • Multiply through by the LCM of $3$ and $2$, which is $6$:<br>
+    $$6 \\times \\frac{x}{3} > 6 \\times \\left(\\frac{x}{2} + 1\\right)$$<br>
+    $$2x > 3x + 6$$<br>
+    • Transposing variable terms:<br>
+    $$2x - 3x > 6 \\implies -x > 6$$<br>
+    • Multiplying by $-1$ and reversing inequality:<br>
+    $$x < -6$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, -6)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Clearing fractions by multiplying by 6: $2x > 3x + 6$', '1 Mark'],
+    ['Solving $-x > 6 \\implies x < -6$ and writing $(-\\infty, -6)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q11', 'Question 11', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$\\dfrac{3(x - 2)}{5} \\le \\dfrac{5(2 - x)}{3}$$',
+  `<div class="step">
+    • Multiply both sides by the LCM of $5$ and $3$, which is $15$:<br>
+    $$15 \\times \\frac{3(x - 2)}{5} \\le 15 \\times \\frac{5(2 - x)}{3}$$<br>
+    $$3 \\times 3(x - 2) \\le 5 \\times 5(2 - x)$$<br>
+    $$9(x - 2) \\le 25(2 - x)$$<br>
+    • Expanding both sides:<br>
+    $$9x - 18 \\le 50 - 25x$$<br>
+    • Transposing terms:<br>
+    $$9x + 25x \\le 50 + 18$$<br>
+    $$34x \\le 68$$<br>
+    • Dividing by $34$ (positive number):<br>
+    $$x \\le \\frac{68}{34} = 2$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, 2]}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Cross multiplying or multiplying by 15: $9(x - 2) \\le 25(2 - x)$', '1 Mark'],
+    ['Expanding and collecting like terms: $34x \\le 68$', '1 Mark'],
+    ['Final solution $x \\le 2$ and interval $(-\\infty, 2]$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q12', 'Question 12', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$\\dfrac{1}{2}\\left(\\dfrac{3x}{5} + 4\\right) \\ge \\dfrac{1}{3}(x - 6)$$',
+  `<div class="step">
+    • Multiplying both sides by $6$ (LCM of $2$ and $3$):<br>
+    $$3\\left(\\frac{3x}{5} + 4\\right) \\ge 2(x - 6)$$<br>
+    $$\\frac{9x}{5} + 12 \\ge 2x - 12$$<br>
+    • Multiplying both sides by $5$ to eliminate the fraction:<br>
+    $$9x + 60 \\ge 10x - 60$$<br>
+    • Transposing terms:<br>
+    $$9x - 10x \\ge -60 - 60$$<br>
+    $$-x \\ge -120$$<br>
+    • Multiplying both sides by $-1$ and reversing the inequality:<br>
+    $$x \\le 120$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, 120]}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Multiplying by 6 to clear outer denominators', '1 Mark'],
+    ['Multiplying by 5 and collecting terms: $-x \\ge -120$', '1 Mark'],
+    ['Final solution $x \\le 120$ and interval $(-\\infty, 120]$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q13', 'Question 13', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$2(2x + 3) - 10 < 6(x - 2)$$',
+  `<div class="step">
+    • Expanding brackets:<br>
+    $$4x + 6 - 10 < 6x - 12$$<br>
+    $$4x - 4 < 6x - 12$$<br>
+    • Transposing terms:<br>
+    $$4x - 6x < -12 + 4$$<br>
+    $$-2x < -8$$<br>
+    • Dividing by $-2$ and reversing the inequality sign:<br>
+    $$x > \\frac{-8}{-2} \\implies x > 4$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(4, \\infty)}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Expanding and simplifying LHS and RHS: $4x - 4 < 6x - 12$', '1 Mark'],
+    ['Solving $-2x < -8 \\implies x > 4$ and writing $(4, \\infty)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q14', 'Question 14', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$37 - (3x + 5) \\ge 9x - 8(x - 3)$$',
+  `<div class="step">
+    • Expanding expressions on both sides:<br>
+    $$37 - 3x - 5 \\ge 9x - 8x + 24$$<br>
+    $$32 - 3x \\ge x + 24$$<br>
+    • Transposing terms:<br>
+    $$-3x - x \\ge 24 - 32$$<br>
+    $$-4x \\ge -8$$<br>
+    • Dividing both sides by $-4$ and reversing inequality:<br>
+    $$x \\le \\frac{-8}{-4} \\implies x \\le 2$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, 2]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Careful bracket expansion: $32 - 3x \\ge x + 24$', '1 Mark'],
+    ['Simplifying to $-4x \\ge -8 \\implies x \\le 2$ and writing $(-\\infty, 2]$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q15', 'Question 15', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$\\dfrac{x}{4} < \\dfrac{(5x - 2)}{3} - \\dfrac{(7x - 3)}{5}$$',
+  `<div class="step">
+    • Simplify the right-hand side using common denominator $15$:<br>
+    $$\\text{RHS} = \\frac{5(5x - 2) - 3(7x - 3)}{15} = \\frac{25x - 10 - 21x + 9}{15} = \\frac{4x - 1}{15}$$<br>
+    • The inequality becomes:<br>
+    $$\\frac{x}{4} < \\frac{4x - 1}{15}$$<br>
+    • Multiplying both sides by the LCM of $4$ and $15$, which is $60$:<br>
+    $$15x < 4(4x - 1)$$<br>
+    $$15x < 16x - 4$$<br>
+    • Transposing terms:<br>
+    $$15x - 16x < -4 \\implies -x < -4$$<br>
+    • Multiplying by $-1$ and reversing inequality:<br>
+    $$x > 4$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(4, \\infty)}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Combining RHS fractions: $\\text{RHS} = (4x - 1)/15$', '1 Mark'],
+    ['Multiplying by 60 and expanding: $15x < 16x - 4$', '1 Mark'],
+    ['Solving $-x < -4 \\implies x > 4$ and writing $(4, \\infty)$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q16', 'Question 16', 'Exercise 5.1',
+  'Solve the inequality for real $x$:<br>$$\\dfrac{(2x - 1)}{3} \\ge \\dfrac{(3x - 2)}{4} - \\dfrac{(2 - x)}{5}$$',
+  `<div class="step">
+    • Simplify the right-hand side using LCM of $4$ and $5$, which is $20$:<br>
+    $$\\text{RHS} = \\frac{5(3x - 2) - 4(2 - x)}{20} = \\frac{15x - 10 - 8 + 4x}{20} = \\frac{19x - 18}{20}$$<br>
+    • The inequality becomes:<br>
+    $$\\frac{2x - 1}{3} \\ge \\frac{19x - 18}{20}$$<br>
+    • Multiplying both sides by $60$ (LCM of $3$ and $20$):<br>
+    $$20(2x - 1) \\ge 3(19x - 18)$$<br>
+    $$40x - 20 \\ge 57x - 54$$<br>
+    • Transposing terms:<br>
+    $$40x - 57x \\ge -54 + 20$$<br>
+    $$-17x \\ge -34$$<br>
+    • Dividing by $-17$ and reversing the inequality sign:<br>
+    $$x \\le \\frac{-34}{-17} \\implies x \\le 2$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-\\infty, 2]}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Simplifying RHS to $\\frac{19x - 18}{20}$', '1 Mark'],
+    ['Clearing denominators by multiplying by 60: $40x - 20 \\ge 57x - 54$', '1 Mark'],
+    ['Solving $-17x \\ge -34 \\implies x \\le 2$ and writing $(-\\infty, 2]$', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q17', 'Question 17', 'Exercise 5.1',
+  'Solve the inequality and represent the solution graphically on number line:<br>$$3x - 2 < 2x + 1$$',
+  `<div class="step">
+    • Transposing variable terms to LHS and constants to RHS:<br>
+    $$3x - 2x < 1 + 2$$<br>
+    $$x < 3$$<br>
+    • The solution set in interval notation is:<br>
+    $$\\mathbf{(-\\infty, 3)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    An open circle is placed at $x = 3$ (indicating $3$ is not included), and the line is shaded thickly to the left towards $-\infty$.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="80" y1="25" x2="80" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="80" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="140" y1="25" x2="140" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="140" y="48" font-size="10" text-anchor="middle" fill="#64748b">1</text>
+        <line x1="200" y1="25" x2="200" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="200" y="48" font-size="10" text-anchor="middle" fill="#64748b">2</text>
+        <line x1="260" y1="25" x2="260" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="260" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">3</text>
+        <!-- Shaded Ray -->
+        <line x1="20" y1="30" x2="260" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <polygon points="15,30 25,23 25,37" fill="#2563eb"/>
+        <!-- Open circle at 3 -->
+        <circle cx="260" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Open circle at 3, ray extends to $-\\infty$</div>
+    </div>
+  </div>`,
+  '2 Marks',
+  [
+    ['Algebraic simplification to $x < 3$', '1 Mark'],
+    ['Accurate number line representation with open circle at 3 and ray to left', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q18', 'Question 18', 'Exercise 5.1',
+  'Solve the inequality and represent the solution graphically on number line:<br>$$5x - 3 \\ge 3x - 5$$',
+  `<div class="step">
+    • Transposing terms:<br>
+    $$5x - 3x \\ge -5 + 3$$<br>
+    $$2x \\ge -2$$<br>
+    • Dividing by $2$:<br>
+    $$x \\ge -1$$<br>
+    • The solution set in interval notation is:<br>
+    $$\\mathbf{[-1, \\infty)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    A solid circle is placed at $x = -1$ (indicating $-1$ is included), and the line is shaded thickly to the right towards $+\infty$.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="80" y1="25" x2="80" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="80" y="48" font-size="10" text-anchor="middle" fill="#64748b">-2</text>
+        <line x1="140" y1="25" x2="140" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="140" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">-1</text>
+        <line x1="200" y1="25" x2="200" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="200" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="260" y1="25" x2="260" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="260" y="48" font-size="10" text-anchor="middle" fill="#64748b">1</text>
+        <line x1="320" y1="25" x2="320" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="320" y="48" font-size="10" text-anchor="middle" fill="#64748b">2</text>
+        <!-- Shaded Ray -->
+        <line x1="140" y1="30" x2="380" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <polygon points="385,30 375,23 375,37" fill="#2563eb"/>
+        <!-- Solid circle at -1 -->
+        <circle cx="140" cy="30" r="5" fill="#2563eb"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Solid circle at -1, ray extends to $+\\infty$</div>
+    </div>
+  </div>`,
+  '2 Marks',
+  [
+    ['Algebraic simplification to $x \\ge -1$', '1 Mark'],
+    ['Accurate number line representation with solid dot at -1 and ray to right', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q19', 'Question 19', 'Exercise 5.1',
+  'Solve the inequality and represent the solution graphically on number line:<br>$$3(1 - x) < 2(x + 4)$$',
+  `<div class="step">
+    • Expanding the brackets:<br>
+    $$3 - 3x < 2x + 8$$<br>
+    • Transposing variable terms:<br>
+    $$-3x - 2x < 8 - 3$$<br>
+    $$-5x < 5$$<br>
+    • Dividing by $-5$ and reversing the inequality sign:<br>
+    $$x > \\frac{5}{-5} \\implies x > -1$$<br>
+    • The solution set in interval notation is:<br>
+    $$\\mathbf{(-1, \\infty)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    An open circle is placed at $x = -1$ (indicating $-1$ is not included), and the line is shaded thickly to the right towards $+\infty$.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="80" y1="25" x2="80" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="80" y="48" font-size="10" text-anchor="middle" fill="#64748b">-2</text>
+        <line x1="140" y1="25" x2="140" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="140" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">-1</text>
+        <line x1="200" y1="25" x2="200" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="200" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="260" y1="25" x2="260" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="260" y="48" font-size="10" text-anchor="middle" fill="#64748b">1</text>
+        <line x1="320" y1="25" x2="320" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="320" y="48" font-size="10" text-anchor="middle" fill="#64748b">2</text>
+        <!-- Shaded Ray -->
+        <line x1="140" y1="30" x2="380" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <polygon points="385,30 375,23 375,37" fill="#2563eb"/>
+        <!-- Open circle at -1 -->
+        <circle cx="140" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Open circle at -1, ray extends to $+\\infty$</div>
+    </div>
+  </div>`,
+  '2 Marks',
+  [
+    ['Expanding and simplifying to $-5x < 5 \\implies x > -1$', '1 Mark'],
+    ['Accurate number line representation with open circle at -1 and ray to right', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q20', 'Question 20', 'Exercise 5.1',
+  'Solve the inequality and represent the solution graphically on number line:<br>$$\\dfrac{x}{2} \\ge \\dfrac{(5x - 2)}{3} - \\dfrac{(7x - 3)}{5}$$',
+  `<div class="step">
+    • Simplifying the right-hand side using LCM $15$:<br>
+    $$\\text{RHS} = \\frac{5(5x - 2) - 3(7x - 3)}{15} = \\frac{25x - 10 - 21x + 9}{15} = \\frac{4x - 1}{15}$$<br>
+    • Given inequality becomes:<br>
+    $$\\frac{x}{2} \\ge \\frac{4x - 1}{15}$$<br>
+    • Multiplying both sides by $30$ (LCM of $2$ and $15$):<br>
+    $$15x \\ge 2(4x - 1)$$<br>
+    $$15x \\ge 8x - 2$$<br>
+    $$15x - 8x \\ge -2 \\implies 7x \\ge -2$$<br>
+    • Dividing by $7$:<br>
+    $$x \\ge -\\frac{2}{7}$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{\\left[-\\frac{2}{7}, \\infty\\right)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    A solid circle is placed at $x = -2/7$ (approx $-0.29$), and the ray is shaded thickly to the right towards $+\infty$.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="100" y1="25" x2="100" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="100" y="48" font-size="10" text-anchor="middle" fill="#64748b">-1</text>
+        <line x1="200" y1="25" x2="200" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="200" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="300" y1="25" x2="300" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="300" y="48" font-size="10" text-anchor="middle" fill="#64748b">1</text>
+        <!-- Marker at -2/7 (approx x = 171) -->
+        <line x1="171" y1="22" x2="171" y2="38" stroke="#1d4ed8" stroke-width="2"/>
+        <text x="171" y="55" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">-2/7</text>
+        <!-- Shaded Ray -->
+        <line x1="171" y1="30" x2="380" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <polygon points="385,30 375,23 375,37" fill="#2563eb"/>
+        <!-- Solid circle at -2/7 -->
+        <circle cx="171" cy="30" r="5" fill="#2563eb"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Solid circle at $-2/7$, ray extends to $+\\infty$</div>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['Combining RHS and cross multiplying: $15x \\ge 8x - 2$', '1 Mark'],
+    ['Solving to obtain $x \\ge -2/7$ and writing $[-2/7, \\infty)$', '1 Mark'],
+    ['Accurate number line representation with solid circle at -2/7 and ray to right', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q21', 'Question 21', 'Exercise 5.1',
+  'Ravi obtained 70 and 75 marks in first two unit test. Find the minimum marks he should get in the third test to have an average of at least 60 marks.',
+  `<div class="step">
+    • Let $x$ denote the marks obtained by Ravi in the third unit test.<br>
+    • Given marks in first two tests: $70$ and $75$.<br>
+    • The average marks of the three tests is given by:<br>
+    $$\\text{Average} = \\frac{70 + 75 + x}{3}$$<br>
+    • According to the problem, the average must be at least $60$ marks:<br>
+    $$\\frac{70 + 75 + x}{3} \\ge 60$$<br>
+    • Simplifying:<br>
+    $$\\frac{145 + x}{3} \\ge 60$$<br>
+    $$145 + x \\ge 180$$<br>
+    $$x \\ge 180 - 145 \\implies x \\ge 35$$<br>
+    • <b>Conclusion:</b> Ravi must obtain a minimum of <b>35 marks</b> in the third test to have an average of at least 60 marks.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formulating the linear inequality $\\frac{70 + 75 + x}{3} \\ge 60$', '1 Mark'],
+    ['Solving $145 + x \\ge 180 \\implies x \\ge 35$ and concluding minimum marks = 35', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q22', 'Question 22', 'Exercise 5.1',
+  'To receive Grade ‘A’ in a course, one must obtain an average of 90 marks or more in five examinations (each of 100 marks). If Sunita’s marks in first four examinations are 87, 92, 94 and 95, find minimum marks that Sunita must obtain in fifth examination to get grade ‘A’ in the course.',
+  `<div class="step">
+    • Let $x$ denote the marks obtained by Sunita in the fifth examination.<br>
+    • The marks obtained in the first four examinations are $87, 92, 94, 95$.<br>
+    • The average marks across all five examinations is:<br>
+    $$\\text{Average} = \\frac{87 + 92 + 94 + 95 + x}{5}$$<br>
+    • To receive Grade ‘A’, the average must be $\\ge 90$:<br>
+    $$\\frac{368 + x}{5} \\ge 90$$<br>
+    • Multiplying both sides by $5$:<br>
+    $$368 + x \\ge 450$$<br>
+    $$x \\ge 450 - 368 \\implies x \\ge 82$$<br>
+    • <b>Conclusion:</b> Sunita must obtain a minimum of <b>82 marks</b> in the fifth examination to secure Grade ‘A’.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formulating the linear inequality $\\frac{368 + x}{5} \\ge 90$', '1 Mark'],
+    ['Solving to get $x \\ge 82$ and stating minimum marks is 82', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q23', 'Question 23', 'Exercise 5.1',
+  'Find all pairs of consecutive odd positive integers both of which are smaller than 10 such that their sum is more than 11.',
+  `<div class="step">
+    • Let the smaller odd positive integer be $x$.<br>
+    • Then the next consecutive odd positive integer is $x + 2$.<br>
+    • <b>Condition 1:</b> Both integers are smaller than $10$:<br>
+    $$x + 2 < 10 \\implies x < 8$$<br>
+    Since $x$ is an odd positive integer, the possible values for $x$ are $\\{1, 3, 5, 7\\}$.<br><br>
+    • <b>Condition 2:</b> Their sum is more than $11$:<br>
+    $$x + (x + 2) > 11$$<br>
+    $$2x + 2 > 11 \\implies 2x > 9 \\implies x > 4.5$$<br>
+    • Combining both conditions: $4.5 < x < 8$.<br>
+    • The odd positive integers satisfying this double inequality are $x = 5$ and $x = 7$:<br>
+      - If $x = 5$, the pair is $(5, 5 + 2) = \\mathbf{(5, 7)}$ (Check: $5 + 7 = 12 > 11$, both $< 10$).<br>
+      - If $x = 7$, the pair is $(7, 7 + 2) = \\mathbf{(7, 9)}$ (Check: $7 + 9 = 16 > 11$, both $< 10$).<br><br>
+    • <b>Conclusion:</b> The required pairs of consecutive odd positive integers are <b>(5, 7) and (7, 9)</b>.
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting up variables $x$ and $x + 2$ with condition $x + 2 < 10 \\implies x < 8$', '1 Mark'],
+    ['Setting up sum inequality $2x + 2 > 11 \\implies x > 4.5$', '1 Mark'],
+    ['Identifying valid odd integers $x = 5, 7$ and writing pairs (5, 7), (7, 9)', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q24', 'Question 24', 'Exercise 5.1',
+  'Find all pairs of consecutive even positive integers, both of which are larger than 5 such that their sum is less than 23.',
+  `<div class="step">
+    • Let the smaller even positive integer be $x$.<br>
+    • Then the next consecutive even positive integer is $x + 2$.<br>
+    • <b>Condition 1:</b> Both are larger than $5$:<br>
+    $$x > 5$$<br>
+    • <b>Condition 2:</b> Their sum is less than $23$:<br>
+    $$x + (x + 2) < 23$$<br>
+    $$2x + 2 < 23 \\implies 2x < 21 \\implies x < 10.5$$<br>
+    • Combining both conditions: $5 < x < 10.5$.<br>
+    • Since $x$ is an even positive integer, the possible values for $x$ are $6, 8, 10$:<br>
+      - For $x = 6$, the pair is $(6, 6 + 2) = \\mathbf{(6, 8)}$.<br>
+      - For $x = 8$, the pair is $(8, 8 + 2) = \\mathbf{(8, 10)}$.<br>
+      - For $x = 10$, the pair is $(10, 10 + 2) = \\mathbf{(10, 12)}$.<br><br>
+    • <b>Conclusion:</b> The required pairs are <b>(6, 8), (8, 10), and (10, 12)</b>.
+  </div>`,
+  '3 Marks',
+  [
+    ['Formulating conditions $x > 5$ and $2x + 2 < 23$', '1 Mark'],
+    ['Deducing range $5 < x < 10.5$', '1 Mark'],
+    ['Listing all three pairs (6, 8), (8, 10), and (10, 12)', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q25', 'Question 25', 'Exercise 5.1',
+  'The longest side of a triangle is 3 times the shortest side and the third side is 2 cm shorter than the longest side. If the perimeter of the triangle is at least 61 cm, find the minimum length of the shortest side.',
+  `<div class="step">
+    • Let the length of the shortest side of the triangle be $x\\text{ cm}$.<br>
+    • According to the problem:<br>
+      - Longest side $= 3x\\text{ cm}$<br>
+      - Third side $= (3x - 2)\\text{ cm}$<br>
+    • The perimeter of the triangle is the sum of the three sides:<br>
+    $$\\text{Perimeter} = x + 3x + (3x - 2) = (7x - 2)\\text{ cm}$$<br>
+    • Given that the perimeter is at least $61\\text{ cm}$:<br>
+    $$7x - 2 \\ge 61$$<br>
+    $$7x \\ge 61 + 2 \\implies 7x \\ge 63$$<br>
+    $$x \\ge \\frac{63}{7} \\implies x \\ge 9$$<br>
+    • <b>Conclusion:</b> The minimum length of the shortest side is <b>9 cm</b>.
+  </div>`,
+  '2 Marks',
+  [
+    ['Expressing sides in terms of $x$: $x$, $3x$, and $3x - 2$, and perimeter $7x - 2$', '1 Mark'],
+    ['Solving $7x - 2 \\ge 61 \\implies x \\ge 9$ and concluding minimum length = 9 cm', '1 Mark']
+  ]
+));
+
+ex5_1.push(createQCard(
+  'c11m-ch5-q26', 'Question 26', 'Exercise 5.1',
+  'A man wants to cut three lengths from a single piece of board of length 91cm. The second length is to be 3cm longer than the shortest and the third length is to be twice as long as the shortest. What are the possible lengths of the shortest board if the third piece is to be at least 5cm longer than the second?',
+  `<div class="step">
+    • Let the length of the shortest piece be $x\\text{ cm}$.<br>
+    • Then:<br>
+      - Second piece length $= (x + 3)\\text{ cm}$<br>
+      - Third piece length $= 2x\\text{ cm}$<br><br>
+    • <b>Condition 1: Total length of three pieces cannot exceed 91 cm:</b><br>
+    $$x + (x + 3) + 2x \\le 91$$<br>
+    $$4x + 3 \\le 91 \\implies 4x \\le 88 \\implies x \\le 22$$<br><br>
+    • <b>Condition 2: The third piece is at least 5 cm longer than the second:</b><br>
+    $$2x \\ge (x + 3) + 5$$<br>
+    $$2x \\ge x + 8 \\implies 2x - x \\ge 8 \\implies x \\ge 8$$<br><br>
+    • Combining both conditions:<br>
+    $$8 \\le x \\le 22$$<br>
+    • <b>Conclusion:</b> The possible length of the shortest board is any length between <b>8 cm and 22 cm inclusive</b>, i.e., $x \\in [8, 22]$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Formulating total board length inequality: $4x + 3 \\le 91 \\implies x \\le 22$', '1 Mark'],
+    ['Formulating third vs second piece inequality: $2x \\ge x + 8 \\implies x \\ge 8$', '1 Mark'],
+    ['Combining conditions to state $8 \\le x \\le 22$ or interval $[8, 22]$', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// MISCELLANEOUS EXERCISE ON CHAPTER 5 (Questions 1 to 14)
+// ============================================================================
+
+misc.push(createQCard(
+  'c11m-ch5-q27', 'Question 1 (Misc)', 'Misc Exercise',
+  'Solve the inequality:<br>$$2 \\le 3x - 4 \\le 5$$',
+  `<div class="step">
+    • Given compound inequality:<br>
+    $$2 \\le 3x - 4 \\le 5$$<br>
+    • Adding $4$ to all three parts:<br>
+    $$2 + 4 \\le 3x \\le 5 + 4$$<br>
+    $$6 \\le 3x \\le 9$$<br>
+    • Dividing throughout by $3$ (positive number):<br>
+    $$\\frac{6}{3} \\le x \\le \\frac{9}{3}$$<br>
+    $$2 \\le x \\le 3$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{[2, 3]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Adding 4 throughout to get $6 \\le 3x \\le 9$', '1 Mark'],
+    ['Dividing by 3 to get $2 \\le x \\le 3$ and writing $[2, 3]$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q28', 'Question 2 (Misc)', 'Misc Exercise',
+  'Solve the inequality:<br>$$6 \\le -3(2x - 4) < 12$$',
+  `<div class="step">
+    • Given compound inequality:<br>
+    $$6 \\le -3(2x - 4) < 12$$<br>
+    • Dividing throughout by $-3$ (this reverses all inequality signs):<br>
+    $$\\frac{6}{-3} \\ge 2x - 4 > \\frac{12}{-3}$$<br>
+    $$-2 \\ge 2x - 4 > -4 \\iff -4 < 2x - 4 \\le -2$$<br>
+    • Adding $4$ throughout:<br>
+    $$-4 + 4 < 2x \\le -2 + 4$$<br>
+    $$0 < 2x \\le 2$$<br>
+    • Dividing throughout by $2$:<br>
+    $$0 < x \\le 1$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(0, 1]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Dividing by -3 and reversing inequality signs: $-4 < 2x - 4 \\le -2$', '1 Mark'],
+    ['Adding 4 and dividing by 2 to get $(0, 1]$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q29', 'Question 3 (Misc)', 'Misc Exercise',
+  'Solve the inequality:<br>$$-3 \\le 4 - \\dfrac{7x}{2} \\le 18$$',
+  `<div class="step">
+    • Given compound inequality:<br>
+    $$-3 \\le 4 - \\frac{7x}{2} \\le 18$$<br>
+    • Subtracting $4$ from each part:<br>
+    $$-3 - 4 \\le -\\frac{7x}{2} \\le 18 - 4$$<br>
+    $$-7 \\le -\\frac{7x}{2} \\le 14$$<br>
+    • Multiplying throughout by $-2$ (reversing all inequality signs):<br>
+    $$-7 \\times (-2) \\ge 7x \\ge 14 \\times (-2)$$<br>
+    $$14 \\ge 7x \\ge -28 \\iff -28 \\le 7x \\le 14$$<br>
+    • Dividing throughout by $7$:<br>
+    $$-\\frac{28}{7} \\le x \\le \\frac{14}{7} \\implies -4 \\le x \\le 2$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{[-4, 2]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Subtracting 4 throughout: $-7 \\le -7x/2 \\le 14$', '1 Mark'],
+    ['Multiplying by -2/7 with reversal of signs to get $[-4, 2]$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q30', 'Question 4 (Misc)', 'Misc Exercise',
+  'Solve the inequality:<br>$$-15 < \\dfrac{3(x - 2)}{5} \\le 0$$',
+  `<div class="step">
+    • Given compound inequality:<br>
+    $$-15 < \\frac{3(x - 2)}{5} \\le 0$$<br>
+    • Multiplying throughout by $5$ (positive number):<br>
+    $$-75 < 3(x - 2) \\le 0$$<br>
+    • Dividing throughout by $3$:<br>
+    $$-25 < x - 2 \\le 0$$<br>
+    • Adding $2$ to each part:<br>
+    $$-25 + 2 < x \\le 0 + 2$$<br>
+    $$-23 < x \\le 2$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-23, 2]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Multiplying by 5 and dividing by 3: $-25 < x - 2 \\le 0$', '1 Mark'],
+    ['Adding 2 to obtain $-23 < x \\le 2$ and writing $(-23, 2]$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q31', 'Question 5 (Misc)', 'Misc Exercise',
+  'Solve the inequality:<br>$$-12 < 4 - \\dfrac{3x}{-5} \\le 2$$',
+  `<div class="step">
+    • Note that $\\dfrac{3x}{-5} = -\\dfrac{3x}{5}$, so $4 - \\left(-\\dfrac{3x}{5}\\right) = 4 + \\dfrac{3x}{5}$.<br>
+    • The inequality is:<br>
+    $$-12 < 4 + \\frac{3x}{5} \\le 2$$<br>
+    • Subtracting $4$ from each part:<br>
+    $$-12 - 4 < \\frac{3x}{5} \\le 2 - 4$$<br>
+    $$-16 < \\frac{3x}{5} \\le -2$$<br>
+    • Multiplying throughout by $5$:<br>
+    $$-80 < 3x \\le -10$$<br>
+    • Dividing throughout by $3$:<br>
+    $$-\\frac{80}{3} < x \\le -\\frac{10}{3}$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{\\left(-\\frac{80}{3}, -\\frac{10}{3}\\right]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Simplifying $4 - \\frac{3x}{-5}$ to $4 + \\frac{3x}{5}$ and subtracting 4', '1 Mark'],
+    ['Multiplying by 5/3 to get range $(-80/3, -10/3]$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q32', 'Question 6 (Misc)', 'Misc Exercise',
+  'Solve the inequality:<br>$$7 \\le \\dfrac{(3x + 11)}{2} \\le 11$$',
+  `<div class="step">
+    • Given compound inequality:<br>
+    $$7 \\le \\frac{3x + 11}{2} \\le 11$$<br>
+    • Multiplying throughout by $2$:<br>
+    $$14 \\le 3x + 11 \\le 22$$<br>
+    • Subtracting $11$ from each part:<br>
+    $$14 - 11 \\le 3x \\le 22 - 11$$<br>
+    $$3 \\le 3x \\le 11$$<br>
+    • Dividing throughout by $3$:<br>
+    $$1 \\le x \\le \\frac{11}{3}$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{\\left[1, \\frac{11}{3}\\right]}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Multiplying by 2: $14 \\le 3x + 11 \\le 22$', '½ Mark'],
+    ['Subtracting 11: $3 \\le 3x \\le 11$', '½ Mark'],
+    ['Dividing by 3 to get $[1, 11/3]$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q33', 'Question 7 (Misc)', 'Misc Exercise',
+  'Solve the inequalities and represent the solution graphically on number line:<br>$$5x + 1 > -24, \\quad 5x - 1 < 24$$',
+  `<div class="step">
+    • <b>First inequality:</b><br>
+    $$5x + 1 > -24 \\implies 5x > -25 \\implies x > -5$$<br>
+    • <b>Second inequality:</b><br>
+    $$5x - 1 < 24 \\implies 5x < 25 \\implies x < 5$$<br>
+    • <b>Simultaneous solution (Intersection):</b><br>
+    $$-5 < x < 5$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-5, 5)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    Open circles at $x = -5$ and $x = 5$, with the line segment between them shaded.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="100" y1="25" x2="100" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="100" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">-5</text>
+        <line x1="200" y1="25" x2="200" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="200" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="300" y1="25" x2="300" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="300" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">5</text>
+        <!-- Shaded Segment -->
+        <line x1="100" y1="30" x2="300" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <!-- Open circles at -5 and 5 -->
+        <circle cx="100" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+        <circle cx="300" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Open circles at -5 and 5, segment between them shaded</div>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['Solving $5x + 1 > -24 \\implies x > -5$', '1 Mark'],
+    ['Solving $5x - 1 < 24 \\implies x < 5$ and finding intersection $(-5, 5)$', '1 Mark'],
+    ['Accurate number line plot with open circles at -5 and 5', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q34', 'Question 8 (Misc)', 'Misc Exercise',
+  'Solve the inequalities and represent the solution graphically on number line:<br>$$2(x - 1) < x + 5, \\quad 3(x + 2) > 2 - x$$',
+  `<div class="step">
+    • <b>First inequality:</b><br>
+    $$2x - 2 < x + 5 \\implies 2x - x < 5 + 2 \\implies x < 7$$<br>
+    • <b>Second inequality:</b><br>
+    $$3x + 6 > 2 - x \\implies 3x + x > 2 - 6 \\implies 4x > -4 \\implies x > -1$$<br>
+    • <b>Simultaneous solution (Intersection):</b><br>
+    $$-1 < x < 7$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(-1, 7)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    Open circles at $x = -1$ and $x = 7$, with the line segment between them shaded.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="90" y1="25" x2="90" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="90" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">-1</text>
+        <line x1="120" y1="25" x2="120" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="120" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="330" y1="25" x2="330" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="330" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">7</text>
+        <!-- Shaded Segment -->
+        <line x1="90" y1="30" x2="330" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <!-- Open circles at -1 and 7 -->
+        <circle cx="90" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+        <circle cx="330" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Open circles at -1 and 7, segment between them shaded</div>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['Solving first inequality to $x < 7$', '1 Mark'],
+    ['Solving second inequality to $x > -1$ and finding intersection $(-1, 7)$', '1 Mark'],
+    ['Accurate number line representation with open circles at -1 and 7', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q35', 'Question 9 (Misc)', 'Misc Exercise',
+  'Solve the inequalities and represent the solution graphically on number line:<br>$$3x - 7 > 2(x - 6), \\quad 6 - x > 11 - 2x$$',
+  `<div class="step">
+    • <b>First inequality:</b><br>
+    $$3x - 7 > 2x - 12$$<br>
+    $$3x - 2x > -12 + 7 \\implies x > -5$$<br>
+    • <b>Second inequality:</b><br>
+    $$6 - x > 11 - 2x$$<br>
+    $$-x + 2x > 11 - 6 \\implies x > 5$$<br>
+    • <b>Simultaneous solution (Intersection):</b><br>
+    We require $x > -5$ AND $x > 5$.<br>
+    Since any number greater than $5$ is automatically greater than $-5$, the intersection is:<br>
+    $$x > 5$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{(5, \\infty)}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    An open circle at $x = 5$, and a thick shaded ray extending to the right towards $+\infty$.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="60" y1="25" x2="60" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="60" y="48" font-size="10" text-anchor="middle" fill="#64748b">-5</text>
+        <line x1="160" y1="25" x2="160" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="160" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="260" y1="25" x2="260" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="260" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">5</text>
+        <!-- Shaded Ray -->
+        <line x1="260" y1="30" x2="380" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <polygon points="385,30 375,23 375,37" fill="#2563eb"/>
+        <!-- Open circle at 5 -->
+        <circle cx="260" cy="30" r="5" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Open circle at 5, ray extends to $+\\infty$</div>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['Solving first inequality to $x > -5$', '1 Mark'],
+    ['Solving second inequality to $x > 5$ and finding intersection $(5, \\infty)$', '1 Mark'],
+    ['Accurate number line representation with open circle at 5 and ray to right', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q36', 'Question 10 (Misc)', 'Misc Exercise',
+  'Solve the inequality and represent the solution graphically on number line:<br>$$-5 \\le \\dfrac{2 - 3x}{4} \\le 9$$',
+  `<div class="step">
+    • Given compound inequality:<br>
+    $$-5 \\le \\frac{2 - 3x}{4} \\le 9$$<br>
+    • Multiplying throughout by $4$:<br>
+    $$-20 \\le 2 - 3x \\le 36$$<br>
+    • Subtracting $2$ from each part:<br>
+    $$-20 - 2 \\le -3x \\le 36 - 2$$<br>
+    $$-22 \\le -3x \\le 34$$<br>
+    • Dividing throughout by $-3$ (this reverses all inequality signs):<br>
+    $$\\frac{-22}{-3} \\ge x \\ge \\frac{34}{-3}$$<br>
+    $$\\frac{22}{3} \\ge x \\ge -\\frac{34}{3} \\iff -\\frac{34}{3} \\le x \\le \\frac{22}{3}$$<br>
+    • In interval notation, the solution set is:<br>
+    $$\\mathbf{\\left[-\\frac{34}{3}, \\frac{22}{3}\\right]}$$<br>
+    • <b>Graphical representation on real number line:</b><br>
+    Solid circles at $x = -34/3 \\approx -11.33$ and $x = 22/3 \\approx 7.33$, with the closed segment between them shaded.<br>
+    <div style="margin-top:10px; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <svg viewBox="0 0 400 60" style="max-width:360px; height:auto;">
+        <line x1="20" y1="30" x2="380" y2="30" stroke="#94a3b8" stroke-width="2"/>
+        <polygon points="15,30 25,25 25,35" fill="#94a3b8"/>
+        <polygon points="385,30 375,25 375,35" fill="#94a3b8"/>
+        <!-- Ticks -->
+        <line x1="80" y1="25" x2="80" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="80" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">-34/3</text>
+        <line x1="220" y1="25" x2="220" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="220" y="48" font-size="10" text-anchor="middle" fill="#64748b">0</text>
+        <line x1="320" y1="25" x2="320" y2="35" stroke="#94a3b8" stroke-width="1.5"/><text x="320" y="48" font-size="10" text-anchor="middle" fill="#1d4ed8" font-weight="bold">22/3</text>
+        <!-- Shaded Segment -->
+        <line x1="80" y1="30" x2="320" y2="30" stroke="#2563eb" stroke-width="5"/>
+        <!-- Solid circles at both ends -->
+        <circle cx="80" cy="30" r="5" fill="#2563eb"/>
+        <circle cx="320" cy="30" r="5" fill="#2563eb"/>
+      </svg>
+      <div style="font-size:0.8rem; color:#475569; margin-top:4px;">Number Line: Solid circles at $-34/3$ and $22/3$, segment between them shaded</div>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['Multiplying by 4 and subtracting 2: $-22 \\le -3x \\le 34$', '1 Mark'],
+    ['Dividing by -3 with reversal of signs: $[-34/3, 22/3]$', '1 Mark'],
+    ['Accurate number line representation with solid closed dots at endpoints', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q37', 'Question 11 (Misc)', 'Misc Exercise',
+  'A solution is to be kept between $68^\\circ \\text{ F}$ and $77^\\circ \\text{ F}$. What is the range in temperature in degree Celsius (C) if the Celsius / Fahrenheit (F) conversion formula is given by $F = \\dfrac{9}{5}C + 32$?',
+  `<div class="step">
+    • Given that the Fahrenheit temperature $F$ satisfies:<br>
+    $$68 < F < 77$$<br>
+    • Substituting the formula $F = \\frac{9}{5}C + 32$ into the inequality:<br>
+    $$68 < \\frac{9}{5}C + 32 < 77$$<br>
+    • Subtracting $32$ from each part:<br>
+    $$68 - 32 < \\frac{9}{5}C < 77 - 32$$<br>
+    $$36 < \\frac{9}{5}C < 45$$<br>
+    • Multiplying throughout by $\\frac{5}{9}$:<br>
+    $$36 \\times \\frac{5}{9} < C < 45 \\times \\frac{5}{9}$$<br>
+    $$4 \\times 5 < C < 5 \\times 5$$<br>
+    $$20 < C < 25$$<br>
+    • <b>Conclusion:</b> The temperature of the solution in degree Celsius must be kept between <b>$20^\\circ \\text{C}$ and $25^\\circ \\text{C}$</b> (i.e. $C \\in (20^\\circ \\text{C}, 25^\\circ \\text{C})$).
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting up inequality $68 < \\frac{9}{5}C + 32 < 77$', '1 Mark'],
+    ['Subtracting 32 to get $36 < \\frac{9}{5}C < 45$', '1 Mark'],
+    ['Multiplying by 5/9 to get $20^\\circ\\text{C} < C < 25^\\circ\\text{C}$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q38', 'Question 12 (Misc)', 'Misc Exercise',
+  'A solution of 8% boric acid is to be diluted by adding a 2% boric acid solution to it. The resulting mixture is to be more than 4% but less than 6% boric acid. If we have 640 litres of the 8% solution, how many litres of the 2% solution will have to be added?',
+  `<div class="step">
+    • Let $x$ denote the number of litres of $2\\%$ boric acid solution to be added.<br>
+    • Given volume of $8\\%$ boric acid solution $= 640\\text{ litres}$.<br>
+    • Total volume of the resulting mixture $= (640 + x)\\text{ litres}$.<br><br>
+    • <b>Amount of pure boric acid:</b><br>
+      - In $640\\text{ L}$ of $8\\%$ solution $= 8\\% \\text{ of } 640 = \\frac{8}{100} \\times 640 = 51.2\\text{ L}$<br>
+      - In $x\\text{ L}$ of $2\\%$ solution $= 2\\% \\text{ of } x = \\frac{2}{100}x = 0.02x\\text{ L}$<br>
+      - Total pure boric acid $= (51.2 + 0.02x)\\text{ L}$<br><br>
+    • <b>Condition 1: Resulting mixture is more than 4% boric acid:</b><br>
+    $$\\frac{51.2 + 0.02x}{640 + x} > \\frac{4}{100} = 0.04$$<br>
+    $$51.2 + 0.02x > 0.04(640 + x)$$<br>
+    $$51.2 + 0.02x > 25.6 + 0.04x$$<br>
+    $$51.2 - 25.6 > 0.04x - 0.02x \\implies 25.6 > 0.02x \\implies x < \\frac{25.6}{0.02} = 1280$$<br><br>
+    • <b>Condition 2: Resulting mixture is less than 6% boric acid:</b><br>
+    $$\\frac{51.2 + 0.02x}{640 + x} < \\frac{6}{100} = 0.06$$<br>
+    $$51.2 + 0.02x < 0.06(640 + x)$$<br>
+    $$51.2 + 0.02x < 38.4 + 0.06x$$<br>
+    $$51.2 - 38.4 < 0.06x - 0.02x \\implies 12.8 < 0.04x \\implies x > \\frac{12.8}{0.04} = 320$$<br><br>
+    • Combining both conditions:<br>
+    $$320 < x < 1280$$<br>
+    • <b>Conclusion:</b> More than <b>320 litres</b> and less than <b>1280 litres</b> of the $2\\%$ boric acid solution must be added.
+  </div>`,
+  '4 Marks',
+  [
+    ['Setting up total volume $(640 + x)$ and acid equation $51.2 + 0.02x$', '1 Mark'],
+    ['Solving $> 4\\%$ inequality to get $x < 1280$', '1 Mark'],
+    ['Solving $< 6\\%$ inequality to get $x > 320$', '1 Mark'],
+    ['Stating final range: between 320 litres and 1280 litres', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q39', 'Question 13 (Misc)', 'Misc Exercise',
+  'How many litres of water will have to be added to 1125 litres of the 45% solution of acid so that the resulting mixture will contain more than 25% but less than 30% acid content?',
+  `<div class="step">
+    • Let $x$ denote the number of litres of water added.<br>
+    • (Note: Pure water contains $0\\%$ acid).<br>
+    • Given volume of $45\\%$ acid solution $= 1125\\text{ litres}$.<br>
+    • Total volume of resulting mixture $= (1125 + x)\\text{ litres}$.<br><br>
+    • <b>Amount of pure acid present:</b><br>
+    $$\\text{Pure acid} = 45\\% \\text{ of } 1125 = \\frac{45}{100} \\times 1125 = 506.25\\text{ litres}$$<br>
+    • <b>Condition 1: Resulting mixture contains more than 25% acid:</b><br>
+    $$\\frac{506.25}{1125 + x} > \\frac{25}{100} = 0.25$$<br>
+    $$506.25 > 0.25(1125 + x)$$<br>
+    $$506.25 > 281.25 + 0.25x$$<br>
+    $$506.25 - 281.25 > 0.25x \\implies 225 > 0.25x \\implies x < \\frac{225}{0.25} = 900$$<br><br>
+    • <b>Condition 2: Resulting mixture contains less than 30% acid:</b><br>
+    $$\\frac{506.25}{1125 + x} < \\frac{30}{100} = 0.30$$<br>
+    $$506.25 < 0.30(1125 + x)$$<br>
+    $$506.25 < 337.5 + 0.30x$$<br>
+    $$506.25 - 337.5 < 0.30x \\implies 168.75 < 0.30x \\implies x > \\frac{168.75}{0.30} = 562.5$$<br><br>
+    • Combining both conditions:<br>
+    $$562.5 < x < 900$$<br>
+    • <b>Conclusion:</b> More than <b>562.5 litres</b> and less than <b>900 litres</b> of water must be added.
+  </div>`,
+  '4 Marks',
+  [
+    ['Calculating pure acid in 1125 L: $0.45 \\times 1125 = 506.25$ L', '1 Mark'],
+    ['Solving $> 25\\%$ inequality to obtain $x < 900$', '1 Mark'],
+    ['Solving $< 30\\%$ inequality to obtain $x > 562.5$', '1 Mark'],
+    ['Writing final interval: between 562.5 litres and 900 litres', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch5-q40', 'Question 14 (Misc)', 'Misc Exercise',
+  'IQ of a person is given by the formula $\\text{IQ} = \\dfrac{\\text{MA}}{\\text{CA}} \\times 100$, where $\\text{MA}$ is mental age and $\\text{CA}$ is chronological age. If $80 \\le \\text{IQ} \\le 140$ for a group of 12 years old children, find the range of their mental age.',
+  `<div class="step">
+    • Given chronological age $\\text{CA} = 12\\text{ years}$.<br>
+    • Formula for IQ:<br>
+    $$\\text{IQ} = \\frac{\\text{MA}}{\\text{CA}} \\times 100 = \\frac{\\text{MA}}{12} \\times 100$$<br>
+    • Given range for IQ:<br>
+    $$80 \\le \\text{IQ} \\le 140$$<br>
+    • Substituting the expression for IQ:<br>
+    $$80 \\le \\frac{\\text{MA}}{12} \\times 100 \\le 140$$<br>
+    • Dividing throughout by $100$:<br>
+    $$\\frac{80}{100} \\le \\frac{\\text{MA}}{12} \\le \\frac{140}{100}$$<br>
+    $$0.8 \\le \\frac{\\text{MA}}{12} \\le 1.4$$<br>
+    • Multiplying throughout by $12$:<br>
+    $$0.8 \\times 12 \\le \\text{MA} \\le 1.4 \\times 12$$<br>
+    $$9.6 \\le \\text{MA} \\le 16.8$$<br>
+    • <b>Conclusion:</b> The range of mental age for this group of 12-year-old children is from <b>9.6 years to 16.8 years</b> (i.e. $\\text{MA} \\in [9.6, 16.8]$).
+  </div>`,
+  '3 Marks',
+  [
+    ['Substituting $\\text{CA} = 12$ into $80 \\le \\frac{\\text{MA}}{12} \\times 100 \\le 140$', '1 Mark'],
+    ['Simplifying to $0.8 \\le \\frac{\\text{MA}}{12} \\le 1.4$', '1 Mark'],
+    ['Multiplying by 12 to obtain $9.6 \\le \\text{MA} \\le 16.8$', '1 Mark']
+  ]
+));
+
+// Build complete HTML page for Chapter 5
+const chapterHtml = `
+<section class="chapter-content" id="c11m-ch5">
+  <div class="ch-badge" style="display:inline-block; font-size:0.8rem; font-weight:800; background:#e0f2fe; color:#0284c7; padding:4px 12px; border-radius:20px; text-transform:uppercase; margin-bottom:8px;">NCERT Rationalised 2026–27 • Complete Verbatim Solutions</div>
+  <h1 style="font-size:2rem; font-weight:800; color:#0f172a; margin-bottom:12px;">Class 11 Chapter 5: Linear Inequalities (रैखिक असमिकाएँ)</h1>
+  <p style="font-size:1.05rem; color:#475569; line-height:1.6; margin-bottom:24px;">
+    Exhaustive, 100% verbatim solutions for all <b>40 questions</b> from NCERT Class 11 Mathematics Chapter 5. Includes Exercise 5.1 (26 questions) and Miscellaneous Exercise (14 questions) covering algebraic solutions of linear inequalities in one variable, interval notation, real-world word problems, and real number line representations with step-by-step CBSE marking schemes.
+  </p>
+
+  <!-- Formula & Theory Summary Cheatsheet -->
+  <div class="theory-box" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px; margin-bottom:30px;">
+    <h3 style="font-size:1.15rem; font-weight:700; color:#1e293b; margin-top:0; margin-bottom:12px;">📘 Key Concepts, Axioms &amp; Interval Rules</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; font-size:0.95rem; color:#334155;">
+      <div style="background:white; padding:12px 16px; border-radius:8px; border:1px solid #cbd5e1;">
+        <strong>Rules of Inequalities:</strong><br>
+        • Equal numbers may be added to (or subtracted from) both sides without changing the sign: $a \\le b \\implies a \\pm c \\le b \\pm c$.<br>
+        • Both sides can be multiplied/divided by the same <b>positive</b> number without changing sign: $c > 0 \\implies ac \\le bc$.<br>
+        • If both sides are multiplied/divided by a <b>negative</b> number, the sign of inequality is <b>reversed</b>: $c < 0, a \\le b \\implies ac \\ge bc$.
+      </div>
+      <div style="background:white; padding:12px 16px; border-radius:8px; border:1px solid #cbd5e1;">
+        <strong>Interval Notations on Real Line:</strong><br>
+        • Open interval: $(a, b) = \\{x \\in \\mathbb{R} : a < x < b\\}$ (Open circles at $a, b$).<br>
+        • Closed interval: $[a, b] = \\{x \\in \\mathbb{R} : a \\le x \\le b\\}$ (Solid dots at $a, b$).<br>
+        • Semi-open / Semi-closed: $[a, b) = \\{x : a \\le x < b\\}$ and $(a, b] = \\{x : a < x \\le b\\}$.<br>
+        • Infinite intervals: $(a, \\infty) = \\{x : x > a\\}$, $(-\\infty, b] = \\{x : x \\le b\\}$.
+      </div>
+    </div>
+  </div>
+
+  <!-- Vector SVG Diagram: Real Number Line Intervals & Sign Reversal -->
+  <div class="vector-diagram-container" style="background:linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border:1px solid #bae6fd; border-radius:12px; padding:20px; text-align:center; margin-bottom:30px;">
+    <h4 style="margin:0 0 10px 0; color:#0369a1; font-size:1.1rem; font-weight:700;">📐 Representation of Inequalities &amp; Intervals on the Real Number Line</h4>
+    <svg viewBox="0 0 520 220" style="max-width:100%; height:auto; display:inline-block;" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background Grid / Axis 1: Strict Inequality (x > a) Open circle -->
+      <line x1="40" y1="40" x2="480" y2="40" stroke="#94a3b8" stroke-width="2"/>
+      <polygon points="35,40 45,35 45,45" fill="#94a3b8"/>
+      <polygon points="485,40 475,35 475,45" fill="#94a3b8"/>
+      <line x1="200" y1="40" x2="480" y2="40" stroke="#0284c7" stroke-width="5"/>
+      <polygon points="485,40 475,33 475,47" fill="#0284c7"/>
+      <circle cx="200" cy="40" r="6" fill="white" stroke="#0284c7" stroke-width="3"/>
+      <text x="200" y="24" font-size="11" fill="#0369a1" font-weight="bold" text-anchor="middle">a (not included)</text>
+      <text x="340" y="24" font-size="12" fill="#0284c7" font-weight="bold">x &gt; a &rarr; (a, &infin;)</text>
+
+      <!-- Axis 2: Inclusive Inequality (x <= b) Solid dot -->
+      <line x1="40" y1="100" x2="480" y2="100" stroke="#94a3b8" stroke-width="2"/>
+      <polygon points="35,100 45,95 45,105" fill="#94a3b8"/>
+      <polygon points="485,100 475,95 475,105" fill="#94a3b8"/>
+      <line x1="40" y1="100" x2="320" y2="100" stroke="#16a34a" stroke-width="5"/>
+      <polygon points="35,100 45,93 45,107" fill="#16a34a"/>
+      <circle cx="320" cy="100" r="6" fill="#16a34a"/>
+      <text x="320" y="84" font-size="11" fill="#15803d" font-weight="bold" text-anchor="middle">b (included)</text>
+      <text x="160" y="84" font-size="12" fill="#16a34a" font-weight="bold">x &le; b &rarr; (&minus;&infin;, b]</text>
+
+      <!-- Axis 3: Double Inequality / Finite Interval [a, b) -->
+      <line x1="40" y1="165" x2="480" y2="165" stroke="#94a3b8" stroke-width="2"/>
+      <polygon points="35,165 45,160 45,170" fill="#94a3b8"/>
+      <polygon points="485,165 475,160 475,170" fill="#94a3b8"/>
+      <line x1="160" y1="165" x2="360" y2="165" stroke="#7c3aed" stroke-width="5"/>
+      <circle cx="160" cy="165" r="6" fill="#7c3aed"/>
+      <circle cx="360" cy="165" r="6" fill="white" stroke="#7c3aed" stroke-width="3"/>
+      <text x="160" y="190" font-size="11" fill="#6d28d9" font-weight="bold" text-anchor="middle">a [Solid]</text>
+      <text x="360" y="190" font-size="11" fill="#6d28d9" font-weight="bold" text-anchor="middle">b (Open)</text>
+      <text x="260" y="152" font-size="12" fill="#7c3aed" font-weight="bold" text-anchor="middle">a &le; x &lt; b &rarr; [a, b)</text>
+    </svg>
+  </div>
+
+  <div class="ex-div">NCERT Exercise 5.1: Algebraic Solutions of Linear Inequalities in One Variable, Number Line Plots &amp; Applied Word Problems</div>
+${ex5_1.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Miscellaneous Exercise on Chapter 5: Double Inequalities, Simultaneous Systems &amp; Real-World Mixtures / Age Problems</div>
+${misc.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(4)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Previous: Chapter 4 (Complex Numbers &amp; Quadratic Equations)</button>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 20px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">↑ Back to Top</button>
+    <button class="ch-nav-btn next" onclick="showChapter(6)" style="padding:10px 24px; border-radius:8px; border:none; background:#ff6b00; color:white; font-weight:700; cursor:pointer;">Next: Chapter 6 (Permutations &amp; Combinations) →</button>
+  </div>
+</section>
+`;
+
+// Write ch5.html
+const ch5Path = path.join(outDir, 'ch5.html');
+fs.writeFileSync(ch5Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch5Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js so chapters load instantly offline/online
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[5]
+if (!existingData.includes('window.CHAPTER_DATA[5] =')) {
+  const ch5Entry = `\nwindow.CHAPTER_DATA[5] = ${JSON.stringify(chapterHtml.trim())};\n`;
+  fs.appendFileSync(dataJsPath, ch5Entry, 'utf8');
+  console.log(`Appended Chapter 5 to preloaded cache: ${dataJsPath}`);
+} else {
+  // Replace window.CHAPTER_DATA[5] block
+  const regex = /window\.CHAPTER_DATA\[5\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[5] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 5 in preloaded cache: ${dataJsPath}`);
+}
