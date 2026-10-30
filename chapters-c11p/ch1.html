@@ -1,0 +1,957 @@
+<section class="chapter-section" id="c11p-ch1">
+  <div class="chapter-header">
+    <div class="ch-badge">1</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 1</div>
+      <h2>Units and Measurements</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 22 Verbatim Questions with Official Marking Schemes</p>
+    </div>
+  </div>
+
+  
+  <div style="background:white; border:1px solid #e2e8f0; border-radius:12px; padding:20px; margin-bottom:28px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <span style="display:inline-block; width:10px; height:10px; background:#7c3aed; border-radius:50%;"></span>
+      Precision Instrumentation &amp; Dimensional Analysis Architecture
+    </h3>
+    <svg viewBox="0 0 780 250" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;">
+      <!-- Panel 1: Vernier Caliper Scale Model -->
+      <rect x="15" y="15" width="410" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="25" y="38" font-size="12" font-weight="bold" fill="#0f172a">Vernier Calipers Reading Model:</text>
+
+      <!-- Main Scale (Beam) -->
+      <rect x="35" y="55" width="370" height="42" fill="#e2e8f0" stroke="#94a3b8" rx="4"/>
+      <!-- Main scale graduations -->
+      <g stroke="#334155" stroke-width="1.2">
+        <line x1="50" y1="55" x2="50" y2="78"/><text x="47" y="90" font-size="9" fill="#1e293b">0</text>
+        <line x1="75" y1="55" x2="75" y2="70"/>
+        <line x1="100" y1="55" x2="100" y2="70"/>
+        <line x1="125" y1="55" x2="125" y2="70"/>
+        <line x1="150" y1="55" x2="150" y2="78"/><text x="146" y="90" font-size="9" fill="#1e293b">1 cm</text>
+        <line x1="175" y1="55" x2="175" y2="70"/>
+        <line x1="200" y1="55" x2="200" y2="70"/>
+        <line x1="225" y1="55" x2="225" y2="70"/>
+        <line x1="250" y1="55" x2="250" y2="78"/><text x="246" y="90" font-size="9" fill="#1e293b">2 cm</text>
+        <line x1="275" y1="55" x2="275" y2="70"/>
+        <line x1="300" y1="55" x2="300" y2="70"/>
+        <line x1="325" y1="55" x2="325" y2="70"/>
+        <line x1="350" y1="55" x2="350" y2="78"/><text x="346" y="90" font-size="9" fill="#1e293b">3 cm</text>
+        <line x1="375" y1="55" x2="375" y2="70"/>
+      </g>
+
+      <!-- Vernier Sliding Scale -->
+      <rect x="135" y="97" width="180" height="35" fill="#fdf4ff" stroke="#7c3aed" stroke-width="1.8" rx="4"/>
+      <!-- Vernier Scale Graduations (10 div = 9 MSD) -->
+      <g stroke="#7c3aed" stroke-width="1.2">
+        <line x1="140" y1="97" x2="140" y2="114"/><text x="138" y="125" font-size="8" fill="#7c3aed">0</text>
+        <line x1="162" y1="97" x2="162" y2="108"/>
+        <line x1="184" y1="97" x2="184" y2="108"/>
+        <line x1="206" y1="97" x2="206" y2="108"/>
+        <line x1="225" y1="97" x2="225" y2="120" stroke="#dc2626" stroke-width="2"/> <!-- Coincidence mark at 4th -->
+        <circle cx="225" cy="97" r="3" fill="#dc2626"/>
+        <line x1="247" y1="97" x2="247" y2="108"/>
+        <line x1="269" y1="97" x2="269" y2="108"/>
+        <line x1="291" y1="97" x2="291" y2="114"/><text x="288" y="125" font-size="8" fill="#7c3aed">10</text>
+      </g>
+
+      <!-- Measurement callout -->
+      <text x="235" y="120" font-size="9.5" font-weight="bold" fill="#dc2626">&larr; Coincidence Mark</text>
+      <text x="35" y="160" font-size="10.5" fill="#334155">&bull; Main Scale Reading (MSR) = <tspan font-weight="bold">1.4 cm</tspan></text>
+      <text x="35" y="180" font-size="10.5" fill="#334155">&bull; Vernier Coincidence (n) = <tspan font-weight="bold">4</tspan>, Least Count (LC) = <tspan font-weight="bold">0.01 cm</tspan></text>
+      <text x="35" y="202" font-size="11" font-weight="bold" fill="#047857">Reading = MSR + (n &times; LC) = 1.4 + 0.04 = 1.44 cm</text>
+
+      <!-- Panel 2: SI Base Quantities & Dimensions -->
+      <rect x="440" y="15" width="325" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="455" y="38" font-size="12" font-weight="bold" fill="#1e293b">7 Base SI Dimensions &amp; Analysis:</text>
+
+      <g font-size="10" fill="#334155">
+        <text x="455" y="62"><tspan font-weight="bold" fill="#7c3aed">[M]</tspan> Mass &rarr; Kilogram (kg)</text>
+        <text x="455" y="80"><tspan font-weight="bold" fill="#7c3aed">[L]</tspan> Length &rarr; Metre (m)</text>
+        <text x="455" y="98"><tspan font-weight="bold" fill="#7c3aed">[T]</tspan> Time &rarr; Second (s)</text>
+        <text x="455" y="116"><tspan font-weight="bold" fill="#7c3aed">[I] / [A]</tspan> Electric Current &rarr; Ampere (A)</text>
+        <text x="455" y="134"><tspan font-weight="bold" fill="#7c3aed">[&Theta;] / [K]</tspan> Thermodynamic Temp &rarr; Kelvin (K)</text>
+        <text x="455" y="152"><tspan font-weight="bold" fill="#7c3aed">[N] / [mol]</tspan> Amount of Substance &rarr; Mole (mol)</text>
+        <text x="455" y="170"><tspan font-weight="bold" fill="#7c3aed">[J] / [cd]</tspan> Luminous Intensity &rarr; Candela (cd)</text>
+      </g>
+
+      <rect x="455" y="184" width="295" height="42" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="465" y="201" font-size="9.5" font-weight="bold" fill="#5b21b6">Principle of Homogeneity:</text>
+      <text x="465" y="217" font-size="9" fill="#475569">Terms added or equated must have identical dimensions.</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 1.1 to 1.22: Fundamental SI Conversions, Instrumentation Precision, Error Propagation &amp; Dimensional Homogeneity</div>
+
+  <!-- c11p-ch1-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q1">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q1')">
+      <div class="q-num">Question 1.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Fill in the blanks:<br>(a) The volume of a cube of side $1\text{ cm}$ is equal to ______ $\text{m}^3$.<br>(b) The surface area of a solid cylinder of radius $2.0\text{ cm}$ and height $10.0\text{ cm}$ is equal to ______ $(\text{mm})^2$.<br>(c) A vehicle moving with a speed of $18\text{ km h}^{-1}$ covers ______ $\text{m}$ in $1\text{ s}$.<br>(d) The relative density of lead is $11.3$. Its density is ______ $\text{g cm}^{-3}$ or ______ $\text{kg m}^{-3}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Volume of cube:</b><br>
+      Side $a = 1\text{ cm} = 10^{-2}\text{ m}$.<br>
+      $$\text{Volume } V = a^3 = (10^{-2}\text{ m})^3 = \mathbf{10^{-6}\text{ m}^3}$$<br>
+    • <b>(b) Total surface area of a solid cylinder:</b><br>
+      Radius $r = 2.0\text{ cm} = 20\text{ mm}$, height $h = 10.0\text{ cm} = 100\text{ mm}$.<br>
+      $$\text{Surface Area } A = 2\pi r(r + h) = 2 \times 3.1416 \times 20 \times (20 + 100) = 40\pi \times 120 = 4800\pi\text{ mm}^2$$<br>
+      $$A = 4800 \times 3.1416 = 15079.6\text{ mm}^2 = \mathbf{1.5 \times 10^4\text{ (mm)}^2}$$<br>
+    • <b>(c) Speed conversion:</b><br>
+      $$18\text{ km h}^{-1} = 18 \times \frac{5}{18}\text{ m s}^{-1} = 5\text{ m s}^{-1}$$<br>
+      Distance covered in $1\text{ s} = \text{speed} \times \text{time} = 5\text{ m s}^{-1} \times 1\text{ s} = \mathbf{5\text{ m}}$<br>
+    • <b>(d) Density of lead:</b><br>
+      $$\text{Density} = \text{Relative Density} \times \text{Density of water}$$<br>
+      In CGS: $11.3 \times 1\text{ g cm}^{-3} = \mathbf{11.3\text{ g cm}^{-3}}$<br>
+      In SI: $11.3 \times 10^3\text{ kg m}^{-3} = \mathbf{1.13 \times 10^4\text{ kg m}^{-3}}$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Volume conversion to $10^{-6}\text{ m}^3$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Surface area formula and conversion to $1.5 \times 10^4\text{ mm}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Speed conversion factor $5/18$ giving $5\text{ m}$ in $1\text{ s}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Density calculations in CGS and SI units</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q2">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q2')">
+      <div class="q-num">Question 1.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Fill in the blanks by suitable conversion of units:<br>(a) $1\text{ kg m}^2\text{ s}^{-2} = \text{______ g cm}^2\text{ s}^{-2}$<br>(b) $1\text{ m} = \text{______ ly}$ (light year)<br>(c) $3.0\text{ m s}^{-2} = \text{______ km h}^{-2}$<br>(d) $G = 6.67 \times 10^{-11}\text{ N m}^2\text{ kg}^{-2} = \text{______ (cm)}^3\text{ s}^{-2}\text{ g}^{-1}$
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) $1\text{ kg m}^2\text{ s}^{-2}$ (Joule to erg):</b><br>
+      $$1\text{ kg} = 10^3\text{ g}, \quad 1\text{ m} = 10^2\text{ cm} \implies 1\text{ m}^2 = 10^4\text{ cm}^2$$<br>
+      $$1\text{ kg m}^2\text{ s}^{-2} = 10^3\text{ g} \times 10^4\text{ cm}^2 \times 1\text{ s}^{-2} = \mathbf{10^7\text{ g cm}^2\text{ s}^{-2}}$$<br>
+    • <b>(b) $1\text{ m}$ to light year (ly):</b><br>
+      $$1\text{ ly} = \text{speed of light} \times 1\text{ year} = (3 \times 10^8\text{ m s}^{-1}) \times (365.25 \times 24 \times 3600\text{ s}) = 9.46 \times 10^{15}\text{ m}$$<br>
+      $$1\text{ m} = \frac{1}{9.46 \times 10^{15}}\text{ ly} = \mathbf{1.057 \times 10^{-16}\text{ ly}}$$<br>
+    • <b>(c) $3.0\text{ m s}^{-2}$ to $\text{km h}^{-2}$:</b><br>
+      $$1\text{ m} = 10^{-3}\text{ km}, \quad 1\text{ s} = \frac{1}{3600}\text{ h} \implies 1\text{ s}^{-2} = (3600)^2\text{ h}^{-2}$$<br>
+      $$3.0\text{ m s}^{-2} = 3.0 \times 10^{-3} \times (3600)^2 = 3.0 \times 10^{-3} \times 1.296 \times 10^7 = \mathbf{3.888 \times 10^4\text{ km h}^{-2}}$$<br>
+    • <b>(d) Universal Gravitational Constant $G$:</b><br>
+      $$1\text{ N} = 1\text{ kg m s}^{-2} \implies 1\text{ N m}^2\text{ kg}^{-2} = 1\text{ m}^3\text{ kg}^{-1}\text{ s}^{-2}$$<br>
+      $$G = 6.67 \times 10^{-11}\text{ m}^3\text{ kg}^{-1}\text{ s}^{-2} = 6.67 \times 10^{-11} \times (10^2\text{ cm})^3 \times (10^3\text{ g})^{-1} \times 1\text{ s}^{-2}$$<br>
+      $$= 6.67 \times 10^{-11} \times 10^6 \times 10^{-3}\text{ cm}^3\text{ g}^{-1}\text{ s}^{-2} = \mathbf{6.67 \times 10^{-8}\text{ cm}^3\text{ s}^{-2}\text{ g}^{-1}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Conversion factor $10^7$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) $1\text{ ly} = 9.46 \times 10^{15}\text{ m} \implies 1.057 \times 10^{-16}\text{ ly}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Acceleration unit conversion to $3.89 \times 10^4\text{ km h}^{-2}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Dimensional conversion of $G$ to $6.67 \times 10^{-8}\text{ cm}^3\text{ s}^{-2}\text{ g}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q3">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q3')">
+      <div class="q-num">Question 1.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A calorie is a unit of heat or energy and it equals about $4.2\text{ J}$ where $1\text{ J} = 1\text{ kg m}^2\text{ s}^{-2}$. Suppose we employ a system of units in which the unit of mass equals $\alpha\text{ kg}$, the unit of length equals $\beta\text{ m}$, the unit of time is $\gamma\text{ s}$. Show that a calorie has a magnitude $4.2\,\alpha^{-1}\beta^{-2}\gamma^2$ in terms of the new units.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Dimensional formula of energy (heat/calorie):<br>
+      $$[\text{Energy}] = [M^1 L^2 T^{-2}]$$<br>
+      Comparing with $[M^a L^b T^c]$, we have $a = 1, b = 2, c = -2$.<br><br>
+    • <b>System 1 (SI Units):</b><br>
+      $n_1 = 4.2$, $M_1 = 1\text{ kg}$, $L_1 = 1\text{ m}$, $T_1 = 1\text{ s}$.<br><br>
+    • <b>System 2 (New Units):</b><br>
+      $n_2 = ?$, $M_2 = \alpha\text{ kg}$, $L_2 = \beta\text{ m}$, $T_2 = \gamma\text{ s}$.<br><br>
+    • <b>Using conversion formula $n_2 = n_1 \left(\frac{M_1}{M_2}\right)^a \left(\frac{L_1}{L_2}\right)^b \left(\frac{T_1}{T_2}\right)^c$:</b><br>
+      $$n_2 = 4.2 \left(\frac{1\text{ kg}}{\alpha\text{ kg}}\right)^1 \left(\frac{1\text{ m}}{\beta\text{ m}}\right)^2 \left(\frac{1\text{ s}}{\gamma\text{ s}}\right)^{-2}$$<br>
+      $$n_2 = 4.2 (\alpha^{-1}) (\beta^{-2}) (\gamma^2) = \mathbf{4.2\,\alpha^{-1}\beta^{-2}\gamma^2}$$<br>
+    • Hence, $1\text{ calorie} = 4.2\,\alpha^{-1}\beta^{-2}\gamma^2\text{ (new units)}$. (Hence Proved).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Dimensional formula $[M L^2 T^{-2}]$ with powers $a=1, b=2, c=-2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Setting conversion formula with new units $\alpha\text{ kg}, \beta\text{ m}, \gamma\text{ s}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying to $4.2\,\alpha^{-1}\beta^{-2}\gamma^2$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q4">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q4')">
+      <div class="q-num">Question 1.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Explain this statement clearly: "To call a dimensional quantity 'large' or 'small' is meaningless without specifying a standard for comparison". In view of this, re-frame the following statements wherever necessary:<br>(a) atoms are very small things<br>(b) a jet plane moves with great speed<br>(c) the mass of Jupiter is very large<br>(d) the air inside this room contains a large number of molecules<br>(e) a proton is much more massive than an electron<br>(f) the speed of sound is much smaller than the speed of light.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>Explanation:</b> A physical quantity possessing dimensions cannot be judged as absolute 'large' or 'small'. A magnitude can only be large or small relative to some chosen reference standard of the same dimensions (e.g., $1\text{ cm}$ is huge compared to an atom $\sim 10^{-10}\text{ m}$, but minuscule compared to the radius of Earth $\sim 10^6\text{ m}$).<br><br>
+    • <b>Reframed Statements:</b><br>
+      (a) <b>Atoms are very small compared to the tip of a sharp pin or the wavelength of visible light.</b><br>
+      (b) <b>A jet plane moves with a speed much greater than that of a superfast express train.</b><br>
+      (c) <b>The mass of Jupiter is very large compared to the mass of Earth (about 318 times larger).</b><br>
+      (d) <b>The air inside this room contains a large number of molecules compared to the number of molecules in one mole of gas ($N_A = 6.022 \times 10^{23}$).</b><br>
+      (e) <i>Already well-framed</i>: A proton is much more massive than an electron (approx. $1836$ times more massive; comparison standard is explicitly specified).<br>
+      (f) <i>Already well-framed</i>: The speed of sound ($340\text{ m s}^{-1}$) is much smaller than the speed of light ($3 \times 10^8\text{ m s}^{-1}$) in air.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Clear scientific rationale of relativity of dimensional scales</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Reframing (a) and (b) with proper reference standards</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Reframing (c) and (d) with comparative benchmarks</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Validating (e) and (f) as already having explicit reference standards</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q5">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q5')">
+      <div class="q-num">Question 1.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A new unit of length is chosen such that the speed of light in vacuum is unity. What is the distance between the Sun and the Earth in terms of the new unit if light takes $8\text{ min and } 20\text{ s}$ to cover this distance?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given speed of light in the new system of units: $c = 1\text{ (new unit of length) s}^{-1}$.<br>
+    • Time taken by light from Sun to Earth:<br>
+      $$t = 8\text{ min } 20\text{ s} = (8 \times 60) + 20 = 480 + 20 = 500\text{ s}$$<br>
+    • Distance $d$ between Sun and Earth:<br>
+      $$d = \text{speed} \times \text{time} = c \times t$$<br>
+      $$d = 1\text{ (new unit) s}^{-1} \times 500\text{ s} = \mathbf{500\text{ new units of length}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Converting time into seconds: $t = 500\text{ s}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying $d = c \times t$ to get $500\text{ new units}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q6">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q6')">
+      <div class="q-num">Question 1.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Which of the following is the most precise device for measuring length:<br>(a) a vernier callipers with 20 divisions on the sliding scale<br>(b) a screw gauge of pitch 1 mm and 100 divisions on the circular scale<br>(c) an optical instrument that can measure length to within a wavelength of light?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • The precision of a measuring instrument is determined by its <b>Least Count (LC)</b>: the smaller the least count, the higher the precision.<br><br>
+    • <b>(a) Vernier Callipers:</b><br>
+      Assuming $1\text{ MSD} = 1\text{ mm}$, $20\text{ VSD} = 19\text{ MSD}$:<br>
+      $$LC = 1\text{ MSD} - 1\text{ VSD} = \frac{1}{20}\text{ mm} = 0.05\text{ mm} = 5 \times 10^{-5}\text{ m}$$<br>
+    • <b>(b) Screw Gauge:</b><br>
+      $$LC = \frac{\text{Pitch}}{\text{Number of circular divisions}} = \frac{1\text{ mm}}{100} = 0.01\text{ mm} = 10^{-5}\text{ m}$$<br>
+    • <b>(c) Optical Instrument:</b><br>
+      Can measure within a wavelength of visible light $\lambda$ (average $\lambda \approx 6000\text{ AA} = 6 \times 10^{-7}\text{ m}$):<br>
+      $$LC \approx 10^{-7}\text{ m}$$<br>
+    • Comparing least counts: $10^{-7}\text{ m} < 10^{-5}\text{ m} < 5 \times 10^{-5}\text{ m}$.<br>
+    • Therefore, <b>(c) the optical instrument</b> is the most precise device.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Defining least count as measure of precision</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating LC of Vernier ($0.05\text{ mm}$) and Screw gauge ($0.01\text{ mm}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Estimating LC of optical device ($\sim 10^{-7}\text{ m}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Concluding optical instrument is most precise</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q7">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q7')">
+      <div class="q-num">Question 1.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A student measures the thickness of a human hair by looking at it through a microscope of magnification 100. He makes 20 observations and finds that the average width of the hair in the field of view of the microscope is $3.5\text{ mm}$. What is the estimate on the thickness of hair?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given magnification of microscope $m = 100$.<br>
+    • Observed average apparent width in the field of view $= 3.5\text{ mm}$.<br>
+    • The linear magnification formula is:<br>
+      $$m = \frac{\text{Apparent size}}{\text{Real size}}$$<br>
+    • Therefore, the real thickness of the human hair is:<br>
+      $$\text{Real thickness} = \frac{\text{Apparent width}}{m} = \frac{3.5\text{ mm}}{100} = \mathbf{0.035\text{ mm}} = \mathbf{3.5 \times 10^{-5}\text{ m}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Magnification relation: $\text{Real} = \text{Apparent} / m$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating estimated thickness $= 0.035\text{ mm}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q8">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q8')">
+      <div class="q-num">Question 1.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Answer the following:<br>(a) You are given a thread and a metre scale. How will you estimate the diameter of the thread?<br>(b) A screw gauge has a pitch of $1.0\text{ mm}$ and $200$ divisions on the circular scale. Do you think it is possible to increase the accuracy of the screw gauge arbitrarily by increasing the number of divisions on the circular scale?<br>(c) The mean diameter of a thin brass rod is to be measured by vernier callipers. Why is a set of 100 measurements of the diameter expected to yield a more reliable estimate than a set of 5 measurements only?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Estimating diameter of thread:</b><br>
+      Wrap the thread closely and uniformly around a cylindrical pencil or metre rod such that consecutive turns touch each other without overlapping. Count the number of turns $n$ (say, $n = 50$). Measure the total length $L$ of the wound coil using the metre scale. The diameter $d$ of the thread is estimated by:<br>
+      $$d = \frac{L}{n}$$<br>
+    • <b>(b) Increasing circular scale divisions arbitrarily:</b><br>
+      <b>No.</b> While increasing divisions theoretically decreases the least count ($LC = \text{pitch}/N$), in practice, human eyesight cannot resolve extremely narrow division marks without optical microscopes. Additionally, mechanical constraints like backlash error, pitch imperfections, and thermal expansion set practical physical limits.<br><br>
+    • <b>(c) 100 measurements vs 5 measurements:</b><br>
+      Random errors occur randomly in magnitude and direction. According to the statistical theory of errors, the random error is inversely proportional to the square root of the number of observations ($\text{Random Error} \propto \frac{1}{\sqrt{n}}$). For $n = 100$, random error is reduced by a factor of $\frac{\sqrt{100}}{\sqrt{5}} = \sqrt{20} \approx 4.5$ compared to $n = 5$, yielding a far more reliable mean estimate.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Describing winding method and formula $d = L/n$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Explaining resolution and mechanical limitations</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Statistical justification: random error $\propto 1/\sqrt{n}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q9">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q9')">
+      <div class="q-num">Question 1.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The photograph of a house occupies an area of $1.75\text{ cm}^2$ on a $35\text{ mm}$ slide. The slide is projected on to a screen, and the area of the house on the screen is $1.55\text{ m}^2$. What is the linear magnification of the projector-screen arrangement?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Area of the house on slide $A_1 = 1.75\text{ cm}^2 = 1.75 \times 10^{-4}\text{ m}^2$.<br>
+    • Area of the projected image on screen $A_2 = 1.55\text{ m}^2$.<br>
+    • The <b>areal magnification</b> $m_A$ is:<br>
+      $$m_A = \frac{A_2}{A_1} = \frac{1.55\text{ m}^2}{1.75 \times 10^{-4}\text{ m}^2} = \frac{1.55}{1.75} \times 10^4 = 0.8857 \times 10^4 = 8857.14$$<br>
+    • The <b>linear magnification</b> $m_L$ is the square root of areal magnification:<br>
+      $$m_L = \sqrt{m_A} = \sqrt{8857.14} \approx \mathbf{94.11} \approx \mathbf{94.1}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Converting slide area to $\text{m}^2$ and calculating $m_A = 8857.14$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Applying $m_L = \sqrt{m_A} \approx 94.1$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q10">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q10')">
+      <div class="q-num">Question 1.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        State the number of significant figures in the following:<br>(a) $0.007\text{ m}^2$<br>(b) $2.64 \times 10^{24}\text{ kg}$<br>(c) $0.2370\text{ g cm}^{-3}$<br>(d) $6.320\text{ J}$<br>(e) $6.032\text{ N m}^{-2}$<br>(f) $0.0006032\text{ m}^2$
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Rules for significant figures:<br>
+      - Leading zeros before the first non-zero digit are non-significant.<br>
+      - Trailing zeros after decimal point are significant.<br>
+      - Zeros between non-zero digits are significant.<br>
+      - Powers of 10 do not affect significant figures.<br><br>
+    • (a) $0.007\text{ m}^2 \implies$ <b>1 significant figure</b> ($7$).<br>
+    • (b) $2.64 \times 10^{24}\text{ kg} \implies$ <b>3 significant figures</b> ($2, 6, 4$).<br>
+    • (c) $0.2370\text{ g cm}^{-3} \implies$ <b>4 significant figures</b> ($2, 3, 7, 0$).<br>
+    • (d) $6.320\text{ J} \implies$ <b>4 significant figures</b> ($6, 3, 2, 0$).<br>
+    • (e) $6.032\text{ N m}^{-2} \implies$ <b>4 significant figures</b> ($6, 0, 3, 2$).<br>
+    • (f) $0.0006032\text{ m}^2 \implies$ <b>4 significant figures</b> ($6, 0, 3, 2$).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Parts (a) and (b): 1 and 3 significant figures</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Parts (c) and (d): 4 and 4 significant figures</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Parts (e) and (f): 4 and 4 significant figures</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q11 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q11">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q11')">
+      <div class="q-num">Question 1.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The length, breadth and thickness of a rectangular sheet of metal are $4.234\text{ m}, 1.005\text{ m}$, and $2.01\text{ cm}$ respectively. Give the area and volume of the sheet to correct significant figures.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given dimensions:<br>
+      - Length $l = 4.234\text{ m}$ (4 significant figures)<br>
+      - Breadth $b = 1.005\text{ m}$ (4 significant figures)<br>
+      - Thickness $t = 2.01\text{ cm} = 0.0201\text{ m}$ (3 significant figures)<br>
+      Least number of significant figures is <b>3</b> (in thickness $t$).<br><br>
+    • <b>1. Total Surface Area:</b><br>
+      $$A = 2(l \cdot b + b \cdot t + t \cdot l)$$<br>
+      $$l \cdot b = 4.234 \times 1.005 = 4.25517\text{ m}^2$$<br>
+      $$b \cdot t = 1.005 \times 0.0201 = 0.0202005\text{ m}^2$$<br>
+      $$t \cdot l = 0.0201 \times 4.234 = 0.0851034\text{ m}^2$$<br>
+      $$\text{Sum} = 4.25517 + 0.02020 + 0.08510 = 4.36047\text{ m}^2$$<br>
+      $$A = 2 \times 4.36047 = 8.72094\text{ m}^2$$<br>
+      Rounding to 3 significant figures: $\mathbf{A = 8.72\text{ m}^2}$<br><br>
+    • <b>2. Volume:</b><br>
+      $$V = l \times b \times t = 4.234 \times 1.005 \times 0.0201 = 0.0855289\text{ m}^3$$<br>
+      Rounding off to 3 significant figures:<br>
+      $$\mathbf{V = 0.0855\text{ m}^3} \quad (\text{or } 8.55 \times 10^{-2}\text{ m}^3)$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identifying least significant figure rule (3 s.f.)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Surface area computation and rounding to $8.72\text{ m}^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Volume calculation and rounding to $0.0855\text{ m}^3$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q12 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q12">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q12')">
+      <div class="q-num">Question 1.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The mass of a box measured by a grocer's balance is $2.300\text{ kg}$. Two gold pieces of masses $20.15\text{ g}$ and $20.17\text{ g}$ are added to the box. What is (a) the total mass of the box, (b) the difference in the masses of the pieces to correct significant figures?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given mass of the box $M = 2.300\text{ kg}$.<br>
+    • Mass of first gold piece $m_1 = 20.15\text{ g} = 0.02015\text{ kg}$.<br>
+    • Mass of second gold piece $m_2 = 20.17\text{ g} = 0.02017\text{ kg}$.<br><br>
+    • <b>(a) Total mass of the box:</b><br>
+      $$\text{Total Mass} = 2.300 + 0.02015 + 0.02017 = 2.34032\text{ kg}$$<br>
+      In addition, the result must be rounded to the least number of decimal places of the terms.<br>
+      The mass of the box $2.300\text{ kg}$ has $3$ decimal places.<br>
+      Rounding to $3$ decimal places:<br>
+      $$\mathbf{\text{Total Mass} = 2.340\text{ kg}}$$<br>
+    • <b>(b) Difference in masses of the two gold pieces:</b><br>
+      $$\Delta m = m_2 - m_1 = 20.17\text{ g} - 20.15\text{ g} = \mathbf{0.02\text{ g}}$$<br>
+      (Both quantities have $2$ decimal places; the difference has $2$ decimal places).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Summing masses and rounding to 3 decimal places: $2.340\text{ kg}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Finding difference $20.17 - 20.15 = 0.02\text{ g}$ with 2 decimal places</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q13 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q13">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q13')">
+      <div class="q-num">Question 1.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A physical quantity $P$ is related to four observables $a, b, c$ and $d$ as follows: $P = \frac{a^3 b^2}{\sqrt{c}\,d}$. The percentage errors of measurement in $a, b, c$ and $d$ are $1\%, 3\%, 4\%$ and $2\%$, respectively. What is the percentage error in the quantity $P$? If the value of $P$ calculated using the above relation turns out to be $3.763$, to what value should you round off the result?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given formula: $P = \frac{a^3 b^2}{c^{1/2} d} = a^3 b^2 c^{-1/2} d^{-1}$.<br>
+    • The relative error in $P$ is given by logarithmic differentiation / error propagation rule:<br>
+      $$\frac{\Delta P}{P} = 3\left(\frac{\Delta a}{a}\right) + 2\left(\frac{\Delta b}{b}\right) + \frac{1}{2}\left(\frac{\Delta c}{c}\right) + \left(\frac{\Delta d}{d}\right)$$<br>
+    • Percentage error in $P$:<br>
+      $$\frac{\Delta P}{P} \times 100\% = 3(1\%) + 2(3\%) + \frac{1}{2}(4\%) + 1(2\%)$$<br>
+      $$= 3\% + 6\% + 2\% + 2\% = \mathbf{13\%}$$<br>
+    • <b>Rounding off value of $P$:</b><br>
+      The calculated value is $P = 3.763$.<br>
+      Since the percentage error is $13\%$ (which has two significant figures), the absolute uncertainty is roughly:<br>
+      $$\Delta P = 0.13 \times 3.763 \approx 0.49$$<br>
+      The uncertainty is in the first decimal place. Hence, the value of $P$ can only be quoted with precision to the tenths place.<br>
+      Rounding off $3.763$ gives $\mathbf{3.8}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying fractional error combination formula</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating percentage error $= 13\%$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Rounding off calculated value $3.763$ to $3.8$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q14 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q14">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q14')">
+      <div class="q-num">Question 1.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A book with many printing errors contains four different formulas for the displacement $y$ of a particle undergoing a certain periodic motion:<br>(a) $y = a \sin \frac{2\pi t}{T}$<br>(b) $y = a \sin vt$<br>(c) $y = \frac{a}{T} \sin \frac{t}{a}$<br>(d) $y = (a\sqrt{2}) \left(\sin \frac{2\pi t}{T} + \cos \frac{2\pi t}{T}\right)$<br>($a =$ maximum displacement of the particle, $v =$ speed of the particle, $T =$ time-period of motion). Rule out the wrong formulas on dimensional grounds.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>Principle of Homogeneity & Dimensional Requirements:</b><br>
+      1. The argument of any trigonometric function (sine or cosine) must be <b>dimensionless</b> ($[M^0 L^0 T^0]$).<br>
+      2. Both sides of the equation must have the dimensions of displacement ($[L]$).<br><br>
+    • <b>(a) $y = a \sin \frac{2\pi t}{T}$:</b><br>
+      - Angle: $\left[\frac{2\pi t}{T}\right] = \frac{[T]}{[T]} = [M^0 L^0 T^0]$ (Dimensionless &check;)<br>
+      - LHS: $[y] = [L]$; RHS: $[a] = [L]$ (&check;). <b>Formula is dimensionally correct.</b><br><br>
+    • <b>(b) $y = a \sin vt$:</b><br>
+      - Angle: $[vt] = [L T^{-1}][T] = [L] \neq [M^0 L^0 T^0]$ (Not dimensionless &cross;).<br>
+      - <b>Formula is dimensionally WRONG.</b><br><br>
+    • <b>(c) $y = \frac{a}{T} \sin \frac{t}{a}$:</b><br>
+      - Angle: $\left[\frac{t}{a}\right] = \frac{[T]}{[L]} = [L^{-1} T] \neq [M^0 L^0 T^0]$ (&cross;).<br>
+      - Amplitude: $\left[\frac{a}{T}\right] = [L T^{-1}] \neq [y]$ (&cross;).<br>
+      - <b>Formula is dimensionally WRONG.</b><br><br>
+    • <b>(d) $y = (a\sqrt{2}) \left(\sin \frac{2\pi t}{T} + \cos \frac{2\pi t}{T}\right)$:</b><br>
+      - Angles: $\left[\frac{2\pi t}{T}\right] = [M^0 L^0 T^0]$ (Dimensionless &check;)<br>
+      - Dimensions of amplitude: $[a\sqrt{2}] = [L] = [y]$ (&check;). <b>Formula is dimensionally correct.</b><br><br>
+    • <b>Conclusion:</b> Formulas <b>(b)</b> and <b>(c)</b> are ruled out as wrong on dimensional grounds.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Stating dimensional rule for trigonometric argument $[M^0 L^0 T^0]$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Checking (a) and (d) as dimensionally correct</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Ruling out (b) because $[vt] = [L]$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Ruling out (c) because $[t/a] = [L^{-1}T]$ and $[a/T] = [LT^{-1}]$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q15 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q15">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q15')">
+      <div class="q-num">Question 1.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A famous relation in physics relates 'moving mass' $m$ to the 'rest mass' $m_0$ of a particle in terms of its speed $v$ and the speed of light $c$. A boy recalls the relation almost correctly but forgets where to put the constant $c$. He writes: $m = \frac{m_0}{(1 - v^2)^{1/2}}$. Guess where to put the missing $c$.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • By the principle of homogeneity of dimensions:<br>
+      - In the expression $(1 - v^2)^{1/2}$, the quantity subtracted from the pure number $1$ must be <b>dimensionless</b>.<br>
+      - However, speed squared has dimensions $[v^2] = [L^2 T^{-2}]$.<br>
+      - To make $v^2$ dimensionless, it must be divided by another quantity with dimensions $[L^2 T^{-2}]$.<br>
+      - The speed of light $c$ has dimensions of speed $[L T^{-1}]$, so $c^2$ has dimensions $[L^2 T^{-2}]$.<br>
+      - Thus, the dimensionless term is $\frac{v^2}{c^2}$.<br><br>
+    • Checking overall equation dimensions with this modification:<br>
+      $$m = \frac{m_0}{\sqrt{1 - \frac{v^2}{c^2}}}$$<br>
+      LHS has dimensions $[M]$, and RHS has dimensions $[M]/[1] = [M]$.<br><br>
+    • Hence, the correct formula is: $\mathbf{m = \frac{m_0}{\left(1 - \frac{v^2}{c^2}\right)^{1/2}}}$, i.e., $c^2$ must be placed in the denominator under $v^2$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying homogeneity principle: $1 - v^2/c^2$ must be dimensionless</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Stating correct formula $m = m_0 / \sqrt{1 - v^2/c^2}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q16 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q16">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q16')">
+      <div class="q-num">Question 1.16</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The unit of length convenient on the atomic scale is known as an angstrom and is denoted by $\text{\AA}$: $1\text{ \AA} = 10^{-10}\text{ m}$. The size of a hydrogen atom is about $0.5\text{ \AA}$. What is the total atomic volume in $\text{m}^3$ of a mole of hydrogen atoms?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Radius of hydrogen atom $r = 0.5\text{ \AA} = 0.5 \times 10^{-10}\text{ m}$.<br>
+    • Volume of a single spherical hydrogen atom:<br>
+      $$V_1 = \frac{4}{3}\pi r^3 = \frac{4}{3} \times 3.1416 \times (0.5 \times 10^{-10}\text{ m})^3$$<br>
+      $$V_1 = \frac{4}{3} \times 3.1416 \times (0.125 \times 10^{-30}) = 0.5236 \times 10^{-30}\text{ m}^3$$<br>
+    • One mole of hydrogen atoms contains Avogadro's number of atoms: $N_A = 6.023 \times 10^{23}$.<br>
+    • Total atomic volume of one mole of hydrogen atoms:<br>
+      $$V = N_A \times V_1 = (6.023 \times 10^{23}) \times (0.5236 \times 10^{-30}\text{ m}^3)$$<br>
+      $$V = 3.1537 \times 10^{-7}\text{ m}^3 \approx \mathbf{3.15 \times 10^{-7}\text{ m}^3}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Volume formula for single atom $V_1 = \frac{4}{3}\pi r^3$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplying by Avogadro's number $N_A = 6.023 \times 10^{23}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating final volume $V \approx 3.15 \times 10^{-7}\text{ m}^3$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q17 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q17">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q17')">
+      <div class="q-num">Question 1.17</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        One mole of an ideal gas at standard temperature and pressure occupies $22.4\text{ L}$ (molar volume). What is the ratio of molar volume to the atomic volume of a mole of hydrogen? (Take the size of hydrogen molecule to be about $1\text{ \AA}$). Why is this ratio so large?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>Molar volume of ideal gas at STP:</b><br>
+      $$V_m = 22.4\text{ L} = 22.4 \times 10^{-3}\text{ m}^3$$<br>
+    • <b>Atomic volume of a mole of hydrogen:</b><br>
+      Radius $r = 0.5\text{ \AA} = 0.5 \times 10^{-10}\text{ m}$.<br>
+      From Q1.16, atomic volume of 1 mole is $V_a \approx 3.15 \times 10^{-7}\text{ m}^3$.<br><br>
+    • <b>Ratio of molar volume to atomic volume:</b><br>
+      $$\frac{V_m}{V_a} = \frac{22.4 \times 10^{-3}\text{ m}^3}{3.15 \times 10^{-7}\text{ m}^3} = \frac{22.4}{3.15} \times 10^4 \approx 7.11 \times 10^4 \approx \mathbf{10^4}$$<br>
+    • <b>Physical Reason for Large Ratio:</b><br>
+      In a gas at STP, the molecules are extremely far apart from one another compared to their molecular diameters. Intermolecular empty space occupies more than $99.99\%$ of the total volume of the container.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Stating molar volume $V_m = 22.4 \times 10^{-3}\text{ m}^3$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating ratio $V_m / V_a \approx 7.1 \times 10^4$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Explaining that gas volume is dominated by intermolecular empty space</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q18 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q18">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q18')">
+      <div class="q-num">Question 1.18</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Explain this common observation clearly: If you look out of the window of a fast moving train, the nearby trees, houses etc. seem to move rapidly in a direction opposite to the train's motion, but the distant objects (hill tops, the Moon, the stars etc.) seem to be stationary.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • This phenomenon is an optical consequence of <b>parallax and angular velocity</b>.<br><br>
+    • <b>Line of Sight & Parallax:</b><br>
+      The apparent motion of any object depends on the rate at which our <b>line of sight</b> to the object rotates as we move.<br><br>
+    • <b>Nearby Objects:</b><br>
+      For nearby trees and houses, the distance $r$ from the observer is very small. When the train moves a distance $\Delta x$, the angle $\Delta \theta \approx \frac{\Delta x}{r}$ subtended at the eye changes very rapidly ($d\theta/dt = v/r$ is large). Hence, the line of sight swings rapidly backwards, making nearby objects appear to rush backward at great speed.<br><br>
+    • <b>Distant Objects:</b><br>
+      For distant hills, the Moon, or stars, the distance $r$ is extraordinarily large ($r \to \infty$). The change in angle $\Delta \theta \approx \frac{\Delta x}{r} \approx 0$ is negligibly small. Because the line of sight remains virtually unchanged in direction, distant objects appear completely stationary.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Explaining role of angular velocity of line of sight $d\theta/dt = v/r$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Contrasting small $r$ (rapid angle change) with huge $r$ (negligible change)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q19 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q19">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q19')">
+      <div class="q-num">Question 1.19</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The principle of parallax is used in the determination of distances of very distant stars. The baseline $AB$ is the line joining Earth's two locations six months apart in its orbit around the Sun. If the parallax angle of the nearest star is $0.76''$ (seconds of arc), calculate its distance in parsec and light years.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • By definition of a <b>parsec (pc)</b>:<br>
+      $1\text{ parsec}$ is the distance at which an astronomical unit ($1\text{ AU}$) subtends a parallax angle of $1''$ (one second of arc).<br>
+      $$d\text{ (in parsecs)} = \frac{1}{\theta\text{ (in arcseconds)}}$$<br>
+    • Given parallax angle $\theta = 0.76''$:<br>
+      $$d = \frac{1}{0.76} \approx \mathbf{1.316\text{ pc}} \approx \mathbf{1.32\text{ pc}}$$<br>
+    • <b>Conversion to Light Years:</b><br>
+      $$1\text{ pc} = 3.0857 \times 10^{16}\text{ m}$$<br>
+      $$1\text{ ly} = 9.46 \times 10^{15}\text{ m}$$<br>
+      $$1\text{ pc} = \frac{3.0857 \times 10^{16}}{9.46 \times 10^{15}} = 3.26\text{ ly}$$<br>
+      $$d = 1.316 \times 3.26\text{ ly} = \mathbf{4.29\text{ ly}}$$<br>
+    • Hence, the star's distance is $\mathbf{1.32\text{ pc}}$ or $\mathbf{4.29\text{ ly}}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Applying formula $d = 1/\theta$ to find $d = 1.32\text{ pc}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Converting parsecs to light years using $1\text{ pc} = 3.26\text{ ly} \implies 4.29\text{ ly}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q20 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q20">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q20')">
+      <div class="q-num">Question 1.20</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The Sun's angular diameter is measured to be $1920''$. The distance $D$ of the Sun from the Earth is $1.496 \times 10^{11}\text{ m}$. What is the diameter of the Sun?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Given angular diameter $\alpha = 1920''$.<br>
+    • Converting $\alpha$ to radians:<br>
+      $$1'' = \frac{1}{3600}^\circ = \frac{1}{3600} \times \frac{\pi}{180}\text{ rad} = 4.848 \times 10^{-6}\text{ rad}$$<br>
+      $$\alpha = 1920 \times 4.848 \times 10^{-6}\text{ rad} = 9.308 \times 10^{-3}\text{ rad}$$<br>
+    • Distance to the Sun $D = 1.496 \times 10^{11}\text{ m}$.<br>
+    • The linear diameter $d$ of the Sun is related to angular diameter by:<br>
+      $$d = \alpha \times D$$<br>
+      $$d = (9.308 \times 10^{-3}\text{ rad}) \times (1.496 \times 10^{11}\text{ m})$$<br>
+      $$d = 1.3925 \times 10^9\text{ m} \approx \mathbf{1.39 \times 10^9\text{ m}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Converting angular diameter $1920''$ to radians ($9.31 \times 10^{-3}\text{ rad}$)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Applying $d = \alpha D$ to get $d = 1.39 \times 10^9\text{ m}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q21 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q21">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q21')">
+      <div class="q-num">Question 1.21</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Precise measurements of physical quantities are a need of science. For example, to ascertain the speed of an aircraft, one must have an accurate method to find its positions at closely separated instants of time. State similar instances in modern science where precision is paramount.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • Instances in modern science and technology where extreme precision measurement is vital:<br><br>
+    • <b>1. Global Positioning System (GPS):</b><br>
+      Satellite navigation depends on ultra-stable cesium and rubidium <b>atomic clocks</b> measuring time to within a few nanoseconds ($10^{-9}\text{ s}$). An error of just $1\,\mu\text{s}$ would cause a navigational positional drift of $300\text{ m}$.<br><br>
+    • <b>2. Detection of Gravitational Waves (LIGO):</b><br>
+      Laser interferometry measures mirror displacements as minuscule as $10^{-19}\text{ m}$ (one-ten-thousandth the diameter of a proton) over a $4\text{ km}$ baseline to detect spacetime ripples.<br><br>
+    • <b>3. Semiconductor Nanofabrication:</b><br>
+      Extreme Ultraviolet (EUV) photolithography creates microchip transistors with channel dimensions down to $2\text{ nm}$ to $3\text{ nm}$, requiring sub-nanometre positioning precision.<br><br>
+    • <b>4. Mass Spectrometry in Medicine:</b><br>
+      Determining isotope masses to parts-per-billion precision enables identification of biomolecules, disease biomarkers, and pharmaceutical drug purity.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Mentioning atomic clocks in GPS ($10^{-9}\text{ s}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mentioning gravitational wave interferometry LIGO ($10^{-19}\text{ m}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mentioning semiconductor lithography or mass spectrometry</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch1-q22 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch1-q22">
+    <div class="q-head" onclick="toggleQ('c11p-ch1-q22')">
+      <div class="q-num">Question 1.22</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Just as precise measurements are necessary in science, it is equally important to be able to make rough estimates of quantities using rudimentary ideas and common observations. Think of ways by which you can estimate:<br>(a) the total mass of rain-bearing clouds over India during the Monsoon<br>(b) the mass of an elephant<br>(c) the wind speed during a storm<br>(d) the number of strands of hair on your head<br>(e) the number of air molecules in your classroom.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Mass of rain-bearing clouds:</b><br>
+      India receives average annual monsoon rainfall of $h \approx 100\text{ cm} = 1\text{ m}$.<br>
+      Geographical area of India $A \approx 3.3 \times 10^6\text{ km}^2 = 3.3 \times 10^{12}\text{ m}^2$.<br>
+      Total volume of water precipitated: $V = A \times h = 3.3 \times 10^{12}\text{ m}^3$.<br>
+      Mass of water (clouds) $= V \times \rho = 3.3 \times 10^{12}\text{ m}^3 \times 10^3\text{ kg m}^{-3} \approx \mathbf{3.3 \times 10^{15}\text{ kg}}$ (billions of tonnes).<br><br>
+    • <b>(b) Mass of an elephant:</b><br>
+      Use <b>Archimedes' Principle</b>. Drive the elephant onto a large flat-bottomed boat in calm water. Mark the initial water line and the depressed water line after the elephant boards. The volume of displaced water is $\Delta V = A_{\text{boat}} \times \Delta h$. The mass of the elephant is $M = \rho_{\text{water}} \times \Delta V$ (typically $\sim 3000\text{ kg}$ to $5000\text{ kg}$).<br><br>
+    • <b>(c) Wind speed during a storm:</b><br>
+      Observe the deflection angle $\theta$ of a known pendulum or buoyant balloon. Alternatively, release a floating balloon and measure the time $t$ taken to traverse a known distance $d$ between two landmarks: $v = d/t$.<br><br>
+    • <b>(d) Number of strands of hair on your head:</b><br>
+      Area of scalp $A \approx 200\text{ cm}^2$. Measure the hair density in a small area of $1\text{ cm}^2$ using a magnifying glass (typically $\sim 500$ hairs/$\text{cm}^2$). Total hair count $\approx 200 \times 500 = \mathbf{10^5\text{ hairs}}$ ($1\text{ lakh}$).<br><br>
+    • <b>(e) Number of air molecules in your classroom:</b><br>
+      Room dimensions $\approx 6\text{ m} \times 5\text{ m} \times 4\text{ m} = 120\text{ m}^3 = 1.2 \times 10^5\text{ L}$.<br>
+      At STP, $22.4\text{ L}$ of air contains $N_A = 6.023 \times 10^{23}$ molecules.<br>
+      Number of moles $= \frac{1.2 \times 10^5}{22.4} \approx 5.35 \times 10^3\text{ moles}$.<br>
+      Total molecules $N \approx (5.35 \times 10^3) \times (6.023 \times 10^{23}) \approx \mathbf{3.2 \times 10^{27}\text{ molecules}}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Estimation of rain mass $\approx 3.3 \times 10^{15}\text{ kg}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Archimedes boat displacement method for elephant</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Wind speed drift/deflection method</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Scalp area $\times$ density $\approx 10^5$ hairs</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) Room volume $\times$ molar density $\approx 3 \times 10^{27}$ molecules</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">↑ Back to Top</button>
+    <button class="ch-nav-btn next" onclick="showChapter(2)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 2 (Motion in a Straight Line) →</button>
+  </div>
+</section>
