@@ -1,0 +1,446 @@
+// scripts/builders/gen-c11p-ch11.js
+// Complete, verbatim NCERT generator for Class 11 Physics Chapter 11: Thermodynamics (All 10 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11p');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const questions = [];
+
+// ============================================================================
+// CHAPTER 11: THERMODYNAMICS (Questions 11.1 to 11.10)
+// ============================================================================
+
+// Question 11.1
+questions.push(createQCard(
+  'c11p-ch11-q1', 'Question 11.1', 'NCERT Exercise',
+  'A geyser heats water flowing at the rate of $3.0\\text{ litres per minute}$ from $27^\\circ\\text{C}$ to $77^\\circ\\text{C}$. If the geyser operates on a gas burner, what is the rate of consumption of the fuel if its heat of combustion is $4.0 \\times 10^4\\text{ J g}^{-1}$?',
+  `<div class="step">
+    Given:<br>
+    • Volume flow rate of water $V = 3.0\\text{ litres min}^{-1} = 3000\\text{ cm}^3\\text{ min}^{-1}$<br>
+    • Mass rate of water flow $m = 3.0\\text{ kg min}^{-1} = 3000\\text{ g min}^{-1}$ (since density of water $= 1000\\text{ kg m}^{-3}$)<br>
+    • Initial temperature $T_1 = 27^\\circ\\text{C}$, Final temperature $T_2 = 77^\\circ\\text{C}$<br>
+    • Temperature rise $\\Delta T = 77 - 27 = 50^\\circ\\text{C} = 50\\text{ K}$<br>
+    • Specific heat of water $c = 4.2\\text{ J g}^{-1}\\text{ K}^{-1} = 4.2 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$<br>
+    • Heat of combustion of fuel $H_c = 4.0 \\times 10^4\\text{ J g}^{-1}$<br><br>
+    <b>1. Rate of Heat required to warm the water ($dQ/dt$):</b><br>
+    $$\\frac{dQ}{dt} = m c \\Delta T = (3000\\text{ g min}^{-1}) \\times (4.2\\text{ J g}^{-1}\\text{ K}^{-1}) \\times 50\\text{ K}$$<br>
+    $$\\frac{dQ}{dt} = 3000 \\times 210 = \\mathbf{6.3 \\times 10^5\\text{ J min}^{-1}}$$<br><br>
+    <b>2. Rate of fuel consumption ($dm/dt$):</b><br>
+    $$\\frac{dm}{dt} = \\frac{\\frac{dQ}{dt}}{H_c} = \\frac{6.3 \\times 10^5\\text{ J min}^{-1}}{4.0 \\times 10^4\\text{ J g}^{-1}} = \\frac{63}{4} = \\mathbf{15.75\\text{ g min}^{-1}} \\approx \\mathbf{15.8\\text{ g min}^{-1}}$$<br><br>
+    In kilograms: $\\frac{dm}{dt} = 1.575 \\times 10^{-2}\\text{ kg min}^{-1} = \\mathbf{2.625 \\times 10^{-4}\\text{ kg s}^{-1}}$.<br><br>
+    $$\\mathbf{\\text{The rate of consumption of the fuel is } 15.75\\text{ g min}^{-1} \\text{ (or } 15.8\\text{ g min}^{-1}\\text{).}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Calculation of heat required per minute: $dQ/dt = 6.3 \\times 10^5\\text{ J/min}$', '1.5 Marks'],
+    ['Fuel consumption rate relation $dm/dt = (dQ/dt) / H_c$', '0.5 Mark'],
+    ['Final consumption rate evaluation $15.75\\text{ g/min}$', '1 Mark']
+  ]
+));
+
+// Question 11.2
+questions.push(createQCard(
+  'c11p-ch11-q2', 'Question 11.2', 'NCERT Exercise',
+  'What amount of heat must be supplied to $2.0 \\times 10^{-2}\\text{ kg}$ of nitrogen (at room temperature) to raise its temperature by $45^\\circ\\text{C}$ at constant pressure? (Molecular mass of $N_2 = 28$; $R = 8.3\\text{ J mol}^{-1}\\text{ K}^{-1}$).',
+  `<div class="step">
+    Given:<br>
+    • Mass of nitrogen gas $m = 2.0 \\times 10^{-2}\\text{ kg} = 20\\text{ g}$<br>
+    • Molar mass of $N_2$, $M = 28\\text{ g mol}^{-1}$<br>
+    • Number of moles $n = \\frac{m}{M} = \\frac{20}{28} = \\frac{5}{7}\\text{ mol} \\approx 0.7143\\text{ mol}$<br>
+    • Temperature rise $\\Delta T = 45^\\circ\\text{C} = 45\\text{ K}$<br>
+    • Universal gas constant $R = 8.3\\text{ J mol}^{-1}\\text{ K}^{-1}$<br><br>
+    <b>1. Molar Specific Heat Capacity at Constant Pressure ($C_p$):</b><br>
+    Nitrogen ($N_2$) is a rigid diatomic gas with $5$ degrees of freedom ($f = 5$):<br>
+    $$C_v = \\frac{5}{2}R, \\quad C_p = C_v + R = \\frac{7}{2}R$$<br>
+    $$C_p = \\frac{7}{2} \\times 8.3 = 29.05\\text{ J mol}^{-1}\\text{ K}^{-1}$$<br><br>
+    <b>2. Heat Supplied at Constant Pressure ($Q$):</b><br>
+    $$Q = n C_p \\Delta T = \\left(\\frac{5}{7}\\text{ mol}\\right) \\times \\left(\\frac{7}{2} \\times 8.3\\text{ J mol}^{-1}\\text{ K}^{-1}\\right) \\times 45\\text{ K}$$<br>
+    Notice that the factor of $7$ cancels out nicely:<br>
+    $$Q = 5 \\times \\frac{8.3}{2} \\times 45 = 5 \\times 4.15 \\times 45 = 20.75 \\times 45 = \\mathbf{933.75\\text{ J}} \\approx \\mathbf{934\\text{ J}}$$<br><br>
+    $$\\mathbf{\\text{The amount of heat that must be supplied is } 933.75\\text{ Joules} \\approx \\mathbf{934\\text{ J}}.}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Calculation of number of moles $n = m/M = 5/7\\text{ mol}$', '1 Mark'],
+    ['Molar heat capacity of diatomic gas at constant pressure $C_p = \\frac{7}{2}R$', '1.5 Marks'],
+    ['Final heat computation $Q = nC_p\\Delta T = 933.75\\text{ J}$', '1.5 Marks']
+  ]
+));
+
+// Question 11.3
+questions.push(createQCard(
+  'c11p-ch11-q3', 'Question 11.3', 'NCERT Exercise',
+  'Explain why<br>(a) Two bodies at different temperatures $T_1$ and $T_2$ if brought in thermal contact do not necessarily settle to the mean temperature $(T_1 + T_2)/2$.<br>(b) The coolant in a chemical or a nuclear plant (i.e., the liquid used to prevent the different parts of a plant from getting too hot) should have high specific heat.<br>(c) Air pressure in a car tyre increases during driving.<br>(d) The climate of a harbour town is more temperate than that of a town in a desert at the same latitude.',
+  `<div class="step">
+    • <b>(a) Settling temperature vs mean temperature:</b><br>
+      By the principle of calorimetry (heat lost = heat gained), the equilibrium temperature $T$ depends on the <b>heat capacities</b> ($m_1 c_1$ and $m_2 c_2$) of the two bodies:<br>
+      $$m_1 c_1 (T_1 - T) = m_2 c_2 (T - T_2) \\implies T = \\frac{m_1 c_1 T_1 + m_2 c_2 T_2}{m_1 c_1 + m_2 c_2}$$<br>
+      The equilibrium temperature equals the simple arithmetic mean $(T_1 + T_2)/2$ <b>only if the thermal capacities of both bodies are identical</b> ($m_1 c_1 = m_2 c_2$). In general, the equilibrium temperature is biased towards the body with the larger thermal capacity.<br><br>
+    • <b>(b) High specific heat for coolants:</b><br>
+      A coolant must absorb immense quantities of heat ($Q = m c \\Delta T$) with only a small temperature rise $\\Delta T = \\frac{Q}{m c}$. A liquid with a very high specific heat capacity $c$ (such as water or liquid sodium) can absorb enormous thermal energy without boiling or undergoing extreme temperature rise, maximizing cooling efficiency.<br><br>
+    • <b>(c) Pressure increase in car tyre during driving:</b><br>
+      While driving, rolling friction between the tyre and road surface and internal viscous dissipation within flexing rubber do mechanical work that is converted into thermal energy. The temperature of the trapped air inside increases ($T \\uparrow$). Since the volume of the tyre is practically constant ($V \\approx \\text{const}$), by <b>Gay-Lussac’s Law</b> ($P \\propto T$), the air pressure inside the tyre increases.<br><br>
+    • <b>(d) Temperate climate of harbour towns:</b><br>
+      Water has an exceptionally high specific heat capacity ($c_{water} \\approx 4186\\text{ J kg}^{-1}\\text{ K}^{-1}$), roughly $4$ to $5$ times that of dry sand and rock. Consequently, oceans and large water bodies absorb large amounts of solar heat in summer/daytime without warming up much, and release heat slowly in winter/night without cooling rapidly. This moderate thermal inertia produces land-sea breezes that keep harbour towns pleasantly temperate compared to desert extremes.
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Calorimetric equilibrium formula $T = (m_1 c_1 T_1 + m_2 c_2 T_2)/(m_1 c_1 + m_2 c_2)$', '1 Mark'],
+    ['(b) High specific heat allows maximum heat absorption with minimal temperature rise', '1 Mark'],
+    ['(c) Frictional heating causing temperature rise leading to Gay-Lussac pressure increase', '1 Mark'],
+    ['(d) High thermal inertia and specific heat of water moderating coastal temperatures', '1 Mark']
+  ]
+));
+
+// Question 11.4
+questions.push(createQCard(
+  'c11p-ch11-q4', 'Question 11.4', 'NCERT Exercise',
+  'A cylinder with a movable piston contains $3\\text{ moles}$ of hydrogen at standard temperature and pressure. The walls of the cylinder are made of a heat insulator, and the piston is insulated by having a pile of sand on it. By what factor does the pressure of the gas increase if the gas is compressed to half its original volume?',
+  `<div class="step">
+    Given:<br>
+    • Number of moles $n = 3\\text{ moles}$<br>
+    • Since the walls and piston are completely insulated, heat exchange with surroundings is zero: $dQ = 0$.<br>
+    • Therefore, the compression is strictly an <b>adiabatic process</b>.<br>
+    • Hydrogen ($H_2$) is a diatomic gas: $\\gamma = \\frac{C_p}{C_v} = \\frac{7/2 R}{5/2 R} = \\frac{7}{5} = 1.4$<br>
+    • Volume is halved: $V_2 = \\frac{V_1}{2} \\implies \\frac{V_1}{V_2} = 2$<br><br>
+    <b>1. Adiabatic Gas Equation:</b><br>
+    $$P_1 V_1^\\gamma = P_2 V_2^\\gamma \\implies \\frac{P_2}{P_1} = \\left(\\frac{V_1}{V_2}\\right)^\\gamma$$<br><br>
+    <b>2. Calculating Pressure Increase Factor:</b><br>
+    $$\\frac{P_2}{P_1} = (2)^{1.4} = 2^{7/5}$$<br>
+    Using logarithms or power calculation:<br>
+    $$\\log_{10}(2^{1.4}) = 1.4 \\times \\log_{10}(2) = 1.4 \\times 0.30103 = 0.42144$$<br>
+    $$\\frac{P_2}{P_1} = 10^{0.42144} \\approx \\mathbf{2.639} \\approx \\mathbf{2.64}$$<br><br>
+    $$\\mathbf{\\text{The pressure of the gas increases by a factor of approximately } 2.64.}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Identification of adiabatic process ($dQ = 0$) and $\\gamma = 1.4$ for diatomic hydrogen', '1 Mark'],
+    ['Adiabatic formula application $P_2 / P_1 = (V_1 / V_2)^\\gamma$', '1 Mark'],
+    ['Evaluation of $(2)^{1.4} \\approx 2.64$', '1 Mark']
+  ]
+));
+
+// Question 11.5
+questions.push(createQCard(
+  'c11p-ch11-q5', 'Question 11.5', 'NCERT Exercise',
+  'In changing the state of a gas adiabatically from an equilibrium state A to another equilibrium state B, an amount of work equal to $22.3\\text{ J}$ is done on the system. If the gas is taken from state A to B via a process in which the net heat absorbed by the system is $9.35\\text{ cal}$, how much is the net work done by the system in the latter case? (Take $1\\text{ cal} = 4.19\\text{ J}$).',
+  `<div class="step">
+    <b>1. Adiabatic Path (State A to B):</b><br>
+    In an adiabatic process, heat exchanged is zero: $\\Delta Q_{ad} = 0$.<br>
+    Work done <i>on</i> the system is negative work done <i>by</i> the system:<br>
+    $$W_{ad} = -22.3\\text{ J}$$<br>
+    By the <b>First Law of Thermodynamics</b> ($\\Delta Q = \\Delta U + W$):<br>
+    $$0 = \\Delta U + (-22.3\\text{ J}) \\implies \\Delta U = U_B - U_A = \\mathbf{+22.3\\text{ J}}$$<br>
+    Since internal energy $U$ is a <b>state function</b>, the change in internal energy $\\Delta U = +22.3\\text{ J}$ is identical for any thermodynamic path connecting state A to state B.<br><br>
+    <b>2. Non-Adiabatic Path (State A to B):</b><br>
+    Given net heat absorbed by the system:<br>
+    $$\\Delta Q = 9.35\\text{ cal} = 9.35 \\times 4.19\\text{ J} = \\mathbf{39.1765\\text{ J}}$$<br>
+    Using the First Law of Thermodynamics:<br>
+    $$\\Delta Q = \\Delta U + W \\implies W = \\Delta Q - \\Delta U$$<br>
+    $$W = 39.1765\\text{ J} - 22.3\\text{ J} = \\mathbf{16.8765\\text{ J}} \\approx \\mathbf{16.9\\text{ J}}$$<br><br>
+    $$\\mathbf{\\text{The net work done by the system in the latter process is } 16.9\\text{ Joules}.}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Application of First Law to adiabatic path to find $\\Delta U = +22.3\\text{ J}$', '1.5 Marks'],
+    ['Stating internal energy is a state function independent of path', '0.5 Mark'],
+    ['Conversion of heat $9.35\\text{ cal} = 39.18\\text{ J}$', '1 Mark'],
+    ['Work evaluation for second path: $W = \\Delta Q - \\Delta U = 16.9\\text{ J}$', '1 Mark']
+  ]
+));
+
+// Question 11.6
+questions.push(createQCard(
+  'c11p-ch11-q6', 'Question 11.6', 'NCERT Exercise',
+  'Two cylinders A and B of equal capacity are connected to each other via a stopcock. A contains a gas at standard temperature and pressure. B is completely evacuated. The entire system is thermally insulated. The stopcock is suddenly opened. Answer the following:<br>(a) What is the final pressure of the gas in A and B?<br>(b) What is the change in internal energy of the gas?<br>(c) What is the change in the temperature of the gas?<br>(d) Do the intermediate states of the system (before settling to the final equilibrium state) lie on its P-V-T surface?',
+  `<div class="step">
+    • <b>(a) Final pressure of the gas:</b><br>
+      This is a classic <b>free expansion (Joule expansion)</b> into a vacuum.<br>
+      Since cylinder B is evacuated and has equal capacity $V$, the total volume accessible to the gas doubles:<br>
+      $$V_2 = 2 V_1$$<br>
+      Because no external work is done against vacuum ($W = \\int P_{ext} dV = 0$ since $P_{ext} = 0$) and the system is insulated ($Q = 0$), the internal energy remains constant ($\\Delta U = 0$).<br>
+      For an ideal gas, constant $U$ implies constant temperature ($T_2 = T_1$).<br>
+      By Boyle's law ($P_1 V_1 = P_2 V_2$):<br>
+      $$P_2 = P_1 \\frac{V_1}{V_2} = \\frac{1\\text{ atm}}{2} = \\mathbf{0.5\\text{ atm}}$$<br><br>
+    • <b>(b) Change in internal energy:</b><br>
+      By the First Law of Thermodynamics: $\\Delta U = Q - W = 0 - 0 = \\mathbf{0}$. The change in internal energy is strictly <b>zero</b>.<br><br>
+    • <b>(c) Change in temperature:</b><br>
+      Since internal energy of an ideal gas depends solely on temperature ($U = n C_v T$), $\\Delta U = 0 \\implies \\Delta T = \\mathbf{0}$. The final temperature equals the initial temperature.<br><br>
+    • <b>(d) Intermediate states on P-V-T surface:</b><br>
+      <b>No.</b> Free expansion is a violently rapid, non-equilibrium, irreversible process. During the rapid rush of gas into cylinder B, intermediate states involve turbulence, non-uniform spatial pressure gradients, and localized eddies. Intermediate non-equilibrium states do not have well-defined macroscopic thermodynamic variables ($P, V, T$) and therefore <b>cannot be represented on a P-V-T equilibrium equation-of-state surface</b>.
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Final pressure $P_2 = P_1 / 2 = 0.5\\text{ atm}$ via free expansion volume doubling', '1 Mark'],
+    ['(b) $\\Delta U = 0$ since $W = 0$ and $Q = 0$', '1 Mark'],
+    ['(c) $\\Delta T = 0$ since internal energy of ideal gas depends solely on temperature', '1 Mark'],
+    ['(d) Intermediate non-equilibrium states cannot be plotted on P-V-T equilibrium surface', '1 Mark']
+  ]
+));
+
+// Question 11.7
+questions.push(createQCard(
+  'c11p-ch11-q7', 'Question 11.7', 'NCERT Exercise',
+  'A steam engine delivers $5.4 \\times 10^8\\text{ J}$ of work per minute and services $3.6 \\times 10^9\\text{ J}$ of heat per minute from its boiler. What is the efficiency of the engine? How much heat is wasted per minute?',
+  `<div class="step">
+    Given:<br>
+    • Useful mechanical work output per minute $W = 5.4 \\times 10^8\\text{ J}$<br>
+    • Heat input supplied by boiler per minute $Q_1 = 3.6 \\times 10^9\\text{ J}$<br><br>
+    <b>1. Thermal Efficiency of Heat Engine ($\\eta$):</b><br>
+    $$\\eta = \\frac{\\text{Work Output}}{\\text{Heat Input}} = \\frac{W}{Q_1}$$<br>
+    $$\\eta = \\frac{5.4 \\times 10^8\\text{ J}}{3.6 \\times 10^9\\text{ J}} = \\frac{5.4}{36} = \\mathbf{0.15}$$<br>
+    In percentage: $\\eta = 0.15 \\times 100\\% = \\mathbf{15\\%}$<br><br>
+    <b>2. Heat Wasted / Rejected per minute ($Q_2$):</b><br>
+    By conservation of energy for a cyclic engine ($W = Q_1 - Q_2$):<br>
+    $$Q_2 = Q_1 - W = 3.6 \\times 10^9\\text{ J} - 5.4 \\times 10^8\\text{ J}$$<br>
+    $$Q_2 = 36 \\times 10^8 - 5.4 \\times 10^8 = (36 - 5.4) \\times 10^8 = \\mathbf{30.6 \\times 10^8\\text{ J}} = \\mathbf{3.06 \\times 10^9\\text{ J}}$$<br><br>
+    $$\\therefore \\text{Efficiency } = \\mathbf{15\\%}, \\quad \\text{Heat wasted per minute } = \\mathbf{3.06 \\times 10^9\\text{ J}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Thermal efficiency formula $\\eta = W / Q_1$', '1 Mark'],
+    ['Computation of efficiency: $\\eta = 0.15 = 15\\%$', '1 Mark'],
+    ['Heat wasted evaluation: $Q_2 = Q_1 - W = 3.06 \\times 10^9\\text{ J}$', '1 Mark']
+  ]
+));
+
+// Question 11.8
+questions.push(createQCard(
+  'c11p-ch11-q8', 'Question 11.8', 'NCERT Exercise',
+  'An electric heater supplies heat to a system at a rate of $100\\text{ W}$. If system performs work at a rate of $75\\text{ Joules per second}$. At what rate is the internal energy increasing?',
+  `<div class="step">
+    Given:<br>
+    • Rate of heat supply $\\frac{dQ}{dt} = 100\\text{ W} = 100\\text{ J s}^{-1}$<br>
+    • Rate of work done by system $\\frac{dW}{dt} = 75\\text{ J s}^{-1}$<br><br>
+    <b>First Law of Thermodynamics in Rate Form:</b><br>
+    $$\\frac{dQ}{dt} = \\frac{dU}{dt} + \\frac{dW}{dt}$$<br><br>
+    <b>Rate of increase of internal energy ($\\frac{dU}{dt}$):</b><br>
+    $$\\frac{dU}{dt} = \\frac{dQ}{dt} - \\frac{dW}{dt} = 100\\text{ J s}^{-1} - 75\\text{ J s}^{-1} = \\mathbf{25\\text{ J s}^{-1}} = \\mathbf{25\\text{ W}}$$<br><br>
+    $$\\mathbf{\\text{The internal energy of the system is increasing at the rate of } 25\\text{ Joules per second (or } 25\\text{ W}).}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Rate formulation of First Law of Thermodynamics $dQ/dt = dU/dt + dW/dt$', '1 Mark'],
+    ['Final calculation of rate of internal energy increase: $25\\text{ W}$', '1 Mark']
+  ]
+));
+
+// Question 11.9
+questions.push(createQCard(
+  'c11p-ch11-q9', 'Question 11.9', 'NCERT Exercise',
+  'A thermodynamic system is taken from an original state to an intermediate state by the linear process shown in Fig. (11.16). Its volume is then reduced to the original value from E to F by an isobaric process. Calculate the total work done by the gas from D to E to F.',
+  `<div class="step">
+    Given state coordinates on P-V diagram:<br>
+    • Point D: Pressure $P_D = 600\\text{ N m}^{-2}$, Volume $V_D = 2.0\\text{ m}^3$<br>
+    • Point E: Pressure $P_E = 300\\text{ N m}^{-2}$, Volume $V_E = 5.0\\text{ m}^3$<br>
+    • Point F: Pressure $P_F = 300\\text{ N m}^{-2}$, Volume $V_F = 2.0\\text{ m}^3$<br><br>
+    <b>1. Work Done along Linear Path D &rarr; E ($W_{DE}$):</b><br>
+    The work done during expansion from D to E is the area of the trapezium under curve DE down to the volume axis:<br>
+    $$W_{DE} = \\text{Area of trapezium under DE} = \\frac{1}{2} (P_D + P_E) \\times (V_E - V_D)$$<br>
+    $$W_{DE} = \\frac{1}{2} (600 + 300) \\times (5.0 - 2.0) = \\frac{1}{2} \\times 900 \\times 3.0 = 450 \\times 3.0 = \\mathbf{+1350\\text{ J}}$$<br><br>
+    <b>2. Work Done along Isobaric Compression Path E &rarr; F ($W_{EF}$):</b><br>
+    Pressure is constant at $P = 300\\text{ N m}^{-2}$ while volume decreases from $5.0\\text{ m}^3$ to $2.0\\text{ m}^3$:<br>
+    $$W_{EF} = P_E (V_F - V_E) = 300 \\times (2.0 - 5.0) = 300 \\times (-3.0) = \\mathbf{-900\\text{ J}}$$<br><br>
+    <b>3. Total Work Done from D to E to F ($W_{total}$):</b><br>
+    $$W_{total} = W_{DE} + W_{EF} = +1350\\text{ J} + (-900\\text{ J}) = \\mathbf{+450\\text{ J}}$$<br><br>
+    <i>Geometrical Check:</i><br>
+    Net work equals the enclosed triangular area of $\\Delta DEF$:<br>
+    $$\\text{Area of } \\Delta DEF = \\frac{1}{2} \\times \\text{base} \\times \\text{height} = \\frac{1}{2} \\times (5.0 - 2.0) \\times (600 - 300) = \\frac{1}{2} \\times 3.0 \\times 300 = \\mathbf{450\\text{ J}}.$$<br><br>
+    $$\\mathbf{\\text{The total work done by the gas from D to E to F is } 450\\text{ Joules}.}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Work along path DE as area under curve: $W_{DE} = +1350\\text{ J}$', '1.5 Marks'],
+    ['Work along isobaric path EF: $W_{EF} = -900\\text{ J}$', '1 Mark'],
+    ['Net work calculation $W_{total} = W_{DE} + W_{EF} = +450\\text{ J}$ (verified as area of triangle)', '1.5 Marks']
+  ]
+));
+
+// Question 11.10
+questions.push(createQCard(
+  'c11p-ch11-q10', 'Question 11.10', 'NCERT Exercise',
+  'A refrigerator is to maintain eatables kept inside at $9^\\circ\\text{C}$. If room temperature is $36^\\circ\\text{C}$, calculate the coefficient of performance.',
+  `<div class="step">
+    Given:<br>
+    • Temperature of cold reservoir (inside refrigerator) $T_2 = 9^\\circ\\text{C} = 9 + 273.15 = \\mathbf{282.15\\text{ K}}$<br>
+    • Temperature of hot reservoir (surrounding room) $T_1 = 36^\\circ\\text{C} = 36 + 273.15 = \\mathbf{309.15\\text{ K}}$<br><br>
+    <b>Coefficient of Performance of an Ideal Refrigerator ($\\alpha$ or COP):</b><br>
+    $$\\alpha = \\frac{Q_2}{W} = \\frac{T_2}{T_1 - T_2}$$<br><br>
+    <b>Calculating COP:</b><br>
+    $$T_1 - T_2 = 309.15 - 282.15 = 27.0\\text{ K}$$<br>
+    $$\\alpha = \\frac{282.15}{27.0} = \\mathbf{10.45} \\approx \\mathbf{10.5}$$<br><br>
+    $$\\mathbf{\\text{The coefficient of performance of the refrigerator is approximately } 10.5.}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Conversion of temperatures to Kelvin: $T_2 = 282.15\\text{ K}, T_1 = 309.15\\text{ K}$', '1 Mark'],
+    ['Coefficient of performance formula $\\alpha = T_2 / (T_1 - T_2)$', '1 Mark'],
+    ['Evaluation of COP $= 10.45 \\approx 10.5$', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// VECTOR SVG DIAGRAM FOR CHAPTER 11 (Thermodynamic Cycles & Heat Engines)
+// ============================================================================
+const thermoSvg = `
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Thermodynamics: P-V Cyclic Indicator Diagrams &amp; Heat Engine / Refrigerator Architecture
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: P-V Indicator Cyclic Diagram -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. P-V Indicator Diagram &amp; Net Cyclic Work:</text>
+
+      <!-- Axes -->
+      <line x1="55" y1="180" x2="360" y2="180" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="55" y1="180" x2="55" y2="45" stroke="#64748b" stroke-width="1.5"/>
+      <text x="330" y="198" font-size="9" fill="#64748b">Volume (V) &rarr;</text>
+      <text x="20" y="52" font-size="9" fill="#64748b">Pressure (P)</text>
+
+      <!-- Cycle loop D-E-F -->
+      <polygon points="100,75 290,140 100,140" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+
+      <!-- Vertices -->
+      <circle cx="100" cy="75" r="4" fill="#7c3aed"/>
+      <text x="85" y="70" font-size="9.5" font-weight="bold" fill="#7c3aed">D</text>
+
+      <circle cx="290" cy="140" r="4" fill="#7c3aed"/>
+      <text x="300" y="145" font-size="9.5" font-weight="bold" fill="#7c3aed">E</text>
+
+      <circle cx="100" cy="140" r="4" fill="#7c3aed"/>
+      <text x="85" y="150" font-size="9.5" font-weight="bold" fill="#7c3aed">F</text>
+
+      <!-- Arrow clockwise -->
+      <polygon points="195,108 205,102 205,114" fill="#7c3aed"/>
+      <polygon points="195,140 185,136 185,144" fill="#7c3aed"/>
+      <polygon points="100,105 96,115 104,115" fill="#7c3aed"/>
+
+      <text x="135" y="125" font-size="9" font-weight="bold" fill="#5b21b6">W_net = Enclosed Area</text>
+
+      <!-- Panel 2: Heat Engine / Refrigerator Energy Flow -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Thermodynamic Engine &amp; Refrigerator Laws:</text>
+
+      <!-- Hot Reservoir T_1 -->
+      <rect x="445" y="52" width="120" height="30" rx="4" fill="#fee2e2" stroke="#ef4444"/>
+      <text x="460" y="71" font-size="9" font-weight="bold" fill="#b91c1c">Hot Source (T_1)</text>
+
+      <!-- Engine circle -->
+      <circle cx="505" cy="125" r="22" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+      <text x="488" y="129" font-size="9" font-weight="bold" fill="#5b21b6">Engine</text>
+
+      <!-- Cold Reservoir T_2 -->
+      <rect x="445" y="165" width="120" height="30" rx="4" fill="#e0f2fe" stroke="#0284c7"/>
+      <text x="460" y="184" font-size="9" font-weight="bold" fill="#0369a1">Cold Sink (T_2)</text>
+
+      <!-- Q_1 down to Engine -->
+      <line x1="505" y1="82" x2="505" y2="103" stroke="#ef4444" stroke-width="2"/>
+      <polygon points="505,103 501,95 509,95" fill="#ef4444"/>
+      <text x="512" y="95" font-size="8.5" font-weight="bold" fill="#ef4444">Q_1</text>
+
+      <!-- Q_2 down to Sink -->
+      <line x1="505" y1="147" x2="505" y2="165" stroke="#0284c7" stroke-width="2"/>
+      <polygon points="505,165 501,157 509,157" fill="#0284c7"/>
+      <text x="512" y="160" font-size="8.5" font-weight="bold" fill="#0284c7">Q_2</text>
+
+      <!-- Work output right -->
+      <line x1="527" y1="125" x2="565" y2="125" stroke="#059669" stroke-width="2"/>
+      <polygon points="565,125 555,121 555,129" fill="#059669"/>
+      <text x="532" y="118" font-size="8.5" font-weight="bold" fill="#059669">W = Q_1 - Q_2</text>
+
+      <!-- Formulas Summary Box -->
+      <rect x="585" y="52" width="165" height="143" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="593" y="70" font-size="9" font-weight="bold" fill="#5b21b6">Fundamental Laws:</text>
+      <text x="593" y="88" font-size="8.5" fill="#334155">&bull; 1st Law: &Delta;Q = &Delta;U + W</text>
+      <text x="593" y="106" font-size="8.5" fill="#334155">&bull; Work: W = &int; P dV</text>
+      <text x="593" y="124" font-size="8.5" fill="#047857">&bull; Efficiency: &eta; = W / Q_1</text>
+      <text x="593" y="142" font-size="8.5" fill="#047857">&bull; &eta;_Carnot = 1 - T_2/T_1</text>
+      <text x="593" y="160" font-size="8.5" fill="#b91c1c">&bull; Refrigerator: &alpha; = Q_2/W</text>
+      <text x="593" y="178" font-size="8.5" fill="#334155">&bull; Adiabatic: PV&sup3; = const</text>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH11.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11p-ch11">
+  <div class="chapter-header">
+    <div class="ch-badge">11</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 11</div>
+      <h2>Thermodynamics</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 10 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  ${thermoSvg}
+
+  <div class="ex-div">NCERT Textbook Exercise 11.1 to 11.10: First Law of Thermodynamics, Specific Heat Capacities, Isothermal &amp; Adiabatic Processes, Heat Engines &amp; Refrigerators</div>
+${questions.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(10)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 10 (Thermal Properties)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(12)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 12 (Kinetic Theory) →</button>
+  </div>
+</section>
+`;
+
+// Write ch11.html
+const ch11Path = path.join(outDir, 'ch11.html');
+fs.writeFileSync(ch11Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch11Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[11]
+if (!existingData.includes('window.CHAPTER_DATA[11] =')) {
+  fs.appendFileSync(dataJsPath, `\nwindow.CHAPTER_DATA[11] = ${JSON.stringify(chapterHtml.trim())};\n`, 'utf8');
+  console.log(`Appended Chapter 11 to preloaded cache: ${dataJsPath}`);
+} else {
+  const regex = /window\.CHAPTER_DATA\[11\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[11] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 11 in preloaded cache: ${dataJsPath}`);
+}
