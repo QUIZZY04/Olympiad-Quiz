@@ -1,0 +1,704 @@
+// scripts/builders/gen-c11p-ch14.js
+// Complete, verbatim NCERT generator for Class 11 Physics Chapter 14: Waves (All 19 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11p');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const questions = [];
+
+// ============================================================================
+// CHAPTER 14: WAVES (Questions 14.1 to 14.19)
+// ============================================================================
+
+// Question 14.1
+questions.push(createQCard(
+  'c11p-ch14-q1', 'Question 14.1', 'NCERT Exercise',
+  'A string of mass $2.50\\text{ kg}$ is under a tension of $200\\text{ N}$. The length of the stretched string is $20.0\\text{ m}$. If the transverse jerk is struck at one end of the string, how long does the disturbance take to reach the other end?',
+  `<div class="step">
+    Given Data:<br>
+    • Mass of string $M = 2.50\\text{ kg}$<br>
+    • Length of string $L = 20.0\\text{ m}$<br>
+    • Tension in string $T = 200\\text{ N}$<br><br>
+    <b>1. Linear Mass Density ($\\mu$):</b><br>
+    $$\\mu = \\frac{M}{L} = \\frac{2.50\\text{ kg}}{20.0\\text{ m}} = \\mathbf{0.125\\text{ kg m}^{-1}}$$<br><br>
+    <b>2. Speed of Transverse Wave ($v$):</b><br>
+    $$v = \\sqrt{\\frac{T}{\\mu}} = \\sqrt{\\frac{200\\text{ N}}{0.125\\text{ kg m}^{-1}}} = \\sqrt{1600} = \\mathbf{40\\text{ m s}^{-1}}$$<br><br>
+    <b>3. Time taken by the disturbance to reach the other end ($t$):</b><br>
+    $$t = \\frac{L}{v} = \\frac{20.0\\text{ m}}{40\\text{ m s}^{-1}} = \\mathbf{0.50\\text{ s}}$$<br><br>
+    $$\\mathbf{\\text{The disturbance takes } 0.50\\text{ seconds to reach the other end.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Calculation of linear mass density $\\mu = 0.125\\text{ kg/m}$ and speed $v = 40\\text{ m/s}$', '1 Mark'],
+    ['Evaluation of travel time $t = L/v = 0.50\\text{ s}$', '1 Mark']
+  ]
+));
+
+// Question 14.2
+questions.push(createQCard(
+  'c11p-ch14-q2', 'Question 14.2', 'NCERT Exercise',
+  'A stone dropped from the top of a tower of height $300\\text{ m}$ splashes into the water of a pond near the base of the tower. When is the splash heard at the top? Given that the speed of sound in air is $340\\text{ m s}^{-1}$ ($g = 9.8\\text{ m s}^{-2}$).',
+  `<div class="step">
+    Given Data:<br>
+    • Height of tower $h = 300\\text{ m}$<br>
+    • Speed of sound in air $v = 340\\text{ m s}^{-1}$<br>
+    • Acceleration due to gravity $g = 9.8\\text{ m s}^{-2}$<br>
+    • Initial velocity of stone $u = 0$<br><br>
+    <b>1. Time taken by the stone to fall into the pond ($t_1$):</b><br>
+    From kinematics: $h = ut_1 + \\frac{1}{2}gt_1^2 = 0 + \\frac{1}{2}(9.8)t_1^2 = 4.9 t_1^2$<br>
+    $$t_1 = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\times 300}{9.8}} = \\sqrt{\\frac{600}{9.8}} = \\sqrt{61.224} = \\mathbf{7.825\\text{ s}}$$<br><br>
+    <b>2. Time taken by the sound of the splash to travel back up to the top ($t_2$):</b><br>
+    $$t_2 = \\frac{h}{v} = \\frac{300\\text{ m}}{340\\text{ m s}^{-1}} = \\mathbf{0.882\\text{ s}}$$<br><br>
+    <b>3. Total time after which the splash is heard ($T_{\\text{total}}$):</b><br>
+    $$T_{\\text{total}} = t_1 + t_2 = 7.825\\text{ s} + 0.882\\text{ s} = \\mathbf{8.707\\text{ s} \\approx 8.71\\text{ s} \\approx 8.7\\text{ s}}$$<br><br>
+    $$\\mathbf{\\text{The splash is heard at the top after approximately } 8.71\\text{ seconds (or } 8.7\\text{ s}\\text{).}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Calculation of free-fall time $t_1 = \\sqrt{2h/g} = 7.825\\text{ s}$', '1 Mark'],
+    ['Calculation of sound ascent time $t_2 = h/v = 0.882\\text{ s}$', '1 Mark'],
+    ['Evaluating total time $T = t_1 + t_2 = 8.71\\text{ s}$', '1 Mark']
+  ]
+));
+
+// Question 14.3
+questions.push(createQCard(
+  'c11p-ch14-q3', 'Question 14.3', 'NCERT Exercise',
+  'A steel wire has a length of $12.0\\text{ m}$ and a mass of $2.10\\text{ kg}$. What should be the tension in the wire so that speed of a transverse wave on the wire equals the speed of sound in dry air at $20^\\circ\\text{C} = 343\\text{ m s}^{-1}$?',
+  `<div class="step">
+    Given Data:<br>
+    • Length of steel wire $L = 12.0\\text{ m}$<br>
+    • Mass of steel wire $M = 2.10\\text{ kg}$<br>
+    • Required transverse wave speed $v = 343\\text{ m s}^{-1}$<br><br>
+    <b>1. Linear Mass Density of the wire ($\\mu$):</b><br>
+    $$\\mu = \\frac{M}{L} = \\frac{2.10\\text{ kg}}{12.0\\text{ m}} = \\mathbf{0.175\\text{ kg m}^{-1}}$$<br><br>
+    <b>2. Required Tension ($T$):</b><br>
+    From the wave speed formula: $v = \\sqrt{\\frac{T}{\\mu}} \\implies v^2 = \\frac{T}{\\mu} \\implies T = \\mu v^2$<br><br>
+    $$T = (0.175\\text{ kg m}^{-1}) \\times (343\\text{ m s}^{-1})^2$$<br>
+    $$T = 0.175 \\times 117649 = \\mathbf{20588.58\\text{ N} \\approx 2.06 \\times 10^4\\text{ N}}$$<br><br>
+    $$\\mathbf{\\text{The required tension in the wire is approximately } 2.06 \\times 10^4\\text{ N.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Evaluating linear density $\\mu = 0.175\\text{ kg/m}$', '1 Mark'],
+    ['Evaluating tension $T = \\mu v^2 = 2.06 \\times 10^4\\text{ N}$', '1 Mark']
+  ]
+));
+
+// Question 14.4
+questions.push(createQCard(
+  'c11p-ch14-q4', 'Question 14.4', 'NCERT Exercise',
+  'Use the formula $v = \\sqrt{\\frac{\\gamma P}{\\rho}}$ to explain why the speed of sound in air:<br>(a) is independent of pressure,<br>(b) increases with temperature,<br>(c) increases with humidity.',
+  `<div class="step">
+    Laplace's formula for the speed of sound in an ideal gas is:<br>
+    $$v = \\sqrt{\\frac{\\gamma P}{\\rho}}$$<br>
+    where $\\gamma = C_p/C_v$ is the adiabatic index, $P$ is pressure, and $\\rho$ is density.<br><br>
+    <b>(a) Independence of Pressure:</b><br>
+    From the ideal gas equation: $PV = nRT = \\frac{m}{M}RT \\implies P = \\frac{\\rho}{M}RT \\implies \\frac{P}{\\rho} = \\frac{RT}{M}$.<br>
+    Substitute into Laplace's formula:<br>
+    $$v = \\sqrt{\\frac{\\gamma R T}{M}}$$<br>
+    At a constant temperature $T$, if pressure $P$ increases, the gas is compressed proportionally so that density $\\rho$ increases by the exact same factor (Boyle’s Law: $P/\\rho = \\text{constant}$). Therefore, the ratio $P/\\rho$ remains unchanged, making the **speed of sound completely independent of pressure** at constant temperature.<br><br>
+    <b>(b) Dependence on Temperature:</b><br>
+    From $v = \\sqrt{\\frac{\\gamma R T}{M}}$, we observe:<br>
+    $$v \\propto \\sqrt{T}$$<br>
+    The speed of sound is directly proportional to the square root of the absolute temperature ($T$ in Kelvin). As temperature rises, molecular thermal velocity increases, causing acoustic pressure disturbances to propagate faster.<br><br>
+    <b>(c) Dependence on Humidity:</b><br>
+    Molar mass of dry air ($M_{\\text{dry}} \\approx 29\\text{ g mol}^{-1}$) is greater than the molar mass of water vapour ($M_{\\text{vapour}} = 18\\text{ g mol}^{-1}$).<br>
+    When air becomes humid, low-density water vapour molecules displace heavier nitrogen ($N_2 = 28$) and oxygen ($O_2 = 32$) molecules.<br>
+    Consequently, the density of moist air ($\\rho_{\\text{moist}}$) is **less than** the density of dry air ($\\rho_{\\text{dry}}$) at the same temperature and pressure:<br>
+    $$\\rho_{\\text{moist}} < \\rho_{\\text{dry}}$$<br>
+    Since $v = \\sqrt{\\frac{\\gamma P}{\\rho}} \\implies v \\propto \\frac{1}{\\sqrt{\\rho}}$, **the speed of sound in moist air is greater than in dry air** ($v_{\\text{moist}} > v_{\\text{dry}}$). Hence, sound travels faster in humid air.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Proof of pressure independence via $P/\\rho = RT/M = \\text{const}$', '1 Mark'],
+    ['(b) Proof of temperature dependence $v \\propto \\sqrt{T}$', '1 Mark'],
+    ['(c) Humidity explanation: $\\rho_{\\text{moist}} < \\rho_{\\text{dry}} \\implies v_{\\text{moist}} > v_{\\text{dry}}$', '1 Mark']
+  ]
+));
+
+// Question 14.5
+questions.push(createQCard(
+  'c11p-ch14-q5', 'Question 14.5', 'NCERT Exercise',
+  'You have learnt that a travelling wave in one dimension is represented by a function $y = f(x, t)$ where $x$ and $t$ must appear in the combination $x - vt$ or $x + vt$, i.e. $y = f(x \\pm vt)$. Is the converse true? Examine if the following functions for $y$ can possibly represent a travelling wave:<br>(a) $(x - vt)^2$<br>(b) $\\log\\left[\\frac{x + vt}{x_0}\\right]$<br>(c) $\\frac{1}{x + vt}$',
+  `<div class="step">
+    <b>Analysis of the Converse Statement:</b><br>
+    <b>No, the converse is NOT true.</b> Every travelling wave must have the form $y = f(x \\pm vt)$, but NOT every function of the form $f(x \\pm vt)$ represents a physical travelling wave.<br><br>
+    <b>Physical Criterion for a Wave Function:</b><br>
+    A mathematical function can represent a real, physical wave **if and only if it remains finite, single-valued, and bounded for all values of position $x$ and time $t$**. If a function diverges to $\\pm \\infty$ at any point or at infinity, it cannot represent a physically realizable wave because displacement and energy cannot become infinite.<br><br>
+    <b>(a) $y = (x - vt)^2$:</b><br>
+    • As $x \\to \\infty$ or $t \\to \\infty$, $y \\to \\infty$.<br>
+    • The function is unbounded.<br>
+    • **Cannot represent a travelling wave.**<br><br>
+    <b>(b) $y = \\log\\left[\\frac{x + vt}{x_0}\\right]$:</b><br>
+    • At $x + vt = 0$, $y \\to -\\infty$; and as $x + vt \\to \\infty$, $y \\to +\\infty$.<br>
+    • The function is unbounded.<br>
+    • **Cannot represent a travelling wave.**<br><br>
+    <b>(c) $y = \\frac{1}{x + vt}$:</b><br>
+    • At $x + vt = 0$ (i.e. $x = -vt$), the denominator vanishes and $y \\to \\infty$.<br>
+    • The function blows up to infinity at the wavefront.<br>
+    • **Cannot represent a travelling wave.**<br><br>
+    $$\\mathbf{\\text{Conclusion: Converse is false. None of the three functions represent a travelling wave because all are unbounded.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Explanation of boundedness condition for physical wave functions', '1 Mark'],
+    ['Evaluation of (a) and (b) showing divergence as $x, t \\to \\infty$', '1 Mark'],
+    ['Evaluation of (c) showing singular divergence at $x = -vt$', '1 Mark']
+  ]
+));
+
+// Question 14.6
+questions.push(createQCard(
+  'c11p-ch14-q6', 'Question 14.6', 'NCERT Exercise',
+  'A bat emits ultrasonic sound of frequency $1000\\text{ kHz}$ in air. If the sound meets a water surface, what is the wavelength of (a) the reflected sound, (b) the transmitted sound? Speed of sound in air is $340\\text{ m s}^{-1}$ and in water $1486\\text{ m s}^{-1}$.',
+  `<div class="step">
+    Given Data:<br>
+    • Frequency of ultrasonic sound $\\nu = 1000\\text{ kHz} = 10^6\\text{ Hz}$ (constant across reflection and refraction)<br>
+    • Speed of sound in air $v_{\\text{air}} = 340\\text{ m s}^{-1}$<br>
+    • Speed of sound in water $v_{\\text{water}} = 1486\\text{ m s}^{-1}$<br><br>
+    <b>Fundamental Principle:</b><br>
+    Frequency is a characteristic of the source and remains **strictly invariant** when a wave enters a new medium or reflects. However, wave speed and wavelength change in proportion: $\\lambda = v/\\nu$.<br><br>
+    <b>(a) Wavelength of the reflected sound (in air):</b><br>
+    The reflected sound propagates back into air with speed $v_{\\text{air}} = 340\\text{ m s}^{-1}$:<br>
+    $$\\lambda_r = \\frac{v_{\\text{air}}}{\\nu} = \\frac{340\\text{ m s}^{-1}}{10^6\\text{ Hz}} = \\mathbf{3.4 \\times 10^{-4}\\text{ m} = 0.34\\text{ mm}}$$<br><br>
+    <b>(b) Wavelength of the transmitted sound (in water):</b><br>
+    The transmitted sound propagates into water with speed $v_{\\text{water}} = 1486\\text{ m s}^{-1}$:<br>
+    $$\\lambda_t = \\frac{v_{\\text{water}}}{\\nu} = \\frac{1486\\text{ m s}^{-1}}{10^6\\text{ Hz}} = \\mathbf{1.486 \\times 10^{-3}\\text{ m} = 1.49\\text{ mm}}$$<br><br>
+    $$\\mathbf{\\text{Summary: } (a)\\; \\lambda_{\\text{reflected}} = 0.34\\text{ mm},\\; (b)\\; \\lambda_{\\text{transmitted}} = 1.49\\text{ mm.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['(a) Reflected wavelength in air: $\\lambda_r = 3.4 \\times 10^{-4}\\text{ m} = 0.34\\text{ mm}$', '1 Mark'],
+    ['(b) Transmitted wavelength in water: $\\lambda_t = 1.486 \\times 10^{-3}\\text{ m} = 1.49\\text{ mm}$', '1 Mark']
+  ]
+));
+
+// Question 14.7
+questions.push(createQCard(
+  'c11p-ch14-q7', 'Question 14.7', 'NCERT Exercise',
+  'A hospital uses an ultrasonic scanner to locate tumours in a tissue. What is the wavelength of sound in the tissue in which the speed of sound is $1.7\\text{ km s}^{-1}$? The operating frequency of the scanner is $4.2\\text{ MHz}$.',
+  `<div class="step">
+    Given Data:<br>
+    • Operating frequency $\\nu = 4.2\\text{ MHz} = 4.2 \\times 10^6\\text{ Hz}$<br>
+    • Speed of ultrasound in human tissue $v = 1.7\\text{ km s}^{-1} = 1.7 \\times 10^3\\text{ m s}^{-1} = 1700\\text{ m s}^{-1}$<br><br>
+    <b>Wavelength Formula:</b><br>
+    $$\\lambda = \\frac{v}{\\nu}$$<br><br>
+    <b>Calculation:</b><br>
+    $$\\lambda = \\frac{1.7 \\times 10^3\\text{ m s}^{-1}}{4.2 \\times 10^6\\text{ s}^{-1}} = \\frac{1.7}{4.2} \\times 10^{-3}\\text{ m} \\approx \\mathbf{4.048 \\times 10^{-4}\\text{ m} \\approx 0.405\\text{ mm}}$$<br><br>
+    $$\\mathbf{\\text{The wavelength of sound in the tissue is approximately } 0.405\\text{ mm (or } 4.05 \\times 10^{-4}\\text{ m}\\text{).}}$$
+    <i>Medical Context: High operating frequencies in the MHz range yield sub-millimetre wavelengths, enabling the scanner to resolve fine anatomical structures and micro-tumours.</i>
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula $\\lambda = v/\\nu$ with SI unit conversions', '1 Mark'],
+    ['Evaluation $\\lambda = 4.05 \\times 10^{-4}\\text{ m} = 0.405\\text{ mm}$', '1 Mark']
+  ]
+));
+
+// Question 14.8
+questions.push(createQCard(
+  'c11p-ch14-q8', 'Question 14.8', 'NCERT Exercise',
+  'A transverse harmonic wave on a string is described by $y(x, t) = 3.0 \\sin(36 t + 0.018 x + \\pi/4)$ where $x$ and $y$ are in $\\text{cm}$ and $t$ in $\\text{s}$. The positive direction of $x$ is from left to right.<br>(a) Is this a travelling wave or a stationary wave? If it is travelling, what are the speed and direction of its propagation?<br>(b) What are its amplitude and frequency?<br>(c) What is the initial phase at the origin?<br>(d) What is the least distance between two successive crests in the wave?',
+  `<div class="step">
+    The given wave equation is:<br>
+    $$y(x, t) = 3.0 \\sin\\left(36 t + 0.018 x + \\frac{\\pi}{4}\\right)$$<br>
+    Compare with the standard harmonic travelling wave equation: $y(x, t) = a \\sin(\\omega t + k x + \\phi)$.<br><br>
+    <b>(a) Nature, speed, and direction of propagation:</b><br>
+    • It is a <b>travelling (progressive) wave</b>.<br>
+    • Since the terms $\\omega t$ and $kx$ have the <b>same sign</b> ($+$), the wave travels along the <b>negative $x$-direction (from right to left)</b>.<br>
+    • Speed of wave: $v = \\frac{\\omega}{k} = \\frac{36\\text{ rad s}^{-1}}{0.018\\text{ rad cm}^{-1}} = \\mathbf{2000\\text{ cm s}^{-1} = 20\\text{ m s}^{-1}}$.<br><br>
+    <b>(b) Amplitude and Frequency:</b><br>
+    • Amplitude: $\\mathbf{a = 3.0\\text{ cm} = 0.03\\text{ m}}$.<br>
+    • Angular frequency: $\\omega = 36\\text{ rad s}^{-1} \\implies \\nu = \\frac{\\omega}{2\\pi} = \\frac{36}{2 \\times 3.1416} = \\mathbf{5.73\\text{ Hz}}$.<br><br>
+    <b>(c) Initial Phase at the origin ($x = 0, t = 0$):</b><br>
+    $$\\mathbf{\\phi = \\frac{\\pi}{4}\\text{ rad} = 45^\\circ}$$<br><br>
+    <b>(d) Least distance between two successive crests (Wavelength $\\lambda$):</b><br>
+    The distance between two successive crests is the wavelength $\\lambda$:<br>
+    $$k = \\frac{2\\pi}{\\lambda} \\implies \\lambda = \\frac{2\\pi}{k} = \\frac{2 \\times 3.1416}{0.018\\text{ cm}^{-1}} = \\frac{6.2832}{0.018} = \\mathbf{349.07\\text{ cm} \\approx 3.49\\text{ m}}$$<br><br>
+    $$\\mathbf{\\text{Summary: } (a)\\; v = 20\\text{ m/s (right to left)},\\; (b)\\; a = 3\\text{ cm}, \\nu = 5.73\\text{ Hz},\\; (c)\\; \\phi = \\pi/4,\\; (d)\\; \\lambda = 3.49\\text{ m.}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Travelling nature, right-to-left direction, and speed $v = 20\\text{ m/s}$', '1 Mark'],
+    ['(b) Amplitude $a = 3.0\\text{ cm}$ and frequency $\\nu = 5.73\\text{ Hz}$', '1 Mark'],
+    ['(c) Initial phase $\\phi = \\pi/4\\text{ rad}$', '1 Mark'],
+    ['(d) Wavelength $\\lambda = 2\\pi/k = 349\\text{ cm} = 3.49\\text{ m}$', '1 Mark']
+  ]
+));
+
+// Question 14.9
+questions.push(createQCard(
+  'c11p-ch14-q9', 'Question 14.9', 'NCERT Exercise',
+  'For the wave described in Exercise 14.8, plot the displacement ($y$) versus ($t$) graphs for $x = 0, 2$ and $4\\text{ cm}$. What are the shapes of these graphs? In which aspects do the oscillatory motion in travelling wave differ from one point to another: amplitude, frequency or phase?',
+  `<div class="step">
+    From Exercise 14.8: $y(x, t) = 3.0 \\sin(36 t + 0.018 x + \\pi/4)$ (cm, s).<br><br>
+    <b>1. Substitution for specific values of $x$:</b><br>
+    • For $x = 0$: $y(0, t) = 3.0 \\sin(36 t + \\pi/4) = 3.0 \\sin(36 t + 0.785)$<br>
+    • For $x = 2\\text{ cm}$: $y(2, t) = 3.0 \\sin(36 t + 0.036 + \\pi/4) = 3.0 \\sin(36 t + 0.821)$<br>
+    • For $x = 4\\text{ cm}$: $y(4, t) = 3.0 \\sin(36 t + 0.072 + \\pi/4) = 3.0 \\sin(36 t + 0.857)$<br><br>
+    <b>2. Shape of the graphs:</b><br>
+    All three plots are identical <b>sinusoidal (harmonic) wave curves</b> having:<br>
+    • Same Amplitude: $a = 3.0\\text{ cm}$<br>
+    • Same Time Period: $T = \\frac{2\\pi}{\\omega} = \\frac{2\\pi}{36} = \\frac{\\pi}{18}\\text{ s} \\approx 0.175\\text{ s}$ (same frequency $\\nu = 5.73\\text{ Hz}$)<br><br>
+    <b>3. Differences between the motions:</b><br>
+    • <b>Amplitude:</b> Identical ($3.0\\text{ cm}$) for all points along the string.<br>
+    • <b>Frequency:</b> Identical ($5.73\\text{ Hz}$) for all points along the string.<br>
+    • <b>Phase:</b> <b>Differs from one point to another.</b> The phase difference between two points separated by $\\Delta x$ is:<br>
+    $$\\Delta \\phi = k \\,\\Delta x = 0.018 \\,\\Delta x\\text{ rad}$$<br>
+    Points further along the string lead or lag in phase due to finite wave propagation speed.<br><br>
+    $$\\mathbf{\\text{Conclusion: In a progressive wave, all particles oscillate with the same amplitude and frequency, differing ONLY in phase.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Mathematical expressions for $y(t)$ at $x = 0, 2, 4\\text{ cm}$', '1 Mark'],
+    ['Deducing that amplitude and frequency are invariant while phase differs by $k\\Delta x$', '1 Mark']
+  ]
+));
+
+// Question 14.10
+questions.push(createQCard(
+  'c11p-ch14-q10', 'Question 14.10', 'NCERT Exercise',
+  'For the travelling harmonic wave $y(x, t) = 2.0 \\cos 2\\pi (10t - 0.0080 x + 0.35)$ where $x$ and $y$ are in $\\text{cm}$ and $t$ in $\\text{s}$. Calculate the phase difference between oscillatory motion of two points separated by a distance of:<br>(a) $4\\text{ m}$,<br>(b) $0.5\\text{ m}$,<br>(c) $\\lambda/2$,<br>(d) $3\\lambda/4$.',
+  `<div class="step">
+    Given wave equation:<br>
+    $$y(x, t) = 2.0 \\cos[2\\pi(10t - 0.0080x + 0.35)] = 2.0 \\cos(20\\pi t - 0.016\\pi x + 0.70\\pi)$$<br>
+    • Propagation constant: $k = 2\\pi \\times 0.0080 = 0.016\\pi\\text{ rad cm}^{-1} = 1.6\\pi\\text{ rad m}^{-1}$.<br>
+    • Wavelength: $\\lambda = \\frac{2\\pi}{k} = \\frac{2\\pi}{2\\pi \\times 0.0080} = \\frac{1}{0.0080}\\text{ cm} = 125\\text{ cm} = 1.25\\text{ m}$.<br><br>
+    <b>Phase Difference Formula:</b><br>
+    $$\\Delta \\phi = k \\,\\Delta x = \\frac{2\\pi}{\\lambda} \\,\\Delta x$$<br><br>
+    <b>(a) For $\\Delta x = 4\\text{ m} = 400\\text{ cm}$:</b><br>
+    $$\\Delta \\phi = (0.016\\pi\\text{ cm}^{-1}) \\times 400\\text{ cm} = 6.4\\pi\\text{ rad} = 6\\pi + 0.4\\pi \\equiv \\mathbf{0.4\\pi\\text{ rad} \\approx 1.257\\text{ rad} = 72^\\circ}$$<br><br>
+    <b>(b) For $\\Delta x = 0.5\\text{ m} = 50\\text{ cm}$:</b><br>
+    $$\\Delta \\phi = (0.016\\pi\\text{ cm}^{-1}) \\times 50\\text{ cm} = \\mathbf{0.8\\pi\\text{ rad} \\approx 2.513\\text{ rad} = 144^\\circ}$$<br><br>
+    <b>(c) For $\\Delta x = \\lambda/2$:</b><br>
+    $$\\Delta \\phi = \\frac{2\\pi}{\\lambda} \\times \\frac{\\lambda}{2} = \\mathbf{\\pi\\text{ rad} = 180^\\circ \\quad \\text{(Out of phase)}}$$<br><br>
+    <b>(d) For $\\Delta x = 3\\lambda/4$:</b><br>
+    $$\\Delta \\phi = \\frac{2\\pi}{\\lambda} \\times \\frac{3\\lambda}{4} = \\mathbf{\\frac{3\\pi}{2}\\text{ rad} = 270^\\circ}$$<br><br>
+    $$\\mathbf{\\text{Summary: } (a)\\; 6.4\\pi\\text{ rad},\\; (b)\\; 0.8\\pi\\text{ rad},\\; (c)\\; \\pi\\text{ rad},\\; (d)\\; 1.5\\pi\\text{ rad.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Determining propagation constant $k = 0.016\\pi\\text{ cm}^{-1}$ or $\\lambda = 1.25\\text{ m}$', '1 Mark'],
+    ['Evaluating phase difference for (a) $6.4\\pi\\text{ rad}$ and (b) $0.8\\pi\\text{ rad}$', '1 Mark'],
+    ['Evaluating phase difference for (c) $\\pi\\text{ rad}$ and (d) $1.5\\pi\\text{ rad}$', '1 Mark']
+  ]
+));
+
+// Question 14.11
+questions.push(createQCard(
+  'c11p-ch14-q11', 'Question 14.11', 'NCERT Exercise',
+  'The transverse displacement of a string (clamped at its both ends) is given by $y(x, t) = 0.06 \\sin\\left(\\frac{2\\pi}{3} x\\right) \\cos(120\\pi t)$ where $x$ and $y$ are in $\\text{m}$ and $t$ in $\\text{s}$. The length of the string is $1.5\\text{ m}$ and its mass is $3.0 \\times 10^{-2}\\text{ kg}$.<br>(a) Does the function represent a travelling wave or a stationary wave?<br>(b) Interpret the wave as a superposition of two waves travelling in opposite directions. What are the wavelength, frequency, and speed of each wave?<br>(c) Determine the tension in the string.',
+  `<div class="step">
+    Given: $y(x, t) = 0.06 \\sin\\left(\\frac{2\\pi}{3} x\\right) \\cos(120\\pi t)$ (m, s), $L = 1.5\\text{ m}$, $M = 3.0 \\times 10^{-2}\\text{ kg}$.<br><br>
+    <b>(a) Nature of the wave:</b><br>
+    • The spatial dependence ($x$) and temporal dependence ($t$) appear in separate trigonometric factors $\\sin(kx)$ and $\\cos(\\omega t)$.<br>
+    • Therefore, this function represents a <b>stationary (standing) wave</b>.<br><br>
+    <b>(b) Superposition Interpretation:</b><br>
+    Using the identity $2\\sin A \\cos B = \\sin(A + B) + \\sin(A - B)$:<br>
+    $$y(x, t) = 0.03 \\left[\\sin\\left(\\frac{2\\pi}{3} x + 120\\pi t\\right) + \\sin\\left(\\frac{2\\pi}{3} x - 120\\pi t\\right)\\right]$$<br>
+    This is the superposition of two identical travelling waves moving in opposite directions ($+x$ and $-x$):<br>
+    • Propagation constant $k = \\frac{2\\pi}{3}\\text{ rad m}^{-1} \\implies \\lambda = \\frac{2\\pi}{k} = \\frac{2\\pi}{2\\pi/3} = \\mathbf{3.0\\text{ m}}$<br>
+    • Angular frequency $\\omega = 120\\pi\\text{ rad s}^{-1} \\implies \\nu = \\frac{\\omega}{2\\pi} = \\frac{120\\pi}{2\\pi} = \\mathbf{60\\text{ Hz}}$<br>
+    • Speed of each wave: $v = \\nu \\lambda = 60\\text{ s}^{-1} \\times 3.0\\text{ m} = \\mathbf{180\\text{ m s}^{-1}}$ (or $v = \\omega/k = 120\\pi / (2\\pi/3) = 180\\text{ m/s}$)<br><br>
+    <b>(c) Tension in the string ($T$):</b><br>
+    • Linear mass density: $\\mu = \\frac{M}{L} = \\frac{3.0 \\times 10^{-2}\\text{ kg}}{1.5\\text{ m}} = 2.0 \\times 10^{-2}\\text{ kg m}^{-1}$.<br>
+    • From wave speed $v = \\sqrt{T/\\mu} \\implies T = \\mu v^2$:<br>
+    $$T = (2.0 \\times 10^{-2}\\text{ kg m}^{-1}) \\times (180\\text{ m s}^{-1})^2 = 0.02 \\times 32400 = \\mathbf{648\\text{ N}}$$<br><br>
+    $$\\mathbf{\\text{Summary: } (a)\\; \\text{Stationary},\\; (b)\\; \\lambda = 3\\text{ m},\\; \\nu = 60\\text{ Hz},\\; v = 180\\text{ m/s},\\; (c)\\; T = 648\\text{ N.}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Identification of stationary wave', '1 Mark'],
+    ['(b) Superposition decomposition into opposite waves and finding $\\lambda = 3\\text{ m}, \\nu = 60\\text{ Hz}, v = 180\\text{ m/s}$', '1.5 Marks'],
+    ['(c) Evaluating linear density $\\mu = 0.02\\text{ kg/m}$ and tension $T = 648\\text{ N}$', '1.5 Marks']
+  ]
+));
+
+// Question 14.12
+questions.push(createQCard(
+  'c11p-ch14-q12', 'Question 14.12', 'NCERT Exercise',
+  '(i) For the wave on string described in Exercise 14.11, do all the points on the string oscillate with the same (a) frequency, (b) phase, (c) amplitude? Explain your answers.<br>(ii) What is the amplitude of a point $0.375\\text{ m}$ away from one end?',
+  `<div class="step">
+    From Exercise 14.11: $y(x, t) = 0.06 \\sin\\left(\\frac{2\\pi}{3} x\\right) \\cos(120\\pi t)$.<br><br>
+    <b>(i) Analysis of Oscillatory Characteristics:</b><br>
+    • <b>(a) Frequency: YES.</b> All particles on the string (except the stationary nodes) oscillate with the exact same angular frequency $\\omega = 120\\pi\\text{ rad/s}$ (frequency $\\nu = 60\\text{ Hz}$).<br>
+    • <b>(b) Phase: NO.</b> Particles within the same loop/segment (between two consecutive nodes) oscillate in the same phase. However, particles in adjacent neighboring loops oscillate exactly in opposite phase (phase difference of $\\pi$ radians).<br>
+    • <b>(c) Amplitude: NO.</b> The amplitude of oscillation is position-dependent: $A(x) = 0.06 \\left|\\sin\\left(\\frac{2\\pi}{3} x\\right)\\right|\\text{ m}$. It is zero at nodes and maximum ($0.06\\text{ m}$) at antinodes.<br><br>
+    <b>(ii) Amplitude of a point at $x = 0.375\\text{ m}$ ($3/8\\text{ m}$):</b><br>
+    $$A(0.375) = 0.06 \\left|\\sin\\left(\\frac{2\\pi}{3} \\times 0.375\\right)\\right| = 0.06 \\left|\\sin\\left(\\frac{2\\pi}{3} \\times \\frac{3}{8}\\right)\\right|$$<br>
+    $$A(0.375) = 0.06 \\left|\\sin\\left(\\frac{\\pi}{4}\\right)\\right| = 0.06 \\times \\frac{1}{\\sqrt{2}} = \\frac{0.06}{1.414} = \\mathbf{0.0424\\text{ m} = 4.24\\text{ cm}}$$<br><br>
+    $$\\mathbf{\\text{Result: (i) Same frequency, but varying phase and amplitude; (ii) Amplitude is } 0.0424\\text{ m (or } 4.24\\text{ cm}\\text{).}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Explaining frequency (same), phase (segment-dependent $\\pi$ flip), and amplitude (varying)', '1.5 Marks'],
+    ['(ii) Calculation of amplitude at $x = 0.375\\text{ m}$: $A = 0.06/\\sqrt{2} = 4.24\\text{ cm}$', '1.5 Marks']
+  ]
+));
+
+// Question 14.13
+questions.push(createQCard(
+  'c11p-ch14-q13', 'Question 14.13', 'NCERT Exercise',
+  'Given below are some functions of $x$ and $t$ to represent the displacement (transverse or longitudinal) of an elastic wave. State which of these represent (i) a travelling wave, (ii) a stationary wave or (iii) none at all:<br>(a) $y = 2\\cos(3x) \\sin(10t)$<br>(b) $y = 2\\sqrt{x - vt}$<br>(c) $y = 3\\sin(5x - 0.5t) + 4\\cos(5x - 0.5t)$<br>(d) $y = \\cos x \\sin t + \\cos 2x \\sin 2t$',
+  `<div class="step">
+    <b>Classification Criteria:</b><br>
+    • A <b>travelling wave</b> has the form $f(kx \\pm \\omega t)$ and must remain finite and bounded for all $x, t$.<br>
+    • A <b>stationary wave</b> consists of factored space and time harmonic terms: $\\sin(kx) \\cos(\\omega t)$ or $\\cos(kx) \\sin(\\omega t)$.<br>
+    • If it is unbounded or cannot be expressed as a wave mode, it represents <b>none at all</b>.<br><br>
+    <b>(a) $y = 2\\cos(3x) \\sin(10t)$:</b><br>
+    • The spatial term $\\cos(3x)$ and temporal term $\\sin(10t)$ appear as separate multiplicative factors.<br>
+    • **Represents a Stationary Wave.**<br><br>
+    <b>(b) $y = 2\\sqrt{x - vt}$:</b><br>
+    • As $x \\to \\infty$, $y \\to \\infty$. Furthermore, for $x < vt$, the expression under the square root becomes negative, yielding imaginary displacements.<br>
+    • **Represents None at all (Not a physical wave).**<br><br>
+    <b>(c) $y = 3\\sin(5x - 0.5t) + 4\\cos(5x - 0.5t)$:</b><br>
+    • Both terms have the identical phase argument $(5x - 0.5t)$.<br>
+    • Can be written as a single harmonic progressive wave: $y = 5 \\sin(5x - 0.5t + \\theta)$ where $\\tan\\theta = 4/3$.<br>
+    • **Represents a Travelling Wave** moving in the positive $x$-direction with speed $v = \\frac{0.5}{5} = 0.1\\text{ m/s}$.<br><br>
+    <b>(d) $y = \\cos x \\sin t + \\cos 2x \\sin 2t$:</b><br>
+    • This is a superposition of two separate stationary waves with different spatial wavelengths ($k_1 = 1, k_2 = 2$) and different frequencies ($\\omega_1 = 1, \\omega_2 = 2$).<br>
+    • While it represents a stationary vibration pattern of a bounded medium, it is a combination rather than a single simple stationary wave mode.<br>
+    • **Represents a Stationary Wave (Superposition of two standing modes).**
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Correctly classified as Stationary Wave', '0.5 Mark'],
+    ['(b) Correctly classified as None at all (unbounded/imaginary)', '1 Mark'],
+    ['(c) Reduced to $5\\sin(5x-0.5t+\\theta)$ and classified as Travelling Wave', '1 Mark'],
+    ['(d) Classified as Stationary Wave (superposition of 2 standing waves)', '0.5 Mark']
+  ]
+));
+
+// Question 14.14
+questions.push(createQCard(
+  'c11p-ch14-q14', 'Question 14.14', 'NCERT Exercise',
+  'A wire stretched between two rigid supports vibrates in its fundamental mode with a frequency of $45\\text{ Hz}$. The mass of the wire is $3.5 \\times 10^{-2}\\text{ kg}$ and its linear mass density is $4.0 \\times 10^{-2}\\text{ kg m}^{-1}$. What is (a) the speed of a transverse wave on the string, and (b) the tension in the wire?',
+  `<div class="step">
+    Given Data:<br>
+    • Fundamental frequency $\\nu_1 = 45\\text{ Hz}$<br>
+    • Total mass of wire $M = 3.5 \\times 10^{-2}\\text{ kg}$<br>
+    • Linear mass density $\\mu = 4.0 \\times 10^{-2}\\text{ kg m}^{-1}$<br><br>
+    <b>1. Length of the wire ($L$):</b><br>
+    $$L = \\frac{M}{\\mu} = \\frac{3.5 \\times 10^{-2}\\text{ kg}}{4.0 \\times 10^{-2}\\text{ kg m}^{-1}} = \\frac{3.5}{4.0} = \\mathbf{0.875\\text{ m}}$$<br><br>
+    <b>2. (a) Speed of a transverse wave ($v$):</b><br>
+    In the fundamental mode of a string fixed at both ends, the string forms one single loop of length $L = \\frac{\\lambda_1}{2} \\implies \\lambda_1 = 2L = 2 \\times 0.875\\text{ m} = 1.75\\text{ m}$.<br>
+    $$v = \\nu_1 \\lambda_1 = (45\\text{ s}^{-1}) \\times (1.75\\text{ m}) = \\mathbf{78.75\\text{ m s}^{-1}}$$<br><br>
+    <b>3. (b) Tension in the wire ($T$):</b><br>
+    From $v = \\sqrt{\\frac{T}{\\mu}} \\implies T = \\mu v^2$:<br>
+    $$T = (4.0 \\times 10^{-2}\\text{ kg m}^{-1}) \\times (78.75\\text{ m s}^{-1})^2$$<br>
+    $$T = 0.04 \\times 6201.56 = \\mathbf{248.06\\text{ N} \\approx 248\\text{ N}}$$<br><br>
+    $$\\mathbf{\\text{Summary: } (a)\\; \\text{Wave speed } v = 78.75\\text{ m s}^{-1},\\; (b)\\; \\text{Tension } T = 248\\text{ N.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Determining length $L = M/\\mu = 0.875\\text{ m}$ and $\\lambda = 2L = 1.75\\text{ m}$', '1 Mark'],
+    ['(a) Evaluating wave speed $v = \\nu\\lambda = 78.75\\text{ m/s}$', '1 Mark'],
+    ['(b) Evaluating tension $T = \\mu v^2 = 248\\text{ N}$', '1 Mark']
+  ]
+));
+
+// Question 14.15
+questions.push(createQCard(
+  'c11p-ch14-q15', 'Question 14.15', 'NCERT Exercise',
+  'A metre-long tube open at one end, with a movable piston at the other end, shows resonance with a fixed frequency source (a tuning fork of frequency $340\\text{ Hz}$) when the tube length is $25.5\\text{ cm}$ or $79.3\\text{ cm}$. Estimate the speed of sound in air at the temperature of the experiment. The edge effects may be neglected.',
+  `<div class="step">
+    Given Data:<br>
+    • Frequency of tuning fork $\\nu = 340\\text{ Hz}$<br>
+    • First resonant air column length $L_1 = 25.5\\text{ cm} = 0.255\\text{ m}$<br>
+    • Second resonant air column length $L_2 = 79.3\\text{ cm} = 0.793\\text{ m}$<br><br>
+    <b>1. Resonance in a closed pipe:</b><br>
+    A pipe closed at one end (by the piston) resonates at odd multiples of quarter wavelengths:<br>
+    • First resonance (Fundamental mode): $L_1 + e = \\frac{\\lambda}{4}$<br>
+    • Second resonance (First overtone): $L_2 + e = \\frac{3\\lambda}{4}$<br>
+    where $e$ is the end correction at the open mouth.<br><br>
+    <b>2. Eliminating end effects:</b><br>
+    Subtracting the two resonant equations eliminates $e$ completely:<br>
+    $$L_2 - L_1 = \\frac{3\\lambda}{4} - \\frac{\\lambda}{4} = \\frac{\\lambda}{2}$$<br>
+    $$\\frac{\\lambda}{2} = 79.3\\text{ cm} - 25.5\\text{ cm} = 53.8\\text{ cm} = 0.538\\text{ m}$$<br>
+    $$\\lambda = 2 \\times 0.538\\text{ m} = \\mathbf{1.076\\text{ m}}$$<br><br>
+    <b>3. Speed of sound in air ($v$):</b><br>
+    $$v = \\nu \\lambda = (340\\text{ Hz}) \\times (1.076\\text{ m}) = \\mathbf{365.84\\text{ m s}^{-1} \\approx 366\\text{ m s}^{-1}}$$<br><br>
+    $$\\mathbf{\\text{The estimated speed of sound in air is approximately } 366\\text{ m s}^{-1}\\text{.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Resonance difference relation $L_2 - L_1 = \\lambda/2 \\implies \\lambda = 1.076\\text{ m}$', '1 Mark'],
+    ['Speed calculation $v = \\nu\\lambda = 340 \\times 1.076 = 365.84\\text{ m/s} \\approx 366\\text{ m/s}$', '1 Mark']
+  ]
+));
+
+// Question 14.16
+questions.push(createQCard(
+  'c11p-ch14-q16', 'Question 14.16', 'NCERT Exercise',
+  'A steel rod $100\\text{ cm}$ long is clamped at its middle. The fundamental frequency of longitudinal vibrations of the rod is given to be $2.53\\text{ kHz}$. What is the speed of sound in steel?',
+  `<div class="step">
+    Given Data:<br>
+    • Length of steel rod $L = 100\\text{ cm} = 1.0\\text{ m}$<br>
+    • Fundamental frequency $\\nu = 2.53\\text{ kHz} = 2.53 \\times 10^3\\text{ Hz} = 2530\\text{ Hz}$<br><br>
+    <b>1. Boundary Conditions for a Rod Clamped at Middle:</b><br>
+    • Since the rod is rigidly clamped at its centre, the centre is a **displacement node ($N$)**.<br>
+    • Both ends of the rod are free to vibrate, so both ends are **displacement antinodes ($A$)**.<br>
+    • In the fundamental mode, the rod has an antinode at each end and one node at the centre ($A - N - A$).<br>
+    • The distance between two consecutive antinodes is $\\frac{\\lambda}{2}$:<br>
+    $$L = \\frac{\\lambda}{2} \\implies \\lambda = 2L = 2 \\times 1.0\\text{ m} = \\mathbf{2.0\\text{ m}}$$<br><br>
+    <b>2. Speed of Sound in Steel ($v$):</b><br>
+    $$v = \\nu \\lambda = (2.53 \\times 10^3\\text{ s}^{-1}) \\times (2.0\\text{ m}) = \\mathbf{5.06 \\times 10^3\\text{ m s}^{-1} = 5060\\text{ m s}^{-1} = 5.06\\text{ km s}^{-1}}$$<br><br>
+    $$\\mathbf{\\text{The speed of sound in steel is } 5.06 \\times 10^3\\text{ m s}^{-1} \\text{ (or } 5.06\\text{ km s}^{-1}\\text{).}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Understanding clamp at middle yields node at centre, antinodes at ends: $\\lambda = 2L = 2.0\\text{ m}$', '1 Mark'],
+    ['Evaluating wave speed $v = \\nu\\lambda = 5.06 \\times 10^3\\text{ m/s}$', '1 Mark']
+  ]
+));
+
+// Question 14.17
+questions.push(createQCard(
+  'c11p-ch14-q17', 'Question 14.17', 'NCERT Exercise',
+  'A pipe $20\\text{ cm}$ long is closed at one end. Which harmonic mode of the pipe is resonantly excited by a $430\\text{ Hz}$ source? Will the same source be in resonance with the pipe if both ends are open? (speed of sound in air is $340\\text{ m s}^{-1}$).',
+  `<div class="step">
+    Given Data:<br>
+    • Length of pipe $L = 20\\text{ cm} = 0.20\\text{ m}$<br>
+    • Source frequency $\\nu = 430\\text{ Hz}$<br>
+    • Speed of sound $v = 340\\text{ m s}^{-1}$<br><br>
+    <b>1. Pipe Closed at One End:</b><br>
+    A closed organ pipe supports only **odd harmonics** ($n = 1, 3, 5, \\dots$):<br>
+    $$\\nu_n = (2m - 1) \\frac{v}{4L} \\quad (m = 1, 2, 3, \\dots)$$<br>
+    • Fundamental frequency ($m = 1$, 1st harmonic):<br>
+    $$\\nu_1 = \\frac{v}{4L} = \\frac{340\\text{ m s}^{-1}}{4 \\times 0.20\\text{ m}} = \\frac{340}{0.80} = \\mathbf{425\\text{ Hz}}$$<br>
+    • Next harmonic ($m = 2$, 3rd harmonic):<br>
+    $$\\nu_3 = 3 \\times 425 = 1275\\text{ Hz}$$<br>
+    Since the source frequency $430\\text{ Hz}$ is very close to $425\\text{ Hz}$ (well within resonance bandwidth), **the pipe resonates in its fundamental mode (1st harmonic)**.<br><br>
+    <b>2. Pipe Open at Both Ends:</b><br>
+    An open organ pipe supports **all integer harmonics** ($n = 1, 2, 3, \\dots$):<br>
+    $$\\nu_n' = n \\frac{v}{2L}$$<br>
+    • Fundamental frequency ($n = 1$):<br>
+    $$\\nu_1' = \\frac{v}{2L} = \\frac{340\\text{ m s}^{-1}}{2 \\times 0.20\\text{ m}} = \\frac{340}{0.40} = \\mathbf{850\\text{ Hz}}$$<br>
+    • Second harmonic ($n = 2$): $\\nu_2' = 2 \\times 850 = 1700\\text{ Hz}$.<br>
+    Since the fundamental resonant frequency is $850\\text{ Hz}$, the source frequency $430\\text{ Hz}$ is roughly half of the lowest possible resonance.<br>
+    Therefore, **the same source will NOT be in resonance with the open pipe**.<br><br>
+    $$\\mathbf{\\text{Conclusion: Closed pipe resonates in fundamental mode (1st harmonic); open pipe will NOT resonate.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Evaluating fundamental closed frequency $\\nu_1 = v/4L = 425\\text{ Hz}$ & identifying 1st harmonic resonance', '1.5 Marks'],
+    ['Evaluating fundamental open frequency $\\nu_1\' = v/2L = 850\\text{ Hz}$ & explaining why it cannot resonate', '1.5 Marks']
+  ]
+));
+
+// Question 14.18
+questions.push(createQCard(
+  'c11p-ch14-q18', 'Question 14.18', 'NCERT Exercise',
+  'Two sitar strings A and B playing the note ‘Ga’ are slightly out of tune and produce beats of frequency $6\\text{ Hz}$. The tension in the string A is slightly reduced and the beat frequency is found to reduce to $3\\text{ Hz}$. If the original frequency of A is $324\\text{ Hz}$, what is the frequency of B?',
+  `<div class="step">
+    Given Data:<br>
+    • Original frequency of string A: $\\nu_A = 324\\text{ Hz}$<br>
+    • Initial beat frequency: $\\nu_b = 6\\text{ Hz}$<br><br>
+    <b>1. Possible values for frequency of B ($\\nu_B$):</b><br>
+    $$\\nu_b = |\\nu_A - \\nu_B| = 6\\text{ Hz}$$<br>
+    This yields two possibilities for $\\nu_B$:<br>
+    • Possibility 1: $\\nu_B = \\nu_A + 6 = 324 + 6 = 330\\text{ Hz}$<br>
+    • Possibility 2: $\\nu_B = \\nu_A - 6 = 324 - 6 = 318\\text{ Hz}$<br><br>
+    <b>2. Analyzing the Effect of Reducing Tension in String A:</b><br>
+    The fundamental frequency of a stretched string is given by $\\nu = \\frac{1}{2L}\\sqrt{\\frac{T}{\\mu}} \\implies \\nu \\propto \\sqrt{T}$.<br>
+    When tension in string A is reduced, its frequency $\\nu_A$ **decreases** (say from $324\\text{ Hz}$ down to $321\\text{ Hz}$).<br><br>
+    • If $\\nu_B$ were $330\\text{ Hz}$:<br>
+    As $\\nu_A$ drops below $324\\text{ Hz}$, the frequency difference $|\\nu_A - \\nu_B| = |321 - 330| = 9\\text{ Hz}$ (beat frequency would **increase**). But the problem states the beat frequency reduced to $3\\text{ Hz}$, so $\\nu_B = 330\\text{ Hz}$ is ruled out.<br><br>
+    • If $\\nu_B$ is $318\\text{ Hz}$:<br>
+    As $\\nu_A$ drops from $324\\text{ Hz}$ to $321\\text{ Hz}$, the new difference is $|321 - 318| = 3\\text{ Hz}$, which exactly matches the observation.<br><br>
+    $$\\mathbf{\\text{The frequency of string B is } 318\\text{ Hz.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Listing two possible frequencies: $\\nu_B = 330\\text{ Hz}$ or $318\\text{ Hz}$', '1 Mark'],
+    ['Stating tension relation $\\nu_A \\propto \\sqrt{T}$ proving $\\nu_A$ decreases', '1 Mark'],
+    ['Ruling out $330\\text{ Hz}$ and concluding $\\nu_B = 318\\text{ Hz}$', '1 Mark']
+  ]
+));
+
+// Question 14.19
+questions.push(createQCard(
+  'c11p-ch14-q19', 'Question 14.19', 'NCERT Exercise',
+  'Explain why (or how):<br>(a) In a sound wave, a displacement node is a pressure antinode and vice versa.<br>(b) Bats can ascertain distances, directions, nature, and sizes of the obstacles without any “eyes”.<br>(c) A violin note and a sitar note may have the same frequency, yet we can distinguish between the two notes.<br>(d) Solids can support both longitudinal and transverse waves, but only longitudinal waves can propagate in gases.<br>(e) The shape of a pulse gets distorted during propagation in a dispersive medium.',
+  `<div class="step">
+    <b>(a) Displacement Node vs Pressure Antinode:</b><br>
+    • A <b>displacement node</b> is a point where medium particles have zero displacement from equilibrium. However, particles on either side move towards this point (creating compression) or away from it (creating rarefaction). Thus, the strain $\\Delta V/V$ and pressure variation $\\Delta P = -B \\frac{dy}{dx}$ are **maximum**, making it a **pressure antinode**.<br>
+    • Conversely, at a <b>displacement antinode</b>, particles oscillate with maximum amplitude in phase with neighboring particles, resulting in zero compression/rarefaction gradient ($\\,dy/dx = 0$), which corresponds to zero pressure variation (**pressure node**).<br><br>
+    <b>(b) Bat Echolocation:</b><br>
+    • Bats emit high-frequency ultrasonic clicks ($20\\text{ kHz} - 100\\text{ kHz}$) with very small wavelengths (millimetre scale).<br>
+    • By timing the echo return delay $\\Delta t$, they calculate distance $d = \\frac{v \\Delta t}{2}$.<br>
+    • By detecting phase and amplitude differences between both ears, they resolve angular direction.<br>
+    • By analyzing the frequency spectrum and absorption of the reflected wave, they determine obstacle nature and texture.<br><br>
+    <b>(c) Timbre of Musical Instruments:</b><br>
+    • Even when a violin and a sitar play the identical fundamental note (same frequency $\\nu_1$), they produce different numbers, relative strengths, and harmonic amplitudes of **overtones** (higher harmonics).<br>
+    • The superposition of these distinct overtones creates a unique composite waveform, giving each instrument its characteristic **quality (timbre)**.<br><br>
+    <b>(d) Wave Propagation in Solids vs Gases:</b><br>
+    • Transverse waves require a restoring shear stress (resistance to change of shape), which depends on the **shear modulus ($G$)**.<br>
+    • Solids possess both shear modulus ($G > 0$) and bulk modulus ($B > 0$), so they support both transverse and longitudinal waves.<br>
+    • Gases and fluids possess **zero shear modulus** ($G = 0$) because fluid layers slide past each other without resistance. They only resist volume compression ($B > 0$), allowing **only longitudinal waves** to propagate.<br><br>
+    <b>(e) Pulse Distortion in a Dispersive Medium:</b><br>
+    • A wave pulse is composed of a Fourier packet of multiple harmonic waves of differing wavelengths and frequencies.<br>
+    • In a <b>dispersive medium</b>, wave velocity depends on frequency ($v = f(\\lambda)$).<br>
+    • Different frequency components travel at different speeds, spreading out over time and altering their relative phase alignment, which **distorts the shape of the pulse**.
+  </div>`,
+  '5 Marks',
+  [
+    ['(a) Justification of displacement node = pressure antinode via gradient $dy/dx$', '1 Mark'],
+    ['(b) Explanation of bat echolocation (delay, intensity, binaural sensing)', '1 Mark'],
+    ['(c) Explanation of instrument timbre via harmonic overtones profile', '1 Mark'],
+    ['(d) Explanation via elasticity: shear modulus ($G$) in solids vs $G = 0$ in gases', '1 Mark'],
+    ['(e) Explanation of pulse distortion via frequency-dependent wave speeds', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// VECTOR SVG DIAGRAM: WAVES DYNAMICS
+// ============================================================================
+const wavesSvg = `
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M2 12c4-8 8-8 12 0s8 8 12 0"/></svg>
+      Acoustic Wave Mechanics: Standing Wave Resonant Modes, Nodes/Antinodes &amp; Beat Frequency Envelopes
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Standing Waves on String (Nodes & Antinodes) -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Standing Wave Modes on Stretched String:</text>
+
+      <!-- Supports -->
+      <rect x="40" y="60" width="8" height="135" fill="#475569"/>
+      <rect x="330" y="60" width="8" height="135" fill="#475569"/>
+      <line x1="48" y1="125" x2="330" y2="125" stroke="#cbd5e1" stroke-dasharray="2,2"/>
+
+      <!-- Fundamental Mode (n=1) -->
+      <path d="M 48 95 Q 189 65 330 95" fill="none" stroke="#2563eb" stroke-width="2"/>
+      <path d="M 48 95 Q 189 125 330 95" fill="none" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="175" y="60" font-size="8" font-weight="bold" fill="#2563eb">A</text>
+      <text x="50" y="105" font-size="7.5" font-weight="bold" fill="#b91c1c">N</text>
+      <text x="320" y="105" font-size="7.5" font-weight="bold" fill="#b91c1c">N</text>
+      <text x="270" y="75" font-size="7.5" fill="#2563eb">n=1: &lambda;_1 = 2L</text>
+
+      <!-- Second Harmonic (n=2) -->
+      <path d="M 48 160 Q 118 135 189 160 Q 260 185 330 160" fill="none" stroke="#7c3aed" stroke-width="2"/>
+      <path d="M 48 160 Q 118 185 189 160 Q 260 135 330 160" fill="none" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="115" y="132" font-size="8" font-weight="bold" fill="#7c3aed">A</text>
+      <text x="255" y="132" font-size="8" font-weight="bold" fill="#7c3aed">A</text>
+      <text x="185" y="172" font-size="7.5" font-weight="bold" fill="#b91c1c">N</text>
+      <text x="270" y="152" font-size="7.5" fill="#7c3aed">n=2: &lambda;_2 = L</text>
+
+      <!-- Node distance label -->
+      <text x="105" y="200" font-size="8.5" font-weight="bold" fill="#5b21b6">Distance N-to-N = &lambda;/2 &bull; N-to-A = &lambda;/4</text>
+
+      <!-- Panel 2: Beat Frequency & Amplitude Modulation -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Acoustic Superposition &amp; Beat Envelopes:</text>
+
+      <!-- Axis -->
+      <line x1="435" y1="125" x2="745" y2="125" stroke="#94a3b8" stroke-width="1.2"/>
+      <text x="720" y="140" font-size="8" fill="#64748b">Time (t) &rarr;</text>
+
+      <!-- Beat Envelope Modulation Curve -->
+      <path d="M 440 125 Q 470 65 500 125 Q 530 185 560 125 Q 590 65 620 125 Q 650 185 680 125 Q 710 65 740 125" fill="none" stroke="#f59e0b" stroke-dasharray="3,2" stroke-width="1.5"/>
+      <path d="M 440 125 Q 470 185 500 125 Q 530 65 560 125 Q 590 185 620 125 Q 650 65 680 125 Q 710 185 740 125" fill="none" stroke="#f59e0b" stroke-dasharray="3,2" stroke-width="1.5"/>
+
+      <!-- Rapid Carrier Waves inside envelope -->
+      <path d="M 440 125 Q 455 105 470 75 Q 485 105 500 125 Q 515 145 530 175 Q 545 145 560 125 Q 575 105 590 75 Q 605 105 620 125 Q 635 145 650 175 Q 665 145 680 125 Q 695 105 710 75 Q 725 105 740 125" fill="none" stroke="#059669" stroke-width="1.8"/>
+
+      <!-- Beat Period Indicator -->
+      <line x1="470" y1="58" x2="590" y2="58" stroke="#ef4444" stroke-width="1.5"/>
+      <polygon points="470,58 476,55 476,61" fill="#ef4444"/>
+      <polygon points="590,58 584,55 584,61" fill="#ef4444"/>
+      <text x="500" y="52" font-size="8.5" font-weight="bold" fill="#ef4444">T_beat = 1 / |&nu;_1 - &nu;_2|</text>
+
+      <!-- Formulas Box -->
+      <rect x="585" y="145" width="165" height="60" rx="4" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="592" y="160" font-size="8" font-weight="bold" fill="#5b21b6">Key Wave Formulas:</text>
+      <text x="592" y="174" font-size="7.5" fill="#334155">&bull; v = &radic;(T/&mu;) = &nu;&lambda;</text>
+      <text x="592" y="188" font-size="7.5" fill="#047857">&bull; Closed Pipe: &nu;_n = (2n-1) v/4L</text>
+      <text x="592" y="200" font-size="7.5" fill="#b91c1c">&bull; Beats: &nu;_beat = |&nu;_1 - &nu;_2|</text>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH14.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11p-ch14">
+  <div class="chapter-header">
+    <div class="ch-badge">14</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 14</div>
+      <h2>Waves</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 19 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  ${wavesSvg}
+
+  <div class="ex-div">NCERT Textbook Exercise 14.1 to 14.19: Transverse &amp; Longitudinal Waves, Speed of Sound, Wave Superposition, Standing Waves in Strings &amp; Pipes, Beats &amp; Wave Mechanics</div>
+${questions.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(13)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 13 (Oscillations)</button>
+    <a href="../ncert-solutions-class-11-physics.html" class="ch-nav-btn next" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">Class 11 Physics Hub (All 14 Chapters) ✓</a>
+  </div>
+</section>
+`;
+
+// Write ch14.html
+const ch14Path = path.join(outDir, 'ch14.html');
+fs.writeFileSync(ch14Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch14Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[14]
+if (!existingData.includes('window.CHAPTER_DATA[14] =')) {
+  fs.appendFileSync(dataJsPath, `\nwindow.CHAPTER_DATA[14] = ${JSON.stringify(chapterHtml.trim())};\n`, 'utf8');
+  console.log(`Appended Chapter 14 to preloaded cache: ${dataJsPath}`);
+} else {
+  const regex = /window\.CHAPTER_DATA\[14\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[14] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 14 in preloaded cache: ${dataJsPath}`);
+}
