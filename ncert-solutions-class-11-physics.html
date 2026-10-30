@@ -486,15 +486,43 @@
       if (el) el.classList.toggle('open');
     }
 
-    function downloadChapterPDF() {
+    function downloadChapter7PDF() {
+      const btn = document.getElementById('ch7-download-pdf-btn') || document.querySelector('.download-pdf-btn');
+      const originalHtml = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="16"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></svg> Preparing PDF...';
+        btn.style.opacity = '0.9';
+      }
+
       // Expand all question cards in current chapter so solutions are visible in print/PDF
-      document.querySelectorAll('.q-card').forEach(card => card.classList.add('open'));
-      
-      // Short delay for DOM layout & MathJax rendering before opening browser print/PDF dialog
-      setTimeout(() => {
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.add('open');
+        const ans = card.querySelector('.q-answer');
+        if (ans) ans.style.display = 'block';
+      });
+
+      const originalTitle = document.title;
+      document.title = "CBSE-Class-11-Physics-Chapter-7-Gravitation-NCERT-Solutions-OlympiadQuiz";
+
+      try {
         window.print();
-      }, 300);
+      } catch (err) {
+        console.error("Print error:", err);
+        alert("Please press Ctrl+P (Cmd+P on Mac) to save this chapter as PDF.");
+      }
+
+      setTimeout(() => {
+        if (btn) {
+          btn.innerHTML = originalHtml;
+          btn.style.opacity = '1';
+        }
+        document.title = originalTitle;
+      }, 1500);
     }
+
+    // Register globally for both names
+    window.downloadChapter7PDF = downloadChapter7PDF;
+    window.downloadChapterPDF = downloadChapter7PDF;
 
     function showChapter(n) {
       currentChapter = n;

@@ -684,13 +684,14 @@ const chapterHtml = `
       </div>
       <div>
         <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6d28d9; margin-bottom: 3px;">Free Instant PDF &bull; CBSE Rationalised 2026–27</div>
-        <div style="font-size: 1.08rem; font-weight: 800; color: #1e1b4b;">Download All Chapter 7 Solutions (PDF)</div>
+        <div style="font-size: 1.08rem; font-weight: 800; color: #1e1b4b;">Download Chapter 7 Gravitation Solutions (PDF)</div>
         <div style="font-size: 0.82rem; color: #475569; margin-top: 2px;">Export all 21 verbatim NCERT solutions with official CBSE marking rubrics, formulas &amp; vector diagrams for offline study.</div>
+        <div style="font-size: 0.74rem; color: #6d28d9; font-weight: 600; margin-top: 4px;">💡 In the print preview, select &ldquo;Save as PDF&rdquo; as Destination to save the document.</div>
       </div>
     </div>
-    <button onclick="downloadChapterPDF()" class="download-pdf-btn" style="background: #7c3aed; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35); transition: all 0.2s ease;">
+    <button onclick="downloadChapter7PDF()" class="download-pdf-btn" id="ch7-download-pdf-btn" style="background: #7c3aed; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35); transition: all 0.2s ease;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download All Solutions (PDF)
+      Download Chapter 7 Solutions (PDF)
     </button>
   </div>
 
@@ -703,6 +704,51 @@ ${questions.join('\n')}
     <button class="ch-nav-btn prev" onclick="showChapter(6)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 6 (Rotational Motion)</button>
     <button class="ch-nav-btn next" onclick="showChapter(8)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 8 (Mechanical Properties of Solids) →</button>
   </div>
+
+  <script>
+  function downloadChapter7PDF() {
+    const btn = document.getElementById('ch7-download-pdf-btn') || document.querySelector('.download-pdf-btn');
+    const originalHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="16"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></svg> Preparing PDF...';
+      btn.style.opacity = '0.9';
+    }
+
+    document.querySelectorAll('.q-card').forEach(function(card) {
+      card.classList.add('open');
+      const ans = card.querySelector('.q-answer');
+      if (ans) ans.style.display = 'block';
+    });
+
+    const originalTitle = document.title;
+    document.title = "CBSE-Class-11-Physics-Chapter-7-Gravitation-NCERT-Solutions-OlympiadQuiz";
+
+    try {
+      window.print();
+    } catch (err) {
+      console.error("Print error:", err);
+      alert("Please press Ctrl+P (Cmd+P on Mac) to save this chapter as PDF.");
+    }
+
+    setTimeout(function() {
+      if (btn) {
+        btn.innerHTML = originalHtml;
+        btn.style.opacity = '1';
+      }
+      document.title = originalTitle;
+    }, 1500);
+  }
+
+  window.downloadChapter7PDF = downloadChapter7PDF;
+  window.downloadChapterPDF = downloadChapter7PDF;
+
+  if (typeof toggleQ !== 'function') {
+    window.toggleQ = function(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('open');
+    };
+  }
+  </script>
 </section>
 `;
 

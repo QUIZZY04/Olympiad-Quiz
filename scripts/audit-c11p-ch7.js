@@ -67,8 +67,8 @@ if (svgs.length < 2) {
 }
 
 // Check PDF Download Tab at beginning of chapter
-if (ch7Html.includes('pdf-download-bar') && ch7Html.includes('downloadChapterPDF()')) {
-  console.log('✅ PASS: Interactive "Download All Solutions (PDF)" tab verified at start of chapter!');
+if (ch7Html.includes('pdf-download-bar') && (ch7Html.includes('downloadChapter7PDF()') || ch7Html.includes('downloadChapterPDF()'))) {
+  console.log('✅ PASS: Dedicated "Download Chapter 7 Solutions (PDF)" tab verified at start of chapter!');
 } else {
   console.error('❌ FAIL: Missing PDF download tab at start of chapter!');
   failed = true;
