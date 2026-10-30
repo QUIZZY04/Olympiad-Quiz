@@ -218,7 +218,13 @@
   </url>
   <url>
     <loc>https://olympiadquiz.org/chapters-c11m/ch7.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/chapters-c11m/ch8.html</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
