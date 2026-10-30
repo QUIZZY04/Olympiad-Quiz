@@ -1,0 +1,730 @@
+// scripts/builders/gen-c11p-ch7.js
+// Complete, verbatim NCERT generator for Class 11 Physics Chapter 7: Gravitation (All 21 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11p');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const questions = [];
+
+// ============================================================================
+// CHAPTER 7: GRAVITATION (Questions 7.1 to 7.21)
+// ============================================================================
+
+// Question 7.1
+questions.push(createQCard(
+  'c11p-ch7-q1', 'Question 7.1', 'NCERT Exercise',
+  'Answer the following:<br>' +
+  '(a) You can shield a charge from electrical forces by putting it inside a hollow conductor. Can you shield a body from the gravitational influence of nearby matter by putting it inside a hollow sphere or by some other means?<br>' +
+  '(b) An astronaut inside a small space ship orbiting around the earth cannot detect gravity. If the space station orbiting around the earth has a large size, can he hope to detect gravity?<br>' +
+  '(c) If you compare the gravitational force on the earth due to the sun to that due to the moon, you would find that the Sun’s pull is greater than the moon’s pull. However, the tidal effect of the moon’s pull is greater than the tidal effect of sun. Why?',
+  `<div class="step">
+    • <b>(a) Gravitational shielding:</b><br>
+      <b>No.</b> Gravitational shielding is impossible in nature. Unlike electromagnetic forces where positive and negative charges induce surface charges on a conductor that create an opposing field cancelling the external electric field, <b>gravitational mass is strictly positive (attractive only)</b>. There is no negative gravitational mass to produce an opposing field. Gravitational force between two bodies is completely independent of the intervening medium.<br><br>
+    • <b>(b) Gravity detection in a large space station:</b><br>
+      <b>Yes.</b> Inside a tiny spacecraft, the acceleration due to gravity is virtually uniform across the entire craft, so the craft and astronaut fall together in identical free fall (apparent weightlessness). However, if the space station is very large, the gravitational field strength and direction vary noticeably from one end of the station to the other ($\\Delta g \\approx \\frac{2GM}{R^3} \\Delta r$). These <b>tidal gravity gradients</b> create measurable differential forces that the astronaut can detect.<br><br>
+    • <b>(c) Tidal effect of Moon vs Sun:</b><br>
+      The gravitational attraction force varies inversely with the square of distance ($F \\propto \\frac{1}{r^2}$), so the Sun\'s greater mass makes its total pull on Earth roughly $175\\text{ times}$ greater than the Moon\'s.<br>
+      However, the <b>ocean tidal force is a differential force</b>—the difference in gravitational pull between the near and far sides of the Earth across diameter $2R_E$:<br>
+      $$F_{tidal} = \\left|\\frac{dF}{dr}\\right| 2R_E = \\frac{2 G M m R_E}{r^3} \\implies F_{tidal} \\propto \\frac{M}{r^3}$$<br>
+      Because tidal pull falls off inversely with the <b>cube of distance ($r^3$)</b>, and the Moon is roughly $390\\text{ times}$ closer to Earth than the Sun ($r_{sun} \\approx 390 r_{moon}$):<br>
+      $$\\frac{F_{tidal, moon}}{F_{tidal, sun}} = \\frac{M_{moon}}{M_{sun}} \\left(\\frac{r_{sun}}{r_{moon}}\\right)^3 \\approx 2.17$$<br>
+      $$\\mathbf{\\text{Hence, the Moon’s tidal effect is more than twice as strong as the Sun’s.}}$$
+  </div>`,
+  '5 Marks',
+  [
+    ['(a) Gravitational shielding impossible due to absence of negative mass', '1.5 Marks'],
+    ['(b) Large station experiences detectable tidal gravity gradients', '1.5 Marks'],
+    ['(c) Derivation showing tidal force proportional to $M/r^3$ yielding lunar dominance', '2 Marks']
+  ]
+));
+
+// Question 7.2
+questions.push(createQCard(
+  'c11p-ch7-q2', 'Question 7.2', 'NCERT Exercise',
+  'Choose the correct alternative:<br>' +
+  '(a) Acceleration due to gravity increases/decreases with increasing altitude.<br>' +
+  '(b) Acceleration due to gravity increases/decreases with increasing depth (assume the earth to be a sphere of uniform density).<br>' +
+  '(c) Acceleration due to gravity is independent of mass of the earth/mass of the body.<br>' +
+  '(d) The formula $-G M m (1/r_2 - 1/r_1)$ is more/less accurate than the formula $m g (r_2 - r_1)$ for the difference of potential energy between two points $r_2$ and $r_1$ distance away from the centre of the earth.',
+  `<div class="step">
+    • <b>(a) decreases:</b> With altitude $h$ above Earth\'s surface, $g_h = g \\left(1 + \\frac{h}{R}\\right)^{-2} \\approx g \\left(1 - \\frac{2h}{R}\\right)$. As altitude increases, $g$ decreases.<br><br>
+    • <b>(b) decreases:</b> With depth $d$ below Earth\'s surface, $g_d = g \\left(1 - \\frac{d}{R}\\right)$. Only the mass within concentric sphere of radius $(R-d)$ attracts the body. As depth increases, $g$ decreases (reaching zero at the Earth’s centre).<br><br>
+    • <b>(c) mass of the body:</b> Acceleration due to gravity is given by $g = \\frac{G M_E}{R^2}$. It depends on the mass of the Earth $M_E$, but is strictly <b>independent of the mass of the body ($m$)</b>.<br><br>
+    • <b>(d) more:</b> The formula $\\Delta U = -G M m \\left(\\frac{1}{r_2} - \\frac{1}{r_1}\\right)$ is derived from the universal inverse-square law without any approximation and is exact for all distances. The formula $m g (r_2 - r_1)$ is an approximation valid only when the distance $(r_2 - r_1) \\ll R$ near the surface where $g$ is assumed constant. Therefore, the first formula is <b>more accurate</b>.
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) decreases with altitude formula', '1 Mark'],
+    ['(b) decreases with depth formula', '1 Mark'],
+    ['(c) mass of the body since $g = GM_E/R^2$', '1 Mark'],
+    ['(d) more accurate since Newton\'s universal gravitation formula is exact', '1 Mark']
+  ]
+));
+
+// Question 7.3
+questions.push(createQCard(
+  'c11p-ch7-q3', 'Question 7.3', 'NCERT Exercise',
+  'Suppose there existed a planet that went around the sun twice as fast as the earth. What would be its orbital size as compared to that of the earth?',
+  `<div class="step">
+    Given:<br>
+    • Period of Earth: $T_E = 1\\text{ year}$.<br>
+    • The hypothetical planet goes around the Sun twice as fast, meaning its orbital period is half as long: $T_p = \\frac{1}{2} T_E = 0.5\\text{ year}$.<br>
+    • Let orbital radius of Earth be $R_E$, and orbital radius of planet be $R_p$.<br><br>
+    <b>Kepler’s Third Law of Planetary Motion:</b><br>
+    $$T^2 \\propto R^3 \\implies \\left(\\frac{R_p}{R_E}\\right)^3 = \\left(\\frac{T_p}{T_E}\\right)^2$$<br>
+    $$\\left(\\frac{R_p}{R_E}\\right)^3 = \\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4} = 0.25$$<br>
+    $$\\frac{R_p}{R_E} = (0.25)^{1/3} = \\frac{1}{4^{1/3}} \\approx \\frac{1}{1.5874} \\approx \\mathbf{0.63}$$<br><br>
+    $$\\therefore R_p = \\mathbf{0.63 R_E}$$<br>
+    $$\\mathbf{\\text{The orbital size of the planet is } 0.63 \\text{ times that of the Earth (or } 63\\% \\text{ of Earth's orbital radius).}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Identification of planet\'s period $T_p = T_E/2$', '1 Mark'],
+    ['Kepler\'s Third Law relation $R_p/R_E = (T_p/T_E)^{2/3}$', '1 Mark'],
+    ['Final calculation: $R_p = 0.63 R_E$', '1 Mark']
+  ]
+));
+
+// Question 7.4
+questions.push(createQCard(
+  'c11p-ch7-q4', 'Question 7.4', 'NCERT Exercise',
+  'Io, one of the satellites of Jupiter, has an orbital period of $1.769\\text{ days}$ and the radius of the orbit is $4.22 \\times 10^8\\text{ m}$. Show that the mass of Jupiter is about one-thousandth that of the sun.',
+  `<div class="step">
+    <b>1. Orbital Data for Io orbiting Jupiter:</b><br>
+    • Period $T_J = 1.769\\text{ days} = 1.769 \\times 24 \\times 3600\\text{ s} = 1.5284 \\times 10^5\\text{ s}$<br>
+    • Radius $R_J = 4.22 \\times 10^8\\text{ m}$<br>
+    By Kepler’s third law: $T^2 = \\frac{4\\pi^2 R^3}{G M} \\implies M = \\frac{4\\pi^2 R^3}{G T^2}$<br>
+    $$M_J = \\frac{4\\pi^2 R_J^3}{G T_J^2}$$<br><br>
+    <b>2. Orbital Data for Earth orbiting Sun:</b><br>
+    • Period $T_S = 365.25\\text{ days} = 365.25 \\times 24 \\times 3600\\text{ s} = 3.1558 \\times 10^7\\text{ s}$<br>
+    • Radius $R_S = 1.496 \\times 10^{11}\\text{ m} \\approx 1.5 \\times 10^{11}\\text{ m}$<br>
+    $$M_S = \\frac{4\\pi^2 R_S^3}{G T_S^2}$$<br><br>
+    <b>3. Ratio of Masses:</b><br>
+    $$\\frac{M_J}{M_S} = \\left(\\frac{R_J}{R_S}\\right)^3 \\times \\left(\\frac{T_S}{T_J}\\right)^2$$<br>
+    $$\\frac{R_J}{R_S} = \\frac{4.22 \\times 10^8}{1.496 \\times 10^{11}} \\approx 2.8209 \\times 10^{-3} \\implies \\left(\\frac{R_J}{R_S}\\right)^3 \\approx 2.2445 \\times 10^{-8}$$<br>
+    $$\\frac{T_S}{T_J} = \\frac{365.25}{1.769} \\approx 206.47 \\implies \\left(\\frac{T_S}{T_J}\\right)^2 \\approx 42631$$<br>
+    $$\\frac{M_J}{M_S} = (2.2445 \\times 10^{-8}) \\times 42631 \\approx 9.57 \\times 10^{-4} \\approx \\mathbf{\\frac{1}{1045} \\approx \\frac{1}{1000}}$$<br><br>
+    $$\\mathbf{\\text{Hence, the mass of Jupiter is about one-thousandth (} 1/1000 \\text{) that of the Sun.}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Kepler\'s law mass formula $M = 4\\pi^2 R^3 / (G T^2)$', '1 Mark'],
+    ['Substitution of Io and Earth orbital parameters', '1.5 Marks'],
+    ['Ratio calculation $\\frac{M_J}{M_S} \\approx 1/1045 \\approx 1/1000$', '1.5 Marks']
+  ]
+));
+
+// Question 7.5
+questions.push(createQCard(
+  'c11p-ch7-q5', 'Question 7.5', 'NCERT Exercise',
+  'Let us assume that our galaxy consists of $2.5 \\times 10^{11}$ stars each of one solar mass. How long will a star at a distance of $50,000\\text{ ly}$ from the galactic centre take to complete one revolution? Take the diameter of the Milky Way to be $10^5\\text{ ly}$. (Solar mass $= 2 \\times 10^{30}\\text{ kg}$, $1\\text{ ly} = 9.46 \\times 10^{15}\\text{ m}$, $G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Number of stars $N = 2.5 \\times 10^{11}$<br>
+    • Mass of each star $M_{\\odot} = 2 \\times 10^{30}\\text{ kg}$<br>
+    • Total mass of galaxy interior to star\'s orbit:<br>
+      $$M = N \\times M_{\\odot} = 2.5 \\times 10^{11} \\times 2 \\times 10^{30} = 5.0 \\times 10^{41}\\text{ kg}$$<br>
+    • Distance from galactic centre: $r = 50,000\\text{ ly} = 5 \\times 10^4 \\times 9.46 \\times 10^{15}\\text{ m} = 4.73 \\times 10^{20}\\text{ m}$<br><br>
+    <b>Orbital Period Formula:</b><br>
+    $$T = 2\\pi \\sqrt{\\frac{r^3}{G M}}$$<br>
+    $$r^3 = (4.73 \\times 10^{20})^3 = 1.058 \\times 10^{62}\\text{ m}^3$$<br>
+    $$G M = (6.67 \\times 10^{-11}) \\times (5.0 \\times 10^{41}) = 3.335 \\times 10^{31}\\text{ m}^3\\text{ s}^{-2}$$<br>
+    $$\\frac{r^3}{G M} = \\frac{1.058 \\times 10^{62}}{3.335 \\times 10^{31}} = 3.172 \\times 10^{30}\\text{ s}^2$$<br>
+    $$\\sqrt{\\frac{r^3}{G M}} = \\sqrt{3.172 \\times 10^{30}} = 1.781 \\times 10^{15}\\text{ s}$$<br>
+    $$T = 2 \\times 3.1416 \\times 1.781 \\times 10^{15} = 1.119 \\times 10^{16}\\text{ s}$$<br><br>
+    Converting to years ($1\\text{ year} = 3.156 \\times 10^7\\text{ s}$):<br>
+    $$T = \\frac{1.119 \\times 10^{16}}{3.156 \\times 10^7} \\approx \\mathbf{3.55 \\times 10^8\\text{ years} = 355\\text{ million years}}$$<br><br>
+    $$\\therefore \\text{The star takes approximately } \\mathbf{3.55 \\times 10^8\\text{ years}} \\text{ to complete one revolution.}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Calculation of galactic mass $M = 5 \\times 10^{41}\\text{ kg}$ and radius $r = 4.73 \\times 10^{20}\\text{ m}$', '1.5 Marks'],
+    ['Application of period formula $T = 2\\pi \\sqrt{r^3/(GM)}$', '1.5 Marks'],
+    ['Final time calculation: $1.12 \\times 10^{16}\\text{ s} = 3.55 \\times 10^8\\text{ years}$', '1 Mark']
+  ]
+));
+
+// Question 7.6
+questions.push(createQCard(
+  'c11p-ch7-q6', 'Question 7.6', 'NCERT Exercise',
+  'Choose the correct alternative:<br>' +
+  '(a) If the zero of potential energy is at infinity, the total energy of an orbiting satellite is negative of its kinetic/potential energy.<br>' +
+  '(b) The energy required to launch an orbiting satellite out of earth’s gravitational influence is more/less than the energy required to project a stationary object at the same height (as the satellite) out of earth’s influence.',
+  `<div class="step">
+    • <b>(a) kinetic energy:</b><br>
+      For an orbiting satellite of mass $m$ at distance $r$ from Earth\'s centre:<br>
+      - Kinetic energy: $K = +\\frac{G M m}{2r}$.<br>
+      - Potential energy: $V = -\\frac{G M m}{r}$.<br>
+      - Total mechanical energy: $E = K + V = -\\frac{G M m}{2r}$.<br>
+      Therefore, $E = -K$. The total energy is the <b>negative of its kinetic energy</b>.<br><br>
+    • <b>(b) less:</b><br>
+      - An orbiting satellite already possesses a positive orbital kinetic energy $K = \\frac{GMm}{2r}$, so its total energy is $E_1 = -\\frac{GMm}{2r}$. To send it to infinity ($E_\\infty = 0$), the energy required is $\\Delta E_{orbit} = +\\frac{GMm}{2r}$.<br>
+      - A stationary object at the same height has zero kinetic energy, so its total energy is purely potential: $E_2 = -\\frac{GMm}{r}$. To send it to infinity, the energy required is $\\Delta E_{stationary} = +\\frac{GMm}{r}$.<br>
+      Since $\\frac{GMm}{2r} < \\frac{GMm}{r}$, the energy required for the orbiting satellite is <b>less</b>.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) kinetic energy via $E = -K = V/2$', '1.5 Marks'],
+    ['(b) less, comparing binding energies $\\frac{GMm}{2r} < \\frac{GMm}{r}$', '1.5 Marks']
+  ]
+));
+
+// Question 7.7
+questions.push(createQCard(
+  'c11p-ch7-q7', 'Question 7.7', 'NCERT Exercise',
+  'Does the escape speed of a body from the earth depend on<br>' +
+  '(a) the mass of the body,<br>' +
+  '(b) the location from where it is projected,<br>' +
+  '(c) the direction of projection,<br>' +
+  '(d) the height of the location from where the body is launched?',
+  `<div class="step">
+    <b>General Formula for Escape Speed:</b><br>
+    From conservation of mechanical energy, the escape speed from a point at distance $r$ from the centre of Earth is:<br>
+    $$v_e = \\sqrt{\\frac{2 G M_E}{r}} = \\sqrt{\\frac{2 G M_E}{R_E + h}}$$<br><br>
+    • <b>(a) Mass of the body:</b> <b>No.</b> The formula does not contain the mass of the projected body $m$.<br><br>
+    • <b>(b) Location from where it is projected:</b> <b>Yes.</b> Earth is not a perfect sphere (it is flattened at the poles and bulges at the equator, so $R_{pole} < R_{equator}$). Thus, $g$ and the gravitational potential depend slightly on latitude.<br><br>
+    • <b>(c) Direction of projection:</b> <b>No.</b> Escape velocity is a scalar energy threshold condition ($K + U \\ge 0$). As long as the trajectory does not intersect the Earth’s surface, $v_e$ is independent of the launch angle.<br><br>
+    • <b>(d) Height of the location:</b> <b>Yes.</b> The escape speed depends inversely on the square root of radial distance: $v_e = \\sqrt{\\frac{2GM_E}{R_E + h}}$. As height $h$ increases, less energy is needed, so $v_e$ decreases.
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) No, independent of projectile mass $m$', '1 Mark'],
+    ['(b) Yes, dependent on latitude/local radius variation', '1 Mark'],
+    ['(c) No, independent of launch angle by energy conservation', '1 Mark'],
+    ['(d) Yes, decreases with launch altitude $h$', '1 Mark']
+  ]
+));
+
+// Question 7.8
+questions.push(createQCard(
+  'c11p-ch7-q8', 'Question 7.8', 'NCERT Exercise',
+  'A comet orbits the sun in a highly elliptical orbit. Does the comet have a constant<br>' +
+  '(a) linear speed,<br>' +
+  '(b) angular speed,<br>' +
+  '(c) angular momentum,<br>' +
+  '(d) kinetic energy,<br>' +
+  '(e) potential energy,<br>' +
+  '(f) total energy<br>' +
+  'throughout its orbit? Neglect any mass loss of the comet when it comes very close to the Sun.',
+  `<div class="step">
+    • <b>(a) Linear speed:</b> <b>No.</b> By Kepler’s second law, linear speed is maximum at perihelion (closest to Sun) and minimum at aphelion (farthest from Sun).<br><br>
+    • <b>(b) Angular speed ($\\omega$):</b> <b>No.</b> Since $\\omega = \\frac{v_{\\perp}}{r}$ and $r$ varies along the ellipse, angular speed changes continuously (fastest at perihelion).<br><br>
+    • <b>(c) Angular momentum ($\\vec{L}$):</b> <b>Yes, constant.</b> The gravitational force of the Sun is a central force directed along the line joining the comet and the Sun. Therefore, the external torque about the Sun is zero ($\\vec{\\tau} = \\vec{r} \\times \\vec{F} = \\mathbf{0}$), so angular momentum is strictly conserved.<br><br>
+    • <b>(d) Kinetic energy:</b> <b>No.</b> Since linear speed $v$ varies, $K = \\frac{1}{2}mv^2$ varies continuously.<br><br>
+    • <b>(e) Potential energy:</b> <b>No.</b> Gravitational potential energy $U = -\\frac{G M m}{r}$ depends on the distance $r$ from the Sun, which changes continuously.<br><br>
+    • <b>(f) Total energy:</b> <b>Yes, constant.</b> Gravitational force is conservative and no non-conservative forces act on the comet. Mechanical energy $E = K + U$ is strictly conserved throughout the orbit.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a), (b), (d), (e) Non-constant with variation of distance $r$', '1.5 Marks'],
+    ['(c) Angular momentum constant due to zero torque for central force', '0.75 Mark'],
+    ['(f) Total energy constant due to conservative gravitational force field', '0.75 Mark']
+  ]
+));
+
+// Question 7.9
+questions.push(createQCard(
+  'c11p-ch7-q9', 'Question 7.9', 'NCERT Exercise',
+  'Which of the following symptoms is likely to afflict an astronaut in space<br>' +
+  '(a) swollen feet,<br>' +
+  '(b) swollen face,<br>' +
+  '(c) headache,<br>' +
+  '(d) orientational problem?',
+  `<div class="step">
+    • <b>(a) Swollen feet:</b> <b>No.</b> On Earth, gravity pulls blood and bodily fluids downwards towards the feet. In the microgravity environment of space, blood does not pool in the lower extremities, so swollen feet do not occur.<br><br>
+    • <b>(b) Swollen face:</b> <b>Yes.</b> In zero-g, bodily fluids redistribute upward toward the upper body and head, causing facial puffiness/swelling (known as "puffy face syndrome").<br><br>
+    • <b>(c) Headache:</b> <b>Yes.</b> The upward fluid shift creates increased cranial blood pressure and intracranial fluid congestion, leading to persistent headaches.<br><br>
+    • <b>(d) Orientational problem:</b> <b>Yes.</b> The vestibular system in the inner ear relies on gravity acting on the otoliths to sense "up" and "down". In zero-g, these sensory cues vanish, causing spatial disorientation and space motion sickness.<br><br>
+    $$\\mathbf{\\text{Symptoms likely to afflict the astronaut: (b) swollen face, (c) headache, and (d) orientational problem.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Explanation of zero-g fluid redistribution from legs to head', '1 Mark'],
+    ['Identification of (b) swollen face and (c) headache due to cranial pressure', '1 Mark'],
+    ['Identification of (d) vestibular disorientation due to lack of gravity direction', '1 Mark']
+  ]
+));
+
+// Question 7.10
+questions.push(createQCard(
+  'c11p-ch7-q10', 'Question 7.10', 'NCERT Exercise',
+  'The gravitational intensity at the centre of a hemispherical shell of uniform mass density has the direction indicated by the arrow: (i) a, (ii) b, (iii) c, (iv) 0. [Choose the correct alternative].',
+  `<div class="step">
+    <b>Correct Option: (iii) c</b><br><br>
+    <b>Justification:</b><br>
+    Consider a complete hollow spherical shell. By symmetry, the gravitational field at its centre is identically zero ($\\vec{E} = \\mathbf{0}$).<br>
+    Now consider the sphere cut into two identical hemispherical shells: an upper hemisphere and a lower hemisphere.<br>
+    $$\\vec{E}_{total} = \\vec{E}_{upper} + \\vec{E}_{lower} = \\mathbf{0} \\implies \\vec{E}_{lower} = -\\vec{E}_{upper}$$<br>
+    For a hemispherical shell resting on the horizontal diameter (curved cup facing upwards), every mass element on the upper hemisphere attracts a test mass at the centre with an upward/inward pull.<br>
+    By symmetry, the horizontal components of the gravitational attraction cancel out pairwise.<br>
+    The net vertical component acts directly <b>along arrow c (directed downwards into the interior / towards the symmetry axis)</b>.<br>
+    $$\\mathbf{\\text{Therefore, the direction is indicated by arrow c.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Selection of correct option (iii) arrow c', '1 Mark'],
+    ['Symmetry argument with horizontal cancellation and net downward vertical pull', '1 Mark']
+  ]
+));
+
+// Question 7.11
+questions.push(createQCard(
+  'c11p-ch7-q11', 'Question 7.11', 'NCERT Exercise',
+  'For the above problem, the direction of the gravitational field at an arbitrary point P is indicated by the arrow: (i) d, (ii) e, (iii) f, (iv) g. [Choose the correct alternative].',
+  `<div class="step">
+    <b>Correct Option: (ii) e</b><br><br>
+    <b>Justification:</b><br>
+    At an arbitrary internal or external point $P$ not lying on the central axis of symmetry of the hemispherical shell, the mass distribution is asymmetric with respect to $P$.<br>
+    The gravitational force is attractive towards the mass distribution of the shell.<br>
+    The net resultant field vector $\\vec{E}_P$ must point towards the centre of mass of the hemisphere.<br>
+    In the standard NCERT diagram, <b>arrow e</b> is inclined towards the mass distribution and points in the general direction of the center of mass of the hemispherical shell.<br>
+    $$\\mathbf{\\text{Therefore, the direction is indicated by arrow e.}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Selection of correct option (ii) arrow e', '1 Mark'],
+    ['Explanation of resultant field directed towards centre of gravity of the shell', '1 Mark']
+  ]
+));
+
+// Question 7.12
+questions.push(createQCard(
+  'c11p-ch7-q12', 'Question 7.12', 'NCERT Exercise',
+  'A rocket is fired from the earth towards the sun. At what distance from the earth’s centre is the gravitational force on the rocket zero? Mass of the sun $= 2 \\times 10^{30}\\text{ kg}$, mass of the earth $= 6 \\times 10^{24}\\text{ kg}$. Neglect the effect of other planets etc. (orbital radius $= 1.5 \\times 10^{11}\\text{ m}$).',
+  `<div class="step">
+    Given:<br>
+    • Mass of Sun $M_s = 2 \\times 10^{30}\\text{ kg}$<br>
+    • Mass of Earth $M_e = 6 \\times 10^{24}\\text{ kg}$<br>
+    • Separation distance $r = 1.5 \\times 10^{11}\\text{ m}$<br>
+    • Let the point of zero net force be at distance $x$ from the centre of the Earth.<br>
+    • Distance from the Sun is $(r - x)$.<br><br>
+    <b>Equating Gravitational Forces on rocket of mass $m$:</b><br>
+    $$\\frac{G M_e m}{x^2} = \\frac{G M_s m}{(r - x)^2}$$<br>
+    $$\\left(\\frac{r - x}{x}\\right)^2 = \\frac{M_s}{M_e} = \\frac{2 \\times 10^{30}}{6 \\times 10^{24}} = \\frac{10^6}{3}$$<br>
+    $$\\frac{r - x}{x} = \\frac{1000}{\\sqrt{3}} = \\frac{1000}{1.732} \\approx 577.37$$<br>
+    $$\\frac{r}{x} - 1 = 577.37 \\implies \\frac{r}{x} = 578.37$$<br>
+    $$x = \\frac{r}{578.37} = \\frac{1.5 \\times 10^{11}\\text{ m}}{578.37} \\approx \\mathbf{2.59 \\times 10^8\\text{ m}}$$<br><br>
+    $$\\therefore \\text{Net gravitational force on the rocket is zero at a distance of } \\mathbf{2.59 \\times 10^8\\text{ m}} \\text{ from Earth's centre.}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Force balance equation $GM_e/x^2 = GM_s/(r-x)^2$', '1.5 Marks'],
+    ['Ratio square root evaluation $(r-x)/x = 1000/\\sqrt{3} = 577.4$', '1.5 Marks'],
+    ['Final distance from Earth: $x = 2.59 \\times 10^8\\text{ m}$', '1 Mark']
+  ]
+));
+
+// Question 7.13
+questions.push(createQCard(
+  'c11p-ch7-q13', 'Question 7.13', 'NCERT Exercise',
+  'How will you ‘weigh the sun’, that is estimate its mass? The mean orbital radius of the earth around the sun is $1.5 \\times 10^8\\text{ km}$.',
+  `<div class="step">
+    Given:<br>
+    • Mean orbital radius of Earth $R = 1.5 \\times 10^8\\text{ km} = 1.5 \\times 10^{11}\\text{ m}$<br>
+    • Orbital period of Earth $T = 365.25\\text{ days} = 365.25 \\times 24 \\times 3600\\text{ s} \\approx 3.156 \\times 10^7\\text{ s}$<br>
+    • $G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$<br><br>
+    <b>Gravitational Force Provides Centripetal Force:</b><br>
+    $$\\frac{G M_s M_e}{R^2} = M_e \\omega^2 R = M_e \\left(\\frac{2\\pi}{T}\\right)^2 R = \\frac{4\\pi^2 M_e R}{T^2}$$<br>
+    $$M_s = \\frac{4\\pi^2 R^3}{G T^2}$$<br><br>
+    <b>Substitution:</b><br>
+    $$R^3 = (1.5 \\times 10^{11})^3 = 3.375 \\times 10^{33}\\text{ m}^3$$<br>
+    $$T^2 = (3.156 \\times 10^7)^2 \\approx 9.96 \\times 10^{14}\\text{ s}^2$$<br>
+    $$M_s = \\frac{4 \\times (3.1416)^2 \\times 3.375 \\times 10^{33}}{(6.67 \\times 10^{-11}) \\times (9.96 \\times 10^{14})} = \\frac{133.24 \\times 10^{33}}{66.43 \\times 10^3} \\approx \\mathbf{2.0 \\times 10^{30}\\text{ kg}}$$<br><br>
+    $$\\therefore \\text{Estimated mass of the Sun is } \\mathbf{2.0 \\times 10^{30}\\text{ kg}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Centripetal-gravitational force balance formula $M_s = 4\\pi^2 R^3 / (G T^2)$', '1.5 Marks'],
+    ['Numerical calculation yielding solar mass $M_s = 2.0 \\times 10^{30}\\text{ kg}$', '1.5 Marks']
+  ]
+));
+
+// Question 7.14
+questions.push(createQCard(
+  'c11p-ch7-q14', 'Question 7.14', 'NCERT Exercise',
+  'A saturn year is $29.5$ times the earth year. How far is the saturn from the sun if the earth is $1.50 \\times 10^8\\text{ km}$ away from the sun?',
+  `<div class="step">
+    Given:<br>
+    • $T_s = 29.5 T_e \\implies \\frac{T_s}{T_e} = 29.5$<br>
+    • $R_e = 1.50 \\times 10^8\\text{ km} = 1.50 \\times 10^{11}\\text{ m}$<br><br>
+    <b>Kepler’s Third Law of Planetary Motion:</b><br>
+    $$\\left(\\frac{R_s}{R_e}\\right)^3 = \\left(\\frac{T_s}{T_e}\\right)^2 = (29.5)^2 = 870.25$$<br>
+    $$\\frac{R_s}{R_e} = (870.25)^{1/3} \\approx 9.547$$<br><br>
+    <b>Distance of Saturn from the Sun:</b><br>
+    $$R_s = 9.547 \\times R_e = 9.547 \\times (1.50 \\times 10^8\\text{ km}) = \\mathbf{1.432 \\times 10^9\\text{ km} = 1.43 \\times 10^{12}\\text{ m}}$$<br><br>
+    $$\\therefore \\text{Saturn is } \\mathbf{1.43 \\times 10^9\\text{ km}} \\text{ (or } 1.43 \\times 10^{12}\\text{ m}\\text{) from the Sun.}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Kepler\'s Third Law stated: $(R_s/R_e)^3 = (T_s/T_e)^2$', '1 Mark'],
+    ['Cube root evaluation: $R_s/R_e = (29.5)^{2/3} = 9.547$', '1 Mark'],
+    ['Final distance: $R_s = 1.43 \\times 10^9\\text{ km}$', '1 Mark']
+  ]
+));
+
+// Question 7.15
+questions.push(createQCard(
+  'c11p-ch7-q15', 'Question 7.15', 'NCERT Exercise',
+  'A body weighs $63\\text{ N}$ on the surface of the earth. What is the gravitational force on it due to the earth at a height equal to half the radius of the earth?',
+  `<div class="step">
+    Given:<br>
+    • Weight on surface $W = m g = 63\\text{ N}$<br>
+    • Height $h = \\frac{R_e}{2}$<br><br>
+    <b>Variation of $g$ with Altitude:</b><br>
+    $$g_h = \\frac{G M_e}{(R_e + h)^2} = \\frac{G M_e}{\\left(R_e + \\frac{R_e}{2}\\right)^2} = \\frac{G M_e}{\\left(\\frac{3}{2} R_e\\right)^2} = \\frac{4}{9} \\frac{G M_e}{R_e^2} = \\frac{4}{9} g$$<br><br>
+    <b>Gravitational Force at height $h$:</b><br>
+    $$F = m g_h = \\frac{4}{9} (m g) = \\frac{4}{9} \\times 63\\text{ N} = 4 \\times 7 = \\mathbf{28\\text{ N}}$$<br><br>
+    $$\\therefore \\text{The gravitational force on the body at height } R_e/2 \\text{ is } \\mathbf{28\\text{ N}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Variation of $g$ formula $g_h = g (R/(R+h))^2$', '1.5 Marks'],
+    ['Substitution of $h = R/2$ giving factor $4/9$', '1 Mark'],
+    ['Final weight calculation: $F = (4/9) \\times 63 = 28\\text{ N}$', '0.5 Mark']
+  ]
+));
+
+// Question 7.16
+questions.push(createQCard(
+  'c11p-ch7-q16', 'Question 7.16', 'NCERT Exercise',
+  'Assuming the earth to be a sphere of uniform mass density, how much would a body weigh half way down to the centre of the earth if it weighed $250\\text{ N}$ on the surface?',
+  `<div class="step">
+    Given:<br>
+    • Weight on surface $W = m g = 250\\text{ N}$<br>
+    • Depth $d = \\frac{R_e}{2}$<br><br>
+    <b>Variation of $g$ with Depth:</b><br>
+    $$g_d = g \\left(1 - \\frac{d}{R_e}\\right)$$<br>
+    At depth $d = \\frac{R_e}{2}$:<br>
+    $$g_d = g \\left(1 - \\frac{R_e / 2}{R_e}\\right) = g \\left(1 - \\frac{1}{2}\\right) = \\frac{1}{2} g$$<br><br>
+    <b>Weight at Depth $d$:</b><br>
+    $$W\' = m g_d = m \\left(\\frac{1}{2} g\\right) = \\frac{1}{2} (m g) = \\frac{1}{2} \\times 250\\text{ N} = \\mathbf{125\\text{ N}}$$<br><br>
+    $$\\therefore \\text{The body would weigh } \\mathbf{125\\text{ N}} \\text{ half way down to the centre of the Earth.}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Variation of $g$ with depth formula $g_d = g(1 - d/R)$', '1.5 Marks'],
+    ['Substitution $d = R/2$ yielding $g_d = g/2$', '1 Mark'],
+    ['Final weight: $125\\text{ N}$', '0.5 Mark']
+  ]
+));
+
+// Question 7.17
+questions.push(createQCard(
+  'c11p-ch7-q17', 'Question 7.17', 'NCERT Exercise',
+  'A rocket is fired vertically with a speed of $5\\text{ km s}^{-1}$ from the earth’s surface. How far from the earth does the rocket go before returning to the earth? Mass of the earth $= 6.0 \\times 10^{24}\\text{ kg}$; mean radius of the earth $= 6.4 \\times 10^6\\text{ m}$; $G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$.',
+  `<div class="step">
+    Given:<br>
+    • Initial launch speed $v = 5\\text{ km s}^{-1} = 5000\\text{ m s}^{-1}$<br>
+    • $M = 6.0 \\times 10^{24}\\text{ kg}$, $R = 6.4 \\times 10^6\\text{ m}$, $G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$<br><br>
+    <b>Conservation of Total Mechanical Energy:</b><br>
+    Let $r = R + h$ be the maximum distance from Earth\'s centre where $v = 0$.<br>
+    $$E_i = E_f$$<br>
+    $$\\frac{1}{2} m v^2 - \\frac{G M m}{R} = 0 - \\frac{G M m}{r}$$<br>
+    Dividing by $m$ and rearranging for $1/r$:<br>
+    $$\\frac{G M}{r} = \\frac{G M}{R} - \\frac{1}{2} v^2$$<br>
+    $$\\frac{1}{r} = \\frac{1}{R} - \\frac{v^2}{2 G M}$$<br><br>
+    Evaluating terms:<br>
+    • $\\frac{1}{R} = \\frac{1}{6.4 \\times 10^6} = 1.5625 \\times 10^{-7}\\text{ m}^{-1}$<br>
+    • $\\frac{v^2}{2 G M} = \\frac{(5000)^2}{2 \\times 6.67 \\times 10^{-11} \\times 6.0 \\times 10^{24}} = \\frac{2.5 \\times 10^7}{8.004 \\times 10^{14}} = 0.3123 \\times 10^{-7}\\text{ m}^{-1}$<br><br>
+    $$\\frac{1}{r} = (1.5625 - 0.3123) \\times 10^{-7} = 1.2502 \\times 10^{-7}\\text{ m}^{-1}$$<br>
+    $$r = \\frac{1}{1.2502 \\times 10^{-7}} \\approx 7.9987 \\times 10^6\\text{ m} \\approx \\mathbf{8.0 \\times 10^6\\text{ m}}$$<br><br>
+    <b>Height from Earth\'s surface ($h$):</b><br>
+    $$h = r - R = 8.0 \\times 10^6 - 6.4 \\times 10^6 = \\mathbf{1.6 \\times 10^6\\text{ m} = 1600\\text{ km}}$$<br><br>
+    $$\\therefore \\text{The rocket reaches a height of } \\mathbf{1.6 \\times 10^6\\text{ m}} \\text{ (distance from centre } = 8.0 \\times 10^6\\text{ m}\\text{).}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Conservation of mechanical energy equation $\\frac{1}{2}mv^2 - GMm/R = -GMm/r$', '1.5 Marks'],
+    ['Calculation of maximum distance from centre $r = 8.0 \\times 10^6\\text{ m}$', '1.5 Marks'],
+    ['Height from surface $h = r - R = 1.6 \\times 10^6\\text{ m}$', '1 Mark']
+  ]
+));
+
+// Question 7.18
+questions.push(createQCard(
+  'c11p-ch7-q18', 'Question 7.18', 'NCERT Exercise',
+  'The escape speed of a projectile on the earth’s surface is $11.2\\text{ km s}^{-1}$. A body is projected out with thrice this speed. What is the speed of the body far away from the earth? Ignore the presence of the sun and other planets.',
+  `<div class="step">
+    Given:<br>
+    • Escape speed $v_e = 11.2\\text{ km s}^{-1}$<br>
+    • Initial projection speed $v = 3 v_e$<br>
+    • Speed far away from Earth ($r \\to \\infty$) = $v_\\infty$<br><br>
+    <b>Conservation of Total Mechanical Energy:</b><br>
+    At the surface of Earth ($r = R$):<br>
+    $$E_i = \\frac{1}{2} m v^2 - \\frac{G M m}{R}$$<br>
+    Since $v_e = \\sqrt{\\frac{2GM}{R}} \\implies \\frac{GM}{R} = \\frac{1}{2} v_e^2$, we can write:<br>
+    $$E_i = \\frac{1}{2} m v^2 - \\frac{1}{2} m v_e^2 = \\frac{1}{2} m (v^2 - v_e^2)$$<br><br>
+    Far away from Earth ($r \\to \\infty$), potential energy is zero ($U_\\infty = 0$):<br>
+    $$E_f = \\frac{1}{2} m v_\\infty^2$$<br><br>
+    Equating initial and final mechanical energies:<br>
+    $$\\frac{1}{2} m v_\\infty^2 = \\frac{1}{2} m (v^2 - v_e^2)$$<br>
+    $$v_\\infty^2 = v^2 - v_e^2 = (3 v_e)^2 - v_e^2 = 9 v_e^2 - v_e^2 = 8 v_e^2$$<br>
+    $$v_\\infty = \\sqrt{8} v_e = 2\\sqrt{2} v_e$$<br>
+    $$v_\\infty = 2 \\times 1.4142 \\times 11.2\\text{ km s}^{-1} = 2.8284 \\times 11.2 \\approx \\mathbf{31.68\\text{ km s}^{-1}}$$<br><br>
+    $$\\therefore \\text{The speed of the body far away from Earth is } \\mathbf{31.7\\text{ km s}^{-1}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Conservation of energy relation $v_\\infty^2 = v^2 - v_e^2$', '1.5 Marks'],
+    ['Substitution $v = 3v_e \\implies v_\\infty = \\sqrt{8}v_e$', '1 Mark'],
+    ['Final calculation: $v_\\infty = 31.68\\text{ km s}^{-1}$', '0.5 Mark']
+  ]
+));
+
+// Question 7.19
+questions.push(createQCard(
+  'c11p-ch7-q19', 'Question 7.19', 'NCERT Exercise',
+  'A satellite orbits the earth at a height of $400\\text{ km}$ above the surface. How much energy must be expended to rocket the satellite out of the earth’s gravitational influence? Mass of the satellite $= 200\\text{ kg}$; mass of the earth $= 6.0 \\times 10^{24}\\text{ kg}$; radius of the earth $= 6.4 \\times 10^6\\text{ m}$; $G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$.',
+  `<div class="step">
+    Given:<br>
+    • Satellite mass $m = 200\\text{ kg}$<br>
+    • Earth mass $M = 6.0 \\times 10^{24}\\text{ kg}$<br>
+    • Radius of orbit: $r = R + h = 6.4 \\times 10^6 + 0.4 \\times 10^6 = 6.8 \\times 10^6\\text{ m}$<br>
+    • $G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$<br><br>
+    <b>1. Total Mechanical Energy of Orbiting Satellite ($E$):</b><br>
+    $$E = -\\frac{G M m}{2 r}$$<br><br>
+    <b>2. Energy Expended to Escape to Infinity ($E_{escape}$):</b><br>
+    At infinity, total energy is zero ($E_\\infty = 0$).<br>
+    The energy needed to escape is the negative of its bound orbital energy (binding energy):<br>
+    $$E_{escape} = 0 - E = +\\frac{G M m}{2 r}$$<br><br>
+    Substituting given numerical values:<br>
+    $$E_{escape} = \\frac{(6.67 \\times 10^{-11}) \\times (6.0 \\times 10^{24}) \\times 200}{2 \\times (6.8 \\times 10^6)}$$<br>
+    $$E_{escape} = \\frac{8.004 \\times 10^{16}}{13.6 \\times 10^6} \\approx \\mathbf{5.89 \\times 10^9\\text{ Joules} = 5.89\\text{ GJ}}$$<br><br>
+    $$\\therefore \\text{The energy that must be expended is } \\mathbf{5.89 \\times 10^9\\text{ J}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Orbital radius calculation $r = 6.8 \\times 10^6\\text{ m}$', '1 Mark'],
+    ['Binding energy formula $E_{escape} = +\\frac{GMm}{2r}$', '1.5 Marks'],
+    ['Final calculation: $5.89 \\times 10^9\\text{ J}$', '1.5 Marks']
+  ]
+));
+
+// Question 7.20
+questions.push(createQCard(
+  'c11p-ch7-q20', 'Question 7.20', 'NCERT Exercise',
+  'Two stars each of one solar mass ($= 2 \\times 10^{30}\\text{ kg}$) are approaching each other for a head on collision. When they are at a distance $10^9\\text{ km}$, their speeds are negligible. What is the speed with which they collide? The radius of each star is $10^4\\text{ km}$. Assume the stars to remain undistorted until they collide. ($G = 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Mass of each star: $M = 2 \\times 10^{30}\\text{ kg}$<br>
+    • Initial distance: $r_i = 10^9\\text{ km} = 10^{12}\\text{ m}$ (speeds negligible, $K_i \\approx 0$)<br>
+    • Radius of each star: $R = 10^4\\text{ km} = 10^7\\text{ m}$<br>
+    • Distance between centres at collision: $r_f = R + R = 2R = 2 \\times 10^7\\text{ m}$<br><br>
+    <b>Conservation of Total Mechanical Energy:</b><br>
+    By symmetry, both stars collide with identical speed $v$.<br>
+    Total final kinetic energy = $\\frac{1}{2} M v^2 + \\frac{1}{2} M v^2 = M v^2$.<br><br>
+    $$E_i = E_f$$<br>
+    $$0 - \\frac{G M^2}{r_i} = M v^2 - \\frac{G M^2}{r_f}$$<br>
+    $$M v^2 = G M^2 \\left(\\frac{1}{r_f} - \\frac{1}{r_i}\\right)$$<br>
+    $$v^2 = G M \\left(\\frac{1}{2R} - \\frac{1}{r_i}\\right)$$<br>
+    Since $r_i = 10^{12}\\text{ m} \\gg 2R = 2 \\times 10^7\\text{ m}$, the term $\\frac{1}{r_i}$ is negligible compared to $\\frac{1}{2R}$:<br>
+    $$v^2 \\approx \\frac{G M}{2 R} = \\frac{(6.67 \\times 10^{-11}) \\times (2 \\times 10^{30})}{2 \\times 10^7} = \\frac{1.334 \\times 10^{20}}{2 \\times 10^7} = 6.67 \\times 10^{12}\\text{ m}^2\\text{ s}^{-2}$$<br>
+    $$v = \\sqrt{6.67 \\times 10^{12}} \\approx \\mathbf{2.58 \\times 10^6\\text{ m s}^{-1} = 2.58 \\times 10^3\\text{ km s}^{-1}}$$<br><br>
+    $$\\therefore \\text{Each star collides with a speed of } \\mathbf{2.58 \\times 10^6\\text{ m s}^{-1}} \\text{ (or } 2580\\text{ km s}^{-1}\\text{)}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Collision centre separation identified as $r_f = 2R = 2 \\times 10^7\\text{ m}$', '1 Mark'],
+    ['Energy conservation equation: $Mv^2 = GM^2(1/2R - 1/r_i)$', '1.5 Marks'],
+    ['Final speed calculation: $v = 2.58 \\times 10^6\\text{ m s}^{-1}$', '1.5 Marks']
+  ]
+));
+
+// Question 7.21
+questions.push(createQCard(
+  'c11p-ch7-q21', 'Question 7.21', 'NCERT Exercise',
+  'Two heavy spheres each of mass $100\\text{ kg}$ and radius $0.10\\text{ m}$ are placed $1.0\\text{ m}$ apart on a horizontal table. What is the gravitational force and potential at the mid point of the line joining the centres of the spheres? Is an object placed at that point in equilibrium? If so, is the equilibrium stable or unstable?',
+  `<div class="step">
+    Given:<br>
+    • Mass of each sphere $M = 100\\text{ kg}$<br>
+    • Distance between centres $d = 1.0\\text{ m}$<br>
+    • Midpoint is at distance $r = \\frac{d}{2} = 0.5\\text{ m}$ from each centre.<br><br>
+    • <b>1. Gravitational Field / Force on test mass at midpoint:</b><br>
+      The gravitational field vectors produced by the two spheres at the midpoint are equal in magnitude and point in diametrically opposite directions (towards each sphere\'s centre):<br>
+      $$\\vec{E}_1 = -\\frac{GM}{r^2}\\hat{i}, \\quad \\vec{E}_2 = +\\frac{GM}{r^2}\\hat{i}$$<br>
+      $$\\vec{E}_{net} = \\vec{E}_1 + \\vec{E}_2 = \\mathbf{0}$$<br>
+      $$\\mathbf{\\text{Gravitational force on any object at the midpoint is ZERO.}}$$
+      <br>
+    • <b>2. Gravitational Potential at midpoint ($V$):</b><br>
+      Gravitational potential is a scalar quantity, so potentials add algebraically:<br>
+      $$V = V_1 + V_2 = -\\frac{G M}{r} + \\left(-\\frac{G M}{r}\\right) = -\\frac{2 G M}{r}$$<br>
+      $$V = -\\frac{2 \\times (6.67 \\times 10^{-11}) \\times 100}{0.5} = -\\frac{1.334 \\times 10^{-8}}{0.5} = \\mathbf{-2.67 \\times 10^{-8}\\text{ J kg}^{-1}}$$<br><br>
+    • <b>3. Nature of Equilibrium:</b><br>
+      - Since net force is zero, the object is in <b>equilibrium</b>.<br>
+      - If displaced slightly along the line joining the centres towards sphere 1, the distance to sphere 1 decreases ($r < 0.5\\text{ m}$), increasing sphere 1\'s attractive pull, while distance to sphere 2 increases. The net force pulls it further towards sphere 1 (away from midpoint).<br>
+      $$\\mathbf{\\text{Therefore, the equilibrium is UNSTABLE along the line joining the centres.}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Net gravitational force is zero due to vector cancellation', '1 Mark'],
+    ['Gravitational potential calculation: $V = -2GM/r = -2.67 \\times 10^{-8}\\text{ J/kg}$', '1.5 Marks'],
+    ['Equilibrium identified and verified as unstable for displacements along the axis', '1.5 Marks']
+  ]
+));
+
+// ============================================================================
+// VECTOR SVG DIAGRAM (Orbital Velocity & Kepler's Elliptical Orbit)
+// ============================================================================
+const gravitationSvg = `
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      Celestial Dynamics: Kepler's Elliptical Laws, Escape Speed &amp; Satellite Orbital Energetics
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Kepler's Laws & Elliptical Orbit -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Kepler's Elliptical Orbit &amp; Equal Areas:</text>
+
+      <!-- Ellipse track -->
+      <ellipse cx="200" cy="125" rx="145" ry="65" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+      
+      <!-- Sun at one focus F1 -->
+      <circle cx="140" cy="125" r="12" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"/>
+      <text x="133" y="129" font-size="9" font-weight="bold" fill="#78350f">Sun</text>
+
+      <!-- Perihelion P -->
+      <circle cx="55" cy="125" r="5" fill="#2563eb"/>
+      <line x1="55" y1="125" x2="55" y2="85" stroke="#2563eb" stroke-width="2"/>
+      <polygon points="55,85 51,95 59,95" fill="#2563eb"/>
+      <text x="30" y="80" font-size="9" font-weight="bold" fill="#2563eb">v_max</text>
+      <text x="35" y="140" font-size="8.5" fill="#475569">Perihelion</text>
+
+      <!-- Aphelion A -->
+      <circle cx="345" cy="125" r="5" fill="#059669"/>
+      <line x1="345" y1="125" x2="345" y2="155" stroke="#059669" stroke-width="1.8"/>
+      <polygon points="345,155 341,145 349,145" fill="#059669"/>
+      <text x="325" y="170" font-size="9" font-weight="bold" fill="#059669">v_min</text>
+      <text x="320" y="115" font-size="8.5" fill="#475569">Aphelion</text>
+
+      <!-- Areal Sector -->
+      <polygon points="140,125 70,80 100,68" fill="#fde68a" opacity="0.6"/>
+      <text x="145" y="175" font-size="9.5" font-weight="bold" fill="#5b21b6">dA/dt = L / 2m = const</text>
+
+      <!-- Panel 2: Satellite Energetics -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Orbital Energetics &amp; Escape Threshold:</text>
+
+      <!-- Earth at centre -->
+      <circle cx="510" cy="125" r="28" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+      <text x="495" y="129" font-size="10" font-weight="bold" fill="#0369a1">Earth</text>
+
+      <!-- Circular Orbit -->
+      <circle cx="510" cy="125" r="62" fill="none" stroke="#7c3aed" stroke-dasharray="4,3" stroke-width="1.8"/>
+      <circle cx="560" cy="88" r="4" fill="#7c3aed"/>
+      <text x="568" y="85" font-size="8.5" font-weight="bold" fill="#7c3aed">Satellite</text>
+
+      <!-- Velocity vector -->
+      <line x1="560" y1="88" x2="590" y2="120" stroke="#059669" stroke-width="2"/>
+      <text x="595" y="125" font-size="8.5" font-weight="bold" fill="#059669">v_o</text>
+
+      <rect x="600" y="55" width="155" height="140" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="608" y="75" font-size="9.5" font-weight="bold" fill="#5b21b6">Key Formulas:</text>
+      <text x="608" y="95" font-size="8.5" fill="#334155">&bull; v_o = &radic;(GM/r)</text>
+      <text x="608" y="115" font-size="8.5" fill="#334155">&bull; v_e = &radic;(2GM/r) = &radic;2 v_o</text>
+      <text x="608" y="135" font-size="8.5" fill="#334155">&bull; K = GMm / 2r</text>
+      <text x="608" y="155" font-size="8.5" fill="#334155">&bull; U = -GMm / r</text>
+      <text x="608" y="175" font-size="8.5" font-weight="bold" fill="#b91c1c">&bull; E = -GMm / 2r = -K</text>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH7.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11p-ch7">
+  <div class="chapter-header">
+    <div class="ch-badge">7</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 7</div>
+      <h2>Gravitation</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 21 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  <!-- PDF Download Tab at Chapter Start -->
+  <div class="pdf-download-bar" style="margin: 20px 0 28px 0; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 1.5px solid #c4b5fd; border-radius: 12px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 14px rgba(124, 58, 237, 0.08);">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="width: 46px; height: 46px; border-radius: 10px; background: #7c3aed; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6d28d9; margin-bottom: 3px;">Free Instant PDF &bull; CBSE Rationalised 2026–27</div>
+        <div style="font-size: 1.08rem; font-weight: 800; color: #1e1b4b;">Download All Chapter 7 Solutions (PDF)</div>
+        <div style="font-size: 0.82rem; color: #475569; margin-top: 2px;">Export all 21 verbatim NCERT solutions with official CBSE marking rubrics, formulas &amp; vector diagrams for offline study.</div>
+      </div>
+    </div>
+    <button onclick="downloadChapterPDF()" class="download-pdf-btn" style="background: #7c3aed; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35); transition: all 0.2s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download All Solutions (PDF)
+    </button>
+  </div>
+
+  ${gravitationSvg}
+
+  <div class="ex-div">NCERT Textbook Exercise 7.1 to 7.21: Universal Law of Gravitation, Kepler's Laws, Acceleration Due to Gravity with Altitude &amp; Depth, Orbital &amp; Escape Velocities</div>
+${questions.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(6)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 6 (Rotational Motion)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(8)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 8 (Mechanical Properties of Solids) →</button>
+  </div>
+</section>
+`;
+
+// Write ch7.html
+const ch7Path = path.join(outDir, 'ch7.html');
+fs.writeFileSync(ch7Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch7Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[7]
+if (!existingData.includes('window.CHAPTER_DATA[7] =')) {
+  fs.appendFileSync(dataJsPath, `\nwindow.CHAPTER_DATA[7] = ${JSON.stringify(chapterHtml.trim())};\n`, 'utf8');
+  console.log(`Appended Chapter 7 to preloaded cache: ${dataJsPath}`);
+} else {
+  const regex = /window\.CHAPTER_DATA\[7\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[7] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 7 in preloaded cache: ${dataJsPath}`);
+}

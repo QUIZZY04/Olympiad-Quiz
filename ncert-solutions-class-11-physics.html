@@ -186,6 +186,29 @@
       .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
       .main-content { padding: 0 16px 24px; }
     }
+
+    /* Print / PDF Export Styling */
+    @media print {
+      body { background: white !important; color: black !important; }
+      .navbar, .hero-banner, .breadcrumb-bar, .sidebar, .site-footer, .chapter-nav-btns, .pdf-download-bar, .q-toggle {
+        display: none !important;
+      }
+      .main-layout { display: block !important; }
+      .main-content { padding: 0 !important; width: 100% !important; max-width: 100% !important; }
+      .chapter-section { padding-top: 0 !important; margin-bottom: 0 !important; }
+      .q-card {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        margin-bottom: 16px !important;
+      }
+      .q-answer {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -461,6 +484,16 @@
     function toggleQ(id) {
       const el = document.getElementById(id);
       if (el) el.classList.toggle('open');
+    }
+
+    function downloadChapterPDF() {
+      // Expand all question cards in current chapter so solutions are visible in print/PDF
+      document.querySelectorAll('.q-card').forEach(card => card.classList.add('open'));
+      
+      // Short delay for DOM layout & MathJax rendering before opening browser print/PDF dialog
+      setTimeout(() => {
+        window.print();
+      }, 300);
     }
 
     function showChapter(n) {
