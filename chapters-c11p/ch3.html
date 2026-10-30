@@ -1,0 +1,1058 @@
+<section class="chapter-section" id="c11p-ch3">
+  <div class="chapter-header">
+    <div class="ch-badge">3</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 3</div>
+      <h2>Motion in a Plane</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 25 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M4 20h16"/><path d="M4 20Q12 4 20 20"/></svg>
+      2D Kinematics Dynamics: Projectile Parabolic Trajectory &amp; Vector Resolution
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Projectile Trajectory -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Projectile Motion Trajectory &amp; Vectors:</text>
+
+      <!-- Trajectory curve -->
+      <path d="M 45 180 Q 200 40 355 180" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+      <line x1="40" y1="180" x2="365" y2="180" stroke="#64748b" stroke-width="1.5"/>
+
+      <!-- Launch vector -->
+      <line x1="45" y1="180" x2="115" y2="110" stroke="#2563eb" stroke-width="2.5"/>
+      <polygon points="115,110 102,116 110,124" fill="#2563eb"/>
+      <text x="75" y="105" font-size="10" font-weight="bold" fill="#2563eb">u</text>
+      <text x="75" y="174" font-size="9" font-weight="bold" fill="#475569">&theta;</text>
+
+      <!-- Apex -->
+      <line x1="200" y1="110" x2="255" y2="110" stroke="#059669" stroke-width="2"/>
+      <polygon points="255,110 245,106 245,114" fill="#059669"/>
+      <text x="200" y="100" font-size="9.5" font-weight="bold" fill="#059669">v_x = u cos &theta; (v_y = 0)</text>
+
+      <line x1="200" y1="110" x2="200" y2="180" stroke="#94a3b8" stroke-dasharray="3,3"/>
+      <text x="205" y="150" font-size="9" font-weight="bold" fill="#7c3aed">H_max = u&sup2;sin&sup2;&theta;/2g</text>
+      <text x="170" y="195" font-size="9.5" font-weight="bold" fill="#1e293b">Range R = u&sup2;sin(2&theta;)/g</text>
+
+      <!-- Panel 2: Vector Triangle & Relative Velocity -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Relative Velocity &amp; Vector Triangle:</text>
+
+      <!-- Triangle: rain vs bicycle -->
+      <line x1="470" y1="65" x2="470" y2="165" stroke="#0284c7" stroke-width="2.5"/>
+      <polygon points="470,165 466,152 474,152" fill="#0284c7"/>
+      <text x="425" y="115" font-size="10" font-weight="bold" fill="#0284c7">v_rain (-30j)</text>
+
+      <line x1="470" y1="165" x2="570" y2="165" stroke="#dc2626" stroke-width="2.5"/>
+      <polygon points="570,165 558,161 558,169" fill="#dc2626"/>
+      <text x="495" y="180" font-size="10" font-weight="bold" fill="#dc2626">-v_bike (+10i)</text>
+
+      <line x1="470" y1="65" x2="570" y2="165" stroke="#7c3aed" stroke-width="3"/>
+      <polygon points="570,165 565,152 555,160" fill="#7c3aed"/>
+      <text x="535" y="105" font-size="10.5" font-weight="bold" fill="#7c3aed">v_rel</text>
+
+      <rect x="585" y="65" width="165" height="115" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="595" y="85" font-size="9.5" font-weight="bold" fill="#5b21b6">Relative Motion Formula:</text>
+      <text x="595" y="105" font-size="9" fill="#334155">&bull; v_rel = v_r - v_b</text>
+      <text x="595" y="125" font-size="9" fill="#334155">&bull; tan &theta; = |v_b| / |v_r|</text>
+      <text x="595" y="145" font-size="9" font-weight="bold" fill="#047857">&bull; &theta; = 18.4&deg; with vertical</text>
+      <text x="595" y="165" font-size="9" fill="#475569">&bull; Umbrella tilted South</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 3.1 to 3.25: Scalar &amp; Vector Algebra, Relative Velocity in 2D, Projectile Motion &amp; Uniform Circular Motion</div>
+
+  <!-- c11p-ch3-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q1">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q1')">
+      <div class="q-num">Question 3.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        State, for each of the following physical quantities, if it is a scalar or a vector:<br>volume, mass, speed, acceleration, density, number of moles, velocity, angular frequency, displacement, angular velocity.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Classification based on directional dependence and vector addition laws:</b><br><br>
+    • <b>Scalar Quantities:</b> (Possess magnitude only, no directional dependence)<br>
+      1. <b>Volume:</b> Magnitude only (SI unit: $\text{m}^3$).<br>
+      2. <b>Mass:</b> Fundamental scalar (SI unit: $\text{kg}$).<br>
+      3. <b>Speed:</b> Magnitude of velocity, scalar (SI unit: $\text{m s}^{-1}$).<br>
+      4. <b>Density:</b> Ratio of mass to volume, scalar (SI unit: $\text{kg m}^{-3}$).<br>
+      5. <b>Number of moles:</b> Amount of substance, scalar (SI unit: $\text{mol}$).<br>
+      6. <b>Angular frequency ($\omega$):</b> Scalar rate of phase change (SI unit: $\text{rad s}^{-1}$).<br><br>
+    • <b>Vector Quantities:</b> (Possess magnitude, specified direction, and obey vector addition)<br>
+      1. <b>Acceleration:</b> Rate of change of velocity, directed quantity (SI unit: $\text{m s}^{-2}$).<br>
+      2. <b>Velocity:</b> Rate of displacement, directed quantity (SI unit: $\text{m s}^{-1}$).<br>
+      3. <b>Displacement:</b> Directed straight line from initial to final point (SI unit: $\text{m}$).<br>
+      4. <b>Angular velocity ($\vec{\omega}$):</b> Axial vector directed along axis of rotation by right-hand rule (SI unit: $\text{rad s}^{-1}$).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Criteria for scalar (magnitude only) and vector (magnitude + direction + vector addition)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Correct identification of 6 scalar quantities</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Correct identification of 4 vector quantities</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q2">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q2')">
+      <div class="q-num">Question 3.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Pick out the two scalar quantities in the following list:<br>force, angular momentum, work, current, linear momentum, electric field, average velocity, magnetic moment, relative velocity.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Analysis of Each Quantity:</b><br>
+    • <b>Work:</b> Scalar product of force and displacement vectors ($W = \vec{F} \cdot \vec{s}$). Possesses magnitude and unit (Joule), but no directional vector orientation. <b>(Scalar)</b><br>
+    • <b>Current (electric current):</b> Although current has a direction along a wire, it does not obey vector addition laws (Kirchhoff's current law is simple algebraic addition, independent of spatial orientation of wires). Hence, it is treated as a <b>scalar</b> (or tensor of rank 0). <b>(Scalar)</b><br><br>
+    • Force, angular momentum, linear momentum, electric field, average velocity, magnetic moment, and relative velocity are all vectors.<br><br>
+    $$\mathbf{\text{The two scalar quantities are: Work and Current.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identification of Work as dot product scalar</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Identification of Current as scalar due to non-adherence to vector triangle addition</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q3">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q3')">
+      <div class="q-num">Question 3.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Pick out the only vector quantity in the following list:<br>temperature, pressure, impulse, time, power, total path length, energy, gravitational potential, coefficient of friction, charge.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Detailed Examination:</b><br>
+    • <i>Temperature, time, power, total path length, energy, gravitational potential, coefficient of friction, charge:</i> All are scalars.<br>
+    • <i>Pressure:</i> Hydrostatic pressure acts equally in all directions at a point ($P = dF_{\perp}/dA$), making it a scalar.<br>
+    • <b>Impulse ($\vec{J}$):</b> Impulse is defined as the product of average force and the time interval during which it acts: $\vec{J} = \vec{F}_{avg} \Delta t = \Delta \vec{p}$. It is equal to the change in linear momentum, which has both magnitude and a definite spatial direction (identical to the direction of force).<br><br>
+    $$\mathbf{\text{The only vector quantity is: Impulse.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identification of Impulse as the vector quantity</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Justification via impulse-momentum relation $\vec{J} = \vec{F}\Delta t = \Delta\vec{p}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q4">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q4')">
+      <div class="q-num">Question 3.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        State with reasons, whether the following algebraic operations with scalar and vector quantities are permissible:<br>(a) adding any two scalars,<br>(b) adding a scalar to a vector of the same dimensions,<br>(c) multiplying any vector by any scalar,<br>(d) multiplying any two scalars,<br>(e) adding any two vectors,<br>(f) adding a component of a vector to the same vector.
+      </div>
+      <div class="q-marks">[6 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Adding any two scalars:</b> <b>Not permissible in general.</b> Two scalars can be added only if they represent the same physical quantity and have identical physical dimensions (e.g., adding mass to temperature is physically meaningless).<br><br>
+    • <b>(b) Adding a scalar to a vector of the same dimensions:</b> <b>Not permissible.</b> A scalar has no direction, whereas a vector has a specific direction. Addition of a scalar and a vector is mathematically undefined, even if their dimensions are the same.<br><br>
+    • <b>(c) Multiplying any vector by any scalar:</b> <b>Permissible.</b> Multiplying a vector $\vec{A}$ by a scalar $k$ yields a new vector $k\vec{A}$ with magnitude scaled by $|k|$ and units being the product of their units (e.g., $\vec{F} = m\vec{a}$, or $\vec{p} = m\vec{v}$).<br><br>
+    • <b>(d) Multiplying any two scalars:</b> <b>Permissible.</b> Any two scalars can be multiplied regardless of their physical dimensions (e.g., $\text{Mass} \times \text{Specific Heat} \times \Delta T = Q$, or $\text{Power} \times \text{time} = \text{Energy}$).<br><br>
+    • <b>(e) Adding any two vectors:</b> <b>Not permissible in general.</b> Two vectors can be added if and only if they represent the same physical quantity and possess identical dimensions (e.g., a velocity vector cannot be added to an electric field vector).<br><br>
+    • <b>(f) Adding a component of a vector to the same vector:</b> <b>Not permissible.</b> A component of a vector along a direction is a scalar (its projection $A_x = A \cos \theta$). Adding a scalar component directly to the vector itself is undefined. (If the component is taken as a component vector $A_x \hat{i}$, they have identical dimensions, but adding them produces a new vector $\vec{A} + A_x\hat{i}$, which does not represent the original vector).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Not permissible: Must have identical physical dimensions</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Not permissible: Scalar cannot be added to vector</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Permissible: Scalar multiplication scales vector magnitude</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Permissible: Multiplication of scalars is universally valid</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) Not permissible: Vectors must represent identical physical quantities</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(f) Not permissible: Scalar component cannot be added to vector</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q5">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q5')">
+      <div class="q-num">Question 3.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Read each statement below carefully and state with reasons, if it is true or false:<br>(a) The magnitude of a vector is always a scalar,<br>(b) each component of a vector is always a scalar,<br>(c) the total path length is always equal to the magnitude of the displacement vector of a particle.<br>(d) the average speed of a particle (defined as total path length divided by the time taken to cover the path) is either greater or equal to the magnitude of average velocity of the particle over the same interval of time,<br>(e) Three vectors not lying in a plane can never add up to give a null vector.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) True:</b> The magnitude of a vector represents its size/length, which is a pure non-negative real number associated with a physical unit. It has no directional properties; hence, it is always a scalar.<br><br>
+    • <b>(b) False:</b> A component of a vector can be treated either as a scalar component ($A_x = A \cos \theta$, which can be positive or negative) or as a component vector ($A_x \hat{i}$, which is a vector). In standard vector terminology, component vectors have directional unit vectors attached; hence, saying it is <i>always</i> a scalar is not universally true.<br><br>
+    • <b>(c) False:</b> Total path length is the actual trajectory length. It equals the magnitude of displacement if and only if the particle moves along a straight line in a fixed direction without reversing. In all other cases (e.g., curved paths, back-and-forth motion), $\text{Total path length} > |\text{Displacement}|$.<br><br>
+    • <b>(d) True:</b> Since $\text{Total path length} \ge |\text{Displacement}|$, dividing both sides by the positive time interval $\Delta t$ gives $\text{Average speed} \ge |\text{Average velocity}|$.<br><br>
+    • <b>(e) True:</b> For the resultant of three non-zero vectors to be zero ($\vec{a} + \vec{b} + \vec{c} = \mathbf{0}$), the third vector must be equal and opposite to the resultant of the first two ($\vec{c} = -(\vec{a} + \vec{b})$). But the resultant of any two vectors $(\vec{a} + \vec{b})$ always lies in the plane containing $\vec{a}$ and $\vec{b}$. If the three vectors are non-coplanar, $\vec{c}$ cannot lie in the plane of $\vec{a}$ and $\vec{b}$ and therefore can never cancel their resultant.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) True with definition of scalar magnitude</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) False: component vectors carry unit vectors</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) False: path length $\ge$ displacement magnitude</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) True: consequence of path length $\ge$ displacement</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) True: two vectors define a plane; third non-coplanar vector cannot cancel their sum</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q6">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q6')">
+      <div class="q-num">Question 3.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Establish the following vector inequalities geometrically or otherwise:<br>(a) $|\vec{a} + \vec{b}| \le |\vec{a}| + |\vec{b}|$<br>(b) $|\vec{a} + \vec{b}| \ge ||\vec{a}| - |\vec{b}||$<br>(c) $|\vec{a} - \vec{b}| \le |\vec{a}| + |\vec{b}|$<br>(d) $|\vec{a} - \vec{b}| \ge ||\vec{a}| - |\vec{b}||$<br>When does the equality sign apply?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Consider triangle $OPQ$ formed by vectors $\vec{OP} = \vec{a}$, $\vec{PQ} = \vec{b}$, and resultant $\vec{OQ} = \vec{a} + \vec{b}$.<br><br>
+    • <b>(a) Triangle Inequality:</b> In any triangle, the length of any side is strictly less than the sum of the lengths of the other two sides: $OQ \le OP + PQ$.<br>
+      $$|\vec{a} + \vec{b}| \le |\vec{a}| + |\vec{b}|$$<br>
+      <i>Equality holds:</i> When $\vec{a}$ and $\vec{b}$ are collinear and in the <b>same direction</b> ($\theta = 0^\circ$).<br><br>
+    • <b>(b) Difference Inequality:</b> In triangle $OPQ$, the length of any side is greater than or equal to the difference of the other two sides: $OQ \ge |OP - PQ|$.<br>
+      $$|\vec{a} + \vec{b}| \ge ||\vec{a}| - |\vec{b}||$$<br>
+      <i>Equality holds:</i> When $\vec{a}$ and $\vec{b}$ are collinear and in <b>opposite directions</b> ($\theta = 180^\circ$).<br><br>
+    • <b>(c) Replacing $\vec{b}$ with $-\vec{b}$ in (a):</b><br>
+      $$|\vec{a} + (-\vec{b})| \le |\vec{a}| + |-\vec{b}| \implies |\vec{a} - \vec{b}| \le |\vec{a}| + |\vec{b}|$$<br>
+      <i>Equality holds:</i> When $\vec{a}$ and $-\vec{b}$ are in the same direction, i.e., $\vec{a}$ and $\vec{b}$ are in <b>opposite directions</b> ($\theta = 180^\circ$).<br><br>
+    • <b>(d) Replacing $\vec{b}$ with $-\vec{b}$ in (b):</b><br>
+      $$|\vec{a} - \vec{b}| \ge ||\vec{a}| - |-\vec{b}|| \implies |\vec{a} - \vec{b}| \ge ||\vec{a}| - |\vec{b}||$$<br>
+      <i>Equality holds:</i> When $\vec{a}$ and $\vec{b}$ are in the <b>same direction</b> ($\theta = 0^\circ$).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Triangle inequality proof and $\theta = 0^\circ$ equality condition</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Side difference property proof and $\theta = 180^\circ$ equality condition</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Substitution of $-\vec{b}$ into sum inequality with $\theta = 180^\circ$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Substitution of $-\vec{b}$ into difference inequality with $\theta = 0^\circ$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q7">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q7')">
+      <div class="q-num">Question 3.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Given $\vec{a} + \vec{b} + \vec{c} + \vec{d} = \mathbf{0}$, which of the following statements are correct:<br>(a) $\vec{a}, \vec{b}, \vec{c}$, and $\vec{d}$ must each be a null vector,<br>(b) The magnitude of $(\vec{a} + \vec{c})$ equals the magnitude of $(\vec{b} + \vec{d})$,<br>(c) The magnitude of $\vec{a}$ can never be greater than the sum of the magnitudes of $\vec{b}, \vec{c}$, and $\vec{d}$,<br>(d) $\vec{b} + \vec{c}$ must lie in the plane of $\vec{a}$ and $\vec{d}$ if $\vec{a}$ and $\vec{d}$ are not collinear, and in the line of $\vec{a}$ and $\vec{d}$ if they are collinear?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Incorrect:</b> The sum of four non-zero vectors can easily be zero if they form the closed sides of a polygon taken in order. They do not each have to be null vectors.<br><br>
+    • <b>(b) Correct:</b> Rearranging $\vec{a} + \vec{b} + \vec{c} + \vec{d} = \mathbf{0}$:<br>
+      $$\vec{a} + \vec{c} = -(\vec{b} + \vec{d})$$<br>
+      Taking magnitude on both sides:<br>
+      $$|\vec{a} + \vec{c}| = |-(\vec{b} + \vec{d})| = |\vec{b} + \vec{d}|$$<br><br>
+    • <b>(c) Correct:</b> Rearranging for $\vec{a}$:<br>
+      $$\vec{a} = -(\vec{b} + \vec{c} + \vec{d})$$<br>
+      Taking magnitude and using generalized triangle inequality:<br>
+      $$|\vec{a}| = |-(\vec{b} + \vec{c} + \vec{d})| = |\vec{b} + \vec{c} + \vec{d}| \le |\vec{b}| + |\vec{c}| + |\vec{d}|$$<br>
+      Thus, the magnitude of $\vec{a}$ can never exceed the sum of the magnitudes of the other three vectors.<br><br>
+    • <b>(d) Correct:</b> From $\vec{a} + (\vec{b} + \vec{c}) + \vec{d} = \mathbf{0}$, we have:<br>
+      $$\vec{b} + \vec{c} = -(\vec{a} + \vec{d})$$<br>
+      The vector $(\vec{a} + \vec{d})$ lies in the plane defined by $\vec{a}$ and $\vec{d}$. Therefore, $-(\vec{a} + \vec{d})$, which is $(\vec{b} + \vec{c})$, must also lie in the plane of $\vec{a}$ and $\vec{d}$. If $\vec{a}$ and $\vec{d}$ are collinear, $(\vec{a} + \vec{d})$ lies along their common line, so $(\vec{b} + \vec{c})$ also lies along that same line.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Incorrect with closed polygon counterexample</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Correct via $|\vec{a} + \vec{c}| = |-(\vec{b} + \vec{d})|$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Correct via triangle inequality on $|\vec{b} + \vec{c} + \vec{d}|$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Correct via coplanarity of $\vec{a} + \vec{d}$ and its opposite</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q8">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q8')">
+      <div class="q-num">Question 3.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Three girls skating on a circular ice ground of radius $200\text{ m}$ start from a point P on the edge of the ground and reach a point Q diametrically opposite to P following different paths as shown in Fig. 3.20. What is the magnitude of the displacement vector for each? For which girl is this equal to the actual path length skated?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>1. Displacement Vector Magnitude:</b><br>
+    • The displacement vector $\Delta\vec{r} = \vec{r}_Q - \vec{r}_P$ depends only on the initial point $P$ and final point $Q$, regardless of the actual path taken.<br>
+    • Since $Q$ is diametrically opposite to $P$ on a circular track of radius $R = 200\text{ m}$, the straight line distance $PQ$ is the diameter of the circle:<br>
+      $$\text{Displacement Magnitude} = 2R = 2 \times 200\text{ m} = \mathbf{400\text{ m}}$$<br>
+    • Therefore, the magnitude of the displacement vector is $\mathbf{400\text{ m}}$ for <b>all three girls (A, B, and C)</b>.<br><br>
+    <b>2. Equality with Actual Path Length:</b><br>
+    • Girl B skates directly along the straight diameter path from $P$ to $Q$.<br>
+    • Her path length = $PQ = 400\text{ m}$, which is strictly equal to the magnitude of her displacement vector.<br>
+    • Girls A and C skate along curved paths; their path lengths exceed $400\text{ m}$.<br>
+    $$\mathbf{\text{Displacement magnitude equals the actual path length only for Girl B.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Definition of displacement as straight line independent of path</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of displacement magnitude $2R = 400\text{ m}$ for all three girls</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Identification of Girl B moving along the straight diameter</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q9">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q9')">
+      <div class="q-num">Question 3.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A cyclist starts from the centre O of a circular park of radius $1\text{ km}$, reaches the edge P of the park, then cycles along the circumference and reaches the point Q via the shortest arc, and returns to the centre along QO as shown in Fig. 3.21. If the round trip takes $10\text{ min}$, what is the (a) net displacement, (b) average velocity, and (c) average speed of the cyclist?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given: Radius $R = 1\text{ km}$. Round trip path: $O \to P \to Q \to O$. Arc $PQ$ subtends $90^\circ$ (quarter circle).<br>
+    Time taken $t = 10\text{ min} = \frac{10}{60}\text{ h} = \frac{1}{6}\text{ h}$.<br><br>
+    • <b>(a) Net Displacement:</b><br>
+      The cyclist starts at $O$ and finally returns to $O$. Initial and final positions coincide.<br>
+      $$\mathbf{\text{Net displacement} = 0}$$<br>
+    • <b>(b) Average Velocity:</b><br>
+      $$\text{Average velocity} = \frac{\text{Net displacement}}{\text{Total time}} = \frac{0}{1/6\text{ h}} = \mathbf{0\text{ km h}^{-1}}$$<br>
+    • <b>(c) Average Speed:</b><br>
+      $$\text{Total distance} = OP + \text{Arc } PQ + QO = R + \frac{1}{4}(2\pi R) + R = 2R + \frac{\pi R}{2}$$<br>
+      $$= 2(1) + \frac{3.1416 \times 1}{2} = 2 + 1.5708 = 3.5708\text{ km}$$<br>
+      $$\text{Average speed} = \frac{\text{Total distance}}{\text{Total time}} = \frac{3.5708\text{ km}}{1/6\text{ h}} = 3.5708 \times 6 = \mathbf{21.43\text{ km h}^{-1}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Zero net displacement since initial and final points coincide</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Zero average velocity derived from zero displacement</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Correct total distance: $2 + \pi/2 = 3.57\text{ km}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Average speed calculation: $21.43\text{ km/h}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q10">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q10')">
+      <div class="q-num">Question 3.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        On an open ground, a motorist follows a track that turns to his left by an angle of $60^\circ$ after every $500\text{ m}$. Starting from a given turn, specify the displacement of the motorist at the third, sixth and eighth turn. Compare the magnitude of the displacement with the total path length covered by the motorist in each case.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Geometrical Track:</b> Each turn is $60^\circ$ to the left after $500\text{ m}$. Since an interior polygon turn of $60^\circ$ exterior angle satisfies $6 \times 60^\circ = 360^\circ$, the path forms a regular hexagon of side length $a = 500\text{ m}$.<br>
+    Let the vertices of the hexagon be $A, B, C, D, E, F$, starting from vertex $A$.<br><br>
+    • <b>1. At the Third Turn (Vertex D):</b><br>
+      - Path covered: $A \to B \to C \to D$. Path length $= 3 \times 500\text{ m} = \mathbf{1500\text{ m} = 1.5\text{ km}}$.<br>
+      - Displacement $\vec{AD}$ is the main diameter of the regular hexagon:<br>
+        $$|\text{Displacement}| = 2a = 2 \times 500\text{ m} = \mathbf{1000\text{ m} = 1.0\text{ km}}$$<br>
+      - Ratio: $\frac{\text{Displacement}}{\text{Path Length}} = \frac{1000}{1500} = \frac{2}{3} = \mathbf{0.67}$.<br><br>
+    • <b>2. At the Sixth Turn (Vertex A):</b><br>
+      - Path covered: Complete loop back to start $A$. Path length $= 6 \times 500\text{ m} = \mathbf{3000\text{ m} = 3.0\text{ km}}$.<br>
+      - Displacement = $\mathbf{0}$.<br>
+      - Ratio: $\frac{\text{Displacement}}{\text{Path Length}} = \mathbf{0}$.<br><br>
+    • <b>3. At the Eighth Turn (Vertex C):</b><br>
+      - Path covered: 1 full hexagon ($3000\text{ m}$) + 2 additional sides ($A \to B \to C$).<br>
+      - Path length $= 8 \times 500\text{ m} = \mathbf{4000\text{ m} = 4.0\text{ km}}$.<br>
+      - Displacement is the chord $AC$ of the regular hexagon:<br>
+        $$|\vec{AC}| = 2a \cos 30^\circ = 2 \times 500 \times \frac{\sqrt{3}}{2} = 500\sqrt{3} \approx \mathbf{866\text{ m} = 0.866\text{ km}}$$<br>
+        Direction is at $30^\circ$ to the initial direction $AB$.<br>
+      - Ratio: $\frac{\text{Displacement}}{\text{Path Length}} = \frac{500\sqrt{3}}{4000} = \frac{\sqrt{3}}{8} \approx \mathbf{0.2165}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identification of path as regular hexagon of side $500\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">3rd turn: Path $1500\text{ m}$, displacement $1000\text{ m}$, ratio $2/3$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">6th turn: Path $3000\text{ m}$, displacement $0$, ratio $0$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">8th turn: Path $4000\text{ m}$, displacement $500\sqrt{3} = 866\text{ m}$, ratio $0.217$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q11 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q11">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q11')">
+      <div class="q-num">Question 3.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A passenger arriving in a new town wishes to go from the station to a hotel located $10\text{ km}$ away on a straight road from the station. A dishonest cabman takes him along a circuitous path $23\text{ km}$ long and reaches the hotel in $28\text{ min}$. What is (a) the average speed of the taxi, (b) the magnitude of average velocity? Are the two equal?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given: Straight-line distance (displacement magnitude) $|\Delta\vec{r}| = 10\text{ km}$.<br>
+    Path length travelled = $23\text{ km}$.<br>
+    Time taken $\Delta t = 28\text{ min} = \frac{28}{60}\text{ h} = \frac{7}{15}\text{ h}$.<br><br>
+    • <b>(a) Average Speed:</b><br>
+      $$v_{avg} = \frac{\text{Total path length}}{\Delta t} = \frac{23\text{ km}}{\frac{7}{15}\text{ h}} = \frac{23 \times 15}{7} = \frac{345}{7} \approx \mathbf{49.29\text{ km h}^{-1}}$$<br><br>
+    • <b>(b) Magnitude of Average Velocity:</b><br>
+      $$|\bar{v}| = \frac{\text{Magnitude of displacement}}{\Delta t} = \frac{10\text{ km}}{\frac{7}{15}\text{ h}} = \frac{150}{7} \approx \mathbf{21.43\text{ km h}^{-1}}$$<br><br>
+    • <b>Comparison:</b><br>
+      The two values are <b>not equal</b> ($v_{avg} \ne |\bar{v}|$) because the taxi travelled along a circuitous curved route rather than along the straight shortest line.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Average speed calculation: $345/7 = 49.29\text{ km/h}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Average velocity calculation: $150/7 = 21.43\text{ km/h}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Inequality justification due to curved trajectory</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q12 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q12">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q12')">
+      <div class="q-num">Question 3.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Rain is falling vertically with a speed of $30\text{ m s}^{-1}$. A woman rides a bicycle with a speed of $10\text{ m s}^{-1}$ in the north to south direction. What is the direction in which she should hold her umbrella?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let unit vector $\hat{j}$ be vertically upward and $\hat{i}$ be towards North (so South is $-\hat{i}$).<br><br>
+    • Velocity of rain relative to ground: $\vec{v}_r = -30\hat{j}\text{ m s}^{-1}$ (falling vertically down).<br>
+    • Velocity of bicycle relative to ground: $\vec{v}_b = -10\hat{i}\text{ m s}^{-1}$ (towards South).<br><br>
+    <b>Relative velocity of rain with respect to woman ($\vec{v}_{rb}$):</b><br>
+    $$\vec{v}_{rb} = \vec{v}_r - \vec{v}_b = -30\hat{j} - (-10\hat{i}) = 10\hat{i} - 30\hat{j}\text{ m s}^{-1}$$<br><br>
+    <b>Direction:</b><br>
+    Let $\theta$ be the angle that the relative velocity makes with the <i>vertical</i>:<br>
+    $$\tan \theta = \frac{|v_x|}{|v_y|} = \frac{10}{30} = \frac{1}{3} \approx 0.3333$$<br>
+    $$\theta = \arctan(0.3333) \approx \mathbf{18.43^\circ} \approx \mathbf{18^\circ 26'}$$<br><br>
+    To protect herself from the oncoming rain, she must hold her umbrella <b>opposite</b> to the direction of relative rain velocity:<br>
+    $$\mathbf{\text{She should hold her umbrella at an angle of } 18.4^\circ \text{ with the vertical, tilted towards the South.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Vector formulation: $\vec{v}_{rb} = \vec{v}_r - \vec{v}_b$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Angle determination: $\tan\theta = 10/30 = 1/3 \implies \theta = 18.4^\circ$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Physical direction: tilted at $18.4^\circ$ towards South</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q13 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q13">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q13')">
+      <div class="q-num">Question 3.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A man can swim with a speed of $4.0\text{ km h}^{-1}$ in still water. How long does he take to cross a river $1.0\text{ km}$ wide if the river flows steadily at $3.0\text{ km h}^{-1}$ and he makes his strokes normal to the river current? How far down the river does he go when he reaches the other bank?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Speed of swimmer in still water (relative to water): $v_s = 4.0\text{ km h}^{-1}$ (directed across, perpendicular to flow).<br>
+    • Speed of river current: $v_r = 3.0\text{ km h}^{-1}$ (directed downstream).<br>
+    • River width $d = 1.0\text{ km}$.<br><br>
+    <b>1. Time Taken to Cross River ($t$):</b><br>
+    The component of velocity responsible for crossing the river is solely the perpendicular component $v_s = 4.0\text{ km h}^{-1}$:<br>
+    $$t = \frac{d}{v_s} = \frac{1.0\text{ km}}{4.0\text{ km h}^{-1}} = 0.25\text{ h} = 0.25 \times 60\text{ min} = \mathbf{15\text{ minutes}}$$<br><br>
+    <b>2. Drift Down the River ($x$):</b><br>
+    During this time, the river current carries him downstream:<br>
+    $$x = v_r \times t = 3.0\text{ km h}^{-1} \times 0.25\text{ h} = 0.75\text{ km} = \mathbf{750\text{ m}}$$<br><br>
+    $$\therefore \text{Time taken } = \mathbf{15\text{ minutes}}, \quad \text{Drift downstream } = \mathbf{750\text{ m}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Crossing time formula $t = d/v_s$ yielding $0.25\text{ h} = 15\text{ min}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Drift calculation $x = v_r t = 0.75\text{ km} = 750\text{ m}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q14 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q14">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q14')">
+      <div class="q-num">Question 3.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        In a harbour, wind is blowing at the speed of $72\text{ km h}^{-1}$ and the flag on the mast of a boat anchored in the harbour flutters along the N-E direction. If the boat starts moving at a speed of $51\text{ km h}^{-1}$ to the north, what is the direction of the flag on the mast of the boat?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • When the boat is anchored, the flag flutters along the direction of the wind relative to the boat. Thus, wind velocity with respect to ground is $\vec{v}_w$ directed along North-East ($45^\circ$ East of North):<br>
+      $$|\vec{v}_w| = 72\text{ km h}^{-1}$$<br>
+      $$\vec{v}_w = 72 \cos 45^\circ \hat{i} + 72 \sin 45^\circ \hat{j} = \frac{72}{\sqrt{2}}\hat{i} + \frac{72}{\sqrt{2}}\hat{j} \approx 50.91\hat{i} + 50.91\hat{j}$$<br><br>
+    • When the boat moves North at $51\text{ km h}^{-1}$:<br>
+      $$\vec{v}_b = 51\hat{j}\text{ km h}^{-1}$$<br><br>
+    • <b>Relative velocity of wind with respect to moving boat ($\vec{v}_{wb}$):</b><br>
+      $$\vec{v}_{wb} = \vec{v}_w - \vec{v}_b = 50.91\hat{i} + (50.91 - 51)\hat{j} = 50.91\hat{i} - 0.09\hat{j}$$<br><br>
+    • <b>Direction of Flag:</b><br>
+      The $x$-component is positive ($50.91$ towards East) and the $y$-component is virtually zero ($-0.09$, extremely small towards South):<br>
+      $$\tan \beta = \frac{-0.09}{50.91} \approx -0.00177 \implies \beta \approx 0^\circ$$<br>
+      $$\mathbf{\text{The flag will flutter almost due East (strictly } 0.1^\circ \text{ South of East).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Resolution of wind vector into components along N and E</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Relative wind vector $\vec{v}_{wb} = \vec{v}_w - \vec{v}_b$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Final orientation deduced as almost exactly due East</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q15 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q15">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q15')">
+      <div class="q-num">Question 3.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The ceiling of a long hall is $25\text{ m}$ high. What is the maximum horizontal distance that a ball thrown with a speed of $40\text{ m s}^{-1}$ can go without hitting the ceiling of the hall?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given: Max permissible vertical height $H = 25\text{ m}$, Initial launch speed $u = 40\text{ m s}^{-1}$, $g = 9.8\text{ m s}^{-2}$.<br><br>
+    <b>1. Determining Launch Angle ($\theta$):</b><br>
+    The maximum height for a projectile launched at angle $\theta$ is:<br>
+    $$H = \frac{u^2 \sin^2 \theta}{2g}$$<br>
+    $$25 = \frac{(40)^2 \sin^2 \theta}{2 \times 9.8} = \frac{1600 \sin^2 \theta}{19.6}$$<br>
+    $$\sin^2 \theta = \frac{25 \times 19.6}{1600} = \frac{490}{1600} = 0.30625$$<br>
+    $$\sin \theta = \sqrt{0.30625} \approx 0.5534 \implies \theta \approx 33.6^\circ$$<br>
+    $$\cos^2 \theta = 1 - \sin^2 \theta = 1 - 0.30625 = 0.69375 \implies \cos \theta = \sqrt{0.69375} \approx 0.8329$$<br><br>
+    <b>2. Calculating Horizontal Range ($R$):</b><br>
+    $$R = \frac{u^2 \sin 2\theta}{g} = \frac{2 u^2 \sin \theta \cos \theta}{g}$$<br>
+    $$R = \frac{2 \times 1600 \times 0.5534 \times 0.8329}{9.8} = \frac{2950.45}{9.8} \approx \mathbf{150.5\text{ m}}$$<br><br>
+    $$\therefore \text{The maximum horizontal distance without hitting the ceiling is } \mathbf{150.5\text{ m}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formula for maximum projectile height $H = \frac{u^2\sin^2\theta}{2g}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving for $\sin^2\theta = 0.30625$ and angle $\theta = 33.6^\circ$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Horizontal range formula $R = \frac{2u^2\sin\theta\cos\theta}{g}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final answer: $R = 150.5\text{ m}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q16 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q16">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q16')">
+      <div class="q-num">Question 3.16</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A cricketer can throw a ball to a maximum horizontal distance of $100\text{ m}$. How much high above the ground can the cricketer throw the same ball?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>1. Maximum Horizontal Range ($R_{max}$):</b><br>
+    The range is maximum when the launch angle $\theta = 45^\circ$ (so $\sin 2\theta = \sin 90^\circ = 1$):<br>
+    $$R_{max} = \frac{u^2}{g} = 100\text{ m} \implies u^2 = 100 g$$<br><br>
+    <b>2. Maximum Vertical Height ($H_{max}$):</b><br>
+    To achieve maximum vertical height, the ball must be thrown straight up vertically (launch angle $\theta = 90^\circ$):<br>
+    $$H_{max} = \frac{u^2}{2g}$$<br>
+    Substituting $u^2 = 100 g$:<br>
+    $$H_{max} = \frac{100 g}{2g} = \frac{100}{2} = \mathbf{50\text{ m}}$$<br><br>
+    $$\therefore \text{The cricketer can throw the same ball to a height of } \mathbf{50\text{ m}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Relation for maximum horizontal range $R_{max} = u^2/g = 100\text{ m}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Relation for maximum vertical height $H_{max} = u^2/(2g) = R_{max}/2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final answer $H_{max} = 50\text{ m}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q17 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q17">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q17')">
+      <div class="q-num">Question 3.17</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A stone tied to the end of a string $80\text{ cm}$ long is whirled in a horizontal circle with a constant speed. If the stone makes $14$ revolutions in $25\text{ s}$, what is the magnitude and direction of acceleration of the stone?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Radius $r = 80\text{ cm} = 0.80\text{ m}$.<br>
+    • Number of revolutions $N = 14$ in time $t = 25\text{ s}$.<br><br>
+    <b>1. Angular Frequency ($\omega$):</b><br>
+    Frequency $\nu = \frac{N}{t} = \frac{14}{25}\text{ rev s}^{-1}$.<br>
+    $$\omega = 2\pi \nu = 2 \times \frac{22}{7} \times \frac{14}{25} = \frac{88}{25} = 3.52\text{ rad s}^{-1}$$<br><br>
+    <b>2. Centripetal Acceleration Magnitude ($a_c$):</b><br>
+    Since speed is constant, the only acceleration is centripetal acceleration:<br>
+    $$a_c = \omega^2 r = (3.52)^2 \times 0.80 = 12.3904 \times 0.80 = \mathbf{9.91\text{ m s}^{-2}}$$<br><br>
+    <b>3. Direction:</b><br>
+    $$\mathbf{\text{The acceleration is directed radially inwards along the string towards the centre of the circle.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Angular velocity calculation $\omega = 2\pi\nu = 3.52\text{ rad/s}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Centripetal acceleration formula $a_c = \omega^2 r = 9.91\text{ m/s}^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Direction stated as radially inwards towards center</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q18 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q18">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q18')">
+      <div class="q-num">Question 3.18</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        An aircraft executes a horizontal loop of radius $1.00\text{ km}$ with a steady speed of $900\text{ km h}^{-1}$. Compare its centripetal acceleration with the acceleration due to gravity.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Radius $R = 1.00\text{ km} = 1000\text{ m}$.<br>
+    • Speed $v = 900\text{ km h}^{-1} = 900 \times \frac{5}{18}\text{ m s}^{-1} = 250\text{ m s}^{-1}$.<br>
+    • Acceleration due to gravity $g = 9.8\text{ m s}^{-2}$.<br><br>
+    <b>1. Centripetal Acceleration ($a_c$):</b><br>
+    $$a_c = \frac{v^2}{R} = \frac{(250)^2}{1000} = \frac{62500}{1000} = \mathbf{62.5\text{ m s}^{-2}}$$<br><br>
+    <b>2. Comparison with $g$:</b><br>
+    $$\frac{a_c}{g} = \frac{62.5}{9.8} \approx \mathbf{6.38}$$<br><br>
+    $$\therefore \text{The centripetal acceleration is approximately } \mathbf{6.38\text{ times }} g.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Speed conversion to $250\text{ m/s}$</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Centripetal acceleration formula $a_c = v^2/R = 62.5\text{ m/s}^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Comparison ratio $a_c / g = 6.38$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q19 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q19">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q19')">
+      <div class="q-num">Question 3.19</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Read each statement below carefully and state, with reasons, if it is true or false:<br>(a) The net acceleration of a particle in circular motion is always along the radius of the circle towards the centre.<br>(b) The velocity vector of a particle at a point is always along the tangent to the path of the particle at that point.<br>(c) The acceleration vector of a particle in uniform circular motion averaged over one cycle is a null vector.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) False:</b> Net acceleration is directed purely radially towards the centre <b>only in uniform circular motion</b> (where tangential acceleration $a_t = \frac{dv}{dt} = 0$). In non-uniform circular motion, there is also a tangential acceleration $a_t$, and net acceleration $\vec{a} = \vec{a}_c + \vec{a}_t$ is inclined at an angle to the radius.<br><br>
+    • <b>(b) True:</b> By definition, instantaneous velocity is $\vec{v} = \lim_{\Delta t \to 0} \frac{\Delta \vec{r}}{\Delta t}$. The direction of the displacement chord $\Delta \vec{r}$ approaches the geometrical tangent to the trajectory curve as $\Delta t \to 0$.<br><br>
+    • <b>(c) True:</b> In uniform circular motion, the acceleration vector $\vec{a}_c = -\omega^2 R(\cos \omega t \hat{i} + \sin \omega t \hat{j})$ has constant magnitude but continuously changing direction. Over one complete period $T$, for every instant with inward acceleration in one direction, there exists an instant $T/2$ later with an equal and opposite acceleration vector. The integral $\frac{1}{T}\int_0^T \vec{a}(t) dt = \mathbf{0}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) False with non-uniform circular motion counterexample ($a_t \ne 0$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) True via definition of instantaneous velocity tangent to curve</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) True: radial symmetry over complete cycle yields zero average vector</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q20 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q20">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q20')">
+      <div class="q-num">Question 3.20</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The position of a particle is given by $\vec{r} = 3.0t\hat{i} - 2.0t^2\hat{j} + 4.0\hat{k}\text{ m}$, where $t$ is in seconds and the coefficients have the proper units for $\vec{r}$ to be in metres.<br>(a) Find $\vec{v}$ and $\vec{a}$ of the particle.<br>(b) What is the magnitude and direction of velocity $\vec{v}(t)$ at $t = 2.0\text{ s}$?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Finding $\vec{v}(t)$ and $\vec{a}(t)$ by differentiation:</b><br>
+      $$\vec{v}(t) = \frac{d\vec{r}}{dt} = \frac{d}{dt}\left(3.0t\hat{i} - 2.0t^2\hat{j} + 4.0\hat{k}\right) = \mathbf{3.0\hat{i} - 4.0t\hat{j}\text{ m s}^{-1}}$$<br>
+      $$\vec{a}(t) = \frac{d\vec{v}}{dt} = \frac{d}{dt}\left(3.0\hat{i} - 4.0t\hat{j}\right) = \mathbf{-4.0\hat{j}\text{ m s}^{-2}}$$<br><br>
+    • <b>(b) Velocity at $t = 2.0\text{ s}$:</b><br>
+      $$\vec{v}(2.0) = 3.0\hat{i} - 4.0(2.0)\hat{j} = \mathbf{3.0\hat{i} - 8.0\hat{j}\text{ m s}^{-1}}$$<br>
+      Magnitude:<br>
+      $$|\vec{v}| = \sqrt{(3.0)^2 + (-8.0)^2} = \sqrt{9 + 64} = \sqrt{73} \approx \mathbf{8.54\text{ m s}^{-1}}$$<br>
+      Direction with x-axis:<br>
+      $$\tan \theta = \frac{v_y}{v_x} = \frac{-8.0}{3.0} = -2.667 \implies \theta = -69.4^\circ$$<br>
+      $$\mathbf{\text{Velocity has magnitude } 8.54\text{ m s}^{-1} \text{ at an angle of } 69.4^\circ \text{ below the positive x-axis.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) First derivative for $\vec{v} = 3.0\hat{i} - 4.0t\hat{j}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Second derivative for $\vec{a} = -4.0\hat{j}\text{ m/s}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Velocity magnitude at $t=2\text{ s}$: $\sqrt{73} = 8.54\text{ m/s}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Direction calculation: $\theta = -69.4^\circ$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q21 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q21">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q21')">
+      <div class="q-num">Question 3.21</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A particle starts from the origin at $t = 0\text{ s}$ with a velocity of $10.0\hat{j}\text{ m s}^{-1}$ and moves in the $x-y$ plane with a constant acceleration of $(8.0\hat{i} + 2.0\hat{j})\text{ m s}^{-2}$.<br>(a) At what time is the x-coordinate of the particle $16\text{ m}$? What is the y-coordinate of the particle at that time?<br>(b) What is the speed of the particle at that time?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given: $\vec{r}_0 = \mathbf{0}$, $\vec{u} = 10.0\hat{j}\text{ m s}^{-1}$ ($u_x = 0, u_y = 10.0\text{ m s}^{-1}$), $\vec{a} = 8.0\hat{i} + 2.0\hat{j}\text{ m s}^{-2}$ ($a_x = 8.0, a_y = 2.0\text{ m s}^{-2}$).<br><br>
+    • <b>(a) Position components at time $t$:</b><br>
+      $$x(t) = u_x t + \frac{1}{2}a_x t^2 = 0 + \frac{1}{2}(8.0)t^2 = 4.0 t^2$$<br>
+      When $x = 16\text{ m}$:<br>
+      $$4.0 t^2 = 16 \implies t^2 = 4 \implies \mathbf{t = 2.0\text{ s}}$$<br>
+      $y$-coordinate at $t = 2.0\text{ s}$:<br>
+      $$y(t) = u_y t + \frac{1}{2}a_y t^2 = 10.0(2.0) + \frac{1}{2}(2.0)(2.0)^2 = 20.0 + 4.0 = \mathbf{24.0\text{ m}}$$<br><br>
+    • <b>(b) Speed at $t = 2.0\text{ s}$:</b><br>
+      $$v_x = u_x + a_x t = 0 + 8.0(2.0) = 16.0\text{ m s}^{-1}$$<br>
+      $$v_y = u_y + a_y t = 10.0 + 2.0(2.0) = 14.0\text{ m s}^{-1}$$<br>
+      $$\text{Speed } v = \sqrt{v_x^2 + v_y^2} = \sqrt{(16.0)^2 + (14.0)^2} = \sqrt{256 + 196} = \sqrt{452} \approx \mathbf{21.26\text{ m s}^{-1}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Determination of time $t = 2.0\text{ s}$ from $x = 4t^2 = 16$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $y$-coordinate: $y = 24.0\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Velocity components $v_x = 16, v_y = 14$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final speed: $v = \sqrt{452} = 21.26\text{ m s}^{-1}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q22 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q22">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q22')">
+      <div class="q-num">Question 3.22</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        $\hat{i}$ and $\hat{j}$ are unit vectors along x- and y- axes respectively. What is the magnitude and direction of the vectors $\hat{i} + \hat{j}$, and $\hat{i} - \hat{j}$? What are the components of a vector $\vec{A} = 2\hat{i} + 3\hat{j}$ along the directions of $\hat{i} + \hat{j}$ and $\hat{i} - \hat{j}$? [You may use graphical method]
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>1. Vector $\vec{P} = \hat{i} + \hat{j}$:</b><br>
+    • Magnitude: $|\vec{P}| = \sqrt{1^2 + 1^2} = \mathbf{\sqrt{2}}$.<br>
+    • Direction: $\tan \theta_1 = \frac{1}{1} = 1 \implies \mathbf{\theta_1 = 45^\circ}$ with positive x-axis.<br><br>
+    <b>2. Vector $\vec{Q} = \hat{i} - \hat{j}$:</b><br>
+    • Magnitude: $|\vec{Q}| = \sqrt{1^2 + (-1)^2} = \mathbf{\sqrt{2}}$.<br>
+    • Direction: $\tan \theta_2 = \frac{-1}{1} = -1 \implies \mathbf{\theta_2 = -45^\circ}$ (or $315^\circ$) with positive x-axis.<br><br>
+    <b>3. Component of $\vec{A} = 2\hat{i} + 3\hat{j}$ along $\hat{i} + \hat{j}$:</b><br>
+    Unit vector along $\hat{i} + \hat{j}$ is $\hat{u}_1 = \frac{\hat{i} + \hat{j}}{\sqrt{2}}$.<br>
+    $$A_{\parallel 1} = \vec{A} \cdot \hat{u}_1 = \frac{(2\hat{i} + 3\hat{j}) \cdot (\hat{i} + \hat{j})}{\sqrt{2}} = \frac{2(1) + 3(1)}{\sqrt{2}} = \frac{5}{\sqrt{2}} = \mathbf{\frac{5\sqrt{2}}{2} \approx 3.54}$$<br><br>
+    <b>4. Component of $\vec{A} = 2\hat{i} + 3\hat{j}$ along $\hat{i} - \hat{j}$:</b><br>
+    Unit vector along $\hat{i} - \hat{j}$ is $\hat{u}_2 = \frac{\hat{i} - \hat{j}}{\sqrt{2}}$.<br>
+    $$A_{\parallel 2} = \vec{A} \cdot \hat{u}_2 = \frac{(2\hat{i} + 3\hat{j}) \cdot (\hat{i} - \hat{j})}{\sqrt{2}} = \frac{2(1) + 3(-1)}{\sqrt{2}} = \mathbf{-\frac{1}{\sqrt{2}} \approx -0.707}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Magnitudes and directions of $\hat{i}+\hat{j}$ and $\hat{i}-\hat{j}$ ($\sqrt{2}, \pm 45^\circ$)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Component of $\vec{A}$ along $\hat{i}+\hat{j}$ evaluated as $5/\sqrt{2}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Component of $\vec{A}$ along $\hat{i}-\hat{j}$ evaluated as $-1/\sqrt{2}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q23 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q23">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q23')">
+      <div class="q-num">Question 3.23</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        For any arbitrary motion in space, which of the following relations are true:<br>(a) $\vec{v}_{average} = (1/2)(\vec{v}(t_1) + \vec{v}(t_2))$<br>(b) $\vec{v}_{average} = \frac{\vec{r}(t_2) - \vec{r}(t_1)}{t_2 - t_1}$<br>(c) $\vec{v}(t) = \vec{v}(0) + \vec{a}t$<br>(d) $\vec{r}(t) = \vec{r}(0) + \vec{v}(0)t + (1/2)\vec{a}t^2$<br>(e) $\vec{a}_{average} = \frac{\vec{v}(t_2) - \vec{v}(t_1)}{t_2 - t_1}$<br>(The ‘average’ stands for average of the quantity over the time interval $t_1$ to $t_2$)
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Arbitrary Motion in Space</b> means acceleration may not be constant (acceleration $\vec{a}(t)$ can vary arbitrarily in magnitude and direction).<br><br>
+    • <b>(a) False:</b> $\vec{v}_{avg} = \frac{\vec{v}_1 + \vec{v}_2}{2}$ is true <i>only</i> for uniformly accelerated motion (constant $\vec{a}$). For arbitrary motion with changing acceleration, it does not hold.<br><br>
+    • <b>(b) True:</b> This is the fundamental, universal definition of average velocity vector for <i>any</i> general motion in space.<br><br>
+    • <b>(c) False:</b> $\vec{v}(t) = \vec{v}(0) + \vec{a}t$ is valid <i>only</i> when acceleration is constant.<br><br>
+    • <b>(d) False:</b> $\vec{r}(t) = \vec{r}(0) + \vec{v}(0)t + \frac{1}{2}\vec{a}t^2$ is valid <i>only</i> when acceleration is constant.<br><br>
+    • <b>(e) True:</b> This is the fundamental, universal definition of average acceleration vector for <i>any</i> general motion in space.<br><br>
+    $$\mathbf{\text{Correct relations for arbitrary motion are: (b) and (e).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) False: restricted to uniform acceleration only</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) True: universal definition of average velocity</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) False: restricted to uniform acceleration</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) False: restricted to uniform acceleration</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) True: universal definition of average acceleration</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q24 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q24">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q24')">
+      <div class="q-num">Question 3.24</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Read each statement below carefully and state, with reasons and examples, if it is true or false:<br>A scalar quantity is one that<br>(a) is conserved in a process<br>(b) can never take negative values<br>(c) must be dimensionless<br>(d) does not vary from one point to another in space<br>(e) has the same value for observers with different orientations of axes.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) False:</b> Not all scalars are conserved. For example, kinetic energy in an inelastic collision is not conserved, though it is a scalar. (Only special scalars like total energy in an isolated system are conserved).<br><br>
+    • <b>(b) False:</b> Many scalar quantities can take negative values. For example, temperature ($-10^\circ\text{C}$), electric charge ($-e$), work done by friction ($-W$), and gravitational potential ($-GM/r$) are all negative scalars.<br><br>
+    • <b>(c) False:</b> Most physical scalars have dimensions. For example, mass $[M]$, speed $[LT^{-1}]$, density $[ML^{-3}]$ are dimensional scalars.<br><br>
+    • <b>(d) False:</b> A scalar field can vary continuously from point to point in space. For example, atmospheric temperature $T(x,y,z)$, pressure $P(x,y,z)$, and gravitational potential $V(x,y,z)$ vary spatially.<br><br>
+    • <b>(e) True:</b> By definition, a scalar is an invariant under spatial coordinate rotations (tensor of rank 0). While vector components change when coordinate axes are rotated, scalar quantities (such as mass, charge, temperature, or the dot product of two vectors) remain strictly invariant.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) False with kinetic energy non-conservation example</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) False with negative temperature/charge examples</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) False with dimensional scalar examples (mass, speed)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) False with scalar field spatial variations (pressure, temp)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) True: invariance under coordinate frame rotation</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch3-q25 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch3-q25">
+    <div class="q-head" onclick="toggleQ('c11p-ch3-q25')">
+      <div class="q-num">Question 3.25</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        An aircraft is flying at a height of $3400\text{ m}$ above the ground. If the angle subtended at a ground observation point by the aircraft positions $10.0\text{ s}$ apart is $30^\circ$, what is the speed of the aircraft?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let $O$ be the observation point on the ground.<br>
+    Let $P$ and $Q$ be the aircraft positions at times $t_1$ and $t_2$ ($10.0\text{ s}$ apart) flying horizontally at height $h = 3400\text{ m}$.<br>
+    Let $M$ be the midpoint of $PQ$, and $OM$ be the vertical height from ground ($OM = h = 3400\text{ m}$).<br><br>
+    • Total angle subtended $\angle POQ = 30^\circ$.<br>
+    • By symmetry, the vertical line $OM$ bisects the angle: $\angle POM = \angle QOM = 15^\circ$.<br><br>
+    In right-angled triangle $OMP$:<br>
+    $$\tan 15^\circ = \frac{PM}{OM} \implies PM = OM \times \tan 15^\circ$$<br>
+    $$\tan 15^\circ = 2 - \sqrt{3} \approx 2 - 1.73205 = 0.26795$$<br>
+    $$PM = 3400 \times 0.26795 \approx 911.03\text{ m}$$<br><br>
+    Total horizontal distance flown in $10.0\text{ s}$:<br>
+    $$PQ = 2 \times PM = 2 \times 911.03 = 1822.06\text{ m}$$<br><br>
+    Speed of aircraft:<br>
+    $$v = \frac{PQ}{\Delta t} = \frac{1822.06\text{ m}}{10.0\text{ s}} = \mathbf{182.2\text{ m s}^{-1}}$$<br>
+    In $\text{km h}^{-1}$:<br>
+    $$v = 182.2 \times \frac{18}{5} = \mathbf{655.9\text{ km h}^{-1}} \approx \mathbf{656\text{ km h}^{-1}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Geometrical setup with half-angle $\angle POM = 15^\circ$ and altitude $h = 3400\text{ m}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Distance calculation $PM = 3400\tan 15^\circ = 911\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total distance $PQ = 1822\text{ m}$ in $10\text{ s}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final speed: $182.2\text{ m s}^{-1} = 656\text{ km h}^{-1}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(2)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 2 (Motion in a Straight Line)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(4)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 4 (Laws of Motion) →</button>
+  </div>
+</section>
