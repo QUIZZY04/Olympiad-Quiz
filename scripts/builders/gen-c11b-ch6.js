@@ -1,0 +1,509 @@
+// scripts/builders/gen-c11b-ch6.js
+// Chapter 6: Anatomy of Flowering Plants (All 12 Verbatim Questions)
+const { createQCard, saveChapter } = require('./c11b-helper');
+
+const questions = [];
+
+const svgCh6 = `
+  <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:18px; margin-bottom:24px;">
+    <div style="font-weight:800; color:#166534; font-size:0.95rem; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="7"/></svg>
+      Plant Anatomy: Dicot vs. Monocot Stem Architecture &amp; Stomatal Apparatus
+    </div>
+    <svg viewBox="0 0 850 240" width="100%" height="auto" style="max-height:240px; font-family:'Plus Jakarta Sans',sans-serif;">
+      <rect x="10" y="10" width="830" height="220" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+      
+      <!-- Dicot Stem T.S. -->
+      <g transform="translate(30, 25)">
+        <rect x="0" y="0" width="240" height="190" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+        <text x="120" y="24" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">DICOT STEM (T.S.)</text>
+        <circle cx="120" cy="105" r="65" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="120" cy="105" r="22" fill="#e2e8f0" stroke="#94a3b8"/>
+        <text x="120" y="108" font-size="8.5" fill="#475569" text-anchor="middle">Pith</text>
+        <!-- Ring of wedge-shaped bundles -->
+        <circle cx="120" cy="60" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="120" cy="150" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="75" cy="105" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="165" cy="105" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="88" cy="73" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="152" cy="73" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="88" cy="137" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="152" cy="137" r="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+        <text x="120" y="180" font-size="8" font-weight="bold" fill="#059669" text-anchor="middle">&bull; Ring Arrangement &bull; Open Bundles</text>
+      </g>
+
+      <!-- Monocot Stem T.S. -->
+      <g transform="translate(300, 25)">
+        <rect x="0" y="0" width="240" height="190" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+        <text x="120" y="24" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">MONOCOT STEM (T.S.)</text>
+        <circle cx="120" cy="105" r="65" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+        <!-- Scattered vascular bundles -->
+        <circle cx="90" cy="80" r="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="145" cy="85" r="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="115" cy="115" r="7.5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="80" cy="125" r="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="155" cy="130" r="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="110" cy="60" r="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="135" cy="62" r="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="70" cy="100" r="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <circle cx="170" cy="100" r="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <text x="120" y="180" font-size="8" font-weight="bold" fill="#dc2626" text-anchor="middle">&bull; Scattered Bundles &bull; Closed (No Cambium)</text>
+      </g>
+
+      <!-- Stomatal Apparatus -->
+      <g transform="translate(570, 25)">
+        <rect x="0" y="0" width="250" height="190" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+        <text x="125" y="24" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">STOMATAL APPARATUS</text>
+        <!-- Two kidney shaped guard cells -->
+        <path d="M 105,65 C 85,85 85,115 105,135 C 115,120 115,80 105,65" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+        <path d="M 145,65 C 165,85 165,115 145,135 C 135,120 135,80 145,65" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+        <!-- Stomatal pore -->
+        <ellipse cx="125" cy="100" rx="6" ry="20" fill="#0f172a"/>
+        <!-- Chloroplast dots in guard cells -->
+        <circle cx="102" cy="90" r="2" fill="#15803d"/><circle cx="102" cy="110" r="2" fill="#15803d"/>
+        <circle cx="148" cy="90" r="2" fill="#15803d"/><circle cx="148" cy="110" r="2" fill="#15803d"/>
+        <!-- Subsidiary cells -->
+        <path d="M 70,60 C 60,100 60,110 70,140" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+        <path d="M 180,60 C 190,100 190,110 180,140" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+        <text x="125" y="158" font-size="8.5" fill="#334155" text-anchor="middle">Stomatal Pore + Guard Cells</text>
+        <text x="125" y="172" font-size="8" fill="#64748b" text-anchor="middle">+ Subsidiary Cells</text>
+      </g>
+    </svg>
+  </div>
+`;
+
+// Q1
+questions.push(createQCard(
+  'c11b-ch6-q1', 'Question 1', 'NCERT Exercise',
+  'State the location and function of different types of meristems.',
+  `<div class="step">
+    <strong>Classification of Meristematic Tissues Based on Location in the Plant Body:</strong><br><br>
+    <strong>1. Apical Meristem:</strong>
+    <ul style="margin:2px 0 6px 20px;">
+      <li><strong>Location:</strong> Situated at the growing tips of roots (Root Apical Meristem &mdash; RAM) and shoots (Shoot Apical Meristem &mdash; SAM).</li>
+      <li><strong>Function:</strong> Responsible for <strong>primary growth</strong> of the plant, causing elongation of the main axis and its branches, and producing primary permanent tissues (dermal, ground, and primary vascular tissues).</li>
+    </ul>
+    <strong>2. Intercalary Meristem:</strong>
+    <ul style="margin:2px 0 6px 20px;">
+      <li><strong>Location:</strong> Located between mature permanent tissues, commonly at the base of internodes or leaf bases (e.g., in grasses, mint, and bamboo).</li>
+      <li><strong>Function:</strong> Facilitates rapid internodal elongation and regenerates parts removed by grazing herbivores (in grasses). Being derived from apical meristem, it is also a primary meristem.</li>
+    </ul>
+    <strong>3. Lateral Meristem:</strong>
+    <ul style="margin:2px 0 6px 20px;">
+      <li><strong>Location:</strong> Arranged parallel to the longitudinal lateral axes of roots and stems (e.g., fascicular vascular cambium, interfascicular cambium, and cork cambium / phellogen).</li>
+      <li><strong>Function:</strong> Responsible for <strong>secondary growth</strong>, causing an increase in the girth (thickness/diameter) of the plant body by adding secondary xylem, secondary phloem, and cork.</li>
+    </ul>
+  </div>`,
+  '3 Marks',
+  [
+    ['Apical meristem: position at shoot/root apex and role in primary elongation', '1 Mark'],
+    ['Intercalary meristem: position between mature tissues and role in internode elongation/regeneration', '1 Mark'],
+    ['Lateral meristem: parallel lateral position and role in secondary growth (girth increase)', '1 Mark']
+  ]
+));
+
+// Q2
+questions.push(createQCard(
+  'c11b-ch6-q2', 'Question 2', 'NCERT Exercise',
+  'Cork cambium forms tissues that form the cork. Do you agree with this statement? Explain.',
+  `<div class="step">
+    <strong>Answer: Yes, I fully agree with this statement.</strong><br><br>
+    <strong>Detailed Biological Explanation of Phellogen Activity:</strong><br>
+    As woody dicot stems and roots increase in girth due to secondary vascular growth, the peripheral epidermis and outer cortical layers experience severe tangential stress, stretching, and eventually rupture. To replace the broken protective epidermal layer, a secondary lateral meristem develops called the <strong>cork cambium</strong> (or <strong>phellogen</strong>):<br><br>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Origin of Phellogen:</strong> Typically arises from dedifferentiation of collenchymatous or parenchymatous cells in the outer cortex (hypodermis).</li>
+      <li><strong>Centrifugal &amp; Centripetal Activity:</strong> Phellogen cells are rectangular, thin-walled, and divide periclinally on both outer and inner faces:
+        <ul style="margin:2px 0 4px 15px;">
+          <li><strong>Outer Cuts (Centrifugal):</strong> Differentiates into <strong>cork</strong> or <strong>phellem</strong>. Cells of phellem become dead at maturity, lose protoplasts, and their radial and tangential cell walls are heavily impregnated with an impervious waxy, fatty substance called <strong>suberin</strong>. This renders the cork completely impermeable to water and gases, protecting underlying living tissues from desiccation, mechanical abrasion, and pathogen entry.</li>
+          <li><strong>Inner Cuts (Centripetal):</strong> Differentiates into secondary cortex or <strong>phelloderm</strong>, composed of living parenchymatous cells containing chloroplasts or starch.</li>
+        </ul>
+      </li>
+      <li><strong>Periderm:</strong> Phellogen, phellem (cork), and phelloderm together constitute the protective secondary covering called the <strong>periderm</strong>.</li>
+    </ul>
+  </div>`,
+  '3 Marks',
+  [
+    ['Affirmative agreement and reason for phellogen initiation (rupture of epidermis)', '1 Mark'],
+    ['Formation of cork (phellem) toward exterior by periclinal divisions', '1 Mark'],
+    ['Suberized walls of cork conferring impermeability and protection; formation of periderm', '1 Mark']
+  ]
+));
+
+// Q3
+questions.push(createQCard(
+  'c11b-ch6-q3', 'Question 3', 'NCERT Exercise',
+  'Explain the process of secondary growth in the stems of woody angiosperms with the help of schematic diagrams. What is its significance?',
+  `<div class="step">
+    <strong>Comprehensive Process of Secondary Growth in Dicot Stems:</strong><br>
+    Secondary growth is the increase in girth (thickness) caused by the activity of two lateral meristems: <strong>vascular cambium</strong> and <strong>cork cambium</strong>.<br><br>
+    <strong>A. Activity of Vascular Cambium (Stele Region):</strong>
+    <ol style="margin:4px 0 8px 20px;">
+      <li><strong>Formation of Cambial Ring:</strong> In dicot stems, intrafascicular cambium strip is present within open vascular bundles. The medullary ray cells adjacent to it dedifferentiate to form strips of <strong>interfascicular cambium</strong>. Together, they unite to form a continuous, circular <strong>cambial ring</strong>.</li>
+      <li><strong>Formation of Secondary Xylem &amp; Phloem:</strong> The cambial ring cuts off cells on both sides:
+        <ul style="margin:2px 0 4px 15px;">
+          <li>Towards the interior (pith): Differentiates into <strong>secondary xylem (wood)</strong>. Cambium is much more active internally; hence, secondary xylem accumulates rapidly.</li>
+          <li>Towards the exterior (cortex): Differentiates into <strong>secondary phloem</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Crushing of Primary Tissues:</strong> The relentless inward accumulation of secondary xylem crushes the primary and secondary phloem, cortex, and epidermis.</li>
+      <li><strong>Formation of Annual Rings:</strong> In temperate zones, cambium activity varies with seasons:
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Spring wood (early wood):</em> Wide vessels with broad cavities formed when sap flow is high.</li>
+          <li><em>Autumn wood (late wood):</em> Narrow vessels with thick walls formed during winter dormancy.</li>
+          <li>One spring wood + one autumn wood ring forms one <strong>annual growth ring</strong>, used to determine the age of a tree (<strong>dendrochronology</strong>).</li>
+        </ul>
+      </li>
+      <li><strong>Heartwood vs. Sapwood:</strong> With age, central secondary xylem becomes plugged with tyloses, impregnated with tannins, resins, and oils, turning dark, hard, durable, and non-conducting (<strong>heartwood / duramen</strong>). Outer lighter, water-conducting wood is <strong>sapwood / alburnum</strong>.</li>
+    </ol>
+    <strong>B. Activity of Cork Cambium (Cortex Region):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li>Phellogen cuts off suberized cork (phellem) externally and phelloderm internally, forming the periderm. Phellogen produces lens-shaped openings called <strong>lenticels</strong> for gaseous exchange across the impermeable cork.</li>
+    </ul>
+    <strong>Biological Significance of Secondary Growth:</strong><br>
+    1. Increases mechanical strength and rigidity to support large woody tree trunks.<br>
+    2. Replaces damaged, worn-out primary vascular elements with massive secondary conduits.<br>
+    3. Provides commercial timber, cork, resins, and tannins.
+  </div>`,
+  '5 Marks',
+  [
+    ['Formation of continuous cambial ring from intra- and interfascicular cambium', '1.5 Marks'],
+    ['Formation of secondary xylem internally and secondary phloem externally', '1 Mark'],
+    ['Spring wood vs autumn wood, annual rings and heartwood vs sapwood', '1 Mark'],
+    ['Phellogen, periderm, and lenticels in extra-stelar region', '0.5 Mark'],
+    ['Three points of biological significance (strength, conducting capacity, perennation)', '1 Mark']
+  ]
+));
+
+// Q4
+questions.push(createQCard(
+  'c11b-ch6-q4', 'Question 4', 'NCERT Exercise',
+  'Draw illustrations to bring out the anatomical difference between: (a) Monocot root and Dicot root (b) Monocot stem and Dicot stem.',
+  `<div class="step">
+    <strong>(a) Anatomical Differences Between Dicot Root and Monocot Root:</strong><br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.84rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+            <th style="padding:6px 10px;">Anatomical Feature</th><th style="padding:6px 10px;">Dicot Root (e.g., Sunflower / Gram)</th><th style="padding:6px 10px;">Monocot Root (e.g., Maize)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">1. Vascular Bundles</td><td style="padding:6px 10px;">Diarch to hexarch (usually <strong>2 to 4, rarely 6</strong> xylem &amp; phloem patches).</td><td style="padding:6px 10px;"><strong>Polyarch</strong> (more than 6, often 8 to 20 or more xylem/phloem bundles).</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">2. Pith (Medulla)</td><td style="padding:6px 10px;">Extremely small, inconspicuous or completely absent.</td><td style="padding:6px 10px;">Large, well-developed, and prominent.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">3. Cambium &amp; Secondary Growth</td><td style="padding:6px 10px;">Vascular cambium arises secondarily from pericycle and conjunctive tissue; undergoes prominent secondary growth.</td><td style="padding:6px 10px;">Cambium completely absent; no secondary growth occurs.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <strong>(b) Anatomical Differences Between Dicot Stem and Monocot Stem:</strong><br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.84rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+            <th style="padding:6px 10px;">Anatomical Feature</th><th style="padding:6px 10px;">Dicot Stem (e.g., Sunflower)</th><th style="padding:6px 10px;">Monocot Stem (e.g., Maize)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">1. Hypodermis</td><td style="padding:6px 10px;"><strong>Collenchymatous</strong> (provides flexible tensile support).</td><td style="padding:6px 10px;"><strong>Sclerenchymatous</strong> (provides rigid mechanical support).</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">2. Ground Tissue</td><td style="padding:6px 10px;">Differentiated into cortex, endodermis, pericycle, medullary rays, and central pith.</td><td style="padding:6px 10px;">Undifferentiated continuous mass of parenchyma extending from hypodermis to center.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">3. Vascular Bundles</td><td style="padding:6px 10px;">Conjoint, collateral, <strong>open</strong> (cambium present), arranged in a neat broken <strong>ring</strong>.</td><td style="padding:6px 10px;">Conjoint, collateral, <strong>closed</strong> (no cambium), <strong>scattered</strong> throughout ground tissue.</td></tr>
+          <tr><td style="padding:6px 10px; font-weight:700;">4. Bundle Sheath &amp; Phloem Parenchyma</td><td style="padding:6px 10px;">Bundle sheath absent; phloem parenchyma present.</td><td style="padding:6px 10px;">Surrounded by prominent sclerenchymatous <strong>bundle sheath</strong>; phloem parenchyma absent.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Dicot vs Monocot root: bundle number (diarch/tetrarch vs polyarch), pith size, cambium', '2 Marks'],
+    ['(b) Dicot vs Monocot stem: hypodermis (collenchyma vs sclerenchyma), bundle arrangement (ring vs scattered), open vs closed', '2 Marks']
+  ]
+));
+
+// Q5
+questions.push(createQCard(
+  'c11b-ch6-q5', 'Question 5', 'NCERT Exercise',
+  'Cut a transverse section of young stem of a plant from your school garden and observe it under the microscope. How would you ascertain whether it is a monocot stem or a dicot stem? Give reasons.',
+  `<div class="step">
+    <strong>Microscopic Diagnostic Criteria to Distinguish Monocot Stem from Dicot Stem:</strong><br><br>
+    Upon examining the stained transverse section (T.S.) under high-power magnification, observe the following diagnostic structural features:<br><br>
+    <strong>A. Signs Confirming a DICOT Stem:</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Ring Arrangement of Vascular Bundles:</strong> Vascular bundles are uniform, wedge-shaped, and arranged in a clean, orderly circular ring around the central axis.</li>
+      <li><strong>Open Vascular Bundles:</strong> A distinct strip of meristematic <strong>intrafascicular cambium</strong> is sandwiched between the outer phloem and inner xylem.</li>
+      <li><strong>Differentiated Ground Tissue:</strong> Ground tissue is clearly demarcated into an outer collenchymatous hypodermis, a multi-layered parenchymatous cortex, a wavy starch sheath (endodermis), a pericycle with sclerenchymatous semilunar patches, and a prominent central parenchymatous <strong>pith</strong>.</li>
+    </ul>
+    <strong>B. Signs Confirming a MONOCOT Stem:</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Scattered Vascular Bundles:</strong> Numerous oval vascular bundles are randomly scattered throughout an undifferentiated parenchymatous ground tissue (smaller bundles crowded towards periphery, larger ones towards the center).</li>
+      <li><strong>Closed Vascular Bundles:</strong> Cambium is completely absent (bundles are closed).</li>
+      <li><strong>Sclerenchymatous Bundle Sheath:</strong> Each bundle is encased by a dense sheath of sclerenchyma fibers.</li>
+      <li><strong>Y- or V-shaped Xylem:</strong> Xylem vessels are arranged in the shape of the letter 'Y' with a prominent lysigenous water cavity (protoxylem lacuna).</li>
+      <li><strong>Absence of Phloem Parenchyma:</strong> Phloem consists solely of sieve tubes and companion cells.</li>
+    </ul>
+  </div>`,
+  '3 Marks',
+  [
+    ['Vascular bundle arrangement: ring in dicot vs scattered in monocot', '1 Mark'],
+    ['Bundle nature: open (cambium present) in dicot vs closed (cambium absent) in monocot', '1 Mark'],
+    ['Ground tissue: differentiated (cortex, endodermis, pith) in dicot vs undifferentiated in monocot', '1 Mark']
+  ]
+));
+
+// Q6
+questions.push(createQCard(
+  'c11b-ch6-q6', 'Question 6', 'NCERT Exercise',
+  'The transverse section of a plant material shows the following anatomical features: (a) the vascular bundles are conjoint, scattered and surrounded by a sclerenchymatous bundle sheaths (b) phloem parenchyma is absent. What will you identify it as?',
+  `<div class="step">
+    <strong>Identification:</strong><br>
+    The plant material is definitively identified as a <strong>Monocotyledonous Stem</strong> (e.g., <em>Zea mays</em> / Maize stem).<br><br>
+    <strong>Detailed Scientific Justification:</strong><br>
+    <ul style="margin:6px 0 10px 20px;">
+      <li><strong>1. "Vascular bundles are conjoint and scattered":</strong>
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Conjoint:</em> Xylem and phloem lie along the same radial plane, a hallmark of stems (roots have radial bundles where xylem and phloem lie on alternating radii).</li>
+          <li><em>Scattered:</em> Scattered distribution (atactostele) throughout the undifferentiated parenchymatous ground tissue is an exclusive anatomical signature of monocot stems. Dicot stems have bundles arranged in a neat single ring.</li>
+        </ul>
+      </li>
+      <li><strong>2. "Surrounded by a sclerenchymatous bundle sheath":</strong>
+        <ul style="margin:2px 0 4px 15px;">
+          <li>In monocot stems, every vascular bundle is completely encased by a prominent fibrous sheath of dead, lignified sclerenchyma cells providing rigidity, which is absent in dicot stems.</li>
+        </ul>
+      </li>
+      <li><strong>3. "Phloem parenchyma is absent":</strong>
+        <ul style="margin:2px 0 4px 15px;">
+          <li>A classic textbook diagnostic feature of monocot stems is the total absence of phloem parenchyma (phloem consists only of sieve tube elements and companion cells). In contrast, phloem parenchyma is abundantly present in dicot stems.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>`,
+  '3 Marks',
+  [
+    ['Accurate identification as Monocotyledonous Stem (e.g., Maize stem)', '1 Mark'],
+    ['Justification of conjoint & scattered bundles vs dicot ring arrangement', '1 Mark'],
+    ['Justification of sclerenchymatous bundle sheath and absence of phloem parenchyma', '1 Mark']
+  ]
+));
+
+// Q7
+questions.push(createQCard(
+  'c11b-ch6-q7', 'Question 7', 'NCERT Exercise',
+  'Why are xylem and phloem called complex tissues?',
+  `<div class="step">
+    <strong>Scientific Explanation for Classifying Xylem and Phloem as Complex Permanent Tissues:</strong><br><br>
+    <strong>1. Definition of Complex Tissue:</strong><br>
+    In plant anatomy, a <strong>simple permanent tissue</strong> (such as parenchyma, collenchyma, and sclerenchyma) is composed of only one type of structurally and functionally identical cell. In contrast, a <strong>complex tissue</strong> is composed of <strong>more than one type of cell</strong> that originate from the same meristem and coordinate harmoniously as a unified physiological unit to perform a common transport function.<br><br>
+    <strong>2. Cellular Heterogeneity of Xylem (Wood):</strong><br>
+    Xylem is composed of four distinct cellular elements coordinating to conduct water, dissolved mineral ions, and provide mechanical strength:
+    <ul style="margin:4px 0 6px 20px;">
+      <li><em>Tracheids:</em> Elongated dead tube-like cells with tapering ends and bordered pits.</li>
+      <li><em>Vessels (Tracheae):</em> Long cylindrical syncytial tubes with perforated end walls.</li>
+      <li><em>Xylem Fibres:</em> Highly thickened, lignified dead sclerenchymatous fibers offering mechanical tensile strength.</li>
+      <li><em>Xylem Parenchyma:</em> The only <strong>living</strong> cells of xylem, storing starch, fats, and assisting radial water transport.</li>
+    </ul>
+    <strong>3. Cellular Heterogeneity of Phloem (Bast):</strong><br>
+    Phloem is composed of four distinct cellular elements coordinating to translocate organic photosynthates (sucrose):
+    <ul style="margin:4px 0 6px 20px;">
+      <li><em>Sieve Tube Elements:</em> Long tubular conducting cells with perforated end walls (sieve plates); enucleated at maturity.</li>
+      <li><em>Companion Cells:</em> Specialized nucleated parenchymatous sister cells maintaining the metabolic pressure gradient of sieve tubes.</li>
+      <li><em>Phloem Parenchyma:</em> Living elongated cells storing resins, latex, mucilage, and food.</li>
+      <li><em>Phloem Fibres (Bast Fibres):</em> Dead lignified sclerenchymatous fibers providing tensile strength (e.g., jute, flax, hemp).</li>
+    </ul>
+  </div>`,
+  '3 Marks',
+  [
+    ['Definition of complex tissue (composed of multiple cell types functioning as a single unit)', '1 Mark'],
+    ['Four cellular components of xylem and their roles', '1 Mark'],
+    ['Four cellular components of phloem and their roles', '1 Mark']
+  ]
+));
+
+// Q8
+questions.push(createQCard(
+  'c11b-ch6-q8', 'Question 8', 'NCERT Exercise',
+  'What is stomatal apparatus? Explain the structure of stomata with a labelled diagram.',
+  `<div class="step">
+    <strong>Definition of Stomatal Apparatus:</strong><br>
+    The <strong>stomatal apparatus</strong> is the specialized epidermal functional complex consisting of the microscopic <strong>stomatal aperture (pore)</strong>, flanked by a pair of specialized <strong>guard cells</strong>, and surrounded by specialized epidermal cells called <strong>subsidiary (accessory) cells</strong>.<br><br>
+    <strong>Detailed Structural Components:</strong><br><br>
+    <strong>1. Stomatal Pore:</strong><br>
+    A minute elliptical opening in the leaf epidermis through which gaseous exchange ($CO_2$ uptake, $O_2$ release) and evaporative water loss (transpiration) occur.<br><br>
+    <strong>2. Guard Cells:</strong>
+    <ul style="margin:4px 0 6px 20px;">
+      <li><strong>Shape:</strong> Typically <strong>kidney-shaped (reniform)</strong> in dicot leaves, and <strong>dumbbell-shaped</strong> in grasses and monocots.</li>
+      <li><strong>Wall Thickening:</strong> The inner wall facing the stomatal pore is thick, rigid, and inelastic, whereas the outer wall away from the pore is thin, elastic, and flexible.</li>
+      <li><strong>Cellular Contents:</strong> Unlike ordinary epidermal cells, guard cells possess a conspicuous nucleus, abundant cytoplasm, and functional <strong>chloroplasts</strong>.</li>
+      <li><strong>Stomatal Mechanism:</strong> When potassium ions ($K^+$) and water enter guard cells, turgor pressure increases, causing the thin outer walls to bulge outward; this pulls the thick inner concave walls apart, <strong>opening the stomatal pore</strong>. When turgor drops, the walls relax, <strong>closing the pore</strong>.</li>
+    </ul>
+    <strong>3. Subsidiary Cells:</strong><br>
+    Specialized epidermal cells surrounding the guard cells that serve as chemical and water reservoirs, facilitating rapid ionic and turgor adjustments in guard cells.
+  </div>`,
+  '3 Marks',
+  [
+    ['Definition of stomatal apparatus (pore + guard cells + subsidiary cells)', '1 Mark'],
+    ['Detailed structural description of guard cells (kidney/dumbbell, inner vs outer wall thickening, chloroplasts)', '1 Mark'],
+    ['Mechanism of stomatal opening and closing via turgor pressure changes', '1 Mark']
+  ]
+));
+
+// Q9
+questions.push(createQCard(
+  'c11b-ch6-q9', 'Question 9', 'NCERT Exercise',
+  'Name the three basic tissue systems in the flowering plants. Give the tissue names under each system.',
+  `<div class="step">
+    <strong>The Three Basic Tissue Systems in Flowering Plants (Julius von Sachs, 1875):</strong><br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:0.86rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:2px solid #059669; text-align:left;">
+            <th style="padding:8px 12px; color:#065f46;">Tissue System</th>
+            <th style="padding:8px 12px; color:#065f46;">Constituent Tissues / Cellular Elements</th>
+            <th style="padding:8px 12px; color:#065f46;">Primary Physiological Functions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">1. Epidermal Tissue System</td>
+            <td style="padding:8px 12px;">
+              &bull; Epidermis with waxy cuticle<br>
+              &bull; Stomata (guard cells &amp; subsidiary cells)<br>
+              &bull; Epidermal appendages: <strong>Trichomes</strong> (stem hairs) and <strong>Root hairs</strong> (unicellular tubular absorbs)
+            </td>
+            <td style="padding:8px 12px;">Protection against desiccation and mechanical injury, gas exchange, transpiration, and water/mineral absorption.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">2. Ground (Fundamental) Tissue System</td>
+            <td style="padding:8px 12px;">
+              &bull; Hypodermis (collenchyma / sclerenchyma)<br>
+              &bull; General cortex (parenchyma)<br>
+              &bull; Endodermis (starch sheath / Casparian strips)<br>
+              &bull; Pericycle<br>
+              &bull; Medullary rays and central <strong>Pith</strong><br>
+              &bull; <strong>Mesophyll</strong> in leaves (palisade &amp; spongy)
+            </td>
+            <td style="padding:8px 12px;">Photosynthesis (mesophyll), nutrient/starch storage, secretor functions, and mechanical tensile support.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px; font-weight:700;">3. Vascular (Conducting) Tissue System</td>
+            <td style="padding:8px 12px;">
+              &bull; <strong>Xylem:</strong> Tracheids, vessels, xylem fibres, xylem parenchyma<br>
+              &bull; <strong>Phloem:</strong> Sieve tubes, companion cells, phloem fibres, phloem parenchyma<br>
+              &bull; <strong>Cambium</strong> (in open bundles of dicots)
+            </td>
+            <td style="padding:8px 12px;">Long-distance translocation of sap (water/minerals via xylem) and photosynthates (sucrose via phloem); mechanical support.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['1. Epidermal tissue system: epidermis, stomata, trichomes, root hairs', '1 Mark'],
+    ['2. Ground tissue system: cortex, endodermis, pericycle, pith, mesophyll', '1 Mark'],
+    ['3. Vascular tissue system: xylem, phloem, and vascular cambium', '1 Mark']
+  ]
+));
+
+// Q10
+questions.push(createQCard(
+  'c11b-ch6-q10', 'Question 10', 'NCERT Exercise',
+  'How is the study of plant anatomy useful to us?',
+  `<div class="step">
+    <strong>Practical Applications and Utility of Plant Anatomy:</strong><br>
+    The anatomical study of internal plant structure has immense industrial, agricultural, and scientific value:<br><br>
+    <strong>1. Quality Control &amp; Pharmacognosy:</strong><br>
+    Enables identification of adulterants and counterfeits in commercial herbal medicines, spices (cinnamon, saffron, cloves), and crude botanical drugs by examining microscopic cell structures (trichomes, stomata, calcium oxalate raphides/druses).<br><br>
+    <strong>2. Timber &amp; Wood Technology:</strong><br>
+    Helps timber industries distinguish high-strength hardwood from softwood, evaluate grain patterns, determine fiber length for paper pulp quality, and calculate tree age via dendrochronology (annual growth rings).<br><br>
+    <strong>3. Crop Breeding and Disease Resistance:</strong><br>
+    Breeding scientists evaluate anatomical barriers against pests and pathogens: thick cuticles, sclerenchymatous hypodermis, and dense silicified epidermis confer resistance to sucking insect pests and fungal hyphal penetration.<br><br>
+    <strong>4. Evolutionary Phylogeny &amp; Taxonomy:</strong><br>
+    Internal structural features (vascular bundle arrangement, vessel perforation plates, nodal anatomy) help resolve complex taxonomic disputes and decipher evolutionary relationships among plant families.<br><br>
+    <strong>5. Forensic Botany:</strong><br>
+    Fragmented leaf, root, or wood evidence found at crime scenes can be matched to precise botanical species through micro-anatomical sectioning.
+  </div>`,
+  '3 Marks',
+  [
+    ['Pharmacognosy & detection of adulteration in herbal drugs and spices', '1 Mark'],
+    ['Timber industry (wood quality, paper pulp, dendrochronology)', '1 Mark'],
+    ['Crop breeding for pest resistance, taxonomic classification, and forensic botany', '1 Mark']
+  ]
+));
+
+// Q11
+questions.push(createQCard(
+  'c11b-ch6-q11', 'Question 11', 'NCERT Exercise',
+  'What is periderm? How does periderm formation take place in the dicot stems?',
+  `<div class="step">
+    <strong>Definition of Periderm:</strong><br>
+    The <strong>periderm</strong> is a protective secondary tissue of secondary origin that replaces the ruptured epidermis of stems and roots during secondary growth. It is composed of three distinct concentric layers:
+    <ol style="margin:4px 0 8px 20px;">
+      <li><strong>Phellogen:</strong> Cork cambium (the secondary lateral meristem).</li>
+      <li><strong>Phellem:</strong> Cork (outer dead, suberized protective layer).</li>
+      <li><strong>Phelloderm:</strong> Secondary cortex (inner living parenchymatous layer).</li>
+    </ol>
+    <strong>Step-by-Step Formation of Periderm in Dicot Stems:</strong><br>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>1. Trigger:</strong> Due to continuous formation of secondary xylem and phloem by vascular cambium, internal pressure stretches and breaks the primary epidermis and outer cortex.</li>
+      <li><strong>2. Dedifferentiation to form Phellogen:</strong> Mature living parenchymatous or collenchymatous cells in the sub-epidermal layer (outer cortex) dedifferentiate into a secondary meristem called <strong>phellogen (cork cambium)</strong>.</li>
+      <li><strong>3. Periclinal Cell Divisions:</strong> Phellogen cells divide periclinally, giving off cells towards the exterior and interior:
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Centrifugally (Outer):</em> Cut-off cells lose protoplasm and become dead, compactly arranged hexagonal cells impregnated with <strong>suberin</strong>, forming the impervious <strong>phellem (cork)</strong>.</li>
+          <li><em>Centripetally (Inner):</em> Cut-off cells mature into living parenchymatous cells with cellulosic walls, forming the <strong>phelloderm (secondary cortex)</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>4. Formation of Lenticels:</strong> At certain intervals, phellogen produces loosely arranged, thin-walled parenchymatous cells called <strong>complementary cells</strong> instead of suberized cork. These rupture the epidermis to form lens-shaped aerating pores called <strong>lenticels</strong>, permitting vital gas exchange across the impermeable cork layer.</li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Definition of periderm and naming its three constituent layers (phellogen, phellem, phelloderm)', '1 Mark'],
+    ['Origin of phellogen from cortical dedifferentiation due to secondary expansion stress', '1 Mark'],
+    ['Activity of phellogen: suberized dead cork externally and living phelloderm internally', '1 Mark'],
+    ['Formation and gas exchange function of lenticels with complementary cells', '1 Mark']
+  ]
+));
+
+// Q12
+questions.push(createQCard(
+  'c11b-ch6-q12', 'Question 12', 'NCERT Exercise',
+  'Describe the internal structure of a dorsiventral leaf with the help of labelled diagram.',
+  `<div class="step">
+    <strong>Anatomical Architecture of a Dorsiventral (Dicotyledonous) Leaf:</strong><br>
+    A transverse section (T.S.) of a typical dorsiventral leaf (e.g., Sunflower / Mango) shows three distinct tissue regions:<br><br>
+    <strong>1. Epidermis (Upper &amp; Lower):</strong>
+    <ul style="margin:4px 0 6px 20px;">
+      <li><strong>Adaxial Epidermis (Upper):</strong> Covered by a thick, waxy, water-impermeable <strong>cuticle</strong>; generally bears fewer or no stomata (hypostomatic condition).</li>
+      <li><strong>Abaxial Epidermis (Lower):</strong> Bears numerous stomata with kidney-shaped guard cells to facilitate transpiration and gas exchange, covered by a thinner cuticle.</li>
+    </ul>
+    <strong>2. Mesophyll (Ground Tissue):</strong><br>
+    The green photosynthetic tissue sandwiched between upper and lower epidermis, richly packed with chloroplasts and differentiated into two distinct zones:
+    <ul style="margin:4px 0 6px 20px;">
+      <li><strong>Palisade Parenchyma (Adaxial):</strong> Located beneath the upper epidermis; composed of vertically elongated, columnar, tightly packed cylindrical cells with narrow intercellular spaces, maximizing sunlight absorption.</li>
+      <li><strong>Spongy Parenchyma (Abaxial):</strong> Located below palisade cells and extending to the lower epidermis; composed of loosely arranged, oval or spherical cells with large intercellular spaces and conspicuous <strong>air cavities (sub-stomatal chambers)</strong> facilitating rapid gaseous diffusion.</li>
+    </ul>
+    <strong>3. Vascular System (Vascular Bundles):</strong>
+    <ul style="margin:4px 0 6px 20px;">
+      <li>Seen in the veins and midrib. Reticulate venation results in bundles of varying sizes.</li>
+      <li>Each bundle is <strong>conjoint, collateral, and closed</strong> (no cambium).</li>
+      <li>Xylem lies towards the upper (adaxial) surface, while phloem lies towards the lower (abaxial) surface.</li>
+      <li>Each vascular bundle is completely encased by a prominent layer of tightly packed parenchymatous cells called the <strong>bundle sheath</strong>.</li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Epidermis: adaxial vs abaxial, cuticle thickness, and stomatal distribution', '1 Mark'],
+    ['Mesophyll: palisade parenchyma (columnar, tight) vs spongy parenchyma (loose, air cavities)', '1.5 Marks'],
+    ['Vascular bundles: conjoint, collateral, closed, xylem facing adaxial, phloem abaxial', '1 Mark'],
+    ['Bundle sheath surrounding veins', '0.5 Mark']
+  ]
+));
+
+// Save Chapter 6
+saveChapter(
+  6,
+  'Anatomy of Flowering Plants',
+  svgCh6,
+  'NCERT Textbook Exercise 1 to 12: Meristems, Tissues, Stomata, Monocot vs Dicot Anatomy, Secondary Growth & Periderm',
+  questions,
+  'Structural Organisation in Animals'
+);
