@@ -231,15 +231,86 @@
     .data-table tr:nth-child(even) td{background:#f8fafc;}
     .mob-toggle{display:none;position:fixed;bottom:20px;right:20px;background:var(--brand);color:white;border:none;padding:12px 20px;border-radius:30px;font-weight:700;font-size:.9rem;box-shadow:0 4px 14px rgba(5,150,105,.4);z-index:999;cursor:pointer;}
     .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:950;}
+    .mobile-chapter-selector-bar{display:none;}
     @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
     @media(max-width:900px){
-      .main-layout{flex-direction:column;}
-      .sidebar{position:fixed;left:-320px;top:0;height:100vh;z-index:960;transition:left .3s;}
-      .sidebar.open{left:0;}
-      .sidebar-overlay.show{display:block;}
-      .mob-toggle{display:block;}
-      .main-content{padding:0 16px 28px;}
-      .breadcrumb-bar{padding:12px 16px;top:57px;}
+      /* Show top dropdown selector bar */
+      .mobile-chapter-selector-bar{
+        display:block;
+        position:sticky;
+        top:57px;
+        z-index:850;
+        background:#ffffff;
+        padding:8px 10px;
+        border-bottom:2px solid var(--brand);
+        box-shadow:0 4px 12px rgba(5,150,105,0.08);
+      }
+      .mob-select-card{display:flex;flex-direction:column;gap:5px;width:100%;}
+      .mob-select-header{display:flex;align-items:center;justify-content:space-between;}
+      .mob-select-title-group{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:800;color:var(--brand-text);text-transform:uppercase;letter-spacing:0.04em;}
+      .mob-current-badge{font-size:0.72rem;font-weight:800;background:#ecfdf5;color:#047857;padding:2px 8px;border-radius:999px;border:1px solid #a7f3d0;}
+      .mob-dropdown-wrapper{position:relative;width:100%;}
+      .mobile-chapter-dropdown{
+        width:100%;
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        background:#f0fdf4;
+        border:1.5px solid #86efac;
+        border-radius:8px;
+        padding:10px 34px 10px 12px;
+        font-size:0.88rem;
+        font-weight:700;
+        color:#065f46;
+        cursor:pointer;
+        box-shadow:0 1px 3px rgba(0,0,0,0.04);
+        outline:none;
+      }
+      .mobile-chapter-dropdown:focus{border-color:var(--brand);background:#ffffff;box-shadow:0 0 0 3px rgba(5,150,105,0.18);}
+      .mob-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:0.7rem;color:var(--brand);}
+
+      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
+      .breadcrumb-bar{display:none !important;}
+      .sidebar{display:none !important;}
+      .sidebar-overlay{display:none !important;}
+      .mob-toggle{display:none !important;}
+
+      /* Compact hero banner on mobile */
+      .hero-banner{padding:14px 10px 12px;}
+      .hero-banner h1{font-size:1.25rem;margin-bottom:2px;}
+      .hero-banner p{font-size:0.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .hero-badges{display:none;}
+
+      /* Full width for main layout and content */
+      .main-layout{display:block;width:100%;margin:0;}
+      .main-content{padding:8px 4px 36px;width:100%;max-width:100%;box-sizing:border-box;}
+
+      /* Compact Question Cards & full width */
+      .chapter-header{padding-bottom:10px;margin-bottom:12px;gap:10px;}
+      .ch-badge{width:38px;height:38px;font-size:1.1rem;border-radius:10px;}
+      .chapter-header-info h2{font-size:1.15rem;line-height:1.35;}
+      .chapter-header-info p{font-size:0.76rem;}
+
+      .ex-div{padding:8px 10px;font-size:0.8rem;margin:16px 0 10px;}
+
+      .q-card{border-radius:10px;margin-bottom:10px;border:1px solid #e2e8f0;width:100%;box-sizing:border-box;}
+      .q-head{padding:10px 8px;gap:8px;}
+      .q-num{font-size:0.72rem;padding:2px 6px;}
+      .q-text{font-size:0.88rem;line-height:1.5;}
+      .q-marks{font-size:0.68rem;padding:2px 6px;}
+      .q-toggle{width:22px;height:22px;}
+
+      .q-answer{padding:0 8px 12px;}
+      .answer-box{padding:10px 8px;margin-top:8px;border-radius:8px;}
+      .answer-label{font-size:0.7rem;margin-bottom:6px;}
+      .answer-text{font-size:0.88rem;line-height:1.65;}
+      .marking-scheme{margin-top:10px;padding-top:8px;}
+      .marking-title{font-size:0.7rem;margin-bottom:6px;}
+      .marking-row{font-size:0.75rem;padding:3px 0;}
+      .marking-marks{font-size:0.7rem;}
+
+      .chapter-nav-btns{margin-top:20px;padding:12px 2px 0;gap:6px;}
+      .ch-nav-btn{padding:8px 10px;font-size:0.76rem;border-radius:8px;}
     }
   </style>
 
@@ -426,6 +497,36 @@
     <span class="bc-chip" onclick="showChapter(10)" data-ch="10"><span class="bc-n">10</span>Work &amp; Energy</span>
     <span class="bc-chip" onclick="showChapter(11)" data-ch="11"><span class="bc-n">11</span>Sound</span>
     <span class="bc-chip" onclick="showChapter(12)" data-ch="12"><span class="bc-n">12</span>Food Resources</span>
+  </div>
+</div>
+
+<!-- Mobile Chapter Selector Bar (Top Area for Mobile Devices) -->
+<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
+  <div class="mob-select-card">
+    <div class="mob-select-header">
+      <div class="mob-select-title-group">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Select Chapter:</span>
+      </div>
+      <span class="mob-current-badge" id="mobCurrentBadge">Chapter 1</span>
+    </div>
+    <div class="mob-dropdown-wrapper">
+      <select id="mobileChapterSelect" class="mobile-chapter-dropdown" aria-label="Select Chapter" onchange="showChapter(parseInt(this.value))">
+        <option value="1">Ch 1: Matter in Our Surroundings</option>
+        <option value="2">Ch 2: Is Matter Around Us Pure?</option>
+        <option value="3">Ch 3: Atoms and Molecules</option>
+        <option value="4">Ch 4: Structure of the Atom</option>
+        <option value="5">Ch 5: The Fundamental Unit of Life</option>
+        <option value="6">Ch 6: Tissues</option>
+        <option value="7">Ch 7: Motion</option>
+        <option value="8">Ch 8: Force and Laws of Motion</option>
+        <option value="9">Ch 9: Gravitation</option>
+        <option value="10">Ch 10: Work and Energy</option>
+        <option value="11">Ch 11: Sound</option>
+        <option value="12">Ch 12: Improvement in Food Resources</option>
+      </select>
+      <div class="mob-dropdown-arrow">▼</div>
+    </div>
   </div>
 </div>
 
@@ -1347,6 +1448,12 @@
     if (n < 1 || n > 12) return;
     currentCh = n;
 
+    // Sync mobile select & badge
+    const mobSelect = document.getElementById('mobileChapterSelect');
+    if (mobSelect) mobSelect.value = String(n);
+    const mobBadge = document.getElementById('mobCurrentBadge');
+    if (mobBadge) mobBadge.textContent = 'Chapter ' + n;
+
     // Update Sidebar active state
     document.querySelectorAll('#chapterNav li a').forEach((a, i) => {
       a.classList.toggle('active', i + 1 === n);
@@ -1411,6 +1518,11 @@
   }
 
   function scrollToContentTop() {
+    const mobBar = document.getElementById('mobileChapterBar');
+    if (window.innerWidth <= 900 && mobBar) {
+      mobBar.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
     const bc = document.querySelector('.breadcrumb-bar');
     if (bc) {
       const topOffset = bc.getBoundingClientRect().bottom + window.pageYOffset;

@@ -207,7 +207,92 @@
       .main-layout { padding: 20px 16px; }
       .chapter-section { padding: 20px; }
     }
-  </style>
+  
+.mobile-chapter-selector-bar{display:none;}
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    @media (max-width: 900px), (max-width: 960px){
+      /* Show top dropdown selector bar */
+      .mobile-chapter-selector-bar{
+        display:block;
+        position:sticky;
+        top:57px;
+        z-index:850;
+        background:#ffffff;
+        padding:8px 10px;
+        border-bottom:2px solid #2563eb;
+        box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      }
+      .mob-select-card{display:flex;flex-direction:column;gap:5px;width:100%;}
+      .mob-select-header{display:flex;align-items:center;justify-content:space-between;}
+      .mob-select-title-group{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:800;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.04em;}
+      .mob-current-badge{font-size:0.72rem;font-weight:800;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:999px;border:1px solid #93c5fd;}
+      .mob-dropdown-wrapper{position:relative;width:100%;}
+      .mobile-chapter-dropdown{
+        width:100%;
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        background:#eff6ff;
+        border:1.5px solid #93c5fd;
+        border-radius:8px;
+        padding:10px 34px 10px 12px;
+        font-size:0.88rem;
+        font-weight:700;
+        color:#1d4ed8;
+        cursor:pointer;
+        box-shadow:0 1px 3px rgba(0,0,0,0.04);
+        outline:none;
+      }
+      .mobile-chapter-dropdown:focus{border-color:#2563eb;background:#ffffff;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
+      .mob-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:0.7rem;color:#2563eb;}
+
+      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
+      .breadcrumb-bar{display:none !important;}
+      .sidebar{display:none !important;}
+      .sidebar-overlay{display:none !important;}
+      .mob-sidebar-toggle{display:none !important;}
+      .mob-toggle{display:none !important;}
+      .navbar-links{display:none;}
+
+      /* Compact hero banner on mobile */
+      .hero-banner{padding:14px 10px 12px;}
+      .hero-banner h1{font-size:1.25rem;margin-bottom:2px;}
+      .hero-banner p{font-size:0.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .hero-badges{display:none;}
+
+      /* Full width for main layout and content */
+      .main-layout,.layout-container{display:block;width:100%;margin:0;}
+      .main-content,.content-area{padding:8px 4px 36px;width:100%;max-width:100%;box-sizing:border-box;}
+
+      /* Compact Question Cards & full width */
+      .chapter-header{padding-bottom:10px;margin-bottom:12px;gap:10px;}
+      .ch-badge{width:38px;height:38px;font-size:1.1rem;border-radius:10px;}
+      .chapter-header-info h2{font-size:1.15rem;line-height:1.35;}
+      .chapter-header-info p{font-size:0.76rem;}
+
+      .ex-div,.exercise-div{padding:8px 10px;font-size:0.8rem;margin:16px 0 10px;}
+
+      .q-card{border-radius:10px;margin-bottom:10px;border:1px solid #e2e8f0;width:100%;box-sizing:border-box;}
+      .q-head{padding:10px 8px;gap:8px;}
+      .q-num{font-size:0.72rem;padding:2px 6px;}
+      .q-text{font-size:0.88rem;line-height:1.5;}
+      .q-marks{font-size:0.68rem;padding:2px 6px;}
+      .q-toggle{width:22px;height:22px;}
+
+      .q-answer{padding:0 8px 12px;}
+      .answer-box{padding:10px 8px;margin-top:8px;border-radius:8px;}
+      .answer-label{font-size:0.7rem;margin-bottom:6px;}
+      .answer-text{font-size:0.88rem;line-height:1.65;}
+      .marking-scheme{margin-top:10px;padding-top:8px;}
+      .marking-title{font-size:0.7rem;margin-bottom:6px;}
+      .marking-row{font-size:0.75rem;padding:3px 0;}
+      .marking-marks{font-size:0.7rem;}
+
+      .chapter-nav-btns,.ch-nav-btns{margin-top:20px;padding:12px 2px 0;gap:6px;}
+      .ch-nav-btn{padding:8px 10px;font-size:0.76rem;border-radius:8px;}
+    }
+  
+</style>
   <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
   <script>
     window.MathJax = {
@@ -345,7 +430,51 @@
   </div>
 
   <!-- Main Layout -->
-  <div class="main-layout">
+  <!-- Mobile Chapter Selector Bar (Top Area for Mobile Devices) -->
+<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
+  <div class="mob-select-card">
+    <div class="mob-select-header">
+      <div class="mob-select-title-group">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Select Chapter:</span>
+      </div>
+      <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
+    </div>
+    <div class="mob-dropdown-wrapper">
+      <select id="mobileChapterSelect" class="mobile-chapter-dropdown" aria-label="Select Chapter" onchange="const parts = this.value.split(':'); if (typeof switchTrack === 'function' && activeTrack !== parts[0]) switchTrack(parts[0]); showChapter(parts[0], parseInt(parts[1]));">
+        <option value="track1:1">Ganita Prakash Ch 1: Patterns in Mathematics Number Sequences &amp; Rule Formulation</option>
+        <option value="track1:2">Ganita Prakash Ch 2: Lines and Angles Points, Rays, Angles &amp; Revolutions</option>
+        <option value="track1:3">Ganita Prakash Ch 3: Number Play Place Values, Large Numbers &amp; Magic Squares</option>
+        <option value="track1:4">Ganita Prakash Ch 4: Data Handling and Presentation Tally Marks, Pictographs & Bar Graphs</option>
+        <option value="track1:5">Ganita Prakash Ch 5: Prime Time Divisibility Tests, Factor Trees, HCF & LCM</option>
+        <option value="track1:6">Ganita Prakash Ch 6: Perimeter and Area Mensuration, Polygons, Area Formulas</option>
+        <option value="track1:7">Ganita Prakash Ch 7: Fractions Visual Models, Number Line, Arithmetic</option>
+        <option value="track1:8">Ganita Prakash Ch 8: Playing with Constructions Compass Bisectors & Standard Angles</option>
+        <option value="track1:9">Ganita Prakash Ch 9: Symmetry Lines of Symmetry & Mirror Reflections</option>
+        <option value="track1:10">Ganita Prakash Ch 10: The Other Side of Zero Integers, Number Line Jumps & Arithmetic</option>
+        <option value="track1:11">Ganita Prakash Ch 11: Introduction to Algebra Variables, Expressions & Simple Equations</option>
+        <option value="track1:12">Ganita Prakash Ch 12: Ratio and Proportion Simplest Form, Proportions & Unitary Method</option>
+        <option value="track2:1">Mathematics Ch 1: Knowing Our Numbers Large Numbers & Roman Numerals</option>
+        <option value="track2:2">Mathematics Ch 2: Whole Numbers Properties & Distributive Law</option>
+        <option value="track2:3">Mathematics Ch 3: Playing with Numbers Factors, Multiples, HCF & LCM</option>
+        <option value="track2:4">Mathematics Ch 4: Basic Geometrical Ideas Points, Lines, Polygons & Circles</option>
+        <option value="track2:5">Mathematics Ch 5: Understanding Elementary Shapes Angles, Triangles & 3D Shapes</option>
+        <option value="track2:6">Mathematics Ch 6: Integers Negative Numbers & Arithmetic</option>
+        <option value="track2:7">Mathematics Ch 7: Fractions Proper, Improper & Operations</option>
+        <option value="track2:8">Mathematics Ch 8: Decimals Tenths, Hundredths & Arithmetic</option>
+        <option value="track2:9">Mathematics Ch 9: Data Handling Tally Marks & Bar Graphs</option>
+        <option value="track2:10">Mathematics Ch 10: Mensuration Perimeter &amp; Area Formulas</option>
+        <option value="track2:11">Mathematics Ch 11: Algebra Variables, Expressions & Equations</option>
+        <option value="track2:12">Mathematics Ch 12: Ratio and Proportion Ratios, Proportions & Unitary</option>
+        <option value="track2:13">Mathematics Ch 13: Symmetry Lines of Symmetry & Reflection</option>
+        <option value="track2:14">Mathematics Ch 14: Practical Geometry Ruler & Compass Constructions</option>
+      </select>
+      <div class="mob-dropdown-arrow">▼</div>
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
     
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -8148,6 +8277,21 @@
     }
 
     function showChapter(track, num) {
+      if (typeof activeTrack !== 'undefined' && activeTrack !== track && typeof switchTrack === 'function') {
+        switchTrack(track);
+      }
+      const mobSelect = document.getElementById('mobileChapterSelect');
+      if (mobSelect) mobSelect.value = track + ':' + num;
+      const mobBadge = document.getElementById('mobCurrentBadge');
+      if (mobBadge) {
+        const activeOpt = mobSelect ? mobSelect.options[mobSelect.selectedIndex] : null;
+        mobBadge.textContent = activeOpt ? activeOpt.text.split(':')[0] : 'Chapter ' + num;
+      }
+      const mobBar = document.getElementById('mobileChapterBar');
+      if (window.innerWidth <= 900 && mobBar) {
+        mobBar.scrollIntoView({ behavior: 'smooth' });
+      }
+
       const containerId = (track === 'track1') ? 'containerTrack1' : 'containerTrack2';
       const sections = document.querySelectorAll('#' + containerId + ' .chapter-section');
       

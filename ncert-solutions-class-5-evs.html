@@ -271,7 +271,92 @@
     /* Footer */
     .site-footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
     .site-footer a { color: #38bdf8; text-decoration: none; font-weight: 600; }
-  </style>
+  
+.mobile-chapter-selector-bar{display:none;}
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    @media (max-width: 900px), (max-width: 960px){
+      /* Show top dropdown selector bar */
+      .mobile-chapter-selector-bar{
+        display:block;
+        position:sticky;
+        top:57px;
+        z-index:850;
+        background:#ffffff;
+        padding:8px 10px;
+        border-bottom:2px solid #059669;
+        box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      }
+      .mob-select-card{display:flex;flex-direction:column;gap:5px;width:100%;}
+      .mob-select-header{display:flex;align-items:center;justify-content:space-between;}
+      .mob-select-title-group{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.04em;}
+      .mob-current-badge{font-size:0.72rem;font-weight:800;background:#ecfdf5;color:#065f46;padding:2px 8px;border-radius:999px;border:1px solid #6ee7b7;}
+      .mob-dropdown-wrapper{position:relative;width:100%;}
+      .mobile-chapter-dropdown{
+        width:100%;
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        background:#ecfdf5;
+        border:1.5px solid #6ee7b7;
+        border-radius:8px;
+        padding:10px 34px 10px 12px;
+        font-size:0.88rem;
+        font-weight:700;
+        color:#065f46;
+        cursor:pointer;
+        box-shadow:0 1px 3px rgba(0,0,0,0.04);
+        outline:none;
+      }
+      .mobile-chapter-dropdown:focus{border-color:#059669;background:#ffffff;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
+      .mob-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:0.7rem;color:#059669;}
+
+      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
+      .breadcrumb-bar{display:none !important;}
+      .sidebar{display:none !important;}
+      .sidebar-overlay{display:none !important;}
+      .mob-sidebar-toggle{display:none !important;}
+      .mob-toggle{display:none !important;}
+      .navbar-links{display:none;}
+
+      /* Compact hero banner on mobile */
+      .hero-banner{padding:14px 10px 12px;}
+      .hero-banner h1{font-size:1.25rem;margin-bottom:2px;}
+      .hero-banner p{font-size:0.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .hero-badges{display:none;}
+
+      /* Full width for main layout and content */
+      .main-layout,.layout-container{display:block;width:100%;margin:0;}
+      .main-content,.content-area{padding:8px 4px 36px;width:100%;max-width:100%;box-sizing:border-box;}
+
+      /* Compact Question Cards & full width */
+      .chapter-header{padding-bottom:10px;margin-bottom:12px;gap:10px;}
+      .ch-badge{width:38px;height:38px;font-size:1.1rem;border-radius:10px;}
+      .chapter-header-info h2{font-size:1.15rem;line-height:1.35;}
+      .chapter-header-info p{font-size:0.76rem;}
+
+      .ex-div,.exercise-div{padding:8px 10px;font-size:0.8rem;margin:16px 0 10px;}
+
+      .q-card{border-radius:10px;margin-bottom:10px;border:1px solid #e2e8f0;width:100%;box-sizing:border-box;}
+      .q-head{padding:10px 8px;gap:8px;}
+      .q-num{font-size:0.72rem;padding:2px 6px;}
+      .q-text{font-size:0.88rem;line-height:1.5;}
+      .q-marks{font-size:0.68rem;padding:2px 6px;}
+      .q-toggle{width:22px;height:22px;}
+
+      .q-answer{padding:0 8px 12px;}
+      .answer-box{padding:10px 8px;margin-top:8px;border-radius:8px;}
+      .answer-label{font-size:0.7rem;margin-bottom:6px;}
+      .answer-text{font-size:0.88rem;line-height:1.65;}
+      .marking-scheme{margin-top:10px;padding-top:8px;}
+      .marking-title{font-size:0.7rem;margin-bottom:6px;}
+      .marking-row{font-size:0.75rem;padding:3px 0;}
+      .marking-marks{font-size:0.7rem;}
+
+      .chapter-nav-btns,.ch-nav-btns{margin-top:20px;padding:12px 2px 0;gap:6px;}
+      .ch-nav-btn{padding:8px 10px;font-size:0.76rem;border-radius:8px;}
+    }
+  
+</style>
 </head>
 <body>
   <div class="top-progress" id="progressBar"></div>
@@ -493,7 +578,57 @@
   </div>
 
   <!-- Main Layout -->
-  <div class="main-layout">
+  <!-- Mobile Chapter Selector Bar (Top Area for Mobile Devices) -->
+<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
+  <div class="mob-select-card">
+    <div class="mob-select-header">
+      <div class="mob-select-title-group">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Select Chapter:</span>
+      </div>
+      <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
+    </div>
+    <div class="mob-dropdown-wrapper">
+      <select id="mobileChapterSelect" class="mobile-chapter-dropdown" aria-label="Select Chapter" onchange="showChapter(this.value)">
+        <option value="ch_oww1">1 Water — The Essence of Life</option>
+        <option value="ch_oww2">2 Journey of a River</option>
+        <option value="ch_oww3">3 The Mystery of Food</option>
+        <option value="ch_oww4">4 Our School — A Happy Place</option>
+        <option value="ch_oww5">5 Our Vibrant Country</option>
+        <option value="ch_oww6">6 Some Unique Places</option>
+        <option value="ch_oww7">7 Energy — How Things Work</option>
+        <option value="ch_oww8">8 Clothes — How Things are Made</option>
+        <option value="ch_oww9">9 Rhythms of Nature</option>
+        <option value="ch_oww10">10 Earth — Our Shared Home</option>
+        <option value="ch_la_1">1 Super Senses Animal Senses</option>
+        <option value="ch_la_2">2 A Snake Charmer's Story Kalbeliyas</option>
+        <option value="ch_la_3">3 From Tasting to Digesting Taste Buds</option>
+        <option value="ch_la_4">4 Mangoes Round the Year Food Spoilage</option>
+        <option value="ch_la_5">5 Seeds and Seeds Seed Germination</option>
+        <option value="ch_la_6">6 Every Drop Counts Ghadsisar Lake</option>
+        <option value="ch_la_7">7 Experiments with Water Floating & Sinking</option>
+        <option value="ch_la_8">8 A Treat for Mosquitoes Malaria</option>
+        <option value="ch_la_9">9 Up You Go! Mountaineering at NIM Uttarkashi</option>
+        <option value="ch_la_10">10 Walls Tell Stories Golconda Fort</option>
+        <option value="ch_la_11">11 Sunita in Space Space Travel</option>
+        <option value="ch_la_12">12 What if it Finishes...? Fossil Fuels</option>
+        <option value="ch_la_13">13 A Shelter so High! Gaurav Jani's Journey</option>
+        <option value="ch_la_14">14 When the Earth Shook! 2001 Gujarat Earthquake</option>
+        <option value="ch_la_15">15 Blow Hot, Blow Cold Dr. Zakir Hussain's Story</option>
+        <option value="ch_la_16">16 Who will do this Work? Sanitation Workers</option>
+        <option value="ch_la_17">17 Across the Wall Afsana Mansuri</option>
+        <option value="ch_la_18">18 No Place for Us? Dam Construction Displacement</option>
+        <option value="ch_la_19">19 A Seed tells a Farmer's Story Damjibhai vs Hasmukh</option>
+        <option value="ch_la_20">20 Whose Forests? Suryamani's Torang</option>
+        <option value="ch_la_21">21 Like Father, Like Daughter Inherited vs Acquired Traits</option>
+        <option value="ch_la_22">22 On the Move Again Dhanu's Story</option>
+      </select>
+      <div class="mob-dropdown-arrow">▼</div>
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-title" id="sidebarTitleText">📘 Our Wondrous World (10 Chapters)</div>
@@ -29659,6 +29794,18 @@
     }
 
     function showChapter(targetId, updateHistory = true) {
+      const mobSelect = document.getElementById('mobileChapterSelect');
+      if (mobSelect) mobSelect.value = targetId;
+      const mobBadge = document.getElementById('mobCurrentBadge');
+      if (mobBadge) {
+        const activeOpt = mobSelect ? mobSelect.options[mobSelect.selectedIndex] : null;
+        mobBadge.textContent = activeOpt ? activeOpt.text.split('—')[0].split(':')[0].trim() : 'Chapter';
+      }
+      const mobBar = document.getElementById('mobileChapterBar');
+      if (window.innerWidth <= 900 && mobBar) {
+        mobBar.scrollIntoView({ behavior: 'smooth' });
+      }
+
       if (!targetId) return;
 
       // Ensure correct book tab is active

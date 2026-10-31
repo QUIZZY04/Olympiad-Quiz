@@ -261,13 +261,87 @@
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 950; }
     .mob-sidebar-toggle { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 900; background: var(--brand); color: white; border: none; border-radius: 999px; padding: 12px 22px; font-weight: 700; font-size: .85rem; box-shadow: 0 4px 16px rgba(13,148,136,.4); cursor: pointer; }
     
-    @media (max-width: 900px) {
-      .sidebar { position: fixed; top: 0; left: -350px; height: 100vh; z-index: 1000; transition: left .3s; box-shadow: 4px 0 20px rgba(0,0,0,.2); }
-      .sidebar.open { left: 0; }
-      .sidebar-overlay.show { display: block; }
-      .mob-sidebar-toggle { display: block; }
-      .main-content { padding: 20px 16px 40px; }
-      .breadcrumb-bar { padding: 12px 16px; top: 57px; }
+    .mobile-chapter-selector-bar{display:none;}
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    @media (max-width: 900px){
+      /* Show top dropdown selector bar */
+      .mobile-chapter-selector-bar{
+        display:block;
+        position:sticky;
+        top:57px;
+        z-index:850;
+        background:#ffffff;
+        padding:8px 10px;
+        border-bottom:2px solid #0d9488;
+        box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      }
+      .mob-select-card{display:flex;flex-direction:column;gap:5px;width:100%;}
+      .mob-select-header{display:flex;align-items:center;justify-content:space-between;}
+      .mob-select-title-group{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:800;color:#0f766e;text-transform:uppercase;letter-spacing:0.04em;}
+      .mob-current-badge{font-size:0.72rem;font-weight:800;background:#f0fdfa;color:#0f766e;padding:2px 8px;border-radius:999px;border:1px solid #5eead4;}
+      .mob-dropdown-wrapper{position:relative;width:100%;}
+      .mobile-chapter-dropdown{
+        width:100%;
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        background:#f0fdfa;
+        border:1.5px solid #5eead4;
+        border-radius:8px;
+        padding:10px 34px 10px 12px;
+        font-size:0.88rem;
+        font-weight:700;
+        color:#0f766e;
+        cursor:pointer;
+        box-shadow:0 1px 3px rgba(0,0,0,0.04);
+        outline:none;
+      }
+      .mobile-chapter-dropdown:focus{border-color:#0d9488;background:#ffffff;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
+      .mob-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:0.7rem;color:#0d9488;}
+
+      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
+      .breadcrumb-bar{display:none !important;}
+      .sidebar{display:none !important;}
+      .sidebar-overlay{display:none !important;}
+      .mob-sidebar-toggle{display:none !important;}
+      .mob-toggle{display:none !important;}
+
+      /* Compact hero banner on mobile */
+      .hero-banner{padding:14px 10px 12px;}
+      .hero-banner h1{font-size:1.25rem;margin-bottom:2px;}
+      .hero-banner p{font-size:0.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .hero-badges{display:none;}
+
+      /* Full width for main layout and content */
+      .main-layout{display:block;width:100%;margin:0;}
+      .main-content{padding:8px 4px 36px;width:100%;max-width:100%;box-sizing:border-box;}
+
+      /* Compact Question Cards & full width */
+      .chapter-header{padding-bottom:10px;margin-bottom:12px;gap:10px;}
+      .ch-badge{width:38px;height:38px;font-size:1.1rem;border-radius:10px;}
+      .chapter-header-info h2{font-size:1.15rem;line-height:1.35;}
+      .chapter-header-info p{font-size:0.76rem;}
+
+      .ex-div{padding:8px 10px;font-size:0.8rem;margin:16px 0 10px;}
+
+      .q-card{border-radius:10px;margin-bottom:10px;border:1px solid #e2e8f0;width:100%;box-sizing:border-box;}
+      .q-head{padding:10px 8px;gap:8px;}
+      .q-num{font-size:0.72rem;padding:2px 6px;}
+      .q-text{font-size:0.88rem;line-height:1.5;}
+      .q-marks{font-size:0.68rem;padding:2px 6px;}
+      .q-toggle{width:22px;height:22px;}
+
+      .q-answer{padding:0 8px 12px;}
+      .answer-box{padding:10px 8px;margin-top:8px;border-radius:8px;}
+      .answer-label{font-size:0.7rem;margin-bottom:6px;}
+      .answer-text{font-size:0.88rem;line-height:1.65;}
+      .marking-scheme{margin-top:10px;padding-top:8px;}
+      .marking-title{font-size:0.7rem;margin-bottom:6px;}
+      .marking-row{font-size:0.75rem;padding:3px 0;}
+      .marking-marks{font-size:0.7rem;}
+
+      .chapter-nav-btns,.ch-nav-btns{margin-top:20px;padding:12px 2px 0;gap:6px;}
+      .ch-nav-btn{padding:8px 10px;font-size:0.76rem;border-radius:8px;}
     }
   </style>
 
@@ -473,6 +547,44 @@
     <span class="bc-chip" onclick="showChapter(18)" data-ch="18" data-book="economics"><span class="bc-n">E18</span>People as Resource</span>
     <span class="bc-chip" onclick="showChapter(19)" data-ch="19" data-book="economics"><span class="bc-n">E19</span>Poverty as a Challenge</span>
     <span class="bc-chip" onclick="showChapter(20)" data-ch="20" data-book="economics"><span class="bc-n">E20</span>Food Security in India</span>
+  </div>
+</div>
+
+<!-- Mobile Chapter Selector Bar (Top Area for Mobile Devices) -->
+<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
+  <div class="mob-select-card">
+    <div class="mob-select-header">
+      <div class="mob-select-title-group">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Select Chapter:</span>
+      </div>
+      <span class="mob-current-badge" id="mobCurrentBadge">Chapter 1</span>
+    </div>
+    <div class="mob-dropdown-wrapper">
+      <select id="mobileChapterSelect" class="mobile-chapter-dropdown" aria-label="Select Chapter" onchange="showChapter(parseInt(this.value))">
+        <option value="1">Ch 1: The French Revolution</option>
+        <option value="2">Ch 2: Socialism in Europe & the Russian Revolution</option>
+        <option value="3">Ch 3: Nazism & the Rise of Hitler</option>
+        <option value="4">Ch 4: Forest Society and Colonialism</option>
+        <option value="5">Ch 5: Pastoralists in the Modern World</option>
+        <option value="6">Ch 6: India – Size and Location</option>
+        <option value="7">Ch 7: Physical Features of India</option>
+        <option value="8">Ch 8: Drainage</option>
+        <option value="9">Ch 9: Climate</option>
+        <option value="10">Ch 10: Natural Vegetation and Wildlife</option>
+        <option value="11">Ch 11: Population</option>
+        <option value="12">Ch 12: What is Democracy? Why Democracy? Political Science: Unit 1</option>
+        <option value="13">Ch 13: Constitutional Design Political Science: Unit 2</option>
+        <option value="14">Ch 14: Electoral Politics Political Science: Unit 3</option>
+        <option value="15">Ch 15: Working of Institutions Political Science: Unit 4</option>
+        <option value="16">Ch 16: Democratic Rights Political Science: Unit 5</option>
+        <option value="17">Ch 17: The Story of Village Palampur</option>
+        <option value="18">Ch 18: People as Resource</option>
+        <option value="19">Ch 19: Poverty as a Challenge</option>
+        <option value="20">Ch 20: Food Security in India</option>
+      </select>
+      <div class="mob-dropdown-arrow">▼</div>
+    </div>
   </div>
 </div>
 
@@ -769,6 +881,12 @@
   }
 
   function showChapter(num) {
+    // Sync mobile select & badge
+    const mobSelect = document.getElementById('mobileChapterSelect');
+    if (mobSelect) mobSelect.value = String(num !== undefined ? num : (typeof n !== 'undefined' ? n : currentCh));
+    const mobBadge = document.getElementById('mobCurrentBadge');
+    if (mobBadge) mobBadge.textContent = 'Chapter ' + (num !== undefined ? num : (typeof n !== 'undefined' ? n : currentCh));
+
     currentCh = num;
     const area = document.getElementById('chapter-content-area');
     
@@ -822,7 +940,12 @@
     if (firstTwo.length > 0) firstTwo[0].classList.add('open');
     if (firstTwo.length > 1) firstTwo[1].classList.add('open');
     
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const mobBar = document.getElementById('mobileChapterBar');
+      if (window.innerWidth <= 900 && mobBar) {
+        mobBar.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     closeSidebarMobile();
   }
 

@@ -280,7 +280,92 @@
     /* Footer */
     .site-footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
     .site-footer a { color: #38bdf8; text-decoration: none; font-weight: 600; }
-  </style>
+  
+.mobile-chapter-selector-bar{display:none;}
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    @media (max-width: 900px), (max-width: 960px){
+      /* Show top dropdown selector bar */
+      .mobile-chapter-selector-bar{
+        display:block;
+        position:sticky;
+        top:57px;
+        z-index:850;
+        background:#ffffff;
+        padding:8px 10px;
+        border-bottom:2px solid #ea580c;
+        box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      }
+      .mob-select-card{display:flex;flex-direction:column;gap:5px;width:100%;}
+      .mob-select-header{display:flex;align-items:center;justify-content:space-between;}
+      .mob-select-title-group{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:800;color:#9a3412;text-transform:uppercase;letter-spacing:0.04em;}
+      .mob-current-badge{font-size:0.72rem;font-weight:800;background:#fff7ed;color:#9a3412;padding:2px 8px;border-radius:999px;border:1px solid #fdba74;}
+      .mob-dropdown-wrapper{position:relative;width:100%;}
+      .mobile-chapter-dropdown{
+        width:100%;
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        background:#fff7ed;
+        border:1.5px solid #fdba74;
+        border-radius:8px;
+        padding:10px 34px 10px 12px;
+        font-size:0.88rem;
+        font-weight:700;
+        color:#9a3412;
+        cursor:pointer;
+        box-shadow:0 1px 3px rgba(0,0,0,0.04);
+        outline:none;
+      }
+      .mobile-chapter-dropdown:focus{border-color:#ea580c;background:#ffffff;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
+      .mob-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:0.7rem;color:#ea580c;}
+
+      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
+      .breadcrumb-bar{display:none !important;}
+      .sidebar{display:none !important;}
+      .sidebar-overlay{display:none !important;}
+      .mob-sidebar-toggle{display:none !important;}
+      .mob-toggle{display:none !important;}
+      .navbar-links{display:none;}
+
+      /* Compact hero banner on mobile */
+      .hero-banner{padding:14px 10px 12px;}
+      .hero-banner h1{font-size:1.25rem;margin-bottom:2px;}
+      .hero-banner p{font-size:0.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .hero-badges{display:none;}
+
+      /* Full width for main layout and content */
+      .main-layout,.layout-container{display:block;width:100%;margin:0;}
+      .main-content,.content-area{padding:8px 4px 36px;width:100%;max-width:100%;box-sizing:border-box;}
+
+      /* Compact Question Cards & full width */
+      .chapter-header{padding-bottom:10px;margin-bottom:12px;gap:10px;}
+      .ch-badge{width:38px;height:38px;font-size:1.1rem;border-radius:10px;}
+      .chapter-header-info h2{font-size:1.15rem;line-height:1.35;}
+      .chapter-header-info p{font-size:0.76rem;}
+
+      .ex-div,.exercise-div{padding:8px 10px;font-size:0.8rem;margin:16px 0 10px;}
+
+      .q-card{border-radius:10px;margin-bottom:10px;border:1px solid #e2e8f0;width:100%;box-sizing:border-box;}
+      .q-head{padding:10px 8px;gap:8px;}
+      .q-num{font-size:0.72rem;padding:2px 6px;}
+      .q-text{font-size:0.88rem;line-height:1.5;}
+      .q-marks{font-size:0.68rem;padding:2px 6px;}
+      .q-toggle{width:22px;height:22px;}
+
+      .q-answer{padding:0 8px 12px;}
+      .answer-box{padding:10px 8px;margin-top:8px;border-radius:8px;}
+      .answer-label{font-size:0.7rem;margin-bottom:6px;}
+      .answer-text{font-size:0.88rem;line-height:1.65;}
+      .marking-scheme{margin-top:10px;padding-top:8px;}
+      .marking-title{font-size:0.7rem;margin-bottom:6px;}
+      .marking-row{font-size:0.75rem;padding:3px 0;}
+      .marking-marks{font-size:0.7rem;}
+
+      .chapter-nav-btns,.ch-nav-btns{margin-top:20px;padding:12px 2px 0;gap:6px;}
+      .ch-nav-btn{padding:8px 10px;font-size:0.76rem;border-radius:8px;}
+    }
+  
+</style>
 </head>
 <body>
   <div class="top-progress" id="progressBar"></div>
@@ -539,7 +624,66 @@
   </div>
 
   <!-- Main Layout -->
-  <div class="main-layout">
+  <!-- Mobile Chapter Selector Bar (Top Area for Mobile Devices) -->
+<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
+  <div class="mob-select-card">
+    <div class="mob-select-header">
+      <div class="mob-select-title-group">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Select Chapter:</span>
+      </div>
+      <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
+    </div>
+    <div class="mob-dropdown-wrapper">
+      <select id="mobileChapterSelect" class="mobile-chapter-dropdown" aria-label="Select Chapter" onchange="showChapter(this.value)">
+        <option value="ch_srg1">1 नीमा की दादी</option>
+        <option value="ch_srg2">2 घर</option>
+        <option value="ch_srg3">3 माला की चाँदी की पायल</option>
+        <option value="ch_srg4">4 माँ</option>
+        <option value="ch_srg5">5 थाथू और मैं</option>
+        <option value="ch_srg6">6 चींटा</option>
+        <option value="ch_srg7">7 टिल्लू जी</option>
+        <option value="ch_srg8">8 तीन दोस्त</option>
+        <option value="ch_srg9">9 दुनिया रंग-बिरंगी</option>
+        <option value="ch_srg10">10 कौन</option>
+        <option value="ch_srg11">11 बैंगनी जोजो</option>
+        <option value="ch_srg12">12 तोसिया का सपना</option>
+        <option value="ch_srg13">13 तालाब</option>
+        <option value="ch_srg14">14 बीज</option>
+        <option value="ch_srg15">15 किसान</option>
+        <option value="ch_srg16">16 मूली</option>
+        <option value="ch_srg17">17 बरसात और मेंढक</option>
+        <option value="ch_srg18">18 शेर और चूहे की दोस्ती</option>
+        <option value="ch_srg19">19 आउट</option>
+        <option value="ch_srg20">20 छुपन-छुपाई</option>
+        <option value="ch_srg21">21 हाथी साइकिल चला रहा था</option>
+        <option value="ch_srg22">22 चार दिशाएँ</option>
+        <option value="ch_srg23">23 चंदा मामा</option>
+        <option value="ch_srg24">24 गिरे ताल में चंदा मामा</option>
+        <option value="ch_srg25">25 सबसे बड़ा छाता</option>
+        <option value="ch_srg26">26 बादल</option>
+        <option value="ch_c2h-rj-ch1">1 ऊँट चला</option>
+        <option value="ch_c2h-rj-ch2">2 भालू ने खेली फुटबॉल</option>
+        <option value="ch_c2h-rj-ch3">3 म्याऊँ, म्याऊँ!!</option>
+        <option value="ch_c2h-rj-ch4">4 अधिक बलवान कौन?</option>
+        <option value="ch_c2h-rj-ch5">5 दोस्त की मदद</option>
+        <option value="ch_c2h-rj-ch6">6 बहुत हुआ</option>
+        <option value="ch_c2h-rj-ch7">7 मेरी किताब</option>
+        <option value="ch_c2h-rj-ch8">8 तितली और कली</option>
+        <option value="ch_c2h-rj-ch9">9 बुलबुल</option>
+        <option value="ch_c2h-rj-ch10">10 मीठी सारंगी</option>
+        <option value="ch_c2h-rj-ch11">11 टेसू राजा बीच बाज़ार</option>
+        <option value="ch_c2h-rj-ch12">12 बस के नीचे बाघ</option>
+        <option value="ch_c2h-rj-ch13">13 सूरज जल्दी आना जी</option>
+        <option value="ch_c2h-rj-ch14">14 नटखट चूहा</option>
+        <option value="ch_c2h-rj-ch15">15 एक्की-दोक्की</option>
+      </select>
+      <div class="mob-dropdown-arrow">▼</div>
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-title" id="sidebarTitleText">📕 सारंगी (26 Chapters)</div>
@@ -20865,6 +21009,18 @@
     }
 
     function showChapter(targetId, updateHistory = true) {
+      const mobSelect = document.getElementById('mobileChapterSelect');
+      if (mobSelect) mobSelect.value = targetId;
+      const mobBadge = document.getElementById('mobCurrentBadge');
+      if (mobBadge) {
+        const activeOpt = mobSelect ? mobSelect.options[mobSelect.selectedIndex] : null;
+        mobBadge.textContent = activeOpt ? activeOpt.text.split('—')[0].split(':')[0].trim() : 'Chapter';
+      }
+      const mobBar = document.getElementById('mobileChapterBar');
+      if (window.innerWidth <= 900 && mobBar) {
+        mobBar.scrollIntoView({ behavior: 'smooth' });
+      }
+
       const targetEl = document.getElementById(targetId);
       if (!targetEl) return;
 
