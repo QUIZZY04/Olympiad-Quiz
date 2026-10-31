@@ -284,14 +284,78 @@
 
       .ex-div { padding: 8px 10px; font-size: 0.8rem; margin: 16px 0 10px; }
 
-      .q-card { border-radius: 10px; margin-bottom: 10px; border: 1px solid #e2e8f0; width: 100%; box-sizing: border-box; }
-      .q-head { padding: 10px 8px; gap: 8px; }
-      .q-head-left { gap: 2px; }
-      .q-num { font-size: 0.72rem; padding: 2px 6px; }
-      .word-limit-pill { font-size: 0.6rem; padding: 1px 4px; }
-      .q-text { font-size: 0.88rem; line-height: 1.5; }
-      .q-marks { font-size: 0.68rem; padding: 2px 6px; }
-      .q-toggle { width: 22px; height: 22px; }
+      /* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
+      .q-card {
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+      .q-head {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        padding: 10px 12px !important;
+        gap: 6px 8px !important;
+        cursor: pointer !important;
+        user-select: none !important;
+      }
+      .q-head-left {
+        order: 1 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 4px !important;
+        max-width: calc(100% - 110px) !important;
+        overflow: hidden !important;
+        flex-shrink: 1 !important;
+      }
+      .q-num {
+        font-size: 0.72rem !important;
+        padding: 3px 8px !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+      }
+      .word-limit-pill {
+        font-size: 0.62rem !important;
+        padding: 1px 5px !important;
+        white-space: nowrap !important;
+      }
+      .q-marks {
+        order: 2 !important;
+        margin-left: auto !important;
+        font-size: 0.68rem !important;
+        padding: 2px 8px !important;
+        border-radius: 10px !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+      }
+      .q-toggle {
+        order: 3 !important;
+        flex-shrink: 0 !important;
+        margin-top: 0 !important;
+        margin-left: 4px !important;
+        width: 20px !important;
+        height: 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .q-text {
+        order: 4 !important;
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        font-size: 0.92rem !important;
+        line-height: 1.55 !important;
+        margin-top: 4px !important;
+        padding-top: 4px !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.04) !important;
+        word-break: break-word !important;
+      }
 
       .q-answer { padding: 0 8px 12px; }
       .answer-box { padding: 10px 8px; margin-top: 8px; border-radius: 8px; }
