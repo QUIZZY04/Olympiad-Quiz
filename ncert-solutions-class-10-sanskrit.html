@@ -302,70 +302,140 @@
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 920; }
     .sidebar-overlay.show { display: block; }
 
-    .mobile-chapter-selector-bar{display:none;}
-    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-    @media (max-width: 900px){
-      /* Show top dropdown selector bar */
-      .mobile-chapter-selector-bar{
-        display:block;
-        position:sticky;
-        top:57px;
-        z-index:850;
-        background:#ffffff;
-        padding:8px 10px;
-        border-bottom:2px solid #7c3aed;
-        box-shadow:0 4px 12px rgba(0,0,0,0.06);
+    /* Uniform Mobile Control Bar & Viewport Optimization */
+    .mobile-chapter-selector-bar { display: none; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @media (max-width: 900px), (max-width: 960px) {
+      .mobile-chapter-selector-bar {
+        display: block !important;
+        position: sticky;
+        top: 56px;
+        z-index: 850;
+        background: #ffffff;
+        padding: 7px 10px 8px;
+        border-bottom: 2px solid var(--brand, #0284c7);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+        box-sizing: border-box;
+        width: 100%;
       }
-      .mob-select-card{display:flex;flex-direction:column;gap:5px;width:100%;}
-      .mob-select-header{display:flex;align-items:center;justify-content:space-between;}
-      .mob-select-title-group{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.04em;}
-      .mob-current-badge{font-size:0.72rem;font-weight:800;background:#f5f3ff;color:#5b21b6;padding:2px 8px;border-radius:999px;border:1px solid #c4b5fd;}
-      .mob-dropdown-wrapper{position:relative;width:100%;}
-      .mobile-chapter-dropdown{
-        width:100%;
-        appearance:none;
-        -webkit-appearance:none;
-        -moz-appearance:none;
-        background:#f5f3ff;
-        border:1.5px solid #c4b5fd;
-        border-radius:8px;
-        padding:10px 34px 10px 12px;
-        font-size:0.88rem;
-        font-weight:700;
-        color:#5b21b6;
-        cursor:pointer;
-        box-shadow:0 1px 3px rgba(0,0,0,0.04);
-        outline:none;
+      .mob-selector-card {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
       }
-      .mobile-chapter-dropdown:focus{border-color:#7c3aed;background:#ffffff;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
-      .mob-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:0.7rem;color:#7c3aed;}
+      .mob-selector-row {
+        display: grid;
+        grid-template-columns: minmax(115px, 34%) 1fr;
+        gap: 8px;
+        align-items: flex-end;
+        width: 100%;
+      }
+      .mob-select-group {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+      }
+      .mob-select-label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.68rem;
+        font-weight: 800;
+        color: var(--brand, #0284c7);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1;
+      }
+      .mob-label-with-badge {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        min-width: 0;
+      }
+      .mob-current-badge {
+        font-size: 0.68rem;
+        font-weight: 800;
+        background: var(--brand-light, #f0f9ff);
+        color: var(--brand, #0284c7);
+        padding: 1px 7px;
+        border-radius: 999px;
+        border: 1px solid var(--brand, #0284c7);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 120px;
+        line-height: 1.2;
+      }
+      .mob-dropdown-wrap {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+      }
+      .mob-dropdown {
+        width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: #ffffff;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 8px 24px 8px 9px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #1e293b;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        line-height: 1.2;
+        height: 36px;
+      }
+      .mob-dropdown:focus {
+        border-color: var(--brand, #0284c7);
+        box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      }
+      .mob-dropdown-arrow {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 0.62rem;
+        color: var(--brand, #0284c7);
+        opacity: 0.85;
+      }
 
       /* Hide bulky desktop breadcrumbs and sidebar on mobile */
-      .breadcrumb-bar{display:none !important;}
-      .sidebar{display:none !important;}
-      .sidebar-overlay{display:none !important;}
-      .mob-sidebar-toggle{display:none !important;}
-      .mob-toggle{display:none !important;}
-      .navbar-links{display:none;}
+      .breadcrumb-bar, .chapter-chips-bar, .chapter-chips, .chips-bar { display: none !important; }
+      .sidebar { display: none !important; }
+      .sidebar-overlay { display: none !important; }
+      .mob-sidebar-toggle, .mob-toggle { display: none !important; }
+      .navbar-links, .nav-links { display: none !important; }
 
       /* Compact hero banner on mobile */
-      .hero-banner{padding:14px 10px 12px;}
-      .hero-banner h1{font-size:1.25rem;margin-bottom:2px;}
-      .hero-banner p{font-size:0.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-      .hero-badges{display:none;}
+      .hero-banner { padding: 14px 10px 12px; }
+      .hero-banner h1 { font-size: 1.25rem; margin-bottom: 2px; }
+      .hero-banner p { font-size: 0.78rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .hero-badges, .hero-meta-pills, .book-tabs { display: none !important; }
 
       /* Full width for main layout and content */
-      .main-layout,.layout-container{display:block;width:100%;margin:0;}
-      .main-content,.content-area{padding:8px 4px 36px;width:100%;max-width:100%;box-sizing:border-box;}
+      .main-layout, .layout-container, .layout-wrapper { display: block !important; width: 100% !important; margin: 0 !important; }
+      .main-content, .content-area { padding: 8px 4px 36px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
 
-      /* Compact Question Cards & full width */
-      .chapter-header{padding-bottom:10px;margin-bottom:12px;gap:10px;}
-      .ch-badge{width:38px;height:38px;font-size:1.1rem;border-radius:10px;}
-      .chapter-header-info h2{font-size:1.15rem;line-height:1.35;}
-      .chapter-header-info p{font-size:0.76rem;}
+      /* Compact Chapter Header & full width */
+      .chapter-header { padding-bottom: 10px; margin-bottom: 12px; gap: 10px; }
+      .ch-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; line-height: 38px; }
+      .chapter-header-info h2 { font-size: 1.15rem; line-height: 1.35; }
+      .chapter-header-info p { font-size: 0.76rem; }
 
-      .ex-div,.exercise-div{padding:8px 10px;font-size:0.8rem;margin:16px 0 10px;}
-/* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
+      .ex-div, .exercise-div { padding: 8px 10px; font-size: 0.82rem; margin: 16px 0 10px; }
+
+      /* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
       .q-card, .q-card-box {
         border-radius: 10px !important;
         margin-bottom: 12px !important;
@@ -375,54 +445,44 @@
         overflow: hidden !important;
       }
       .q-head, .q-header {
+        padding: 10px 12px !important;
+        gap: 8px 10px !important;
         display: flex !important;
+        flex-direction: row !important;
         flex-wrap: wrap !important;
         align-items: center !important;
-        padding: 10px 12px !important;
-        gap: 6px 8px !important;
-        cursor: pointer !important;
-        user-select: none !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
-      .q-num, .q-head-left, .q-type {
+      .q-num, .q-type {
         order: 1 !important;
         font-size: 0.72rem !important;
         padding: 3px 8px !important;
         border-radius: 6px !important;
-        max-width: calc(100% - 110px) !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
-        flex-shrink: 1 !important;
+        white-space: normal !important;
+        max-width: calc(100% - 100px) !important;
+        line-height: 1.25 !important;
       }
       .q-marks {
         order: 2 !important;
         margin-left: auto !important;
         font-size: 0.68rem !important;
-        padding: 2px 8px !important;
-        border-radius: 10px !important;
+        padding: 3px 7px !important;
         flex-shrink: 0 !important;
-        white-space: nowrap !important;
       }
-      .q-toggle, .toggle-icon {
+      .q-toggle {
         order: 3 !important;
+        width: 22px !important;
+        height: 22px !important;
         flex-shrink: 0 !important;
-        margin-top: 0 !important;
-        margin-left: 4px !important;
-        width: 20px !important;
-        height: 20px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
       }
-      .q-text, .q-title, .question-text {
+      .q-text, .q-title {
         order: 4 !important;
         width: 100% !important;
         flex: 0 0 100% !important;
-        font-size: 0.92rem !important;
+        font-size: 0.90rem !important;
         line-height: 1.55 !important;
-        margin-top: 4px !important;
         padding-top: 4px !important;
-        border-top: 1px solid rgba(0, 0, 0, 0.04) !important;
         word-break: break-word !important;
       }
       .q-answer, .q-body {
@@ -435,6 +495,7 @@
         width: 100% !important;
         box-sizing: border-box !important;
       }
+      .answer-label { font-size: 0.7rem !important; margin-bottom: 6px !important; }
       .answer-text {
         font-size: 0.88rem !important;
         line-height: 1.65 !important;
@@ -446,20 +507,16 @@
         margin: 6px 0 !important;
         word-break: break-word !important;
       }
+      .marking-scheme { margin-top: 10px !important; padding-top: 8px !important; }
+      .marking-title { font-size: 0.7rem !important; margin-bottom: 6px !important; }
+      .marking-row { font-size: 0.75rem !important; padding: 3px 0 !important; }
+      .marking-marks { font-size: 0.7rem !important; }
 
-      .q-answer{padding:0 8px 12px;}
-      .answer-box{padding:10px 8px;margin-top:8px;border-radius:8px;}
-      .answer-label{font-size:0.7rem;margin-bottom:6px;}
-      .answer-text{font-size:0.88rem;line-height:1.65;}
-      .marking-scheme{margin-top:10px;padding-top:8px;}
-      .marking-title{font-size:0.7rem;margin-bottom:6px;}
-      .marking-row{font-size:0.75rem;padding:3px 0;}
-      .marking-marks{font-size:0.7rem;}
-
-      .chapter-nav-btns,.ch-nav-btns{margin-top:20px;padding:12px 2px 0;gap:6px;}
-      .ch-nav-btn{padding:8px 10px;font-size:0.76rem;border-radius:8px;}
+      .chapter-nav-btns, .ch-nav-btns { margin-top: 20px !important; padding: 12px 2px 0 !important; gap: 6px !important; }
+      .ch-nav-btn { padding: 8px 10px !important; font-size: 0.76rem !important; border-radius: 8px !important; }
     }
-  </style>
+  
+</style>
 </head>
 <body>
 
@@ -581,18 +638,42 @@
 </div>
 
 <!-- MAIN LAYOUT -->
-<!-- Mobile Chapter Selector Bar (Top Area for Mobile Devices) -->
+<!-- Mobile Subject & Chapter Sticky Navigation Bar -->
 <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
-  <div class="mob-select-card">
-    <div class="mob-select-header">
-      <div class="mob-select-title-group">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        <span>Select Chapter:</span>
+  <div class="mob-selector-card">
+    <div class="mob-selector-row">
+      <!-- Subject Dropdown Group -->
+      <div class="mob-select-group mob-subject-group">
+        <label class="mob-select-label" for="mobileSubjectSelect">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>Subject</span>
+        </label>
+        <div class="mob-dropdown-wrap">
+          <select id="mobileSubjectSelect" class="mob-dropdown" aria-label="Select Subject" onchange="if(this.value) window.location.href=this.value;">
+            <option value="ncert-solutions-class-10-maths.html">📐 Maths</option>
+            <option value="ncert-solutions-class-10-science.html">🔬 Science</option>
+            <option value="ncert-solutions-class-10-social-science.html">🏛️ Social Science</option>
+            <option value="ncert-solutions-class-10-english.html">📘 English</option>
+            <option value="ncert-solutions-class-10-english-communicative.html">📝 English Comm.</option>
+            <option value="ncert-solutions-class-10-hindi.html">🇮🇳 Hindi</option>
+            <option value="ncert-solutions-class-10-sanskrit.html" selected>🕉️ Sanskrit</option>
+            <option value="ncert-solutions-class-10.html">📚 Class 10 All Subjects</option>
+          </select>
+          <div class="mob-dropdown-arrow">▼</div>
+        </div>
       </div>
-      <span class="mob-current-badge" id="mobCurrentBadge">Chapter 1</span>
-    </div>
-    <div class="mob-dropdown-wrapper">
-      <select id="mobileChapterSelect" class="mobile-chapter-dropdown" aria-label="Select Chapter" onchange="showChapter(parseInt(this.value))">
+
+      <!-- Chapter Dropdown Group -->
+      <div class="mob-select-group mob-chapter-group">
+        <div class="mob-label-with-badge">
+          <label class="mob-select-label" for="mobileChapterSelect">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Chapter</span>
+          </label>
+          <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
+        </div>
+        <div class="mob-dropdown-wrap">
+          <select id="mobileChapterSelect" class="mob-dropdown" aria-label="Select Chapter" onchange="showChapter(parseInt(this.value))">
         <option value="1">Ch 1: शुचिपर्यावरणम् प्रथमः पाठः • पद्यभागः (लसलल्लतिका)</option>
         <option value="2">Ch 2: बुद्धिर्बलवती सदा द्वितीयः पाठः • गद्यभागः (शुकसप्ततिः)</option>
         <option value="3">Ch 3: व्यायामः सर्वदा पथ्यः तृतीयः पाठः • पद्यभागः (सुश्रुतसंहिता)</option>
@@ -606,7 +687,9 @@
         <option value="11">Ch 11: प्राणेभ्योऽपि प्रियः सुहृद् एकादशः पाठः • नाटकम् (मुद्राराक्षसम्)</option>
         <option value="12">Ch 12: अन्योक्तयः द्वादशः पाठः • पद्यभागः (भामिनीविलासः)</option>
       </select>
-      <div class="mob-dropdown-arrow">▼</div>
+          <div class="mob-dropdown-arrow">▼</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
