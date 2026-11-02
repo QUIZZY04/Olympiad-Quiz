@@ -1,0 +1,933 @@
+// scripts/builders/gen-c12p-ch7.js
+// Class 12 Physics - Chapter 7: Alternating Current (21 Questions)
+const { createQCard, saveChapter } = require('./c12p-helper');
+
+const chNum = 7;
+const chTitle = "Alternating Current";
+const nextChTitle = "Electromagnetic Waves";
+
+const svgDiagram = `
+  <div style="display:flex; justify-content:center; margin:24px 0;">
+    <svg viewBox="0 0 760 220" style="width:100%; max-width:760px; height:auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+        </marker>
+      </defs>
+      <!-- Title -->
+      <text x="380" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Series LCR Circuit & Phasor Diagram at Resonance</text>
+      
+      <!-- Circuit schematic -->
+      <!-- Resistor R -->
+      <path d="M 90 80 L 120 80 L 125 70 L 135 90 L 145 70 L 155 90 L 165 70 L 175 90 L 180 80 L 200 80" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="150" y="60" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#2563eb">R</text>
+
+      <!-- Inductor L -->
+      <path d="M 200 80 C 205 60, 215 60, 220 80 C 225 60, 235 60, 240 80 C 245 60, 255 60, 260 80 L 280 80" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="240" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#16a34a">L</text>
+
+      <!-- Capacitor C -->
+      <path d="M 280 80 L 305 80 M 305 65 L 305 95 M 315 65 L 315 95 M 315 80 L 340 80" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="310" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#dc2626">C</text>
+
+      <!-- AC Source loop -->
+      <path d="M 340 80 L 340 140 L 230 140 M 190 140 L 90 140 L 90 80" fill="none" stroke="#64748b" stroke-width="2"/>
+      <circle cx="210" cy="140" r="16" fill="white" stroke="#64748b" stroke-width="2"/>
+      <path d="M 202 140 Q 206 132, 210 140 T 218 140" fill="none" stroke="#64748b" stroke-width="2"/>
+      <text x="210" y="174" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">v = V₀ sin ωt</text>
+
+      <!-- Formula summary -->
+      <text x="430" y="65" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">• Impedance: $Z = \\sqrt{R^2 + (X_L - X_C)^2}$</text>
+      <text x="430" y="90" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Reactance: $X_L = \\omega L, \\quad X_C = \\frac{1}{\\omega C}$</text>
+      <text x="430" y="115" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Phase angle: $\\tan \\phi = \\frac{X_L - X_C}{R}$</text>
+      <text x="430" y="140" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Resonance: $\\omega_0 = \\frac{1}{\\sqrt{LC}}, \\quad Z_{min} = R$</text>
+      <text x="430" y="165" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Q-factor: $Q = \\frac{\\omega_0 L}{R} = \\frac{1}{R}\\sqrt{\\frac{L}{C}}$</text>
+      <text x="430" y="190" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Power: $P_{avg} = V_{rms} I_{rms} \\cos\\phi$</text>
+    </svg>
+  </div>
+`;
+
+const questions = [
+  // 7.1
+  createQCard(
+    "c12p-ch7-q1",
+    "Q 7.1",
+    "Exercise 7.1",
+    `A $100 \\ \\Omega$ resistor is connected to a $220 \\text{ V}, 50 \\text{ Hz}$ ac supply.<br>
+    <strong>(a)</strong> What is the rms value of current in the circuit?<br>
+    <strong>(b)</strong> What is the net power consumed over a full cycle?`,
+    `<p><strong>Given:</strong><br>
+    Resistance $R = 100 \\ \\Omega$<br>
+    RMS voltage $V_{rms} = 220 \\text{ V}$<br>
+    Frequency $\\nu = 50 \\text{ Hz}$</p>
+
+    <p><strong>(a) RMS Current $I_{rms}$:</strong><br>
+    For a purely resistive circuit, the impedance is simply $Z = R$:
+    \\[
+    I_{rms} = \\frac{V_{rms}}{R} = \\frac{220 \\text{ V}}{100 \\ \\Omega} = 2.20 \\text{ A}
+    \\]</p>
+
+    <p><strong>(b) Net Power Consumed over a Full Cycle:</strong><br>
+    In a purely resistive circuit, current and voltage are in phase ($\\phi = 0^\\circ$, power factor $\\cos\\phi = 1$):
+    \\[
+    P = V_{rms} I_{rms} \\cos \\phi = 220 \\times 2.20 \\times 1 = 484 \\text{ W}
+    \\]
+    Alternatively:
+    \\[
+    P = I_{rms}^2 R = (2.2)^2 \\times 100 = 4.84 \\times 100 = 484 \\text{ W}
+    \\]</p>`,
+    "2 Marks",
+    [
+      ["Calculation of $I_{rms} = 2.2\\text{ A}$", "1 Mark"],
+      ["Calculation of average power $P = 484\\text{ W}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.2
+  createQCard(
+    "c12p-ch7-q2",
+    "Q 7.2",
+    "Exercise 7.2",
+    `<strong>(a)</strong> The peak voltage of an ac supply is $300 \\text{ V}$. What is the rms voltage?<br>
+    <strong>(b)</strong> The rms value of current in an ac circuit is $10 \\text{ A}$. What is the peak current?`,
+    `<p><strong>(a) RMS Voltage ($V_{rms}$):</strong><br>
+    Given peak voltage $V_0 = 300 \\text{ V}$.<br>
+    The relation between rms voltage and peak voltage is:
+    \\[
+    V_{rms} = \\frac{V_0}{\\sqrt{2}} = 0.707 V_0
+    \\]
+    \\[
+    V_{rms} = \\frac{300}{\\sqrt{2}} = \\frac{300 \\times 1.414}{2} = 150 \\times 1.4142 \\approx 212.1 \\text{ V}
+    \\]</p>
+
+    <p><strong>(b) Peak Current ($I_0$):</strong><br>
+    Given rms current $I_{rms} = 10 \\text{ A}$.<br>
+    \\[
+    I_0 = \\sqrt{2} \\, I_{rms} = 1.4142 \\times 10 = 14.14 \\text{ A}
+    \\]</p>`,
+    "2 Marks",
+    [
+      ["Formula $V_{rms} = V_0/\\sqrt{2}$ and answer $212.1\\text{ V}$", "1 Mark"],
+      ["Formula $I_0 = \\sqrt{2} I_{rms}$ and answer $14.14\\text{ A}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.3
+  createQCard(
+    "c12p-ch7-q3",
+    "Q 7.3",
+    "Exercise 7.3",
+    `A $44 \\text{ mH}$ inductor is connected to $220 \\text{ V}, 50 \\text{ Hz}$ ac supply. Determine the rms value of the current in the circuit.`,
+    `<p><strong>Given:</strong><br>
+    Inductance $L = 44 \\text{ mH} = 44 \\times 10^{-3} \\text{ H}$<br>
+    Supply voltage $V_{rms} = 220 \\text{ V}$<br>
+    Frequency $\\nu = 50 \\text{ Hz} \\implies \\omega = 2\\pi \\nu = 2\\pi \\times 50 = 100\\pi \\text{ rad s}^{-1}$</p>
+
+    <p><strong>Step 1: Inductive Reactance ($X_L$):</strong><br>
+    \\[
+    X_L = \\omega L = 2\\pi \\nu L = 100\\pi \\times (44 \\times 10^{-3}) = 4.4\\pi \\ \\Omega
+    \\]
+    Using $\\pi \\approx \\frac{22}{7}$ or $3.1416$:
+    \\[
+    X_L = 4.4 \\times 3.1416 \\approx 13.823 \\ \\Omega
+    \\]</p>
+
+    <p><strong>Step 2: RMS Current ($I_{rms}$):</strong><br>
+    For a purely inductive circuit, impedance $Z = X_L$:
+    \\[
+    I_{rms} = \\frac{V_{rms}}{X_L} = \\frac{220}{4.4\\pi} = \\frac{220 \\times 7}{4.4 \\times 22} = \\frac{10 \\times 7}{4.4} = \\frac{70}{4.4} \\approx 15.91 \\text{ A}
+    \\]
+    <p><strong>Result:</strong> The rms value of current in the inductor is <strong>$15.9 \\text{ A}$</strong>.</p>`,
+    "2 Marks",
+    [
+      ["Formula $X_L = 2\\pi\\nu L$ and evaluation $X_L = 13.82\\ \\Omega$", "1 Mark"],
+      ["Formula $I_{rms} = V_{rms}/X_L$ and result $15.9\\text{ A}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.4
+  createQCard(
+    "c12p-ch7-q4",
+    "Q 7.4",
+    "Exercise 7.4",
+    `A $60 \\ \\mu\\text{F}$ capacitor is connected to a $110 \\text{ V}, 60 \\text{ Hz}$ ac supply. Determine the rms value of the current in the circuit.`,
+    `<p><strong>Given:</strong><br>
+    Capacitance $C = 60 \\ \\mu\\text{F} = 60 \\times 10^{-6} \\text{ F}$<br>
+    Voltage $V_{rms} = 110 \\text{ V}$<br>
+    Frequency $\\nu = 60 \\text{ Hz} \\implies \\omega = 2\\pi \\nu = 2\\pi \\times 60 = 120\\pi \\text{ rad s}^{-1}$</p>
+
+    <p><strong>Step 1: Capacitive Reactance ($X_C$):</strong><br>
+    \\[
+    X_C = \\frac{1}{\\omega C} = \\frac{1}{2\\pi \\nu C} = \\frac{1}{120\\pi \\times 60 \\times 10^{-6}} = \\frac{10^6}{7200\\pi} = \\frac{10^4}{72\\pi} \\approx 44.21 \\ \\Omega
+    \\]</p>
+
+    <p><strong>Step 2: RMS Current ($I_{rms}$):</strong><br>
+    \\[
+    I_{rms} = \\frac{V_{rms}}{X_C} = V_{rms} \\times (2\\pi \\nu C)
+    \\]
+    \\[
+    I_{rms} = 110 \\times 120\\pi \\times (60 \\times 10^{-6}) = 110 \\times 7.2\\pi \\times 10^{-3} = 0.792\\pi \\approx 2.488 \\text{ A} \\approx 2.49 \\text{ A}
+    \\]
+    <p><strong>Result:</strong> The rms current is <strong>$2.49 \\text{ A}$</strong>.</p>`,
+    "2 Marks",
+    [
+      ["Formula $X_C = 1/(2\\pi\\nu C)$ and evaluation $44.21\\ \\Omega$", "1 Mark"],
+      ["Calculation of $I_{rms} = 2.49\\text{ A}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.5
+  createQCard(
+    "c12p-ch7-q5",
+    "Q 7.5",
+    "Exercise 7.5",
+    `In Exercises 7.3 and 7.4, what is the net power absorbed by each circuit over a complete cycle? Explain your answer.`,
+    `<p><strong>Answer:</strong> The net power absorbed over a complete cycle in both circuits is <strong>zero ($0 \\text{ W}$)</strong>.</p>
+
+    <p><strong>Scientific Explanation:</strong><br>
+    Average power in an ac circuit is given by:
+    \\[
+    P_{avg} = V_{rms} I_{rms} \\cos \\phi
+    \\]
+    where $\\phi$ is the phase difference between applied voltage and resulting current, and $\\cos \\phi$ is the power factor.</p>
+
+    <p><strong>1. Purely Inductive Circuit (Exercise 7.3):</strong><br>
+    • In an ideal inductor, current lags behind voltage by $\\frac{\\pi}{2}$ radians ($90^\\circ$), so $\\phi = 90^\\circ$.<br>
+    • Power factor $\\cos(90^\\circ) = 0$.<br>
+    • Therefore, $P_{avg} = V_{rms} I_{rms} \\times 0 = 0$.<br>
+    <em>Physical meaning:</em> The inductor absorbs electrical energy from the source during the first quarter cycle to establish a magnetic field ($U_B = \\frac{1}{2} L I^2$), and releases this stored magnetic energy completely back to the source during the next quarter cycle as the field collapses.</p>
+
+    <p><strong>2. Purely Capacitive Circuit (Exercise 7.4):</strong><br>
+    • In an ideal capacitor, current leads voltage by $\\frac{\\pi}{2}$ radians ($90^\\circ$), so $\\phi = -90^\\circ$.<br>
+    • Power factor $\\cos(-90^\\circ) = 0$.<br>
+    • Therefore, $P_{avg} = V_{rms} I_{rms} \\times 0 = 0$.<br>
+    <em>Physical meaning:</em> The capacitor charges during one quarter cycle storing energy in its electric field ($U_E = \\frac{1}{2} C V^2$) and discharges during the subsequent quarter cycle, returning all stored energy back to the ac supply.</p>`,
+    "2 Marks",
+    [
+      ["Statement of zero power in both circuits", "0.5 Mark"],
+      ["Phase relation $\\phi = 90^\\circ$ leading to $\\cos\\phi = 0$", "0.75 Mark"],
+      ["Energy storage and release cycle explanation", "0.75 Mark"]
+    ]
+  ),
+
+  // 7.6
+  createQCard(
+    "c12p-ch7-q6",
+    "Q 7.6",
+    "Exercise 7.6",
+    `Obtain the resonant frequency $\\omega_r$ of a series LCR circuit with $L = 2.0 \\text{ H}, C = 32 \\ \\mu\\text{F}$ and $R = 10 \\ \\Omega$. What is the $Q$-value of this circuit?`,
+    `<p><strong>Given:</strong><br>
+    Inductance $L = 2.0 \\text{ H}$<br>
+    Capacitance $C = 32 \\ \\mu\\text{F} = 32 \\times 10^{-6} \\text{ F}$<br>
+    Resistance $R = 10 \\ \\Omega$</p>
+
+    <p><strong>Step 1: Resonant Angular Frequency ($\\omega_r$):</strong><br>
+    At resonance, $X_L = X_C \\implies \\omega_r L = \\frac{1}{\\omega_r C}$:
+    \\[
+    \\omega_r = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{2.0 \\times 32 \\times 10^{-6}}} = \\frac{1}{\\sqrt{64 \\times 10^{-6}}} = \\frac{1}{8 \\times 10^{-3}} = 125 \\text{ rad s}^{-1}
+    \\]
+    (Resonant linear frequency $\\nu_r = \\frac{\\omega_r}{2\\pi} = \\frac{125}{2\\pi} \\approx 19.9 \\text{ Hz}$).</p>
+
+    <p><strong>Step 2: Quality Factor ($Q$-value):</strong><br>
+    The sharpness of resonance is given by:
+    \\[
+    Q = \\frac{\\omega_r L}{R} = \\frac{1}{R} \\sqrt{\\frac{L}{C}}
+    \\]
+    \\[
+    Q = \\frac{125 \\times 2.0}{10} = \\frac{250}{10} = 25
+    \\]
+    <p><strong>Result:</strong> $\\omega_r = 125 \\text{ rad s}^{-1}$ and $Q = 25$ (dimensionless).</p>`,
+    "2 Marks",
+    [
+      ["Formula $\\omega_r = 1/\\sqrt{LC}$ and evaluation $\\omega_r = 125\\text{ rad s}^{-1}$", "1 Mark"],
+      ["Formula $Q = \\omega_r L / R$ and evaluation $Q = 25$", "1 Mark"]
+    ]
+  ),
+
+  // 7.7
+  createQCard(
+    "c12p-ch7-q7",
+    "Q 7.7",
+    "Exercise 7.7",
+    `A charged $30 \\ \\mu\\text{F}$ capacitor is connected to a $27 \\text{ mH}$ inductor. What is the angular frequency of free oscillations of the circuit?`,
+    `<p><strong>Given:</strong><br>
+    Capacitance $C = 30 \\ \\mu\\text{F} = 30 \\times 10^{-6} \\text{ F}$<br>
+    Inductance $L = 27 \\text{ mH} = 27 \\times 10^{-3} \\text{ H}$</p>
+
+    <p><strong>Formula for LC Oscillations:</strong><br>
+    The differential equation governing ideal LC oscillations is:
+    \\[
+    \\frac{d^2q}{dt^2} + \\frac{1}{LC} q = 0 \\implies \\omega = \\frac{1}{\\sqrt{LC}}
+    \\]</p>
+
+    <p><strong>Calculation:</strong><br>
+    \\[
+    LC = (27 \\times 10^{-3}) \\times (30 \\times 10^{-6}) = 810 \\times 10^{-9} = 81 \\times 10^{-8} \\text{ s}^2
+    \\]
+    \\[
+    \\omega = \\frac{1}{\\sqrt{81 \\times 10^{-8}}} = \\frac{1}{9 \\times 10^{-4}} = \\frac{10^4}{9} \\approx 1.11 \\times 10^3 \\text{ rad s}^{-1}
+    \\]
+    <p><strong>Result:</strong> The natural angular frequency of free oscillations is <strong>$1.11 \\times 10^3 \\text{ rad s}^{-1}$</strong>.</p>`,
+    "2 Marks",
+    [
+      ["Formula $\\omega = 1/\\sqrt{LC}$", "1 Mark"],
+      ["Calculation $\\omega = 1.11 \\times 10^3\\text{ rad s}^{-1}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.8
+  createQCard(
+    "c12p-ch7-q8",
+    "Q 7.8",
+    "Exercise 7.8",
+    `Suppose the initial charge on the capacitor in Exercise 7.7 is $6 \\text{ mC}$. What is the total energy stored in the circuit initially? What is the total energy at later time?`,
+    `<p><strong>Given:</strong><br>
+    Capacitance $C = 30 \\ \\mu\\text{F} = 30 \\times 10^{-6} \\text{ F}$<br>
+    Initial charge $Q_0 = 6 \\text{ mC} = 6 \\times 10^{-3} \\text{ C}$<br>
+    Initial current $I = 0$</p>
+
+    <p><strong>(a) Total Energy Stored Initially ($E_0$):</strong><br>
+    Initially, all energy is purely electrostatic, stored entirely in the electric field of the capacitor:
+    \\[
+    E_0 = \\frac{Q_0^2}{2C} = \\frac{(6 \\times 10^{-3})^2}{2 \\times (30 \\times 10^{-6})} = \\frac{36 \\times 10^{-6}}{60 \\times 10^{-6}} = \\frac{36}{60} = 0.60 \\text{ J}
+    \\]</p>
+
+    <p><strong>(b) Total Energy at Later Time:</strong><br>
+    For an ideal LC circuit (with zero internal resistance, $R = 0$, and no electromagnetic radiation loss), the total electromagnetic energy is conserved at all times:
+    \\[
+    E_{total} = U_E(t) + U_B(t) = \\frac{q(t)^2}{2C} + \\frac{1}{2} L i(t)^2 = E_0 = 0.60 \\text{ J}
+    \\]
+    Energy oscillates back and forth between electric field of capacitor and magnetic field of inductor, but the sum remains constant at <strong>$0.60 \\text{ J}$</strong>.</p>`,
+    "2 Marks",
+    [
+      ["Calculation of initial energy $E_0 = \\frac{Q^2}{2C} = 0.60\\text{ J}$", "1 Mark"],
+      ["Statement and explanation of energy conservation $E(t) = 0.60\\text{ J}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.9
+  createQCard(
+    "c12p-ch7-q9",
+    "Q 7.9",
+    "Exercise 7.9",
+    `A series LCR circuit with $R = 20 \\ \\Omega, L = 1.5 \\text{ H}$ and $C = 35 \\ \\mu\\text{F}$ is connected to a variable-frequency $200 \\text{ V}$ ac supply. When the frequency of the supply equals the natural frequency of the circuit, what is the average power transferred to the circuit in one complete cycle?`,
+    `<p><strong>Given:</strong><br>
+    $R = 20 \\ \\Omega$, $L = 1.5 \\text{ H}$, $C = 35 \\ \\mu\\text{F}$, $V_{rms} = 200 \\text{ V}$<br>
+    Condition: $\\omega = \\omega_r = \\frac{1}{\\sqrt{LC}}$ (resonance condition)</p>
+
+    <p><strong>Condition at Resonance:</strong><br>
+    At the natural resonance frequency:
+    \\[
+    X_L = X_C \\implies Z = \\sqrt{R^2 + (X_L - X_C)^2} = R = 20 \\ \\Omega
+    \\]
+    The power factor is:
+    \\[
+    \\cos \\phi = \\frac{R}{Z} = \\frac{R}{R} = 1
+    \\]</p>
+
+    <p><strong>RMS Current at Resonance:</strong><br>
+    \\[
+    I_{rms} = \\frac{V_{rms}}{Z} = \\frac{V_{rms}}{R} = \\frac{200 \\text{ V}}{20 \\ \\Omega} = 10 \\text{ A}
+    \\]</p>
+
+    <p><strong>Average Power Transferred:</strong><br>
+    \\[
+    P_{avg} = V_{rms} I_{rms} \\cos \\phi = 200 \\times 10 \\times 1 = 2000 \\text{ W} = 2 \\text{ kW}
+    \\]
+    Alternatively:
+    \\[
+    P_{avg} = I_{rms}^2 R = (10)^2 \\times 20 = 100 \\times 20 = 2000 \\text{ W}
+    \\]</p>`,
+    "2 Marks",
+    [
+      ["Identifying $Z = R$ and $\\cos\\phi = 1$ at resonance", "1 Mark"],
+      ["Calculation of $I_{rms} = 10\\text{ A}$ and $P = 2000\\text{ W}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.10
+  createQCard(
+    "c12p-ch7-q10",
+    "Q 7.10",
+    "Exercise 7.10",
+    `A radio can tune over the frequency range of a portion of MW broadcast band: ($800 \\text{ kHz}$ to $1200 \\text{ kHz}$). If its LC circuit has an effective inductance of $200 \\ \\mu\\text{H}$, what must be the range of its variable capacitor?`,
+    `<p><strong>Given:</strong><br>
+    Inductance $L = 200 \\ \\mu\\text{H} = 200 \\times 10^{-6} \\text{ H} = 2 \\times 10^{-4} \\text{ H}$<br>
+    Minimum frequency $\\nu_1 = 800 \\text{ kHz} = 800 \\times 10^3 \\text{ Hz} = 8 \\times 10^5 \\text{ Hz}$<br>
+    Maximum frequency $\\nu_2 = 1200 \\text{ kHz} = 1200 \\times 10^3 \\text{ Hz} = 1.2 \\times 10^6 \\text{ Hz}$</p>
+
+    <p><strong>Formula:</strong><br>
+    \\[
+    \\nu = \\frac{1}{2\\pi \\sqrt{LC}} \\implies \\nu^2 = \\frac{1}{4\\pi^2 L C} \\implies C = \\frac{1}{4\\pi^2 \\nu^2 L}
+    \\]</p>
+
+    <p><strong>1. Maximum Capacitance $C_{max}$ (corresponding to $\\nu_{min} = 800 \\text{ kHz}$):</strong><br>
+    \\[
+    C_{max} = \\frac{1}{4\\pi^2 (8 \\times 10^5)^2 (2 \\times 10^{-4})} = \\frac{1}{4\\pi^2 (64 \\times 10^{10}) (2 \\times 10^{-4})} = \\frac{1}{512\\pi^2 \\times 10^6}
+    \\]
+    Using $\\pi^2 \\approx 9.87$:
+    \\[
+    C_{max} = \\frac{1}{512 \\times 9.87 \\times 10^6} = \\frac{1}{5053.4 \\times 10^6} \\approx 1.978 \\times 10^{-10} \\text{ F} \\approx 197.8 \\text{ pF}
+    \\]</p>
+
+    <p><strong>2. Minimum Capacitance $C_{min}$ (corresponding to $\\nu_{max} = 1200 \\text{ kHz}$):</strong><br>
+    \\[
+    C_{min} = C_{max} \\times \\left( \\frac{\\nu_1}{\\nu_2} \\right)^2 = 197.8 \\times \\left( \\frac{800}{1200} \\right)^2 = 197.8 \\times \\left( \\frac{2}{3} \\right)^2 = 197.8 \\times \\frac{4}{9} \\approx 87.9 \\text{ pF}
+    \\]
+    <p><strong>Capacitance Range:</strong> The variable capacitor must tune continuously from approximately <strong>$87.9 \\text{ pF}$ to $197.8 \\text{ pF}$</strong> (or roughly $88 \\text{ pF}$ to $198 \\text{ pF}$).</p>`,
+    "3 Marks",
+    [
+      ["Formula $C = 1/(4\\pi^2 \\nu^2 L)$", "1 Mark"],
+      ["Calculation of $C_{max} \\approx 198\\text{ pF}$", "1 Mark"],
+      ["Calculation of $C_{min} \\approx 88\\text{ pF}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.11
+  createQCard(
+    "c12p-ch7-q11",
+    "Q 7.11",
+    "Exercise 7.11",
+    `A series LCR circuit has $L = 5.0 \\text{ H}, C = 80 \\ \\mu\\text{F}, R = 40 \\ \\Omega$ connected to a variable frequency $230 \\text{ V}$ source.<br>
+    <strong>(a)</strong> Determine the source frequency which drives the circuit in resonance.<br>
+    <strong>(b)</strong> Obtain the impedance of the circuit and the amplitude of current at the resonating frequency.<br>
+    <strong>(c)</strong> Determine the rms potential drops across the three elements of the circuit. Show that the potential drop across the LC combination is zero at the resonating frequency.`,
+    `<p><strong>Given:</strong><br>
+    $L = 5.0 \\text{ H}$, $C = 80 \\ \\mu\\text{F} = 80 \\times 10^{-6} \\text{ F}$, $R = 40 \\ \\Omega$, $V_{rms} = 230 \\text{ V}$</p>
+
+    <p><strong>(a) Resonant Frequency $\\omega_r$:</strong><br>
+    \\[
+    \\omega_r = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{5.0 \\times 80 \\times 10^{-6}}} = \\frac{1}{\\sqrt{400 \\times 10^{-6}}} = \\frac{1}{20 \\times 10^{-3}} = 50 \\text{ rad s}^{-1}
+    \\]
+    Linear frequency $\\nu_r = \\frac{\\omega_r}{2\\pi} = \\frac{50}{2\\pi} \\approx 7.96 \\text{ Hz}$.</p>
+
+    <p><strong>(b) Impedance and Current Amplitude at Resonance:</strong><br>
+    At resonance, $X_L = X_C$, hence:
+    \\[
+    Z = R = 40 \\ \\Omega
+    \\]
+    RMS Current:
+    \\[
+    I_{rms} = \\frac{V_{rms}}{Z} = \\frac{230}{40} = 5.75 \\text{ A}
+    \\]
+    Current amplitude (peak current $I_0$):
+    \\[
+    I_0 = \\sqrt{2} \\, I_{rms} = 1.414 \\times 5.75 \\approx 8.13 \\text{ A}
+    \\]</p>
+
+    <p><strong>(c) RMS Potential Drops Across Elements:</strong><br>
+    1. Across resistor:
+    \\[
+    V_R = I_{rms} R = 5.75 \\times 40 = 230 \\text{ V}
+    \\]
+    2. Across inductor:
+    \\[
+    X_L = \\omega_r L = 50 \\times 5.0 = 250 \\ \\Omega
+    \\]
+    \\[
+    V_L = I_{rms} X_L = 5.75 \\times 250 = 1437.5 \\text{ V}
+    \\]
+    3. Across capacitor:
+    \\[
+    X_C = \\frac{1}{\\omega_r C} = \\frac{1}{50 \\times 80 \\times 10^{-6}} = \\frac{10^6}{4000} = 250 \\ \\Omega
+    \\]
+    \\[
+    V_C = I_{rms} X_C = 5.75 \\times 250 = 1437.5 \\text{ V}
+    \\]
+    <strong>Potential Drop Across LC Combination:</strong><br>
+    The voltages across the inductor and capacitor are exactly $180^\\circ$ out of phase with each other:
+    \\[
+    V_{LC} = V_L - V_C = 1437.5 \\text{ V} - 1437.5 \\text{ V} = 0 \\text{ V}
+    \\]
+    Hence, the net potential drop across the LC series combination is strictly zero at resonance.</p>`,
+    "3 Marks",
+    [
+      ["Calculation of $\\omega_r = 50\\text{ rad s}^{-1}$", "1 Mark"],
+      ["Impedance $Z = 40\\ \\Omega$ and peak current $I_0 = 8.13\\text{ A}$", "1 Mark"],
+      ["Calculation of $V_R, V_L, V_C$ and showing $V_{LC} = 0$", "1 Mark"]
+    ]
+  ),
+
+  // 7.12
+  createQCard(
+    "c12p-ch7-q12",
+    "Q 7.12",
+    "Exercise 7.12",
+    `An LC circuit contains a $20 \\text{ mH}$ inductor and a $50 \\ \\mu\\text{F}$ capacitor with an initial charge of $10 \\text{ mC}$. The resistance of the circuit is negligible. Let the instant the circuit is closed be $t = 0$.<br>
+    <strong>(a)</strong> What is the total energy stored initially? Is it conserved during LC oscillations?<br>
+    <strong>(b)</strong> What is the natural frequency of the circuit?<br>
+    <strong>(c)</strong> At what times is the energy stored: (i) completely electrical, (ii) completely magnetic?<br>
+    <strong>(d)</strong> At what times is the total energy shared equally between inductor and capacitor?<br>
+    <strong>(e)</strong> If a resistor is inserted, what form does the energy eventually take?`,
+    `<p><strong>Given:</strong><br>
+    $L = 20 \\text{ mH} = 20 \\times 10^{-3} \\text{ H}$<br>
+    $C = 50 \\ \\mu\\text{F} = 50 \\times 10^{-6} \\text{ F}$<br>
+    $Q_0 = 10 \\text{ mC} = 10 \\times 10^{-3} \\text{ C} = 10^{-2} \\text{ C}$</p>
+
+    <p><strong>(a) Total Initial Energy:</strong><br>
+    \\[
+    E_0 = \\frac{Q_0^2}{2C} = \\frac{(10^{-2})^2}{2 \\times (50 \\times 10^{-6})} = \\frac{10^{-4}}{10^{-4}} = 1.0 \\text{ J}
+    \\]
+    <strong>Yes</strong>, since $R = 0$, the total energy is strictly conserved.</p>
+
+    <p><strong>(b) Natural Frequency:</strong><br>
+    \\[
+    \\omega_0 = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{20 \\times 10^{-3} \\times 50 \\times 10^{-6}}} = \\frac{1}{\\sqrt{10^{-6}}} = 10^3 \\text{ rad s}^{-1}
+    \\]
+    \\[
+    \\nu = \\frac{\\omega_0}{2\\pi} = \\frac{1000}{2\\pi} \\approx 159.2 \\text{ Hz}
+    \\]
+    Time period: $T = \\frac{1}{\\nu} = \\frac{2\\pi}{1000} \\approx 6.28 \\times 10^{-3} \\text{ s} = 6.28 \\text{ ms}$.</p>
+
+    <p><strong>(c) Times of Completely Electrical and Magnetic Energy:</strong><br>
+    The charge varies as $q(t) = Q_0 \\cos \\omega_0 t$.<br>
+    • <strong>Completely Electrical ($q = \\pm Q_0$):</strong> At $\\omega_0 t = 0, \\pi, 2\\pi, \\dots \\implies t = 0, \\frac{T}{2}, T, \\frac{3T}{2}, \\dots$<br>
+    i.e., at $t = 0, 3.14 \\text{ ms}, 6.28 \\text{ ms}, \\dots$<br>
+    • <strong>Completely Magnetic ($q = 0, i = \\pm I_0$):</strong> At $\\omega_0 t = \\frac{\\pi}{2}, \\frac{3\\pi}{2}, \\dots \\implies t = \\frac{T}{4}, \\frac{3T}{4}, \\frac{5T}{4}, \\dots$<br>
+    i.e., at $t = 1.57 \\text{ ms}, 4.71 \\text{ ms}, \\dots$</p>
+
+    <p><strong>(d) Times of Equal Energy Sharing ($U_E = U_B = \\frac{1}{2} E_0$):</strong><br>
+    \\[
+    \\frac{q^2}{2C} = \\frac{1}{2} \\left( \\frac{Q_0^2}{2C} \\right) \\implies q = \\frac{Q_0}{\\sqrt{2}}
+    \\]
+    \\[
+    \\cos \\omega_0 t = \\pm \\frac{1}{\\sqrt{2}} \\implies \\omega_0 t = (2n + 1) \\frac{\\pi}{4} \\implies t = (2n + 1) \\frac{T}{8}
+    \\]
+    For $n = 0, 1, 2, 3$: $t = \\frac{T}{8}, \\frac{3T}{8}, \\frac{5T}{8}, \\frac{7T}{8} = 0.785 \\text{ ms}, 2.355 \\text{ ms}, 3.925 \\text{ ms}, 5.495 \\text{ ms}$.</p>
+
+    <p><strong>(e) Insertion of Resistor:</strong><br>
+    If a resistor $R$ is inserted, the circuit undergoes damped oscillations. The electromagnetic energy is gradually converted into <strong>thermal energy (Joule heat)</strong> and dissipated into the surroundings.</p>`,
+    "5 Marks",
+    [
+      ["Calculation of $E_0 = 1.0\\text{ J}$ & conservation", "1 Mark"],
+      ["Calculation of $\\nu = 159.2\\text{ Hz}$ & time period $T = 6.28\\text{ ms}$", "1 Mark"],
+      ["Time instants for purely electrical and magnetic states", "1 Mark"],
+      ["Derivation of $t = (2n+1)T/8$ for equal sharing", "1 Mark"],
+      ["Identification of thermal energy dissipation (Joule heat)", "1 Mark"]
+    ]
+  ),
+
+  // 7.13
+  createQCard(
+    "c12p-ch7-q13",
+    "Q 7.13",
+    "Exercise 7.13",
+    `A coil of inductance $0.50 \\text{ H}$ and resistance $100 \\ \\Omega$ is connected to a $240 \\text{ V}, 50 \\text{ Hz}$ ac supply.<br>
+    <strong>(a)</strong> What is the maximum current in the coil?<br>
+    <strong>(b)</strong> What is the time lag between the voltage maximum and the current maximum?`,
+    `<p><strong>Given:</strong><br>
+    $L = 0.50 \\text{ H}$, $R = 100 \\ \\Omega$, $V_{rms} = 240 \\text{ V}$, $\\nu = 50 \\text{ Hz}$</p>
+
+    <p><strong>Step 1: Impedance $Z$:</strong><br>
+    Angular frequency $\\omega = 2\\pi \\nu = 2\\pi \\times 50 = 100\\pi \\approx 314.16 \\text{ rad s}^{-1}$<br>
+    Inductive reactance:
+    \\[
+    X_L = \\omega L = 100\\pi \\times 0.50 = 50\\pi \\approx 157.08 \\ \\Omega
+    \\]
+    Impedance of RL series circuit:
+    \\[
+    Z = \\sqrt{R^2 + X_L^2} = \\sqrt{(100)^2 + (157.08)^2} = \\sqrt{10000 + 24674} = \\sqrt{34674} \\approx 186.2 \\ \\Omega
+    \\]</p>
+
+    <p><strong>(a) Maximum Current $I_0$:</strong><br>
+    Peak voltage: $V_0 = \\sqrt{2} V_{rms} = 1.414 \\times 240 \\approx 339.4 \\text{ V}$<br>
+    \\[
+    I_0 = \\frac{V_0}{Z} = \\frac{339.4 \\text{ V}}{186.2 \\ \\Omega} \\approx 1.82 \\text{ A}
+    \\]</p>
+
+    <p><strong>(b) Time Lag $\\Delta t$:</strong><br>
+    Phase angle by which current lags behind voltage:
+    \\[
+    \\tan \\phi = \\frac{X_L}{R} = \\frac{157.08}{100} = 1.5708 \\implies \\phi = \\arctan(1.5708) \\approx 57.5^\\circ = 57.5 \\times \\frac{\\pi}{180} \\approx 1.004 \\text{ rad}
+    \\]
+    Time lag:
+    \\[
+    \\Delta t = \\frac{\\phi}{\\omega} = \\frac{1.004}{100\\pi} = \\frac{1.004}{314.16} \\approx 3.195 \\times 10^{-3} \\text{ s} \\approx 3.2 \\text{ ms}
+    \\]</p>`,
+    "3 Marks",
+    [
+      ["Calculation of $X_L = 157.1\\ \\Omega$ and $Z = 186.2\\ \\Omega$", "1 Mark"],
+      ["Calculation of peak current $I_0 = 1.82\\text{ A}$", "1 Mark"],
+      ["Phase angle $\\phi = 57.5^\\circ$ and time lag $\\Delta t = 3.2\\text{ ms}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.14
+  createQCard(
+    "c12p-ch7-q14",
+    "Q 7.14",
+    "Exercise 7.14",
+    `Obtain the answers (a) and (b) in Exercise 7.13 if the circuit is connected to a high frequency supply ($240 \\text{ V}, 10 \\text{ kHz}$). Hence, explain the statement that at very high frequency, an inductor in a circuit nearly amounts to an open circuit. How does an inductor behave in a dc circuit after the steady state?`,
+    `<p><strong>Given:</strong><br>
+    $L = 0.50 \\text{ H}$, $R = 100 \\ \\Omega$, $V_{rms} = 240 \\text{ V}$, $\\nu = 10 \\text{ kHz} = 10^4 \\text{ Hz}$<br>
+    $\\omega = 2\\pi \\nu = 2\\pi \\times 10^4 = 2\\pi \\times 10^4 \\approx 6.283 \\times 10^4 \\text{ rad s}^{-1}$</p>
+
+    <p><strong>Step 1: Inductive Reactance and Impedance:</strong><br>
+    \\[
+    X_L = \\omega L = (2\\pi \\times 10^4) \\times 0.50 = \\pi \\times 10^4 \\approx 3.1416 \\times 10^4 \\ \\Omega = 31416 \\ \\Omega
+    \\]
+    Since $X_L \\gg R$ ($31416 \\gg 100$):
+    \\[
+    Z = \\sqrt{R^2 + X_L^2} \\approx X_L \\approx 3.14 \\times 10^4 \\ \\Omega
+    \\]</p>
+
+    <p><strong>(a) Maximum Current $I_0$:</strong><br>
+    \\[
+    I_0 = \\frac{V_0}{Z} = \\frac{\\sqrt{2} \\times 240}{3.1416 \\times 10^4} = \\frac{339.4}{31416} \\approx 1.08 \\times 10^{-2} \\text{ A} = 10.8 \\text{ mA}
+    \\]</p>
+
+    <p><strong>(b) Phase Angle and Time Lag:</strong><br>
+    \\[
+    \\tan \\phi = \\frac{X_L}{R} = \\frac{31416}{100} = 314.16 \\implies \\phi \\approx 89.82^\\circ \\approx \\frac{\\pi}{2} \\text{ rad}
+    \\]
+    \\[
+    \\Delta t = \\frac{\\phi}{\\omega} \\approx \\frac{\\pi/2}{2\\pi \\times 10^4} = \\frac{1}{4 \\times 10^4} = 2.5 \\times 10^{-5} \\text{ s} = 25 \\ \\mu\\text{s}
+    \\]</p>
+
+    <p><strong>Explanation of Physical Behavior:</strong><br>
+    • <strong>At very high frequency ($\\nu \\to \\infty$):</strong> Reactance $X_L = 2\\pi\\nu L \\to \\infty$. The opposition to current becomes extremely large, reducing the current practically to zero ($I \\to 0$). Hence, an inductor behaves as an <strong>open circuit</strong> for high-frequency AC.<br>
+    • <strong>In a DC circuit ($\\nu = 0$):</strong> In steady state, $X_L = 0$. The inductor offers zero inductive reactance, acting simply as an ideal <strong>short circuit (zero resistance wire)</strong>.</p>`,
+    "3 Marks",
+    [
+      ["Calculation of $X_L \\approx 3.14 \\times 10^4\\ \\Omega$ and $I_0 = 10.8\\text{ mA}$", "1 Mark"],
+      ["Calculation of $\\phi \\approx \\pi/2$ and time lag $\\Delta t = 25\\ \\mu\\text{s}$", "1 Mark"],
+      ["Contrasting open circuit in HF ac vs short circuit in steady DC", "1 Mark"]
+    ]
+  ),
+
+  // 7.15
+  createQCard(
+    "c12p-ch7-q15",
+    "Q 7.15",
+    "Exercise 7.15",
+    `A $100 \\ \\mu\\text{F}$ capacitor in series with a $40 \\ \\Omega$ resistance is connected to a $110 \\text{ V}, 60 \\text{ Hz}$ supply.<br>
+    <strong>(a)</strong> What is the maximum current in the circuit?<br>
+    <strong>(b)</strong> What is the time lag between the current maximum and the voltage maximum?`,
+    `<p><strong>Given:</strong><br>
+    $C = 100 \\ \\mu\\text{F} = 10^{-4} \\text{ F}$<br>
+    $R = 40 \\ \\Omega$<br>
+    $V_{rms} = 110 \\text{ V}, \\nu = 60 \\text{ Hz} \\implies \\omega = 2\\pi \\times 60 = 120\\pi \\approx 377 \\text{ rad s}^{-1}$</p>
+
+    <p><strong>Step 1: Capacitive Reactance and Impedance:</strong><br>
+    \\[
+    X_C = \\frac{1}{\\omega C} = \\frac{1}{120\\pi \\times 10^{-4}} = \\frac{10^4}{120\\pi} \\approx 26.53 \\ \\Omega
+    \\]
+    \\[
+    Z = \\sqrt{R^2 + X_C^2} = \\sqrt{(40)^2 + (26.53)^2} = \\sqrt{1600 + 703.8} = \\sqrt{2303.8} \\approx 48.0 \\ \\Omega
+    \\]</p>
+
+    <p><strong>(a) Maximum Current $I_0$:</strong><br>
+    \\[
+    V_0 = \\sqrt{2} \\times 110 = 155.56 \\text{ V}
+    \\]
+    \\[
+    I_0 = \\frac{V_0}{Z} = \\frac{155.56}{48.0} \\approx 3.24 \\text{ A}
+    \\]</p>
+
+    <p><strong>(b) Time Lag (Lead):</strong><br>
+    In an RC circuit, current leads the voltage by phase angle $\\phi$:
+    \\[
+    \\tan \\phi = \\frac{X_C}{R} = \\frac{26.53}{40} \\approx 0.663 \\implies \\phi = \\arctan(0.663) \\approx 33.56^\\circ = 0.5857 \\text{ rad}
+    \\]
+    Time difference:
+    \\[
+    \\Delta t = \\frac{\\phi}{\\omega} = \\frac{0.5857}{377} \\approx 1.55 \\times 10^{-3} \\text{ s} = 1.55 \\text{ ms}
+    \\]
+    Current reaches its maximum $1.55 \\text{ ms}$ earlier than voltage.</p>`,
+    "3 Marks",
+    [
+      ["Calculation of $X_C = 26.53\\ \\Omega$ and $Z = 48.0\\ \\Omega$", "1 Mark"],
+      ["Peak current $I_0 = 3.24\\text{ A}$", "1 Mark"],
+      ["Phase $\\phi = 33.56^\\circ$ and time lead $\\Delta t = 1.55\\text{ ms}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.16
+  createQCard(
+    "c12p-ch7-q16",
+    "Q 7.16",
+    "Exercise 7.16",
+    `Obtain the answers to (a) and (b) in Exercise 7.15 if the circuit is connected to a $110 \\text{ V}, 12 \\text{ kHz}$ supply. Hence, explain the statement that a capacitor is a conductor at very high frequencies. Compare this behavior with that in a dc circuit after the steady state.`,
+    `<p><strong>Given:</strong><br>
+    $C = 100 \\ \\mu\\text{F} = 10^{-4} \\text{ F}, R = 40 \\ \\Omega, V_{rms} = 110 \\text{ V}$<br>
+    High frequency $\\nu = 12 \\text{ kHz} = 1.2 \\times 10^4 \\text{ Hz}$<br>
+    $\\omega = 2\\pi \\nu = 2\\pi \\times 1.2 \\times 10^4 = 2.4\\pi \\times 10^4 \\approx 7.54 \\times 10^4 \\text{ rad s}^{-1}$</p>
+
+    <p><strong>Step 1: Reactance and Impedance:</strong><br>
+    \\[
+    X_C = \\frac{1}{\\omega C} = \\frac{1}{2.4\\pi \\times 10^4 \\times 10^{-4}} = \\frac{1}{2.4\\pi} \\approx 0.133 \\ \\Omega
+    \\]
+    Since $X_C \\ll R$ ($0.133 \\ll 40$):
+    \\[
+    Z = \\sqrt{R^2 + X_C^2} \\approx R = 40 \\ \\Omega
+    \\]</p>
+
+    <p><strong>(a) Maximum Current $I_0$:</strong><br>
+    \\[
+    I_0 = \\frac{V_0}{Z} \\approx \\frac{\\sqrt{2} \\times 110}{40} = \\frac{155.56}{40} \\approx 3.89 \\text{ A}
+    \\]</p>
+
+    <p><strong>(b) Phase and Time Difference:</strong><br>
+    \\[
+    \\tan \\phi = \\frac{X_C}{R} = \\frac{0.133}{40} \\approx 0.0033 \\implies \\phi \\approx 0.0033 \\text{ rad}
+    \\]
+    \\[
+    \\Delta t = \\frac{\\phi}{\\omega} = \\frac{0.0033}{7.54 \\times 10^4} \\approx 4.4 \\times 10^{-8} \\text{ s} = 44 \\text{ ns}
+    \\]</p>
+
+    <p><strong>Comparison: High Frequency AC vs Steady DC:</strong><br>
+    • <strong>At very high frequency ($\\nu \\to \\infty$):</strong> $X_C = \\frac{1}{2\\pi\\nu C} \\to 0$. The capacitor offers virtually zero impedance, allowing alternating current to pass unhindered. Thus, a capacitor behaves as an ideal <strong>conductor (short circuit)</strong>.<br>
+    • <strong>In a DC circuit ($\\nu = 0$):</strong> In steady state, $X_C = \\frac{1}{0} \\to \\infty$. A fully charged capacitor completely blocks direct current, behaving as an <strong>open circuit</strong>.</p>`,
+    "3 Marks",
+    [
+      ["Calculation showing $X_C \\approx 0.133\\ \\Omega$, $Z \\approx 40\\ \\Omega$, $I_0 = 3.89\\text{ A}$", "1 Mark"],
+      ["Phase $\\phi \\approx 0$ and time lead $\\Delta t \\approx 44\\text{ ns}$", "1 Mark"],
+      ["Physical comparison: short circuit at high frequency vs open circuit for DC", "1 Mark"]
+    ]
+  ),
+
+  // 7.17
+  createQCard(
+    "c12p-ch7-q17",
+    "Q 7.17",
+    "Exercise 7.17",
+    `Keeping the source frequency equal to the resonating frequency for the series LCR circuit in Exercise 7.11, if the three elements are connected in parallel, show that the total current is minimum.`,
+    `<p><strong>Parallel LCR Circuit Admittance Analysis:</strong><br>
+    When $R, L,$ and $C$ are connected in parallel across an AC source $v = V_0 \\sin \\omega t$, the same potential difference appears across each branch.<br>
+    The branch currents are:
+    \\[
+    I_R = \\frac{V}{R} \\quad (\\text{in phase with } V)
+    \\]
+    \\[
+    I_L = \\frac{V}{X_L} = \\frac{V}{\\omega L} \\quad (\\text{lags } V \\text{ by } 90^\\circ)
+    \\]
+    \\[
+    I_C = \\frac{V}{X_C} = V \\omega C \\quad (\\text{leads } V \\text{ by } 90^\\circ)
+    \\]</p>
+
+    <p><strong>Total Current Amplitude:</strong><br>
+    Since $I_L$ and $I_C$ are $180^\\circ$ out of phase with each other, the net reactive current is $(I_C - I_L)$.<br>
+    By phasor addition:
+    \\[
+    I_{total} = \\sqrt{I_R^2 + (I_C - I_L)^2} = V \\sqrt{\\frac{1}{R^2} + \\left( \\omega C - \\frac{1}{\\omega L} \\right)^2}
+    \\]</p>
+
+    <p><strong>Condition at Resonating Frequency ($\\omega = \\omega_r = \\frac{1}{\\sqrt{LC}}$):</strong><br>
+    At the resonant frequency:
+    \\[
+    \\omega_r C = \\frac{1}{\\omega_r L} \\implies I_C - I_L = 0
+    \\]
+    Therefore:
+    \\[
+    I_{total, min} = I_R = \\frac{V}{R}
+    \\]
+    The inductive and capacitive branch currents cancel each other completely. The admittance $Y$ is at its absolute minimum ($Y_{min} = \\frac{1}{R}$), which means the parallel circuit impedance $Z_p$ is maximum ($Z_p = R$). Consequently, the total current drawn from the source is at its <strong>absolute minimum</strong> (anti-resonance / rejector circuit).</p>`,
+    "3 Marks",
+    [
+      ["Branch current equations and phasor relationship", "1 Mark"],
+      ["Total current equation $I = \\sqrt{I_R^2 + (I_C - I_L)^2}$", "1 Mark"],
+      ["Proof that $I_C = I_L$ at $\\omega_r$ yielding minimum current $I_{min} = V/R$", "1 Mark"]
+    ]
+  ),
+
+  // 7.18
+  createQCard(
+    "c12p-ch7-q18",
+    "Q 7.18",
+    "Exercise 7.18",
+    `A circuit containing an $80 \\text{ mH}$ inductor and a $60 \\ \\mu\\text{F}$ capacitor in series is connected to a $230 \\text{ V}, 50 \\text{ Hz}$ supply. The resistance of the circuit is negligible.<br>
+    <strong>(a)</strong> Obtain the current amplitude and rms values.<br>
+    <strong>(b)</strong> Obtain the rms values of potential drops across each element.<br>
+    <strong>(c)</strong> What is the average power transferred to the inductor?<br>
+    <strong>(d)</strong> What is the average power transferred to the capacitor?<br>
+    <strong>(e)</strong> What is the total average power absorbed by the circuit?`,
+    `<p><strong>Given:</strong><br>
+    $L = 80 \\text{ mH} = 0.08 \\text{ H}, C = 60 \\ \\mu\\text{F} = 60 \\times 10^{-6} \\text{ F}, R = 0$<br>
+    $V_{rms} = 230 \\text{ V}, \\nu = 50 \\text{ Hz} \\implies \\omega = 100\\pi \\approx 314.16 \\text{ rad s}^{-1}$</p>
+
+    <p><strong>Step 1: Reactances:</strong><br>
+    \\[
+    X_L = \\omega L = 100\\pi \\times 0.08 = 8\\pi \\approx 25.13 \\ \\Omega
+    \\]
+    \\[
+    X_C = \\frac{1}{\\omega C} = \\frac{1}{100\\pi \\times 60 \\times 10^{-6}} = \\frac{10^4}{6\\pi} \\approx 53.05 \\ \\Omega
+    \\]
+    Net reactance / impedance:
+    \\[
+    Z = |X_L - X_C| = |25.13 - 53.05| = 27.92 \\ \\Omega \\quad (X_C > X_L, \\text{ capacitive circuit})
+    \\]</p>
+
+    <p><strong>(a) Current RMS and Amplitude:</strong><br>
+    \\[
+    I_{rms} = \\frac{V_{rms}}{Z} = \\frac{230}{27.92} \\approx 8.24 \\text{ A}
+    \\]
+    Current amplitude:
+    \\[
+    I_0 = \\sqrt{2} \\, I_{rms} = 1.414 \\times 8.24 \\approx 11.65 \\text{ A}
+    \\]</p>
+
+    <p><strong>(b) RMS Potential Drops:</strong><br>
+    \\[
+    V_L = I_{rms} X_L = 8.24 \\times 25.13 \\approx 207.1 \\text{ V}
+    \\]
+    \\[
+    V_C = I_{rms} X_C = 8.24 \\times 53.05 \\approx 437.1 \\text{ V}
+    \\]
+    (Note: $V_C - V_L = 437.1 - 207.1 = 230 \\text{ V} = V_{rms}$).</p>
+
+    <p><strong>(c), (d), (e) Power Absorbed:</strong><br>
+    • <strong>(c) Average power to inductor:</strong> $P_L = 0 \\text{ W}$ (since phase angle between $V_L$ and $I$ is $90^\\circ$).<br>
+    • <strong>(d) Average power to capacitor:</strong> $P_C = 0 \\text{ W}$ (since phase angle between $V_C$ and $I$ is $90^\\circ$).<br>
+    • <strong>(e) Total average power absorbed:</strong> $P_{total} = P_L + P_C = 0 \\text{ W}$.</p>`,
+    "3 Marks",
+    [
+      ["Calculation of $X_L, X_C$ and $I_{rms} = 8.24\\text{ A}, I_0 = 11.65\\text{ A}$", "1 Mark"],
+      ["RMS drops $V_L = 207.1\\text{ V}$ and $V_C = 437.1\\text{ V}$", "1 Mark"],
+      ["All average powers $P_L = P_C = P_{total} = 0\\text{ W}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.19
+  createQCard(
+    "c12p-ch7-q19",
+    "Q 7.19",
+    "Exercise 7.19",
+    `Suppose the circuit in Exercise 7.18 has a resistance of $15 \\ \\Omega$. Obtain the average power transferred to each element of the circuit, and the total power absorbed.`,
+    `<p><strong>Given:</strong><br>
+    $R = 15 \\ \\Omega$<br>
+    From Exercise 7.18: $X_L = 25.13 \\ \\Omega, X_C = 53.05 \\ \\Omega \\implies X_C - X_L = 27.92 \\ \\Omega$<br>
+    $V_{rms} = 230 \\text{ V}$</p>
+
+    <p><strong>Step 1: Impedance $Z$:</strong><br>
+    \\[
+    Z = \\sqrt{R^2 + (X_L - X_C)^2} = \\sqrt{(15)^2 + (27.92)^2} = \\sqrt{225 + 779.5} = \\sqrt{1004.5} \\approx 31.69 \\ \\Omega
+    \\]</p>
+
+    <p><strong>Step 2: RMS Current $I_{rms}$:</strong><br>
+    \\[
+    I_{rms} = \\frac{V_{rms}}{Z} = \\frac{230}{31.69} \\approx 7.26 \\text{ A}
+    \\]</p>
+
+    <p><strong>Power Dissipation:</strong><br>
+    1. <strong>Power transferred to inductor:</strong> $P_L = 0 \\text{ W}$ (pure reactive element).<br>
+    2. <strong>Power transferred to capacitor:</strong> $P_C = 0 \\text{ W}$ (pure reactive element).<br>
+    3. <strong>Power transferred to resistor:</strong>
+    \\[
+    P_R = I_{rms}^2 R = (7.26)^2 \\times 15 = 52.71 \\times 15 \\approx 790.6 \\text{ W}
+    \\]
+    4. <strong>Total Average Power Absorbed by the Circuit:</strong>
+    \\[
+    P_{total} = P_R + P_L + P_C = 790.6 \\text{ W} + 0 + 0 = 790.6 \\text{ W} \\approx 791 \\text{ W}
+    \\]</p>`,
+    "2 Marks",
+    [
+      ["Calculation of $Z = 31.69\\ \\Omega$ and $I_{rms} = 7.26\\text{ A}$", "1 Mark"],
+      ["Power values: $P_L = 0, P_C = 0$ and $P_{total} = P_R = 791\\text{ W}$", "1 Mark"]
+    ]
+  ),
+
+  // 7.20
+  createQCard(
+    "c12p-ch7-q20",
+    "Q 7.20",
+    "Exercise 7.20",
+    `A series LCR circuit with $L = 0.12 \\text{ H}, C = 480 \\text{ nF}, R = 23 \\ \\Omega$ is connected to a $230 \\text{ V}$ variable frequency supply.<br>
+    <strong>(a)</strong> What is the source frequency for which current amplitude is maximum? Obtain this maximum value.<br>
+    <strong>(b)</strong> What is the source frequency for which average power absorbed by the circuit is maximum? Obtain the value of this maximum power.<br>
+    <strong>(c)</strong> For which frequencies of the source is the power transferred to the circuit half the power at resonant frequency? What is the current amplitude at these frequencies?<br>
+    <strong>(d)</strong> What is the Q-factor of the given circuit?`,
+    `<p><strong>Given:</strong><br>
+    $L = 0.12 \\text{ H}$, $C = 480 \\text{ nF} = 480 \\times 10^{-9} \\text{ F} = 4.8 \\times 10^{-7} \\text{ F}$, $R = 23 \\ \\Omega$, $V_{rms} = 230 \\text{ V}$</p>
+
+    <p><strong>(a) Frequency for Maximum Current Amplitude:</strong><br>
+    Current amplitude is maximum at resonance:
+    \\[
+    \\omega_r = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{0.12 \\times 4.8 \\times 10^{-7}}} = \\frac{1}{\\sqrt{5.76 \\times 10^{-8}}} = \\frac{1}{2.4 \\times 10^{-4}} = \\frac{10^4}{2.4} \\approx 4166.7 \\text{ rad s}^{-1}
+    \\]
+    Linear frequency $\\nu_r = \\frac{\\omega_r}{2\\pi} = \\frac{4166.7}{2\\pi} \\approx 663 \\text{ Hz}$.<br>
+    At resonance, $Z = R = 23 \\ \\Omega$.<br>
+    Maximum current amplitude:
+    \\[
+    I_0 = \\frac{V_0}{R} = \\frac{\\sqrt{2} \\times 230}{23} = 10\\sqrt{2} \\approx 14.14 \\text{ A}
+    \\]</p>
+
+    <p><strong>(b) Maximum Average Power:</strong><br>
+    Average power is maximum at the same resonant frequency $\\omega_r = 4167 \\text{ rad s}^{-1}$ ($\nu_r \\approx 663 \\text{ Hz}$):
+    \\[
+    P_{max} = \\frac{1}{2} I_0^2 R = I_{rms}^2 R = \\left( \\frac{230}{23} \\right)^2 \\times 23 = 10^2 \\times 23 = 2300 \\text{ W} = 2.3 \\text{ kW}
+    \\]</p>
+
+    <p><strong>(c) Half-Power Frequencies and Current:</strong><br>
+    Bandwidth $\\Delta \\omega = \\frac{R}{L}$:
+    \\[
+    \\Delta \\omega = \\frac{23}{0.12} \\approx 191.7 \\text{ rad s}^{-1}
+    \\]
+    Half-power frequencies $\\omega_1, \\omega_2 = \\omega_r \\pm \\frac{\\Delta \\omega}{2} = 4166.7 \\pm 95.8 \\text{ rad s}^{-1}$:
+    \\[
+    \\omega_1 = 4070.9 \\text{ rad s}^{-1} \\approx 4071 \\text{ rad s}^{-1} \\quad (\\nu_1 \\approx 648 \\text{ Hz})
+    \\]
+    \\[
+    \\omega_2 = 4262.5 \\text{ rad s}^{-1} \\approx 4263 \\text{ rad s}^{-1} \\quad (\\nu_2 \\approx 678 \\text{ Hz})
+    \\]
+    At these frequencies, current amplitude drops by factor $\\frac{1}{\\sqrt{2}}$:
+    \\[
+    I = \\frac{I_0}{\\sqrt{2}} = \\frac{14.14}{\\sqrt{2}} = 10 \\text{ A}
+    \\]</p>
+
+    <p><strong>(d) Q-factor:</strong><br>
+    \\[
+    Q = \\frac{\\omega_r L}{R} = \\frac{4166.7 \\times 0.12}{23} = \\frac{500}{23} \\approx 21.74
+    \\]</p>`,
+    "5 Marks",
+    [
+      ["Calculation of $\\omega_r = 4167\\text{ rad s}^{-1}$ and $I_0 = 14.14\\text{ A}$", "1.5 Marks"],
+      ["Calculation of $P_{max} = 2300\\text{ W}$ at resonant frequency", "1 Mark"],
+      ["Half-power frequencies $\\omega_1 = 4071\\text{ rad s}^{-1}, \\omega_2 = 4263\\text{ rad s}^{-1}$ and $I = 10\\text{ A}$", "1.5 Marks"],
+      ["Evaluation of $Q = 21.74$", "1 Mark"]
+    ]
+  ),
+
+  // 7.21
+  createQCard(
+    "c12p-ch7-q21",
+    "Q 7.21",
+    "Exercise 7.21",
+    `Obtain the resonant frequency and $Q$-factor of a series LCR circuit with $L = 3.0 \\text{ H}, C = 27 \\ \\mu\\text{F}$, and $R = 7.4 \\ \\Omega$. It is desired to improve the sharpness of the resonance of the circuit by reducing its 'full width at half maximum' by a factor of 2. Suggest a suitable way.`,
+    `<p><strong>Given:</strong><br>
+    $L = 3.0 \\text{ H}$<br>
+    $C = 27 \\ \\mu\\text{F} = 27 \\times 10^{-6} \\text{ F}$<br>
+    $R = 7.4 \\ \\Omega$</p>
+
+    <p><strong>Step 1: Resonant Frequency $\\omega_r$:</strong><br>
+    \\[
+    \\omega_r = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{3.0 \\times 27 \\times 10^{-6}}} = \\frac{1}{\\sqrt{81 \\times 10^{-6}}} = \\frac{1}{9 \\times 10^{-3}} = \\frac{1000}{9} \\approx 111.1 \\text{ rad s}^{-1}
+    \\]</p>
+
+    <p><strong>Step 2: Quality Factor ($Q$):</strong><br>
+    \\[
+    Q = \\frac{\\omega_r L}{R} = \\frac{111.1 \\times 3.0}{7.4} = \\frac{333.3}{7.4} \\approx 45.05 \\approx 45
+    \\]</p>
+
+    <p><strong>Step 3: Improving Sharpness (Reducing FWHM by Factor of 2):</strong><br>
+    The full width at half maximum (FWHM) or bandwidth of resonance is:
+    \\[
+    \\Delta \\omega = \\frac{R}{L}
+    \\]
+    To reduce the bandwidth $\\Delta \\omega$ by a factor of 2 (i.e. to double the sharpness and double the $Q$-factor) without altering the resonant frequency $\\omega_r$:
+    \\[
+    \\Delta \\omega' = \\frac{\\Delta \\omega}{2} \\implies R' = \\frac{R}{2}
+    \\]
+    \\[
+    R' = \\frac{7.4 \\ \\Omega}{2} = 3.7 \\ \\Omega
+    \\]
+    <strong>Recommendation:</strong> Reduce the resistance of the circuit to half its original value, i.e., replace the $7.4 \\ \\Omega$ resistor with a <strong>$3.7 \\ \\Omega$ resistor</strong>. (Alternatively, double $L$ to $6.0 \\text{ H}$ while halving $C$ to $13.5 \\ \\mu\\text{F}$ keeping $R$ unchanged, which also doubles $Q$ while preserving $\\omega_r$).</p>`,
+    "3 Marks",
+    [
+      ["Calculation of $\\omega_r = 111.1\\text{ rad s}^{-1}$", "1 Mark"],
+      ["Calculation of $Q \\approx 45$", "1 Mark"],
+      ["Identification that bandwidth $\\Delta \\omega = R/L$, recommending reducing $R$ to $3.7\\ \\Omega$", "1 Mark"]
+    ]
+  )
+];
+
+saveChapter(chNum, chTitle, svgDiagram, "Exercises 7.1 to 7.21", questions, nextChTitle);
