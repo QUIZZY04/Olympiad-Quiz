@@ -1,0 +1,666 @@
+// scripts/builders/gen-c12m-ch13.js
+// Chapter 13: Probability (14 Questions)
+const { createQCard, saveChapter } = require('./c12m-helper');
+
+const svgDiagram = `
+<div class="chem-card" style="margin-bottom:24px; padding:20px; background:#f5f3ff; border:1px solid #ddd6fe; border-radius:12px;">
+  <h4 style="margin:0 0 12px 0; color:#4f46e5; font-size:1.05rem;">📐 Master Reference: Conditional Probability, Bayes' Theorem & Random Variables</h4>
+  <svg viewBox="0 0 880 260" style="width:100%; max-width:880px; height:auto; display:block; margin:0 auto; background:white; border-radius:8px; border:1px solid #c7d2fe;">
+    <!-- Panel 1: Conditional & Independence -->
+    <rect x="20" y="20" width="260" height="220" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+    <text x="150" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#3730a3" text-anchor="middle">Conditional & Independence</text>
+    <line x1="35" y1="56" x2="265" y2="56" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="35" y="80" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">Conditional Probability:</text>
+    <text x="35" y="98" font-family="sans-serif" font-size="10.5" fill="#334155">$P(E|F) = \\frac{P(E \\cap F)}{P(F)}, \\quad P(F) \\neq 0$</text>
+    <text x="35" y="125" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">Independent Events:</text>
+    <text x="35" y="145" font-family="sans-serif" font-size="10.5" fill="#334155">$P(E \\cap F) = P(E) \\cdot P(F)$</text>
+    <text x="35" y="165" font-family="sans-serif" font-size="10.5" fill="#1e293b">$\\implies P(E|F) = P(E)$</text>
+    <text x="35" y="195" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">At Least One Event Occurs:</text>
+    <text x="35" y="215" font-family="sans-serif" font-size="10.5" fill="#334155">$P(A \\cup B) = 1 - P(A')P(B')$</text>
+
+    <!-- Panel 2: Law of Total Probability & Bayes' Theorem -->
+    <rect x="310" y="20" width="260" height="220" rx="10" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="440" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#5b21b6" text-anchor="middle">Bayes' Theorem & Total Prob</text>
+    <line x1="325" y1="56" x2="555" y2="56" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="325" y="80" font-family="sans-serif" font-size="11" font-weight="bold" fill="#6d28d9">Law of Total Probability:</text>
+    <text x="325" y="100" font-family="sans-serif" font-size="10.5" fill="#334155">$P(A) = \\sum_{i=1}^n P(E_i) P(A|E_i)$</text>
+    <text x="325" y="130" font-family="sans-serif" font-size="11" font-weight="bold" fill="#6d28d9">Bayes' Theorem Formula:</text>
+    <text x="325" y="150" font-family="sans-serif" font-size="10" fill="#1e293b">$P(E_i|A) = \\frac{P(E_i)P(A|E_i)}{\\sum_{j=1}^n P(E_j)P(A|E_j)}$</text>
+    <text x="325" y="180" font-family="sans-serif" font-size="10.5" font-weight="bold" fill="#4338ca">Tree Diagram Principle:</text>
+    <text x="325" y="200" font-family="sans-serif" font-size="10" fill="#334155">Posterior Prob = $\\frac{\\text{Specific Branch}}{\\text{Sum of All Branches}}$</text>
+    <text x="325" y="220" font-family="sans-serif" font-size="10" fill="#64748b">Partition: $E_1, E_2, \\dots, E_n$ pairwise disjoint</text>
+
+    <!-- Panel 3: Random Variables & Mean -->
+    <rect x="600" y="20" width="260" height="220" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="730" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46" text-anchor="middle">Probability Distribution</text>
+    <line x1="615" y1="56" x2="845" y2="56" stroke="#10b981" stroke-width="1.5"/>
+    <text x="615" y="80" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">Probability Distribution Table:</text>
+    <text x="615" y="100" font-family="sans-serif" font-size="10.5" fill="#334155">$p_i = P(X = x_i) \\ge 0, \\quad \\sum_{i=1}^n p_i = 1$</text>
+    <text x="615" y="135" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">Mean (Expectation) $E(X)$:</text>
+    <text x="615" y="155" font-family="sans-serif" font-size="10.5" fill="#1e293b">$\\mu = E(X) = \\sum_{i=1}^n x_i p_i$</text>
+    <text x="615" y="190" font-family="sans-serif" font-size="10.5" font-weight="bold" fill="#047857">Physical Meaning:</text>
+    <text x="615" y="210" font-family="sans-serif" font-size="10" fill="#334155">Weighted average center of mass of</text>
+    <text x="615" y="226" font-family="sans-serif" font-size="10" fill="#334155">the random variable values</text>
+  </svg>
+</div>`;
+
+const questions = [];
+
+// Q1 (Ex 13.1 Q1-4 - Conditional Probability Fundamentals)
+questions.push(createQCard(
+  'c12m-ch13-q1',
+  'Q1',
+  'Exercise 13.1 (Verbatim)',
+  `(i) Given that $E$ and $F$ are events such that $P(E) = 0.6$, $P(F) = 0.3$ and $P(E \\cap F) = 0.2$, find $P(E|F)$ and $P(F|E)$.<br>
+  (ii) Compute $P(A|B)$, if $P(B) = 0.5$ and $P(A \\cap B) = 0.32$.<br>
+  (iii) If $P(A) = 0.8$, $P(B) = 0.5$ and $P(B|A) = 0.4$, find: (a) $P(A \\cap B)$, (b) $P(A|B)$, (c) $P(A \\cup B)$.`,
+  `<p><strong>(i) $P(E|F)$ and $P(F|E)$:</strong></p>
+  <ul>
+    <li>$P(E|F) = \\frac{P(E \\cap F)}{P(F)} = \\frac{0.2}{0.3} = \\mathbf{\\frac{2}{3}}$</li>
+    <li>$P(F|E) = \\frac{P(E \\cap F)}{P(E)} = \\frac{0.2}{0.6} = \\mathbf{\\frac{1}{3}}$</li>
+  </ul>
+
+  <p><strong>(ii) $P(A|B)$:</strong></p>
+  $$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.32}{0.5} = \\mathbf{0.64 = \\frac{16}{25}}$$
+
+  <p><strong>(iii) Given $P(A) = 0.8, P(B) = 0.5, P(B|A) = 0.4$:</strong></p>
+  <ol>
+    <li>$P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\implies P(A \\cap B) = P(A) \\cdot P(B|A) = 0.8 \\times 0.4 = \\mathbf{0.32}$.</li>
+    <li>$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.32}{0.5} = \\mathbf{0.64}$.</li>
+    <li>Using addition theorem of probability:
+      $$P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.8 + 0.5 - 0.32 = 1.3 - 0.32 = \\mathbf{0.98}$$
+    </li>
+  </ol>`,
+  '4 Marks',
+  [
+    ['(i) Calculating P(E|F) = 2/3 and P(F|E) = 1/3', '1 Mark'],
+    ['(ii) Calculating P(A|B) = 0.64', '1 Mark'],
+    ['(iii) P(A ∩ B) = 0.32, P(A|B) = 0.64, P(A ∪ B) = 0.98', '2 Marks']
+  ]
+));
+
+// Q2 (Ex 13.1 Q6, Q9 - Coin Toss & Family Children Experiment)
+questions.push(createQCard(
+  'c12m-ch13-q2',
+  'Q2',
+  'Exercise 13.1 (Verbatim)',
+  `(i) A coin is tossed three times. Find $P(E|F)$ where:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$E$: Head on third toss<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$F$: Heads on first two tosses<br><br>
+  (ii) Mother, father and son line up at random for a family picture. Find $P(E|F)$ where:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$E$: Son on one end<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$F$: Father in middle<br><br>
+  (iii) Assume that each born child is equally likely to be a boy or a girl. If a family has two children, what is the conditional probability that both are girls given that: (a) the youngest is a girl, (b) at least one is a girl?`,
+  `<p><strong>(i) Coin tossed 3 times:</strong></p>
+  Sample space $S = \\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\\}$, $n(S) = 8$.
+  <ul>
+    <li>$E = \\{HHH, HTH, THH, TTH\\} \\implies n(E) = 4$.</li>
+    <li>$F = \\{HHH, HHT\\} \\implies n(F) = 2$.</li>
+    <li>$E \\cap F = \\{HHH\\} \\implies n(E \\cap F) = 1$.</li>
+    <li>$$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\mathbf{\\frac{1}{2}}$$</li>
+  </ul>
+
+  <p><strong>(ii) Family picture line up ($M, F, S$):</strong></p>
+  Sample space: $S = \\{MFS, MSF, FMS, FSM, SMF, SFM\\}$, $n(S) = 6$.
+  <ul>
+    <li>$E$ (Son on one end): $\\{MFS, FMS, SMF, SFM\\} \\implies n(E) = 4$.</li>
+    <li>$F$ (Father in middle): $\\{MFS, SFM\\} \\implies n(F) = 2$.</li>
+    <li>$E \\cap F = \\{MFS, SFM\\} \\implies n(E \\cap F) = 2$.</li>
+    <li>$$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\frac{2}{2} = \\mathbf{1}$$</li>
+  </ul>
+
+  <p><strong>(iii) Two children family ($b = \\text{boy}, g = \\text{girl}$):</strong></p>
+  $S = \\{(b, b), (b, g), (g, b), (g, g)\\}$, where order is $(\\text{elder}, \\text{younger})$. $n(S) = 4$.
+  <br>Event $A$: Both are girls $= \\{(g, g)\\}$.
+  <ol>
+    <li><strong>(a) Given youngest is a girl:</strong>
+      <br>$F_1 = \\{(b, g), (g, g)\\} \\implies n(F_1) = 2$.
+      <br>$A \\cap F_1 = \\{(g, g)\\} \\implies n(A \\cap F_1) = 1$.
+      <br>$$P(A|F_1) = \\frac{n(A \\cap F_1)}{n(F_1)} = \\mathbf{\\frac{1}{2}}$$
+    </li>
+    <li><strong>(b) Given at least one is a girl:</strong>
+      <br>$F_2 = \\{(b, g), (g, b), (g, g)\\} \\implies n(F_2) = 3$.
+      <br>$A \\cap F_2 = \\{(g, g)\\} \\implies n(A \\cap F_2) = 1$.
+      <br>$$P(A|F_2) = \\frac{n(A \\cap F_2)}{n(F_2)} = \\mathbf{\\frac{1}{3}}$$
+    </li>
+  </ol>`,
+  '4 Marks',
+  [
+    ['(i) P(E|F) = 1/2 for coin toss', '1 Mark'],
+    ['(ii) P(E|F) = 1 for family photo', '1 Mark'],
+    ['(iii)(a) Youngest is girl => P = 1/2', '1 Mark'],
+    ['(iii)(b) At least one is girl => P = 1/3', '1 Mark']
+  ]
+));
+
+// Q3 (Ex 13.2 Q1, Q2, Q4 - Independent Events)
+questions.push(createQCard(
+  'c12m-ch13-q3',
+  'Q3',
+  'Exercise 13.2 (Verbatim)',
+  `(i) If $P(A) = \\frac{3}{5}$ and $P(B) = \\frac{1}{5}$, find $P(A \\cap B)$ if $A$ and $B$ are independent events.<br>
+  (ii) Two cards are drawn at random and without replacement from a pack of $52$ playing cards. Find the probability that both the cards are black.<br>
+  (iii) A fair coin and an unbiased die are tossed. Let $A$ be the event 'head appears on the coin' and $B$ be the event '3 on the die'. Check whether $A$ and $B$ are independent events and not.`,
+  `<p><strong>(i) Independent Events $A$ and $B$:</strong></p>
+  By definition of independent events:
+  $$P(A \\cap B) = P(A) \\cdot P(B) = \\left(\\frac{3}{5}\\right) \\left(\\frac{1}{5}\\right) = \\mathbf{\\frac{3}{25}}$$
+
+  <p><strong>(ii) Drawing two black cards without replacement:</strong></p>
+  A standard deck of 52 cards contains 26 black cards (13 spades + 13 clubs).
+  <ul>
+    <li>Probability of first card being black: $P(B_1) = \\frac{26}{52} = \\frac{1}{2}$.</li>
+    <li>Since drawing is without replacement, 25 black cards remain out of 51 total cards.</li>
+    <li>Probability of second card being black given first was black: $P(B_2|B_1) = \\frac{25}{51}$.</li>
+  </ul>
+  By the multiplication theorem of probability:
+  $$P(B_1 \\cap B_2) = P(B_1) \\cdot P(B_2|B_1) = \\frac{26}{52} \\times \\frac{25}{51} = \\frac{1}{2} \\times \\frac{25}{51} = \\mathbf{\\frac{25}{102}}$$
+
+  <p><strong>(iii) Coin and Die Experiment:</strong></p>
+  Sample space: $S = \\{(H, 1), (H, 2), \\dots, (H, 6), (T, 1), \\dots, (T, 6)\\}$, $n(S) = 12$.
+  <ul>
+    <li>Event $A$ (Head on coin): $A = \\{(H, 1), (H, 2), (H, 3), (H, 4), (H, 5), (H, 6)\\} \\implies P(A) = \\frac{6}{12} = \\frac{1}{2}$.</li>
+    <li>Event $B$ (3 on die): $B = \\{(H, 3), (T, 3)\\} \\implies P(B) = \\frac{2}{12} = \\frac{1}{6}$.</li>
+    <li>$A \\cap B = \\{(H, 3)\\} \\implies P(A \\cap B) = \\frac{1}{12}$.</li>
+  </ul>
+  Now compute $P(A) \\cdot P(B)$:
+  $$P(A) \\cdot P(B) = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$$
+  Since $P(A \\cap B) = P(A) \\cdot P(B) = \\frac{1}{12}$, the events $A$ and $B$ are <strong>independent events</strong>.`,
+  '4 Marks',
+  [
+    ['(i) Formula P(A ∩ B) = P(A)P(B) = 3/25', '1 Mark'],
+    ['(ii) Multiplication rule without replacement: 26/52 * 25/51 = 25/102', '1.5 Marks'],
+    ['(iii) Checking P(A ∩ B) = 1/12 equals P(A)P(B) and concluding independence', '1.5 Marks']
+  ]
+));
+
+// Q4 (Ex 13.2 Q7, Q11 - Given Mutual Independence Relationships)
+questions.push(createQCard(
+  'c12m-ch13-q4',
+  'Q4',
+  'Exercise 13.2 (Verbatim)',
+  `Given that the events $A$ and $B$ are such that $P(A) = \\frac{1}{2}$, $P(A \\cup B) = \\frac{3}{5}$ and $P(B) = p$. Find $p$ if they are:<br>
+  (i) mutually exclusive<br>
+  (ii) independent<br><br>
+  Also, if $A$ and $B$ are independent events with $P(A) = 0.3, \\; P(B) = 0.4$, find: (a) $P(A \\cap B)$, (b) $P(A \\cup B)$, (c) $P(A|B)$, (d) $P(B|A)$.`,
+  `<p><strong>Part 1: Finding $p$:</strong></p>
+  We know that $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$:
+  <ol>
+    <li><strong>(i) Mutually Exclusive Events:</strong>
+      <br>Mutually exclusive means $A \\cap B = \\emptyset \\implies P(A \\cap B) = 0$.
+      $$P(A \\cup B) = P(A) + P(B)$$
+      $$\\frac{3}{5} = \\frac{1}{2} + p \\implies p = \\frac{3}{5} - \\frac{1}{2} = \\frac{6 - 5}{10} = \\mathbf{\\frac{1}{10}}$$
+    </li>
+    <li><strong>(ii) Independent Events:</strong>
+      <br>Independent means $P(A \\cap B) = P(A) \\cdot P(B) = \\frac{1}{2} p$.
+      $$P(A \\cup B) = P(A) + P(B) - P(A)P(B)$$
+      $$\\frac{3}{5} = \\frac{1}{2} + p - \\frac{1}{2}p = \\frac{1}{2} + \\frac{1}{2}p$$
+      $$\\frac{1}{2}p = \\frac{3}{5} - \\frac{1}{2} = \\frac{1}{10} \\implies p = 2 \\times \\frac{1}{10} = \\mathbf{\\frac{1}{5}}$$
+    </li>
+  </ol>
+
+  <p><strong>Part 2: $A$ and $B$ independent with $P(A) = 0.3, P(B) = 0.4$:</strong></p>
+  <ul>
+    <li>(a) $P(A \\cap B) = P(A) \\cdot P(B) = 0.3 \\times 0.4 = \\mathbf{0.12}$.</li>
+    <li>(b) $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.3 + 0.4 - 0.12 = 0.7 - 0.12 = \\mathbf{0.58}$.</li>
+    <li>(c) $P(A|B) = P(A) = \\mathbf{0.3}$ (by independence).</li>
+    <li>(d) $P(B|A) = P(B) = \\mathbf{0.4}$ (by independence).</li>
+  </ul>`,
+  '4 Marks',
+  [
+    ['Part 1(i): Mutually exclusive gives p = 1/10', '1 Mark'],
+    ['Part 1(ii): Independent gives p = 1/5', '1 Mark'],
+    ['Part 2(a) & (b): P(A ∩ B) = 0.12, P(A ∪ B) = 0.58', '1 Mark'],
+    ['Part 2(c) & (d): P(A|B) = 0.3, P(B|A) = 0.4', '1 Mark']
+  ]
+));
+
+// Q5 (Ex 13.2 Q13, Q14 - Problem Solved Independently)
+questions.push(createQCard(
+  'c12m-ch13-q5',
+  'Q5',
+  'Exercise 13.2 (Verbatim)',
+  `Probability of solving specific problem independently by $A$ and $B$ are $\\frac{1}{2}$ and $\\frac{1}{3}$ respectively. If both try to solve the problem independently, find the probability that:<br>
+  (i) the problem is solved<br>
+  (ii) exactly one of them solves the problem`,
+  `<p>Let $A$ be the event that person $A$ solves the problem, and $B$ the event that $B$ solves it.</p>
+  <p>Given: $P(A) = \\frac{1}{2} \\implies P(A') = 1 - \\frac{1}{2} = \\frac{1}{2}$.
+  <br>$P(B) = \\frac{1}{3} \\implies P(B') = 1 - \\frac{1}{3} = \\frac{2}{3}$.</p>
+  <p>Since $A$ and $B$ work independently, the events $A, B$ as well as their complements $A', B'$ are independent.</p>
+
+  <p><strong>(i) Probability that the problem is solved:</strong></p>
+  The problem is solved if at least one of them solves it:
+  $$P(\\text{Problem is solved}) = 1 - P(\\text{Neither solves the problem}) = 1 - P(A' \\cap B')$$
+  Since $A'$ and $B'$ are independent:
+  $$P(A' \\cap B') = P(A') \\cdot P(B') = \\left(\\frac{1}{2}\\right) \\left(\\frac{2}{3}\\right) = \\frac{1}{3}$$
+  $$P(\\text{Problem is solved}) = 1 - \\frac{1}{3} = \\mathbf{\\frac{2}{3}}$$
+  <em>(Alternative Method: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = \\frac{1}{2} + \\frac{1}{3} - \\frac{1}{6} = \\frac{3 + 2 - 1}{6} = \\frac{4}{6} = \\frac{2}{3}$).</em>
+
+  <p><strong>(ii) Probability that exactly one of them solves the problem:</strong></p>
+  $$\\text{Event} = (A \\cap B') \\cup (A' \\cap B)$$
+  Since these two events are mutually exclusive:
+  $$P(\\text{Exactly one solves}) = P(A \\cap B') + P(A' \\cap B)$$
+  $$= P(A) \\cdot P(B') + P(A') \\cdot P(B)$$
+  $$= \\left(\\frac{1}{2}\\right) \\left(\\frac{2}{3}\\right) + \\left(\\frac{1}{2}\\right) \\left(\\frac{1}{3}\\right) = \\frac{2}{6} + \\frac{1}{6} = \\frac{3}{6} = \\mathbf{\\frac{1}{2}}$$`,
+  '4 Marks',
+  [
+    ['Stating complements P(A\') = 1/2, P(B\') = 2/3 and independence', '1 Mark'],
+    ['(i) Calculating P(problem solved) = 1 - P(A\')P(B\') = 2/3', '1.5 Marks'],
+    ['(ii) Formulating P(A ∩ B\') + P(A\' ∩ B) and evaluating 1/2', '1.5 Marks']
+  ]
+));
+
+// Q6 (Ex 13.3 Q1 - Urn Colored Ball Addition)
+questions.push(createQCard(
+  'c12m-ch13-q6',
+  'Q6',
+  'Exercise 13.3 (Verbatim)',
+  `An urn contains $5$ red and $5$ black balls. A ball is drawn at random, its colour is noted and is returned to the urn. Moreover, $2$ additional balls of the colour drawn are put in the urn and then a ball is drawn at random. What is the probability that the second ball is red?`,
+  `<p>Let:</p>
+  <ul>
+    <li>$E_1$: Event that the first ball drawn is red.</li>
+    <li>$E_2$: Event that the first ball drawn is black.</li>
+    <li>$A$: Event that the second ball drawn is red.</li>
+  </ul>
+
+  <p><strong>Step 1: Probabilities of the first draw:</strong></p>
+  Initial contents: 5 red, 5 black (total 10 balls).
+  $$P(E_1) = \\frac{5}{10} = \\frac{1}{2}, \\quad P(E_2) = \\frac{5}{10} = \\frac{1}{2}$$
+
+  <p><strong>Step 2: Conditional Probabilities of second draw being red:</strong></p>
+  <ol>
+    <li>If first ball was red ($E_1$):
+      <br>The red ball is returned, and 2 additional red balls are added.
+      <br>New urn contents: $5 + 2 = 7$ red balls, $5$ black balls (total 12 balls).
+      $$P(A|E_1) = \\frac{7}{12}$$
+    </li>
+    <li>If first ball was black ($E_2$):
+      <br>The black ball is returned, and 2 additional black balls are added.
+      <br>New urn contents: $5$ red balls, $5 + 2 = 7$ black balls (total 12 balls).
+      $$P(A|E_2) = \\frac{5}{12}$$
+    </li>
+  </ol>
+
+  <p><strong>Step 3: Law of Total Probability:</strong></p>
+  $$P(A) = P(E_1) \\cdot P(A|E_1) + P(E_2) \\cdot P(A|E_2)$$
+  $$P(A) = \\left(\\frac{1}{2}\\right) \\left(\\frac{7}{12}\\right) + \\left(\\frac{1}{2}\\right) \\left(\\frac{5}{12}\\right) = \\frac{7}{24} + \\frac{5}{24} = \\frac{12}{24} = \\mathbf{\\frac{1}{2}}$$`,
+  '4 Marks',
+  [
+    ['Defining events E1 (first red), E2 (first black) and A (second red)', '1 Mark'],
+    ['Calculating conditional probabilities P(A|E1) = 7/12 and P(A|E2) = 5/12', '1.5 Marks'],
+    ['Applying law of total probability yielding 1/2', '1.5 Marks']
+  ]
+));
+
+// Q7 (Ex 13.3 Q2 - Bayes' Theorem: Two Bags)
+questions.push(createQCard(
+  'c12m-ch13-q7',
+  'Q7',
+  'Exercise 13.3 (Verbatim)',
+  `A bag contains $4$ red and $4$ black balls, another bag contains $2$ red and $6$ black balls. One of the two bags is selected at random and a ball is drawn from the bag which is found to be red. Find the probability that the ball is drawn from the first bag.`,
+  `<p>Let:</p>
+  <ul>
+    <li>$E_1$: Event that Bag I is chosen.</li>
+    <li>$E_2$: Event that Bag II is chosen.</li>
+    <li>$A$: Event that the drawn ball is red.</li>
+  </ul>
+
+  <p><strong>Step 1: Prior Probabilities:</strong></p>
+  Since the bag is chosen at random:
+  $$P(E_1) = \\frac{1}{2}, \\quad P(E_2) = \\frac{1}{2}$$
+
+  <p><strong>Step 2: Likelihoods (Conditional Probabilities):</strong></p>
+  <ul>
+    <li>Bag I has 4 red, 4 black (8 balls total):
+      $$P(A|E_1) = \\frac{4}{8} = \\frac{1}{2}$$
+    </li>
+    <li>Bag II has 2 red, 6 black (8 balls total):
+      $$P(A|E_2) = \\frac{2}{8} = \\frac{1}{4}$$
+    </li>
+  </ul>
+
+  <p><strong>Step 3: Bayes' Theorem Formula:</strong></p>
+  We need to find $P(E_1|A)$:
+  $$P(E_1|A) = \\frac{P(E_1) \\cdot P(A|E_1)}{P(E_1) \\cdot P(A|E_1) + P(E_2) \\cdot P(A|E_2)}$$
+  Substitute the values:
+  $$P(E_1|A) = \\frac{\\frac{1}{2} \\times \\frac{1}{2}}{\\frac{1}{2} \\times \\frac{1}{2} + \\frac{1}{2} \\times \\frac{1}{4}} = \\frac{\\frac{1}{4}}{\\frac{1}{4} + \\frac{1}{8}} = \\frac{\\frac{1}{4}}{\\frac{2 + 1}{8}} = \\frac{1/4}{3/8} = \\frac{1}{4} \\times \\frac{8}{3} = \\mathbf{\\frac{2}{3}}$$`,
+  '4 Marks',
+  [
+    ['Defining events E1, E2, A and prior probabilities P(E1) = P(E2) = 1/2', '1 Mark'],
+    ['Computing likelihoods P(A|E1) = 1/2 and P(A|E2) = 1/4', '1 Mark'],
+    ['Writing Bayes\' theorem formula', '1 Mark'],
+    ['Evaluating fraction to get 2/3', '1 Mark']
+  ]
+));
+
+// Q8 (Ex 13.3 Q4 - Multiple Choice Examination Guess vs Know)
+questions.push(createQCard(
+  'c12m-ch13-q8',
+  'Q8',
+  'Exercise 13.3 (Verbatim)',
+  `In answering a question on a multiple choice test, a student either knows the answer or guesses. Let $\\frac{3}{4}$ be the probability that he knows the answer and $\\frac{1}{4}$ be the probability that he guesses. Assuming that a student who guesses at the answer will be correct with probability $\\frac{1}{4}$. What is the probability that the student knows the answer given that he answered it correctly?`,
+  `<p>Let:</p>
+  <ul>
+    <li>$E_1$: Event that the student knows the answer.</li>
+    <li>$E_2$: Event that the student guesses the answer.</li>
+    <li>$A$: Event that the student answers the question correctly.</li>
+  </ul>
+
+  <p><strong>Step 1: Given Probabilities:</strong></p>
+  <ul>
+    <li>Prior: $P(E_1) = \\frac{3}{4}, \\quad P(E_2) = \\frac{1}{4}$.</li>
+    <li>If the student knows the answer, he is guaranteed to answer correctly:
+      $$P(A|E_1) = 1$$
+    </li>
+    <li>If the student guesses, he is correct with probability $\\frac{1}{4}$:
+      $$P(A|E_2) = \\frac{1}{4}$$
+    </li>
+  </ul>
+
+  <p><strong>Step 2: Apply Bayes' Theorem:</strong></p>
+  We want to find $P(E_1|A)$:
+  $$P(E_1|A) = \\frac{P(E_1) P(A|E_1)}{P(E_1) P(A|E_1) + P(E_2) P(A|E_2)}$$
+  $$P(E_1|A) = \\frac{\\frac{3}{4} \\times 1}{\\left(\\frac{3}{4} \\times 1\\right) + \\left(\\frac{1}{4} \\times \\frac{1}{4}\\right)} = \\frac{\\frac{3}{4}}{\\frac{3}{4} + \\frac{1}{16}} = \\frac{\\frac{12}{16}}{\\frac{12 + 1}{16}} = \\frac{12/16}{13/16} = \\mathbf{\\frac{12}{13}}$$`,
+  '4 Marks',
+  [
+    ['Defining events E1 (knows), E2 (guesses) and A (correct answer)', '1 Mark'],
+    ['Identifying P(A|E1) = 1 and P(A|E2) = 1/4', '1 Mark'],
+    ['Setting up Bayes\' theorem formula', '1 Mark'],
+    ['Calculating final probability 12/13', '1 Mark']
+  ]
+));
+
+// Q9 (Ex 13.3 Q5, Q6 - Medical Lab Disease Diagnostic Test)
+questions.push(createQCard(
+  'c12m-ch13-q9',
+  'Q9',
+  'Exercise 13.3 (Verbatim)',
+  `A laboratory blood test is $99\\%$ effective in detecting a certain disease when it is in fact present. However, the test also yields a 'false positive' result for $0.5\\%$ of the healthy persons tested (i.e. if a healthy person is tested, then, with probability $0.005$, the test will imply he has the disease). If $0.1$ percent of the population actually has the disease, what is the probability that a person has the disease given that his test result is positive?`,
+  `<p>Let:</p>
+  <ul>
+    <li>$E_1$: Event that the person actually has the disease.</li>
+    <li>$E_2$: Event that the person does not have the disease (healthy).</li>
+    <li>$A$: Event that the blood test result is positive.</li>
+  </ul>
+
+  <p><strong>Step 1: Prior Probabilities:</strong></p>
+  Given: $0.1\\%$ of the population has the disease:
+  $$P(E_1) = \\frac{0.1}{100} = 0.001$$
+  $$P(E_2) = 1 - P(E_1) = 1 - 0.001 = 0.999$$
+
+  <p><strong>Step 2: Likelihoods:</strong></p>
+  <ul>
+    <li>Test is $99\\%$ effective when disease is present:
+      $$P(A|E_1) = \\frac{99}{100} = 0.99$$
+    </li>
+    <li>Test yields false positive for $0.5\\%$ of healthy individuals:
+      $$P(A|E_2) = \\frac{0.5}{100} = 0.005$$
+    </li>
+  </ul>
+
+  <p><strong>Step 3: Apply Bayes' Theorem:</strong></p>
+  We seek $P(E_1|A)$:
+  $$P(E_1|A) = \\frac{P(E_1) P(A|E_1)}{P(E_1) P(A|E_1) + P(E_2) P(A|E_2)}$$
+  $$P(E_1|A) = \\frac{(0.001)(0.99)}{(0.001)(0.99) + (0.999)(0.005)}$$
+  Multiply numerator and denominator by $100{,}000$:
+  $$= \\frac{100 \\times 0.99}{100 \\times 0.99 + 99.9 \\times 5} = \\frac{99}{99 + 4.995} = \\frac{99}{99 + 4.995} = \\frac{0.00099}{0.00099 + 0.004995}$$
+  $$= \\frac{0.00099}{0.005985} = \\frac{990}{5985}$$
+  Divide numerator and denominator by $45$:
+  $$\\frac{990 \\div 45}{5985 \\div 45} = \\mathbf{\\frac{22}{133} \\approx 0.1654 \\quad (16.54\\%)}$$`,
+  '5 Marks',
+  [
+    ['Defining events E1 (diseased), E2 (healthy) and A (positive test)', '1 Mark'],
+    ['P(E1) = 0.001, P(E2) = 0.999, P(A|E1) = 0.99, P(A|E2) = 0.005', '1.5 Marks'],
+    ['Bayes\' theorem formula setup', '1 Mark'],
+    ['Accurate arithmetic reduction to 22/133', '1.5 Marks']
+  ]
+));
+
+// Q10 (Ex 13.3 Q10 - Truth Teller Die Roll)
+questions.push(createQCard(
+  'c12m-ch13-q10',
+  'Q10',
+  'Exercise 13.3 (Verbatim)',
+  `A man is known to speak truth $3$ out of $4$ times. He throws a die and reports that it is a six. Find the probability that it is actually a six.`,
+  `<p>Let:</p>
+  <ul>
+    <li>$E_1$: Event that a six actually occurs on the die.</li>
+    <li>$E_2$: Event that a six does not occur on the die (i.e., any number from $\\{1, 2, 3, 4, 5\\}$ turns up).</li>
+    <li>$A$: Event that the man reports that it is a six.</li>
+  </ul>
+
+  <p><strong>Step 1: Prior Probabilities of Die:</strong></p>
+  $$P(E_1) = \\frac{1}{6}, \\quad P(E_2) = 1 - \\frac{1}{6} = \\frac{5}{6}$$
+
+  <p><strong>Step 2: Likelihoods of Reporting:</strong></p>
+  <ul>
+    <li>If six occurred ($E_1$), the man will report six if he speaks the truth:
+      $$P(A|E_1) = P(\\text{truth}) = \\frac{3}{4}$$
+    </li>
+    <li>If six did not occur ($E_2$), the man will report six if he lies:
+      $$P(A|E_2) = P(\\text{lie}) = 1 - \\frac{3}{4} = \\frac{1}{4}$$
+    </li>
+  </ul>
+
+  <p><strong>Step 3: Apply Bayes' Theorem:</strong></p>
+  $$P(E_1|A) = \\frac{P(E_1) P(A|E_1)}{P(E_1) P(A|E_1) + P(E_2) P(A|E_2)}$$
+  $$P(E_1|A) = \\frac{\\frac{1}{6} \\times \\frac{3}{4}}{\\left(\\frac{1}{6} \\times \\frac{3}{4}\\right) + \\left(\\frac{5}{6} \\times \\frac{1}{4}\\right)} = \\frac{\\frac{3}{24}}{\\frac{3}{24} + \\frac{5}{24}} = \\frac{3/24}{8/24} = \\mathbf{\\frac{3}{8}}$$`,
+  '4 Marks',
+  [
+    ['Defining events E1 (actually six) and E2 (not six)', '1 Mark'],
+    ['Assigning P(E1) = 1/6, P(E2) = 5/6, P(A|E1) = 3/4, P(A|E2) = 1/4', '1.5 Marks'],
+    ['Applying Bayes\' theorem formula and calculating 3/8', '1.5 Marks']
+  ]
+));
+
+// Q11 (Ex 13.3 Q7 - Insurance Drivers Accident Risk)
+questions.push(createQCard(
+  'c12m-ch13-q11',
+  'Q11',
+  'Exercise 13.3 (Verbatim)',
+  `An insurance company insured $2000$ scooter drivers, $4000$ car drivers and $6000$ truck drivers. The probability of an accident are $0.01, \\; 0.03$ and $0.15$ respectively. One of the insured persons meets with an accident. What is the probability that he is a scooter driver?`,
+  `<p>Let:</p>
+  <ul>
+    <li>$E_1$: Insured person is a scooter driver.</li>
+    <li>$E_2$: Insured person is a car driver.</li>
+    <li>$E_3$: Insured person is a truck driver.</li>
+    <li>$A$: Insured person meets with an accident.</li>
+  </ul>
+  Total drivers $= 2000 + 4000 + 6000 = 12000$.
+
+  <p><strong>Step 1: Prior Probabilities:</strong></p>
+  $$P(E_1) = \\frac{2000}{12000} = \\frac{1}{6}, \\quad P(E_2) = \\frac{4000}{12000} = \\frac{2}{6} = \\frac{1}{3}, \\quad P(E_3) = \\frac{6000}{12000} = \\frac{3}{6} = \\frac{1}{2}$$
+
+  <p><strong>Step 2: Accident Probabilities:</strong></p>
+  $$P(A|E_1) = 0.01 = \\frac{1}{100}, \\quad P(A|E_2) = 0.03 = \\frac{3}{100}, \\quad P(A|E_3) = 0.15 = \\frac{15}{100}$$
+
+  <p><strong>Step 3: Bayes' Theorem for Scooter Driver $P(E_1|A)$:</strong></p>
+  $$P(E_1|A) = \\frac{P(E_1) P(A|E_1)}{P(E_1) P(A|E_1) + P(E_2) P(A|E_2) + P(E_3) P(A|E_3)}$$
+  $$P(E_1|A) = \\frac{\\frac{1}{6} \\times \\frac{1}{100}}{\\left(\\frac{1}{6} \\times \\frac{1}{100}\\right) + \\left(\\frac{2}{6} \\times \\frac{3}{100}\\right) + \\left(\\frac{3}{6} \\times \\frac{15}{100}\\right)}$$
+  Multiply numerator and denominator by $600$:
+  $$P(E_1|A) = \\frac{1}{1 + 2(3) + 3(15)} = \\frac{1}{1 + 6 + 45} = \\mathbf{\\frac{1}{52}}$$`,
+  '4 Marks',
+  [
+    ['Defining events and priors P(E1) = 1/6, P(E2) = 2/6, P(E3) = 3/6', '1.5 Marks'],
+    ['Writing Bayes\' formula for 3 partitions', '1 Mark'],
+    ['Simplifying denominator 1 + 6 + 45 = 52 to obtain 1/52', '1.5 Marks']
+  ]
+));
+
+// Q12 (Ex 13.4 Q1, Q4 - Random Variables & Probability Distribution)
+questions.push(createQCard(
+  'c12m-ch13-q12',
+  'Q12',
+  'Exercise 13.4 (Verbatim)',
+  `(i) State which of the following are not probability distributions of a random variable. Give reasons for your answer:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(a) $X: 0, 1, 2$ with $P(X): 0.4, 0.4, 0.2$<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(b) $X: 0, 1, 2, 3, 4$ with $P(X): 0.1, 0.5, 0.2, -0.1, 0.3$<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(c) $Y: -1, 0, 1$ with $P(Y): 0.6, 0.1, 0.2$<br><br>
+  (ii) Find the probability distribution of number of heads in two tosses of a coin.`,
+  `<p><strong>(i) Validity of Probability Distributions:</strong></p>
+  Criteria: For a valid probability distribution, (1) $p_i \\ge 0$ for all $i$, and (2) $\\sum p_i = 1$.
+  <ol>
+    <li><strong>(a):</strong>
+      <br>$p_i \\ge 0$ for all $i$.
+      <br>$\\sum p_i = 0.4 + 0.4 + 0.2 = 1.0$.
+      <br>&rarr; <strong>Valid probability distribution</strong>.
+    </li>
+    <li><strong>(b):</strong>
+      <br>For $X = 3$, $P(X) = -0.1 < 0$.
+      <br>Since probability can never be negative, this is <strong>NOT a valid probability distribution</strong>.
+    </li>
+    <li><strong>(c):</strong>
+      <br>$\\sum P(Y) = 0.6 + 0.1 + 0.2 = 0.9 \\neq 1$.
+      <br>Since the sum of probabilities is not equal to $1$, this is <strong>NOT a valid probability distribution</strong>.
+    </li>
+  </ol>
+
+  <p><strong>(ii) Probability distribution of number of heads in two coin tosses:</strong></p>
+  Sample space: $S = \\{HH, HT, TH, TT\\}$, $n(S) = 4$.
+  <br>Let $X$ denote the number of heads. The possible values of $X$ are $0, 1, 2$.
+  <ul>
+    <li>$P(X = 0) = P(\\{TT\\}) = \\frac{1}{4}$</li>
+    <li>$P(X = 1) = P(\\{HT, TH\\}) = \\frac{2}{4} = \\frac{1}{2}$</li>
+    <li>$P(X = 2) = P(\\{HH\\}) = \\frac{1}{4}$</li>
+  </ul>
+  <table style="width:60%; border-collapse:collapse; margin:12px 0;">
+    <thead>
+      <tr style="background:#eef2ff;">
+        <th style="border:1px solid #c7d2fe; padding:8px;">$X$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">$0$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">$1$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">$2$</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center; font-weight:bold;">$P(X)$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$\\frac{1}{4}$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$\\frac{1}{2}$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$\\frac{1}{4}$</td>
+      </tr>
+    </tbody>
+  </table>`,
+  '4 Marks',
+  [
+    ['(i) Testing non-negativity and sum = 1 for all three cases with clear reasoning', '2 Marks'],
+    ['(ii) Identifying possible values of X: 0, 1, 2', '1 Mark'],
+    ['(ii) Calculating probabilities P(0)=1/4, P(1)=1/2, P(2)=1/4 and drawing table', '1 Mark']
+  ]
+));
+
+// Q13 (Ex 13.4 Q8, Q9 - Finding Constant k & Mean)
+questions.push(createQCard(
+  'c12m-ch13-q13',
+  'Q13',
+  'Exercise 13.4 (Verbatim)',
+  `A random variable $X$ has the following probability distribution:<br>
+  $$\\begin{array}{|c|c|c|c|c|c|c|c|c|}
+  \\hline
+  X & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\\\
+  \\hline
+  P(X) & 0 & k & 2k & 2k & 3k & k^2 & 2k^2 & 7k^2 + k \\\\
+  \\hline
+  \\end{array}$$
+  Determine:<br>
+  (i) $k$<br>
+  (ii) $P(X < 3)$<br>
+  (iii) $P(X \\ge 6)$<br>
+  (iv) $P(0 < X < 3)$`,
+  `<p><strong>(i) Finding $k$:</strong></p>
+  We know that for any probability distribution:
+  $$\\sum_{i=0}^7 P(X_i) = 1$$
+  $$0 + k + 2k + 2k + 3k + k^2 + 2k^2 + (7k^2 + k) = 1$$
+  $$(k^2 + 2k^2 + 7k^2) + (k + 2k + 2k + 3k + k) = 1$$
+  $$10k^2 + 9k = 1$$
+  $$10k^2 + 9k - 1 = 0$$
+  $$10k^2 + 10k - k - 1 = 0 \\implies 10k(k + 1) - 1(k + 1) = 0$$
+  $$(10k - 1)(k + 1) = 0 \\implies k = \\frac{1}{10} \\quad \\text{or} \\quad k = -1$$
+  Since probability cannot be negative, $k \\neq -1$.
+  <br>Therefore:
+  $$\\mathbf{k = \\frac{1}{10} = 0.1}$$
+
+  <p><strong>(ii) $P(X < 3)$:</strong></p>
+  $$P(X < 3) = P(X = 0) + P(X = 1) + P(X = 2) = 0 + k + 2k = 3k = 3(0.1) = \\mathbf{0.3 = \\frac{3}{10}}$$
+
+  <p><strong>(iii) $P(X \\ge 6)$:</strong></p>
+  $$P(X \\ge 6) = P(X = 6) + P(X = 7) = 2k^2 + (7k^2 + k) = 9k^2 + k$$
+  $$= 9\\left(\\frac{1}{10}\\right)^2 + \\frac{1}{10} = \\frac{9}{100} + \\frac{10}{100} = \\mathbf{\\frac{19}{100} = 0.19}$$
+
+  <p><strong>(iv) $P(0 < X < 3)$:</strong></p>
+  $$P(0 < X < 3) = P(X = 1) + P(X = 2) = k + 2k = 3k = \\mathbf{\\frac{3}{10} = 0.3}$$`,
+  '4 Marks',
+  [
+    ['(i) Setting sum of probabilities = 1: 10k² + 9k - 1 = 0 and solving k = 1/10', '1.5 Marks'],
+    ['(ii) P(X < 3) = 3k = 3/10', '1 Mark'],
+    ['(iii) P(X >= 6) = 9k² + k = 19/100', '1 Mark'],
+    ['(iv) P(0 < X < 3) = 3/10', '0.5 Mark']
+  ]
+));
+
+// Q14 (Ex 13.4 Q10, Q12 - Mean of Random Variable from Card Drawings)
+questions.push(createQCard(
+  'c12m-ch13-q14',
+  'Q14',
+  'Exercise 13.4 (Verbatim)',
+  `Two cards are drawn successively with replacement from a well-shuffled deck of $52$ cards. Find the probability distribution of the number of aces. Also find the mean of the number of aces.`,
+  `<p>Let $X$ denote the number of aces drawn in $2$ successive draws with replacement.</p>
+  <p>In a standard deck of $52$ cards, there are $4$ aces and $48$ non-aces.</p>
+  <ul>
+    <li>Probability of drawing an ace on any single draw:
+      $$p = \\frac{4}{52} = \\frac{1}{13}$$
+    </li>
+    <li>Probability of drawing a non-ace on any single draw:
+      $$q = 1 - p = 1 - \\frac{1}{13} = \\frac{12}{13}$$
+    </li>
+  </ul>
+  <p>Since drawings are with replacement, trials are independent.</p>
+  <p>The possible values of $X$ are $0, 1, 2$.</p>
+
+  <p><strong>Step 1: Compute Probabilities:</strong></p>
+  <ol>
+    <li>$P(X = 0) = q \\times q = \\left(\\frac{12}{13}\\right) \\left(\\frac{12}{13}\\right) = \\mathbf{\\frac{144}{169}}$</li>
+    <li>$P(X = 1) = pq + qp = 2pq = 2\\left(\\frac{1}{13}\\right)\\left(\\frac{12}{13}\\right) = \\mathbf{\\frac{24}{169}}$</li>
+    <li>$P(X = 2) = p \\times p = \\left(\\frac{1}{13}\\right) \\left(\\frac{1}{13}\\right) = \\mathbf{\\frac{1}{169}}$</li>
+  </ol>
+  <p><em>Check:</em> $\\sum P(X) = \\frac{144 + 24 + 1}{169} = \\frac{169}{169} = 1$.</p>
+
+  <p><strong>Probability Distribution Table:</strong></p>
+  <table style="width:60%; border-collapse:collapse; margin:12px 0;">
+    <thead>
+      <tr style="background:#eef2ff;">
+        <th style="border:1px solid #c7d2fe; padding:8px;">$X$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">$0$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">$1$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">$2$</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center; font-weight:bold;">$P(X)$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$\\frac{144}{169}$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$\\frac{24}{169}$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$\\frac{1}{169}$</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Step 2: Mean (Expectation) of $X$:</strong></p>
+  $$\\mu = E(X) = \\sum_{i=1}^3 x_i P(x_i)$$
+  $$\\mu = 0 \\left(\\frac{144}{169}\\right) + 1 \\left(\\frac{24}{169}\\right) + 2 \\left(\\frac{1}{169}\\right) = 0 + \\frac{24}{169} + \\frac{2}{169} = \\mathbf{\\frac{26}{169} = \\frac{2}{13}}$$
+  <p><em>(Check with formula for binomial expectation: $\\mu = n p = 2 \\times \\frac{1}{13} = \\frac{2}{13}$. Verified.)</em></p>`,
+  '4 Marks',
+  [
+    ['Determining probabilities of single trials: p = 1/13, q = 12/13', '1 Mark'],
+    ['Evaluating P(0) = 144/169, P(1) = 24/169, P(2) = 1/169 and table', '1.5 Marks'],
+    ['Calculating expectation E(X) = sum x_i P(x_i) = 2/13', '1.5 Marks']
+  ]
+));
+
+saveChapter(
+  13,
+  'Probability',
+  svgDiagram,
+  'NCERT Exercises 13.1 to 13.4 (14 Verbatim Core Questions)',
+  questions,
+  ''
+);

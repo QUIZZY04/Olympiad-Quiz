@@ -1,0 +1,782 @@
+<section class="chapter-section" id="c12m-ch6">
+  <div class="chapter-header">
+    <div class="ch-badge" style="background:#4f46e5;">6</div>
+    <div class="chapter-header-info">
+      <div class="ch-category" style="color:#4f46e5;">CBSE Class 12 Mathematics &bull; Chapter 6</div>
+      <h2>Application of Derivatives</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 12 Verbatim Questions with Official CBSE Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+<div class="chem-card" style="margin-bottom:24px; padding:20px; background:#f5f3ff; border:1px solid #ddd6fe; border-radius:12px;">
+  <h4 style="margin:0 0 12px 0; color:#4f46e5; font-size:1.05rem;">📐 Mathematical Reference: Rates of Change, Monotonicity & Maxima-Minima Optimization</h4>
+  <svg viewBox="0 0 880 260" style="width:100%; max-width:880px; height:auto; display:block; margin:0 auto; background:white; border-radius:8px; border:1px solid #c7d2fe;">
+    <!-- Panel 1: Rate of Change -->
+    <rect x="20" y="20" width="260" height="220" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+    <text x="150" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#3730a3" text-anchor="middle">Rate of Change of Quantities</text>
+    <line x1="35" y1="56" x2="265" y2="56" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="35" y="80" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">Instantaneous Rate:</text>
+    <text x="35" y="98" font-family="sans-serif" font-size="11" fill="#334155">$\frac{dy}{dt} = \frac{dy}{dx} \cdot \frac{dx}{dt}$</text>
+    <text x="35" y="125" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">Key Formulae:</text>
+    <text x="35" y="145" font-family="sans-serif" font-size="10.5" fill="#334155">&bull; Sphere: $V = \frac{4}{3}\pi r^3, \; S = 4\pi r^2$</text>
+    <text x="35" y="165" font-family="sans-serif" font-size="10.5" fill="#334155">&bull; Cone: $V = \frac{1}{3}\pi r^2 h$</text>
+    <text x="35" y="185" font-family="sans-serif" font-size="10.5" fill="#334155">&bull; Cylinder: $V = \pi r^2 h$</text>
+    <text x="35" y="210" font-family="sans-serif" font-size="10.5" font-weight="bold" fill="#047857">Units: $\text{cm}^3/\text{s}$ for volume, $\text{cm}^2/\text{s}$ for area</text>
+
+    <!-- Panel 2: Monotonicity -->
+    <rect x="310" y="20" width="260" height="220" rx="10" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="440" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#5b21b6" text-anchor="middle">Increasing & Decreasing</text>
+    <line x1="325" y1="56" x2="555" y2="56" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="325" y="80" font-family="sans-serif" font-size="11" font-weight="bold" fill="#6d28d9">Strictly Increasing on $(a, b)$:</text>
+    <text x="325" y="98" font-family="sans-serif" font-size="11" fill="#334155">$f'(x) > 0 \quad \forall x \in (a, b)$</text>
+    <text x="325" y="125" font-family="sans-serif" font-size="11" font-weight="bold" fill="#6d28d9">Strictly Decreasing on $(a, b)$:</text>
+    <text x="325" y="145" font-family="sans-serif" font-size="11" fill="#334155">$f'(x) < 0 \quad \forall x \in (a, b)$</text>
+    <text x="325" y="175" font-family="sans-serif" font-size="11" font-weight="bold" fill="#6d28d9">Method of Intervals:</text>
+    <text x="325" y="195" font-family="sans-serif" font-size="10.5" fill="#1e293b">1. Find critical points ($f'(x) = 0$)</text>
+    <text x="325" y="215" font-family="sans-serif" font-size="10.5" fill="#1e293b">2. Test signs in each disjoint interval</text>
+
+    <!-- Panel 3: Second Derivative Test & Optimization -->
+    <rect x="600" y="20" width="260" height="220" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="730" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46" text-anchor="middle">Maxima & Minima Optimization</text>
+    <line x1="615" y1="56" x2="845" y2="56" stroke="#10b981" stroke-width="1.5"/>
+    <text x="615" y="80" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">Second Derivative Test at $c$:</text>
+    <text x="615" y="98" font-family="sans-serif" font-size="10.5" fill="#334155">If $f'(c) = 0$ and $f''(c) < 0 \implies$ <strong>Local Maxima</strong></text>
+    <text x="615" y="118" font-family="sans-serif" font-size="10.5" fill="#334155">If $f'(c) = 0$ and $f''(c) > 0 \implies$ <strong>Local Minima</strong></text>
+    <text x="615" y="145" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">Absolute Max/Min on $[a, b]$:</text>
+    <text x="615" y="165" font-family="sans-serif" font-size="10.5" fill="#334155">Evaluate $f(x)$ at critical points AND</text>
+    <text x="615" y="185" font-family="sans-serif" font-size="10.5" fill="#334155">at boundaries $x = a$ and $x = b$.</text>
+    <text x="615" y="210" font-family="sans-serif" font-size="10.5" font-weight="bold" fill="#047857">Take greatest & least values.</text>
+  </svg>
+</div>
+
+  <div class="ex-div" style="font-size:0.88rem; font-weight:700; color:#334155; margin-bottom:16px; padding:8px 14px; background:#eef2ff; border-radius:8px; border-left:4px solid #4f46e5;">NCERT Exercises 6.1 to 6.3 (12 Verbatim Core Questions)</div>
+
+  <div class="questions-container">
+    
+  <!-- c12m-ch6-q1 (Exercise 6.1 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q1">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q1')">
+      <div class="q-num" style="background:#4f46e5;">Q1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1 (Verbatim)</span><br>
+        (i) Find the rate of change of the area of a circle with respect to its radius $r$ when $r = 3\text{ cm}$ and $r = 4\text{ cm}$.<br>
+  (ii) The volume of a cube is increasing at the rate of $8\text{ cm}^3/\text{s}$. How fast is the surface area increasing when the length of an edge is $12\text{ cm}$?
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) Rate of change of area of circle:</strong></p>
+  Area of circle $A = \pi r^2$.
+  $$\frac{dA}{dr} = \frac{d}{dr}(\pi r^2) = 2\pi r$$
+  <ul>
+    <li>When $r = 3\text{ cm}$:
+      $$\frac{dA}{dr} = 2\pi(3) = \mathbf{6\pi\text{ cm}^2/\text{cm}}$$
+    </li>
+    <li>When $r = 4\text{ cm}$:
+      $$\frac{dA}{dr} = 2\pi(4) = \mathbf{8\pi\text{ cm}^2/\text{cm}}$$
+    </li>
+  </ul>
+
+  <p><strong>(ii) Rate of increase of surface area of cube:</strong></p>
+  Let $x$ be the edge length, $V$ the volume, and $S$ the surface area of the cube.
+  $$V = x^3 \quad \text{and} \quad S = 6x^2$$
+  Given: $\frac{dV}{dt} = 8\text{ cm}^3/\text{s}$.
+  <ol>
+    <li>Differentiate $V$ with respect to time $t$:
+      $$\frac{dV}{dt} = 3x^2 \frac{dx}{dt}$$
+      $$8 = 3x^2 \frac{dx}{dt} \implies \frac{dx}{dt} = \frac{8}{3x^2}$$
+    </li>
+    <li>Differentiate surface area $S = 6x^2$ with respect to $t$:
+      $$\frac{dS}{dt} = 12x \frac{dx}{dt}$$
+    </li>
+    <li>Substitute $\frac{dx}{dt} = \frac{8}{3x^2}$:
+      $$\frac{dS}{dt} = 12x \left(\frac{8}{3x^2}\right) = \frac{32}{x}$$
+    </li>
+    <li>When edge $x = 12\text{ cm}$:
+      $$\frac{dS}{dt} = \frac{32}{12} = \frac{8}{3}\text{ cm}^2/\text{s}$$
+    </li>
+  </ol>
+  <p><strong>Final Answer:</strong> The surface area is increasing at <strong>$\frac{8}{3}\text{ cm}^2/\text{s}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Formula dA/dr = 2πr and answers 6π and 8π cm²/cm</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Relate dV/dt to dx/dt: dx/dt = 8/(3x²)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Evaluate dS/dt = 12x(dx/dt) at x = 12 cm yielding 8/3 cm²/s</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q2 (Exercise 6.1 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q2">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q2')">
+      <div class="q-num" style="background:#4f46e5;">Q2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1 (Verbatim)</span><br>
+        (i) A stone is dropped into a quiet lake and waves move in circles at the speed of $5\text{ cm/s}$. At the instant when the radius of the circular wave is $8\text{ cm}$, how fast is the enclosed area increasing?<br>
+  (ii) The length $x$ of a rectangle is decreasing at the rate of $5\text{ cm/minute}$ and the width $y$ is increasing at the rate of $4\text{ cm/minute}$. When $x = 8\text{ cm}$ and $y = 6\text{ cm}$, find the rates of change of: (a) the perimeter, and (b) the area of the rectangle.
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) Circular Waves:</strong></p>
+  Given: $\frac{dr}{dt} = 5\text{ cm/s}$ and $r = 8\text{ cm}$.
+  <br>Area of circular wave $A = \pi r^2$.
+  $$\frac{dA}{dt} = \frac{d}{dt}(\pi r^2) = 2\pi r \frac{dr}{dt}$$
+  Substitute $r = 8$ and $\frac{dr}{dt} = 5$:
+  $$\frac{dA}{dt} = 2\pi (8)(5) = \mathbf{80\pi\text{ cm}^2/\text{s}}$$
+
+  <p><strong>(ii) Rectangle Dimensions:</strong></p>
+  Given: $\frac{dx}{dt} = -5\text{ cm/min}$ (decreasing), $\frac{dy}{dt} = +4\text{ cm/min}$ (increasing), $x = 8\text{ cm}$, $y = 6\text{ cm}$.
+  <ol>
+    <li><strong>(a) Rate of change of Perimeter $P = 2(x + y)$:</strong>
+      $$\frac{dP}{dt} = 2\left( \frac{dx}{dt} + \frac{dy}{dt} \right) = 2(-5 + 4) = 2(-1) = \mathbf{-2\text{ cm/min}}$$
+      The perimeter is decreasing at the rate of $2\text{ cm/minute}$.
+    </li>
+    <li><strong>(b) Rate of change of Area $A = xy$:</strong>
+      $$\frac{dA}{dt} = x\frac{dy}{dt} + y\frac{dx}{dt}$$
+      Substitute given values:
+      $$\frac{dA}{dt} = (8)(4) + (6)(-5) = 32 - 30 = \mathbf{2\text{ cm}^2/\text{min}}$$
+      The area is increasing at the rate of $2\text{ cm}^2/\text{minute}$.
+    </li>
+  </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Formula dA/dt = 2πr(dr/dt) and evaluation: 80π cm²/s</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(ii)(a) Differentiating perimeter: dP/dt = -2 cm/min (decreasing)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii)(b) Product rule for area: dA/dt = 2 cm²/min (increasing)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q3 (Exercise 6.1 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q3">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q3')">
+      <div class="q-num" style="background:#4f46e5;">Q3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.1 (Verbatim)</span><br>
+        (i) A ladder $5\text{ m}$ long is leaning against a wall. The bottom of the ladder is pulled along the ground, away from the wall, at the rate of $2\text{ cm/s}$. How fast is its height on the wall decreasing when the foot of the ladder is $4\text{ m}$ away from the wall?<br>
+  (ii) Sand is pouring from a pipe at the rate of $12\text{ cm}^3/\text{s}$. The falling sand forms a cone on the ground in such a way that the height of the cone is always one-sixth of the radius of the base. How fast is the height of the sand cone increasing when the height is $4\text{ cm}$?
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) Ladder Problem:</strong></p>
+  Let the foot of the ladder be at distance $x$ from the wall, and height on the wall be $y$.
+  <br>Length of ladder $= 5\text{ m}$.
+  <br>By Pythagoras theorem:
+  $$x^2 + y^2 = 5^2 = 25$$
+  Given: $\frac{dx}{dt} = 2\text{ cm/s} = 0.02\text{ m/s}$.
+  <br>When $x = 4\text{ m}$:
+  $$4^2 + y^2 = 25 \implies y^2 = 9 \implies y = 3\text{ m}$$
+  Differentiating $x^2 + y^2 = 25$ with respect to $t$:
+  $$2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0 \implies x \frac{dx}{dt} + y \frac{dy}{dt} = 0$$
+  $$\frac{dy}{dt} = -\frac{x}{y} \frac{dx}{dt}$$
+  Substitute $x = 4\text{ m}, y = 3\text{ m}, \frac{dx}{dt} = 2\text{ cm/s}$:
+  $$\frac{dy}{dt} = -\frac{4}{3}(2) = -\frac{8}{3}\text{ cm/s}$$
+  <p><strong>Answer:</strong> The height on the wall is decreasing at the rate of <strong>$\frac{8}{3}\text{ cm/s}$</strong>.</p>
+
+  <p><strong>(ii) Sand Pouring Cone:</strong></p>
+  Given: $\frac{dV}{dt} = 12\text{ cm}^3/\text{s}$ and $h = \frac{1}{6}r \implies r = 6h$.
+  <br>Volume of cone:
+  $$V = \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi (6h)^2 h = \frac{1}{3}\pi (36h^2) h = 12\pi h^3$$
+  Differentiating with respect to $t$:
+  $$\frac{dV}{dt} = 12\pi (3h^2) \frac{dh}{dt} = 36\pi h^2 \frac{dh}{dt}$$
+  Substitute $\frac{dV}{dt} = 12$ and $h = 4\text{ cm}$:
+  $$12 = 36\pi (4)^2 \frac{dh}{dt} = 36\pi (16) \frac{dh}{dt} = 576\pi \frac{dh}{dt}$$
+  $$\frac{dh}{dt} = \frac{12}{576\pi} = \mathbf{\frac{1}{48\pi}\text{ cm/s}}$$
+  <p><strong>Answer:</strong> The height is increasing at <strong>$\frac{1}{48\pi}\text{ cm/s}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Relation x² + y² = 25 and differentiating to get dy/dt = -(x/y)(dx/dt)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(i) Calculation at x = 4, y = 3 giving height decrease rate of 8/3 cm/s</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Substituting r = 6h to express V = 12πh³</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Differentiating and substituting h = 4 cm to get dh/dt = 1/(48π) cm/s</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q4 (Exercise 6.2 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q4">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q4')">
+      <div class="q-num" style="background:#4f46e5;">Q4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2 (Verbatim)</span><br>
+        (i) Show that the function given by $f(x) = e^{2x}$ is strictly increasing on $\mathbb{R}$.<br>
+  (ii) Show that the function given by $f(x) = \sin x$ is:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(a) strictly increasing in $\left(0, \frac{\pi}{2}\right)$<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(b) strictly decreasing in $\left(\frac{\pi}{2}, \pi\right)$<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(c) neither increasing nor decreasing in $(0, \pi)$
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) $f(x) = e^{2x}$:</strong></p>
+  Differentiating with respect to $x$:
+  $$f'(x) = \frac{d}{dx}(e^{2x}) = 2e^{2x}$$
+  We know that the exponential function $e^z > 0$ for all real numbers $z \in \mathbb{R}$.
+  <br>Therefore, for all $x \in \mathbb{R}$:
+  $$f'(x) = 2e^{2x} > 0$$
+  Hence, $f(x)$ is <strong>strictly increasing on $\mathbb{R}$</strong>.
+
+  <p><strong>(ii) $f(x) = \sin x$:</strong></p>
+  $$f'(x) = \cos x$$
+  <ol>
+    <li><strong>In interval $\left(0, \frac{\pi}{2}\right)$ (First Quadrant):</strong>
+      <br>Cosine is positive in the first quadrant: $\cos x > 0$.
+      <br>Thus, $f'(x) > 0 \implies f$ is <strong>strictly increasing in $\left(0, \frac{\pi}{2}\right)$</strong>.
+    </li>
+    <li><strong>In interval $\left(\frac{\pi}{2}, \pi\right)$ (Second Quadrant):</strong>
+      <br>Cosine is negative in the second quadrant: $\cos x < 0$.
+      <br>Thus, $f'(x) < 0 \implies f$ is <strong>strictly decreasing in $\left(\frac{\pi}{2}, \pi\right)$</strong>.
+    </li>
+    <li><strong>In interval $(0, \pi)$:</strong>
+      <br>Since $f'(x) > 0$ on $\left(0, \frac{\pi}{2}\right)$ and $f'(x) < 0$ on $\left(\frac{\pi}{2}, \pi\right)$, $f'(x)$ does not maintain a constant sign across the entire interval $(0, \pi)$.
+      <br>Hence, $f$ is <strong>neither increasing nor decreasing in $(0, \pi)$</strong>.
+    </li>
+  </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Derivative f'(x) = 2e^(2x) > 0 for all x in R proving strict increase</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(ii)(a) First quadrant cos x > 0 => strictly increasing</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii)(b) Second quadrant cos x < 0 => strictly decreasing</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii)(c) Sign change across (0, π) => neither increasing nor decreasing</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q5 (Exercise 6.2 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q5">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q5')">
+      <div class="q-num" style="background:#4f46e5;">Q5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2 (Verbatim)</span><br>
+        Find the intervals in which the function $f$ given by $f(x) = 2x^3 - 3x^2 - 36x + 7$ is:<br>
+  (a) strictly increasing<br>
+  (b) strictly decreasing
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p>Given: $f(x) = 2x^3 - 3x^2 - 36x + 7$.</p>
+  <p><strong>Step 1: Compute $f'(x)$:</strong></p>
+  $$f'(x) = 6x^2 - 6x - 36 = 6(x^2 - x - 6) = 6(x - 3)(x + 2)$$
+
+  <p><strong>Step 2: Find critical points ($f'(x) = 0$):</strong></p>
+  $$6(x - 3)(x + 2) = 0 \implies x = 3, \quad x = -2$$
+  These critical points partition the real line $(-\infty, \infty)$ into three disjoint intervals:
+  $$(-\infty, -2), \quad (-2, 3), \quad (3, \infty)$$
+
+  <p><strong>Step 3: Test signs of $f'(x)$ in each interval:</strong></p>
+  <table style="width:100%; border-collapse:collapse; margin:12px 0;">
+    <thead>
+      <tr style="background:#eef2ff;">
+        <th style="border:1px solid #c7d2fe; padding:8px;">Interval</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">Sign of $(x - 3)$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">Sign of $(x + 2)$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">Sign of $f'(x)$</th>
+        <th style="border:1px solid #c7d2fe; padding:8px;">Nature of function $f$</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$(-\infty, -2)$ (e.g. $x=-3$)</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$-$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$-$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center; font-weight:bold; color:#047857;">$+$ ($> 0$)</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; font-weight:bold; color:#047857;">Strictly Increasing</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$(-2, 3)$ (e.g. $x=0$)</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$-$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$+$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center; font-weight:bold; color:#dc2626;">$-$ ($< 0$)</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; font-weight:bold; color:#dc2626;">Strictly Decreasing</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$(3, \infty)$ (e.g. $x=4$)</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$+$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center;">$+$</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; text-align:center; font-weight:bold; color:#047857;">$+$ ($> 0$)</td>
+        <td style="border:1px solid #e2e8f0; padding:8px; font-weight:bold; color:#047857;">Strictly Increasing</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Conclusion:</strong></p>
+  <ul>
+    <li>(a) $f(x)$ is strictly increasing in <strong>$(-\infty, -2) \cup (3, \infty)$</strong>.</li>
+    <li>(b) $f(x)$ is strictly decreasing in <strong>$(-2, 3)$</strong>.</li>
+  </ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Factoring f'(x) = 6(x - 3)(x + 2)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Identifying critical points x = -2, 3 and sub-intervals</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Testing sign in each interval with table/work</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final accurate interval statements</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q6 (Exercise 6.2 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q6">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q6')">
+      <div class="q-num" style="background:#4f46e5;">Q6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.2 (Verbatim)</span><br>
+        (i) Find the intervals in which the function $f$ given by $f(x) = \sin 3x, \; x \in \left[0, \frac{\pi}{2}\right]$ is:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(a) strictly increasing<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(b) strictly decreasing<br>
+  (ii) Which of the following functions are strictly decreasing on $\left(0, \frac{\pi}{2}\right)$?<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;(A) $\cos x$ &nbsp;&nbsp;&nbsp;&nbsp; (B) $\cos 2x$ &nbsp;&nbsp;&nbsp;&nbsp; (C) $\cos 3x$ &nbsp;&nbsp;&nbsp;&nbsp; (D) $\tan x$
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) $f(x) = \sin 3x$ on $\left[0, \frac{\pi}{2}\right]$:</strong></p>
+  $$f'(x) = 3\cos 3x$$
+  For critical points, set $f'(x) = 0$:
+  $$3\cos 3x = 0 \implies \cos 3x = 0$$
+  Since $x \in \left[0, \frac{\pi}{2}\right]$, we have $3x \in \left[0, \frac{3\pi}{2}\right]$.
+  $$\cos 3x = 0 \implies 3x = \frac{\pi}{2} \implies x = \frac{\pi}{6}$$
+  This divides the interval into $\left(0, \frac{\pi}{6}\right)$ and $\left(\frac{\pi}{6}, \frac{\pi}{2}\right)$.
+  <ol>
+    <li>For $x \in \left(0, \frac{\pi}{6}\right) \implies 3x \in \left(0, \frac{\pi}{2}\right)$ (Quadrant I):
+      <br>$\cos 3x > 0 \implies f'(x) > 0$.
+      <br>Hence, $f(x)$ is <strong>strictly increasing in $\left[0, \frac{\pi}{6}\right]$</strong>.
+    </li>
+    <li>For $x \in \left(\frac{\pi}{6}, \frac{\pi}{2}\right) \implies 3x \in \left(\frac{\pi}{2}, \frac{3\pi}{2}\right)$ (Quadrants II & III):
+      <br>$\cos 3x < 0 \implies f'(x) < 0$.
+      <br>Hence, $f(x)$ is <strong>strictly decreasing in $\left[\frac{\pi}{6}, \frac{\pi}{2}\right]$</strong>.
+    </li>
+  </ol>
+
+  <p><strong>(ii) Testing decreasing nature on $\left(0, \frac{\pi}{2}\right)$:</strong></p>
+  <ul>
+    <li>(A) $f_1(x) = \cos x \implies f_1'(x) = -\sin x < 0$ on $(0, \pi/2)$. &rarr; <strong>Strictly decreasing</strong>.</li>
+    <li>(B) $f_2(x) = \cos 2x \implies f_2'(x) = -2\sin 2x$.
+      <br>For $x \in (0, \pi/2) \implies 2x \in (0, \pi) \implies \sin 2x > 0 \implies f_2'(x) < 0$. &rarr; <strong>Strictly decreasing</strong>.
+    </li>
+    <li>(C) $f_3(x) = \cos 3x \implies f_3'(x) = -3\sin 3x$.
+      <br>For $x \in (0, \pi/2) \implies 3x \in (0, 3\pi/2)$. $\sin 3x$ changes sign at $3x = \pi \implies x = \pi/3$. &rarr; <strong>Neither</strong>.
+    </li>
+    <li>(D) $f_4(x) = \tan x \implies f_4'(x) = \sec^2 x > 0$. &rarr; <strong>Strictly increasing</strong>.</li>
+  </ul>
+  <p><strong>Answer:</strong> Both <strong>(A) $\cos x$</strong> and <strong>(B) $\cos 2x$</strong> are strictly decreasing on $\left(0, \frac{\pi}{2}\right)$.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Derivative f'(x) = 3 cos 3x and finding critical point x = π/6</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(i) Sign analysis in [0, π/6] and [π/6, π/2]</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Derivatives and sign evaluation confirming (A) and (B)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q7 (Exercise 6.3 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q7">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q7')">
+      <div class="q-num" style="background:#4f46e5;">Q7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3 (Verbatim)</span><br>
+        Find the maximum and minimum values, if any, of the following functions given by:<br>
+  (i) $f(x) = (2x - 1)^2 + 3$<br>
+  (ii) $f(x) = 9x^2 + 12x + 2$<br>
+  (iii) $f(x) = -|x + 1| + 3$<br>
+  (iv) $g(x) = x^3 + 1$
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) $f(x) = (2x - 1)^2 + 3$:</strong></p>
+  Since the square of any real number is non-negative:
+  $$(2x - 1)^2 \ge 0 \quad \forall x \in \mathbb{R}$$
+  $$(2x - 1)^2 + 3 \ge 3 \implies f(x) \ge 3$$
+  The minimum value occurs when $2x - 1 = 0 \implies x = \frac{1}{2}$, giving $f(1/2) = 3$.
+  <br>Since $(2x - 1)^2$ can be made arbitrarily large as $x \to \pm\infty$, there is <strong>no maximum value</strong>.
+  <br><strong>Verdict:</strong> Minimum value $= 3$ (at $x = 1/2$); No maximum value.
+
+  <p><strong>(ii) $f(x) = 9x^2 + 12x + 2$:</strong></p>
+  Completing the square:
+  $$f(x) = (3x)^2 + 2(3x)(2) + 4 - 2 = (3x + 2)^2 - 2$$
+  Since $(3x + 2)^2 \ge 0$, we have $f(x) \ge -2$.
+  <br>Minimum value occurs when $3x + 2 = 0 \implies x = -\frac{2}{3}$, giving $f(-2/3) = -2$.
+  <br><strong>Verdict:</strong> Minimum value $= -2$ (at $x = -2/3$); No maximum value.
+
+  <p><strong>(iii) $f(x) = -|x + 1| + 3$:</strong></p>
+  Since $|x + 1| \ge 0 \implies -|x + 1| \le 0$.
+  $$-|x + 1| + 3 \le 3 \implies f(x) \le 3$$
+  Maximum value occurs when $x + 1 = 0 \implies x = -1$, giving $f(-1) = 3$.
+  <br><strong>Verdict:</strong> Maximum value $= 3$ (at $x = -1$); No minimum value.
+
+  <p><strong>(iv) $g(x) = x^3 + 1$:</strong></p>
+  $g'(x) = 3x^2$. Critical point: $3x^2 = 0 \implies x = 0$.
+  <br>For $x < 0$, $g'(x) > 0$. For $x > 0$, $g'(x) > 0$.
+  <br>$g'(x)$ does not change sign as $x$ increases through $0$. Hence, $x = 0$ is an <strong>inflection point</strong>.
+  <br>As $x \to \infty$, $g(x) \to \infty$; as $x \to -\infty$, $g(x) \to -\infty$.
+  <br><strong>Verdict:</strong> Neither maximum value nor minimum value exists.
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Algebraic completion yielding min = 3 and no max</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Completing the square (3x+2)² - 2 giving min = -2</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(iii) Absolute value inequality yielding max = 3</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(iv) Derivative test demonstrating point of inflection and no extrema</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q8 (Exercise 6.3 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q8">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q8')">
+      <div class="q-num" style="background:#4f46e5;">Q8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3 (Verbatim)</span><br>
+        (i) Find all points of local maxima and local minima of the function $f$ given by $f(x) = 2x^3 - 6x^2 + 6x + 5$.<br>
+  (ii) Find the absolute maximum value and the absolute minimum value of the function $f$ given by $f(x) = 2x^3 - 15x^2 + 36x + 1$ on the interval $[1, 5]$.
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) Local Extrema of $f(x) = 2x^3 - 6x^2 + 6x + 5$:</strong></p>
+  <ol>
+    <li>$f'(x) = 6x^2 - 12x + 6 = 6(x^2 - 2x + 1) = 6(x - 1)^2$.</li>
+    <li>Critical points: $f'(x) = 0 \implies 6(x - 1)^2 = 0 \implies x = 1$.</li>
+    <li>First derivative test:
+      <br>For $x < 1$: $(x - 1)^2 > 0 \implies f'(x) > 0$.
+      <br>For $x > 1$: $(x - 1)^2 > 0 \implies f'(x) > 0$.
+      <br>Since $f'(x)$ does not change sign as $x$ increases through $1$, $x = 1$ is neither a point of local maxima nor a point of local minima.
+    </li>
+  </ol>
+  <p><strong>Conclusion:</strong> $x = 1$ is a <strong>point of inflection</strong>. The function has <strong>no local maxima and no local minima</strong>.</p>
+
+  <p><strong>(ii) Absolute Extrema of $f(x) = 2x^3 - 15x^2 + 36x + 1$ on $[1, 5]$:</strong></p>
+  <ol>
+    <li>Find critical points in $(1, 5)$:
+      $$f'(x) = 6x^2 - 30x + 36 = 6(x^2 - 5x + 6) = 6(x - 2)(x - 3)$$
+      $$f'(x) = 0 \implies x = 2, \quad x = 3 \quad (\text{both lie in } [1, 5])$$
+    </li>
+    <li>Evaluate $f(x)$ at critical points ($x = 2, 3$) and end points ($x = 1, 5$):
+      <ul>
+        <li>$f(1) = 2(1)^3 - 15(1)^2 + 36(1) + 1 = 2 - 15 + 36 + 1 = 24$</li>
+        <li>$f(2) = 2(8) - 15(4) + 36(2) + 1 = 16 - 60 + 72 + 1 = 29$</li>
+        <li>$f(3) = 2(27) - 15(9) + 36(3) + 1 = 54 - 135 + 108 + 1 = 28$</li>
+        <li>$f(5) = 2(125) - 15(25) + 36(5) + 1 = 250 - 375 + 180 + 1 = 56$</li>
+      </ul>
+    </li>
+  </ol>
+  <p>Comparing the values:</p>
+  <ul>
+    <li><strong>Absolute Maximum Value:</strong> $\mathbf{56}$ (at $x = 5$)</li>
+    <li><strong>Absolute Minimum Value:</strong> $\mathbf{24}$ (at $x = 1$)</li>
+  </ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Factoring f'(x) = 6(x-1)² and establishing point of inflection at x = 1</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Finding critical points x = 2, 3 inside [1, 5]</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Calculating f(1)=24, f(2)=29, f(3)=28, f(5)=56</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Identifying Absolute Max = 56 and Absolute Min = 24</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q9 (Exercise 6.3 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q9">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q9')">
+      <div class="q-num" style="background:#4f46e5;">Q9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3 (Verbatim)</span><br>
+        (i) Find two numbers whose sum is $24$ and whose product is as large as possible.<br>
+  (ii) Find two positive numbers $x$ and $y$ such that $x + y = 60$ and $xy^3$ is maximum.
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>(i) Sum is 24, maximum product:</strong></p>
+  Let the two numbers be $x$ and $y$. Given $x + y = 24 \implies y = 24 - x$.
+  <br>Product function:
+  $$P(x) = x y = x(24 - x) = 24x - x^2$$
+  <ol>
+    <li>Differentiate with respect to $x$:
+      $$P'(x) = 24 - 2x$$
+    </li>
+    <li>Critical points: $P'(x) = 0 \implies 24 - 2x = 0 \implies x = 12$.</li>
+    <li>Second derivative test:
+      $$P''(x) = -2 < 0$$
+      Since $P''(12) = -2 < 0$, $P(x)$ has a <strong>local maximum</strong> at $x = 12$.
+    </li>
+    <li>Value of $y$: $y = 24 - 12 = 12$.</li>
+  </ol>
+  <p><strong>Answer:</strong> The two numbers are <strong>$12$ and $12$</strong> (Maximum product $= 144$).</p>
+
+  <p><strong>(ii) $x + y = 60$ and $xy^3$ is maximum ($x, y > 0$):</strong></p>
+  Given $x = 60 - y$.
+  <br>Function to maximize:
+  $$F(y) = (60 - y) y^3 = 60y^3 - y^4$$
+  <ol>
+    <li>Differentiate with respect to $y$:
+      $$F'(y) = 180y^2 - 4y^3 = 4y^2(45 - y)$$
+    </li>
+    <li>Critical points ($F'(y) = 0$):
+      <br>Since $y > 0$, $4y^2 \neq 0 \implies 45 - y = 0 \implies y = 45$.
+    </li>
+    <li>Second derivative test:
+      $$F''(y) = 360y - 12y^2$$
+      At $y = 45$:
+      $$F''(45) = 360(45) - 12(45)^2 = 45[360 - 540] = 45(-180) = -8100 < 0$$
+      Since $F''(45) < 0$, $F(y)$ attains a <strong>maximum</strong> at $y = 45$.
+    </li>
+    <li>Value of $x$: $x = 60 - 45 = 15$.</li>
+  </ol>
+  <p><strong>Answer:</strong> The required positive numbers are <strong>$x = 15$ and $y = 45$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(i) Product function P(x) = 24x - x², proving maximum at x = y = 12 via P''(x) < 0</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Function F(y) = 60y³ - y⁴ and derivative F'(y) = 4y²(45 - y)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Second derivative verification F''(45) < 0 and values x = 15, y = 45</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q10 (Exercise 6.3 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q10">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q10')">
+      <div class="q-num" style="background:#4f46e5;">Q10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3 (Verbatim)</span><br>
+        A square piece of tin of side $18\text{ cm}$ is to be made into a box without top, by cutting a square from each corner and folding up the flaps to form the box. What should be the side of the square to be cut off so that the volume of the box is the maximum possible?
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p>Let the side of the square cut from each corner be $x\text{ cm}$.</p>
+  <p>When the flaps are folded up:</p>
+  <ul>
+    <li>Length of box $l = 18 - 2x$</li>
+    <li>Breadth of box $b = 18 - 2x$</li>
+    <li>Height of box $h = x$</li>
+    <li>Constraint: Since dimensions must be positive, $x > 0$ and $18 - 2x > 0 \implies 0 < x < 9$.</li>
+  </ul>
+
+  <p><strong>Volume of the box:</strong></p>
+  $$V(x) = l \cdot b \cdot h = (18 - 2x)^2 x = (324 - 72x + 4x^2)x = 4x^3 - 72x^2 + 324x$$
+
+  <p><strong>Step 1: First derivative:</strong></p>
+  $$V'(x) = 12x^2 - 144x + 324 = 12(x^2 - 12x + 27) = 12(x - 3)(x - 9)$$
+
+  <p><strong>Step 2: Critical points:</strong></p>
+  $$V'(x) = 0 \implies x = 3 \quad \text{or} \quad x = 9$$
+  Since $x < 9$ (if $x = 9$, side length $= 18 - 18 = 0$, volume $= 0$), the only feasible critical point is:
+  $$x = 3$$
+
+  <p><strong>Step 3: Second derivative test:</strong></p>
+  $$V''(x) = \frac{d}{dx}(12x^2 - 144x + 324) = 24x - 144$$
+  At $x = 3$:
+  $$V''(3) = 24(3) - 144 = 72 - 144 = -72 < 0$$
+  Since $V''(3) < 0$, the volume $V$ is <strong>maximum</strong> when $x = 3$.
+
+  <p><strong>Step 4: Maximum Volume:</strong></p>
+  $$V_{\text{max}} = (18 - 2(3))^2 (3) = (12)^2 (3) = 144 \times 3 = \mathbf{432\text{ cm}^3}$$
+
+  <p><strong>Final Answer:</strong> The side of the square to be cut off is <strong>$3\text{ cm}$</strong>, yielding a maximum volume of <strong>$432\text{ cm}^3$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formulating dimensions: l = 18 - 2x, b = 18 - 2x, h = x and V(x) = x(18 - 2x)²</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Derivative V'(x) = 12(x - 3)(x - 9) and identifying feasible root x = 3</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Second derivative test V''(3) = -72 < 0 confirming maximum</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final answer x = 3 cm and maximum volume 432 cm³</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q11 (Exercise 6.3 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q11">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q11')">
+      <div class="q-num" style="background:#4f46e5;">Q11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3 (Verbatim)</span><br>
+        Prove that the volume of the largest cone that can be inscribed in a sphere of radius $R$ is $\frac{8}{27}$ of the volume of the sphere.
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[6 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p>Let $R$ be the radius of the sphere with center $O$.</p>
+  <p>Let a cone of base radius $r$ and height $h$ be inscribed in this sphere.</p>
+  <p>Let $x$ be the distance from the center $O$ of the sphere to the base of the cone.
+  <br>Then:
+  $$h = R + x \quad (-R < x < R)$$
+  In the right triangle formed by radius of sphere $R$, distance $x$, and base radius $r$:
+  $$r^2 + x^2 = R^2 \implies r^2 = R^2 - x^2$$</p>
+
+  <p><strong>Volume of the cone:</strong></p>
+  $$V = \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi (R^2 - x^2)(R + x)$$
+  $$V(x) = \frac{\pi}{3} (R^3 + R^2 x - R x^2 - x^3)$$
+
+  <p><strong>Step 1: First derivative with respect to $x$:</strong></p>
+  $$V'(x) = \frac{\pi}{3} (R^2 - 2Rx - 3x^2) = \frac{\pi}{3} (R - 3x)(R + x)$$
+  Setting $V'(x) = 0$:
+  $$(R - 3x)(R + x) = 0 \implies x = \frac{R}{3} \quad (\text{since } x = -R \implies h = 0)$$
+
+  <p><strong>Step 2: Second derivative test:</strong></p>
+  $$V''(x) = \frac{\pi}{3} (-2R - 6x)$$
+  At $x = \frac{R}{3}$:
+  $$V''\left(\frac{R}{3}\right) = \frac{\pi}{3} \left(-2R - 6\left(\frac{R}{3}\right)\right) = \frac{\pi}{3} (-2R - 2R) = -\frac{4\pi R}{3} < 0$$
+  Since $V''\left(\frac{R}{3}\right) < 0$, the volume of the cone is <strong>maximum</strong> at $x = \frac{R}{3}$.
+
+  <p><strong>Step 3: Calculating Maximum Volume:</strong></p>
+  At $x = \frac{R}{3}$:
+  $$h = R + \frac{R}{3} = \frac{4R}{3}$$
+  $$r^2 = R^2 - \left(\frac{R}{3}\right)^2 = R^2 - \frac{R^2}{9} = \frac{8R^2}{9}$$
+  Substitute into cone volume:
+  $$V_{\text{max}} = \frac{1}{3}\pi \left(\frac{8R^2}{9}\right) \left(\frac{4R}{3}\right) = \frac{1}{3}\pi \frac{32R^3}{27} = \frac{8}{27} \left( \frac{4}{3}\pi R^3 \right)$$
+  Since the volume of the sphere is $V_{\text{sphere}} = \frac{4}{3}\pi R^3$:
+  $$\mathbf{V_{\text{max}} = \frac{8}{27} V_{\text{sphere}}}$$
+  Hence proved.
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Geometrical setup: h = R + x and r² = R² - x²</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Formulating volume function V(x) = π/3 (R² - x²)(R + x)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Differentiating and solving V'(x) = 0 to get x = R/3</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Second derivative test V''(R/3) < 0 confirming maximum</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final algebraic deduction proving V_max = (8/27) V_sphere</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12m-ch6-q12 (Exercise 6.3 (Verbatim)) -->
+  <div class="q-card" id="c12m-ch6-q12">
+    <div class="q-head" onclick="toggleQ('c12m-ch6-q12')">
+      <div class="q-num" style="background:#4f46e5;">Q12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eef2ff; color:#4f46e5; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 6.3 (Verbatim)</span><br>
+        Show that the semi-vertical angle of the cone of the maximum volume and of given slant height is $\tan^{-1}\sqrt{2}$.<br>
+  Also, show that semi-vertical angle of right circular cone of given surface area and maximum volume is $\sin^{-1}\left(\frac{1}{3}\right)$.
+      </div>
+      <div class="q-marks" style="color:#4f46e5; background:#eef2ff; border-color:#c7d2fe;">[6 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box" style="border-left-color:#4f46e5;">
+        <div class="answer-label" style="color:#4f46e5;">✅ CBSE Step-by-Step Mathematical Solution</div>
+        <div class="answer-text">
+          <p><strong>Part 1: Given Slant Height $l$, Maximum Volume:</strong></p>
+  Let $l$ be the given slant height, and $\alpha$ be the semi-vertical angle of the cone.
+  <br>Radius $r = l \sin\alpha$, Height $h = l \cos\alpha$.
+  <br>Volume of the cone:
+  $$V = \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi (l\sin\alpha)^2 (l\cos\alpha) = \frac{\pi l^3}{3} \sin^2\alpha \cos\alpha$$
+  Differentiating with respect to $\alpha$:
+  $$\frac{dV}{d\alpha} = \frac{\pi l^3}{3} [2\sin\alpha \cos\alpha (\cos\alpha) + \sin^2\alpha(-\sin\alpha)] = \frac{\pi l^3}{3} \sin\alpha [2\cos^2\alpha - \sin^2\alpha]$$
+  Setting $\frac{dV}{d\alpha} = 0$:
+  $$2\cos^2\alpha - \sin^2\alpha = 0 \implies \sin^2\alpha = 2\cos^2\alpha \implies \tan^2\alpha = 2 \implies \mathbf{\tan\alpha = \sqrt{2}}$$
+  $$\mathbf{\alpha = \tan^{-1}\sqrt{2}}$$
+  Checking second derivative: $\frac{d^2V}{d\alpha^2} < 0$ at $\tan\alpha = \sqrt{2}$, confirming maximum volume.
+
+  <p><strong>Part 2: Given Surface Area $S$, Maximum Volume:</strong></p>
+  Total surface area of cone:
+  $$S = \pi r^2 + \pi r l \implies l = \frac{S - \pi r^2}{\pi r}$$
+  Height $h^2 = l^2 - r^2 = \left( \frac{S - \pi r^2}{\pi r} \right)^2 - r^2 = \frac{(S - \pi r^2)^2 - \pi^2 r^4}{\pi^2 r^2} = \frac{S^2 - 2\pi r^2 S}{\pi^2 r^2}$.
+  <br>Square of Volume:
+  $$V^2 = \frac{1}{9}\pi^2 r^4 h^2 = \frac{1}{9}\pi^2 r^4 \left( \frac{S^2 - 2\pi r^2 S}{\pi^2 r^2} \right) = \frac{S}{9} (S r^2 - 2\pi r^4) = Z$$
+  Differentiating $Z$ with respect to $r$:
+  $$\frac{dZ}{dr} = \frac{S}{9} (2Sr - 8\pi r^3)$$
+  Setting $\frac{dZ}{dr} = 0$:
+  $$2Sr - 8\pi r^3 = 0 \implies S = 4\pi r^2$$
+  Substitute $S = \pi r^2 + \pi r l$:
+  $$4\pi r^2 = \pi r^2 + \pi r l \implies 3\pi r^2 = \pi r l \implies 3r = l \implies \frac{r}{l} = \frac{1}{3}$$
+  If $\alpha$ is the semi-vertical angle:
+  $$\sin\alpha = \frac{r}{l} = \frac{1}{3} \implies \mathbf{\alpha = \sin^{-1}\left(\frac{1}{3}\right)}$$
+  Since $\frac{d^2Z}{dr^2} = \frac{S}{9}(2S - 24\pi r^2) = \frac{S}{9}(8\pi r^2 - 24\pi r^2) = -\frac{16\pi r^2 S}{9} < 0$, volume is maximum.
+  <br>Hence proved.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title" style="color:#4f46e5;">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Part 1: Volume in terms of semi-vertical angle α and showing tan α = √2</span><span class="marking-marks">3 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part 2: Expressing l in terms of S, r and forming Z = V²</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part 2: Differentiating to get S = 4πr² => 3r = l => sin α = 1/3</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid #e2e8f0;">
+    <button class="ch-nav-btn prev" onclick="showChapter(5)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer; color:#334155;">← Ch 5</button>
+    <button class="ch-nav-btn next" onclick="showChapter(7)" style="padding:10px 24px; border-radius:8px; border:none; background:#4f46e5; color:white; font-weight:700; cursor:pointer;">Next: Ch 7 (Integrals) →</button>
+  </div>
+</section>
