@@ -1,5 +1,5 @@
 // scripts/builders/gen-c12m-ch10.js
-// Chapter 10: Vector Algebra (12 Questions)
+// Chapter 10: Vector Algebra (12 Questions with Precision Inline Vector SVGs)
 const { createQCard, saveChapter } = require('./c12m-helper');
 
 const svgDiagram = `
@@ -55,7 +55,65 @@ questions.push(createQCard(
   (ii) Classify the following measures as scalars and vectors:<br>
   &nbsp;&nbsp;&nbsp;&nbsp;(a) $10\\text{ kg}$ &nbsp;&nbsp;&nbsp;&nbsp; (b) $2\\text{ meters north-west}$ &nbsp;&nbsp;&nbsp;&nbsp; (c) $40^\\circ$ &nbsp;&nbsp;&nbsp;&nbsp; (d) $40\\text{ Watt}$ &nbsp;&nbsp;&nbsp;&nbsp; (e) $10^{-19}\\text{ Coulomb}$ &nbsp;&nbsp;&nbsp;&nbsp; (f) $20\\text{ m/s}^2$<br>
   (iii) In a square with vectors $\\vec{a}, \\vec{b}, \\vec{c}, \\vec{d}$, identify: (a) Co-initial vectors, (b) Equal vectors, (c) Collinear but not equal vectors.`,
-  `<p><strong>(i) Graphical Representation:</strong></p>
+  `<div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin:14px 0;">
+    <!-- Sub-figure 1: Displacement 40km, 30 deg East of North -->
+    <div style="flex:1 1 280px; max-width:320px; padding:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <div style="font-weight:600; color:#334155; margin-bottom:6px; font-size:0.9rem;">Figure 10.1(a): Displacement $40\\text{ km}$, $30^\\circ$ E of N</div>
+      <svg viewBox="0 0 240 220" style="width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+        <!-- Axes -->
+        <line x1="120" y1="20" x2="120" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
+        <line x1="20" y1="120" x2="220" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+        <!-- Labels -->
+        <text x="120" y="16" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">N (North)</text>
+        <text x="120" y="214" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">S (South)</text>
+        <text x="225" y="124" font-size="11" font-weight="bold" fill="#1e293b">E (East)</text>
+        <text x="15" y="124" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="end">W (West)</text>
+        <text x="110" y="132" font-size="10" fill="#64748b">O</text>
+        <!-- 30 deg East of North: vector angle from +x is 60 deg, length = 80px -->
+        <!-- dx = 80 * sin(30) = 40, dy = -80 * cos(30) = -69.28 -> (120+40, 120-69) = (160, 51) -->
+        <line x1="120" y1="120" x2="160" y2="51" stroke="#2563eb" stroke-width="2.5"/>
+        <polygon points="163,45 152,51 159,57" fill="#2563eb"/>
+        <!-- Arc from N axis to vector -->
+        <path d="M 120 75 A 45 45 0 0 1 142.5 81" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="133" y="68" font-size="10" fill="#dc2626" font-weight="bold">30&deg;</text>
+        <!-- Vector Label -->
+        <text x="165" y="65" font-size="10.5" fill="#1d4ed8" font-weight="bold">P(40 km)</text>
+        <circle cx="120" cy="120" r="3" fill="#1e293b"/>
+      </svg>
+    </div>
+
+    <!-- Sub-figure 2: Square Vectors -->
+    <div style="flex:1 1 280px; max-width:320px; padding:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+      <div style="font-weight:600; color:#334155; margin-bottom:6px; font-size:0.9rem;">Figure 10.1(b): Square with Vectors $\\vec{a}, \\vec{b}, \\vec{c}, \\vec{d}$</div>
+      <svg viewBox="0 0 240 220" style="width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+        <!-- Square vertices: Top-Left (50, 40), Top-Right (170, 40), Bottom-Right (170, 160), Bottom-Left (50, 160) -->
+        <!-- Vector a: Top-Left to Top-Right -->
+        <line x1="50" y1="40" x2="170" y2="40" stroke="#4f46e5" stroke-width="2"/>
+        <polygon points="172,40 162,36 162,44" fill="#4f46e5"/>
+        <text x="110" y="32" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">&rarr; a</text>
+        <!-- Vector b: Top-Right to Bottom-Right -->
+        <line x1="170" y1="40" x2="170" y2="160" stroke="#059669" stroke-width="2"/>
+        <polygon points="170,162 166,152 174,152" fill="#059669"/>
+        <text x="185" y="105" font-size="11" fill="#059669" font-weight="bold">&darr; b</text>
+        <!-- Vector c: Bottom-Right to Bottom-Left -->
+        <line x1="170" y1="160" x2="50" y2="160" stroke="#dc2626" stroke-width="2"/>
+        <polygon points="48,160 58,156 58,164" fill="#dc2626"/>
+        <text x="110" y="178" font-size="11" fill="#dc2626" font-weight="bold" text-anchor="middle">&larr; c</text>
+        <!-- Vector d: Top-Left to Bottom-Left -->
+        <line x1="50" y1="40" x2="50" y2="160" stroke="#059669" stroke-width="2"/>
+        <polygon points="50,162 46,152 54,152" fill="#059669"/>
+        <text x="32" y="105" font-size="11" fill="#059669" font-weight="bold">&darr; d</text>
+        <!-- Vertex dots -->
+        <circle cx="50" cy="40" r="4" fill="#3730a3"/>
+        <text x="42" y="34" font-size="10" fill="#3730a3">A</text>
+        <circle cx="170" cy="40" r="3" fill="#64748b"/>
+        <circle cx="170" cy="160" r="3" fill="#64748b"/>
+        <circle cx="50" cy="160" r="3" fill="#64748b"/>
+      </svg>
+    </div>
+  </div>
+
+  <p><strong>(i) Graphical Representation:</strong></p>
   <ul>
     <li>Choose a suitable scale: Let $1\\text{ cm} = 10\\text{ km}$, so a vector of length $4\\text{ cm}$ represents $40\\text{ km}$.</li>
     <li>From the origin $O$, draw a directed ray making an angle of $30^\\circ$ with the positive North axis towards the East axis.</li>
@@ -74,9 +132,9 @@ questions.push(createQCard(
 
   <p><strong>(iii) Square Vector Identification:</strong></p>
   <ul>
-    <li>(a) <strong>Co-initial vectors:</strong> Vectors that have the same initial starting point (e.g., $\\vec{a}$ and $\\vec{d}$).</li>
-    <li>(b) <strong>Equal vectors:</strong> Vectors having both the same magnitude and the same direction (e.g., $\\vec{b}$ and $\\vec{d}$).</li>
-    <li>(c) <strong>Collinear but not equal:</strong> Vectors parallel to the same line but opposite in direction or unequal in magnitude (e.g., $\\vec{a}$ and $\\vec{c}$, which are opposite vectors: $\\vec{a} = -\\vec{c}$).</li>
+    <li>(a) <strong>Co-initial vectors:</strong> $\\vec{a}$ and $\\vec{d}$ originate from the common starting vertex $A$.</li>
+    <li>(b) <strong>Equal vectors:</strong> $\\vec{b}$ and $\\vec{d}$ share identical downward direction and equal square side lengths ($|\\vec{b}| = |\\vec{d}|$).</li>
+    <li>(c) <strong>Collinear but not equal:</strong> $\\vec{a}$ and $\\vec{c}$ are parallel horizontal vectors pointing in opposite directions ($\\vec{a} = -\\vec{c}$).</li>
   </ul>`,
   '4 Marks',
   [
@@ -156,7 +214,37 @@ questions.push(createQCard(
   (ii) Find the position vector of a point $R$ which divides the line joining two points $P$ and $Q$ whose position vectors are $\\hat{i} + 2\\hat{j} - \\hat{k}$ and $-\\hat{i} + \\hat{j} + \\hat{k}$ respectively, in the ratio $2 : 1$:<br>
   &nbsp;&nbsp;&nbsp;&nbsp;(a) internally<br>
   &nbsp;&nbsp;&nbsp;&nbsp;(b) externally`,
-  `<p><strong>(i) Collinearity Test:</strong></p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 10.2: Section Formula Division of Segment $PQ$ by $R$ in ratio $m : n = 2 : 1$</div>
+    <svg viewBox="0 0 380 180" style="max-width:380px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <!-- Origin O -->
+      <circle cx="60" cy="140" r="4" fill="#1e293b"/>
+      <text x="50" y="155" font-size="11" fill="#1e293b" font-weight="bold">O</text>
+      <!-- Line Segment PQ -->
+      <line x1="120" y1="40" x2="340" y2="40" stroke="#334155" stroke-width="2.5"/>
+      <!-- Point P -->
+      <circle cx="120" cy="40" r="4.5" fill="#2563eb"/>
+      <text x="110" y="30" font-size="11" fill="#2563eb" font-weight="bold">P(p&rarr;)</text>
+      <!-- Point Q -->
+      <circle cx="340" cy="40" r="4.5" fill="#2563eb"/>
+      <text x="340" y="30" font-size="11" fill="#2563eb" font-weight="bold">Q(q&rarr;)</text>
+      <!-- Point R (dividing 2:1 -> at 2/3 of segment: 120 + 220*2/3 = 267) -->
+      <circle cx="267" cy="40" r="5" fill="#16a34a"/>
+      <text x="267" y="28" font-size="11" fill="#16a34a" font-weight="bold" text-anchor="middle">R(r&rarr;)</text>
+      <!-- Position vectors rays from O -->
+      <line x1="60" y1="140" x2="118" y2="44" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="75" y="85" font-size="10" fill="#64748b">p&rarr;</text>
+      <line x1="60" y1="140" x2="265" y2="44" stroke="#16a34a" stroke-width="2"/>
+      <text x="160" y="95" font-size="10.5" fill="#16a34a" font-weight="bold">r&rarr; = (2q&rarr; + p&rarr;)/3</text>
+      <line x1="60" y1="140" x2="338" y2="44" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="235" y="115" font-size="10" fill="#64748b">q&rarr;</text>
+      <!-- Ratio labels -->
+      <text x="190" y="55" font-size="10" fill="#4338ca" font-weight="bold">Ratio: 2</text>
+      <text x="300" y="55" font-size="10" fill="#4338ca" font-weight="bold">1</text>
+    </svg>
+  </div>
+
+  <p><strong>(i) Collinearity Test:</strong></p>
   Let $\\vec{a} = 2\\hat{i} - 3\\hat{j} + 4\\hat{k}$ and $\\vec{b} = -4\\hat{i} + 6\\hat{j} - 8\\hat{k}$.
   <br>Notice that:
   $$\\vec{b} = -2(2\\hat{i} - 3\\hat{j} + 4\\hat{k}) = -2\\vec{a}$$
@@ -283,7 +371,31 @@ questions.push(createQCard(
   'Exercise 10.4 (Verbatim)',
   `(i) Find $|\\vec{a} \\times \\vec{b}|$, if $\\vec{a} = \\hat{i} - 7\\hat{j} + 7\\hat{k}$ and $\\vec{b} = 3\\hat{i} - 2\\hat{j} + 2\\hat{k}$.<br>
   (ii) Find a unit vector perpendicular to each of the vector $\\vec{a} + \\vec{b}$ and $\\vec{a} - \\vec{b}$, where $\\vec{a} = 3\\hat{i} + 2\\hat{j} + 2\\hat{k}$ and $\\vec{b} = \\hat{i} + 2\\hat{j} - 2\\hat{k}$.`,
-  `<p><strong>(i) $|\\vec{a} \\times \\vec{b}|$:</strong></p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 10.3: Normal Vector $\\vec{w} = \\vec{u} \\times \\vec{v}$ perpendicular to both $\\vec{u}$ and $\\vec{v}$</div>
+    <svg viewBox="0 0 380 220" style="max-width:380px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <!-- Base Parallelogram Plane -->
+      <polygon points="60,170 190,170 290,120 160,120" fill="#e0e7ff" fill-opacity="0.5" stroke="#a5b4fc" stroke-width="1.5"/>
+      <!-- Origin O -->
+      <circle cx="160" cy="150" r="3.5" fill="#1e293b"/>
+      <!-- Vector u = a + b -->
+      <line x1="160" y1="150" x2="250" y2="150" stroke="#4f46e5" stroke-width="2.5"/>
+      <polygon points="255,150 245,146 245,154" fill="#4f46e5"/>
+      <text x="260" y="154" font-size="11" fill="#4f46e5" font-weight="bold">u&rarr; = a&rarr; + b&rarr;</text>
+      <!-- Vector v = a - b -->
+      <line x1="160" y1="150" x2="210" y2="125" stroke="#059669" stroke-width="2.5"/>
+      <polygon points="214,123 203,123 207,130" fill="#059669"/>
+      <text x="220" y="122" font-size="11" fill="#059669" font-weight="bold">v&rarr; = a&rarr; - b&rarr;</text>
+      <!-- Perpendicular normal vector w = u x v pointing vertically -->
+      <line x1="160" y1="150" x2="160" y2="35" stroke="#dc2626" stroke-width="3"/>
+      <polygon points="160,30 155,42 165,42" fill="#dc2626"/>
+      <text x="170" y="45" font-size="11.5" fill="#dc2626" font-weight="bold">n&#770; &perp; Plane (u&rarr; &times; v&rarr;)</text>
+      <!-- Right angle markers -->
+      <polyline points="160,135 175,135 175,150" fill="none" stroke="#dc2626" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <p><strong>(i) $|\\vec{a} \\times \\vec{b}|$:</strong></p>
   $$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & -7 & 7 \\\\ 3 & -2 & 2 \\end{vmatrix}$$
   $$= \\hat{i}[(-7)(2) - (7)(-2)] - \\hat{j}[(1)(2) - (7)(3)] + \\hat{k}[(1)(-2) - (-7)(3)]$$
   $$= \\hat{i}[-14 + 14] - \\hat{j}[2 - 21] + \\hat{k}[-2 + 21] = 0\\hat{i} + 19\\hat{j} + 19\\hat{k} = 19(\\hat{j} + \\hat{k})$$
@@ -319,7 +431,31 @@ questions.push(createQCard(
   'Exercise 10.4 (Verbatim)',
   `(i) Given that $\\vec{a} \\cdot \\vec{b} = 0$ and $\\vec{a} \\times \\vec{b} = \\vec{0}$. What can you conclude about the vectors $\\vec{a}$ and $\\vec{b}$?<br>
   (ii) Find the area of the triangle with vertices $A(1, 1, 2)$, $B(2, 3, 5)$ and $C(1, 5, 5)$.`,
-  `<p><strong>(i) Deduction from $\\vec{a} \\cdot \\vec{b} = 0$ and $\\vec{a} \\times \\vec{b} = \\vec{0}$:</strong></p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 10.4: Triangle $ABC$ with adjacent edge vectors $\\vec{AB}$ and $\\vec{AC}$</div>
+    <svg viewBox="0 0 340 180" style="max-width:340px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <!-- Shaded Triangle ABC -->
+      <polygon points="60,140 260,120 180,40" fill="#fef3c7" fill-opacity="0.6" stroke="#d97706" stroke-width="1.8"/>
+      <!-- Vectors AB and AC -->
+      <line x1="60" y1="140" x2="260" y2="120" stroke="#d97706" stroke-width="2.2"/>
+      <polygon points="263,120 252,116 254,124" fill="#d97706"/>
+      <text x="160" y="145" font-size="10.5" fill="#b45309" font-weight="bold">AB&rarr; = i&#770; + 2j&#770; + 3k&#770;</text>
+      <line x1="60" y1="140" x2="180" y2="40" stroke="#2563eb" stroke-width="2.2"/>
+      <polygon points="183,38 174,45 180,51" fill="#2563eb"/>
+      <text x="95" y="75" font-size="10.5" fill="#1d4ed8" font-weight="bold">AC&rarr; = 4j&#770; + 3k&#770;</text>
+      <!-- Vertices -->
+      <circle cx="60" cy="140" r="4.5" fill="#1e293b"/>
+      <text x="45" y="155" font-size="11" fill="#1e293b" font-weight="bold">A(1,1,2)</text>
+      <circle cx="260" cy="120" r="4.5" fill="#1e293b"/>
+      <text x="265" y="125" font-size="11" fill="#1e293b" font-weight="bold">B(2,3,5)</text>
+      <circle cx="180" cy="40" r="4.5" fill="#1e293b"/>
+      <text x="180" y="30" font-size="11" fill="#1e293b" font-weight="bold" text-anchor="middle">C(1,5,5)</text>
+      <!-- Area label -->
+      <text x="170" y="100" font-size="11" fill="#b45309" font-weight="bold">Area = &frac12;|AB&rarr; &times; AC&rarr;| = &radic;61 / 2</text>
+    </svg>
+  </div>
+
+  <p><strong>(i) Deduction from $\\vec{a} \\cdot \\vec{b} = 0$ and $\\vec{a} \\times \\vec{b} = \\vec{0}$:</strong></p>
   <ul>
     <li>$\\vec{a} \\cdot \\vec{b} = 0 \\implies |\\vec{a}| = 0$ or $|\\vec{b}| = 0$ or $\\vec{a} \\perp \\vec{b}$.</li>
     <li>$\\vec{a} \\times \\vec{b} = \\vec{0} \\implies |\\vec{a}| = 0$ or $|\\vec{b}| = 0$ or $\\vec{a} \\parallel \\vec{b}$.</li>
@@ -354,7 +490,25 @@ questions.push(createQCard(
   `(i) Find the area of the parallelogram whose adjacent sides are determined by the vectors $\\vec{a} = \\hat{i} - \\hat{j} + 3\\hat{k}$ and $\\vec{b} = 2\\hat{i} - 7\\hat{j} + \\hat{k}$.<br>
   (ii) Let the vectors $\\vec{a}$ and $\\vec{b}$ be such that $|\\vec{a}| = 3$ and $|\\vec{b}| = \\frac{\\sqrt{2}}{3}$, then $\\vec{a} \\times \\vec{b}$ is a unit vector, if the angle between $\\vec{a}$ and $\\vec{b}$ is:<br>
   &nbsp;&nbsp;&nbsp;&nbsp;(A) $\\frac{\\pi}{6}$ &nbsp;&nbsp;&nbsp;&nbsp; (B) $\\frac{\\pi}{4}$ &nbsp;&nbsp;&nbsp;&nbsp; (C) $\\frac{\\pi}{3}$ &nbsp;&nbsp;&nbsp;&nbsp; (D) $\\frac{\\pi}{2}$`,
-  `<p><strong>(i) Area of Parallelogram:</strong></p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 10.5: Parallelogram with adjacent side vectors $\\vec{a}$ and $\\vec{b}$</div>
+    <svg viewBox="0 0 360 160" style="max-width:360px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <!-- Parallelogram -->
+      <polygon points="50,120 220,120 290,40 120,40" fill="#f0fdf4" fill-opacity="0.6" stroke="#16a34a" stroke-width="1.8"/>
+      <!-- Side a -->
+      <line x1="50" y1="120" x2="220" y2="120" stroke="#16a34a" stroke-width="2.5"/>
+      <polygon points="224,120 214,116 214,124" fill="#16a34a"/>
+      <text x="135" y="138" font-size="11" fill="#15803d" font-weight="bold">a&rarr; = i&#770; - j&#770; + 3k&#770;</text>
+      <!-- Side b -->
+      <line x1="50" y1="120" x2="120" y2="40" stroke="#2563eb" stroke-width="2.5"/>
+      <polygon points="123,37 114,44 120,49" fill="#2563eb"/>
+      <text x="55" y="70" font-size="11" fill="#1d4ed8" font-weight="bold">b&rarr; = 2i&#770; - 7j&#770; + k&#770;</text>
+      <!-- Interior Area Label -->
+      <text x="180" y="85" font-size="11.5" fill="#166534" font-weight="bold">Area = |a&rarr; &times; b&rarr;| = 15&radic;2 sq. units</text>
+    </svg>
+  </div>
+
+  <p><strong>(i) Area of Parallelogram:</strong></p>
   $$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & -1 & 3 \\\\ 2 & -7 & 1 \\end{vmatrix}$$
   $$= \\hat{i}[(-1)(1) - (3)(-7)] - \\hat{j}[(1)(1) - (3)(2)] + \\hat{k}[(1)(-7) - (-1)(2)]$$
   $$= \\hat{i}[-1 + 21] - \\hat{j}[1 - 6] + \\hat{k}[-7 + 2] = 20\\hat{i} + 5\\hat{j} - 5\\hat{k}$$

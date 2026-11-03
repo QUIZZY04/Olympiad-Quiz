@@ -1,5 +1,5 @@
 // scripts/builders/gen-c12m-ch13.js
-// Chapter 13: Probability (14 Questions)
+// Chapter 13: Probability (14 Questions with Precision Inline Bayes Tree SVGs)
 const { createQCard, saveChapter } = require('./c12m-helper');
 
 const svgDiagram = `
@@ -61,191 +61,191 @@ questions.push(createQCard(
   </ul>
 
   <p><strong>(ii) $P(A|B)$:</strong></p>
-  $$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.32}{0.5} = \\mathbf{0.64 = \\frac{16}{25}}$$
+  $$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.32}{0.5} = \\mathbf{\\frac{32}{50} = \\frac{16}{25} = 0.64}$$
 
-  <p><strong>(iii) Given $P(A) = 0.8, P(B) = 0.5, P(B|A) = 0.4$:</strong></p>
+  <p><strong>(iii) Computations from $P(A) = 0.8, P(B) = 0.5, P(B|A) = 0.4$:</strong></p>
   <ol>
-    <li>$P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\implies P(A \\cap B) = P(A) \\cdot P(B|A) = 0.8 \\times 0.4 = \\mathbf{0.32}$.</li>
-    <li>$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.32}{0.5} = \\mathbf{0.64}$.</li>
-    <li>Using addition theorem of probability:
-      $$P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.8 + 0.5 - 0.32 = 1.3 - 0.32 = \\mathbf{0.98}$$
-    </li>
+    <li>(a) $P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\implies P(A \\cap B) = P(A) \\cdot P(B|A) = (0.8)(0.4) = \\mathbf{0.32}$.</li>
+    <li>(b) $P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.32}{0.5} = \\mathbf{0.64}$.</li>
+    <li>(c) $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.8 + 0.5 - 0.32 = 1.3 - 0.32 = \\mathbf{0.98}$.</li>
   </ol>`,
   '4 Marks',
   [
-    ['(i) Calculating P(E|F) = 2/3 and P(F|E) = 1/3', '1 Mark'],
+    ['(i) Calculating conditional probabilities 2/3 and 1/3', '1 Mark'],
     ['(ii) Calculating P(A|B) = 0.64', '1 Mark'],
-    ['(iii) P(A ∩ B) = 0.32, P(A|B) = 0.64, P(A ∪ B) = 0.98', '2 Marks']
+    ['(iii) Evaluating (a) 0.32, (b) 0.64, (c) 0.98', '2 Marks']
   ]
 ));
 
-// Q2 (Ex 13.1 Q6, Q9 - Coin Toss & Family Children Experiment)
+// Q2 (Ex 13.1 Q6, Q8, Q9 - Coin Tossing & Family Children Conditional Setup)
 questions.push(createQCard(
   'c12m-ch13-q2',
   'Q2',
   'Exercise 13.1 (Verbatim)',
-  `(i) A coin is tossed three times. Find $P(E|F)$ where:<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;$E$: Head on third toss<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;$F$: Heads on first two tosses<br><br>
-  (ii) Mother, father and son line up at random for a family picture. Find $P(E|F)$ where:<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;$E$: Son on one end<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;$F$: Father in middle<br><br>
-  (iii) Assume that each born child is equally likely to be a boy or a girl. If a family has two children, what is the conditional probability that both are girls given that: (a) the youngest is a girl, (b) at least one is a girl?`,
-  `<p><strong>(i) Coin tossed 3 times:</strong></p>
-  Sample space $S = \\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\\}$, $n(S) = 8$.
+  `(i) A coin is tossed three times, where:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$E$: heads on third toss, &nbsp;&nbsp; $F$: heads on first two tosses. Determine $P(E|F)$.<br>
+  (ii) A die is thrown three times:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$E$: $4$ appears on the third toss, &nbsp;&nbsp; $F$: $6$ and $5$ appear respectively on first two tosses. Determine $P(E|F)$.<br>
+  (iii) Mother, father and son line up at random for a family picture:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;$E$: son on one end, &nbsp;&nbsp; $F$: father in middle. Determine $P(E|F)$.`,
+  `<p><strong>(i) Coin tossed three times:</strong></p>
+  Sample space: $S = \\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\\}$, $n(S) = 8$.
   <ul>
-    <li>$E = \\{HHH, HTH, THH, TTH\\} \\implies n(E) = 4$.</li>
-    <li>$F = \\{HHH, HHT\\} \\implies n(F) = 2$.</li>
-    <li>$E \\cap F = \\{HHH\\} \\implies n(E \\cap F) = 1$.</li>
-    <li>$$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\mathbf{\\frac{1}{2}}$$</li>
+    <li>$E = \\{HHH, HTH, THH, TTH\\}$</li>
+    <li>$F = \\{HHH, HHT\\}$</li>
+    <li>$E \\cap F = \\{HHH\\}$</li>
   </ul>
+  $$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\mathbf{\\frac{1}{2}}$$
 
-  <p><strong>(ii) Family picture line up ($M, F, S$):</strong></p>
-  Sample space: $S = \\{MFS, MSF, FMS, FSM, SMF, SFM\\}$, $n(S) = 6$.
+  <p><strong>(ii) Die thrown three times:</strong></p>
+  Total outcomes: $n(S) = 6^3 = 216$.
   <ul>
-    <li>$E$ (Son on one end): $\\{MFS, FMS, SMF, SFM\\} \\implies n(E) = 4$.</li>
-    <li>$F$ (Father in middle): $\\{MFS, SFM\\} \\implies n(F) = 2$.</li>
-    <li>$E \\cap F = \\{MFS, SFM\\} \\implies n(E \\cap F) = 2$.</li>
-    <li>$$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\frac{2}{2} = \\mathbf{1}$$</li>
+    <li>$F$: $6$ on 1st toss, $5$ on 2nd toss: $\\{(6, 5, 1), (6, 5, 2), (6, 5, 3), (6, 5, 4), (6, 5, 5), (6, 5, 6)\\}$, so $n(F) = 6$.</li>
+    <li>$E \\cap F$: $4$ on 3rd toss as well: $\\{(6, 5, 4)\\}$, so $n(E \\cap F) = 1$.</li>
   </ul>
+  $$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\mathbf{\\frac{1}{6}}$$
 
-  <p><strong>(iii) Two children family ($b = \\text{boy}, g = \\text{girl}$):</strong></p>
-  $S = \\{(b, b), (b, g), (g, b), (g, g)\\}$, where order is $(\\text{elder}, \\text{younger})$. $n(S) = 4$.
-  <br>Event $A$: Both are girls $= \\{(g, g)\\}$.
-  <ol>
-    <li><strong>(a) Given youngest is a girl:</strong>
-      <br>$F_1 = \\{(b, g), (g, g)\\} \\implies n(F_1) = 2$.
-      <br>$A \\cap F_1 = \\{(g, g)\\} \\implies n(A \\cap F_1) = 1$.
-      <br>$$P(A|F_1) = \\frac{n(A \\cap F_1)}{n(F_1)} = \\mathbf{\\frac{1}{2}}$$
-    </li>
-    <li><strong>(b) Given at least one is a girl:</strong>
-      <br>$F_2 = \\{(b, g), (g, b), (g, g)\\} \\implies n(F_2) = 3$.
-      <br>$A \\cap F_2 = \\{(g, g)\\} \\implies n(A \\cap F_2) = 1$.
-      <br>$$P(A|F_2) = \\frac{n(A \\cap F_2)}{n(F_2)} = \\mathbf{\\frac{1}{3}}$$
-    </li>
-  </ol>`,
+  <p><strong>(iii) Mother ($M$), Father ($F$), Son ($S$) line up:</strong></p>
+  Sample space of permutations: $n(S) = 3! = 6$.
+  $$S = \\{MFS, MSF, FMS, FSM, SMF, SFM\\}$$
+  <ul>
+    <li>$E$ (son on one end): $\\{MFS, FMS, SMF, SFM\\}$, $n(E) = 4$.</li>
+    <li>$F$ (father in middle): $\\{MFS, SFM\\}$, $n(F) = 2$.</li>
+    <li>$E \\cap F = \\{MFS, SFM\\}$, $n(E \\cap F) = 2$.</li>
+  </ul>
+  $$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\frac{2}{2} = \\mathbf{1}$$`,
   '4 Marks',
   [
-    ['(i) P(E|F) = 1/2 for coin toss', '1 Mark'],
-    ['(ii) P(E|F) = 1 for family photo', '1 Mark'],
-    ['(iii)(a) Youngest is girl => P = 1/2', '1 Mark'],
-    ['(iii)(b) At least one is girl => P = 1/3', '1 Mark']
+    ['(i) Sample space and conditional probability 1/2', '1 Mark'],
+    ['(ii) Three die toss outcomes and P(E|F) = 1/6', '1.5 Marks'],
+    ['(iii) Permutations analysis showing n(E ∩ F) = n(F) = 2 giving P(E|F) = 1', '1.5 Marks']
   ]
 ));
 
-// Q3 (Ex 13.2 Q1, Q2, Q4 - Independent Events)
+// Q3 (Ex 13.1 Q10, Q11 - Black and Red Dice / Fair Die with Conditionals)
 questions.push(createQCard(
   'c12m-ch13-q3',
   'Q3',
-  'Exercise 13.2 (Verbatim)',
-  `(i) If $P(A) = \\frac{3}{5}$ and $P(B) = \\frac{1}{5}$, find $P(A \\cap B)$ if $A$ and $B$ are independent events.<br>
-  (ii) Two cards are drawn at random and without replacement from a pack of $52$ playing cards. Find the probability that both the cards are black.<br>
-  (iii) A fair coin and an unbiased die are tossed. Let $A$ be the event 'head appears on the coin' and $B$ be the event '3 on the die'. Check whether $A$ and $B$ are independent events and not.`,
-  `<p><strong>(i) Independent Events $A$ and $B$:</strong></p>
-  By definition of independent events:
-  $$P(A \\cap B) = P(A) \\cdot P(B) = \\left(\\frac{3}{5}\\right) \\left(\\frac{1}{5}\\right) = \\mathbf{\\frac{3}{25}}$$
+  'Exercise 13.1 (Verbatim)',
+  `A black and a red dice are rolled.<br>
+  (a) Find the conditional probability of obtaining a sum greater than $9$, given that the black die resulted in a $5$.<br>
+  (b) Find the conditional probability of obtaining the sum $8$, given that the red die resulted in a number less than $4$.`,
+  `<p>Total outcomes when two dice are rolled: $n(S) = 6 \\times 6 = 36$.</p>
+  <p>Let an outcome be represented as $(b, r)$ where $b$ is the number on the black die and $r$ on the red die.</p>
 
-  <p><strong>(ii) Drawing two black cards without replacement:</strong></p>
-  A standard deck of 52 cards contains 26 black cards (13 spades + 13 clubs).
+  <p><strong>(a) Sum $> 9$ given black die resulted in $5$:</strong></p>
   <ul>
-    <li>Probability of first card being black: $P(B_1) = \\frac{26}{52} = \\frac{1}{2}$.</li>
-    <li>Since drawing is without replacement, 25 black cards remain out of 51 total cards.</li>
-    <li>Probability of second card being black given first was black: $P(B_2|B_1) = \\frac{25}{51}$.</li>
+    <li>Given event $B$ (black die $= 5$):
+      $$B = \\{(5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6)\\} \\implies n(B) = 6$$
+    </li>
+    <li>Event $A$ (sum $> 9$): Sum can be $10, 11$, or $12$.</li>
+    <li>Favorable intersection $A \\cap B$: Outcomes where $b = 5$ and $5 + r > 9 \\implies r > 4$:
+      $$A \\cap B = \\{(5, 5), (5, 6)\\} \\implies n(A \\cap B) = 2$$
+    </li>
   </ul>
-  By the multiplication theorem of probability:
-  $$P(B_1 \\cap B_2) = P(B_1) \\cdot P(B_2|B_1) = \\frac{26}{52} \\times \\frac{25}{51} = \\frac{1}{2} \\times \\frac{25}{51} = \\mathbf{\\frac{25}{102}}$$
+  $$P(A|B) = \\frac{n(A \\cap B)}{n(B)} = \\frac{2}{6} = \\mathbf{\\frac{1}{3}}$$
 
-  <p><strong>(iii) Coin and Die Experiment:</strong></p>
-  Sample space: $S = \\{(H, 1), (H, 2), \\dots, (H, 6), (T, 1), \\dots, (T, 6)\\}$, $n(S) = 12$.
+  <p><strong>(b) Sum $= 8$ given red die $< 4$:</strong></p>
   <ul>
-    <li>Event $A$ (Head on coin): $A = \\{(H, 1), (H, 2), (H, 3), (H, 4), (H, 5), (H, 6)\\} \\implies P(A) = \\frac{6}{12} = \\frac{1}{2}$.</li>
-    <li>Event $B$ (3 on die): $B = \\{(H, 3), (T, 3)\\} \\implies P(B) = \\frac{2}{12} = \\frac{1}{6}$.</li>
-    <li>$A \\cap B = \\{(H, 3)\\} \\implies P(A \\cap B) = \\frac{1}{12}$.</li>
+    <li>Given event $F$ (red die $< 4 \\implies r \\in \\{1, 2, 3\\}$):
+      <br>For each red outcome, there are 6 black outcomes: $n(F) = 6 \\times 3 = 18$.
+    </li>
+    <li>Event $E$ (sum $= 8 \\implies b + r = 8$):</li>
+    <li>Intersection $E \\cap F$: $b + r = 8$ with $r \\in \\{1, 2, 3\\}$:
+      <br>If $r = 1 \\implies b = 7$ (impossible on a 6-sided die).
+      <br>If $r = 2 \\implies b = 6 \\implies (6, 2)$.
+      <br>If $r = 3 \\implies b = 5 \\implies (5, 3)$.
+      $$E \\cap F = \\{(6, 2), (5, 3)\\} \\implies n(E \\cap F) = 2$$
+    </li>
   </ul>
-  Now compute $P(A) \\cdot P(B)$:
-  $$P(A) \\cdot P(B) = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$$
-  Since $P(A \\cap B) = P(A) \\cdot P(B) = \\frac{1}{12}$, the events $A$ and $B$ are <strong>independent events</strong>.`,
+  $$P(E|F) = \\frac{n(E \\cap F)}{n(F)} = \\frac{2}{18} = \\mathbf{\\frac{1}{9}}$$`,
   '4 Marks',
   [
-    ['(i) Formula P(A ∩ B) = P(A)P(B) = 3/25', '1 Mark'],
-    ['(ii) Multiplication rule without replacement: 26/52 * 25/51 = 25/102', '1.5 Marks'],
-    ['(iii) Checking P(A ∩ B) = 1/12 equals P(A)P(B) and concluding independence', '1.5 Marks']
+    ['(a) Defining condition black = 5 and intersection sum > 9 yielding 1/3', '2 Marks'],
+    ['(b) Defining condition red < 4 and finding outcomes with sum 8 yielding 1/9', '2 Marks']
   ]
 ));
 
-// Q4 (Ex 13.2 Q7, Q11 - Given Mutual Independence Relationships)
+// Q4 (Ex 13.2 Q1, Q2, Q4 - Independent Events Basics)
 questions.push(createQCard(
   'c12m-ch13-q4',
   'Q4',
   'Exercise 13.2 (Verbatim)',
-  `Given that the events $A$ and $B$ are such that $P(A) = \\frac{1}{2}$, $P(A \\cup B) = \\frac{3}{5}$ and $P(B) = p$. Find $p$ if they are:<br>
-  (i) mutually exclusive<br>
-  (ii) independent<br><br>
-  Also, if $A$ and $B$ are independent events with $P(A) = 0.3, \\; P(B) = 0.4$, find: (a) $P(A \\cap B)$, (b) $P(A \\cup B)$, (c) $P(A|B)$, (d) $P(B|A)$.`,
-  `<p><strong>Part 1: Finding $p$:</strong></p>
-  We know that $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$:
-  <ol>
-    <li><strong>(i) Mutually Exclusive Events:</strong>
-      <br>Mutually exclusive means $A \\cap B = \\emptyset \\implies P(A \\cap B) = 0$.
-      $$P(A \\cup B) = P(A) + P(B)$$
-      $$\\frac{3}{5} = \\frac{1}{2} + p \\implies p = \\frac{3}{5} - \\frac{1}{2} = \\frac{6 - 5}{10} = \\mathbf{\\frac{1}{10}}$$
-    </li>
-    <li><strong>(ii) Independent Events:</strong>
-      <br>Independent means $P(A \\cap B) = P(A) \\cdot P(B) = \\frac{1}{2} p$.
-      $$P(A \\cup B) = P(A) + P(B) - P(A)P(B)$$
-      $$\\frac{3}{5} = \\frac{1}{2} + p - \\frac{1}{2}p = \\frac{1}{2} + \\frac{1}{2}p$$
-      $$\\frac{1}{2}p = \\frac{3}{5} - \\frac{1}{2} = \\frac{1}{10} \\implies p = 2 \\times \\frac{1}{10} = \\mathbf{\\frac{1}{5}}$$
-    </li>
-  </ol>
+  `(i) If $P(A) = \\frac{3}{5}$ and $P(B) = \\frac{1}{5}$, find $P(A \\cap B)$ if $A$ and $B$ are independent events.<br>
+  (ii) Two cards are drawn at random and without replacement from a pack of $52$ playing cards. Find the probability that both the cards are black.<br>
+  (iii) A fair coin and an unbiased die are tossed. Let $A$ be the event 'head appears on the coin' and $B$ be the event '3 on the die'. Check whether $A$ and $B$ are independent events and find $P(A \\cap B)$.`,
+  `<p><strong>(i) Independent Events Multiplication:</strong></p>
+  Since $A$ and $B$ are independent:
+  $$P(A \\cap B) = P(A) \\cdot P(B) = \\left(\\frac{3}{5}\\right) \\left(\\frac{1}{5}\\right) = \\mathbf{\\frac{3}{25}}$$
 
-  <p><strong>Part 2: $A$ and $B$ independent with $P(A) = 0.3, P(B) = 0.4$:</strong></p>
+  <p><strong>(ii) Two Black Cards Drawn Without Replacement:</strong></p>
+  In a pack of $52$ cards, there are $26$ black cards.
   <ul>
-    <li>(a) $P(A \\cap B) = P(A) \\cdot P(B) = 0.3 \\times 0.4 = \\mathbf{0.12}$.</li>
-    <li>(b) $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.3 + 0.4 - 0.12 = 0.7 - 0.12 = \\mathbf{0.58}$.</li>
-    <li>(c) $P(A|B) = P(A) = \\mathbf{0.3}$ (by independence).</li>
-    <li>(d) $P(B|A) = P(B) = \\mathbf{0.4}$ (by independence).</li>
-  </ul>`,
+    <li>Probability that first card is black: $P(B_1) = \\frac{26}{52} = \\frac{1}{2}$.</li>
+    <li>Probability that second card is black given first was black: $P(B_2|B_1) = \\frac{25}{51}$.</li>
+  </ul>
+  $$P(\\text{Both Black}) = P(B_1) \\cdot P(B_2|B_1) = \\frac{26}{52} \\times \\frac{25}{51} = \\frac{1}{2} \\times \\frac{25}{51} = \\mathbf{\\frac{25}{102}}$$
+
+  <p><strong>(iii) Coin and Die Independence Check:</strong></p>
+  Sample space: $S = \\{H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6\\}$, $n(S) = 12$.
+  <ul>
+    <li>$A = \\{H1, H2, H3, H4, H5, H6\\} \\implies P(A) = \\frac{6}{12} = \\frac{1}{2}$.</li>
+    <li>$B = \\{H3, T3\\} \\implies P(B) = \\frac{2}{12} = \\frac{1}{6}$.</li>
+    <li>$A \\cap B = \\{H3\\} \\implies P(A \\cap B) = \\frac{1}{12}$.</li>
+  </ul>
+  Compute $P(A) \\cdot P(B)$:
+  $$P(A) \\cdot P(B) = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$$
+  Since $P(A \\cap B) = P(A) \\cdot P(B) = \\frac{1}{12}$, the events $A$ and $B$ are <strong>independent</strong>.`,
   '4 Marks',
   [
-    ['Part 1(i): Mutually exclusive gives p = 1/10', '1 Mark'],
-    ['Part 1(ii): Independent gives p = 1/5', '1 Mark'],
-    ['Part 2(a) & (b): P(A ∩ B) = 0.12, P(A ∪ B) = 0.58', '1 Mark'],
-    ['Part 2(c) & (d): P(A|B) = 0.3, P(B|A) = 0.4', '1 Mark']
+    ['(i) Multiplication rule yielding 3/25', '1 Mark'],
+    ['(ii) Multiplication theorem without replacement yielding 25/102', '1.5 Marks'],
+    ['(iii) Proving P(A ∩ B) = P(A)P(B) = 1/12 confirming independence', '1.5 Marks']
   ]
 ));
 
-// Q5 (Ex 13.2 Q13, Q14 - Problem Solved Independently)
+// Q5 (Ex 13.2 Q7, Q11 - Mutual Exclusivity vs Independence & Joint Probability)
 questions.push(createQCard(
   'c12m-ch13-q5',
   'Q5',
   'Exercise 13.2 (Verbatim)',
-  `Probability of solving specific problem independently by $A$ and $B$ are $\\frac{1}{2}$ and $\\frac{1}{3}$ respectively. If both try to solve the problem independently, find the probability that:<br>
-  (i) the problem is solved<br>
-  (ii) exactly one of them solves the problem`,
-  `<p>Let $A$ be the event that person $A$ solves the problem, and $B$ the event that $B$ solves it.</p>
-  <p>Given: $P(A) = \\frac{1}{2} \\implies P(A') = 1 - \\frac{1}{2} = \\frac{1}{2}$.
-  <br>$P(B) = \\frac{1}{3} \\implies P(B') = 1 - \\frac{1}{3} = \\frac{2}{3}$.</p>
-  <p>Since $A$ and $B$ work independently, the events $A, B$ as well as their complements $A', B'$ are independent.</p>
+  `Given that the events $A$ and $B$ are such that $P(A) = \\frac{1}{2}, \\; P(A \\cup B) = \\frac{3}{5}$ and $P(B) = p$. Find $p$ if they are:<br>
+  (i) mutually exclusive<br>
+  (ii) independent<br><br>
+  Also, if $A$ and $B$ are two independent events such that $P(A) = 0.3, \\; P(B) = 0.6$, find:<br>
+  (a) $P(A \\text{ and } B)$, &nbsp; (b) $P(A \\text{ and not } B)$, &nbsp; (c) $P(A \\text{ or } B)$, &nbsp; (d) $P(\\text{neither } A \\text{ nor } B)$.`,
+  `<p><strong>Part 1: Finding parameter $p$:</strong></p>
+  We know the general addition rule:
+  $$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$
+  $$\\frac{3}{5} = \\frac{1}{2} + p - P(A \\cap B) \\implies p = \\frac{3}{5} - \\frac{1}{2} + P(A \\cap B) = \\frac{1}{10} + P(A \\cap B)$$
+  <ol>
+    <li><strong>(i) Mutually Exclusive Events:</strong>
+      <br>Mutually exclusive implies $P(A \\cap B) = 0$.
+      $$p = \\frac{1}{10} + 0 = \\mathbf{\\frac{1}{10} = 0.1}$$
+    </li>
+    <li><strong>(ii) Independent Events:</strong>
+      <br>Independent implies $P(A \\cap B) = P(A) \\cdot P(B) = \\frac{1}{2}p$.
+      $$\\frac{3}{5} = \\frac{1}{2} + p - \\frac{1}{2}p = \\frac{1}{2} + \\frac{1}{2}p$$
+      $$\\frac{1}{2}p = \\frac{3}{5} - \\frac{1}{2} = \\frac{1}{10} \\implies p = 2 \\times \\frac{1}{10} = \\mathbf{\\frac{1}{5} = 0.2}$$
+    </li>
+  </ol>
 
-  <p><strong>(i) Probability that the problem is solved:</strong></p>
-  The problem is solved if at least one of them solves it:
-  $$P(\\text{Problem is solved}) = 1 - P(\\text{Neither solves the problem}) = 1 - P(A' \\cap B')$$
-  Since $A'$ and $B'$ are independent:
-  $$P(A' \\cap B') = P(A') \\cdot P(B') = \\left(\\frac{1}{2}\\right) \\left(\\frac{2}{3}\\right) = \\frac{1}{3}$$
-  $$P(\\text{Problem is solved}) = 1 - \\frac{1}{3} = \\mathbf{\\frac{2}{3}}$$
-  <em>(Alternative Method: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = \\frac{1}{2} + \\frac{1}{3} - \\frac{1}{6} = \\frac{3 + 2 - 1}{6} = \\frac{4}{6} = \\frac{2}{3}$).</em>
-
-  <p><strong>(ii) Probability that exactly one of them solves the problem:</strong></p>
-  $$\\text{Event} = (A \\cap B') \\cup (A' \\cap B)$$
-  Since these two events are mutually exclusive:
-  $$P(\\text{Exactly one solves}) = P(A \\cap B') + P(A' \\cap B)$$
-  $$= P(A) \\cdot P(B') + P(A') \\cdot P(B)$$
-  $$= \\left(\\frac{1}{2}\\right) \\left(\\frac{2}{3}\\right) + \\left(\\frac{1}{2}\\right) \\left(\\frac{1}{3}\\right) = \\frac{2}{6} + \\frac{1}{6} = \\frac{3}{6} = \\mathbf{\\frac{1}{2}}$$`,
-  '4 Marks',
+  <p><strong>Part 2: Given $P(A) = 0.3$ and $P(B) = 0.6$ (Independent):</strong></p>
+  <ol>
+    <li>(a) $P(A \\text{ and } B) = P(A \\cap B) = P(A)P(B) = (0.3)(0.6) = \\mathbf{0.18}$.</li>
+    <li>(b) $P(A \\text{ and not } B) = P(A \\cap B') = P(A) - P(A \\cap B) = 0.3 - 0.18 = \\mathbf{0.12}$.
+      <br><em>(Alternatively, $P(A)P(B') = (0.3)(1 - 0.6) = (0.3)(0.4) = 0.12$).</em>
+    </li>
+    <li>(c) $P(A \\text{ or } B) = P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.3 + 0.6 - 0.18 = \\mathbf{0.72}$.</li>
+    <li>(d) $P(\\text{neither } A \\text{ nor } B) = P(A' \\cap B') = P(A') \\cdot P(B') = (1 - 0.3)(1 - 0.6) = (0.7)(0.4) = \\mathbf{0.28}$.
+      <br><em>(Or $1 - P(A \\cup B) = 1 - 0.72 = 0.28$).</em>
+    </li>
+  </ol>`,
+  '5 Marks',
   [
-    ['Stating complements P(A\') = 1/2, P(B\') = 2/3 and independence', '1 Mark'],
-    ['(i) Calculating P(problem solved) = 1 - P(A\')P(B\') = 2/3', '1.5 Marks'],
-    ['(ii) Formulating P(A ∩ B\') + P(A\' ∩ B) and evaluating 1/2', '1.5 Marks']
+    ['(i) Mutually exclusive case yielding p = 1/10', '1 Mark'],
+    ['(ii) Independent case yielding p = 1/5', '1.5 Marks'],
+    ['Part 2 evaluations: (a) 0.18, (b) 0.12, (c) 0.72, (d) 0.28', '2.5 Marks']
   ]
 ));
 
@@ -297,7 +297,47 @@ questions.push(createQCard(
   'Q7',
   'Exercise 13.3 (Verbatim)',
   `A bag contains $4$ red and $4$ black balls, another bag contains $2$ red and $6$ black balls. One of the two bags is selected at random and a ball is drawn from the bag which is found to be red. Find the probability that the ball is drawn from the first bag.`,
-  `<p>Let:</p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 13.1: Bayes' Theorem Probability Tree for Two Urns/Bags</div>
+    <svg viewBox="0 0 520 200" style="max-width:520px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <!-- Root Node -->
+      <circle cx="40" cy="100" r="6" fill="#1e293b"/>
+      <text x="40" y="125" font-size="11" fill="#1e293b" font-weight="bold" text-anchor="middle">Start</text>
+      <!-- Branch to Bag I -->
+      <line x1="40" y1="100" x2="160" y2="50" stroke="#4f46e5" stroke-width="2"/>
+      <text x="85" y="65" font-size="10.5" fill="#4338ca" font-weight="bold">P(E&sub1;) = &frac12;</text>
+      <circle cx="160" cy="50" r="5" fill="#4f46e5"/>
+      <text x="160" y="38" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">Bag I (4R, 4B)</text>
+      <!-- Branch to Bag II -->
+      <line x1="40" y1="100" x2="160" y2="150" stroke="#059669" stroke-width="2"/>
+      <text x="85" y="145" font-size="10.5" fill="#047857" font-weight="bold">P(E&sub2;) = &frac12;</text>
+      <circle cx="160" cy="150" r="5" fill="#059669"/>
+      <text x="160" y="172" font-size="11" fill="#047857" font-weight="bold" text-anchor="middle">Bag II (2R, 6B)</text>
+      <!-- From Bag I to Red and Black -->
+      <line x1="160" y1="50" x2="310" y2="25" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="235" y="28" font-size="10" fill="#dc2626" font-weight="bold">Red: 4/8 = &frac12;</text>
+      <circle cx="310" cy="25" r="4.5" fill="#dc2626"/>
+      <text x="320" y="29" font-size="11" fill="#dc2626" font-weight="bold">Path 1: &frac12; &times; &frac12; = &frac14; (Target)</text>
+
+      <line x1="160" y1="50" x2="310" y2="75" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="235" y="72" font-size="9.5" fill="#64748b">Black: 4/8 = &frac12;</text>
+
+      <!-- From Bag II to Red and Black -->
+      <line x1="160" y1="150" x2="310" y2="125" stroke="#ea580c" stroke-width="2.5"/>
+      <text x="235" y="128" font-size="10" fill="#ea580c" font-weight="bold">Red: 2/8 = &frac14;</text>
+      <circle cx="310" cy="125" r="4.5" fill="#ea580c"/>
+      <text x="320" y="129" font-size="11" fill="#ea580c" font-weight="bold">Path 2: &frac12; &times; &frac14; = 1/8</text>
+
+      <line x1="160" y1="150" x2="310" y2="175" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="235" y="180" font-size="9.5" fill="#64748b">Black: 6/8 = &frac34;</text>
+
+      <!-- Bayes calculation callout -->
+      <text x="360" y="75" font-size="10.5" fill="#1e293b" font-weight="bold">Total Red = &frac14; + 1/8 = 3/8</text>
+      <text x="360" y="98" font-size="11.5" fill="#15803d" font-weight="bold">P(Bag I | Red) = (&frac14;) / (3/8) = 2/3</text>
+    </svg>
+  </div>
+
+  <p>Let:</p>
   <ul>
     <li>$E_1$: Event that Bag I is chosen.</li>
     <li>$E_2$: Event that Bag II is chosen.</li>
@@ -375,7 +415,43 @@ questions.push(createQCard(
   'Q9',
   'Exercise 13.3 (Verbatim)',
   `A laboratory blood test is $99\\%$ effective in detecting a certain disease when it is in fact present. However, the test also yields a 'false positive' result for $0.5\\%$ of the healthy persons tested (i.e. if a healthy person is tested, then, with probability $0.005$, the test will imply he has the disease). If $0.1$ percent of the population actually has the disease, what is the probability that a person has the disease given that his test result is positive?`,
-  `<p>Let:</p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 13.2: Medical Test Diagnostic Probability Tree & Bayes' Inference</div>
+    <svg viewBox="0 0 540 200" style="max-width:540px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <circle cx="35" cy="100" r="5" fill="#1e293b"/>
+      <text x="35" y="122" font-size="10.5" fill="#1e293b" font-weight="bold" text-anchor="middle">Population</text>
+      <!-- Branch E1: Disease -->
+      <line x1="35" y1="100" x2="160" y2="50" stroke="#dc2626" stroke-width="2"/>
+      <text x="80" y="65" font-size="10" fill="#dc2626" font-weight="bold">Disease (0.001)</text>
+      <circle cx="160" cy="50" r="4.5" fill="#dc2626"/>
+      <!-- Branch E2: Healthy -->
+      <line x1="35" y1="100" x2="160" y2="150" stroke="#059669" stroke-width="2"/>
+      <text x="80" y="145" font-size="10" fill="#047857" font-weight="bold">Healthy (0.999)</text>
+      <circle cx="160" cy="150" r="4.5" fill="#059669"/>
+      <!-- Sub-branches E1 -->
+      <line x1="160" y1="50" x2="310" y2="25" stroke="#b91c1c" stroke-width="2.5"/>
+      <text x="215" y="28" font-size="9.5" fill="#b91c1c" font-weight="bold">Test Positive (0.99)</text>
+      <text x="320" y="29" font-size="10.5" fill="#b91c1c" font-weight="bold">True Pos = 0.00099</text>
+
+      <line x1="160" y1="50" x2="310" y2="75" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="215" y="72" font-size="9" fill="#64748b">Test Negative (0.01)</text>
+
+      <!-- Sub-branches E2 -->
+      <line x1="160" y1="150" x2="310" y2="125" stroke="#d97706" stroke-width="2.5"/>
+      <text x="215" y="128" font-size="9.5" fill="#d97706" font-weight="bold">Test Positive (0.005)</text>
+      <text x="320" y="129" font-size="10.5" fill="#d97706" font-weight="bold">False Pos = 0.004995</text>
+
+      <line x1="160" y1="150" x2="310" y2="175" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="215" y="180" font-size="9" fill="#64748b">Test Negative (0.995)</text>
+
+      <!-- Summary Box -->
+      <text x="350" y="70" font-size="10" fill="#1e293b" font-weight="bold">Total Pos = 0.005985</text>
+      <text x="350" y="92" font-size="10.5" fill="#15803d" font-weight="bold">P(Disease | Pos) = 990 / 5985</text>
+      <text x="350" y="108" font-size="11" fill="#15803d" font-weight="bold">= 22/133 &approx; 16.54%</text>
+    </svg>
+  </div>
+
+  <p>Let:</p>
   <ul>
     <li>$E_1$: Event that the person actually has the disease.</li>
     <li>$E_2$: Event that the person does not have the disease (healthy).</li>
@@ -402,7 +478,7 @@ questions.push(createQCard(
   $$P(E_1|A) = \\frac{P(E_1) P(A|E_1)}{P(E_1) P(A|E_1) + P(E_2) P(A|E_2)}$$
   $$P(E_1|A) = \\frac{(0.001)(0.99)}{(0.001)(0.99) + (0.999)(0.005)}$$
   Multiply numerator and denominator by $100{,}000$:
-  $$= \\frac{100 \\times 0.99}{100 \\times 0.99 + 99.9 \\times 5} = \\frac{99}{99 + 4.995} = \\frac{99}{99 + 4.995} = \\frac{0.00099}{0.00099 + 0.004995}$$
+  $$= \\frac{100 \\times 0.99}{100 \\times 0.99 + 99.9 \\times 5} = \\frac{99}{99 + 4.995} = \\frac{0.00099}{0.00099 + 0.004995}$$
   $$= \\frac{0.00099}{0.005985} = \\frac{990}{5985}$$
   Divide numerator and denominator by $45$:
   $$\\frac{990 \\div 45}{5985 \\div 45} = \\mathbf{\\frac{22}{133} \\approx 0.1654 \\quad (16.54\\%)}$$`,
@@ -421,7 +497,45 @@ questions.push(createQCard(
   'Q10',
   'Exercise 13.3 (Verbatim)',
   `A man is known to speak truth $3$ out of $4$ times. He throws a die and reports that it is a six. Find the probability that it is actually a six.`,
-  `<p>Let:</p>
+  `<div style="margin:14px 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; text-align:center;">
+    <div style="font-weight:600; color:#334155; margin-bottom:8px; font-size:0.95rem;">Figure 13.3: Truth Teller Die Roll Tree & Posterior Probability Calculation</div>
+    <svg viewBox="0 0 520 200" style="max-width:520px; width:100%; height:auto; display:inline-block; background:white; border-radius:6px; border:1px solid #cbd5e1;">
+      <circle cx="35" cy="100" r="5" fill="#1e293b"/>
+      <text x="35" y="122" font-size="10.5" fill="#1e293b" font-weight="bold" text-anchor="middle">Die Throw</text>
+      <!-- Branch E1: Actually Six -->
+      <line x1="35" y1="100" x2="160" y2="50" stroke="#4f46e5" stroke-width="2"/>
+      <text x="75" y="65" font-size="10" fill="#4338ca" font-weight="bold">Actually Six: 1/6</text>
+      <circle cx="160" cy="50" r="4.5" fill="#4f46e5"/>
+      <!-- Branch E2: Not Six -->
+      <line x1="35" y1="100" x2="160" y2="150" stroke="#059669" stroke-width="2"/>
+      <text x="75" y="145" font-size="10" fill="#047857" font-weight="bold">Not Six: 5/6</text>
+      <circle cx="160" cy="150" r="4.5" fill="#059669"/>
+
+      <!-- E1 to Reports Six (Truth) -->
+      <line x1="160" y1="50" x2="310" y2="25" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="215" y="28" font-size="9.5" fill="#dc2626" font-weight="bold">Truth: &frac34;</text>
+      <text x="320" y="29" font-size="10.5" fill="#dc2626" font-weight="bold">Reports Six: 1/6 &times; &frac34; = 3/24</text>
+
+      <!-- E1 to Lies (Reports other) -->
+      <line x1="160" y1="50" x2="310" y2="75" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="215" y="72" font-size="9" fill="#64748b">Lies: &frac14; (Reports other)</text>
+
+      <!-- E2 to Reports Six (Lies) -->
+      <line x1="160" y1="150" x2="310" y2="125" stroke="#ea580c" stroke-width="2.5"/>
+      <text x="215" y="128" font-size="9.5" fill="#ea580c" font-weight="bold">Lies: &frac14;</text>
+      <text x="320" y="129" font-size="10.5" fill="#ea580c" font-weight="bold">Reports Six: 5/6 &times; &frac14; = 5/24</text>
+
+      <!-- E2 to Truth (Reports other) -->
+      <line x1="160" y1="150" x2="310" y2="175" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="215" y="180" font-size="9" fill="#64748b">Truth: &frac34; (Reports other)</text>
+
+      <!-- Posterior summary -->
+      <text x="340" y="72" font-size="10" fill="#1e293b" font-weight="bold">Total Reports Six = 3/24 + 5/24 = 8/24</text>
+      <text x="340" y="94" font-size="11" fill="#15803d" font-weight="bold">P(Actually Six | Reports Six) = 3/8</text>
+    </svg>
+  </div>
+
+  <p>Let:</p>
   <ul>
     <li>$E_1$: Event that a six actually occurs on the die.</li>
     <li>$E_2$: Event that a six does not occur on the die (i.e., any number from $\\{1, 2, 3, 4, 5\\}$ turns up).</li>
