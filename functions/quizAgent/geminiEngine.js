@@ -10,15 +10,17 @@ const crypto = require("crypto");
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
 const GEMINI_MODELS = [
-  "gemini-2.5-flash",        // High reasoning, modern Flash
-  "gemini-2.0-flash",        // Rock-solid primary workhorse
-  "gemini-2.0-flash-lite",   // Lightweight high-quota fallback
-  "gemini-1.5-flash",        // Established reliable fallback
-  "gemini-1.5-flash-8b",     // Ultra fast low-latency fallback
-  "gemini-3.5-flash-lite",   // Preview tier
-  "gemini-3.8-flash",        // Flagship preview tier
-  "gemini-3.5-flash"         // Mid-tier fallback
+  "gemini-3.5-flash-lite",   // Verified active model
+  "gemini-3.5-flash",        // High-speed tier
+  "gemini-3.8-flash",        // Reasoning tier
+  "gemini-2.5-flash",
+  "gemini-2.0-flash",
+  "gemini-2.0-flash-lite",
+  "gemini-1.5-flash"
 ];
+
+let activeGeminiModel = "gemini-3.5-flash-lite";
+const deadGeminiModels = new Set();
 
 // OpenAI is the primary provider when a key is available (higher rate limits,
 // more reliable than Gemini's free tier) - Gemini remains the fallback.
@@ -354,7 +356,13 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
 async function callGeminiRaw({ apiKey, prompt }) {
   let lastError = null;
 
-  for (const model of GEMINI_MODELS) {
+  const candidateModels = [
+    activeGeminiModel,
+    ...GEMINI_MODELS.filter(m => m !== activeGeminiModel && !deadGeminiModels.has(m))
+  ];
+
+  for (const model of candidateModels) {
+    if (deadGeminiModels.has(model)) continue;
     const maxRetries = 2;
 
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -377,6 +385,11 @@ async function callGeminiRaw({ apiKey, prompt }) {
 
         if (!response.ok) {
           const errorText = await response.text();
+
+          if (response.status === 404) {
+            deadGeminiModels.add(model);
+            break;
+          }
 
           // Check if retryable (503 high demand spike, 429 rate limit, 500/502/504)
           if (RETRYABLE_STATUS_CODES.includes(response.status) && attempt < maxRetries) {
@@ -410,12 +423,13 @@ async function callGeminiRaw({ apiKey, prompt }) {
 
         const parsed = JSON.parse(cleaned);
         if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
+        activeGeminiModel = model;
         return parsed;
 
       } catch (err) {
         lastError = err;
         if (err.message && err.message.includes("404")) {
-          console.warn(`Model ${model} 404 not found. Trying next fallback...`);
+          deadGeminiModels.add(model);
           break;
         }
 
@@ -429,8 +443,6 @@ async function callGeminiRaw({ apiKey, prompt }) {
         break;
       }
     }
-
-    console.warn(`Model ${model} unavailable or overloaded. Trying next fallback model...`);
   }
 
   throw lastError || new Error("All Gemini model endpoints failed.");
