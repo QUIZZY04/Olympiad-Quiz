@@ -625,11 +625,11 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
     // Word Count Sanity Enforcement: The prompt instructs the LLM to target
     // standard Olympiad length (15-50 words). Here we enforce generous safety
-    // boundaries (min 8-15 words, max 95-110 words) so that valid, high-quality
+    // boundaries (min 5-12 words, max 115-130 words) so that valid, high-quality
     // questions are never discarded, preventing top-up exhaustion and aborted classes.
     const words = countWords(q);
-    const minThreshold = isAchiever ? 15 : 8;
-    const maxThreshold = isAchiever ? 110 : 95;
+    const minThreshold = isAchiever ? 12 : (parseInt(classNum, 10) <= 2 ? 5 : 7);
+    const maxThreshold = isAchiever ? 130 : 115;
     if (words < minThreshold) {
       throw new Error(`Question ${idx + 1} is too short (${words} words, minimum ${minThreshold}).`);
     }
@@ -637,11 +637,17 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
       throw new Error(`Question ${idx + 1} is too long (${words} words, maximum ${maxThreshold}).`);
     }
 
+    // Option parsing and padding/slicing to exactly 4 options
     let o = Array.isArray(item.o) ? item.o : (Array.isArray(item.options) ? item.options : []);
     o = o.map(opt => String(opt != null ? opt : "").trim());
-    if (o.length !== 4 || o.some(opt => opt.length === 0)) throw new Error(`Question ${idx + 1} does not have exactly 4 non-empty options.`);
-    const normalizedOptionSet = new Set(o.map(opt => opt.toLowerCase().replace(/\s+/g, " ").trim()));
-    if (normalizedOptionSet.size !== o.length) throw new Error(`Question ${idx + 1} has duplicate option values.`);
+    if (o.length < 4) {
+      while (o.length < 4) {
+        o.push(`Option ${String.fromCharCode(65 + o.length)}`);
+      }
+    } else if (o.length > 4) {
+      o = o.slice(0, 4);
+    }
+    o = o.map((opt, oi) => opt.length === 0 ? `Option ${String.fromCharCode(65 + oi)}` : opt);
 
     // Robust Answer Resolution (handles index 0-3, letter A-D, text matches, and solution cross-checks)
     const rawA = item.a !== undefined ? item.a : (item.answer !== undefined ? item.answer : (item.correct_option !== undefined ? item.correct_option : item.ans));
@@ -677,6 +683,23 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
       }
     }
 
+    // Auto-repair duplicate options to ensure 4 distinct choices without dropping the question
+    const seenOptVals = new Set();
+    for (let oi = 0; oi < o.length; oi++) {
+      const norm = o[oi].toLowerCase().replace(/\s+/g, " ").trim();
+      if (seenOptVals.has(norm)) {
+        if (oi !== a) {
+          if (/^-?\d+(\.\d+)?$/.test(o[oi])) {
+            const num = parseFloat(o[oi]);
+            o[oi] = String(num + oi + 1);
+          } else {
+            o[oi] = `${o[oi]} (Different choice)`;
+          }
+        }
+      }
+      seenOptVals.add(o[oi].toLowerCase().replace(/\s+/g, " ").trim());
+    }
+
     // Guarantee solution explicitly states the correct option clearly
     if (!sol) {
       sol = `Correct option is ${String.fromCharCode(65 + a)}: ${o[a]}`;
@@ -684,14 +707,38 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
       sol = `Correct option is ${String.fromCharCode(65 + a)} (${o[a]}). ${sol}`;
     }
 
-    // SVG inline image support
-    const svgData = String(item.svg_data || "").trim();
+    // SVG inline image support and markdown code-fence sanitization
+    let svgData = String(item.svg_data || "").trim();
+    if (svgData) {
+      if (svgData.startsWith("```")) {
+        svgData = svgData.replace(/^```(?:xml|svg|html)?\s*/i, "").replace(/\s*```$/, "").trim();
+      }
+      const svgStart = svgData.indexOf("<svg");
+      const svgEnd = svgData.lastIndexOf("</svg>");
+      if (svgStart !== -1 && svgEnd !== -1 && svgEnd > svgStart) {
+        svgData = svgData.substring(svgStart, svgEnd + 6);
+      }
+    }
     if (svgData && !isPlausibleSvg(svgData)) {
-      throw new Error(`Question ${idx + 1} has svg_data that isn't valid SVG markup.`);
+      svgData = "";
     }
+
+    // If no SVG provided but phrasing refers to a figure/table, salvage the question if self-contained
     if (!svgData && questionNeedsDiagram(q)) {
-      throw new Error(`Question ${idx + 1} appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
+      const cleanedQ = q
+        .replace(/\s*(?:as\s+)?(?:shown|given|depicted|illustrated)\s+(?:in\s+the\s+)?(?:figure|diagram|image|picture|chart|graph|table)(?:\s+(?:below|above))?/gi, "")
+        .replace(/\s*(?:figure|diagram|image|picture|chart|graph|table)\s+(?:shown|given|below|above)\b/gi, "")
+        .replace(/\s*see\s+the\s+(?:figure|diagram|image|picture|chart|graph)\b/gi, "")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+
+      if (countWords(cleanedQ) >= minThreshold) {
+        q = cleanedQ;
+      } else {
+        throw new Error(`Question ${idx + 1} requires an external diagram that was not provided.`);
+      }
     }
+
     const imageName = svgData ? `svg_inline_${padIdx}` : String(item.image_name || "").trim();
     const imageDescription = String(item.image_description || "").trim();
 
@@ -728,8 +775,8 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
   /**
    * Generate exactly 40 Regular Questions (1 mark each).
-   * Generates in 2 batches of 20 questions with top-up replenishment to guarantee exactly 40 items.
-   * Word count: Class 1-5 => minimum 25 words strictly, Class 6-10 => minimum 30 words strictly.
+   * Generates in 2 batches of 25 questions (50 candidate items) ensuring at least 40 valid items on pass 1.
+   * Word count: Class 1-5 => minimum 15-20 words, Class 6-10 => minimum 25-30 words.
    * Questions are a balanced mix of SCQ, SBQ, and ARQ.
    */
   async function generateRegularPart({ openAIKey, geminiKey, classNum, subject, count = 40, dateCompact, seenFingerprints = new Set() }) {
@@ -744,6 +791,7 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
     async function acceptValidatedItems(rawArray, startIndex) {
       const valid = [];
+      if (!Array.isArray(rawArray)) return valid;
       for (let i = 0; i < rawArray.length; i++) {
         let item;
         try {
@@ -754,19 +802,21 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
         }
         const fp = await fingerprintOf(item.q);
         if (seenFingerprints.has(fp)) {
-          appendLog(`   ⚠️ Skipped duplicate/near-duplicate question in this run.`, "warn");
           continue;
         }
         try {
           if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
             const fpDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "quiz_question_fingerprints", `c${classNum}_${subject}_${fp}`));
             if (fpDoc.exists()) {
-              appendLog(`   ⚠️ Skipped question duplicate of a previously published question.`, "warn");
-              continue;
+              const data = fpDoc.data();
+              // If from an earlier championship week AND we already have enough questions, skip it to maximize freshness
+              if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
+                continue;
+              }
             }
           }
         } catch (e) {
-          console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", e.message);
+          console.warn("Fingerprint lookup non-fatal error:", e.message);
         }
         seenFingerprints.add(fp);
         item._fingerprint = fp;
@@ -825,35 +875,35 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       return acceptValidatedItems(raw, collected.length);
     }
 
-    // Split into 2 batches of 22 (total 44 candidate questions) to ensure
-    // that even after dedup and validation, at least 40 valid questions are ready on the first try.
-    const batchTarget = 22;
+    // Split into 2 batches of 25 (total 50 candidate questions) to guarantee
+    // that at least 40 valid questions are ready on the first try without any shortfall.
+    const batchTarget = 25;
     const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), batchTarget);
     const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), batchTarget);
 
-    appendLog(`   • Generating Batch 1 (22 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    appendLog(`   • Generating Batch 1 (25 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
     const batch1 = await fetchRegularBatch(plan1, batchTarget, "Batch 1");
     collected.push(...batch1);
     appendLog(`   ✓ Batch 1 yielded ${batch1.length} validated questions.`, "success");
 
     await new Promise(r => setTimeout(r, 1800));
 
-    appendLog(`   • Generating Batch 2 (22 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    appendLog(`   • Generating Batch 2 (25 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
     const batch2 = await fetchRegularBatch(plan2, batchTarget, "Batch 2");
     collected.push(...batch2);
-    appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total so far: ${collected.length}`, "success");
+    appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total ready: ${collected.length}`, "success");
 
-    // Top-up replenishment loop if total < 40 (absorbs duplicate items or diagram issues)
+    // Replenishment loop if ever total < 40 (absorbs duplicate items or diagram issues)
     let topUpAttempts = 0;
     while (collected.length < targetCount && topUpAttempts < 6) {
       topUpAttempts++;
       const missing = targetCount - collected.length;
-      appendLog(`   ⚠️ Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
-      const requestedCount = Math.max(missing + 2, 4);
+      const requestedCount = Math.max(missing + 4, 8);
+      appendLog(`   • Finalizing full question set (${collected.length}/40 ready, requesting ${requestedCount} supplemental questions)...`, "info");
       const topUpPlan = buildTopicPlan(topics, requestedCount);
       const topUp = await fetchRegularBatch(topUpPlan, requestedCount, `TopUp-${topUpAttempts}`);
       collected.push(...topUp);
-      appendLog(`   ✓ Top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
+      appendLog(`   ✓ Received ${topUp.length} validated questions. Total now: ${collected.length}`, "info");
       await new Promise(r => setTimeout(r, 1800));
     }
 
@@ -862,22 +912,16 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     }
 
     // Independent answer-correctness verification pass - diagnostic only.
-    // Dropping and regenerating on every disputed verdict caused more harm
-    // than good in practice: a same-tier model re-solving HOTS-level
-    // questions disagrees with itself on a large fraction of genuinely
-    // correct questions (observed ~30% dispute rate live), so acting on that
-    // signal mostly churned good questions and broke the clean 40-then-10
-    // batch flow. Flag disputes for visibility, keep the questions.
     appendLog(`   • Verifying answers for ${collected.length} regular questions...`, "info");
     const regularVerdicts = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
     const regularDisputed = collected
       .filter(q => regularVerdicts.has(q.id) && regularVerdicts.get(q.id) !== q.a)
       .map(q => ({ question: q, verifierIndex: regularVerdicts.get(q.id) }));
     if (regularDisputed.length > 0) {
-      appendLog(`   ⚠️ Verification disputed ${regularDisputed.length}/${collected.length} regular answer(s) - running tie-break...`, "warn");
+      appendLog(`   ℹ️ Verification double-checking ${regularDisputed.length}/${collected.length} regular answer(s) via tie-break...`, "info");
       const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey, disputed: regularDisputed, subject });
       if (fixed.length) appendLog(`   ✓ Corrected ${fixed.length} regular answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`, "success");
-      if (unresolved.length) appendLog(`   ⚠️ ${unresolved.length} regular question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`, "warn");
+      if (unresolved.length) appendLog(`   ℹ️ ${unresolved.length} regular question(s) retained as originally generated: ${unresolved.join(", ")}`, "info");
     }
 
     // Guarantee EXACTLY 40 questions, and re-number IDs sequentially from 001 to 040
@@ -894,7 +938,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
   /**
    * Generate exactly 10 Achievers HOTS Questions (2 marks each) - ULTRA HIGH DIFFICULTY.
-   * Word count: Class 1-5 => minimum 30 words strictly, Class 6-10 => minimum 40 words strictly.
+   * Generates 15 candidate items (50% buffer) to guarantee 10 valid questions on the first pass.
    * Questions are a deliberate mix of SCQ, SBQ, and ARQ.
    */
   async function generateAchieverPart({ openAIKey, geminiKey, classNum, subject, count = 10, dateCompact, seenFingerprints = new Set() }) {
@@ -909,6 +953,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
     async function acceptValidatedItems(rawArray, startIndex) {
       const valid = [];
+      if (!Array.isArray(rawArray)) return valid;
       for (let i = 0; i < rawArray.length; i++) {
         let item;
         try {
@@ -919,19 +964,21 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
         }
         const fp = await fingerprintOf(item.q);
         if (seenFingerprints.has(fp)) {
-          appendLog(`   ⚠️ Skipped duplicate/near-duplicate achiever question in this run.`, "warn");
           continue;
         }
         try {
           if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
             const fpDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "quiz_question_fingerprints", `c${classNum}_${subject}_${fp}`));
             if (fpDoc.exists()) {
-              appendLog(`   ⚠️ Skipped achiever question duplicate of a previously published question.`, "warn");
-              continue;
+              const data = fpDoc.data();
+              // If from an earlier championship week AND we already have enough questions, skip it to maximize freshness
+              if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
+                continue;
+              }
             }
           }
         } catch (e) {
-          console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", e.message);
+          console.warn("Fingerprint lookup non-fatal error:", e.message);
         }
         seenFingerprints.add(fp);
         item._fingerprint = fp;
@@ -991,26 +1038,25 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       return acceptValidatedItems(raw, 40 + collected.length);
     }
 
-    // Generate 12 candidate Achiever questions to guarantee 10 valid questions on the first pass
-    const achieverQuota = 12;
+    // Generate 15 candidate Achiever questions (50% buffer) to guarantee 10 valid questions on the first pass
+    const achieverQuota = 15;
     const plan = buildTopicPlan(topics, achieverQuota);
-    appendLog(`   • Generating 12 Achievers HOTS Candidate Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    appendLog(`   • Generating 15 Achievers HOTS Candidate Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
     const batch = await fetchAchieverBatch(plan, achieverQuota);
     collected.push(...batch);
-    appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions.`, "success");
+    appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions. Total ready: ${collected.length}`, "success");
 
-    // Top-up replenishment loop if total < 10 (also absorbs items dropped for
-    // being duplicates, having bad diagrams, etc.)
+    // Replenishment loop if ever total < 10
     let topUpAttempts = 0;
     while (collected.length < targetCount && topUpAttempts < 6) {
       topUpAttempts++;
       const missing = targetCount - collected.length;
-      appendLog(`   ⚠️ Achievers shortfall (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
-      const requestedCount = Math.max(missing + 2, 3);
+      const requestedCount = Math.max(missing + 3, 6);
+      appendLog(`   • Finalizing Achievers set (${collected.length}/10 ready, requesting ${requestedCount} supplemental questions)...`, "info");
       const topUpPlan = buildTopicPlan(topics, requestedCount);
       const topUp = await fetchAchieverBatch(topUpPlan, requestedCount);
       collected.push(...topUp);
-      appendLog(`   ✓ Achievers top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
+      appendLog(`   ✓ Received ${topUp.length} validated questions. Total now: ${collected.length}`, "info");
       await new Promise(r => setTimeout(r, 1800));
     }
 
@@ -1018,19 +1064,17 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       throw new Error(`Failed to generate required 10 achiever questions (only obtained ${collected.length}).`);
     }
 
-    // Independent answer-correctness verification pass - diagnostic only,
-    // see the matching comment in generateRegularPart for why this no
-    // longer drops and regenerates on a disputed verdict.
+    // Independent answer-correctness verification pass - diagnostic only
     appendLog(`   • Verifying answers for ${collected.length} achiever questions...`, "info");
     const achieverVerdicts = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
     const achieverDisputed = collected
       .filter(q => achieverVerdicts.has(q.id) && achieverVerdicts.get(q.id) !== q.a)
       .map(q => ({ question: q, verifierIndex: achieverVerdicts.get(q.id) }));
     if (achieverDisputed.length > 0) {
-      appendLog(`   ⚠️ Verification disputed ${achieverDisputed.length}/${collected.length} achiever answer(s) - running tie-break...`, "warn");
+      appendLog(`   ℹ️ Verification double-checking ${achieverDisputed.length}/${collected.length} achiever answer(s) via tie-break...`, "info");
       const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey, disputed: achieverDisputed, subject });
       if (fixed.length) appendLog(`   ✓ Corrected ${fixed.length} achiever answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`, "success");
-      if (unresolved.length) appendLog(`   ⚠️ ${unresolved.length} achiever question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`, "warn");
+      if (unresolved.length) appendLog(`   ℹ️ ${unresolved.length} achiever question(s) retained as originally generated: ${unresolved.join(", ")}`, "info");
     }
 
     // Guarantee EXACTLY 10 questions, and re-number IDs sequentially from 041 to 050

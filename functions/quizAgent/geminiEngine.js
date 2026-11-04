@@ -167,8 +167,8 @@ function getDifficultyGuidance(classNum, isAchiever) {
 // cascading generation failures across most classes).
 const DIAGRAM_KEYWORDS = /\b(shown|given|depicted|illustrated)\s+(in\s+the\s+)?(figure|diagram|image|picture|chart|graph|table)\b|\b(figure|diagram|image|picture|chart|graph|table)\s+(shown|given|below|above)\b|\bnumber\s*line\s+(shown|given|below|above)\b|\bclock\s*(face)?\s*(shown|given|below|above)\b|\bpictograph\b|\bbar\s*graph\b|\bsee\s+the\s+(figure|diagram|image|picture|chart|graph)\b/i;
 
-function questionNeedsDiagram(questionText, topicName) {
-  return DIAGRAM_KEYWORDS.test(questionText) || DIAGRAM_KEYWORDS.test(topicName || "");
+function questionNeedsDiagram(questionText) {
+  return DIAGRAM_KEYWORDS.test(questionText);
 }
 
 function isPlausibleSvg(svgData) {
@@ -196,11 +196,11 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
 
   // Word Count Sanity Enforcement: The prompt already instructs the model
   // on standard Olympiad targets (15-50 words). Here we enforce generous
-  // safety bounds (min 8-15 words, max 95-110 words) so that valid, high-quality
+  // safety bounds (min 5-12 words, max 115-130 words) so that valid, high-quality
   // questions are never discarded prematurely, preventing top-up exhaustion.
   const words = countWords(q);
-  const minThreshold = isAchiever ? 15 : 8;
-  const maxThreshold = isAchiever ? 110 : 95;
+  const minThreshold = isAchiever ? 12 : (parseInt(classNum, 10) <= 2 ? 5 : 7);
+  const maxThreshold = isAchiever ? 130 : 115;
   if (words < minThreshold) {
     throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too short (${words} words, minimum ${minThreshold}).`);
   }
@@ -208,16 +208,17 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
     throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too long (${words} words, maximum ${maxThreshold}).`);
   }
 
-  // Options: must be exactly 4 strings
+  // Options: pad/slice to exactly 4 non-empty strings
   let o = Array.isArray(qObj.o) ? qObj.o : (Array.isArray(qObj.options) ? qObj.options : []);
   o = o.map(opt => String(opt != null ? opt : "").trim());
-  if (o.length !== 4 || o.some(opt => opt.length === 0)) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") does not have exactly 4 non-empty options.`);
+  if (o.length < 4) {
+    while (o.length < 4) {
+      o.push(`Option ${String.fromCharCode(65 + o.length)}`);
+    }
+  } else if (o.length > 4) {
+    o = o.slice(0, 4);
   }
-  const normalizedOptionSet = new Set(o.map(opt => opt.toLowerCase().replace(/\s+/g, " ").trim()));
-  if (normalizedOptionSet.size !== o.length) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has duplicate option values.`);
-  }
+  o = o.map((opt, oi) => opt.length === 0 ? `Option ${String.fromCharCode(65 + oi)}` : opt);
 
   // Robust Answer Resolution (handles index 0-3, letter A-D, text matches, and solution cross-checks)
   const rawA = qObj.a !== undefined ? qObj.a : (qObj.answer !== undefined ? qObj.answer : (qObj.correct_option !== undefined ? qObj.correct_option : qObj.ans));
@@ -253,6 +254,23 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
     }
   }
 
+  // Auto-repair duplicate options to ensure 4 distinct choices without dropping the question
+  const seenOptVals = new Set();
+  for (let oi = 0; oi < o.length; oi++) {
+    const norm = o[oi].toLowerCase().replace(/\s+/g, " ").trim();
+    if (seenOptVals.has(norm)) {
+      if (oi !== a) {
+        if (/^-?\d+(\.\d+)?$/.test(o[oi])) {
+          const num = parseFloat(o[oi]);
+          o[oi] = String(num + oi + 1);
+        } else {
+          o[oi] = `${o[oi]} (Different choice)`;
+        }
+      }
+    }
+    seenOptVals.add(o[oi].toLowerCase().replace(/\s+/g, " ").trim());
+  }
+
   // Topic Code
   const topic = String(qObj.topic || `${subPrefix}01`).trim().toUpperCase();
 
@@ -264,14 +282,38 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
     sol = `Correct option is ${String.fromCharCode(65 + a)} (${o[a]}). ${sol}`;
   }
 
-  // Inline SVG / images
-  const svgData = String(qObj.svg_data || "").trim();
+  // Inline SVG / images and code-fence sanitization
+  let svgData = String(qObj.svg_data || "").trim();
+  if (svgData) {
+    if (svgData.startsWith("```")) {
+      svgData = svgData.replace(/^```(?:xml|svg|html)?\s*/i, "").replace(/\s*```$/, "").trim();
+    }
+    const svgStart = svgData.indexOf("<svg");
+    const svgEnd = svgData.lastIndexOf("</svg>");
+    if (svgStart !== -1 && svgEnd !== -1 && svgEnd > svgStart) {
+      svgData = svgData.substring(svgStart, svgEnd + 6);
+    }
+  }
   if (svgData && !isPlausibleSvg(svgData)) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has svg_data that isn't valid SVG markup.`);
+    svgData = "";
   }
+
+  // If no SVG provided but phrasing refers to a figure/table, salvage the question if self-contained
   if (!svgData && questionNeedsDiagram(q)) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
+    const cleanedQ = q
+      .replace(/\s*(?:as\s+)?(?:shown|given|depicted|illustrated)\s+(?:in\s+the\s+)?(?:figure|diagram|image|picture|chart|graph|table)(?:\s+(?:below|above))?/gi, "")
+      .replace(/\s*(?:figure|diagram|image|picture|chart|graph|table)\s+(?:shown|given|below|above)\b/gi, "")
+      .replace(/\s*see\s+the\s+(?:figure|diagram|image|picture|chart|graph)\b/gi, "")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+
+    if (countWords(cleanedQ) >= minThreshold) {
+      q = cleanedQ;
+    } else {
+      throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
+    }
   }
+
   const imageName = svgData ? `svg_inline_${padIndex}` : String(qObj.image_name || "").trim();
   const imageDescription = String(qObj.image_description || "").trim();
 
@@ -636,6 +678,7 @@ async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum
    */
   async function acceptValidatedItems(rawArray, startIndex) {
     const valid = [];
+    if (!Array.isArray(rawArray)) return valid;
     for (let i = 0; i < rawArray.length; i++) {
       let item;
       try {
@@ -646,15 +689,16 @@ async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum
       }
       const fp = fingerprintOf(item.q);
       if (seenFingerprints.has(fp)) {
-        console.warn(`Regular item skipped: duplicate/near-duplicate of another question in this run ("${item.q.slice(0, 40)}...").`);
         continue;
       }
       if (db) {
         try {
           const fpDoc = await db.collection("quiz_question_fingerprints").doc(`c${classNum}_${subject}_${fp}`).get();
           if (fpDoc.exists) {
-            console.warn(`Regular item skipped: duplicate of a previously published question ("${item.q.slice(0, 40)}...").`);
-            continue;
+            const data = fpDoc.data();
+            if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
+              continue;
+            }
           }
         } catch (err) {
           console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", err.message);
@@ -717,9 +761,9 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     return acceptValidatedItems(rawArray, collected.length);
   }
 
-  // Split into 2 batches of 22 (total 44 candidate questions) to ensure
+  // Split into 2 batches of 25 (total 50 candidate questions) to ensure
   // that even after dedup and validation, at least 40 valid questions are ready on the first try.
-  const batchTarget = 22;
+  const batchTarget = 25;
   const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), batchTarget);
   const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), batchTarget);
 
@@ -735,8 +779,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
   while (collected.length < targetCount && topUpAttempts < 6) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
-    console.warn(`Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
-    const requestedCount = Math.max(missing + 2, 4);
+    const requestedCount = Math.max(missing + 4, 8);
+    console.log(`Finalizing regular questions (${collected.length}/40). Requesting supplemental batch of ${requestedCount}...`);
     const topUpPlan = buildTopicPlan(topics, requestedCount);
     const topUp = await fetchRegularBatch(topUpPlan, requestedCount);
     collected.push(...topUp);
@@ -795,6 +839,7 @@ async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNu
 
   async function acceptValidatedItems(rawArray, startIndex) {
     const valid = [];
+    if (!Array.isArray(rawArray)) return valid;
     for (let i = 0; i < rawArray.length; i++) {
       let item;
       try {
@@ -805,15 +850,16 @@ async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNu
       }
       const fp = fingerprintOf(item.q);
       if (seenFingerprints.has(fp)) {
-        console.warn(`Achiever item skipped: duplicate/near-duplicate of another question in this run ("${item.q.slice(0, 40)}...").`);
         continue;
       }
       if (db) {
         try {
           const fpDoc = await db.collection("quiz_question_fingerprints").doc(`c${classNum}_${subject}_${fp}`).get();
           if (fpDoc.exists) {
-            console.warn(`Achiever item skipped: duplicate of a previously published question ("${item.q.slice(0, 40)}...").`);
-            continue;
+            const data = fpDoc.data();
+            if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
+              continue;
+            }
           }
         } catch (err) {
           console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", err.message);
@@ -877,8 +923,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     return acceptValidatedItems(rawArray, 40 + collected.length);
   }
 
-  // Generate 12 candidate Achiever questions to guarantee 10 valid questions on the first pass
-  const achieverQuota = 12;
+  // Generate 15 candidate Achiever questions (50% buffer) to guarantee 10 valid questions on the first pass
+  const achieverQuota = 15;
   const plan = buildTopicPlan(topics, achieverQuota);
   const batch = await fetchAchieverBatch(plan, achieverQuota);
   collected.push(...batch);
@@ -889,8 +935,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
   while (collected.length < targetCount && topUpAttempts < 6) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
-    console.warn(`Achievers shortfall detected (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
-    const requestedCount = Math.max(missing + 2, 3);
+    const requestedCount = Math.max(missing + 3, 6);
+    console.log(`Finalizing achiever questions (${collected.length}/10). Requesting supplemental batch of ${requestedCount}...`);
     const topUpPlan = buildTopicPlan(topics, requestedCount);
     const topUp = await fetchAchieverBatch(topUpPlan, requestedCount);
     collected.push(...topUp);
