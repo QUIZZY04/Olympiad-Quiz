@@ -143,11 +143,15 @@
     if (lbl) lbl.innerText = label;
   }
 
-  // Current Gemini models (September 2026)
-  // gemini-2.0-flash was shut down June 2026; Google remaps it to gemini-3.8-flash
+  // Comprehensive Gemini models covering all Google AI Studio tiers (2.5, 2.0, 1.5, and 3.x)
   const GEMINI_MODELS = [
-    "gemini-3.5-flash-lite",   // Highest free quota, fastest
-    "gemini-3.8-flash",        // Flagship, lower daily free quota
+    "gemini-2.5-flash",        // High reasoning, modern Flash
+    "gemini-2.0-flash",        // Rock-solid primary workhorse
+    "gemini-2.0-flash-lite",   // Lightweight high-quota fallback
+    "gemini-1.5-flash",        // Established reliable fallback
+    "gemini-1.5-flash-8b",     // Ultra fast low-latency fallback
+    "gemini-3.5-flash-lite",   // Preview tier
+    "gemini-3.8-flash",        // Flagship preview tier
     "gemini-3.5-flash"         // Mid-tier fallback
   ];
 
@@ -159,7 +163,7 @@
 
   const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
-  const GEMINI_MODEL_VERSION = "v8";
+  const GEMINI_MODEL_VERSION = "v10";
 
   /**
    * Call Gemini Flash API with smart fallback:

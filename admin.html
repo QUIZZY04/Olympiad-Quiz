@@ -1436,7 +1436,8 @@ border-top:1px solid var(--border);
                     </div>
                     <div style="display: flex; gap: 8px;">
                         <input type="password" id="qaOpenAIKey" placeholder="sk-proj-... or sk-..." style="flex: 1; margin: 0; border-color: #a7f3d0;">
-                        <button class="upload" onclick="window.qaSaveOpenAIKey()" style="margin: 0; padding: 8px 14px; background: #059669; white-space: nowrap; font-size: 12px;">💾 Save</button>
+                        <button class="upload" onclick="window.qaTestOpenAIKey()" style="margin: 0; padding: 8px 14px; background: #059669; white-space: nowrap; font-size: 12px;">🧪 Test</button>
+                        <button class="upload" onclick="window.qaSaveOpenAIKey()" style="margin: 0; padding: 8px 14px; background: #047857; white-space: nowrap; font-size: 12px;">💾 Save</button>
                     </div>
                 </div>
 
@@ -1448,12 +1449,13 @@ border-top:1px solid var(--border);
                     </div>
                     <div style="display: flex; gap: 8px;">
                         <input type="password" id="qaApiKey" placeholder="AIzaSy..." style="flex: 1; margin: 0;">
+                        <button class="upload" onclick="window.qaTestApiKey()" style="margin: 0; padding: 8px 14px; background: #4f46e5; white-space: nowrap; font-size: 12px;">🧪 Test</button>
                         <button class="upload" onclick="window.qaSaveApiKey()" style="margin: 0; padding: 8px 14px; background: #6366f1; white-space: nowrap; font-size: 12px;">💾 Save</button>
                     </div>
                 </div>
 
                 <div style="font-size: 11px; color: #64748b; margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 8px;">
-                    💡 <b>If OpenAI key is saved → uses OpenAI (gpt-4o-mini).</b> If only Gemini key → uses Gemini. For best results, save both.
+                    💡 <b>Google Gemini Flash is tried first</b> (fast, free tier with multi-model fallback). If Gemini hits rate limits, it seamlessly falls back to <b>OpenAI (gpt-4o-mini)</b>.
                 </div>
             </div>
 
@@ -9757,7 +9759,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<script src="quizAgentLive.js?t=20261007_v9"></script>
+<script src="quizAgentLive.js?t=20261104_v10"></script>
 
 
 <!-- Deferred Analytics to eliminate Total Blocking Time -->

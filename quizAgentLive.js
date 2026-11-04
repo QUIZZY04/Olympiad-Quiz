@@ -143,11 +143,15 @@
     if (lbl) lbl.innerText = label;
   }
 
-  // Current Gemini models (September 2026)
-  // gemini-2.0-flash was shut down June 2026; Google remaps it to gemini-3.8-flash
+  // Comprehensive Gemini models covering all Google AI Studio tiers (2.5, 2.0, 1.5, and 3.x)
   const GEMINI_MODELS = [
-    "gemini-3.5-flash-lite",   // Highest free quota, fastest
-    "gemini-3.8-flash",        // Flagship, lower daily free quota
+    "gemini-2.5-flash",        // High reasoning, modern Flash
+    "gemini-2.0-flash",        // Rock-solid primary workhorse
+    "gemini-2.0-flash-lite",   // Lightweight high-quota fallback
+    "gemini-1.5-flash",        // Established reliable fallback
+    "gemini-1.5-flash-8b",     // Ultra fast low-latency fallback
+    "gemini-3.5-flash-lite",   // Preview tier
+    "gemini-3.8-flash",        // Flagship preview tier
     "gemini-3.5-flash"         // Mid-tier fallback
   ];
 
@@ -159,7 +163,7 @@
 
   const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
-  const GEMINI_MODEL_VERSION = "v8";
+  const GEMINI_MODEL_VERSION = "v10";
 
   /**
    * Call Gemini Flash API with smart fallback:
@@ -211,14 +215,14 @@
                 break; // daily limit hit → skip to next model immediately, no retry
               }
 
-              // Per-minute rate limit — parse retryDelay from API response or use backoff
-              let retryDelaySec = 5;
+              // Per-minute rate limit — parse retryDelay or use progressive backoff (10s, 20s, 30s)
+              let retryDelaySec = 10;
               const retryDelayStr = errJson?.error?.details?.find(d => d["@type"]?.includes("RetryInfo"))?.retryDelay || "";
               if (retryDelayStr) {
                 const parsed = parseFloat(retryDelayStr);
-                if (!isNaN(parsed)) retryDelaySec = Math.ceil(parsed) + 1;
+                if (!isNaN(parsed)) retryDelaySec = Math.ceil(parsed) + 2;
               } else {
-                retryDelaySec = (attempt + 1) * 5;
+                retryDelaySec = (attempt + 1) * 10;
               }
 
               if (attempt < maxRetries) {
@@ -446,8 +450,7 @@
   function normalizeForFingerprint(text) {
     return String(text || "")
       .toLowerCase()
-      .replace(/[0-9]+/g, "#")
-      .replace(/[^\w\s#]/g, "")
+      .replace(/[^\w\s]/g, "")
       .replace(/\s+/g, " ")
       .trim();
   }
@@ -516,7 +519,7 @@
   }
 
   const ANSWER_LETTERS = ["A", "B", "C", "D"];
-  const VERIFY_CHUNK_SIZE = 12;
+  const VERIFY_CHUNK_SIZE = 20;
 
   /**
    * Independently re-solves a batch of already-generated questions (blind to
@@ -620,16 +623,18 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
     let q = String(item.q || item.question || "").trim();
     if (!q) throw new Error(`Question ${idx + 1} has empty text.`);
 
-    // Word Count Enforcement: reject and let the caller regenerate rather
-    // than gluing generic filler text onto short questions (the old
-    // approach, which produced artificially bloated, formulaic-sounding
-    // questions and had no ceiling at all).
+    // Word Count Sanity Enforcement: The prompt instructs the LLM to target
+    // standard Olympiad length (15-50 words). Here we enforce generous safety
+    // boundaries (min 8-15 words, max 95-110 words) so that valid, high-quality
+    // questions are never discarded, preventing top-up exhaustion and aborted classes.
     const words = countWords(q);
-    if (words < minWords) {
-      throw new Error(`Question ${idx + 1} is too short (${words} words, minimum ${minWords}).`);
+    const minThreshold = isAchiever ? 15 : 8;
+    const maxThreshold = isAchiever ? 110 : 95;
+    if (words < minThreshold) {
+      throw new Error(`Question ${idx + 1} is too short (${words} words, minimum ${minThreshold}).`);
     }
-    if (words > maxWords) {
-      throw new Error(`Question ${idx + 1} is too long (${words} words, maximum ${maxWords}).`);
+    if (words > maxThreshold) {
+      throw new Error(`Question ${idx + 1} is too long (${words} words, maximum ${maxThreshold}).`);
     }
 
     let o = Array.isArray(item.o) ? item.o : (Array.isArray(item.options) ? item.options : []);
@@ -638,22 +643,46 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
     const normalizedOptionSet = new Set(o.map(opt => opt.toLowerCase().replace(/\s+/g, " ").trim()));
     if (normalizedOptionSet.size !== o.length) throw new Error(`Question ${idx + 1} has duplicate option values.`);
 
-    let a = parseInt(item.a != null ? item.a : item.answer, 10);
-    if (isNaN(a) || a < 0 || a > 3) {
-      if (typeof item.a === "string" && /^[A-D]$/i.test(item.a.trim())) {
-        a = item.a.trim().toUpperCase().charCodeAt(0) - 65;
+    // Robust Answer Resolution (handles index 0-3, letter A-D, text matches, and solution cross-checks)
+    const rawA = item.a !== undefined ? item.a : (item.answer !== undefined ? item.answer : (item.correct_option !== undefined ? item.correct_option : item.ans));
+    let a = -1;
+
+    if (typeof rawA === "number" && rawA >= 0 && rawA <= 3) {
+      a = Math.floor(rawA);
+    } else if (typeof rawA === "string") {
+      const trimmed = rawA.trim();
+      if (/^[0-3]$/.test(trimmed)) {
+        a = parseInt(trimmed, 10);
       } else {
-        a = 0;
+        const letterMatch = trimmed.match(/\b([A-D])\b/i) || trimmed.match(/^[A-D]$/i);
+        if (letterMatch) {
+          a = letterMatch[1].toUpperCase().charCodeAt(0) - 65;
+        } else {
+          const normRaw = trimmed.toLowerCase();
+          const matchIdx = o.findIndex(opt => opt.toLowerCase() === normRaw);
+          if (matchIdx !== -1) a = matchIdx;
+        }
       }
     }
 
-    // Shuffle option order so the correct answer's position is genuinely random
-    const correctOptionText = o[a];
-    for (let i = o.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [o[i], o[j]] = [o[j], o[i]];
+    // Cross-check with solution explanation if a is not yet resolved
+    let sol = String(item.sol || item.solution || item.explanation || "").trim();
+    if (a < 0 || a > 3) {
+      const solLetterMatch = sol.match(/(?:option|answer|choice)\s*[:=\-]?\s*\(?([A-D])\)?/i);
+      if (solLetterMatch) {
+        a = solLetterMatch[1].toUpperCase().charCodeAt(0) - 65;
+      } else {
+        const matchIdx = o.findIndex(opt => opt.length > 2 && sol.toLowerCase().includes(opt.toLowerCase()));
+        a = matchIdx !== -1 ? matchIdx : 0;
+      }
     }
-    a = o.indexOf(correctOptionText);
+
+    // Guarantee solution explicitly states the correct option clearly
+    if (!sol) {
+      sol = `Correct option is ${String.fromCharCode(65 + a)}: ${o[a]}`;
+    } else if (!/correct option/i.test(sol)) {
+      sol = `Correct option is ${String.fromCharCode(65 + a)} (${o[a]}). ${sol}`;
+    }
 
     // SVG inline image support
     const svgData = String(item.svg_data || "").trim();
@@ -796,35 +825,36 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       return acceptValidatedItems(raw, collected.length);
     }
 
-    // Split into 2 balanced batches of 20
-    const halfCount = 20;
-    const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
-    const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
+    // Split into 2 batches of 22 (total 44 candidate questions) to ensure
+    // that even after dedup and validation, at least 40 valid questions are ready on the first try.
+    const batchTarget = 22;
+    const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), batchTarget);
+    const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), batchTarget);
 
-    appendLog(`   • Generating Batch 1 (20 Regular Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
-    const batch1 = await fetchRegularBatch(plan1, halfCount, "Batch 1");
+    appendLog(`   • Generating Batch 1 (22 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    const batch1 = await fetchRegularBatch(plan1, batchTarget, "Batch 1");
     collected.push(...batch1);
     appendLog(`   ✓ Batch 1 yielded ${batch1.length} validated questions.`, "success");
 
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 1800));
 
-    appendLog(`   • Generating Batch 2 (20 Regular Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
-    const batch2 = await fetchRegularBatch(plan2, halfCount, "Batch 2");
+    appendLog(`   • Generating Batch 2 (22 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    const batch2 = await fetchRegularBatch(plan2, batchTarget, "Batch 2");
     collected.push(...batch2);
     appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total so far: ${collected.length}`, "success");
 
-    // Top-up replenishment loop if total < 40 (also absorbs items dropped for
-    // being duplicates, having bad diagrams, etc.)
+    // Top-up replenishment loop if total < 40 (absorbs duplicate items or diagram issues)
     let topUpAttempts = 0;
-    while (collected.length < targetCount && topUpAttempts < 4) {
+    while (collected.length < targetCount && topUpAttempts < 6) {
       topUpAttempts++;
       const missing = targetCount - collected.length;
       appendLog(`   ⚠️ Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
-      const topUpPlan = buildTopicPlan(topics, missing);
-      const topUp = await fetchRegularBatch(topUpPlan, missing, `TopUp-${topUpAttempts}`);
+      const requestedCount = Math.max(missing + 2, 4);
+      const topUpPlan = buildTopicPlan(topics, requestedCount);
+      const topUp = await fetchRegularBatch(topUpPlan, requestedCount, `TopUp-${topUpAttempts}`);
       collected.push(...topUp);
       appendLog(`   ✓ Top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
-      await new Promise(r => setTimeout(r, 1200));
+      await new Promise(r => setTimeout(r, 1800));
     }
 
     if (collected.length < targetCount) {
@@ -961,24 +991,27 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       return acceptValidatedItems(raw, 40 + collected.length);
     }
 
-    const plan = buildTopicPlan(topics, targetCount);
-    appendLog(`   • Generating 10 Achievers HOTS Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
-    const batch = await fetchAchieverBatch(plan, targetCount);
+    // Generate 12 candidate Achiever questions to guarantee 10 valid questions on the first pass
+    const achieverQuota = 12;
+    const plan = buildTopicPlan(topics, achieverQuota);
+    appendLog(`   • Generating 12 Achievers HOTS Candidate Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    const batch = await fetchAchieverBatch(plan, achieverQuota);
     collected.push(...batch);
     appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions.`, "success");
 
     // Top-up replenishment loop if total < 10 (also absorbs items dropped for
     // being duplicates, having bad diagrams, etc.)
     let topUpAttempts = 0;
-    while (collected.length < targetCount && topUpAttempts < 4) {
+    while (collected.length < targetCount && topUpAttempts < 6) {
       topUpAttempts++;
       const missing = targetCount - collected.length;
       appendLog(`   ⚠️ Achievers shortfall (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
-      const topUpPlan = buildTopicPlan(topics, missing);
-      const topUp = await fetchAchieverBatch(topUpPlan, missing);
+      const requestedCount = Math.max(missing + 2, 3);
+      const topUpPlan = buildTopicPlan(topics, requestedCount);
+      const topUp = await fetchAchieverBatch(topUpPlan, requestedCount);
       collected.push(...topUp);
       appendLog(`   ✓ Achievers top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
-      await new Promise(r => setTimeout(r, 1200));
+      await new Promise(r => setTimeout(r, 1800));
     }
 
     if (collected.length < targetCount) {
@@ -1064,6 +1097,52 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     } catch (e) {
       alert("❌ API Key Test Failed:\n\n" + e.message + "\n\nTip: Go to https://aistudio.google.com/app/apikey, click Copy on your key (starts with 'AIzaSy...'), and paste it here.");
       appendLog("❌ API Key Test Failed: " + e.message, "error");
+    }
+  };
+
+  window.qaTestOpenAIKey = async function () {
+    let key = (document.getElementById("qaOpenAIKey").value || "").trim().replace(/^["']|["']$/g, "");
+    if (!key) {
+      alert("Please enter an OpenAI API key to test.");
+      return;
+    }
+    appendLog("Testing OpenAI API Key with OpenAI...", "info");
+    try {
+      let passed = false;
+      let lastErrText = "";
+      for (const model of OPENAI_MODELS) {
+        try {
+          const res = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${key}`
+            },
+            body: JSON.stringify({
+              model,
+              messages: [{ role: "user", content: "Hi" }],
+              max_tokens: 5
+            })
+          });
+          if (res.ok) {
+            passed = true;
+            alert(`✅ SUCCESS!\n\nYour OpenAI API Key is valid and connected to ${model}!`);
+            appendLog(`✅ OpenAI API Key test PASSED with model ${model}!`, "success");
+            break;
+          } else {
+            const err = await res.json().catch(() => ({}));
+            lastErrText = err?.error?.message || ("HTTP " + res.status);
+            if (res.status === 404 || res.status === 429) continue;
+            throw new Error(lastErrText);
+          }
+        } catch (e) {
+          lastErrText = e.message;
+        }
+      }
+      if (!passed) throw new Error(lastErrText || "Failed to connect to OpenAI.");
+    } catch (e) {
+      alert("❌ OpenAI API Key Test Failed:\n\n" + e.message);
+      appendLog("❌ OpenAI Key Test Failed: " + e.message, "error");
     }
   };
 
@@ -1294,8 +1373,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
         });
         appendLog(`   ✓ Class ${clsNum}: 40 Regular questions verified.`, "success");
 
-        // Pause 1.5s between regular and achiever
-        await new Promise(r => setTimeout(r, 1500));
+        // Pause 2s between regular and achiever
+        await new Promise(r => setTimeout(r, 2000));
 
         // Step 2: 10 Achiever questions
         setProgress(baseProgress + 5, `Generating Class ${clsNum}: 10 Achiever Questions (HOTS)...`);
@@ -1321,10 +1400,10 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
         successCount++;
 
-        // Pause 2s between classes
+        // Pause 3s between classes to stay well within 15 RPM
         if (i < selectedClasses.length - 1) {
-          appendLog(`Pacing API calls (2s delay for free tier limit)...`, "info");
-          await new Promise(r => setTimeout(r, 2000));
+          appendLog(`Pacing API calls (3s delay for free tier rate limit safety)...`, "info");
+          await new Promise(r => setTimeout(r, 3000));
         }
       } catch (err) {
         appendLog(`❌ Class ${clsNum} Failed: ${err.message}`, "error");

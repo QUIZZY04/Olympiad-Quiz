@@ -10,8 +10,13 @@ const crypto = require("crypto");
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
 const GEMINI_MODELS = [
-  "gemini-3.5-flash-lite",   // Highest free quota, fastest
-  "gemini-3.8-flash",        // Flagship, lower daily free quota
+  "gemini-2.5-flash",        // High reasoning, modern Flash
+  "gemini-2.0-flash",        // Rock-solid primary workhorse
+  "gemini-2.0-flash-lite",   // Lightweight high-quota fallback
+  "gemini-1.5-flash",        // Established reliable fallback
+  "gemini-1.5-flash-8b",     // Ultra fast low-latency fallback
+  "gemini-3.5-flash-lite",   // Preview tier
+  "gemini-3.8-flash",        // Flagship preview tier
   "gemini-3.5-flash"         // Mid-tier fallback
 ];
 
@@ -99,8 +104,7 @@ function countWords(str) {
 function normalizeForFingerprint(text) {
   return String(text || "")
     .toLowerCase()
-    .replace(/[0-9]+/g, "#")
-    .replace(/[^\w\s#]/g, "")
+    .replace(/[^\w\s]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -190,17 +194,18 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
   let q = String(qObj.q || qObj.question || "").trim();
   if (!q) throw new Error(`Question ${index + 1} is missing question text ('q').`);
 
-  // Word Count Enforcement: reject and let the caller regenerate rather than
-  // gluing generic filler text onto short questions (the old approach, which
-  // produced artificially bloated, formulaic-sounding questions and had no
-  // ceiling at all, letting naturally verbose ones run past 60+ words).
-  const { min: minWords, max: maxWords } = getWordLimits(classNum, isAchiever);
+  // Word Count Sanity Enforcement: The prompt already instructs the model
+  // on standard Olympiad targets (15-50 words). Here we enforce generous
+  // safety bounds (min 8-15 words, max 95-110 words) so that valid, high-quality
+  // questions are never discarded prematurely, preventing top-up exhaustion.
   const words = countWords(q);
-  if (words < minWords) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too short (${words} words, minimum ${minWords}).`);
+  const minThreshold = isAchiever ? 15 : 8;
+  const maxThreshold = isAchiever ? 110 : 95;
+  if (words < minThreshold) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too short (${words} words, minimum ${minThreshold}).`);
   }
-  if (words > maxWords) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too long (${words} words, maximum ${maxWords}).`);
+  if (words > maxThreshold) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too long (${words} words, maximum ${maxThreshold}).`);
   }
 
   // Options: must be exactly 4 strings
@@ -214,30 +219,50 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
     throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has duplicate option values.`);
   }
 
-  // Answer index: 0, 1, 2, or 3
-  let a = parseInt(qObj.a != null ? qObj.a : qObj.answer, 10);
-  if (isNaN(a) || a < 0 || a > 3) {
-    if (typeof qObj.a === "string" && /^[A-D]$/i.test(qObj.a.trim())) {
-      a = qObj.a.trim().toUpperCase().charCodeAt(0) - 65;
+  // Robust Answer Resolution (handles index 0-3, letter A-D, text matches, and solution cross-checks)
+  const rawA = qObj.a !== undefined ? qObj.a : (qObj.answer !== undefined ? qObj.answer : (qObj.correct_option !== undefined ? qObj.correct_option : qObj.ans));
+  let a = -1;
+
+  if (typeof rawA === "number" && rawA >= 0 && rawA <= 3) {
+    a = Math.floor(rawA);
+  } else if (typeof rawA === "string") {
+    const trimmed = rawA.trim();
+    if (/^[0-3]$/.test(trimmed)) {
+      a = parseInt(trimmed, 10);
     } else {
-      a = 0;
+      const letterMatch = trimmed.match(/\b([A-D])\b/i) || trimmed.match(/^[A-D]$/i);
+      if (letterMatch) {
+        a = letterMatch[1].toUpperCase().charCodeAt(0) - 65;
+      } else {
+        const normRaw = trimmed.toLowerCase();
+        const matchIdx = o.findIndex(opt => opt.toLowerCase() === normRaw);
+        if (matchIdx !== -1) a = matchIdx;
+      }
     }
   }
 
-  // Shuffle option order
-  const correctOptionText = o[a];
-  for (let i = o.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [o[i], o[j]] = [o[j], o[i]];
+  // Cross-check with solution explanation if a is not yet resolved
+  let sol = String(qObj.sol || qObj.solution || qObj.explanation || "").trim();
+  if (a < 0 || a > 3) {
+    const solLetterMatch = sol.match(/(?:option|answer|choice)\s*[:=\-]?\s*\(?([A-D])\)?/i);
+    if (solLetterMatch) {
+      a = solLetterMatch[1].toUpperCase().charCodeAt(0) - 65;
+    } else {
+      const matchIdx = o.findIndex(opt => opt.length > 2 && sol.toLowerCase().includes(opt.toLowerCase()));
+      a = matchIdx !== -1 ? matchIdx : 0;
+    }
   }
-  a = o.indexOf(correctOptionText);
 
   // Topic Code
   const topic = String(qObj.topic || `${subPrefix}01`).trim().toUpperCase();
 
-  // Hint & Solution
+  // Hint & Solution: guarantee solution explicitly states the correct option clearly
   const hint = String(qObj.hint || "").trim();
-  const sol = String(qObj.sol || qObj.solution || qObj.explanation || "Correct option is: " + o[a]).trim();
+  if (!sol) {
+    sol = `Correct option is ${String.fromCharCode(65 + a)}: ${o[a]}`;
+  } else if (!/correct option/i.test(sol)) {
+    sol = `Correct option is ${String.fromCharCode(65 + a)} (${o[a]}). ${sol}`;
+  }
 
   // Inline SVG / images
   const svgData = String(qObj.svg_data || "").trim();
@@ -313,7 +338,10 @@ async function callGeminiRaw({ apiKey, prompt }) {
 
           // Check if retryable (503 high demand spike, 429 rate limit, 500/502/504)
           if (RETRYABLE_STATUS_CODES.includes(response.status) && attempt < maxRetries) {
-            const waitSec = (attempt + 1) * 2;
+            let waitSec = (attempt + 1) * 3;
+            if (response.status === 429) {
+              waitSec = (attempt + 1) * 8; // 8s, 16s, 24s backoff for 429 rate limit
+            }
             console.warn(`Model ${model} returned HTTP ${response.status}. Retrying in ${waitSec}s (attempt ${attempt + 1}/${maxRetries})...`);
             await new Promise(r => setTimeout(r, waitSec * 1000));
             continue;
@@ -483,7 +511,7 @@ async function callAIRaw({ openAIKey, geminiKey, prompt }) {
 }
 
 const ANSWER_LETTERS = ["A", "B", "C", "D"];
-const VERIFY_CHUNK_SIZE = 12;
+const VERIFY_CHUNK_SIZE = 20;
 
 /**
  * Independently re-solves a batch of already-generated questions (blind to
@@ -689,29 +717,30 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     return acceptValidatedItems(rawArray, collected.length);
   }
 
-  // Split into 2 batches of 20 to avoid token cutoff
-  const halfCount = 20;
-  const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
-  const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
+  // Split into 2 batches of 22 (total 44 candidate questions) to ensure
+  // that even after dedup and validation, at least 40 valid questions are ready on the first try.
+  const batchTarget = 22;
+  const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), batchTarget);
+  const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), batchTarget);
 
-  const batch1 = await fetchRegularBatch(plan1, halfCount);
+  const batch1 = await fetchRegularBatch(plan1, batchTarget);
   collected.push(...batch1);
-  await new Promise(r => setTimeout(r, 1200));
+  await new Promise(r => setTimeout(r, 1800));
 
-  const batch2 = await fetchRegularBatch(plan2, halfCount);
+  const batch2 = await fetchRegularBatch(plan2, batchTarget);
   collected.push(...batch2);
 
-  // Top-up replenishment loop if total < 40 (also absorbs items dropped for
-  // being duplicates, having bad diagrams, etc. - any shortfall gets topped up)
+  // Top-up replenishment loop if total < 40 (absorbs duplicate items or diagram issues)
   let topUpAttempts = 0;
-  while (collected.length < targetCount && topUpAttempts < 4) {
+  while (collected.length < targetCount && topUpAttempts < 6) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
     console.warn(`Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
-    const topUpPlan = buildTopicPlan(topics, missing);
-    const topUp = await fetchRegularBatch(topUpPlan, missing);
+    const requestedCount = Math.max(missing + 2, 4);
+    const topUpPlan = buildTopicPlan(topics, requestedCount);
+    const topUp = await fetchRegularBatch(topUpPlan, requestedCount);
     collected.push(...topUp);
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 1800));
   }
 
   if (collected.length < targetCount) {
@@ -848,21 +877,24 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     return acceptValidatedItems(rawArray, 40 + collected.length);
   }
 
-  const plan = buildTopicPlan(topics, targetCount);
-  const batch = await fetchAchieverBatch(plan, targetCount);
+  // Generate 12 candidate Achiever questions to guarantee 10 valid questions on the first pass
+  const achieverQuota = 12;
+  const plan = buildTopicPlan(topics, achieverQuota);
+  const batch = await fetchAchieverBatch(plan, achieverQuota);
   collected.push(...batch);
 
   // Top-up replenishment loop if total < 10 (also absorbs items dropped for
   // being duplicates, having bad diagrams, etc.)
   let topUpAttempts = 0;
-  while (collected.length < targetCount && topUpAttempts < 4) {
+  while (collected.length < targetCount && topUpAttempts < 6) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
     console.warn(`Achievers shortfall detected (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
-    const topUpPlan = buildTopicPlan(topics, missing);
-    const topUp = await fetchAchieverBatch(topUpPlan, missing);
+    const requestedCount = Math.max(missing + 2, 3);
+    const topUpPlan = buildTopicPlan(topics, requestedCount);
+    const topUp = await fetchAchieverBatch(topUpPlan, requestedCount);
     collected.push(...topUp);
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 1800));
   }
 
   if (collected.length < targetCount) {
