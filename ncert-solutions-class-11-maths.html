@@ -169,6 +169,20 @@
     .hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
     .hero-badge { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 600; color: #e2e8f0; }
 
+    /* Hierarchical Breadcrumb Navigation & Quick Subject Switcher */
+    .ncert-breadcrumb-nav { background: #ffffff; border-bottom: 1px solid var(--border, #e2e8f0); padding: 10px 24px; position: relative; z-index: 40; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    .ncert-bc-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .ncert-bc-list { display: flex; align-items: center; gap: 8px; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: var(--muted, #64748b); flex-wrap: wrap; }
+    .ncert-bc-list a { color: var(--navy, #0f172a); text-decoration: none; font-weight: 600; transition: color 0.15s ease; }
+    .ncert-bc-list a:hover { color: var(--brand, #2563eb); text-decoration: underline; }
+    .ncert-bc-sep { color: #cbd5e1; font-size: 0.75rem; user-select: none; }
+    .ncert-bc-current { color: var(--brand, #2563eb); font-weight: 700; }
+    .ncert-bc-switch { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .ncert-bc-switch-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-right: 4px; }
+    .ncert-bc-pill { font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; text-decoration: none; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; transition: all 0.18s ease; white-space: nowrap; }
+    .ncert-bc-pill:hover { background: #eff6ff; color: var(--brand, #2563eb); border-color: var(--brand, #2563eb); transform: translateY(-1px); }
+    .ncert-bc-pill.active { background: var(--brand, #2563eb); color: #ffffff; border-color: var(--brand, #2563eb); box-shadow: 0 2px 6px rgba(37,99,235,0.25); }
+
     /* Breadcrumb Chips */
     .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
     .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
@@ -478,6 +492,30 @@
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Free Access</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb Navigation & Quick Subject Switcher -->
+<nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
+  <div class="ncert-bc-container">
+    <ol class="ncert-bc-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li><a href="ncert-solutions-class-11.html">Class 11</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li class="ncert-bc-current">Mathematics</li>
+    </ol>
+    <div class="ncert-bc-switch">
+      <span class="ncert-bc-switch-label">Class 11:</span>
+      <a href="ncert-solutions-class-11-maths.html" class="ncert-bc-pill active">Maths</a>
+      <a href="ncert-solutions-class-11-physics.html" class="ncert-bc-pill">Physics</a>
+      <a href="ncert-solutions-class-11-chemistry.html" class="ncert-bc-pill">Chemistry</a>
+      <a href="ncert-solutions-class-11-biology.html" class="ncert-bc-pill">Biology</a>
+      <a href="ncert-solutions-class-11-english.html" class="ncert-bc-pill">English</a>
+      <a href="ncert-solutions-class-11-hindi.html" class="ncert-bc-pill">Hindi</a>
     </div>
   </div>
 </nav>

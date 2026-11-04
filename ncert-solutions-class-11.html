@@ -139,13 +139,18 @@
     .btn-login:hover { background: #c2410c; }
 
     /* Breadcrumbs */
-    .ncert-breadcrumb-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; font-size: 0.88rem; }
-    .ncert-bc-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .ncert-bc-list { list-style: none; display: flex; align-items: center; gap: 8px; margin: 0; padding: 0; }
-    .ncert-bc-list a { color: #ea580c; text-decoration: none; font-weight: 500; }
-    .ncert-bc-list a:hover { text-decoration: underline; }
-    .ncert-bc-sep { color: #94a3b8; }
-    .ncert-bc-current { color: #475569; font-weight: 700; }
+    .ncert-breadcrumb-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 10px 20px; font-size: 0.88rem; position: relative; z-index: 40; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    .ncert-bc-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .ncert-bc-list { list-style: none; display: flex; align-items: center; gap: 8px; margin: 0; padding: 0; flex-wrap: wrap; }
+    .ncert-bc-list a { color: #0f172a; text-decoration: none; font-weight: 600; transition: color 0.15s ease; }
+    .ncert-bc-list a:hover { color: #2563eb; text-decoration: underline; }
+    .ncert-bc-sep { color: #94a3b8; font-size: 0.75rem; user-select: none; }
+    .ncert-bc-current { color: #2563eb; font-weight: 700; }
+    .ncert-bc-switch { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .ncert-bc-switch-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-right: 4px; }
+    .ncert-bc-pill { font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; text-decoration: none; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; transition: all 0.18s ease; white-space: nowrap; }
+    .ncert-bc-pill:hover { background: #eff6ff; color: #2563eb; border-color: #2563eb; transform: translateY(-1px); }
+    .ncert-bc-pill.active { background: #2563eb; color: #ffffff; border-color: #2563eb; box-shadow: 0 2px 6px rgba(37,99,235,0.25); }
 
     /* Hero */
     .hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2563eb 100%); color: white; padding: 52px 20px 44px; text-align: center; }
@@ -287,19 +292,27 @@
     </div>
   </nav>
 
-  <!-- Secondary Breadcrumbs -->
-  <div class="ncert-breadcrumb-nav">
+  <!-- Breadcrumb Navigation & Quick Subject Switcher -->
+  <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
     <div class="ncert-bc-container">
-      <ul class="ncert-bc-list">
+      <ol class="ncert-bc-list">
         <li><a href="index.html">Home</a></li>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li class="ncert-bc-current">Class 11 All Subjects Hub</li>
-      </ul>
-      <span style="font-size:0.8rem;color:#059669;font-weight:700;">Academic Session 2026–27 • 100% Free</span>
+        <li class="ncert-bc-current">Class 11 Hub</li>
+      </ol>
+      <div class="ncert-bc-switch">
+        <span class="ncert-bc-switch-label">Class 11:</span>
+        <a href="ncert-solutions-class-11-maths.html" class="ncert-bc-pill">Maths</a>
+        <a href="ncert-solutions-class-11-physics.html" class="ncert-bc-pill">Physics</a>
+        <a href="ncert-solutions-class-11-chemistry.html" class="ncert-bc-pill">Chemistry</a>
+        <a href="ncert-solutions-class-11-biology.html" class="ncert-bc-pill">Biology</a>
+        <a href="ncert-solutions-class-11-english.html" class="ncert-bc-pill">English</a>
+        <a href="ncert-solutions-class-11-hindi.html" class="ncert-bc-pill">Hindi</a>
+      </div>
     </div>
-  </div>
+  </nav>
 
   <!-- Hero Banner -->
   <header class="hero">
