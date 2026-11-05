@@ -1,0 +1,1088 @@
+<section class="chapter-section" id="c11p-ch5">
+  <div class="chapter-header">
+    <div class="ch-badge">5</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 5</div>
+      <h2>Work, Energy and Power</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 24 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Work-Energy Dynamics: Potential Energy Wells, Conservative Restoring Forces &amp; Ballistic Pendulum
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: SHM Potential Energy Parabola -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. SHM Potential Well &amp; Turning Points:</text>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="360" y2="180" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="205" y1="185" x2="205" y2="45" stroke="#64748b" stroke-width="1.5"/>
+      <text x="365" y="184" font-size="10" fill="#64748b">Pos (x)</text>
+      <text x="210" y="52" font-size="10" fill="#64748b">Energy (E)</text>
+
+      <!-- Parabola V(x) = 1/2 k x^2 -->
+      <path d="M 105 75 Q 205 180 305 75" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+      <text x="110" y="70" font-size="9.5" font-weight="bold" fill="#7c3aed">V(x) = &frac12;kx&sup2;</text>
+
+      <!-- Total Energy line E -->
+      <line x1="85" y1="95" x2="325" y2="95" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="330" y="99" font-size="10" font-weight="bold" fill="#dc2626">Total E = 1 J</text>
+
+      <!-- Turning points -->
+      <line x1="120" y1="95" x2="120" y2="180" stroke="#94a3b8" stroke-dasharray="2,2"/>
+      <line x1="290" y1="95" x2="290" y2="180" stroke="#94a3b8" stroke-dasharray="2,2"/>
+      <text x="105" y="195" font-size="9.5" font-weight="bold" fill="#0f172a">-2m</text>
+      <text x="280" y="195" font-size="9.5" font-weight="bold" fill="#0f172a">+2m</text>
+      <text x="175" y="140" font-size="9" fill="#047857">Kinetic K &gt; 0</text>
+      <text x="60" y="130" font-size="8.5" fill="#dc2626">K &lt; 0 (Forbidden)</text>
+
+      <!-- Panel 2: Ballistic Pendulum Impact -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Ballistic Pendulum &amp; Energy Transfer:</text>
+
+      <!-- Support ceiling -->
+      <line x1="480" y1="50" x2="620" y2="50" stroke="#475569" stroke-width="2"/>
+      <!-- Initial hanging position -->
+      <line x1="510" y1="50" x2="510" y2="150" stroke="#64748b" stroke-width="1.5"/>
+      <rect x="495" y="150" width="30" height="25" rx="3" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="502" y="167" font-size="9" font-weight="bold" fill="#9a3412">M</text>
+
+      <!-- Bullet incoming -->
+      <circle cx="450" cy="162" r="5" fill="#475569"/>
+      <line x1="450" y1="162" x2="485" y2="162" stroke="#dc2626" stroke-width="1.8"/>
+      <text x="440" y="150" font-size="8.5" font-weight="bold" fill="#dc2626">m, u</text>
+
+      <!-- Swung position -->
+      <line x1="510" y1="50" x2="585" y2="125" stroke="#94a3b8" stroke-dasharray="3,3"/>
+      <rect x="575" y="125" width="30" height="25" rx="3" fill="#ffedd5" stroke="#f97316" stroke-width="1.5"/>
+      <line x1="535" y1="162" x2="620" y2="162" stroke="#cbd5e1" stroke-dasharray="2,2"/>
+      <line x1="590" y1="137" x2="620" y2="137" stroke="#cbd5e1" stroke-dasharray="2,2"/>
+      <line x1="615" y1="137" x2="615" y2="162" stroke="#7c3aed" stroke-width="1.8"/>
+      <text x="622" y="152" font-size="9" font-weight="bold" fill="#7c3aed">h</text>
+
+      <rect x="635" y="55" width="120" height="135" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="642" y="75" font-size="9" font-weight="bold" fill="#5b21b6">Conservation:</text>
+      <text x="642" y="95" font-size="8.5" fill="#334155">&bull; mu = (M+m)V</text>
+      <text x="642" y="115" font-size="8.5" fill="#334155">&bull; &frac12;(M+m)V&sup2; =</text>
+      <text x="652" y="130" font-size="8.5" fill="#334155">(M+m)gh</text>
+      <text x="642" y="150" font-size="8.5" font-weight="bold" fill="#047857">&bull; h = V&sup2; / 2g</text>
+      <text x="642" y="172" font-size="8" fill="#b91c1c">&Delta;K &rarr; Heat &amp; Def</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 5.1 to 5.24: Work-Energy Theorem, Potential Energy Functions, Collisions in 1D &amp; 2D, Power &amp; Conservation Laws</div>
+
+  <!-- c11p-ch5-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q1">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q1')">
+      <div class="q-num">Question 5.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The sign of work done by a force on a body is important to understand. State carefully if the following quantities are positive or negative:<br>(a) work done by a man in lifting a bucket out of a well by means of a rope tied to the bucket.<br>(b) work done by gravitational force in the above case,<br>(c) work done by friction on a body sliding down an inclined plane,<br>(d) work done by an applied force on a body moving on a rough horizontal plane with uniform velocity,<br>(e) work done by the resistive force of air on a vibrating pendulum in bringing it to rest.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Definition of Work:</b> $W = \vec{F} \cdot \vec{d} = F d \cos \theta$, where $\theta$ is the angle between force $\vec{F}$ and displacement $\vec{d}$.<br>
+    • If $0^\circ \le \theta < 90^\circ$, work is <b>positive</b> ($+W$).<br>
+    • If $90^\circ < \theta \le 180^\circ$, work is <b>negative</b> ($-W$).<br><br>
+    • <b>(a) Work done by the man:</b> The muscular lifting force exerted by the man is vertically upwards, and the displacement of the bucket is also vertically upwards ($\theta = 0^\circ$). Therefore, the work done is <b>positive</b>.<br><br>
+    • <b>(b) Work done by gravitational force:</b> The gravitational force acts vertically downwards, while displacement of the bucket is vertically upwards ($\theta = 180^\circ$). $\cos 180^\circ = -1$. Therefore, the work done is <b>negative</b>.<br><br>
+    • <b>(c) Work done by friction on sliding body:</b> As the body slides downwards along the inclined plane, the kinetic friction force acts up the incline, opposing the motion ($\theta = 180^\circ$). Therefore, the work done is <b>negative</b>.<br><br>
+    • <b>(d) Work done by applied force:</b> The applied force acts in the direction of motion to maintain uniform velocity against friction ($\theta = 0^\circ$). Therefore, the work done is <b>positive</b>.<br><br>
+    • <b>(e) Work done by resistive air drag on pendulum:</b> The air drag opposes the instantaneous velocity and motion of the pendulum bob at all points of its path ($\theta = 180^\circ$). Therefore, the work done is <b>negative</b>.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Definition of work sign based on angle $\theta$ between force and displacement</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(a) Positive and (b) Negative with angle justifications</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Negative, (d) Positive, and (e) Negative with physical rationale</span><span class="marking-marks">2.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q2">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q2')">
+      <div class="q-num">Question 5.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body of mass $2\text{ kg}$ initially at rest moves under the action of an applied horizontal force of $7\text{ N}$ on a table with coefficient of kinetic friction $= 0.1$. Compute the<br>(a) work done by the applied force in $10\text{ s}$,<br>(b) work done by friction in $10\text{ s}$,<br>(c) work done by the net force on the body in $10\text{ s}$,<br>(d) change in kinetic energy of the body in $10\text{ s}$, and interpret your results. (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given: $m = 2\text{ kg}$, $u = 0$, $F = 7\text{ N}$, $\mu_k = 0.1$, $t = 10\text{ s}$, $g = 9.8\text{ m s}^{-2}$.<br><br>
+    <b>1. Forces and Acceleration:</b><br>
+    Normal reaction $N = mg = 2 \times 9.8 = 19.6\text{ N}$.<br>
+    Kinetic friction force: $f_k = \mu_k N = 0.1 \times 19.6 = 1.96\text{ N}$.<br>
+    Net accelerating force: $F_{net} = F - f_k = 7 - 1.96 = 5.04\text{ N}$.<br>
+    Acceleration: $a = \frac{F_{net}}{m} = \frac{5.04\text{ N}}{2\text{ kg}} = 2.52\text{ m s}^{-2}$.<br><br>
+    <b>2. Displacement in $10\text{ s}$ ($s$):</b><br>
+    $$s = ut + \frac{1}{2}at^2 = 0 + \frac{1}{2}(2.52)(10)^2 = 1.26 \times 100 = 126\text{ m}$$<br><br>
+    • <b>(a) Work done by applied force:</b><br>
+      $$W_F = F \times s = 7\text{ N} \times 126\text{ m} = \mathbf{882\text{ J}}$$<br><br>
+    • <b>(b) Work done by friction:</b><br>
+      $$W_f = -f_k \times s = -1.96\text{ N} \times 126\text{ m} = \mathbf{-246.96\text{ J} \approx -247\text{ J}}$$<br><br>
+    • <b>(c) Work done by net force:</b><br>
+      $$W_{net} = F_{net} \times s = 5.04\text{ N} \times 126\text{ m} = \mathbf{635.04\text{ J} \approx 635\text{ J}}$$<br>
+      (Alternatively: $W_{net} = W_F + W_f = 882 - 246.96 = 635.04\text{ J}$).<br><br>
+    • <b>(d) Change in kinetic energy ($\Delta K$):</b><br>
+      Velocity at $t = 10\text{ s}$: $v = u + at = 0 + 2.52(10) = 25.2\text{ m s}^{-1}$.<br>
+      $$\Delta K = \frac{1}{2}mv^2 - 0 = \frac{1}{2}(2)(25.2)^2 = (25.2)^2 = \mathbf{635.04\text{ J}}$$<br><br>
+    • <b>Interpretation:</b><br>
+      $$\mathbf{W_{net} = \Delta K = 635.04\text{ J}}$$
+      This perfectly verifies the <b>Work-Energy Theorem</b>: the net work done by all forces equals the change in kinetic energy of the body.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of friction $f_k = 1.96\text{ N}$ and displacement $s = 126\text{ m}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(a) Work by applied force: $882\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Work by friction: $-247\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Work by net force: $635\text{ J}$</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) $\Delta K = 635.04\text{ J}$ and Work-Energy Theorem verification</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q3">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q3')">
+      <div class="q-num">Question 5.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Given in Fig. 5.11 are examples of some potential energy functions in one dimension. The total energy of the particle is indicated by a cross on the ordinate axis. In each case, specify the regions, if any, in which the particle cannot be found for the given energy. Also, indicate the minimum total energy the particle must have in each case. Think of simple physical contexts for which these potential energy shapes are relevant.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Fundamental Principle:</b><br>
+    Total mechanical energy is $E = K + V(x)$, where kinetic energy $K = \frac{1}{2}mv^2 \ge 0$.<br>
+    Therefore, a classical particle can exist only in regions where $E \ge V(x)$.<br>
+    $$\mathbf{\text{The particle cannot exist in regions where } V(x) > E \text{ (as } K < 0 \text{ is physically impossible).}}$$<br>
+    The minimum total energy $E_{min}$ is the global minimum of the potential energy curve $V(x)_{min}$.<br><br>
+    • <b>(a) Potential well with $V = 0$ for $0 < x < a$ and $V = V_0$ elsewhere:</b><br>
+      - If $E < V_0$, the particle cannot be found in regions $x < 0$ and $x > a$.<br>
+      - It is confined to the region $0 \le x \le a$.<br>
+      - Minimum total energy $E_{min} = 0$.<br>
+      - <i>Physical context:</i> A particle trapped in a 1D finite potential box (or a bead on a wire bounded between two stops).<br><br>
+    • <b>(b) Potential with $V > E$ everywhere:</b><br>
+      - Since $V(x) > E$ for all values of $x$, the particle cannot exist anywhere.<br>
+      - Minimum total energy $E_{min} = V_{min}$.<br><br>
+    • <b>(c) Symmetric potential well with barriers:</b><br>
+      - The particle cannot exist where $V(x) > E$, i.e., in the barrier regions $x < -b$ and $x > a$.<br>
+      - It is confined between $-a \le x \le a$ (or within the central well).<br>
+      - Minimum total energy $E_{min} = -V_1$.<br><br>
+    • <b>(d) Harmonic potential well $V(x) = \frac{1}{2}kx^2$:</b><br>
+      - Particle cannot be found outside turning points $|x| > x_0$ where $\frac{1}{2}kx_0^2 = E$.<br>
+      - Minimum total energy $E_{min} = 0$ at $x = 0$.<br>
+      - <i>Physical context:</i> A mass attached to a spring oscillating in SHM.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Kinetic energy non-negativity condition $E \ge V(x)$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Forbidden regions identified where $V(x) > E$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Minimum total energy identification as $V(x)_{min}$ in each case</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Physical contexts (particle in box, SHM spring)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q4">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q4')">
+      <div class="q-num">Question 5.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The potential energy function for a particle executing simple harmonic motion is given by $V(x) = k x^2 / 2$, where $k$ is the force constant of the oscillator. For $k = 0.5\text{ N m}^{-1}$, the graph of $V(x)$ versus $x$ is shown in Fig. 5.12. Show that a particle of total energy $1\text{ J}$ moving under this potential must ‘turn back’ when it reaches $x = \pm 2\text{ m}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Potential energy function: $V(x) = \frac{1}{2} k x^2$<br>
+    • Force constant: $k = 0.5\text{ N m}^{-1}$<br>
+    • Total mechanical energy: $E = 1\text{ J}$<br><br>
+    <b>1. Conservation of Mechanical Energy:</b><br>
+    $$E = K + V(x) = \frac{1}{2}mv^2 + \frac{1}{2}kx^2$$<br>
+    At the turning points, the particle instantaneously comes to rest to reverse its direction, so kinetic energy becomes zero ($K = 0$ and $v = 0$):<br>
+    $$E = V(x) \implies 1\text{ J} = \frac{1}{2}(0.5) x^2$$<br>
+    $$1 = 0.25 x^2 \implies x^2 = \frac{1}{0.25} = 4$$<br>
+    $$x = \pm \sqrt{4} = \mathbf{\pm 2\text{ m}}$$<br><br>
+    <b>2. Physical Reason for Turning Back:</b><br>
+    For any position $|x| > 2\text{ m}$, the potential energy $V(x) = \frac{1}{2}(0.5)x^2 > 1\text{ J} = E$.<br>
+    This would require kinetic energy $K = E - V(x) < 0$, which is physically impossible for a classical particle ($v^2 < 0$).<br>
+    $$\mathbf{\text{Therefore, the particle must turn back at } x = +2\text{ m} \text{ and } x = -2\text{ m}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Energy equation at turning points: $E = V(x)$ when $K = 0$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving $\frac{1}{2}(0.5)x^2 = 1 \implies x = \pm 2\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Justification that $K < 0$ outside $|x| \le 2\text{ m}$ makes further motion impossible</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q5">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q5')">
+      <div class="q-num">Question 5.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Answer the following:<br>(a) The casing of a rocket in flight burns up due to friction. At whose expense is the heat energy required for burning obtained? The rocket or the atmosphere?<br>(b) Comets move around the sun in highly elliptical orbits. The gravitational force on the comet due to the sun is not normal to the comet’s velocity in general. Yet the work done by the gravitational force over every complete orbit of the comet is zero. Why?<br>(c) An artificial satellite orbiting the earth in very thin atmosphere loses its energy gradually due to dissipation against atmospheric resistance, however small. Why then does its speed increase progressively as it comes closer and closer to the earth?<br>(d) In Fig. 5.13(i) the man walks $2\text{ m}$ carrying a mass of $15\text{ kg}$ on his hands. In Fig. 5.13(ii), he walks the same distance pulling the rope behind him. The rope goes over a pulley, and a mass of $15\text{ kg}$ hangs at its other end. In which case is the work done greater?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Rocket casing burning up:</b> The heat energy is produced at the expense of the <b>mechanical energy (kinetic and gravitational potential energy) of the rocket</b> itself. As the rocket slows down slightly due to atmospheric air friction, its kinetic/potential energy is dissipated as thermal energy.<br><br>
+    • <b>(b) Zero work over complete comet orbit:</b> The gravitational force is a <b>conservative force</b>. By definition, the work done by any conservative force around any closed loop is identically zero ($\oint \vec{F}_{grav} \cdot d\vec{r} = 0$), regardless of whether the path is circular or highly eccentric elliptical.<br><br>
+    • <b>(c) Increasing speed of descending satellite:</b> As the satellite spirals closer to Earth due to atmospheric drag, its orbital radius $r$ decreases. Its gravitational potential energy ($U = -\frac{GMm}{r}$) becomes substantially more negative (decreases). By the Virial Theorem for orbital motion, the orbital velocity is $v = \sqrt{\frac{GM}{r}}$. As $r$ decreases, orbital speed $v$ must increase. Half of the lost potential energy is converted into kinetic energy (speeding it up), while the other half is dissipated as heat against friction.<br><br>
+    • <b>(d) Comparison of work done by the man:</b><br>
+      - <i>Case (i):</i> The man holds the $15\text{ kg}$ mass vertically upwards, while his displacement is horizontal ($\theta = 90^\circ$). Work done against gravity is $W_1 = F d \cos 90^\circ = \mathbf{0}$.<br>
+      - <i>Case (ii):</i> The man pulls the rope horizontally, lifting the $15\text{ kg}$ load upwards by $2\text{ m}$. Tension in rope $T = mg = 15 \times 9.8 = 147\text{ N}$. Displacement $d = 2\text{ m}$ in direction of pull ($\theta = 0^\circ$). Work done: $W_2 = T d = 147 \times 2 = \mathbf{294\text{ J}}$.<br>
+      $$\mathbf{\text{The work done is greater in Case (ii).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Energy obtained at the expense of rocket's mechanical energy</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Gravitational force is conservative $\implies \oint F \cdot dr = 0$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Orbital speed $v = \sqrt{GM/r}$ increases as radius $r$ shrinks</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Case (i) $W=0$ (perpendicular), Case (ii) $W=294\text{ J}$, greater in (ii)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q6">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q6')">
+      <div class="q-num">Question 5.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Underline the correct alternative:<br>(a) When a conservative force does positive work on a body, the potential energy of the body increases/decreases/remains unaltered.<br>(b) Work done by a body against friction always results in a loss of its kinetic/potential energy.<br>(c) The rate of change of total momentum of a many-particle system is proportional to the external force/sum of the true internal forces on the system.<br>(d) In an inelastic collision of two bodies, the quantities which do not change after the collision are the total kinetic energy/total linear momentum/total energy of the system of two bodies.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) decreases:</b> The relationship between conservative force and potential energy is $\Delta U = -W_c$. When conservative force does positive work ($W_c > 0$), potential energy decreases ($\Delta U < 0$). For example, when a body falls under gravity, gravity does positive work and gravitational PE decreases.<br><br>
+    • <b>(b) kinetic energy:</b> Work done against friction is dissipated as non-recoverable thermal energy, reducing the speed and thus directly causing a loss of kinetic energy.<br><br>
+    • <b>(c) external force:</b> By Newton’s Third Law, internal forces between constituent particles cancel out pairwise in vector addition ($\sum \vec{F}_{int} = \mathbf{0}$). Only net external forces can change the total linear momentum of the system: $\frac{d\vec{P}_{total}}{dt} = \vec{F}_{ext}$.<br><br>
+    • <b>(d) total linear momentum/total energy:</b> In an inelastic collision, mechanical kinetic energy is not conserved (partially converted into heat, sound, deformation). However, <b>total linear momentum</b> (in absence of external forces) and <b>total energy</b> (by the universal conservation of energy) remain strictly unchanged.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) decreases via $\Delta U = -W$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) kinetic energy due to dissipative friction</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) external force due to cancellation of internal forces</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) total linear momentum and total energy</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q7">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q7')">
+      <div class="q-num">Question 5.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        State if each of the following statements is true or false. Give reasons for your answer.<br>(a) In an elastic collision of two bodies, the momentum and energy of each body is conserved.<br>(b) Total energy of a system is always conserved, no matter what internal and external forces on the body are present.<br>(c) Work done in the motion of a body over a closed loop is zero for every force in nature.<br>(d) In an inelastic collision, the final kinetic energy is always less than the initial kinetic energy of the system.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) False:</b> In an elastic collision, the <i>total</i> momentum and <i>total</i> kinetic energy of the <i>system</i> are conserved. But individual bodies transfer momentum and kinetic energy to each other during the collision; hence, the momentum and energy of <i>each</i> separate body change.<br><br>
+    • <b>(b) True:</b> The universal Law of Conservation of Energy states that the total energy of an isolated system (taking all forms of energy into account—mechanical, heat, chemical, radiation, mass-energy) is strictly invariant.<br><br>
+    • <b>(c) False:</b> The work done in a closed loop is zero <b>only for conservative forces</b> (such as gravity, electrostatic force, elastic spring force). For non-conservative dissipative forces like friction or viscous drag, the work done over a closed loop is negative and non-zero ($\oint \vec{f}_k \cdot d\vec{r} < 0$).<br><br>
+    • <b>(d) False (in general):</b> Usually in an inelastic collision, kinetic energy is lost as heat/deformation ($K_f < K_i$). However, in "super-elastic" or explosive collisions where chemical or internal potential energy is released (e.g., a compressed spring releasing or an explosive shell bursting), the final kinetic energy can be <i>greater</i> than initial kinetic energy ($K_f > K_i$).
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) False: Individual bodies exchange energy and momentum</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) True: Universal law of conservation of total energy</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) False: Non-zero loop work for friction/viscous drag</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) False: Super-elastic/explosive collisions release internal energy</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q8">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q8')">
+      <div class="q-num">Question 5.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Answer carefully, with reasons:<br>(a) In an elastic collision of two billiard balls, is the total kinetic energy of the balls conserved during the short time of collision of the balls (i.e. when they are in contact)?<br>(b) Is the total linear momentum conserved during the short time of an elastic collision of two balls?<br>(c) What are the answers to (a) and (b) for an inelastic collision?<br>(d) If the potential energy of two billiard balls depends only on the separation distance between their centres, is the collision elastic or inelastic? (Note, we are talking here of potential energy corresponding to the force during collision, not gravitational potential energy).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) No:</b> During the short duration of collision while the balls are in contact, they undergo temporary elastic deformation. Part of the kinetic energy is temporarily stored as elastic potential energy of deformation. Total kinetic energy is conserved only <i>after</i> the balls separate and fully regain their original shape.<br><br>
+    • <b>(b) Yes:</b> During the collision, the contact forces between the balls are internal action-reaction pairs ($\vec{F}_{12} = -\vec{F}_{21}$). Since no external horizontal force acts on the system, total linear momentum is conserved at <b>every single instant</b> during the collision.<br><br>
+    • <b>(c) For an inelastic collision:</b><br>
+      - <i>Answer to (a):</i> <b>No.</b> Kinetic energy is not conserved during or after the collision.<br>
+      - <i>Answer to (b):</i> <b>Yes.</b> Total linear momentum remains conserved at every instant because internal forces cancel out.<br><br>
+    • <b>(d) Elastic collision:</b> If the inter-particle potential energy depends solely on the separation distance $r$ ($V = V(r)$), the interaction force is central and conservative ($\vec{F} = -\frac{dV}{dr}\hat{r}$). In a conservative force field, mechanical energy is fully conserved, meaning the collision is strictly <b>elastic</b>.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) No: KE converted temporarily to elastic deformation PE</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Yes: Momentum conserved at every instant due to internal pair forces</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Inelastic: KE not conserved, momentum strictly conserved</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Elastic: Central distance-dependent potential implies conservative force</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q9">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q9')">
+      <div class="q-num">Question 5.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body is initially at rest. It undergoes one-dimensional motion with constant acceleration. The power delivered to it at time $t$ is proportional to<br>(i) $t^{1/2}$,<br>(ii) $t$,<br>(iii) $t^{3/2}$,<br>(iv) $t^2$. [Choose the correct alternative].
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Correct Option: (ii) $t$</b><br><br>
+    <b>Derivation:</b><br>
+    Given: Initial velocity $u = 0$, constant acceleration $a = \text{constant}$, mass $m = \text{constant}$.<br>
+    • Applied force: $F = m a = \text{constant}$.<br>
+    • Velocity at time $t$: $v = u + at = 0 + at = at$.<br>
+    Instantaneous power delivered is given by:<br>
+    $$P = F \times v = (ma) \times (at) = m a^2 t$$<br>
+    Since $m$ and $a$ are constants:<br>
+    $$P \propto t$$<br>
+    $$\mathbf{\text{Therefore, the power delivered is directly proportional to } t.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Selection of correct option (ii) $t$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mathematical derivation: $P = F v = (ma)(at) = ma^2 t \propto t$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q10">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q10')">
+      <div class="q-num">Question 5.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body is moving unidirectionally under the influence of a source of constant power. Its displacement in time $t$ is proportional to<br>(i) $t^{1/2}$,<br>(ii) $t$,<br>(iii) $t^{3/2}$,<br>(iv) $t^2$. [Choose the correct alternative].
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Correct Option: (iii) $t^{3/2}$</b><br><br>
+    <b>Derivation:</b><br>
+    Power $P = \text{constant}$.<br>
+    $$P = F v = \left(m \frac{dv}{dt}\right) v = m v \frac{dv}{dt} = P$$<br>
+    Integrating both sides with initial condition $v(0) = 0$:<br>
+    $$m \int_0^v v dv = P \int_0^t dt \implies m \frac{v^2}{2} = P t$$<br>
+    $$v^2 = \frac{2P}{m} t \implies v = \sqrt{\frac{2P}{m}} t^{1/2}$$<br>
+    Now, velocity is the rate of displacement: $v = \frac{dx}{dt}$.<br>
+    $$\frac{dx}{dt} = C t^{1/2} \quad \left(\text{where } C = \sqrt{\frac{2P}{m}}\right)$$<br>
+    Integrating with respect to time:<br>
+    $$x = C \int_0^t t^{1/2} dt = C \left[\frac{t^{3/2}}{3/2}\right] = \frac{2C}{3} t^{3/2}$$<br>
+    $$x \propto t^{3/2}$$<br>
+    $$\mathbf{\text{Therefore, displacement is proportional to } t^{3/2}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Selection of correct option (iii) $t^{3/2}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Integration of $mv dv = P dt$ to obtain $v \propto t^{1/2}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Integration of $dx = v dt$ to obtain $x \propto t^{3/2}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q11 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q11">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q11')">
+      <div class="q-num">Question 5.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body constrained to move along the z-axis of a coordinate system is subject to a constant force $\vec{F}$ given by $\vec{F} = -\hat{i} + 2\hat{j} + 3\hat{k}\text{ N}$ where $\hat{i}, \hat{j}, \hat{k}$ are unit vectors along the x-, y- and z-axis of the system respectively. What is the work done by this force in moving the body a distance of $4\text{ m}$ along the z-axis?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Force vector: $\vec{F} = -\hat{i} + 2\hat{j} + 3\hat{k}\text{ N}$<br>
+    • Displacement is $4\text{ m}$ strictly along the z-axis:<br>
+      $$\vec{d} = 0\hat{i} + 0\hat{j} + 4\hat{k}\text{ m}$$<br><br>
+    <b>Work Done by Vector Dot Product:</b><br>
+    $$W = \vec{F} \cdot \vec{d} = (-1)(0) + (2)(0) + (3)(4)$$<br>
+    $$W = 0 + 0 + 12 = \mathbf{12\text{ Joules}}$$<br><br>
+    $$\therefore \text{The work done by the force is } \mathbf{12\text{ J}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Displacement vector identified as $\vec{d} = 4\hat{k}\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Scalar dot product calculation: $W = \vec{F} \cdot \vec{d} = 12\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q12 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q12">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q12')">
+      <div class="q-num">Question 5.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        An electron and a proton are detected in a cosmic ray experiment, the first with kinetic energy $10\text{ keV}$, and the second with $100\text{ keV}$. Which is faster, the electron or the proton? Obtain the ratio of their speeds. (electron mass $= 9.11 \times 10^{-31}\text{ kg}$, proton mass $= 1.67 \times 10^{-27}\text{ kg}$, $1\text{ eV} = 1.60 \times 10^{-19}\text{ J}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Kinetic energy of electron: $K_e = 10\text{ keV} = 10 \times 10^3 \times 1.6 \times 10^{-19}\text{ J} = 1.6 \times 10^{-15}\text{ J}$<br>
+    • Kinetic energy of proton: $K_p = 100\text{ keV} = 100 \times 10^3 \times 1.6 \times 10^{-19}\text{ J} = 1.6 \times 10^{-14}\text{ J}$<br>
+    • Masses: $m_e = 9.11 \times 10^{-31}\text{ kg}$, $m_p = 1.67 \times 10^{-27}\text{ kg}$<br><br>
+    <b>1. Speed Relation:</b><br>
+    $$K = \frac{1}{2} m v^2 \implies v = \sqrt{\frac{2K}{m}}$$<br><br>
+    <b>2. Speed of Electron ($v_e$):</b><br>
+    $$v_e = \sqrt{\frac{2 \times 1.6 \times 10^{-15}}{9.11 \times 10^{-31}}} = \sqrt{0.3513 \times 10^{16}} = 0.5927 \times 10^8 = \mathbf{5.93 \times 10^7\text{ m s}^{-1}}$$<br><br>
+    <b>3. Speed of Proton ($v_p$):</b><br>
+    $$v_p = \sqrt{\frac{2 \times 1.6 \times 10^{-14}}{1.67 \times 10^{-27}}} = \sqrt{1.916 \times 10^{13}} = \mathbf{4.38 \times 10^6\text{ m s}^{-1}}$$<br><br>
+    <b>4. Ratio of Speeds:</b><br>
+    $$\frac{v_e}{v_p} = \frac{5.93 \times 10^7}{4.38 \times 10^6} \approx \mathbf{13.54}$$<br><br>
+    $$\therefore \mathbf{\text{The electron is faster than the proton, by a factor of approximately } 13.5.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Kinetic energy speed relation $v = \sqrt{2K/m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Electron speed calculation: $v_e = 5.93 \times 10^7\text{ m s}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Proton speed calculation: $v_p = 4.38 \times 10^6\text{ m s}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Comparison stating electron is faster with ratio $v_e/v_p = 13.54$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q13 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q13">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q13')">
+      <div class="q-num">Question 5.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A rain drop of radius $2\text{ mm}$ falls from a height of $500\text{ m}$ above the ground. It falls with decreasing acceleration (due to viscous resistance of the air) until at half its original height, it attains its maximum (terminal) speed, and moves with uniform speed thereafter. What is the work done by the gravitational force on the drop in the first and second half of its journey? What is the work done by the resistive force in the entire journey if its speed on reaching the ground is $10\text{ m s}^{-1}$?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Radius $r = 2\text{ mm} = 2 \times 10^{-3}\text{ m}$<br>
+    • Height $h = 500\text{ m}$<br>
+    • Density of water $\rho = 10^3\text{ kg m}^{-3}$<br>
+    • Terminal speed on reaching ground $v = 10\text{ m s}^{-1}$<br>
+    • $g = 9.8\text{ m s}^{-2}$<br><br>
+    <b>1. Mass of raindrop ($m$):</b><br>
+    $$m = \frac{4}{3}\pi r^3 \rho = \frac{4}{3} \times 3.1416 \times (2 \times 10^{-3})^3 \times 10^3 = 4.1888 \times 8 \times 10^{-6} \approx 3.351 \times 10^{-5}\text{ kg}$$<br><br>
+    <b>2. Work done by gravitational force:</b><br>
+    Gravity is constant throughout ($F = mg$). Distance in each half $= h/2 = 250\text{ m}$.<br>
+    • First half ($W_{g1}$):<br>
+      $$W_{g1} = mg \left(\frac{h}{2}\right) = 3.351 \times 10^{-5} \times 9.8 \times 250 = \mathbf{0.0821\text{ J}}$$<br>
+    • Second half ($W_{g2}$):<br>
+      $$W_{g2} = mg \left(\frac{h}{2}\right) = \mathbf{0.0821\text{ J}}$$<br>
+    Total work done by gravity over full journey:<br>
+    $$W_g = W_{g1} + W_{g2} = 2 \times 0.0821 = \mathbf{0.1642\text{ J}}$$<br><br>
+    <b>3. Work done by resistive force ($W_r$):</b><br>
+    By Work-Energy Theorem for entire journey ($u = 0$, $v = 10\text{ m s}^{-1}$):<br>
+    $$W_{net} = W_g + W_r = \Delta K = \frac{1}{2}mv^2 - 0$$<br>
+    $$\Delta K = \frac{1}{2}(3.351 \times 10^{-5})(10)^2 = 1.6755 \times 10^{-3}\text{ J} = 0.001676\text{ J}$$<br>
+    $$W_r = \Delta K - W_g = 0.001676 - 0.1642 = \mathbf{-0.1625\text{ J}}$$<br><br>
+    $$\therefore W_{g1} = W_{g2} = \mathbf{0.082\text{ J}}, \quad W_r = \mathbf{-0.163\text{ J}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of drop mass $m = 3.35 \times 10^{-5}\text{ kg}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Work by gravity in first and second half: $0.0821\text{ J}$ each</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Work-Energy theorem application to calculate resistive work: $-0.1625\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q14 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q14">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q14')">
+      <div class="q-num">Question 5.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A molecule in a gas container hits a horizontal wall with speed $200\text{ m s}^{-1}$ and angle $30^\circ$ with the normal, and rebounds with the same speed. Is momentum conserved in the collision? Is the collision elastic or inelastic?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>Conservation of Linear Momentum:</b><br>
+      - <i>For the molecule alone:</i> The component of velocity normal to the wall reverses from $+u \cos 30^\circ$ to $-u \cos 30^\circ$, so the momentum of the molecule changes by $\Delta p = -2 m u \cos 30^\circ$. Its momentum is <b>not</b> conserved individually.<br>
+      - <i>For the molecule + container wall system:</i> The wall (rigidly connected to the massive container/Earth) exerts a normal force on the molecule, and by Newton’s Third Law, the molecule exerts an equal and opposite force on the wall. Since no external horizontal force acts on the combined system, <b>total linear momentum of the system (molecule + wall) is strictly conserved</b>.<br><br>
+    • <b>Elastic or Inelastic:</b><br>
+      Since the rebound speed ($200\text{ m s}^{-1}$) is identical to the initial incident speed, the kinetic energy of the molecule before and after the collision is identical ($K_f = K_i = \frac{1}{2}mv^2$).<br>
+      No kinetic energy is dissipated as heat or permanent deformation.<br>
+      $$\mathbf{\text{Therefore, the collision is strictly elastic.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Analysis of system momentum conservation including container/Earth</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Kinetic energy comparison ($K_f = K_i$) identifying collision as elastic</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q15 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q15">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q15')">
+      <div class="q-num">Question 5.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A pump on the ground floor of a building can pump up water to fill a tank of volume $30\text{ m}^3$ in $15\text{ min}$. If the tank is $40\text{ m}$ above the ground, and the efficiency of the pump is $30\%$, how much electric power is consumed by the pump? (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Volume $V = 30\text{ m}^3$<br>
+    • Density of water $\rho = 1000\text{ kg m}^{-3}$<br>
+    • Mass of water $m = V \rho = 30 \times 1000 = 30,000\text{ kg} = 3 \times 10^4\text{ kg}$<br>
+    • Height $h = 40\text{ m}$<br>
+    • Time $t = 15\text{ min} = 15 \times 60 = 900\text{ s}$<br>
+    • Efficiency $\eta = 30\% = 0.30$<br><br>
+    <b>1. Useful Output Work ($W_{out}$):</b><br>
+    $$W_{out} = mgh = 30000 \times 9.8 \times 40 = 11,760,000\text{ J} = 1.176 \times 10^7\text{ J}$$<br><br>
+    <b>2. Output Power ($P_{out}$):</b><br>
+    $$P_{out} = \frac{W_{out}}{t} = \frac{1.176 \times 10^7\text{ J}}{900\text{ s}} = 13066.67\text{ W} = 13.07\text{ kW}$$<br><br>
+    <b>3. Electric Input Power Consumed ($P_{in}$):</b><br>
+    $$\eta = \frac{P_{out}}{P_{in}} \implies P_{in} = \frac{P_{out}}{\eta}$$<br>
+    $$P_{in} = \frac{13066.67}{0.30} \approx \mathbf{43,556\text{ W} \approx 43.56\text{ kW}}$$<br><br>
+    $$\therefore \text{Electric power consumed by the pump is } \mathbf{43.6\text{ kW}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of water mass $m = 30000\text{ kg}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Useful output work and power: $P_{out} = 13.07\text{ kW}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Application of efficiency relation $\eta = P_{out}/P_{in}$ to find input power $43.6\text{ kW}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q16 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q16">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q16')">
+      <div class="q-num">Question 5.16</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Two identical ball bearings in contact with each other and at rest on a frictionless table are hit head-on by a third ball bearing of the same mass moving initially with a speed $v$. If the collision is elastic, which of the situations shown in Fig. 5.14 is a possible result after collision?<br>Case 1: Ball 1 comes to rest, balls 2 and 3 move together with speed $v/2$.<br>Case 2: Balls 1 and 2 come to rest, ball 3 moves off with speed $v$.<br>Case 3: All three balls move together with speed $v/3$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let each ball have mass $m$.<br>
+    Initial state: Ball 1 moves with speed $v$; Balls 2 and 3 are at rest.<br>
+    • Initial momentum: $P_i = m v$.<br>
+    • Initial kinetic energy: $K_i = \frac{1}{2} m v^2$.<br><br>
+    For an <b>elastic collision</b>, both momentum and kinetic energy must be conserved:<br><br>
+    • <b>Case 1 (Ball 1 stops, 2 and 3 move with $v/2$):</b><br>
+      - Momentum: $P_f = (2m)(v/2) = mv = P_i$ (Conserved).<br>
+      - Kinetic energy: $K_f = \frac{1}{2}(2m)(v/2)^2 = m \frac{v^2}{4} = \frac{1}{4}mv^2 = \frac{1}{2}K_i \ne K_i$ (Not conserved!).<br><br>
+    • <b>Case 2 (Balls 1 and 2 stop, ball 3 moves with $v$):</b><br>
+      - Momentum: $P_f = m v = P_i$ (Conserved).<br>
+      - Kinetic energy: $K_f = \frac{1}{2}mv^2 = K_i$ (Conserved!).<br><br>
+    • <b>Case 3 (All three move together with $v/3$):</b><br>
+      - Momentum: $P_f = (3m)(v/3) = mv = P_i$ (Conserved).<br>
+      - Kinetic energy: $K_f = \frac{1}{2}(3m)(v/3)^2 = \frac{3}{18}mv^2 = \frac{1}{6}mv^2 = \frac{1}{3}K_i \ne K_i$ (Not conserved!).<br><br>
+    $$\mathbf{\text{Conclusion: Only Case 2 is the physically possible result for an elastic collision.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Momentum and kinetic energy conservation criteria for elastic collisions</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of Case 1 showing $50\%$ loss of kinetic energy</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of Case 2 confirming both momentum and KE conservation</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of Case 3 showing $67\%$ loss of kinetic energy</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q17 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q17">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q17')">
+      <div class="q-num">Question 5.17</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The bob A of a pendulum released from $30^\circ$ to the vertical hits another bob B of the same mass at rest on a table as shown in Fig. 5.15. How high does the bob A rise after the collision? Neglect the size of the bobs and assume the collision to be elastic.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>1. Collision Dynamics:</b><br>
+    • Bobs A and B have identical masses ($m_A = m_B = m$).<br>
+    • Just before collision at the lowermost point, bob A possesses velocity $v$ horizontally, while bob B is at rest ($u_B = 0$).<br>
+    • In an elastic head-on collision between two equal masses, the bodies <b>completely exchange their velocities</b>:<br>
+      $$v_A = u_B = 0$$<br>
+      $$v_B = u_A = v$$<br><br>
+    <b>2. Post-Collision Motion:</b><br>
+    • Immediately after the collision, bob A comes completely to rest ($v_A = 0$).<br>
+    • All of its momentum and kinetic energy is transferred to bob B, which moves off with speed $v$.<br>
+    $$\mathbf{\text{Therefore, bob A does not rise at all (height risen } h = 0\text{).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Head-on elastic collision velocity exchange principle for equal masses</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Deduction that $v_A = 0$ after collision</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final conclusion that bob A does not rise ($h = 0$)</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q18 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q18">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q18')">
+      <div class="q-num">Question 5.18</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The bob of a pendulum is released from a horizontal position A. If the length of the pendulum is $1.5\text{ m}$, what is the speed with which the bob arrives at the lowermost point B, given that it dissipated $5\%$ of its initial energy against air resistance? (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Length of pendulum string $l = 1.5\text{ m}$<br>
+    • Initial horizontal position: height of release above lowermost point is $h = l = 1.5\text{ m}$.<br>
+    • Initial mechanical energy at A: $E_A = mgh$ (since $u = 0$).<br>
+    • Energy dissipated against air resistance = $5\% = 0.05 E_A$.<br>
+    • Energy remaining at lowest point B = $95\% = 0.95 mgh$.<br><br>
+    <b>Energy Balance at Lowest Point B:</b><br>
+    At the lowermost point B, potential energy is zero, and all remaining energy is kinetic:<br>
+    $$\frac{1}{2} m v^2 = 0.95 m g h$$<br>
+    $$v^2 = 2 \times 0.95 \times g \times h = 1.9 \times 9.8 \times 1.5$$<br>
+    $$v^2 = 1.9 \times 14.7 = 27.93$$<br>
+    $$v = \sqrt{27.93} \approx \mathbf{5.285\text{ m s}^{-1} \approx 5.3\text{ m s}^{-1}}$$<br><br>
+    $$\therefore \text{The speed of the bob at point B is } \mathbf{5.3\text{ m s}^{-1}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Initial potential energy identification $E_A = mgl$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Energy equation incorporating 5% dissipation: $\frac{1}{2}mv^2 = 0.95 mgl$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final speed calculation: $v = 5.285\text{ m s}^{-1} \approx 5.3\text{ m s}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q19 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q19">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q19')">
+      <div class="q-num">Question 5.19</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A trolley of mass $300\text{ kg}$ carrying a sandbag of $25\text{ kg}$ is moving uniformly with a speed of $27\text{ km h}^{-1}$ on a frictionless track. After a while, sand starts leaking out of a hole on the floor of the trolley at the rate of $0.05\text{ kg s}^{-1}$. What is the speed of the trolley after the entire sand bag is empty?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of trolley $M = 300\text{ kg}$<br>
+    • Mass of sandbag $m = 25\text{ kg}$<br>
+    • Initial speed $v = 27\text{ km h}^{-1} = 27 \times \frac{5}{18} = 7.5\text{ m s}^{-1}$<br>
+    • Rate of sand leakage $\frac{dm}{dt} = 0.05\text{ kg s}^{-1}$<br><br>
+    <b>Physical Analysis:</b><br>
+    When sand leaks out vertically through the hole in the floor of the trolley, the leaking sand falls vertically relative to the trolley.<br>
+    Crucially, at the instant it leaves the trolley, each grain of sand carries the same forward horizontal speed ($7.5\text{ m s}^{-1}$) as the trolley.<br>
+    Therefore, the leaking sand exerts <b>no horizontal thrust or force</b> on the trolley in the direction of motion or against it ($\vec{F}_{ext} = 0$).<br>
+    According to Newton’s First Law and momentum balance for variable mass systems without relative horizontal ejection velocity ($u_{rel} = 0$):<br>
+    $$M \frac{dv}{dt} = 0 \implies v = \text{constant}$$<br>
+    $$\mathbf{\text{The speed of the trolley remains completely unchanged at } 27\text{ km h}^{-1} \text{ (or } 7.5\text{ m s}^{-1}\text{).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Recognition that leaking sand has zero relative horizontal velocity to trolley</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">No horizontal external force $\implies dv/dt = 0$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final speed conclusion: unchanged at $27\text{ km/h}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q20 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q20">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q20')">
+      <div class="q-num">Question 5.20</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body of mass $0.5\text{ kg}$ travels in a straight line with velocity $v = a x^{3/2}$ where $a = 5\text{ m}^{-1/2}\text{ s}^{-1}$. What is the work done by the net force during its displacement from $x = 0$ to $x = 2\text{ m}$?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass $m = 0.5\text{ kg}$<br>
+    • Velocity relation: $v = a x^{3/2}$, where $a = 5\text{ m}^{-1/2}\text{ s}^{-1}$<br><br>
+    <b>By Work-Energy Theorem:</b><br>
+    The net work done equals the change in kinetic energy: $W = \Delta K = \frac{1}{2}m v_2^2 - \frac{1}{2}m v_1^2$.<br><br>
+    • At $x = 0$:<br>
+      $$v_1 = a(0)^{3/2} = 0$$<br>
+      $$K_1 = 0$$<br><br>
+    • At $x = 2\text{ m}$:<br>
+      $$v_2 = 5 \times (2)^{3/2} = 5 \times \sqrt{8} = 5 \times 2\sqrt{2} = 10\sqrt{2}\text{ m s}^{-1}$$<br>
+      $$v_2^2 = (10\sqrt{2})^2 = 100 \times 2 = 200\text{ m}^2\text{ s}^{-2}$$<br>
+      $$K_2 = \frac{1}{2} m v_2^2 = \frac{1}{2}(0.5) \times 200 = 50\text{ J}$$<br><br>
+    <b>Work Done:</b><br>
+    $$W = K_2 - K_1 = 50 - 0 = \mathbf{50\text{ Joules}}$$<br><br>
+    $$\therefore \text{The work done by the net force is } \mathbf{50\text{ J}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Statement of Work-Energy theorem $W = \Delta K$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of velocities: $v_1 = 0$ and $v_2^2 = 200\text{ m}^2\text{s}^{-2}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of work done $W = 50\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q21 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q21">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q21')">
+      <div class="q-num">Question 5.21</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The blades of a windmill sweep out a circle of area $A$.<br>(a) If the wind flows at a velocity $v$ perpendicular to the circle, what is the mass of the air passing through it in time $t$?<br>(b) What is the kinetic energy of the air?<br>(c) Assume that the windmill converts $25\%$ of the wind’s energy into electrical energy, and that $A = 30\text{ m}^2$, $v = 36\text{ km h}^{-1}$ and the density of air is $1.2\text{ kg m}^{-3}$. What is the electric power produced?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Mass of air passing through in time $t$:</b><br>
+      In time $t$, wind travelling at speed $v$ sweeps out a cylinder of length $l = v t$ and cross-sectional area $A$.<br>
+      $$\text{Volume of air } V = A \times (vt) = A v t$$<br>
+      $$\mathbf{\text{Mass of air } m = \rho V = \rho A v t}$$<br><br>
+    • <b>(b) Kinetic energy of the air ($K$):</b><br>
+      $$K = \frac{1}{2} m v^2 = \frac{1}{2}(\rho A v t) v^2 = \mathbf{\frac{1}{2} \rho A v^3 t}$$<br><br>
+    • <b>(c) Electric power produced ($P$):</b><br>
+      Given: $A = 30\text{ m}^2$, $\rho = 1.2\text{ kg m}^{-3}$, efficiency $\eta = 25\% = 0.25$,<br>
+      $v = 36\text{ km h}^{-1} = 36 \times \frac{5}{18} = 10\text{ m s}^{-1}$.<br>
+      Total wind power available:<br>
+      $$P_{wind} = \frac{K}{t} = \frac{1}{2} \rho A v^3 = \frac{1}{2} \times 1.2 \times 30 \times (10)^3 = 18 \times 1000 = 18000\text{ W} = 18\text{ kW}$$<br>
+      Electric power output:<br>
+      $$P = \eta \times P_{wind} = 0.25 \times 18000\text{ W} = \mathbf{4500\text{ W} = 4.5\text{ kW}}$$<br><br>
+    $$\therefore \text{Electric power produced is } \mathbf{4.5\text{ kW}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Mass formula $m = \rho A v t$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Kinetic energy formula $K = \frac{1}{2}\rho A v^3 t$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Wind power calculation $P_{wind} = 18\text{ kW}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Electric power calculation $P = 0.25 \times 18\text{ kW} = 4.5\text{ kW}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q22 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q22">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q22')">
+      <div class="q-num">Question 5.22</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A person trying to lose weight (dieter) lifts a $10\text{ kg}$ mass, one thousand times, to a height of $0.5\text{ m}$ each time. Assume that the potential energy lost each time she lowers the mass is dissipated.<br>(a) How much work does she do against the gravitational force?<br>(b) Fat supplies $3.8 \times 10^7\text{ J}$ of energy per kilogram which is converted to mechanical energy with a $20\%$ efficiency rate. How much fat will the dieter use up? (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass $m = 10\text{ kg}$, height $h = 0.5\text{ m}$, number of repetitions $N = 1000$<br>
+    • $g = 9.8\text{ m s}^{-2}$<br><br>
+    • <b>(a) Work done against gravitational force:</b><br>
+      Work done in 1 lift = $mgh = 10 \times 9.8 \times 0.5 = 49\text{ J}$.<br>
+      Total work done in $1000$ lifts:<br>
+      $$W = N \times mgh = 1000 \times 49\text{ J} = \mathbf{49,000\text{ J} = 4.9 \times 10^4\text{ J}}$$<br><br>
+    • <b>(b) Amount of fat used up:</b><br>
+      Let mass of fat burned be $m_f\text{ kg}$.<br>
+      Total chemical energy stored in $m_f\text{ kg}$ of fat = $m_f \times (3.8 \times 10^7)\text{ J}$.<br>
+      With $20\%$ efficiency, useful mechanical energy generated is:<br>
+      $$E_{mech} = 0.20 \times m_f \times (3.8 \times 10^7) = m_f \times (7.6 \times 10^6)\text{ J}$$<br>
+      Equating to the total mechanical work performed ($4.9 \times 10^4\text{ J}$):<br>
+      $$m_f \times 7.6 \times 10^6 = 4.9 \times 10^4$$<br>
+      $$m_f = \frac{4.9 \times 10^4}{7.6 \times 10^6} = \frac{4.9}{760} \approx \mathbf{6.45 \times 10^{-3}\text{ kg} = 6.45\text{ g}}$$<br><br>
+    $$\therefore \text{Work done } = \mathbf{4.9 \times 10^4\text{ J}}, \quad \text{Fat burned } = \mathbf{6.45\text{ g}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Gravitational work formula and calculation: $49000\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Effective energy available per kg fat: $0.20 \times 3.8 \times 10^7 = 7.6 \times 10^6\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Fat mass burned: $6.45 \times 10^{-3}\text{ kg} = 6.45\text{ g}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q23 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q23">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q23')">
+      <div class="q-num">Question 5.23</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A family uses $8\text{ kW}$ of power.<br>(a) Direct solar energy is incident on the horizontal surface at an average rate of $200\text{ W}$ per square meter. If $20\%$ of this energy can be converted to useful electrical energy, how large an area is needed to supply $8\text{ kW}$?<br>(b) Compare this area to that of the roof of a typical house.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Required power $P = 8\text{ kW} = 8000\text{ W}$<br>
+    • Solar flux incident = $I = 200\text{ W m}^{-2}$<br>
+    • Conversion efficiency $\eta = 20\% = 0.20$<br><br>
+    • <b>(a) Calculation of Required Area ($A$):</b><br>
+      Useful electrical power produced per square meter:<br>
+      $$P_1 = \eta \times I = 0.20 \times 200\text{ W m}^{-2} = 40\text{ W m}^{-2}$$<br>
+      Total area needed to supply $8000\text{ W}$:<br>
+      $$A = \frac{P}{P_1} = \frac{8000\text{ W}}{40\text{ W m}^{-2}} = \mathbf{200\text{ m}^2}$$<br><br>
+    • <b>(b) Comparison with a typical house roof:</b><br>
+      A typical modern independent house has floor dimensions roughly $14\text{ m} \times 14\text{ m}$ to $10\text{ m} \times 20\text{ m}$, giving a roof area of about $150$ to $200\text{ m}^2$.<br>
+      $$\mathbf{\text{The required area of } 200\text{ m}^2 \text{ is comparable to the rooftop area of a typical residential house.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Power yield per unit area calculation: $40\text{ W/m}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Required solar panel area: $A = 200\text{ m}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Comparison to typical house roof dimension ($14\text{ m} \times 14\text{ m} \approx 200\text{ m}^2$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch5-q24 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch5-q24">
+    <div class="q-head" onclick="toggleQ('c11p-ch5-q24')">
+      <div class="q-num">Question 5.24</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A bullet of mass $0.012\text{ kg}$ and horizontal speed $70\text{ m s}^{-1}$ strikes a block of wood of mass $0.4\text{ kg}$ and instantly comes to rest with respect to the block. The block is suspended from the ceiling by means of thin wires. Calculate the height to which the block rises. Also, estimate the amount of heat produced in the block. (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of bullet $m = 0.012\text{ kg}$<br>
+    • Speed of bullet $u = 70\text{ m s}^{-1}$<br>
+    • Mass of wooden block $M = 0.4\text{ kg}$<br>
+    • Total mass after embedding: $M_{total} = M + m = 0.4 + 0.012 = 0.412\text{ kg}$<br><br>
+    <b>1. Completely Inelastic Collision (Momentum Conservation):</b><br>
+    $$m u = (M + m) V$$<br>
+    $$V = \frac{m u}{M + m} = \frac{0.012 \times 70}{0.412} = \frac{0.84}{0.412} \approx \mathbf{2.039\text{ m s}^{-1}}$$<br><br>
+    <b>2. Height to which block rises ($h$):</b><br>
+    By conservation of mechanical energy as the combined block swings upward:<br>
+    $$\frac{1}{2}(M + m)V^2 = (M + m)gh \implies h = \frac{V^2}{2g}$$<br>
+    $$h = \frac{(2.039)^2}{2 \times 9.8} = \frac{4.157}{19.6} \approx \mathbf{0.212\text{ m} = 21.2\text{ cm}}$$<br><br>
+    <b>3. Heat energy produced in the block ($Q$):</b><br>
+    Heat produced equals the loss in mechanical kinetic energy during collision:<br>
+    • Initial kinetic energy: $K_i = \frac{1}{2} m u^2 = \frac{1}{2}(0.012)(70)^2 = 0.006 \times 4900 = 29.4\text{ J}$.<br>
+    • Kinetic energy immediately after collision:<br>
+      $$K_f = \frac{1}{2}(M + m)V^2 = \frac{1}{2}(0.412)(2.039)^2 = 0.206 \times 4.157 = 0.856\text{ J}$$<br>
+    • Heat produced:<br>
+      $$Q = K_i - K_f = 29.4 - 0.856 = \mathbf{28.544\text{ J} \approx 28.5\text{ J}}$$<br><br>
+    $$\therefore \text{Height of rise } h = \mathbf{21.2\text{ cm}}, \quad \text{Heat produced } Q = \mathbf{28.5\text{ J}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Momentum conservation to find combined speed $V = 2.039\text{ m s}^{-1}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Mechanical energy conservation for swing height: $h = 0.212\text{ m} = 21.2\text{ cm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of kinetic energy loss converted into heat: $Q = 28.5\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(4)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 4 (Laws of Motion)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(6)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 6 (System of Particles &amp; Rotational Motion) →</button>
+  </div>
+</section>

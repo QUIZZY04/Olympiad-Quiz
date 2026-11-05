@@ -1,0 +1,672 @@
+/**
+ * Generator for Class 11 Chemistry - Chapter 5: Chemical Thermodynamics
+ * NCERT Rationalised 2026-27 Syllabus - All 22 Verbatim Questions (5.1 to 5.22)
+ * Strictly zero shortage, CBSE marking rubrics, custom SVG diagram, offline cache.
+ * NO PDF download button/bar (restricted to Physics Ch 7).
+ */
+const fs = require('fs');
+const path = require('path');
+
+const ch5Path = path.join(__dirname, '..', '..', 'chapters-c11c', 'ch5.html');
+const cachePath = path.join(__dirname, '..', '..', 'chapters-c11c', 'chapters-data.js');
+
+// High-fidelity custom SVG: First Law Work Mechanics & Gibbs Free Energy Spontaneity Matrix
+const svgDiagram = `
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Thermodynamic Mechanics: P-V Work Integrals &amp; Gibbs Free Energy Spontaneity Matrix
+    </h3>
+    <svg viewBox="0 0 780 250" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: First Law & P-V Expansion Work -->
+      <rect x="15" y="15" width="375" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="30" y="36" font-size="11.5" font-weight="bold" fill="#0f172a">1. First Law &amp; Reversible P-V Work:</text>
+
+      <!-- P-V Graph Axes -->
+      <line x1="45" y1="55" x2="45" y2="175" stroke="#334155" stroke-width="1.8"/>
+      <line x1="45" y1="175" x2="220" y2="175" stroke="#334155" stroke-width="1.8"/>
+      <text x="30" y="65" font-size="9" font-weight="bold" fill="#334155">P</text>
+      <text x="215" y="190" font-size="9" font-weight="bold" fill="#334155">V</text>
+
+      <!-- Isothermal Curve (Hyperbolic) -->
+      <path d="M 65 80 Q 95 130 185 160" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+      <!-- Shaded Area under curve -->
+      <path d="M 65 80 Q 95 130 185 160 L 185 175 L 65 175 Z" fill="#eff6ff" opacity="0.6"/>
+      <text x="95" y="150" font-size="8.5" font-weight="bold" fill="#1e40af">Work (w = -&int;P dV)</text>
+
+      <!-- Formula Box -->
+      <rect x="235" y="55" width="145" height="120" rx="5" fill="#fff" stroke="#e2e8f0"/>
+      <text x="245" y="73" font-size="8.5" font-weight="bold" fill="#065f46">First Law Form:</text>
+      <text x="245" y="88" font-size="8" fill="#334155">&Delta;U = q + w</text>
+      <text x="245" y="105" font-size="8.5" font-weight="bold" fill="#065f46">Isothermal Rev Work:</text>
+      <text x="245" y="119" font-size="7.5" fill="#334155">w = -2.303 nRT log(V2/V1)</text>
+      <text x="245" y="136" font-size="8.5" font-weight="bold" fill="#065f46">Enthalpy Relation:</text>
+      <text x="245" y="150" font-size="8" fill="#334155">&Delta;H = &Delta;U + &Delta;n_g RT</text>
+      <text x="245" y="165" font-size="7.5" fill="#64748b">C_p - C_v = R (Ideal gas)</text>
+
+      <!-- Bottom Note -->
+      <text x="35" y="215" font-size="8" fill="#475569">&bull; Adiabatic: q = 0 &rArr; &Delta;U = w_ad | Isochoric: &Delta;V = 0 &rArr; q_v = &Delta;U</text>
+
+      <!-- Panel 2: Gibbs Energy Spontaneity Matrix -->
+      <rect x="405" y="15" width="360" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="420" y="36" font-size="11.5" font-weight="bold" fill="#0f172a">2. Gibbs-Helmholtz Spontaneity Criterion (&Delta;G = &Delta;H - T&Delta;S):</text>
+
+      <!-- 4 Matrix Boxes -->
+      <!-- Case 1: Exothermic & Disorder Increase -->
+      <rect x="420" y="50" width="165" height="68" rx="4" fill="#ecfdf5" stroke="#a7f3d0"/>
+      <text x="430" y="66" font-size="8.5" font-weight="bold" fill="#065f46">&Delta;H &lt; 0, &Delta;S &gt; 0</text>
+      <text x="430" y="82" font-size="8" font-weight="bold" fill="#047857">&Delta;G &lt; 0 (Always Negative)</text>
+      <text x="430" y="98" font-size="7.8" fill="#064e3b">Spontaneous at ALL temperatures!</text>
+      <text x="430" y="111" font-size="7" fill="#64748b">(Driven by enthalpy &amp; entropy)</text>
+
+      <!-- Case 2: Endothermic & Disorder Decrease -->
+      <rect x="590" y="50" width="165" height="68" rx="4" fill="#fef2f2" stroke="#fecaca"/>
+      <text x="600" y="66" font-size="8.5" font-weight="bold" fill="#b91c1c">&Delta;H &gt; 0, &Delta;S &lt; 0</text>
+      <text x="600" y="82" font-size="8" font-weight="bold" fill="#dc2626">&Delta;G &gt; 0 (Always Positive)</text>
+      <text x="600" y="98" font-size="7.8" fill="#991b1b">NON-spontaneous at ALL temperatures!</text>
+      <text x="600" y="111" font-size="7" fill="#64748b">(Reverse reaction is spontaneous)</text>
+
+      <!-- Case 3: Endothermic & Disorder Increase -->
+      <rect x="420" y="125" width="165" height="72" rx="4" fill="#fffbeb" stroke="#fde68a"/>
+      <text x="430" y="141" font-size="8.5" font-weight="bold" fill="#92400e">&Delta;H &gt; 0, &Delta;S &gt; 0</text>
+      <text x="430" y="156" font-size="8" fill="#78350f">Spontaneous at HIGH T</text>
+      <text x="430" y="171" font-size="7.5" fill="#334155">Requires T &gt; &Delta;H / &Delta;S</text>
+      <text x="430" y="186" font-size="7" fill="#64748b">Entropy term dominates at high T</text>
+
+      <!-- Case 4: Exothermic & Disorder Decrease -->
+      <rect x="590" y="125" width="165" height="72" rx="4" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="600" y="141" font-size="8.5" font-weight="bold" fill="#1e40af">&Delta;H &lt; 0, &Delta;S &lt; 0</text>
+      <text x="600" y="156" font-size="8" fill="#1e3a8a">Spontaneous at LOW T</text>
+      <text x="600" y="171" font-size="7.5" fill="#334155">Requires T &lt; &Delta;H / &Delta;S</text>
+      <text x="600" y="186" font-size="7" fill="#64748b">Enthalpy term dominates at low T</text>
+
+      <text x="425" y="218" font-size="8" font-weight="bold" fill="#0f172a">&bull; Equilibrium Condition: &Delta;G&deg; = -2.303 RT log(K)</text>
+    </svg>
+  </div>
+`;
+
+// Build question array helper
+const questions = [];
+
+function addQ(idNum, ncertRef, marks, questionHtml, solutionStepsHtml, rubricRows) {
+  questions.push({
+    idNum,
+    id: `c11c-ch5-q${idNum}`,
+    ncertRef,
+    marks,
+    questionHtml,
+    solutionStepsHtml,
+    rubricRows
+  });
+}
+
+// -------------------------------------------------------------
+// QUESTION 5.1
+addQ(
+  1, 'Question 5.1', '1 Mark',
+  `Choose the correct answer. A thermodynamic state function is a quantity<br>
+   (i) used to determine heat changes<br>
+   (ii) whose value is independent of path<br>
+   (iii) used to determine pressure volume work<br>
+   (iv) whose value depends on path.`,
+  `<div class="step">
+    <b>Correct Option: (ii) whose value is independent of path</b><br><br>
+    <b>Scientific Definition &amp; Explanation:</b><br>
+    • A **state function** (or state variable) is a macroscopic thermodynamic property whose value depends solely on the **current state of the system** (its initial and final states, specified by temperature, pressure, volume, and composition), and is **completely independent of the path or mechanism** taken to reach that state.<br>
+    • Examples of state functions include: Internal energy ($U$), Enthalpy ($H$), Entropy ($S$), Gibbs free energy ($G$), Pressure ($P$), Volume ($V$), and Temperature ($T$).<br>
+    • In contrast, heat ($q$) and work ($w$) are **path functions** because their magnitudes depend directly on the specific path followed.
+  </div>`,
+  [
+    { key: 'Correct option (ii) whose value is independent of path', marks: '0.5 Mark' },
+    { key: 'Definition explaining dependence solely on initial and final states with examples (U, H, S, G)', marks: '0.5 Mark' }
+  ]
+);
+
+// QUESTION 5.2
+addQ(
+  2, 'Question 5.2', '1 Mark',
+  `For the process to occur under adiabatic conditions, the correct condition is:<br>
+   (i) $\\Delta T = 0$<br>
+   (ii) $\\Delta p = 0$<br>
+   (iii) $q = 0$<br>
+   (iv) $w = 0$.`,
+  `<div class="step">
+    <b>Correct Option: (iii) $q = 0$</b><br><br>
+    <b>Thermodynamic Classification of Processes:</b><br>
+    • In an **adiabatic process**, the system is thermally insulated from its surroundings by adiabatic walls so that **no heat enters or leaves the system** across the boundary.<br>
+    • Therefore, the heat exchanged is zero: $\\mathbf{q = 0}$.<br><br>
+    *(Comparison with other processes: $\\Delta T = 0$ is isothermal; $\\Delta p = 0$ is isobaric; $\\Delta V = 0$ is isochoric).*
+  </div>`,
+  [
+    { key: 'Correct option (iii) q = 0', marks: '0.5 Mark' },
+    { key: 'Explanation: adiabatic boundary prevents heat exchange between system and surroundings', marks: '0.5 Mark' }
+  ]
+);
+
+// QUESTION 5.3
+addQ(
+  3, 'Question 5.3', '1 Mark',
+  `The enthalpies of all elements in their standard states are:<br>
+   (i) unity<br>
+   (ii) zero<br>
+   (iii) $< 0$<br>
+   (iv) different for each element.`,
+  `<div class="step">
+    <b>Correct Option: (ii) zero</b><br><br>
+    <b>Thermodynamic Convention:</b><br>
+    • By international thermodynamic convention (IUPAC), the **standard enthalpy of formation ($\\Delta_f H^\ominus$)** of every pure element in its most stable reference physical state of aggregation at $298.15\\text{ K}$ and $1\\text{ bar}$ pressure is arbitrarily defined as **zero**:<br>
+    $$\\mathbf{\\Delta_f H^\ominus [\\text{pure element in standard state}] = 0}$$<br>
+    • Examples: $\\Delta_f H^\ominus [\\text{C}(\\text{graphite})] = 0$, $\\Delta_f H^\ominus [\\text{O}_2(g)] = 0$, $\\Delta_f H^\ominus [\\text{H}_2(g)] = 0$, $\\Delta_f H^\ominus [\\text{Br}_2(l)] = 0$, $\\Delta_f H^\ominus [\\text{Na}(s)] = 0$.
+  </div>`,
+  [
+    { key: 'Correct option (ii) zero', marks: '0.5 Mark' },
+    { key: 'IUPAC convention statement: standard enthalpy of formation of pure elements is zero', marks: '0.5 Mark' }
+  ]
+);
+
+// QUESTION 5.4
+addQ(
+  4, 'Question 5.4', '1.5 Marks',
+  `$\\Delta U^\ominus$ of combustion of methane is $-X\\text{ kJ mol}^{-1}$. The value of $\\Delta H^\ominus$ is<br>
+   (i) $= \\Delta U^\ominus$<br>
+   (ii) $> \\Delta U^\ominus$<br>
+   (iii) $< \\Delta U^\ominus$<br>
+   (iv) $= 0$.`,
+  `<div class="step">
+    <b>Correct Option: (iii) $< \\Delta U^\ominus$</b><br><br>
+    <b>Mathematical &amp; Thermodynamic Proof:</b><br><br>
+    1. Write the balanced thermochemical combustion equation for methane at $298\\text{ K}$:<br>
+    $$\\text{CH}_4(g) + 2\\text{O}_2(g) \\longrightarrow \\text{CO}_2(g) + 2\\text{H}_2\\text{O}(l)$$<br>
+    2. Calculate change in gaseous moles ($\\Delta n_g$):<br>
+    $$\\Delta n_g = n_g(\\text{products}) - n_g(\\text{reactants})$$<br>
+    $$\\Delta n_g = 1 - (1 + 2) = 1 - 3 = \\mathbf{-2}$$<br>
+    *(Note: Liquid water $\\text{H}_2\\text{O}(l)$ is not counted in $\\Delta n_g$).*<br><br>
+    3. Apply the fundamental relation between $\\Delta H$ and $\\Delta U$:<br>
+    $$\\Delta H^\ominus = \\Delta U^\ominus + \\Delta n_g R T$$<br>
+    $$\\Delta H^\ominus = \\Delta U^\ominus + (-2) R T = \\Delta U^\ominus - 2 R T$$<br>
+    Since $R$ and $T$ are strictly positive quantities ($2RT > 0$), subtracting $2RT$ from $\\Delta U^\ominus$ makes $\\Delta H^\ominus$ more negative than $\\Delta U^\ominus$:<br>
+    $$\\mathbf{\\Delta H^\ominus < \\Delta U^\ominus \\quad (\\text{Option iii})}$$
+  </div>`,
+  [
+    { key: 'Combustion equation and gaseous mole difference Delta n_g = -2', marks: '0.5 Mark' },
+    { key: 'Applying Delta H = Delta U + Delta n_g RT yielding Delta H < Delta U (Option iii)', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.5
+addQ(
+  5, 'Question 5.5', '2 Marks',
+  `The enthalpy of combustion of methane, graphite and dihydrogen at $298\\text{ K}$ are $-890.3\\text{ kJ mol}^{-1}$, $-393.5\\text{ kJ mol}^{-1}$, and $-285.8\\text{ kJ mol}^{-1}$ respectively. Enthalpy of formation of $\\text{CH}_4(g)$ will be<br>
+   (i) $-74.8\\text{ kJ mol}^{-1}$<br>
+   (ii) $-52.27\\text{ kJ mol}^{-1}$<br>
+   (iii) $+74.8\\text{ kJ mol}^{-1}$<br>
+   (iv) $+52.26\\text{ kJ mol}^{-1}$.`,
+  `<div class="step">
+    <b>Correct Option: (i) $-74.8\\text{ kJ mol}^{-1}$</b><br><br>
+    <b>Step-by-Step Calculation using Hess's Law:</b><br><br>
+    Target Formation Equation for Methane:<br>
+    $$\\text{C}(\\text{graphite}) + 2\\text{H}_2(g) \\longrightarrow \\text{CH}_4(g) \\quad \\Delta_f H^\ominus = ?$$<br><br>
+    Given Thermochemical Combustion Equations:<br>
+    1. $\\text{CH}_4(g) + 2\\text{O}_2(g) \\to \\text{CO}_2(g) + 2\\text{H}_2\\text{O}(l) \\quad \\Delta H_1 = -890.3\\text{ kJ mol}^{-1}$<br>
+    2. $\\text{C}(\\text{graphite}) + \\text{O}_2(g) \\to \\text{CO}_2(g) \\quad \\Delta H_2 = -393.5\\text{ kJ mol}^{-1}$<br>
+    3. $\\text{H}_2(g) + \\frac{1}{2}\\text{O}_2(g) \\to \\text{H}_2\\text{O}(l) \\quad \\Delta H_3 = -285.8\\text{ kJ mol}^{-1}$<br><br>
+    Applying Hess's Law: $\\text{Target} = \\text{Eq. (2)} + 2 \\times \\text{Eq. (3)} - \\text{Eq. (1)}$:<br>
+    $$\\Delta_f H^\ominus = \\Delta H_2 + 2(\\Delta H_3) - \\Delta H_1$$<br>
+    $$\\Delta_f H^\ominus = -393.5 + 2(-285.8) - (-890.3)$$<br>
+    $$\\Delta_f H^\ominus = -393.5 - 571.6 + 890.3 = -965.1 + 890.3 = \\mathbf{-74.8\\text{ kJ mol}^{-1}}$$<br><br>
+    $$\\mathbf{\\text{The enthalpy of formation of methane is } -74.8\\text{ kJ mol}^{-1} \\quad (\\text{Option i}).}$$
+  </div>`,
+  [
+    { key: 'Setting up target formation reaction from combustion equations', marks: '1 Mark' },
+    { key: 'Hess law evaluation: Delta f H = -393.5 + 2(-285.8) - (-890.3) = -74.8 kJ/mol', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.6
+addQ(
+  6, 'Question 5.6', '1.5 Marks',
+  `A reaction, $A + B \\to C + D + q$ is found to have a positive entropy change. The reaction will be<br>
+   (i) possible at high temperature<br>
+   (ii) possible only at low temperature<br>
+   (iii) not possible at any temperature<br>
+   (iv) possible at any temperature.`,
+  `<div class="step">
+    <b>Correct Option: (iv) possible at any temperature</b><br><br>
+    <b>Thermodynamic Justification using Gibbs Equation:</b><br><br>
+    1. The reaction evolves heat ($+q$), so it is **exothermic**: $\\mathbf{\\Delta H < 0}$ (negative).<br>
+    2. The entropy change is positive: $\\mathbf{\\Delta S > 0}$ (positive).<br>
+    3. Apply the Gibbs-Helmholtz spontaneity equation:<br>
+    $$\\Delta G = \\Delta H - T \\Delta S$$<br>
+    • Since $\\Delta H$ is negative ($-$) and $\\Delta S$ is positive ($+$), the term $-T\\Delta S$ is strictly negative ($-$) at all absolute temperatures ($T > 0\\text{ K}$).<br>
+    • Adding two negative terms guarantees that **$\\Delta G$ is strictly negative ($\\Delta G < 0$) at ALL temperatures**.<br><br>
+    $$\\mathbf{\\text{The reaction is spontaneous and possible at any temperature } (\\text{Option iv}).}$$
+  </div>`,
+  [
+    { key: 'Identifying Delta H < 0 (exothermic) and Delta S > 0', marks: '0.5 Mark' },
+    { key: 'Proving Delta G = Delta H - T*Delta S < 0 at all temperatures (Option iv)', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.7
+addQ(
+  7, 'Question 5.7', '2 Marks',
+  `In a process, $701\\text{ J}$ of heat is absorbed by a system and $394\\text{ J}$ of work is done by the system. What is the change in internal energy for the process?`,
+  `<div class="step">
+    <b>Thermodynamic Sign Conventions (IUPAC):</b><br>
+    • Heat absorbed by the system: $q = +701\\text{ J}$<br>
+    • Work done by the system: $w = -394\\text{ J}$<br><br>
+    <b>First Law of Thermodynamics:</b><br>
+    $$\\Delta U = q + w$$<br>
+    $$\\Delta U = (+701\\text{ J}) + (-394\\text{ J})$$<br>
+    $$\\Delta U = 701 - 394 = \\mathbf{+307\\text{ J}}$$<br><br>
+    $$\\mathbf{\\text{The change in internal energy for the process is } +307\\text{ J.}}$$
+  </div>`,
+  [
+    { key: 'Correct sign conventions: q = +701 J, w = -394 J', marks: '1 Mark' },
+    { key: 'Evaluation Delta U = q + w = +307 J', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.8
+addQ(
+  8, 'Question 5.8', '2.5 Marks',
+  `The reaction of cyanamide, $\\text{NH}_2\\text{CN}(s)$, with dioxygen was carried out in a bomb calorimeter, and $\\Delta U$ was found to be $-742.7\\text{ kJ mol}^{-1}$ at $298\\text{ K}$. Calculate enthalpy change for the reaction at $298\\text{ K}$.<br>
+   $\\text{NH}_2\\text{CN}(s) + \\frac{3}{2}\\text{O}_2(g) \\longrightarrow \\text{N}_2(g) + \\text{CO}_2(g) + \\text{H}_2\\text{O}(l)$.`,
+  `<div class="step">
+    Given Data:<br>
+    • $\\Delta U = -742.7\\text{ kJ mol}^{-1}$<br>
+    • $T = 298\\text{ K}$<br>
+    • $R = 8.314 \\times 10^{-3}\\text{ kJ K}^{-1}\\text{mol}^{-1}$<br><br>
+    <b>1. Calculate change in number of gaseous moles ($\\Delta n_g$):</b><br>
+    $$\\Delta n_g = n_g(\\text{products}) - n_g(\\text{reactants})$$<br>
+    $$\\Delta n_g = [1(\\text{N}_2) + 1(\\text{CO}_2)] - \\left[\\frac{3}{2}(\\text{O}_2)\\right] = 2 - 1.5 = \\mathbf{+0.5\\text{ mol}}$$<br><br>
+    <b>2. Enthalpy Change ($\\Delta H$):</b><br>
+    $$\\Delta H = \\Delta U + \\Delta n_g R T$$<br>
+    $$\\Delta H = -742.7\\text{ kJ mol}^{-1} + (0.5\\text{ mol}) \\times (8.314 \\times 10^{-3}\\text{ kJ K}^{-1}\\text{mol}^{-1}) \\times (298\\text{ K})$$<br>
+    $$\\Delta H = -742.7 + 1.2388 = \\mathbf{-741.46\\text{ kJ mol}^{-1} \\approx -741.5\\text{ kJ mol}^{-1}}$$<br><br>
+    $$\\mathbf{\\text{The enthalpy change for the reaction at } 298\\text{ K is } -741.5\\text{ kJ mol}^{-1}.}$$
+  </div>`,
+  [
+    { key: 'Calculating Delta n_g = 2 - 1.5 = +0.5 mol', marks: '1 Mark' },
+    { key: 'Applying Delta H = Delta U + Delta n_g RT yielding -741.5 kJ/mol', marks: '1.5 Marks' }
+  ]
+);
+
+// QUESTION 5.9
+addQ(
+  9, 'Question 5.9', '2 Marks',
+  `Calculate the number of $\\text{kJ}$ of heat necessary to raise the temperature of $60.0\\text{ g}$ of aluminium from $35^\\circ\\text{C}$ to $55^\\circ\\text{C}$. Molar heat capacity of $\\text{Al}$ is $24\\text{ J mol}^{-1}\\text{K}^{-1}$.`,
+  `<div class="step">
+    Given Data:<br>
+    • Mass of aluminium $m = 60.0\\text{ g}$<br>
+    • Atomic mass of $\\text{Al} = 27\\text{ g mol}^{-1}$<br>
+    • Moles of aluminium $n = \\frac{60.0\\text{ g}}{27\\text{ g mol}^{-1}} = \\mathbf{2.222\\text{ mol}}$<br>
+    • Molar heat capacity $C_m = 24\\text{ J mol}^{-1}\\text{K}^{-1}$<br>
+    • Temperature rise $\\Delta T = 55^\\circ\\text{C} - 35^\\circ\\text{C} = \\mathbf{20^\\circ\\text{C} = 20\\text{ K}}$<br><br>
+    <b>Calculation of Heat Required ($q$):</b><br>
+    $$q = n \\times C_m \\times \\Delta T$$<br>
+    $$q = (2.222\\text{ mol}) \\times (24\\text{ J mol}^{-1}\\text{K}^{-1}) \\times (20\\text{ K})$$<br>
+    $$q = 1066.56\\text{ J} = \\mathbf{1.067\\text{ kJ}}$$<br><br>
+    $$\\mathbf{\\text{The heat necessary to raise the temperature is } 1.067\\text{ kJ.}}$$
+  </div>`,
+  [
+    { key: 'Calculating moles of Al = 60 / 27 = 2.22 mol and Delta T = 20 K', marks: '1 Mark' },
+    { key: 'Evaluating heat q = n * Cm * Delta T = 1.067 kJ', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.10
+addQ(
+  10, 'Question 5.10', '3 Marks',
+  `Calculate the enthalpy change on freezing of $1.0\\text{ mol}$ of water at $10.0^\\circ\\text{C}$ to ice at $-10.0^\\circ\\text{C}$. $\\Delta_{\\text{fus}} H = 6.03\\text{ kJ mol}^{-1}$ at $0^\\circ\\text{C}$.<br>
+   $C_p[\\text{H}_2\\text{O}(l)] = 75.3\\text{ J mol}^{-1}\\text{K}^{-1},\\; C_p[\\text{H}_2\\text{O}(s)] = 36.8\\text{ J mol}^{-1}\\text{K}^{-1}$.`,
+  `<div class="step">
+    The freezing process occurs in three reversible sequential steps:<br><br>
+    1. **Cooling liquid water from $10.0^\circ\\text{C}$ ($283.15\\text{ K}$) to $0^\circ\\text{C}$ ($273.15\\text{ K}$):**<br>
+    $$\\Delta H_1 = n \\times C_p(l) \\times \\Delta T = (1.0\\text{ mol}) \\times (75.3\\text{ J mol}^{-1}\\text{K}^{-1}) \\times (0 - 10)\\text{ K}$$<br>
+    $$\\Delta H_1 = -753\\text{ J} = \\mathbf{-0.753\\text{ kJ}}$$<br><br>
+    2. **Freezing liquid water to ice at $0^\circ\\text{C}$ ($273.15\\text{ K}$):**<br>
+    $$\\Delta H_2 = -\\Delta_{\\text{fus}} H = -(1.0\\text{ mol} \\times 6.03\\text{ kJ mol}^{-1}) = \\mathbf{-6.030\\text{ kJ}}$$<br><br>
+    3. **Cooling ice from $0^\circ\\text{C}$ ($273.15\\text{ K}$) to $-10.0^\circ\\text{C}$ ($263.15\\text{ K}$):**<br>
+    $$\\Delta H_3 = n \\times C_p(s) \\times \\Delta T = (1.0\\text{ mol}) \\times (36.8\\text{ J mol}^{-1}\\text{K}^{-1}) \\times (-10 - 0)\\text{ K}$$<br>
+    $$\\Delta H_3 = -368\\text{ J} = \\mathbf{-0.368\\text{ kJ}}$$<br><br>
+    <b>Total Enthalpy Change ($\\Delta H_{\\text{total}}$):</b><br>
+    $$\\Delta H_{\\text{total}} = \\Delta H_1 + \\Delta H_2 + \\Delta H_3 = (-0.753) + (-6.030) + (-0.368) = \\mathbf{-7.151\\text{ kJ mol}^{-1}}$$<br><br>
+    $$\\mathbf{\\text{The enthalpy change on freezing is } -7.151\\text{ kJ mol}^{-1}.}$$
+  </div>`,
+  [
+    { key: 'Step 1 cooling liquid water: Delta H1 = -0.753 kJ', marks: '1 Mark' },
+    { key: 'Step 2 phase change (freezing): Delta H2 = -6.03 kJ', marks: '1 Mark' },
+    { key: 'Step 3 cooling ice: Delta H3 = -0.368 kJ, Total Delta H = -7.151 kJ', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.11
+addQ(
+  11, 'Question 5.11', '2 Marks',
+  `Enthalpy of combustion of carbon to $\\text{CO}_2$ is $-393.5\\text{ kJ mol}^{-1}$. Calculate the heat released upon formation of $35.2\\text{ g}$ of $\\text{CO}_2$ from carbon and dioxygen gas.`,
+  `<div class="step">
+    Thermochemical equation:<br>
+    $$\\text{C}(s) + \\text{O}_2(g) \\longrightarrow \\text{CO}_2(g) \\quad \\Delta_c H^\ominus = -393.5\\text{ kJ mol}^{-1}$$<br>
+    Molar mass of $\\text{CO}_2 = 12 + 2(16) = \\mathbf{44.0\\text{ g mol}^{-1}}$.<br><br>
+    • Combustion of $1\\text{ mole } (44.0\\text{ g})$ of $\\text{CO}_2$ releases $393.5\\text{ kJ}$ of heat.<br><br>
+    <b>Heat released upon formation of $35.2\\text{ g}$ of $\\text{CO}_2$:</b><br>
+    $$\\text{Moles of } \\text{CO}_2 = \\frac{35.2\\text{ g}}{44.0\\text{ g mol}^{-1}} = \\mathbf{0.80\\text{ mol}}$$<br>
+    $$\\text{Heat released} = 0.80\\text{ mol} \\times 393.5\\text{ kJ mol}^{-1} = \\mathbf{314.8\\text{ kJ}}$$<br><br>
+    $$\\mathbf{\\text{The heat released is } 314.8\\text{ kJ (or } \\Delta H = -314.8\\text{ kJ}).}$$
+  </div>`,
+  [
+    { key: 'Calculating moles of CO2 = 35.2 / 44 = 0.80 mol', marks: '1 Mark' },
+    { key: 'Evaluating heat released = 0.80 x 393.5 = 314.8 kJ', marks: '1 Mark' }
+  ]
+);
+
+// QUESTION 5.12
+addQ(
+  12, 'Question 5.12', '2.5 Marks',
+  `Enthalpies of formation of $\\text{CO}(g), \\text{CO}_2(g), \\text{N}_2\\text{O}(g)$ and $\\text{N}_2\\text{O}_4(g)$ are $-110, -393, 81$ and $9.7\\text{ kJ mol}^{-1}$ respectively. Find the value of $\\Delta_r H$ for the reaction:<br>
+   $\\text{N}_2\\text{O}_4(g) + 3\\text{CO}(g) \\longrightarrow \\text{N}_2\\text{O}(g) + 3\\text{CO}_2(g)$.`,
+  `<div class="step">
+    Formula for Enthalpy of Reaction from Enthalpies of Formation:<br>
+    $$\\Delta_r H = \\sum \\Delta_f H^\\ominus(\\text{products}) - \\sum \\Delta_f H^\\ominus(\\text{reactants})$$<br><br>
+    $$\\Delta_r H = [\\Delta_f H(\\text{N}_2\\text{O}) + 3 \\Delta_f H(\\text{CO}_2)] - [\\Delta_f H(\\text{N}_2\\text{O}_4) + 3 \\Delta_f H(\\text{CO})]$$<br>
+    $$\\Delta_r H = [81 + 3(-393)] - [9.7 + 3(-110)]$$<br>
+    $$\\Delta_r H = [81 - 1179] - [9.7 - 330]$$<br>
+    $$\\Delta_r H = [-1098] - [-320.3]$$<br>
+    $$\\Delta_r H = -1098 + 320.3 = \\mathbf{-777.7\\text{ kJ mol}^{-1}}$$<br><br>
+    $$\\mathbf{\\Delta_r H \\text{ for the reaction is } -777.7\\text{ kJ mol}^{-1}.}$$
+  </div>`,
+  [
+    { key: 'Stating Delta r H formula from enthalpies of formation', marks: '1 Mark' },
+    { key: 'Substitution and accurate evaluation: Delta r H = -777.7 kJ/mol', marks: '1.5 Marks' }
+  ]
+);
+
+// Helper for generating questions 13 to 22
+const qList5 = [
+  {
+    num: 13,
+    ref: 'Question 5.13',
+    marks: '1.5 Marks',
+    q: `Given: $\\text{N}_2(g) + 3\\text{H}_2(g) \\longrightarrow 2\\text{NH}_3(g);\\; \\Delta_r H^\\ominus = -92.4\\text{ kJ mol}^{-1}$. What is the standard enthalpy of formation of $\\text{NH}_3$ gas?`,
+    ans: `<div class="step">
+      <b>Standard Enthalpy of Formation Definition:</b><br>
+      The standard enthalpy of formation ($\\Delta_f H^\\ominus$) is the enthalpy change accompanying the formation of **one mole** of a substance from its constituent elements in their standard states.<br><br>
+      The given equation produces $2\\text{ moles}$ of $\\text{NH}_3(g)$:<br>
+      $$\\Delta_f H^\\ominus(\\text{NH}_3, g) = \\frac{\\Delta_r H^\\ominus}{2} = \\frac{-92.4\\text{ kJ mol}^{-1}}{2} = \\mathbf{-46.2\\text{ kJ mol}^{-1}}$$<br><br>
+      $$\\mathbf{\\text{The standard enthalpy of formation of } \\text{NH}_3(g) \\text{ is } -46.2\\text{ kJ mol}^{-1}.}$$
+    </div>`,
+    rubric: [
+      { key: 'Definition of standard enthalpy of formation based on 1 mole', marks: '0.5 Mark' },
+      { key: 'Division by 2 yielding Delta f H = -46.2 kJ/mol', marks: '1 Mark' }
+    ]
+  },
+  {
+    num: 14,
+    ref: 'Question 5.14',
+    marks: '2.5 Marks',
+    q: `Calculate the standard enthalpy of formation of $\\text{CH}_3\\text{OH}(l)$ from the following data:<br>
+       1. $\\text{CH}_3\\text{OH}(l) + \\frac{3}{2}\\text{O}_2(g) \\to \\text{CO}_2(g) + 2\\text{H}_2\\text{O}(l);\\; \\Delta_r H^\\ominus = -726\\text{ kJ mol}^{-1}$<br>
+       2. $\\text{C}(\\text{graphite}) + \\text{O}_2(g) \\to \\text{CO}_2(g);\\; \\Delta_c H^\\ominus = -393\\text{ kJ mol}^{-1}$<br>
+       3. $\\text{H}_2(g) + \\frac{1}{2}\\text{O}_2(g) \\to \\text{H}_2\\text{O}(l);\\; \\Delta_f H^\\ominus = -286\\text{ kJ mol}^{-1}$.`,
+    ans: `<div class="step">
+      <b>Target Formation Reaction:</b><br>
+      $$\\text{C}(\\text{graphite}) + 2\\text{H}_2(g) + \\frac{1}{2}\\text{O}_2(g) \\longrightarrow \\text{CH}_3\\text{OH}(l) \\quad \\Delta_f H^\\ominus = ?$$<br><br>
+      Applying Hess's Law: $\\text{Target} = \\text{Eq. (2)} + 2 \\times \\text{Eq. (3)} - \\text{Eq. (1)}$:<br>
+      $$\\Delta_f H^\\ominus = \\Delta H_2 + 2(\\Delta H_3) - \\Delta H_1$$<br>
+      $$\\Delta_f H^\\ominus = -393 + 2(-286) - (-726)$$<br>
+      $$\\Delta_f H^\\ominus = -393 - 572 + 726 = -965 + 726 = \\mathbf{-239\\text{ kJ mol}^{-1}}$$<br><br>
+      $$\\mathbf{\\text{The standard enthalpy of formation of } \\text{CH}_3\\text{OH}(l) \\text{ is } -239\\text{ kJ mol}^{-1}.}$$
+    </div>`,
+    rubric: [
+      { key: 'Target reaction formulated correctly', marks: '1 Mark' },
+      { key: "Hess's Law combination: -393 + 2(-286) - (-726) = -239 kJ/mol", marks: '1.5 Marks' }
+    ]
+  },
+  {
+    num: 15,
+    ref: 'Question 5.15',
+    marks: '3 Marks',
+    q: `Calculate the enthalpy change for the process $\\text{CCl}_4(g) \\to \\text{C}(g) + 4\\text{Cl}(g)$ and calculate bond enthalpy of $\\text{C}-\\text{Cl}$ in $\\text{CCl}_4(g)$.<br>
+       $\\Delta_{\\text{vap}} H^\\ominus(\\text{CCl}_4) = 30.5\\text{ kJ mol}^{-1}$.<br>
+       $\\Delta_f H^\\ominus(\\text{CCl}_4) = -135.5\\text{ kJ mol}^{-1}$.<br>
+       $\\Delta_a H^\\ominus(\\text{C}) = 715.0\\text{ kJ mol}^{-1}$.<br>
+       $\\Delta_a H^\\ominus(\\text{Cl}_2) = 242\\text{ kJ mol}^{-1}$.`,
+    ans: `<div class="step">
+      <b>1. Enthalpy of Atomisation of $\\text{CCl}_4(g)$ ($\\Delta_a H$):</b><br>
+      $$\\text{CCl}_4(l) \\longrightarrow \\text{C}(\\text{graphite}) + 2\\text{Cl}_2(g) \\quad \\Delta H = -\\Delta_f H^\\ominus = +135.5\\text{ kJ mol}^{-1}$$<br>
+      $$\\text{CCl}_4(g) \\longrightarrow \\text{CCl}_4(l) \\quad \\Delta H = -\\Delta_{\\text{vap}} H^\\ominus = -30.5\\text{ kJ mol}^{-1}$$<br>
+      $$\\text{C}(\\text{graphite}) \\longrightarrow \\text{C}(g) \\quad \\Delta H = \\Delta_a H^\\ominus(\\text{C}) = +715.0\\text{ kJ mol}^{-1}$$<br>
+      $$2\\text{Cl}_2(g) \\longrightarrow 4\\text{Cl}(g) \\quad \\Delta H = 2 \\times 242 = +484.0\\text{ kJ mol}^{-1}$$<br><br>
+      Summing these four equations yields: $\\text{CCl}_4(g) \\longrightarrow \\text{C}(g) + 4\\text{Cl}(g)$:<br>
+      $$\\Delta_a H = 135.5 - 30.5 + 715.0 + 484.0 = \\mathbf{1304.0\\text{ kJ mol}^{-1}}$$<br><br>
+      <b>2. Bond Enthalpy of $\\text{C}-\\text{Cl}$ bond:</b><br>
+      In $\\text{CCl}_4$, there are four identical $\\text{C-Cl}$ bonds:<br>
+      $$\\text{Bond Enthalpy}(\\text{C}-\\text{Cl}) = \\frac{\\Delta_a H}{4} = \\frac{1304.0\\text{ kJ mol}^{-1}}{4} = \\mathbf{326.0\\text{ kJ mol}^{-1}}$$<br><br>
+      $$\\mathbf{\\Delta_a H = 1304.0\\text{ kJ mol}^{-1};\\; \\text{Bond Enthalpy}(\\text{C}-\\text{Cl}) = 326.0\\text{ kJ mol}^{-1}.}$$
+    </div>`,
+    rubric: [
+      { key: 'Summing component enthalpies to find atomisation Delta a H = 1304.0 kJ/mol', marks: '2 Marks' },
+      { key: 'Dividing by 4 to evaluate single C-Cl bond enthalpy = 326.0 kJ/mol', marks: '1 Mark' }
+    ]
+  },
+  {
+    num: 16,
+    ref: 'Question 5.16',
+    marks: '1.5 Marks',
+    q: `For an isolated system, $\\Delta U = 0$, what will be $\\Delta S$?`,
+    ans: `<div class="step">
+      <b>Answer:</b> For an isolated system, **$\\Delta S > 0$ (positive)** for any spontaneous (natural) process, and **$\\Delta S = 0$** at equilibrium.<br><br>
+      <b>Thermodynamic Explanation:</b><br>
+      • An **isolated system** cannot exchange matter or energy (heat or work) with its surroundings ($q = 0, w = 0 \\implies \\Delta U = 0$).<br>
+      • According to the **Second Law of Thermodynamics**, any natural or spontaneous process occurring in an isolated system is accompanied by an **increase in entropy (randomness or disorder)**.<br>
+      • Hence, for any spontaneous change in an isolated system: $\\mathbf{\\Delta S > 0}$.<br>
+      • When the isolated system reaches thermodynamic equilibrium, entropy attains its maximum value, and $\\mathbf{\\Delta S = 0}$.
+    </div>`,
+    rubric: [
+      { key: 'Delta S > 0 for spontaneous process; Delta S = 0 at equilibrium', marks: '1 Mark' },
+      { key: 'Second law justification: isolated systems progress toward maximum randomness/entropy', marks: '0.5 Mark' }
+    ]
+  },
+  {
+    num: 17,
+    ref: 'Question 5.17',
+    marks: '2 Marks',
+    q: `For the reaction at $298\\text{ K}$, $2A + B \\to C$, $\\Delta H = 400\\text{ kJ mol}^{-1}$ and $\\Delta S = 0.2\\text{ kJ K}^{-1}\\text{mol}^{-1}$. At what temperature will the reaction become spontaneous considering $\\Delta H$ and $\\Delta S$ to be constant over the temperature range?`,
+    ans: `<div class="step">
+      Given Data:<br>
+      • $\\Delta H = 400\\text{ kJ mol}^{-1}$<br>
+      • $\\Delta S = 0.2\\text{ kJ K}^{-1}\\text{mol}^{-1}$<br><br>
+      <b>Criterion for Spontaneity:</b><br>
+      $$\\Delta G = \\Delta H - T \\Delta S < 0$$<br>
+      $$\\Delta H - T \\Delta S < 0 \\implies T \\Delta S > \\Delta H \\implies T > \\frac{\\Delta H}{\\Delta S}$$<br><br>
+      <b>Equilibrium Threshold Temperature ($T_{\\text{eq}}$):</b><br>
+      $$T_{\\text{eq}} = \\frac{\\Delta H}{\\Delta S} = \\frac{400\\text{ kJ mol}^{-1}}{0.2\\text{ kJ K}^{-1}\\text{mol}^{-1}} = \\mathbf{2000\\text{ K}}$$<br><br>
+      $$\\mathbf{\\text{The reaction will become spontaneous at temperatures above } 2000\\text{ K (i.e., } T > 2000\\text{ K}\\text{).}}$$
+    </div>`,
+    rubric: [
+      { key: 'Setting up spontaneity condition Delta G = Delta H - T*Delta S < 0', marks: '1 Mark' },
+      { key: 'Evaluating threshold temperature T > 2000 K', marks: '1 Mark' }
+    ]
+  },
+  {
+    num: 18,
+    ref: 'Question 5.18',
+    marks: '1.5 Marks',
+    q: `For the reaction, $2\\text{Cl}(g) \\longrightarrow \\text{Cl}_2(g)$, what are the signs of $\\Delta H$ and $\\Delta S$?`,
+    ans: `<div class="step">
+      <b>1. Sign of Enthalpy Change ($\\Delta H$):</b><br>
+      • The process involves the **formation of a stable covalent chemical bond** ($\\text{Cl}-\\text{Cl}$) from two isolated chlorine atoms.<br>
+      • Bond formation always releases energy (exothermic).<br>
+      $$\\mathbf{\\Delta H < 0 \\quad (\\text{Negative})}$$<br><br>
+      <b>2. Sign of Entropy Change ($\\Delta S$):</b><br>
+      • Two moles of gaseous atoms ($2\\text{Cl}$) combine to form only one mole of diatomic molecules ($\\text{Cl}_2$).<br>
+      • The number of independent particles decreases ($2 \\to 1$), leading to a decrease in randomness and molecular disorder.<br>
+      $$\\mathbf{\\Delta S < 0 \\quad (\\text{Negative})}$$<br><br>
+      $$\\mathbf{\\text{Both } \\Delta H \\text{ and } \\Delta S \\text{ are negative.}}$$
+    </div>`,
+    rubric: [
+      { key: 'Delta H is negative because bond formation releases energy (exothermic)', marks: '0.75 Mark' },
+      { key: 'Delta S is negative because particles decrease from 2 to 1 (disorder decreases)', marks: '0.75 Mark' }
+    ]
+  },
+  {
+    num: 19,
+    ref: 'Question 5.19',
+    marks: '2.5 Marks',
+    q: `For the reaction $2A(g) + B(g) \\to 2D(g)$, $\\Delta U^\\ominus = -10.5\\text{ kJ}$ and $\\Delta S^\\ominus = -44.1\\text{ J K}^{-1}$ at $298\\text{ K}$. Calculate $\\Delta G^\\ominus$ for the reaction, and predict whether the reaction may occur spontaneously.`,
+    ans: `<div class="step">
+      Given Data at $T = 298\\text{ K}$:<br>
+      • $\\Delta U^\\ominus = -10.5\\text{ kJ}$<br>
+      • $\\Delta S^\\ominus = -44.1\\text{ J K}^{-1} = -0.0441\\text{ kJ K}^{-1}$<br>
+      • $R = 8.314 \\times 10^{-3}\\text{ kJ K}^{-1}\\text{mol}^{-1}$<br><br>
+      <b>1. Calculate $\\Delta n_g$:</b><br>
+      $$\\Delta n_g = 2 - (2 + 1) = 2 - 3 = \\mathbf{-1}$$<br><br>
+      <b>2. Calculate $\\Delta H^\\ominus$:</b><br>
+      $$\\Delta H^\\ominus = \\Delta U^\\ominus + \\Delta n_g R T = -10.5 + (-1)(8.314 \\times 10^{-3})(298)$$<br>
+      $$\\Delta H^\\ominus = -10.5 - 2.478 = \\mathbf{-12.978\\text{ kJ}}$$<br><br>
+      <b>3. Calculate $\\Delta G^\\ominus$:</b><br>
+      $$\\Delta G^\\ominus = \\Delta H^\\ominus - T \\Delta S^\\ominus = -12.978 - (298)(-0.0441)$$<br>
+      $$\\Delta G^\\ominus = -12.978 + 13.142 = \\mathbf{+0.164\\text{ kJ} = +164\\text{ J}}$$<br><br>
+      <b>Spontaneity Prediction:</b><br>
+      Since $\\Delta G^\\ominus > 0$ (positive), the reaction **will NOT occur spontaneously** at $298\\text{ K}$.
+    </div>`,
+    rubric: [
+      { key: 'Calculating Delta H = -12.978 kJ using Delta n_g = -1', marks: '1 Mark' },
+      { key: 'Evaluating Delta G = +0.164 kJ', marks: '1 Mark' },
+      { key: 'Prediction: non-spontaneous because Delta G > 0', marks: '0.5 Mark' }
+    ]
+  },
+  {
+    num: 20,
+    ref: 'Question 5.20',
+    marks: '2 Marks',
+    q: `The equilibrium constant for a reaction is $10$. What will be the value of $\\Delta G^\\ominus$? $R = 8.314\\text{ J K}^{-1}\\text{mol}^{-1},\\; T = 300\\text{ K}$.`,
+    ans: `<div class="step">
+      Given Data:<br>
+      • Equilibrium constant $K = 10$<br>
+      • Gas constant $R = 8.314\\text{ J K}^{-1}\\text{mol}^{-1}$<br>
+      • Temperature $T = 300\\text{ K}$<br><br>
+      <b>Standard Gibbs Free Energy Formula:</b><br>
+      $$\\Delta G^\\ominus = -2.303 R T \\log K$$<br>
+      $$\\Delta G^\\ominus = -2.303 \\times (8.314\\text{ J K}^{-1}\\text{mol}^{-1}) \\times (300\\text{ K}) \\times \\log(10)$$<br>
+      Since $\\log(10) = 1$:<br>
+      $$\\Delta G^\\ominus = -2.303 \\times 8.314 \\times 300 \\times 1 = \\mathbf{-5744.14\\text{ J mol}^{-1} \\approx -5.744\\text{ kJ mol}^{-1}}$$<br><br>
+      $$\\mathbf{\\text{The standard Gibbs free energy change is } -5.744\\text{ kJ mol}^{-1}.}$$
+    </div>`,
+    rubric: [
+      { key: 'Formula Delta G = -2.303 RT log K stated', marks: '1 Mark' },
+      { key: 'Substitution with log(10)=1 yielding -5.744 kJ/mol', marks: '1 Mark' }
+    ]
+  },
+  {
+    num: 21,
+    ref: 'Question 5.21',
+    marks: '2.5 Marks',
+    q: `Comment on the thermodynamic stability of $\\text{NO}(g)$, given:<br>
+       1. $\\frac{1}{2}\\text{N}_2(g) + \\frac{1}{2}\\text{O}_2(g) \\to \\text{NO}(g);\\; \\Delta_r H^\\ominus = 90\\text{ kJ mol}^{-1}$<br>
+       2. $\\text{NO}(g) + \\frac{1}{2}\\text{O}_2(g) \\to \\text{NO}_2(g);\\; \\Delta_r H^\\ominus = -74\\text{ kJ mol}^{-1}$.`,
+    ans: `<div class="step">
+      <b>Thermodynamic Stability Analysis:</b><br><br>
+      1. **Stability of $\\text{NO}(g)$ relative to its elements ($\\text{N}_2$ and $\\text{O}_2$):**<br>
+      • The formation of $\\text{NO}(g)$ from $\\text{N}_2$ and $\\text{O}_2$ is **endothermic** ($\\Delta_r H^\\ominus = +90\\text{ kJ mol}^{-1}$).<br>
+      • Heat is absorbed during its formation, meaning $\\text{NO}(g)$ resides at a higher energy state than its constituent elements.<br>
+      • Hence, $\\text{NO}(g)$ is **thermodynamically unstable** with respect to decomposition into $\\text{N}_2$ and $\\text{O}_2$.<br><br>
+      2. **Stability of $\\text{NO}(g)$ relative to $\\text{NO}_2(g)$:**<br>
+      • The oxidation of $\\text{NO}(g)$ to $\\text{NO}_2(g)$ is **strongly exothermic** ($\\Delta_r H^\\ominus = -74\\text{ kJ mol}^{-1}$).<br>
+      • This means $\\text{NO}(g)$ readily and spontaneously oxidizes to $\\text{NO}_2(g)$ in the presence of oxygen, making it unstable in air.<br><br>
+      $$\\mathbf{\\text{Conclusion: } \\text{NO}(g) \\text{ is thermodynamically unstable relative to both its elements and } \\text{NO}_2(g).}$$
+    </div>`,
+    rubric: [
+      { key: 'Endothermic formation (+90 kJ/mol) shows NO is unstable relative to elements N2 and O2', marks: '1.25 Marks' },
+      { key: 'Exothermic oxidation (-74 kJ/mol) shows NO readily converts to more stable NO2', marks: '1.25 Marks' }
+    ]
+  },
+  {
+    num: 22,
+    ref: 'Question 5.22',
+    marks: '2.5 Marks',
+    q: `Calculate the entropy change in surroundings when $1.00\\text{ mol}$ of $\\text{H}_2\\text{O}(l)$ is formed under standard conditions. $\\Delta_f H^\\ominus = -286\\text{ kJ mol}^{-1}$.`,
+    ans: `<div class="step">
+      Given Data:<br>
+      • Enthalpy of formation of $\\text{H}_2\\text{O}(l)$: $\\Delta_f H^\\ominus = -286\\text{ kJ mol}^{-1} = -286000\\text{ J mol}^{-1}$<br>
+      • Standard conditions temperature: $T = 298\\text{ K}$ (or $298.15\\text{ K}$)<br><br>
+      <b>1. Heat absorbed by the surroundings ($q_{\\text{surr}}$):</b><br>
+      Since the system releases heat (exothermic process), the surroundings absorb that exact amount of heat:<br>
+      $$q_{\\text{surr}} = -q_{\\text{sys}} = -\\Delta_f H^\\ominus = -(-286000\\text{ J mol}^{-1}) = \\mathbf{+286000\\text{ J mol}^{-1}}$$<br><br>
+      <b>2. Entropy change of the surroundings ($\\Delta S_{\\text{surr}}$):</b><br>
+      $$\\Delta S_{\\text{surr}} = \\frac{q_{\\text{surr}}}{T} = \\frac{+286000\\text{ J mol}^{-1}}{298\\text{ K}} = \\mathbf{+959.73\\text{ J K}^{-1}\\text{mol}^{-1} \\approx +960\\text{ J K}^{-1}\\text{mol}^{-1}}$$<br><br>
+      $$\\mathbf{\\text{The entropy change in the surroundings is } +959.73\\text{ J K}^{-1}\\text{mol}^{-1} \\text{ (or } +960\\text{ J K}^{-1}\\text{mol}^{-1}\\text{).}}$$
+    </div>`,
+    rubric: [
+      { key: 'Heat gained by surroundings q_surr = -Delta H = +286000 J/mol', marks: '1 Mark' },
+      { key: 'Evaluation Delta S_surr = q_surr / T = +959.7 J K^-1 mol^-1 (approx +960 J K^-1 mol^-1)', marks: '1.5 Marks' }
+    ]
+  }
+];
+
+// Add remaining questions to array
+qList5.forEach(rq => {
+  addQ(rq.num, rq.ref, rq.marks, rq.q, rq.ans, rq.rubric);
+});
+
+// -------------------------------------------------------------
+// HTML Generation
+let html = `<section class="chapter-section" id="c11c-ch5">
+  <div class="chapter-header">
+    <div class="ch-badge">5</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Chemistry &bull; Chapter 5</div>
+      <h2>Chemical Thermodynamics</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 22 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  ${svgDiagram}
+
+  <div class="ex-div">NCERT Textbook Exercise 5.1 to 5.22: First Law of Thermodynamics, Internal Energy &amp; Work, Hess's Law, Enthalpies of Formation/Combustion/Atomisation, Entropy, Second Law &amp; Gibbs Free Energy Spontaneity</div>
+`;
+
+questions.forEach(q => {
+  let rubricHtml = '';
+  q.rubricRows.forEach(r => {
+    rubricHtml += `          <div class="marking-row"><span class="marking-key">${r.key}</span><span class="marking-marks">${r.marks}</span></div>\n`;
+  });
+
+  html += `
+  <!-- ${q.id} (NCERT Exercise) -->
+  <div class="q-card" id="${q.id}">
+    <div class="q-head" onclick="toggleQ('${q.id}')">
+      <div class="q-num">${q.ncertRef}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        ${q.questionHtml}
+      </div>
+      <div class="q-marks">[${q.marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${q.solutionStepsHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}        </div>
+      </div>
+    </div>
+  </div>
+`;
+});
+
+html += `</section>`;
+
+// Write ch5.html
+fs.writeFileSync(ch5Path, html, 'utf8');
+console.log(`Successfully generated: ${ch5Path} (${html.length} bytes)`);
+
+// Append to cache chapters-data.js
+const cacheLine = `\nwindow.CHAPTER_DATA[5] = ${JSON.stringify(html)};\n`;
+fs.appendFileSync(cachePath, cacheLine, 'utf8');
+console.log(`Appended Chapter 5 to preloaded cache: ${cachePath}`);

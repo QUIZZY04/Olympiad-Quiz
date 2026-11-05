@@ -1,0 +1,929 @@
+<section class="chapter-section" id="c11b-ch18">
+  <div class="chapter-header">
+    <div class="ch-badge" style="background:#16a34a;">18</div>
+    <div class="chapter-header-info">
+      <div class="ch-category" style="color:#16a34a;">CBSE Class 11 Biology &bull; Chapter 18</div>
+      <h2>Neural Control and Coordination</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 12 Verbatim Questions with Official Step-by-Step Marking Rubrics &amp; Detailed Structural Diagrams</p>
+    </div>
+  </div>
+
+  
+  <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:18px; margin-bottom:24px;">
+    <div style="font-weight:800; color:#166534; font-size:0.95rem; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Figure 18.1: Action Potential Conduction &amp; Chemical Synaptic Transmission
+    </div>
+    <svg viewBox="0 0 850 240" width="100%" height="auto" style="max-height:240px; font-family:'Plus Jakarta Sans',sans-serif;">
+      <rect x="10" y="10" width="830" height="220" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+      
+      <!-- Action Potential Curve on Left -->
+      <g transform="translate(30, 20)">
+        <text x="180" y="20" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">ACTION POTENTIAL OSCILLATION (VOLTAGE vs TIME)</text>
+        
+        <!-- Axes -->
+        <line x1="45" y1="35" x2="45" y2="180" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="45" y1="180" x2="330" y2="180" stroke="#64748b" stroke-width="1.5"/>
+        
+        <!-- Y-axis labels -->
+        <text x="40" y="45" font-size="7.5" fill="#64748b" text-anchor="end">+30 mV</text>
+        <line x1="42" y1="45" x2="48" y2="45" stroke="#64748b"/>
+        
+        <text x="40" y="105" font-size="7.5" fill="#64748b" text-anchor="end">0 mV</text>
+        <line x1="42" y1="105" x2="320" y2="105" stroke="#e2e8f0" stroke-dasharray="2,2"/>
+        
+        <text x="40" y="130" font-size="7.5" fill="#64748b" text-anchor="end">-55 mV (Threshold)</text>
+        <line x1="42" y1="130" x2="320" y2="130" stroke="#fecaca" stroke-dasharray="2,2"/>
+        
+        <text x="40" y="155" font-size="7.5" fill="#15803d" font-weight="bold" text-anchor="end">-70 mV (RMP)</text>
+        <line x1="42" y1="155" x2="320" y2="155" stroke="#86efac" stroke-dasharray="2,2"/>
+
+        <!-- Action Potential Waveform -->
+        <path d="M 45,155 L 90,155 Q 110,155 125,130 L 160,45 Q 175,40 190,90 L 220,170 Q 240,178 260,165 L 300,155" fill="none" stroke="#2563eb" stroke-width="3"/>
+
+        <!-- Annotations -->
+        <text x="130" y="80" font-size="8" font-weight="bold" fill="#059669">Depolarisation</text>
+        <text x="130" y="90" font-size="7" fill="#065f46">(Na+ Influx)</text>
+        
+        <text x="210" y="80" font-size="8" font-weight="bold" fill="#dc2626">Repolarisation</text>
+        <text x="210" y="90" font-size="7" fill="#991b1b">(K+ Efflux)</text>
+
+        <text x="235" y="192" font-size="7.5" fill="#7c3aed">Hyperpolarisation</text>
+      </g>
+
+      <!-- Chemical Synapse Diagram on Right -->
+      <g transform="translate(420, 20)">
+        <rect x="0" y="0" width="400" height="195" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+        <text x="200" y="20" font-size="10.5" font-weight="bold" fill="#0f172a" text-anchor="middle">CHEMICAL SYNAPSE ULTRASTRUCTURE</text>
+
+        <!-- Presynaptic knob bulb -->
+        <path d="M 120,35 C 120,70 80,105 80,130 C 80,145 320,145 320,130 C 320,105 280,70 280,35" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+        <text x="200" y="55" font-size="8.5" font-weight="bold" fill="#1e40af" text-anchor="middle">Pre-Synaptic Terminal Bulb</text>
+
+        <!-- Synaptic vesicles inside -->
+        <circle cx="150" cy="85" r="7" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <circle cx="180" cy="75" r="7" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <circle cx="210" cy="85" r="7" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <circle cx="240" cy="78" r="7" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <circle cx="170" cy="115" r="7" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <circle cx="230" cy="115" r="7" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <text x="255" y="95" font-size="7.5" fill="#9d174d">Synaptic Vesicles (ACh)</text>
+
+        <!-- Ca2+ channels and influx -->
+        <path d="M 85,90 L 105,90" stroke="#e11d48" stroke-width="3"/>
+        <text x="75" y="85" font-size="8" font-weight="bold" fill="#e11d48">Ca2+ &rarr;</text>
+
+        <!-- Exocytosis into cleft -->
+        <path d="M 190,130 C 190,137 210,137 210,130" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/>
+        <circle cx="195" cy="148" r="2.5" fill="#db2777"/>
+        <circle cx="205" cy="149" r="2.5" fill="#db2777"/>
+        <circle cx="180" cy="150" r="2.5" fill="#db2777"/>
+        <circle cx="220" cy="150" r="2.5" fill="#db2777"/>
+
+        <!-- Synaptic cleft bracket -->
+        <text x="35" y="152" font-size="8" font-weight="bold" fill="#059669">Synaptic Cleft (~20 nm)</text>
+        <line x1="80" y1="154" x2="320" y2="154" stroke="#059669" stroke-dasharray="2,2"/>
+
+        <!-- Postsynaptic membrane -->
+        <rect x="80" y="165" width="240" height="20" rx="3" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="200" y="179" font-size="8.5" font-weight="bold" fill="#047857" text-anchor="middle">Post-Synaptic Membrane (Ligand-Gated Receptors)</text>
+      </g>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 1 to 12: Brain, Eye &amp; Ear Anatomy, Reflex Arc, Action Potential, Synapse &amp; Sensory Perception</div>
+
+  <!-- c11b-ch18-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q1">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q1')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Briefly describe the structure of the following:<br>
+        (a) Brain<br>
+        (b) Eye<br>
+        (c) Ear
+      </div>
+      <div class="q-marks">[6 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Structure of the Human Brain:</strong><br>
+            Protected inside the cranial cavity and surrounded by three cranial meninges: outer <em>dura mater</em>, delicate middle <em>arachnoid</em>, and highly vascular inner <em>pia mater</em>. Divided into three major anatomical parts:
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>1. Forebrain (Prosencephalon):</strong> Comprises <em>cerebrum</em>, <em>thalamus</em>, and <em>hypothalamus</em>. The cerebrum forms the bulk of the brain, divided into right and left cerebral hemispheres interconnected by a thick nerve tract called the <strong>corpus callosum</strong>. The cerebral cortex (grey matter) houses motor, sensory, and association areas. The thalamus acts as a major sensory relay station. The hypothalamus at its base regulates body temperature, hunger, thirst, circadian rhythms, and pituitary hormone synthesis.</li>
+              <li><strong>2. Midbrain (Mesencephalon):</strong> Located between thalamus and pons. Contains the <em>cerebral aqueduct</em> (canal of Sylvius) and dorsal four optic/auditory lobes called <strong>corpora quadrigemina</strong>.</li>
+              <li><strong>3. Hindbrain (Rhombencephalon):</strong> Comprises <em>pons</em> (interconnecting tracts), <em>cerebellum</em> (convoluted surface coordinating muscular posture and balance), and <em>medulla oblongata</em> (vital reflex center controlling respiration, cardiovascular reflexes, and gastric secretions). Medulla connects inferiorly with the spinal cord.</li>
+            </ul>
+
+            <strong>(b) Structure of the Human Eye:</strong><br>
+            Spherical organ located in the bony orbit of the skull. Its wall consists of three concentric tunics:
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>1. Fibrous Tunic (Outer):</strong> Posterior opaque white <strong>sclera</strong> and anterior transparent, avascular <strong>cornea</strong> which admits and refracts light rays.</li>
+              <li><strong>2. Vascular Tunic / Uvea (Middle):</strong> Highly vascular, bluish <strong>choroid</strong> layer. Anteriorly thickens into the <strong>ciliary body</strong> (contains ciliary muscles controlling lens curvature) and projects forward as the pigmented, visible <strong>iris</strong> with a central variable aperture called the <strong>pupil</strong>. The crystalline biconvex transparent <strong>lens</strong> is held in place by suspensory ligaments.</li>
+              <li><strong>3. Neural Tunic / Retina (Inner):</strong> Contains three neural cell layers: photoreceptors (outer), bipolar cells (middle), and ganglion cells (inner). Photoreceptors include <strong>rods</strong> (rhodopsin pigment, twilight/scotopic vision) and <strong>cones</strong> (photopic bright-light &amp; color vision). Lateral to the optic disc (blind spot) lies the <strong>macula lutea</strong> with its central depression, the <strong>fovea centralis</strong> (site of highest visual resolution, containing exclusively packed cones).</li>
+            </ul>
+
+            <strong>(c) Structure of the Human Ear:</strong><br>
+            Performs dual sensory modalities: hearing (phonoreception) and equilibrium (statoreception). Composed of three divisions:
+            <ul style="margin:2px 0 4px 20px;">
+              <li><strong>1. External Ear:</strong> Consists of <strong>pinna</strong> (collects sound waves), <strong>external auditory canal</strong> (lined with wax/ceruminous glands), and the vibrating <strong>tympanic membrane (eardrum)</strong>.</li>
+              <li><strong>2. Middle Ear (Tympanic Cavity):</strong> Air-filled chamber housing three articulated ear ossicles: <strong>malleus (hammer)</strong> attached to eardrum, <strong>incus (anvil)</strong>, and <strong>stapes (stirrup)</strong> attached to the oval window (fenestra ovalis). Connected to the pharynx via the <strong>Eustachian tube</strong> to equalize pressure.</li>
+              <li><strong>3. Inner Ear (Labyrinth):</strong> Consists of bony labyrinth enclosing fluid-filled membranous labyrinth (endolymph inside, perilymph outside). Formed of the <strong>cochlea</strong> (hearing organ housing the basilar membrane with the <strong>Organ of Corti</strong> containing sensory hair cells) and the <strong>vestibular apparatus</strong> (3 semicircular canals and otolith organ &mdash; utricle &amp; saccule &mdash; maintaining dynamic and static equilibrium).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Brain: Forebrain (cerebrum, corpus callosum, hypothalamus), midbrain, and hindbrain</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Eye: Outer sclera/cornea, middle choroid/ciliary/iris, and inner retina (rods, cones, fovea)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Ear: External pinna/eardrum, middle ear ossicles &amp; Eustachian tube, inner cochlea &amp; vestibular apparatus</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q2">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q2')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Compare the following:<br>
+        (a) Central Neural System (CNS) and Peripheral Neural System (PNS)<br>
+        (b) Resting potential and Action potential<br>
+        (c) Choroid and Retina
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Central Neural System (CNS) vs. Peripheral Neural System (PNS):</strong><br>
+            <div style="overflow-x:auto;">
+              <table style="width:100%; border-collapse:collapse; margin:4px 0 10px 0; font-size:0.84rem;">
+                <thead>
+                  <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+                    <th style="padding:6px 10px; color:#065f46;">Feature</th>
+                    <th style="padding:6px 10px; color:#065f46;">Central Neural System (CNS)</th>
+                    <th style="padding:6px 10px; color:#065f46;">Peripheral Neural System (PNS)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:6px 10px; font-weight:700;">Components</td>
+                    <td style="padding:6px 10px;">Consists exclusively of the <strong>Brain and Spinal Cord</strong>.</td>
+                    <td style="padding:6px 10px;">Comprises all peripheral nerves: 12 pairs cranial nerves and 31 pairs spinal nerves.</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:6px 10px; font-weight:700;">Function</td>
+                    <td style="padding:6px 10px;">Central integrative command, cognitive thinking, decision-making, and control center.</td>
+                    <td style="padding:6px 10px;">Transmits afferent sensory inputs to CNS and efferent motor commands to peripheral effectors.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px 10px; font-weight:700;">Subdivisions</td>
+                    <td style="padding:6px 10px;">Forebrain, Midbrain, Hindbrain, and Spinal Cord.</td>
+                    <td style="padding:6px 10px;">Somatic Neural System (voluntary) and Autonomic Neural System (sympathetic &amp; parasympathetic).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <strong>(b) Resting Potential vs. Action Potential:</strong><br>
+            <div style="overflow-x:auto;">
+              <table style="width:100%; border-collapse:collapse; margin:4px 0 10px 0; font-size:0.84rem;">
+                <thead>
+                  <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+                    <th style="padding:6px 10px; color:#065f46;">Feature</th>
+                    <th style="padding:6px 10px; color:#065f46;">Resting Potential</th>
+                    <th style="padding:6px 10px; color:#065f46;">Action Potential</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:6px 10px; font-weight:700;">State of Fibre</td>
+                    <td style="padding:6px 10px;">Resting, non-conducting polarized state of axonal membrane.</td>
+                    <td style="padding:6px 10px;">Excited, actively propagating electrical impulse (wave of depolarization).</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:6px 10px; font-weight:700;">Voltage Value</td>
+                    <td style="padding:6px 10px;">Approximately <strong>$-70\text{ mV}$</strong> (interior negative relative to exterior).</td>
+                    <td style="padding:6px 10px;">Reverses to approximately <strong>$+30\text{ mV}$</strong> (interior positive relative to exterior).</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px 10px; font-weight:700;">Permeability</td>
+                    <td style="padding:6px 10px;">Membrane permeable to $K^+$ and impermeable to $Na^+$; maintained by $Na^+/K^+$ ATPase pump ($3\text{ Na}^+$ out : $2\text{ K}^+$ in).</td>
+                    <td style="padding:6px 10px;">Voltage-gated $Na^+$ channels open, causing massive, rapid influx of $Na^+$ ions down electrochemical gradient.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <strong>(c) Choroid vs. Retina:</strong><br>
+            <div style="overflow-x:auto;">
+              <table style="width:100%; border-collapse:collapse; margin:4px 0; font-size:0.84rem;">
+                <thead>
+                  <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+                    <th style="padding:6px 10px; color:#065f46;">Feature</th>
+                    <th style="padding:6px 10px; color:#065f46;">Choroid Layer</th>
+                    <th style="padding:6px 10px; color:#065f46;">Retina Layer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:6px 10px; font-weight:700;">Position &amp; Tunic</td>
+                    <td style="padding:6px 10px;">Middle vascular tunic of eyeball.</td>
+                    <td style="padding:6px 10px;">Innermost photosensitive neurosensory tunic of eyeball.</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:6px 10px; font-weight:700;">Structure</td>
+                    <td style="padding:6px 10px;">Rich in blood vessels and dark melanin pigments to absorb stray light.</td>
+                    <td style="padding:6px 10px;">Composed of three neural layers: photoreceptors (rods and cones), bipolar neurons, and ganglion cells.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px 10px; font-weight:700;">Function</td>
+                    <td style="padding:6px 10px;">Nutritive supply to ocular tissues; prevents internal light reflection.</td>
+                    <td style="padding:6px 10px;">Phototransduction: converts photons of light into electrochemical nerve impulses transmitted via optic nerve.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) CNS (brain/spinal cord, processing) vs PNS (nerves, conduction)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Resting (-70 mV, Na+/K+ pump) vs Action potential (+30 mV, Na+ influx)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Choroid (vascular, middle) vs Retina (neural, photoreceptors, image capture)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q3">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q3')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Explain the following processes:<br>
+        (a) Polarisation of the membrane of a nerve fibre<br>
+        (b) Depolarisation of the membrane of a nerve fibre<br>
+        (c) Conduction of a nerve impulse along an axon<br>
+        (d) Transmission of a nerve impulse across a chemical synapse
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Polarisation of the Nerve Membrane (Resting Potential):</strong><br>
+            In an unstimulated resting neuron, the inside of the axonal membrane is negatively charged relative to the outside. This resting membrane potential (approximately <strong>$-70\text{ mV}$</strong>) is generated and maintained by:
+            <ul style="margin:2px 0 4px 20px;">
+              <li>Differential permeability: the resting membrane is significantly more permeable to $K^+$ ions than to $Na^+$ ions and completely impermeable to large negatively charged intracellular proteins.</li>
+              <li>The active <strong>$Na^+/K^+$ ATPase pump</strong>, which consumes 1 ATP to transport $3\text{ Na}^+$ outward into the ECF in exchange for bringing $2\text{ K}^+$ inward into the axoplasm, creating an electrochemical polarity.</li>
+            </ul>
+
+            <strong>(b) Depolarisation of the Nerve Membrane (Action Potential Generation):</strong><br>
+            When a stimulus reaching threshold voltage ($-55\text{ mV}$) is applied at a point on the polarized axonal membrane:
+            <ul style="margin:2px 0 4px 20px;">
+              <li>Voltage-gated $Na^+$ channels immediately open, causing a massive influx of $Na^+$ into the axoplasm down its steep electrical and concentration gradient.</li>
+              <li>This influx rapidly overwhelms the negative charge, reversing the membrane polarity to approximately <strong>$+30\text{ mV}$</strong> (inside becomes positive, outside negative). This transient electrical reversal is termed <strong>depolarisation</strong> or the <strong>action potential</strong>.</li>
+            </ul>
+
+            <strong>(c) Conduction of a Nerve Impulse Along an Axon:</strong><br>
+            At the depolarised site (site A), the inner surface is positive while at the adjacent resting site (site B), the inner surface is negative:
+            <ul style="margin:2px 0 4px 20px;">
+              <li>A local electrical circuit forms: current flows on the inner axonal surface from site A to site B, and on the outer surface from site B to site A.</li>
+              <li>This current flow depolarises site B to its threshold, triggering an action potential at site B. Meanwhile, site A repolarises as voltage-gated $K^+$ channels open and $K^+$ rushes outward.</li>
+              <li>This self-propagating wave of sequential depolarisation travels smoothly along unmyelinated axons, or rapidly jumps from node to node (<strong>saltatory conduction</strong>) in myelinated axons.</li>
+            </ul>
+
+            <strong>(d) Transmission of a Nerve Impulse Across a Chemical Synapse:</strong><br>
+            <ol style="margin:2px 0 4px 20px;">
+              <li>When the action potential arrives at the pre-synaptic axon terminal bulb, it opens voltage-gated $Ca^{2+}$ channels, causing an influx of $Ca^{2+}$ ions from the synaptic cleft into the bulb.</li>
+              <li>The $Ca^{2+}$ influx stimulates synaptic vesicles containing neurotransmitters (such as <strong>acetylcholine</strong>) to migrate and fuse with the pre-synaptic membrane.</li>
+              <li>Neurotransmitters are released into the narrow fluid-filled <strong>synaptic cleft (~20 nm)</strong> via exocytosis.</li>
+              <li>Neurotransmitter molecules diffuse across the cleft and bind to specific ligand-gated receptors on the post-synaptic membrane, opening ion channels that generate an Excitatory Post-Synaptic Potential (EPSP) or action potential in the post-synaptic neuron.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Polarisation: -70 mV, Na+/K+ pump (3 Na+ out / 2 K+ in), K+ permeability</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Depolarisation: Voltage-gated Na+ channels, Na+ influx, reversal to +30 mV</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Conduction: Local circuit between depolarised and resting segment, saltatory conduction</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Synaptic transmission: Ca2+ influx, vesicle exocytosis, ACh diffusion, receptor binding</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q4">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q4')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Draw labelled diagrams of the following:<br>
+        (a) A neuron<br>
+        (b) Brain<br>
+        (c) Eye<br>
+        (d) Ear
+      </div>
+      <div class="q-marks">[8 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Detailed Anatomical Labelled Diagrams Required by NCERT:</strong><br><br>
+
+            <!-- (a) Neuron Diagram -->
+            <div style="background:#ffffff; border:1.5px solid #86efac; border-radius:10px; padding:14px; margin:10px 0; text-align:center;">
+              <div style="font-weight:800; color:#15803d; font-size:0.9rem; margin-bottom:8px;">
+                (a) Diagrammatic Representation of a Multipolar Neuron
+              </div>
+              <svg viewBox="0 0 760 180" width="100%" height="auto" style="max-height:180px; font-family:'Plus Jakarta Sans',sans-serif;">
+                <rect x="5" y="5" width="750" height="170" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+
+                <!-- Cell Body (Soma) on left -->
+                <polygon points="120,40 160,70 170,110 130,130 90,110 80,70" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                <circle cx="125" cy="85" r="14" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+                <circle cx="125" cy="85" r="5" fill="#78350f"/>
+                <text x="125" y="112" font-size="7.5" fill="#78350f" text-anchor="middle">Nucleus</text>
+
+                <!-- Dendrites -->
+                <path d="M 80,70 L 30,50 M 80,70 L 40,75 M 120,40 L 90,15 M 120,40 L 140,15 M 90,110 L 50,130 M 90,110 L 60,150" stroke="#d97706" stroke-width="2"/>
+                <text x="35" y="40" font-size="8.5" font-weight="bold" fill="#b45309">Dendrites</text>
+                <text x="125" y="148" font-size="8.5" font-weight="bold" fill="#92400e" text-anchor="middle">Cell Body (Cyton / Soma)</text>
+                <text x="125" y="160" font-size="7" fill="#78350f" text-anchor="middle">with Nissl's granules</text>
+
+                <!-- Axon Hillock & Axon Trunk -->
+                <path d="M 170,85 L 600,85" stroke="#2563eb" stroke-width="4"/>
+                <text x="185" y="75" font-size="7.5" fill="#1e40af">Axon Hillock</text>
+
+                <!-- Myelin Sheath Schwann cells -->
+                <rect x="220" y="70" width="70" height="30" rx="6" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+                <circle cx="255" cy="80" r="3" fill="#1e3a8a"/>
+
+                <rect x="310" y="70" width="70" height="30" rx="6" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+                <circle cx="345" cy="80" r="3" fill="#1e3a8a"/>
+
+                <rect x="400" y="70" width="70" height="30" rx="6" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+                <circle cx="435" cy="80" r="3" fill="#1e3a8a"/>
+
+                <rect x="490" y="70" width="70" height="30" rx="6" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+                <circle cx="525" cy="80" r="3" fill="#1e3a8a"/>
+
+                <!-- Labels for Schwann cell & Myelin -->
+                <text x="345" y="60" font-size="8" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Myelin Sheath (Schwann Cell)</text>
+
+                <!-- Node of Ranvier -->
+                <line x1="300" y1="55" x2="300" y2="105" stroke="#dc2626" stroke-width="1.5"/>
+                <text x="300" y="120" font-size="8" font-weight="bold" fill="#dc2626" text-anchor="middle">Node of Ranvier</text>
+
+                <!-- Axon Terminal & Synaptic Knobs -->
+                <path d="M 600,85 L 650,55 M 600,85 L 660,85 M 600,85 L 650,115" stroke="#2563eb" stroke-width="2"/>
+                <circle cx="650" cy="55" r="5" fill="#f43f5e"/>
+                <circle cx="660" cy="85" r="5" fill="#f43f5e"/>
+                <circle cx="650" cy="115" r="5" fill="#f43f5e"/>
+                <text x="700" y="85" font-size="8.5" font-weight="bold" fill="#e11d48">Synaptic Knobs</text>
+                <text x="700" y="98" font-size="7" fill="#881337">(with ACh vesicles)</text>
+              </svg>
+            </div>
+
+            <!-- (b) Brain Diagram -->
+            <div style="background:#ffffff; border:1.5px solid #86efac; border-radius:10px; padding:14px; margin:10px 0; text-align:center;">
+              <div style="font-weight:800; color:#15803d; font-size:0.9rem; margin-bottom:8px;">
+                (b) Sagittal Section of the Human Brain
+              </div>
+              <svg viewBox="0 0 760 210" width="100%" height="auto" style="max-height:210px; font-family:'Plus Jakarta Sans',sans-serif;">
+                <rect x="5" y="5" width="750" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+
+                <!-- Cerebrum dome -->
+                <path d="M 120,160 C 90,60 250,20 450,25 C 550,28 620,80 580,150" fill="#fbcfe8" stroke="#db2777" stroke-width="2"/>
+                <text x="320" y="45" font-size="11" font-weight="bold" fill="#be185d">Cerebral Hemisphere (Cerebrum)</text>
+
+                <!-- Corpus Callosum curve -->
+                <path d="M 230,105 C 260,85 360,85 410,105" fill="none" stroke="#7c3aed" stroke-width="4"/>
+                <text x="320" y="80" font-size="8.5" font-weight="bold" fill="#6d28d9" text-anchor="middle">Corpus Callosum</text>
+
+                <!-- Thalamus & Hypothalamus -->
+                <ellipse cx="320" cy="115" rx="20" ry="12" fill="#fed7aa" stroke="#ea580c"/>
+                <text x="320" y="118" font-size="7.5" font-weight="bold" fill="#9a3412" text-anchor="middle">Thalamus</text>
+
+                <path d="M 305,127 L 290,145" stroke="#ea580c" stroke-width="2"/>
+                <circle cx="290" cy="148" r="6" fill="#fb923c"/>
+                <text x="240" y="145" font-size="8" font-weight="bold" fill="#c2410c">Hypothalamus</text>
+                <text x="240" y="157" font-size="7" fill="#7c2d12">&amp; Pituitary Gland</text>
+
+                <!-- Midbrain & Cerebral Aqueduct -->
+                <rect x="360" y="125" width="30" height="20" fill="#ddd6fe" stroke="#7c3aed"/>
+                <text x="430" y="132" font-size="8" font-weight="bold" fill="#5b21b6">Midbrain &amp; Cerebral Aqueduct</text>
+
+                <!-- Pons -->
+                <path d="M 350,150 C 330,155 330,175 350,180" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.5"/>
+                <text x="310" y="172" font-size="8" font-weight="bold" fill="#3730a3">Pons</text>
+
+                <!-- Cerebellum (hindbrain back) -->
+                <path d="M 460,135 C 530,135 560,170 510,195 C 460,205 440,180 440,150 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+                <text x="500" y="170" font-size="9" font-weight="bold" fill="#15803d">Cerebellum</text>
+
+                <!-- Medulla oblongata & spinal cord -->
+                <path d="M 355,180 L 355,200 L 375,200 L 375,180 Z" fill="#fef08a" stroke="#ca8a04"/>
+                <text x="270" y="195" font-size="8.5" font-weight="bold" fill="#854d0e">Medulla Oblongata</text>
+                <text x="365" y="210" font-size="7.5" fill="#475569" text-anchor="middle">&darr; Spinal Cord</text>
+              </svg>
+            </div>
+
+            <!-- (c) Eye Diagram -->
+            <div style="background:#ffffff; border:1.5px solid #86efac; border-radius:10px; padding:14px; margin:10px 0; text-align:center;">
+              <div style="font-weight:800; color:#15803d; font-size:0.9rem; margin-bottom:8px;">
+                (c) Horizontal Section of the Human Eye
+              </div>
+              <svg viewBox="0 0 760 200" width="100%" height="auto" style="max-height:200px; font-family:'Plus Jakarta Sans',sans-serif;">
+                <rect x="5" y="5" width="750" height="190" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+
+                <!-- Eyeball spheres -->
+                <!-- Sclera (Outer) -->
+                <path d="M 220,50 C 380,20 540,50 540,105 C 540,160 380,190 220,160" fill="none" stroke="#64748b" stroke-width="4"/>
+                <text x="560" y="55" font-size="8" font-weight="bold" fill="#475569">Sclera (Outer fibrous)</text>
+
+                <!-- Choroid (Middle) -->
+                <path d="M 220,55 C 375,28 535,55 535,105 C 535,155 375,182 220,155" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+                <text x="560" y="70" font-size="8" font-weight="bold" fill="#1d4ed8">Choroid (Vascular)</text>
+
+                <!-- Retina (Inner) -->
+                <path d="M 230,62 C 370,38 525,62 525,105 C 525,148 370,172 230,148" fill="none" stroke="#ea580c" stroke-width="3"/>
+                <text x="560" y="85" font-size="8" font-weight="bold" fill="#c2410c">Retina (Photoreceptors)</text>
+
+                <!-- Cornea (Anterior bulge) -->
+                <path d="M 220,50 C 160,70 160,140 220,160" fill="none" stroke="#06b6d4" stroke-width="3"/>
+                <text x="140" y="105" font-size="8.5" font-weight="bold" fill="#0891b2" text-anchor="end">Cornea &rarr;</text>
+
+                <!-- Crystalline Lens -->
+                <ellipse cx="250" cy="105" rx="12" ry="32" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+                <text x="250" y="152" font-size="8" font-weight="bold" fill="#0369a1" text-anchor="middle">Lens</text>
+
+                <!-- Iris & Pupil -->
+                <path d="M 235,65 L 245,85" stroke="#b45309" stroke-width="4"/>
+                <path d="M 235,145 L 245,125" stroke="#b45309" stroke-width="4"/>
+                <text x="200" y="75" font-size="8" font-weight="bold" fill="#b45309">Iris</text>
+                <text x="210" y="107" font-size="7.5" fill="#0f172a">Pupil</text>
+
+                <!-- Ciliary body -->
+                <circle cx="232" cy="62" r="5" fill="#dc2626"/>
+                <circle cx="232" cy="148" r="5" fill="#dc2626"/>
+                <text x="200" y="55" font-size="7.5" fill="#dc2626">Ciliary Body</text>
+
+                <!-- Chambers -->
+                <text x="205" y="125" font-size="6.5" fill="#0284c7">Aqueous</text>
+                <text x="350" y="105" font-size="9" fill="#0369a1">Vitreous Humor (Chamber)</text>
+
+                <!-- Fovea & Blind Spot & Optic Nerve -->
+                <circle cx="525" cy="100" r="3" fill="#e11d48"/>
+                <text x="560" y="102" font-size="8" font-weight="bold" fill="#be123c">Fovea Centralis (Yellow Spot)</text>
+
+                <path d="M 522,125 L 580,135 M 522,135 L 580,145" stroke="#64748b" stroke-width="4"/>
+                <text x="590" y="132" font-size="8" font-weight="bold" fill="#dc2626">Blind Spot</text>
+                <text x="590" y="145" font-size="8.5" font-weight="bold" fill="#0f172a">&amp; Optic Nerve &rarr;</text>
+              </svg>
+            </div>
+
+            <!-- (d) Ear Diagram -->
+            <div style="background:#ffffff; border:1.5px solid #86efac; border-radius:10px; padding:14px; margin:10px 0; text-align:center;">
+              <div style="font-weight:800; color:#15803d; font-size:0.9rem; margin-bottom:8px;">
+                (d) Diagrammatic Anatomy of the Human Ear
+              </div>
+              <svg viewBox="0 0 760 200" width="100%" height="auto" style="max-height:200px; font-family:'Plus Jakarta Sans',sans-serif;">
+                <rect x="5" y="5" width="750" height="190" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+
+                <!-- Pinna (outer left) -->
+                <path d="M 120,40 C 60,35 60,165 120,165 C 130,165 130,145 110,135 C 80,120 80,75 110,65 Z" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+                <text x="65" y="30" font-size="9" font-weight="bold" fill="#c2410c">Pinna (External)</text>
+
+                <!-- Auditory Canal -->
+                <path d="M 120,85 L 260,85 M 120,115 L 260,115" stroke="#94a3b8" stroke-width="2"/>
+                <text x="180" y="102" font-size="8" fill="#475569">Ear Canal (Meatus)</text>
+
+                <!-- Tympanic membrane (Eardrum) -->
+                <line x1="260" y1="80" x2="260" y2="120" stroke="#dc2626" stroke-width="3"/>
+                <text x="260" y="70" font-size="8" font-weight="bold" fill="#dc2626" text-anchor="middle">Tympanum</text>
+
+                <!-- Middle Ear Ossicles (Malleus, Incus, Stapes) -->
+                <!-- Malleus -->
+                <line x1="260" y1="95" x2="280" y2="85" stroke="#0f172a" stroke-width="3"/>
+                <!-- Incus -->
+                <line x1="280" y1="85" x2="300" y2="90" stroke="#0f172a" stroke-width="3"/>
+                <!-- Stapes -->
+                <line x1="300" y1="90" x2="315" y2="90" stroke="#0f172a" stroke-width="3"/>
+                <text x="290" y="60" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">Ear Ossicles (M-I-S)</text>
+
+                <!-- Eustachian tube downward -->
+                <path d="M 285,120 L 260,175 M 305,120 L 280,175" stroke="#059669" stroke-width="2"/>
+                <text x="280" y="185" font-size="8" font-weight="bold" fill="#047857">Eustachian Tube (to pharynx)</text>
+
+                <!-- Inner ear: Semicircular canals -->
+                <ellipse cx="370" cy="65" rx="18" ry="12" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+                <ellipse cx="385" cy="55" rx="12" ry="18" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+                <ellipse cx="360" cy="55" rx="12" ry="18" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+                <text x="440" y="55" font-size="8" font-weight="bold" fill="#6d28d9">Semicircular Canals (Balance)</text>
+
+                <!-- Cochlea (coiled) -->
+                <path d="M 370,95 C 400,95 400,130 370,130 C 350,130 350,110 370,110 C 380,110 380,120 370,120" fill="none" stroke="#2563eb" stroke-width="3.5"/>
+                <text x="440" y="115" font-size="8.5" font-weight="bold" fill="#1d4ed8">Cochlea (Organ of Corti &bull; Hearing)</text>
+
+                <!-- Auditory nerve -->
+                <path d="M 400,105 L 480,105" stroke="#d97706" stroke-width="3"/>
+                <text x="490" y="108" font-size="8.5" font-weight="bold" fill="#b45309">Auditory Nerve (to Brain)</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Neuron: Cyton, dendrites, nucleus, axon, myelin sheath, nodes of Ranvier, synaptic knobs</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Brain: Cerebrum, corpus callosum, thalamus, hypothalamus, midbrain, pons, cerebellum, medulla</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Eye: Cornea, iris, lens, ciliary body, sclera, choroid, retina, fovea, blind spot, optic nerve</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Ear: Pinna, auditory canal, tympanum, malleus, incus, stapes, cochlea, semicircular canals</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q5">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q5')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Write short notes on the following:<br>
+        (a) Neural coordination<br>
+        (b) Forebrain<br>
+        (c) Midbrain<br>
+        (d) Hindbrain<br>
+        (e) Retina<br>
+        (f) Ear ossicles<br>
+        (g) Cochlea<br>
+        (h) Organ of Corti<br>
+        (i) Synapse
+      </div>
+      <div class="q-marks">[9 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Concise Scientific Explanations of Key Neurobiological Concepts:</strong><br><br>
+            <ul style="margin:2px 0 4px 20px;">
+              <li><strong>(a) Neural Coordination:</strong> The physiological process through which the nervous system integrates and synchronizes the activities of multiple interdependent organs via rapid, point-to-point electrical nerve impulses, maintaining homeostatic equilibrium.</li>
+              <li><strong>(b) Forebrain:</strong> Composed of the cerebrum, thalamus, and hypothalamus. Center for conscious thought, memory, voluntary muscle actions, speech, thermoregulation, and endocrine regulation.</li>
+              <li><strong>(c) Midbrain:</strong> Located between the diencephalon and pons. Houses the cerebral aqueduct and four dorsal rounded optic/auditory reflex swelling lobes termed the <em>corpora quadrigemina</em>.</li>
+              <li><strong>(d) Hindbrain:</strong> Composed of the pons (fibre bridges), cerebellum (intricate convoluted tree of life / arbor vitae coordinating posture and fine motor skills), and medulla oblongata (vital involuntary control of cardiac rhythm, breathing rate, and swallowing).</li>
+              <li><strong>(e) Retina:</strong> Innermost photosensitive neural layer of the eyeball containing three layers of cells: outer photoreceptors (rods with rhodopsin for dim light; cones with photopsin for sharp color vision), middle bipolar cells, and inner ganglion cells forming the optic nerve.</li>
+              <li><strong>(f) Ear Ossicles:</strong> Three miniature articulating bones in the middle ear &mdash; <strong>Malleus (hammer)</strong>, <strong>Incus (anvil)</strong>, and <strong>Stapes (stirrup)</strong> &mdash; that mechanically amplify sound wave vibrations by approximately 20 times and transmit them from the eardrum to the oval window.</li>
+              <li><strong>(g) Cochlea:</strong> The coiled, snail-shell-shaped auditory portion of the inner ear labyrinth, divided into three longitudinal chambers: upper scala vestibuli, middle scala media (containing endolymph), and lower scala tympani.</li>
+              <li><strong>(h) Organ of Corti:</strong> The sensory receptor organ of hearing resting on the basilar membrane within the scala media of the cochlea, bearing rows of sensory hair cells whose apical stereocilia bend against the overlying tectorial membrane to generate auditory action potentials.</li>
+              <li><strong>(i) Synapse:</strong> The specialized anatomical junction between the terminal bulb of a pre-synaptic neuron and the dendrite/membrane of a post-synaptic neuron, through which electrical signals are transmitted via chemical neurotransmitters or direct gap junctions.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">1 Mark each for complete, scientifically accurate descriptions of items (a) through (i)</span><span class="marking-marks">9 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q6">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q6')">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Give a brief account of the mechanism of synaptic transmission.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Mechanism of Synaptic Transmission Across a Chemical Synapse:</strong><br><br>
+            <ol style="margin:2px 0 6px 20px;">
+              <li><strong>Arrival of Action Potential:</strong> When a wave of depolarization (action potential) reaches the pre-synaptic axon terminal bulb, it depolarises the pre-synaptic membrane.</li>
+              <li><strong>Calcium Influx:</strong> The depolarisation triggers the opening of voltage-gated $Ca^{2+}$ channels. Extracellular calcium ions ($Ca^{2+}$) rush into the pre-synaptic knob down their steep gradient.</li>
+              <li><strong>Exocytosis of Neurotransmitter:</strong> The elevated intracellular $Ca^{2+}$ induces synaptic vesicles containing acetylcholine (ACh) to move toward, fuse with the pre-synaptic membrane, and release neurotransmitter molecules into the fluid-filled <strong>synaptic cleft (~20 nm)</strong> via exocytosis.</li>
+              <li><strong>Binding to Post-Synaptic Receptors:</strong> The neurotransmitter diffuses across the narrow cleft and binds specifically to ligand-gated chemoreceptors on the post-synaptic membrane.</li>
+              <li><strong>Post-Synaptic Potential Generation:</strong> Receptor binding opens ion channels, allowing an influx of $Na^+$ ions, which depolarises the post-synaptic membrane and generates a fresh action potential.</li>
+              <li><strong>Termination:</strong> Acetylcholine is rapidly hydrolyzed by the enzyme <strong>acetylcholinesterase (AChE)</strong> into acetate and choline, resetting the receptor for subsequent signals.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">Action potential arrival and opening of voltage-gated Ca2+ channels</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Vesicle exocytosis and release of acetylcholine into synaptic cleft</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Receptor binding, opening of ligand-gated channels, and post-synaptic action potential</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Enzymatic cleavage by acetylcholinesterase to terminate signal</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q7">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q7')">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Explain the role of $Na^+$ in the generation of action potential.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Critical Role of Sodium Ions ($Na^+$) in Action Potential Generation:</strong><br><br>
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>1. Resting State Exclusion:</strong> At resting potential ($-70\text{ mV}$), the axonal membrane is nearly impermeable to $Na^+$, and $Na^+/K^+$ pumps actively keep $[Na^+]$ tenfold higher outside the axon than inside.</li>
+              <li><strong>2. Threshold Stimulus:</strong> When a stimulus depolarises the membrane to the threshold potential ($-55\text{ mV}$), voltage-gated $Na^+$ activation gates snap open.</li>
+              <li><strong>3. Explosive $Na^+$ Influx:</strong> Driven by both a concentration gradient (high outside to low inside) and an electrical gradient (attracted to negative interior), positively charged $Na^+$ ions rush into the axoplasm in a rapid surge.</li>
+              <li><strong>4. Polarity Reversal (Depolarisation):</strong> This influx cancels the internal negative charge and drives the membrane potential up to approximately <strong>$+30\text{ mV}$</strong>. This sudden spike represents the <strong>action potential</strong>.</li>
+              <li><strong>5. Channel Inactivation:</strong> Within a millisecond, the inactivation gates of $Na^+$ channels close, stopping further sodium entry and allowing $K^+$ efflux to repolarize the membrane.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">Resting state: Low Na+ permeability and high extracellular Na+ gradient</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Threshold trigger opening voltage-gated Na+ channels and rapid Na+ influx</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Reversal of membrane potential from -70 mV to +30 mV (depolarisation spike)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q8">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q8')">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Differentiate between:<br>
+        (a) Myelinated and non-myelinated axons<br>
+        (b) Dendrites and axons<br>
+        (c) Thalamus and Hypothalamus<br>
+        (d) Cerebrum and Cerebellum
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Comparative Analysis of Nervous System Structures:</strong><br><br>
+            <strong>(a) Myelinated vs. Non-Myelinated Axons:</strong><br>
+            • <em>Myelinated Axons:</em> Ensheathed with lipid-rich <strong>myelin sheath</strong> produced by Schwann cells (PNS) or oligodendrocytes (CNS), interrupted at periodic gaps called <strong>Nodes of Ranvier</strong>. Exhibits ultra-fast <strong>saltatory conduction</strong> (up to 120 m/s); found in cranial and spinal nerves.<br>
+            • <em>Non-Myelinated Axons:</em> Enclosed by Schwann cells that do not form a multi-layered myelin wrapping; lack Nodes of Ranvier. Exhibits slow, continuous wave conduction (1–2 m/s); common in autonomic and somatic neural systems.<br><br>
+
+            <strong>(b) Dendrites vs. Axons:</strong><br>
+            • <em>Dendrites:</em> Short, highly branched tapering cytoplasmic processes containing Nissl's granules; conduct impulses <strong>centripetally (towards the soma)</strong>.<br>
+            • <em>Axon:</em> Single, long, cylindrical process lacking Nissl's granules; originates at the axon hillock and conducts impulses <strong>centrifugally (away from the soma)</strong> to terminal synaptic knobs.<br><br>
+
+            <strong>(c) Thalamus vs. Hypothalamus:</strong><br>
+            • <em>Thalamus:</em> Large egg-shaped sensory/motor relay station wrapped by the cerebrum that filters and channels all sensory inputs (except olfaction) to appropriate cortical areas.<br>
+            • <em>Hypothalamus:</em> Located at the base of the thalamus; contains autonomic centers for body temperature regulation, hunger, thirst, circadian clock, and synthesizes neurohormones controlling pituitary secretion.<br><br>
+
+            <strong>(d) Cerebrum vs. Cerebellum:</strong><br>
+            • <em>Cerebrum:</em> Largest part of the forebrain; center of memory, conscious thought, sensory interpretation, reasoning, and voluntary motor output.<br>
+            • <em>Cerebellum:</em> Part of the hindbrain; features a highly folded convoluted surface (arbor vitae) that unconsciously coordinates voluntary muscle movements, maintaining posture, balance, and equilibrium.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Myelinated (Schwann, Nodes of Ranvier, saltatory) vs Non-myelinated (continuous conduction)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Dendrites (branched, afferent to soma) vs Axon (single, efferent from soma)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Thalamus (sensory relay) vs Hypothalamus (homeostasis, temperature, pituitary control)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Cerebrum (intelligence, memory, cortex) vs Cerebellum (balance, motor coordination)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q9">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q9')">
+      <div class="q-num">Question 9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Answer briefly:<br>
+        (a) Which part of the brain controls body temperature?<br>
+        (b) Which part of the brain is responsible for matching the orientation of food?<br>
+        (c) Name the communication junction between two neurons.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Precise Scientific Answers:</strong><br><br>
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>(a) Control of Body Temperature:</strong><br>
+              The <strong>Hypothalamus</strong> (acts as the body's central thermostat, initiating sweating, shivering, and vasodilation/vasoconstriction).</li>
+
+              <li><strong>(b) Matching the Orientation of Food / Head-Eye Reflexes:</strong><br>
+              The <strong>Midbrain</strong> (specifically the <em>corpora quadrigemina</em> and superior colliculi, which coordinate visual and auditory tracking reflexes).</li>
+
+              <li><strong>(c) Communication Junction Between Two Neurons:</strong><br>
+              A <strong>Synapse</strong> (specifically chemical or electrical synapse).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Hypothalamus</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Midbrain (corpora quadrigemina / superior colliculi)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Synapse</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q10">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q10')">
+      <div class="q-num">Question 10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Define the following:<br>
+        (a) Synapse<br>
+        (b) Resting membrane potential<br>
+        (c) Action potential
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Standard Neurobiological Definitions:</strong><br><br>
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>(a) Synapse:</strong> An anatomically specialized functional junction between an axon terminal of one neuron and the dendrite, soma, or effector cell of another, separated by a narrow microscopic gap (synaptic cleft) across which nerve impulses are transmitted via chemical neurotransmitters or electrical gap junctions.</li>
+
+              <li><strong>(b) Resting Membrane Potential (RMP):</strong> The steady electrical potential difference across the plasma membrane of an unexcited, non-conducting neuron (typically <strong>$-70\text{ mV}$</strong>), wherein the inside of the cell is negatively charged relative to the outside due to unequal distribution of $Na^+$ and $K^+$ ions maintained by $Na^+/K^+$ ATPase pumps.</li>
+
+              <li><strong>(c) Action Potential (Nerve Impulse):</strong> A rapid, all-or-none electrical wave of depolarisation and repolarisation (reversing membrane potential from $-70\text{ mV}$ to $+30\text{ mV}$ and back) that travels autonomously along an excitable plasma membrane in response to a threshold stimulus.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Synapse: specialized junction between neurons transmitting signals across synaptic cleft</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Resting membrane potential: -70 mV electrical gradient across non-conducting membrane</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Action potential: rapid all-or-none electrical depolarisation wave (+30 mV) propagating along axon</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q11 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q11">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q11')">
+      <div class="q-num">Question 11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Give a brief account of the functions of the following:<br>
+        (a) Corpus callosum<br>
+        (b) Hypothalamus<br>
+        (c) Amygdala<br>
+        (d) Semicircular canals
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Key Physiological Functions:</strong><br><br>
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>(a) Corpus Callosum:</strong> A wide, arched tract of commissural myelinated nerve fibers connecting the left and right cerebral hemispheres. It enables bidirectional inter-hemispheric communication, data sharing, cognitive synchronization, and memory integration between the two halves of the brain.</li>
+
+              <li><strong>(b) Hypothalamus:</strong> Master regulator of the autonomic nervous system and neuroendocrine axis:
+                <ul style="margin:2px 0 2px 15px;">
+                  <li>Controls autonomic centers for heart rate, blood pressure, thermoregulation, hunger, thirst, and satiety.</li>
+                  <li>Synthesizes releasing and inhibiting hormones that control the anterior pituitary, as well as oxytocin and vasopressin.</li>
+                  <li>Part of the limbic system controlling emotional responses and sexual drive.</li>
+                </ul>
+              </li>
+
+              <li><strong>(c) Amygdala:</strong> An almond-shaped nucleus within the temporal lobe, forming an integral part of the <strong>limbic system</strong>. It processes fear, aggression, emotional memory, and threat detection, coordinating defensive autonomic behavioral responses.</li>
+
+              <li><strong>(d) Semicircular Canals:</strong> Three fluid-filled bony/membranous rings oriented at mutual right angles in the inner ear. The sensory <strong>crista ampullaris</strong> in their dilated ampullae detects angular acceleration and rotational head movement, maintaining dynamic bodily equilibrium and gaze stabilization.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Corpus callosum: inter-hemispheric communication and synchronization</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Hypothalamus: autonomic homeostasis, temperature, hunger, pituitary hormone control</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Amygdala: limbic emotional processing, fear, anger, and memory</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Semicircular canals: dynamic equilibrium and rotational acceleration detection via crista ampullaris</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11b-ch18-q12 (NCERT Exercise) -->
+  <div class="q-card" id="c11b-ch18-q12">
+    <div class="q-head" onclick="toggleQ('c11b-ch18-q12')">
+      <div class="q-num">Question 12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#ecfdf5; color:#059669; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Distinguish between:<br>
+        (a) Afferent neurons and efferent neurons<br>
+        (b) Impulse conduction in a myelinated nerve fibre and unmyelinated nerve fibre<br>
+        (c) Aqueous humor and vitreous humor<br>
+        (d) Blind spot and yellow spot (macula lutea)<br>
+        (e) Cranial nerves and spinal nerves
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Key Physiological and Anatomical Distinctions:</strong><br><br>
+            <ul style="margin:2px 0 6px 20px;">
+              <li><strong>(a) Afferent Neurons vs. Efferent Neurons:</strong><br>
+              • <em>Afferent (Sensory) Neurons:</em> Transmit sensory impulses from peripheral sensory receptors <strong>towards the CNS</strong>.<br>
+              • <em>Efferent (Motor) Neurons:</em> Transmit regulatory motor commands <strong>away from the CNS</strong> to peripheral effector organs (muscles and glands).</li>
+
+              <li><strong>(b) Conduction in Myelinated vs. Unmyelinated Nerve Fibre:</strong><br>
+              • <em>Myelinated Fibre:</em> Impulse jumps from one Node of Ranvier to the next (<strong>saltatory conduction</strong>), yielding extremely high conduction velocity (~100–120 m/s) with low ATP expenditure.<br>
+              • <em>Unmyelinated Fibre:</em> Impulse travels continuously down the entire axonal length (continuous propagation), yielding slower velocity (~1–2 m/s) with higher metabolic energy cost.</li>
+
+              <li><strong>(c) Aqueous Humor vs. Vitreous Humor:</strong><br>
+              • <em>Aqueous Humor:</em> Thin, clear, watery fluid filling the anterior chamber between cornea and lens, continually produced by ciliary processes and drained into Canal of Schlemm to nourish avascular lens and cornea.<br>
+              • <em>Vitreous Humor:</em> Transparent, gelatinous, non-renewing jelly filling the posterior cavity between lens and retina, providing intraocular pressure to keep retina flat against choroid.</li>
+
+              <li><strong>(d) Blind Spot vs. Yellow Spot (Macula Lutea / Fovea):</strong><br>
+              • <em>Blind Spot (Optic Disc):</em> Region medial to the posterior pole where the optic nerve exits and central retinal vessels enter; completely devoid of photoreceptors (zero visual perception).<br>
+              • <em>Yellow Spot (Fovea Centralis):</em> Thinned-out pit on the optical axis lateral to the blind spot, containing only densely packed cones with 1:1 ganglion synapses; site of maximum visual acuity and sharpest color resolution.</li>
+
+              <li><strong>(e) Cranial Nerves vs. Spinal Nerves:</strong><br>
+              • <em>Cranial Nerves:</em> 12 pairs of peripheral nerves originating directly from the brain/brainstem, innervating predominantly head, neck, and thoracic/abdominal viscera (vagus nerve).<br>
+              • <em>Spinal Nerves:</em> 31 pairs of mixed peripheral nerves arising segmentally from the spinal cord, innervating the trunk and upper/lower limbs.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          <div class="marking-row"><span class="marking-key">(a) Afferent (to CNS) vs Efferent (from CNS to effectors)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Myelinated (saltatory, fast) vs Unmyelinated (continuous, slow)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Aqueous (watery, anterior) vs Vitreous (gelatinous, posterior)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Blind spot (no photoreceptors) vs Yellow spot (pure cones, maximum resolution)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) Cranial nerves (12 pairs from brain) vs Spinal nerves (31 pairs from spinal cord)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(17)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer; color:#334155;">← Ch 17 (Locomotion &amp; Movement)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(19)" style="padding:10px 24px; border-radius:8px; border:none; background:#16a34a; color:white; font-weight:700; cursor:pointer;">Next: Ch 19 (Chemical Coordination) →</button>
+  </div>
+</section>

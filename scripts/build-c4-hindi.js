@@ -105,14 +105,8 @@ function renderChapterSection(ch, bookKey, idx, arr) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const isVeena = (bookKey === 'vn');
 
-  // Collect 100% full questions for this chapter
-  const baseQs = ch.questions || [];
-  const target = targetCounts[ch.id] || 16;
-  let currentQs = [...baseQs];
-  if (currentQs.length < target) {
-    const generated = generateHindiQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevCh = idx > 0 ? arr[idx - 1] : null;
   const nextCh = idx < arr.length - 1 ? arr[idx + 1] : null;

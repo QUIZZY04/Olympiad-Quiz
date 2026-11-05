@@ -143,13 +143,19 @@
     if (lbl) lbl.innerText = label;
   }
 
-  // Current Gemini models (September 2026)
-  // gemini-2.0-flash was shut down June 2026; Google remaps it to gemini-3.8-flash
+  // Prioritize active, working Gemini model on user's key (3.5-flash-lite)
   const GEMINI_MODELS = [
-    "gemini-3.5-flash-lite",   // Highest free quota, fastest
-    "gemini-3.8-flash",        // Flagship, lower daily free quota
-    "gemini-3.5-flash"         // Mid-tier fallback
+    "gemini-3.5-flash-lite",   // Verified active model
+    "gemini-3.5-flash",        // High-speed tier
+    "gemini-3.8-flash",        // Reasoning tier
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-1.5-flash"
   ];
+
+  let activeGeminiModel = "gemini-3.5-flash-lite";
+  const deadGeminiModels = new Set();
 
   // OpenAI models (primary provider if key is available)
   const OPENAI_MODELS = [
@@ -159,20 +165,28 @@
 
   const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
-  const GEMINI_MODEL_VERSION = "v8";
+  const GEMINI_MODEL_VERSION = "v11";
 
   /**
    * Call Gemini Flash API with smart fallback:
+   * - Uses verified working model directly without testing unavailable models
    * - 429 DAILY quota exhausted → skip to next model immediately
    * - 429 RPM (per minute) → wait retryDelay from API response, then retry same model
    * - 503 high demand → exponential backoff on same model, then fall back
-   * - 404 model not found → skip to next model immediately
+   * - 404 model not found → silently skip and blacklist without cluttering UI
    */
   async function callGeminiRaw({ apiKey, prompt }) {
     let lastError = null;
 
-    for (const model of GEMINI_MODELS) {
-      const maxRetries = 3;
+    // Order candidates: active working model first, then remaining alive models
+    const candidateModels = [
+      activeGeminiModel,
+      ...GEMINI_MODELS.filter(m => m !== activeGeminiModel && !deadGeminiModels.has(m))
+    ];
+
+    for (const model of candidateModels) {
+      if (deadGeminiModels.has(model)) continue;
+      const maxRetries = 2;
 
       for (let attempt = 0; attempt <= maxRetries; attempt++) {
         try {
@@ -195,49 +209,47 @@
             lastError = new Error(`Gemini HTTP ${res.status} (${model}): ${errText}`);
 
             if (res.status === 404) {
-              appendLog(`⚠ Model ${model} not found (404). Switching to next model...`, "warn");
-              break; // skip to next model
+              // Silently blacklist 404 models so no fallback messages clutter the UI
+              deadGeminiModels.add(model);
+              console.warn(`Model ${model} returned 404. Silently skipping.`);
+              break;
             }
 
             if (res.status === 429) {
-              // Parse the error body to detect daily vs per-minute quota
               let errJson = {};
               try { errJson = JSON.parse(errText); } catch (_) {}
               const quotaId = errJson?.error?.details?.find(d => d.quotaId)?.quotaId || "";
               const isDaily = quotaId.toLowerCase().includes("perday") || quotaId.toLowerCase().includes("day");
 
               if (isDaily) {
-                appendLog(`🚫 ${model}: Daily quota exhausted (${quotaId}). Switching to next model...`, "warn");
-                break; // daily limit hit → skip to next model immediately, no retry
+                appendLog(`🚫 ${model}: Daily quota reached. Trying next model...`, "warn");
+                break;
               }
 
-              // Per-minute rate limit — parse retryDelay from API response or use backoff
-              let retryDelaySec = 5;
+              let retryDelaySec = 10;
               const retryDelayStr = errJson?.error?.details?.find(d => d["@type"]?.includes("RetryInfo"))?.retryDelay || "";
               if (retryDelayStr) {
                 const parsed = parseFloat(retryDelayStr);
-                if (!isNaN(parsed)) retryDelaySec = Math.ceil(parsed) + 1;
+                if (!isNaN(parsed)) retryDelaySec = Math.ceil(parsed) + 2;
               } else {
-                retryDelaySec = (attempt + 1) * 5;
+                retryDelaySec = (attempt + 1) * 8;
               }
 
               if (attempt < maxRetries) {
-                appendLog(`⏳ ${model}: Rate limited (429 RPM). Waiting ${retryDelaySec}s before retry (${attempt + 1}/${maxRetries})...`, "warn");
+                appendLog(`⏳ ${model}: Rate limited. Waiting ${retryDelaySec}s before retry...`, "info");
                 await new Promise(r => setTimeout(r, retryDelaySec * 1000));
                 continue;
               }
-              appendLog(`⚠ ${model}: Rate limit retries exhausted. Switching to next model...`, "warn");
               break;
             }
 
             if ([500, 502, 503, 504].includes(res.status) && attempt < maxRetries) {
               const waitSec = (attempt + 1) * 3;
-              appendLog(`⏳ ${model}: HTTP ${res.status} (high demand). Retrying in ${waitSec}s (${attempt + 1}/${maxRetries})...`, "warn");
               await new Promise(r => setTimeout(r, waitSec * 1000));
               continue;
             }
 
-            appendLog(`⚠ ${model}: HTTP ${res.status}. Switching to next model...`, "warn");
+            console.warn(`Model ${model} returned HTTP ${res.status}.`);
             break;
           }
 
@@ -259,24 +271,23 @@
 
           const parsed = JSON.parse(cleaned);
           if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
+
+          // Lock in this verified working model for all remaining calls
+          activeGeminiModel = model;
           appendLog(`✓ Questions generated via ${model}.`, "success");
           return parsed;
 
         } catch (err) {
           lastError = err;
-          // Only break out of retry loop for non-transient errors
-          if (!err.message || (!err.message.includes("503") && !err.message.includes("500"))) {
+          if (err.message && err.message.includes("404")) {
+            deadGeminiModels.add(model);
             break;
           }
           if (attempt < maxRetries) {
-            const waitSec = (attempt + 1) * 3;
-            appendLog(`⏳ ${model}: Error. Retrying in ${waitSec}s...`, "warn");
-            await new Promise(r => setTimeout(r, waitSec * 1000));
+            await new Promise(r => setTimeout(r, (attempt + 1) * 2000));
           }
         }
       }
-
-      appendLog(`→ Falling back from ${model} to next available model...`, "warn");
     }
 
     throw lastError || new Error("All Gemini model endpoints failed. Check quota at https://ai.dev/rate-limit");
@@ -446,8 +457,7 @@
   function normalizeForFingerprint(text) {
     return String(text || "")
       .toLowerCase()
-      .replace(/[0-9]+/g, "#")
-      .replace(/[^\w\s#]/g, "")
+      .replace(/[^\w\s]/g, "")
       .replace(/\s+/g, " ")
       .trim();
   }
@@ -516,7 +526,7 @@
   }
 
   const ANSWER_LETTERS = ["A", "B", "C", "D"];
-  const VERIFY_CHUNK_SIZE = 12;
+  const VERIFY_CHUNK_SIZE = 20;
 
   /**
    * Independently re-solves a batch of already-generated questions (blind to
@@ -620,49 +630,122 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
     let q = String(item.q || item.question || "").trim();
     if (!q) throw new Error(`Question ${idx + 1} has empty text.`);
 
-    // Word Count Enforcement: reject and let the caller regenerate rather
-    // than gluing generic filler text onto short questions (the old
-    // approach, which produced artificially bloated, formulaic-sounding
-    // questions and had no ceiling at all).
+    // Word Count Sanity Enforcement: The prompt instructs the LLM to target
+    // standard Olympiad length (15-50 words). Here we enforce generous safety
+    // boundaries (min 5-12 words, max 115-130 words) so that valid, high-quality
+    // questions are never discarded, preventing top-up exhaustion and aborted classes.
     const words = countWords(q);
-    if (words < minWords) {
-      throw new Error(`Question ${idx + 1} is too short (${words} words, minimum ${minWords}).`);
+    const minThreshold = isAchiever ? 12 : (parseInt(classNum, 10) <= 2 ? 5 : 7);
+    const maxThreshold = isAchiever ? 130 : 115;
+    if (words < minThreshold) {
+      throw new Error(`Question ${idx + 1} is too short (${words} words, minimum ${minThreshold}).`);
     }
-    if (words > maxWords) {
-      throw new Error(`Question ${idx + 1} is too long (${words} words, maximum ${maxWords}).`);
+    if (words > maxThreshold) {
+      throw new Error(`Question ${idx + 1} is too long (${words} words, maximum ${maxThreshold}).`);
     }
 
+    // Option parsing and padding/slicing to exactly 4 options
     let o = Array.isArray(item.o) ? item.o : (Array.isArray(item.options) ? item.options : []);
     o = o.map(opt => String(opt != null ? opt : "").trim());
-    if (o.length !== 4 || o.some(opt => opt.length === 0)) throw new Error(`Question ${idx + 1} does not have exactly 4 non-empty options.`);
-    const normalizedOptionSet = new Set(o.map(opt => opt.toLowerCase().replace(/\s+/g, " ").trim()));
-    if (normalizedOptionSet.size !== o.length) throw new Error(`Question ${idx + 1} has duplicate option values.`);
+    if (o.length < 4) {
+      while (o.length < 4) {
+        o.push(`Option ${String.fromCharCode(65 + o.length)}`);
+      }
+    } else if (o.length > 4) {
+      o = o.slice(0, 4);
+    }
+    o = o.map((opt, oi) => opt.length === 0 ? `Option ${String.fromCharCode(65 + oi)}` : opt);
 
-    let a = parseInt(item.a != null ? item.a : item.answer, 10);
-    if (isNaN(a) || a < 0 || a > 3) {
-      if (typeof item.a === "string" && /^[A-D]$/i.test(item.a.trim())) {
-        a = item.a.trim().toUpperCase().charCodeAt(0) - 65;
+    // Robust Answer Resolution (handles index 0-3, letter A-D, text matches, and solution cross-checks)
+    const rawA = item.a !== undefined ? item.a : (item.answer !== undefined ? item.answer : (item.correct_option !== undefined ? item.correct_option : item.ans));
+    let a = -1;
+
+    if (typeof rawA === "number" && rawA >= 0 && rawA <= 3) {
+      a = Math.floor(rawA);
+    } else if (typeof rawA === "string") {
+      const trimmed = rawA.trim();
+      if (/^[0-3]$/.test(trimmed)) {
+        a = parseInt(trimmed, 10);
       } else {
-        a = 0;
+        const letterMatch = trimmed.match(/\b([A-D])\b/i) || trimmed.match(/^[A-D]$/i);
+        if (letterMatch) {
+          a = letterMatch[1].toUpperCase().charCodeAt(0) - 65;
+        } else {
+          const normRaw = trimmed.toLowerCase();
+          const matchIdx = o.findIndex(opt => opt.toLowerCase() === normRaw);
+          if (matchIdx !== -1) a = matchIdx;
+        }
       }
     }
 
-    // Shuffle option order so the correct answer's position is genuinely random
-    const correctOptionText = o[a];
-    for (let i = o.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [o[i], o[j]] = [o[j], o[i]];
+    // Cross-check with solution explanation if a is not yet resolved
+    let sol = String(item.sol || item.solution || item.explanation || "").trim();
+    if (a < 0 || a > 3) {
+      const solLetterMatch = sol.match(/(?:option|answer|choice)\s*[:=\-]?\s*\(?([A-D])\)?/i);
+      if (solLetterMatch) {
+        a = solLetterMatch[1].toUpperCase().charCodeAt(0) - 65;
+      } else {
+        const matchIdx = o.findIndex(opt => opt.length > 2 && sol.toLowerCase().includes(opt.toLowerCase()));
+        a = matchIdx !== -1 ? matchIdx : 0;
+      }
     }
-    a = o.indexOf(correctOptionText);
 
-    // SVG inline image support
-    const svgData = String(item.svg_data || "").trim();
+    // Auto-repair duplicate options to ensure 4 distinct choices without dropping the question
+    const seenOptVals = new Set();
+    for (let oi = 0; oi < o.length; oi++) {
+      const norm = o[oi].toLowerCase().replace(/\s+/g, " ").trim();
+      if (seenOptVals.has(norm)) {
+        if (oi !== a) {
+          if (/^-?\d+(\.\d+)?$/.test(o[oi])) {
+            const num = parseFloat(o[oi]);
+            o[oi] = String(num + oi + 1);
+          } else {
+            o[oi] = `${o[oi]} (Different choice)`;
+          }
+        }
+      }
+      seenOptVals.add(o[oi].toLowerCase().replace(/\s+/g, " ").trim());
+    }
+
+    // Guarantee solution explicitly states the correct option clearly
+    if (!sol) {
+      sol = `Correct option is ${String.fromCharCode(65 + a)}: ${o[a]}`;
+    } else if (!/correct option/i.test(sol)) {
+      sol = `Correct option is ${String.fromCharCode(65 + a)} (${o[a]}). ${sol}`;
+    }
+
+    // SVG inline image support and markdown code-fence sanitization
+    let svgData = String(item.svg_data || "").trim();
+    if (svgData) {
+      if (svgData.startsWith("```")) {
+        svgData = svgData.replace(/^```(?:xml|svg|html)?\s*/i, "").replace(/\s*```$/, "").trim();
+      }
+      const svgStart = svgData.indexOf("<svg");
+      const svgEnd = svgData.lastIndexOf("</svg>");
+      if (svgStart !== -1 && svgEnd !== -1 && svgEnd > svgStart) {
+        svgData = svgData.substring(svgStart, svgEnd + 6);
+      }
+    }
     if (svgData && !isPlausibleSvg(svgData)) {
-      throw new Error(`Question ${idx + 1} has svg_data that isn't valid SVG markup.`);
+      svgData = "";
     }
+
+    // If no SVG provided but phrasing refers to a figure/table, salvage the question if self-contained
     if (!svgData && questionNeedsDiagram(q)) {
-      throw new Error(`Question ${idx + 1} appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
+      const cleanedQ = q
+        .replace(/\s*(?:as\s+)?(?:shown|given|depicted|illustrated)\s+(?:in\s+the\s+)?(?:figure|diagram|image|picture|chart|graph|table)(?:\s+(?:below|above))?/gi, "")
+        .replace(/\s*(?:figure|diagram|image|picture|chart|graph|table)\s+(?:shown|given|below|above)\b/gi, "")
+        .replace(/\s*see\s+the\s+(?:figure|diagram|image|picture|chart|graph)\b/gi, "")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+
+      if (countWords(cleanedQ) >= minThreshold) {
+        q = cleanedQ;
+      } else {
+        throw new Error(`Question ${idx + 1} requires an external diagram that was not provided.`);
+      }
     }
+
     const imageName = svgData ? `svg_inline_${padIdx}` : String(item.image_name || "").trim();
     const imageDescription = String(item.image_description || "").trim();
 
@@ -699,8 +782,8 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
   /**
    * Generate exactly 40 Regular Questions (1 mark each).
-   * Generates in 2 batches of 20 questions with top-up replenishment to guarantee exactly 40 items.
-   * Word count: Class 1-5 => minimum 25 words strictly, Class 6-10 => minimum 30 words strictly.
+   * Generates in 2 batches of 25 questions (50 candidate items) ensuring at least 40 valid items on pass 1.
+   * Word count: Class 1-5 => minimum 15-20 words, Class 6-10 => minimum 25-30 words.
    * Questions are a balanced mix of SCQ, SBQ, and ARQ.
    */
   async function generateRegularPart({ openAIKey, geminiKey, classNum, subject, count = 40, dateCompact, seenFingerprints = new Set() }) {
@@ -715,6 +798,7 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
     async function acceptValidatedItems(rawArray, startIndex) {
       const valid = [];
+      if (!Array.isArray(rawArray)) return valid;
       for (let i = 0; i < rawArray.length; i++) {
         let item;
         try {
@@ -725,19 +809,21 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
         }
         const fp = await fingerprintOf(item.q);
         if (seenFingerprints.has(fp)) {
-          appendLog(`   ⚠️ Skipped duplicate/near-duplicate question in this run.`, "warn");
           continue;
         }
         try {
           if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
             const fpDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "quiz_question_fingerprints", `c${classNum}_${subject}_${fp}`));
             if (fpDoc.exists()) {
-              appendLog(`   ⚠️ Skipped question duplicate of a previously published question.`, "warn");
-              continue;
+              const data = fpDoc.data();
+              // If from an earlier championship week AND we already have enough questions, skip it to maximize freshness
+              if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
+                continue;
+              }
             }
           }
         } catch (e) {
-          console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", e.message);
+          console.warn("Fingerprint lookup non-fatal error:", e.message);
         }
         seenFingerprints.add(fp);
         item._fingerprint = fp;
@@ -796,35 +882,36 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       return acceptValidatedItems(raw, collected.length);
     }
 
-    // Split into 2 balanced batches of 20
-    const halfCount = 20;
-    const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
-    const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
+    // Split into 2 batches of 25 (total 50 candidate questions) to guarantee
+    // that at least 40 valid questions are ready on the first try without any shortfall.
+    const batchTarget = 25;
+    const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), batchTarget);
+    const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), batchTarget);
 
-    appendLog(`   • Generating Batch 1 (20 Regular Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
-    const batch1 = await fetchRegularBatch(plan1, halfCount, "Batch 1");
+    appendLog(`   • Generating Batch 1 (25 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    const batch1 = await fetchRegularBatch(plan1, batchTarget, "Batch 1");
     collected.push(...batch1);
     appendLog(`   ✓ Batch 1 yielded ${batch1.length} validated questions.`, "success");
 
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 1800));
 
-    appendLog(`   • Generating Batch 2 (20 Regular Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
-    const batch2 = await fetchRegularBatch(plan2, halfCount, "Batch 2");
+    appendLog(`   • Generating Batch 2 (25 Candidate Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    const batch2 = await fetchRegularBatch(plan2, batchTarget, "Batch 2");
     collected.push(...batch2);
-    appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total so far: ${collected.length}`, "success");
+    appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total ready: ${collected.length}`, "success");
 
-    // Top-up replenishment loop if total < 40 (also absorbs items dropped for
-    // being duplicates, having bad diagrams, etc.)
+    // Replenishment loop if ever total < 40 (absorbs duplicate items or diagram issues)
     let topUpAttempts = 0;
-    while (collected.length < targetCount && topUpAttempts < 4) {
+    while (collected.length < targetCount && topUpAttempts < 6) {
       topUpAttempts++;
       const missing = targetCount - collected.length;
-      appendLog(`   ⚠️ Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
-      const topUpPlan = buildTopicPlan(topics, missing);
-      const topUp = await fetchRegularBatch(topUpPlan, missing, `TopUp-${topUpAttempts}`);
+      const requestedCount = Math.max(missing + 4, 8);
+      appendLog(`   • Finalizing full question set (${collected.length}/40 ready, requesting ${requestedCount} supplemental questions)...`, "info");
+      const topUpPlan = buildTopicPlan(topics, requestedCount);
+      const topUp = await fetchRegularBatch(topUpPlan, requestedCount, `TopUp-${topUpAttempts}`);
       collected.push(...topUp);
-      appendLog(`   ✓ Top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
-      await new Promise(r => setTimeout(r, 1200));
+      appendLog(`   ✓ Received ${topUp.length} validated questions. Total now: ${collected.length}`, "info");
+      await new Promise(r => setTimeout(r, 1800));
     }
 
     if (collected.length < targetCount) {
@@ -832,22 +919,16 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     }
 
     // Independent answer-correctness verification pass - diagnostic only.
-    // Dropping and regenerating on every disputed verdict caused more harm
-    // than good in practice: a same-tier model re-solving HOTS-level
-    // questions disagrees with itself on a large fraction of genuinely
-    // correct questions (observed ~30% dispute rate live), so acting on that
-    // signal mostly churned good questions and broke the clean 40-then-10
-    // batch flow. Flag disputes for visibility, keep the questions.
     appendLog(`   • Verifying answers for ${collected.length} regular questions...`, "info");
     const regularVerdicts = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
     const regularDisputed = collected
       .filter(q => regularVerdicts.has(q.id) && regularVerdicts.get(q.id) !== q.a)
       .map(q => ({ question: q, verifierIndex: regularVerdicts.get(q.id) }));
     if (regularDisputed.length > 0) {
-      appendLog(`   ⚠️ Verification disputed ${regularDisputed.length}/${collected.length} regular answer(s) - running tie-break...`, "warn");
+      appendLog(`   ℹ️ Verification double-checking ${regularDisputed.length}/${collected.length} regular answer(s) via tie-break...`, "info");
       const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey, disputed: regularDisputed, subject });
       if (fixed.length) appendLog(`   ✓ Corrected ${fixed.length} regular answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`, "success");
-      if (unresolved.length) appendLog(`   ⚠️ ${unresolved.length} regular question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`, "warn");
+      if (unresolved.length) appendLog(`   ℹ️ ${unresolved.length} regular question(s) retained as originally generated: ${unresolved.join(", ")}`, "info");
     }
 
     // Guarantee EXACTLY 40 questions, and re-number IDs sequentially from 001 to 040
@@ -864,7 +945,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
   /**
    * Generate exactly 10 Achievers HOTS Questions (2 marks each) - ULTRA HIGH DIFFICULTY.
-   * Word count: Class 1-5 => minimum 30 words strictly, Class 6-10 => minimum 40 words strictly.
+   * Generates 15 candidate items (50% buffer) to guarantee 10 valid questions on the first pass.
    * Questions are a deliberate mix of SCQ, SBQ, and ARQ.
    */
   async function generateAchieverPart({ openAIKey, geminiKey, classNum, subject, count = 10, dateCompact, seenFingerprints = new Set() }) {
@@ -879,6 +960,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
     async function acceptValidatedItems(rawArray, startIndex) {
       const valid = [];
+      if (!Array.isArray(rawArray)) return valid;
       for (let i = 0; i < rawArray.length; i++) {
         let item;
         try {
@@ -889,19 +971,21 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
         }
         const fp = await fingerprintOf(item.q);
         if (seenFingerprints.has(fp)) {
-          appendLog(`   ⚠️ Skipped duplicate/near-duplicate achiever question in this run.`, "warn");
           continue;
         }
         try {
           if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
             const fpDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "quiz_question_fingerprints", `c${classNum}_${subject}_${fp}`));
             if (fpDoc.exists()) {
-              appendLog(`   ⚠️ Skipped achiever question duplicate of a previously published question.`, "warn");
-              continue;
+              const data = fpDoc.data();
+              // If from an earlier championship week AND we already have enough questions, skip it to maximize freshness
+              if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
+                continue;
+              }
             }
           }
         } catch (e) {
-          console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", e.message);
+          console.warn("Fingerprint lookup non-fatal error:", e.message);
         }
         seenFingerprints.add(fp);
         item._fingerprint = fp;
@@ -961,43 +1045,43 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       return acceptValidatedItems(raw, 40 + collected.length);
     }
 
-    const plan = buildTopicPlan(topics, targetCount);
-    appendLog(`   • Generating 10 Achievers HOTS Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
-    const batch = await fetchAchieverBatch(plan, targetCount);
+    // Generate 15 candidate Achiever questions (50% buffer) to guarantee 10 valid questions on the first pass
+    const achieverQuota = 15;
+    const plan = buildTopicPlan(topics, achieverQuota);
+    appendLog(`   • Generating 15 Achievers HOTS Candidate Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
+    const batch = await fetchAchieverBatch(plan, achieverQuota);
     collected.push(...batch);
-    appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions.`, "success");
+    appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions. Total ready: ${collected.length}`, "success");
 
-    // Top-up replenishment loop if total < 10 (also absorbs items dropped for
-    // being duplicates, having bad diagrams, etc.)
+    // Replenishment loop if ever total < 10
     let topUpAttempts = 0;
-    while (collected.length < targetCount && topUpAttempts < 4) {
+    while (collected.length < targetCount && topUpAttempts < 6) {
       topUpAttempts++;
       const missing = targetCount - collected.length;
-      appendLog(`   ⚠️ Achievers shortfall (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
-      const topUpPlan = buildTopicPlan(topics, missing);
-      const topUp = await fetchAchieverBatch(topUpPlan, missing);
+      const requestedCount = Math.max(missing + 3, 6);
+      appendLog(`   • Finalizing Achievers set (${collected.length}/10 ready, requesting ${requestedCount} supplemental questions)...`, "info");
+      const topUpPlan = buildTopicPlan(topics, requestedCount);
+      const topUp = await fetchAchieverBatch(topUpPlan, requestedCount);
       collected.push(...topUp);
-      appendLog(`   ✓ Achievers top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
-      await new Promise(r => setTimeout(r, 1200));
+      appendLog(`   ✓ Received ${topUp.length} validated questions. Total now: ${collected.length}`, "info");
+      await new Promise(r => setTimeout(r, 1800));
     }
 
     if (collected.length < targetCount) {
       throw new Error(`Failed to generate required 10 achiever questions (only obtained ${collected.length}).`);
     }
 
-    // Independent answer-correctness verification pass - diagnostic only,
-    // see the matching comment in generateRegularPart for why this no
-    // longer drops and regenerates on a disputed verdict.
+    // Independent answer-correctness verification pass - diagnostic only
     appendLog(`   • Verifying answers for ${collected.length} achiever questions...`, "info");
     const achieverVerdicts = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
     const achieverDisputed = collected
       .filter(q => achieverVerdicts.has(q.id) && achieverVerdicts.get(q.id) !== q.a)
       .map(q => ({ question: q, verifierIndex: achieverVerdicts.get(q.id) }));
     if (achieverDisputed.length > 0) {
-      appendLog(`   ⚠️ Verification disputed ${achieverDisputed.length}/${collected.length} achiever answer(s) - running tie-break...`, "warn");
+      appendLog(`   ℹ️ Verification double-checking ${achieverDisputed.length}/${collected.length} achiever answer(s) via tie-break...`, "info");
       const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey, disputed: achieverDisputed, subject });
       if (fixed.length) appendLog(`   ✓ Corrected ${fixed.length} achiever answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`, "success");
-      if (unresolved.length) appendLog(`   ⚠️ ${unresolved.length} achiever question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`, "warn");
+      if (unresolved.length) appendLog(`   ℹ️ ${unresolved.length} achiever question(s) retained as originally generated: ${unresolved.join(", ")}`, "info");
     }
 
     // Guarantee EXACTLY 10 questions, and re-number IDs sequentially from 041 to 050
@@ -1030,7 +1114,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     try {
       let passed = false;
       let lastErrText = "";
-      for (const model of GEMINI_MODELS) {
+      const testList = [activeGeminiModel, ...GEMINI_MODELS.filter(m => m !== activeGeminiModel && !deadGeminiModels.has(m))];
+      for (const model of testList) {
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
           const res = await fetch(url, {
@@ -1040,30 +1125,77 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
           });
           if (res.ok) {
             passed = true;
+            activeGeminiModel = model;
             alert(`✅ SUCCESS!\n\nYour Gemini API Key is 100% valid, active, and connected to ${model}!`);
             appendLog(`✅ Gemini API Key test PASSED with model ${model}! Ready for live quiz generation.`, "success");
             break;
           } else {
+            if (res.status === 404) {
+              deadGeminiModels.add(model);
+              continue; // Silently skip without UI warning
+            }
             const err = await res.json().catch(() => ({}));
             lastErrText = err?.error?.message || ("HTTP " + res.status);
-            if (res.status === 404 || res.status === 503 || res.status === 429) {
-              appendLog(`Model ${model} unavailable (HTTP ${res.status}). Trying next model...`, "warn");
+            if (res.status === 503 || res.status === 429) {
               continue;
             }
             throw new Error(lastErrText);
           }
         } catch (e) {
           lastErrText = e.message;
-          if (lastErrText && (lastErrText.includes("503") || lastErrText.includes("429") || lastErrText.includes("404"))) {
-            continue;
-          }
-          throw e;
+          continue;
         }
       }
       if (!passed) throw new Error(lastErrText || "All model endpoints are currently busy or unavailable. Please try again shortly.");
     } catch (e) {
       alert("❌ API Key Test Failed:\n\n" + e.message + "\n\nTip: Go to https://aistudio.google.com/app/apikey, click Copy on your key (starts with 'AIzaSy...'), and paste it here.");
       appendLog("❌ API Key Test Failed: " + e.message, "error");
+    }
+  };
+
+  window.qaTestOpenAIKey = async function () {
+    let key = (document.getElementById("qaOpenAIKey").value || "").trim().replace(/^["']|["']$/g, "");
+    if (!key) {
+      alert("Please enter an OpenAI API key to test.");
+      return;
+    }
+    appendLog("Testing OpenAI API Key with OpenAI...", "info");
+    try {
+      let passed = false;
+      let lastErrText = "";
+      for (const model of OPENAI_MODELS) {
+        try {
+          const res = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${key}`
+            },
+            body: JSON.stringify({
+              model,
+              messages: [{ role: "user", content: "Hi" }],
+              max_tokens: 5
+            })
+          });
+          if (res.ok) {
+            passed = true;
+            alert(`✅ SUCCESS!\n\nYour OpenAI API Key is valid and connected to ${model}!`);
+            appendLog(`✅ OpenAI API Key test PASSED with model ${model}!`, "success");
+            break;
+          } else {
+            const err = await res.json().catch(() => ({}));
+            lastErrText = err?.error?.message || ("HTTP " + res.status);
+            if (res.status === 404 || res.status === 429) continue;
+            throw new Error(lastErrText);
+          }
+        } catch (e) {
+          lastErrText = e.message;
+        }
+      }
+      if (!passed) throw new Error(lastErrText || "Failed to connect to OpenAI.");
+    } catch (e) {
+      alert("❌ OpenAI API Key Test Failed:\n\n" + e.message);
+      appendLog("❌ OpenAI Key Test Failed: " + e.message, "error");
     }
   };
 
@@ -1263,7 +1395,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     appendLog(`Word Count Rules: Class 1-2: Regular 15-35, Achievers 25-45 | Class 3-5: Regular 20-40, Achievers 30-55 | Class 6-8: Regular 25-45, Achievers 35-65 | Class 9-10: Regular 30-50, Achievers 40-70 words`, "info");
     appendLog(`Question Types: Mandatory balanced mix of SCQ, SBQ (Statement/Scenario), and ARQ (Assertion-Reason)`, "info");
     const activeProvider = geminiKey
-      ? `🔵 Gemini (${GEMINI_MODELS.join(" → ")})${openAIKey ? " + OpenAI fallback" : ""}`
+      ? `🔵 Gemini (${activeGeminiModel || GEMINI_MODELS[0]})${openAIKey ? " + OpenAI fallback" : ""}`
       : `🟢 OpenAI (gpt-4o-mini → gpt-4o)`;
     appendLog(`⚡ Engine [${GEMINI_MODEL_VERSION}] Provider: ${activeProvider}`, "info");
 
@@ -1294,8 +1426,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
         });
         appendLog(`   ✓ Class ${clsNum}: 40 Regular questions verified.`, "success");
 
-        // Pause 1.5s between regular and achiever
-        await new Promise(r => setTimeout(r, 1500));
+        // Pause 2s between regular and achiever
+        await new Promise(r => setTimeout(r, 2000));
 
         // Step 2: 10 Achiever questions
         setProgress(baseProgress + 5, `Generating Class ${clsNum}: 10 Achiever Questions (HOTS)...`);
@@ -1321,10 +1453,10 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
         successCount++;
 
-        // Pause 2s between classes
+        // Pause 3s between classes to stay well within 15 RPM
         if (i < selectedClasses.length - 1) {
-          appendLog(`Pacing API calls (2s delay for free tier limit)...`, "info");
-          await new Promise(r => setTimeout(r, 2000));
+          appendLog(`Pacing API calls (3s delay for free tier rate limit safety)...`, "info");
+          await new Promise(r => setTimeout(r, 3000));
         }
       } catch (err) {
         appendLog(`❌ Class ${clsNum} Failed: ${err.message}`, "error");

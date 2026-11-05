@@ -107,6 +107,36 @@ Put y = &#8722;1: x = 6&#8722;3 = 3 &#8594; Solution (3, &#8722;1)</div>
       <div class="answer-box">
         <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
         <div class="answer-text">
+<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Figure 13.1: Graphical Solution of x + y = 5 and x - y = 1 Intersecting at (3, 2)</div>
+  <svg viewBox="0 0 460 230" width="100%" height="230" xmlns="http://www.w3.org/2000/svg">
+    <!-- Axes: Origin at (100, 180), scale: 28px per unit -->
+    <line x1="60" y1="180" x2="420" y2="180" stroke="#334155" stroke-width="2"/>
+    <line x1="100" y1="30" x2="100" y2="210" stroke="#334155" stroke-width="2"/>
+    <text x="425" y="185" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">X</text>
+    <text x="105" y="35" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">Y</text>
+    
+    <!-- Line 1: x + y = 5 -> passes through (0, 5)->(100, 40) and (5, 0)->(240, 180) -->
+    <line x1="80" y1="20" x2="260" y2="200" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="260" y="195" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#2563eb">x + y = 5</text>
+    
+    <!-- Line 2: x - y = 1 -> passes through (1, 0)->(128, 180) and (0, -1)->(100, 208), (3, 2)->(184, 124), (5, 4)->(240, 68) -->
+    <line x1="90" y1="216" x2="260" y2="48" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="265" y="60" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#16a34a">x - y = 1</text>
+    
+    <!-- Intersection point at (3, 2) -> (100 + 3*28 = 184, 180 - 2*28 = 124) -->
+    <circle cx="184" cy="124" r="6" fill="#dc2626"/>
+    <!-- Projection lines to axes -->
+    <line x1="184" y1="124" x2="184" y2="180" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <line x1="184" y1="124" x2="100" y2="124" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="195" y="120" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626">P(3, 2) Solution</text>
+    
+    <!-- Solution box -->
+    <rect x="290" y="90" width="150" height="60" rx="6" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="365" y="112" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#b91c1c" text-anchor="middle">Unique Intersection:</text>
+    <text x="365" y="134" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#991b1b" text-anchor="middle">x = 3, y = 2</text>
+  </svg>
+</div>
 <p><strong>Line 1: x + y = 5 &#8594;</strong> points: (0,5), (5,0), (2,3)</p>
 <p><strong>Line 2: x &#8722; y = 1 &#8594;</strong> points: (0,&#8722;1), (1,0), (3,2)</p>
 <div class="step">Plot both lines. They intersect at a common point.</div>
@@ -126,6 +156,104 @@ Put y = &#8722;1: x = 6&#8722;3 = 3 &#8594; Solution (3, &#8722;1)</div>
 
   
   
+    <div class="q-card" id="q13_1_3">
+    <div class="q-head" onclick="toggleQ('q13_1_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Find the value of k if x = 2, y = 1 is a solution of the equation 2x + 3y = k.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">Substitute x = 2 and y = 1 into the equation:</div>
+          <div class="step">2(2) + 3(1) = k</div>
+          <div class="step">4 + 3 = k &#8594; <strong>k = 7</strong>.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Substitution of coordinates</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">k = 7</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q13_2_2">
+    <div class="q-head" onclick="toggleQ('q13_2_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Give the geometric representations of 2x + 9 = 0 as an equation: (i) in one variable, (ii) in two variables.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">2x + 9 = 0 &#8594; 2x = &#8722;9 &#8594; x = &#8722;4.5.</div>
+          <div class="step"><strong>(i) In one variable:</strong> It represents a single point at x = &#8722;4.5 on the number line.</div>
+          <div class="step"><strong>(ii) In two variables:</strong> It can be written as 2x + 0y + 9 = 0, which represents a straight line parallel to the y-axis passing through (&#8722;4.5, 0).</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">One variable representation (point on number line)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Two variable representation (line parallel to y-axis)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q13_3_2">
+    <div class="q-head" onclick="toggleQ('q13_3_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">The cost of a notebook is twice the cost of a pen. Write a linear equation in two variables to represent this statement and express it in standard form ax + by + c = 0.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">Let the cost of a notebook be &#8377;x and cost of a pen be &#8377;y.</div>
+          <div class="step">Given: Cost of notebook = 2 &#215; Cost of pen &#8594; x = 2y.</div>
+          <div class="step">In standard form: <strong>1x &#8722; 2y + 0 = 0</strong> (where a = 1, b = &#8722;2, c = 0).</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Forming relation x = 2y</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Standard form 1x - 2y + 0 = 0</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q13_3_3">
+    <div class="q-head" onclick="toggleQ('q13_3_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Find four different solutions of the equation x + 2y = 6.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">&#10003; Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">Rewrite as: x = 6 &#8722; 2y.</div>
+          <div class="step">If y = 0: x = 6 &#8594; <strong>(6, 0)</strong></div>
+          <div class="step">If y = 1: x = 6 &#8722; 2(1) = 4 &#8594; <strong>(4, 1)</strong></div>
+          <div class="step">If y = 2: x = 6 &#8722; 2(2) = 2 &#8594; <strong>(2, 2)</strong></div>
+          <div class="step">If y = 3: x = 6 &#8722; 2(3) = 0 &#8594; <strong>(0, 3)</strong></div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Systematic substitution method</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Listing 4 valid coordinate pairs</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="cbq-section">
     <div class="cbq-header"><span>🎯 Competency-Based Questions (CBQ) &amp; HOTS — Chapter 13</span><span class="cbq-badge">CBSE / NEP 2020</span></div>
     <div class="cbq-body">
@@ -144,6 +272,7 @@ Put y = &#8722;1: x = 6&#8722;3 = 3 &#8594; Solution (3, &#8722;1)</div>
     </div>
   </div>
 
+  
   
   
   <div class="ch-nav-btns">

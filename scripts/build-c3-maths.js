@@ -122,18 +122,8 @@ function renderChapterSection(ch, bookKey, idx, arr) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const isMela = (bookKey === 'mela');
 
-  // Collect 100% full questions for this chapter
-  const baseQs = ch.questions || [];
-  const extraQs = isMela ? (mathsMelaExtra[ch.id] || []) : (mathMagicExtra[ch.id] || []);
-  const expandedP1 = (isMela && mathsMelaExpandedPart1 && mathsMelaExpandedPart1[ch.id]) || [];
-  const expandedFull = (isMela && mathsMelaFullExercises && mathsMelaFullExercises[ch.id]) || [];
-  
-  let currentQs = [...baseQs, ...extraQs, ...expandedP1, ...expandedFull];
-  const target = targetCounts[ch.id] || (isMela ? 20 : 25);
-  if (currentQs.length < target) {
-    const generated = generateRichQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevCh = idx > 0 ? arr[idx - 1] : null;
   const nextCh = idx < arr.length - 1 ? arr[idx + 1] : null;

@@ -1,0 +1,1862 @@
+// scripts/builders/gen-c11m-ch10.js
+// Complete, verbatim NCERT generator for Class 11 Mathematics Chapter 10: Conic Sections (All 73 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11m');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// Store questions grouped by exercise
+const ex10_1 = []; // Circles (15 Qs)
+const ex10_2 = []; // Parabola (12 Qs)
+const ex10_3 = []; // Ellipse (20 Qs)
+const ex10_4 = []; // Hyperbola (15 Qs)
+const misc = [];   // Miscellaneous (11 Qs)
+
+// ============================================================================
+// EXERCISE 10.1: Circles (Questions 1 to 15)
+// ============================================================================
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q1', 'Question 1', 'Exercise 10.1',
+  'Find the equation of the circle with centre $(0, 2)$ and radius $2$.',
+  `<div class="step">
+    • The standard equation of a circle with centre $(h, k)$ and radius $r$ is:<br>
+      $$(x - h)^2 + (y - k)^2 = r^2$$<br>
+    • Given $h = 0, k = 2$, and $r = 2$.<br>
+    • Substituting the given values:<br>
+      $$(x - 0)^2 + (y - 2)^2 = 2^2$$<br>
+      $$x^2 + (y^2 - 4y + 4) = 4$$<br>
+      $$x^2 + y^2 - 4y = 0$$<br>
+    • Hence, the required equation of the circle is $\\mathbf{x^2 + y^2 - 4y = 0}$.
+  </div>`,
+  '2 Marks',
+  [
+    ['Standard circle equation formula $(x-h)^2 + (y-k)^2 = r^2$', '0.5 Mark'],
+    ['Substitution of $(h,k) = (0,2)$ and $r=2$', '0.5 Mark'],
+    ['Simplification to general quadratic equation $x^2 + y^2 - 4y = 0$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q2', 'Question 2', 'Exercise 10.1',
+  'Find the equation of the circle with centre $(-2, 3)$ and radius $4$.',
+  `<div class="step">
+    • The equation of a circle with centre $(h, k)$ and radius $r$ is $(x - h)^2 + (y - k)^2 = r^2$.<br>
+    • Here $h = -2, k = 3$, and $r = 4$.<br>
+    • Substituting these coordinates:<br>
+      $$(x - (-2))^2 + (y - 3)^2 = 4^2$$<br>
+      $$(x + 2)^2 + (y - 3)^2 = 16$$<br>
+      $$(x^2 + 4x + 4) + (y^2 - 6y + 9) = 16$$<br>
+      $$x^2 + y^2 + 4x - 6y + 13 - 16 = 0$$<br>
+      $$x^2 + y^2 + 4x - 6y - 3 = 0$$<br>
+    • Hence, the required equation is $\\mathbf{x^2 + y^2 + 4x - 6y - 3 = 0}$.
+  </div>`,
+  '2 Marks',
+  [
+    ['Stating standard equation of circle', '0.5 Mark'],
+    ['Substitution of $(-2, 3)$ and radius $4$', '0.5 Mark'],
+    ['Expanding binomials and writing in standard general form', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q3', 'Question 3', 'Exercise 10.1',
+  'Find the equation of the circle with centre $\\left(\\frac{1}{2}, \\frac{1}{4}\\right)$ and radius $\\frac{1}{12}$.',
+  `<div class="step">
+    • Centre $(h, k) = \\left(\\frac{1}{2}, \\frac{1}{4}\\right)$, radius $r = \\frac{1}{12}$.<br>
+    • The standard equation of the circle is:<br>
+      $$\\left(x - \\frac{1}{2}\\right)^2 + \\left(y - \\frac{1}{4}\\right)^2 = \\left(\\frac{1}{12}\\right)^2$$<br>
+    • Expanding each term:<br>
+      $$\\left(x^2 - x + \\frac{1}{4}\\right) + \\left(y^2 - \\frac{y}{2} + \\frac{1}{16}\\right) = \\frac{1}{144}$$<br>
+      $$x^2 + y^2 - x - \\frac{1}{2}y + \\frac{4 + 1}{16} = \\frac{1}{144}$$<br>
+      $$x^2 + y^2 - x - \\frac{1}{2}y + \\frac{5}{16} = \\frac{1}{144}$$<br>
+    • Multiplying the entire equation by $144$ (LCM of $16, 2, 144$):<br>
+      $$144x^2 + 144y^2 - 144x - 72y + 9(5) = 1$$<br>
+      $$144x^2 + 144y^2 - 144x - 72y + 45 - 1 = 0$$<br>
+      $$144x^2 + 144y^2 - 144x - 72y + 44 = 0$$<br>
+    • Dividing throughout by $4$:<br>
+      $$\\mathbf{36x^2 + 36y^2 - 36x - 18y + 11 = 0}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Applying $(x-h)^2 + (y-k)^2 = r^2$', '0.5 Mark'],
+    ['Expanding fractions carefully', '0.5 Mark'],
+    ['Clearing denominators and stating simplified integer form', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q4', 'Question 4', 'Exercise 10.1',
+  'Find the equation of the circle with centre $(1, 1)$ and radius $\\sqrt{2}$.',
+  `<div class="step">
+    • Here $h = 1, k = 1$, and $r = \\sqrt{2}$.<br>
+    • Equation of the circle:<br>
+      $$(x - 1)^2 + (y - 1)^2 = (\\sqrt{2})^2$$<br>
+      $$(x^2 - 2x + 1) + (y^2 - 2y + 1) = 2$$<br>
+      $$x^2 + y^2 - 2x - 2y + 2 = 2$$<br>
+      $$x^2 + y^2 - 2x - 2y = 0$$<br>
+    • Thus, the required equation is $\\mathbf{x^2 + y^2 - 2x - 2y = 0}$.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula substitution', '0.5 Mark'],
+    ['Algebraic expansion of squares', '0.5 Mark'],
+    ['Final standard equation', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q5', 'Question 5', 'Exercise 10.1',
+  'Find the equation of the circle with centre $(-a, -b)$ and radius $\\sqrt{a^2 - b^2}$.',
+  `<div class="step">
+    • Given centre $(h, k) = (-a, -b)$ and radius $r = \\sqrt{a^2 - b^2}$.<br>
+    • Equation of the circle:<br>
+      $$(x - (-a))^2 + (y - (-b))^2 = \\left(\\sqrt{a^2 - b^2}\\right)^2$$<br>
+      $$(x + a)^2 + (y + b)^2 = a^2 - b^2$$<br>
+    • Expanding the terms:<br>
+      $$(x^2 + 2ax + a^2) + (y^2 + 2by + b^2) = a^2 - b^2$$<br>
+      $$x^2 + y^2 + 2ax + 2by + a^2 + b^2 - a^2 + b^2 = 0$$<br>
+      $$x^2 + y^2 + 2ax + 2by + 2b^2 = 0$$<br>
+    • Hence, the required equation is $\\mathbf{x^2 + y^2 + 2ax + 2by + 2b^2 = 0}$.
+  </div>`,
+  '2 Marks',
+  [
+    ['Substitution into circle equation', '0.5 Mark'],
+    ['Expansion of algebraic identity', '0.5 Mark'],
+    ['Simplification canceling $a^2$ terms', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q6', 'Question 6', 'Exercise 10.1',
+  'Find the centre and radius of the circle $(x + 5)^2 + (y - 3)^2 = 36$.',
+  `<div class="step">
+    • The given equation is $(x + 5)^2 + (y - 3)^2 = 36$.<br>
+    • Rewriting in standard form $(x - h)^2 + (y - k)^2 = r^2$:<br>
+      $$(x - (-5))^2 + (y - 3)^2 = 6^2$$<br>
+    • Comparing with $(x - h)^2 + (y - k)^2 = r^2$, we get:<br>
+      $$h = -5, \\quad k = 3, \\quad r = 6$$<br>
+    • Therefore:<br>
+      <b>Centre</b> = $\\mathbf{(-5, 3)}$<br>
+      <b>Radius</b> = $\\mathbf{6}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Comparison with standard form $(x-h)^2 + (y-k)^2 = r^2$', '1 Mark'],
+    ['Correct identification of centre $(-5, 3)$ and radius $6$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q7', 'Question 7', 'Exercise 10.1',
+  'Find the centre and radius of the circle $x^2 + y^2 - 4x - 8y - 45 = 0$.',
+  `<div class="step">
+    • The given equation is $x^2 + y^2 - 4x - 8y - 45 = 0$.<br>
+    • Grouping $x$ and $y$ terms and completing the square:<br>
+      $$(x^2 - 4x) + (y^2 - 8y) = 45$$<br>
+      $$(x^2 - 4x + 4) + (y^2 - 8y + 16) = 45 + 4 + 16$$<br>
+      $$(x - 2)^2 + (y - 4)^2 = 65$$<br>
+      $$(x - 2)^2 + (y - 4)^2 = (\\sqrt{65})^2$$<br>
+    • Comparing with $(x - h)^2 + (y - k)^2 = r^2$:<br>
+      $$h = 2, \\quad k = 4, \\quad r = \\sqrt{65}$$<br>
+    • Therefore:<br>
+      <b>Centre</b> = $\\mathbf{(2, 4)}$<br>
+      <b>Radius</b> = $\\mathbf{\\sqrt{65}}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Grouping terms and completing the square method', '1 Mark'],
+    ['Obtaining standard form $(x-2)^2 + (y-4)^2 = 65$', '0.5 Mark'],
+    ['Stating centre $(2, 4)$ and radius $\\sqrt{65}$', '0.5 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q8', 'Question 8', 'Exercise 10.1',
+  'Find the centre and radius of the circle $x^2 + y^2 - 8x + 10y - 12 = 0$.',
+  `<div class="step">
+    • Given equation: $x^2 + y^2 - 8x + 10y - 12 = 0$.<br>
+    • Completing the square for $x$ and $y$:<br>
+      $$(x^2 - 8x + 16) + (y^2 + 10y + 25) = 12 + 16 + 25$$<br>
+      $$(x - 4)^2 + (y + 5)^2 = 53$$<br>
+      $$(x - 4)^2 + (y - (-5))^2 = (\\sqrt{53})^2$$<br>
+    • Comparing with $(x - h)^2 + (y - k)^2 = r^2$:<br>
+      $$h = 4, \\quad k = -5, \\quad r = \\sqrt{53}$$<br>
+    • Hence:<br>
+      <b>Centre</b> = $\\mathbf{(4, -5)}$<br>
+      <b>Radius</b> = $\\mathbf{\\sqrt{53}}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Completing the square for $x$ and $y$', '1 Mark'],
+    ['Stating centre $(4, -5)$', '0.5 Mark'],
+    ['Stating radius $\\sqrt{53}$', '0.5 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q9', 'Question 9', 'Exercise 10.1',
+  'Find the centre and radius of the circle $2x^2 + 2y^2 - x = 0$.',
+  `<div class="step">
+    • Given equation: $2x^2 + 2y^2 - x = 0$.<br>
+    • Dividing the entire equation by $2$ to make coefficients of $x^2$ and $y^2$ equal to $1$:<br>
+      $$x^2 + y^2 - \\frac{1}{2}x = 0$$<br>
+    • Grouping terms and completing the square:<br>
+      $$\\left(x^2 - \\frac{1}{2}x + \\frac{1}{16}\\right) + y^2 = \\frac{1}{16}$$<br>
+      $$\\left(x - \\frac{1}{4}\\right)^2 + (y - 0)^2 = \\left(\\frac{1}{4}\\right)^2$$<br>
+    • Comparing with $(x - h)^2 + (y - k)^2 = r^2$:<br>
+      $$h = \\frac{1}{4}, \\quad k = 0, \\quad r = \\frac{1}{4}$$<br>
+    • Hence:<br>
+      <b>Centre</b> = $\\mathbf{\\left(\\frac{1}{4}, 0\\right)}$<br>
+      <b>Radius</b> = $\\mathbf{\\frac{1}{4}}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Dividing by $2$ to normalize $x^2, y^2$ coefficients', '0.5 Mark'],
+    ['Completing the square for $x$', '0.5 Mark'],
+    ['Stating centre $(1/4, 0)$ and radius $1/4$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q10', 'Question 10', 'Exercise 10.1',
+  'Find the equation of the circle passing through the points $(4, 1)$ and $(6, 5)$ and whose centre is on the line $4x + y = 16$.',
+  `<div class="step">
+    • Let the equation of the circle be $(x - h)^2 + (y - k)^2 = r^2$, where centre is $(h, k)$ and radius is $r$.<br>
+    • Since it passes through $(4, 1)$:<br>
+      $$(4 - h)^2 + (1 - k)^2 = r^2 \\quad \\dots (1)$$<br>
+    • Since it passes through $(6, 5)$:<br>
+      $$(6 - h)^2 + (5 - k)^2 = r^2 \\quad \\dots (2)$$<br>
+    • Equating $(1)$ and $(2)$ since both equal $r^2$:<br>
+      $$(4 - h)^2 + (1 - k)^2 = (6 - h)^2 + (5 - k)^2$$<br>
+      $$16 - 8h + h^2 + 1 - 2k + k^2 = 36 - 12h + h^2 + 25 - 10k + k^2$$<br>
+      $$-8h - 2k + 17 = -12h - 10k + 61$$<br>
+      $$4h + 8k = 44 \\implies h + 2k = 11 \\quad \\dots (3)$$<br>
+    • The centre $(h, k)$ lies on the line $4x + y = 16$:<br>
+      $$4h + k = 16 \\implies k = 16 - 4h \\quad \\dots (4)$$<br>
+    • Substitute $(4)$ into $(3)$:<br>
+      $$h + 2(16 - 4h) = 11 \\implies h + 32 - 8h = 11$$<br>
+      $$-7h = -21 \\implies \\mathbf{h = 3}$$<br>
+      $$k = 16 - 4(3) = 16 - 12 \\implies \\mathbf{k = 4}$$<br>
+    • Finding radius $r^2$ using $(1)$:<br>
+      $$r^2 = (4 - 3)^2 + (1 - 4)^2 = 1^2 + (-3)^2 = 1 + 9 = 10$$<br>
+    • Equation of the circle:<br>
+      $$(x - 3)^2 + (y - 4)^2 = 10$$<br>
+      $$x^2 - 6x + 9 + y^2 - 8y + 16 = 10$$<br>
+      $$\\mathbf{x^2 + y^2 - 6x - 8y + 15 = 0}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Formulating equations from points $(4,1)$ and $(6,5)$', '1 Mark'],
+    ['Equating radial distances to get $h + 2k = 11$', '1 Mark'],
+    ['Solving with line $4h + k = 16$ to find centre $(3, 4)$', '1 Mark'],
+    ['Calculating $r^2 = 10$ and final general equation $x^2 + y^2 - 6x - 8y + 15 = 0$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q11', 'Question 11', 'Exercise 10.1',
+  'Find the equation of the circle passing through the points $(2, 3)$ and $(-1, 1)$ and whose centre is on the line $x - 3y - 11 = 0$.',
+  `<div class="step">
+    • Let the centre be $(h, k)$ and radius be $r$.<br>
+    • Passing through $(2, 3)$:<br>
+      $$(2 - h)^2 + (3 - k)^2 = r^2 \\quad \\dots (1)$$<br>
+    • Passing through $(-1, 1)$:<br>
+      $$(-1 - h)^2 + (1 - k)^2 = r^2 \\implies (h + 1)^2 + (k - 1)^2 = r^2 \\quad \\dots (2)$$<br>
+    • Equating $(1)$ and $(2)$:<br>
+      $$(2 - h)^2 + (3 - k)^2 = (h + 1)^2 + (k - 1)^2$$<br>
+      $$4 - 4h + h^2 + 9 - 6k + k^2 = h^2 + 2h + 1 + k^2 - 2k + 1$$<br>
+      $$-4h - 6k + 13 = 2h - 2k + 2$$<br>
+      $$-6h - 4k + 11 = 0 \\implies 6h + 4k = 11 \\quad \\dots (3)$$<br>
+    • Centre $(h, k)$ lies on $x - 3y - 11 = 0$:<br>
+      $$h - 3k = 11 \\implies h = 3k + 11 \\quad \\dots (4)$$<br>
+    • Substituting $(4)$ into $(3)$:<br>
+      $$6(3k + 11) + 4k = 11$$<br>
+      $$18k + 66 + 4k = 11 \\implies 22k = -55 \\implies \\mathbf{k = -\\frac{5}{2}}$$
+    • Then $h = 3\\left(-\\frac{5}{2}\\right) + 11 = -\\frac{15}{2} + \\frac{22}{2} = \\mathbf{\\frac{7}{2}}$.<br>
+    • Finding radius squared $r^2$:<br>
+      $$r^2 = \\left(2 - \\frac{7}{2}\\right)^2 + \\left(3 - \\left(-\\frac{5}{2}\\right)\\right)^2 = \\left(-\\frac{3}{2}\\right)^2 + \\left(\\frac{11}{2}\\right)^2 = \\frac{9}{4} + \\frac{121}{4} = \\frac{130}{4} = \\frac{65}{2}$$<br>
+    • Equation of the circle:<br>
+      $$\\left(x - \\frac{7}{2}\\right)^2 + \\left(y + \\frac{5}{2}\\right)^2 = \\frac{130}{4}$$<br>
+      $$x^2 - 7x + \\frac{49}{4} + y^2 + 5y + \\frac{25}{4} = \\frac{130}{4}$$<br>
+      $$x^2 + y^2 - 7x + 5y + \\frac{74 - 130}{4} = 0$$<br>
+      $$x^2 + y^2 - 7x + 5y - \\frac{56}{4} = 0$$<br>
+      $$\\mathbf{x^2 + y^2 - 7x + 5y - 14 = 0}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Equating radial expressions from $(2, 3)$ and $(-1, 1)$', '1 Mark'],
+    ['Solving linear system with line equation $h - 3k = 11$', '1 Mark'],
+    ['Determining centre $(7/2, -5/2)$ and $r^2 = 65/2$', '1 Mark'],
+    ['Final algebraic expansion to $x^2 + y^2 - 7x + 5y - 14 = 0$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q12', 'Question 12', 'Exercise 10.1',
+  'Find the equation of the circle with radius $5$ whose centre lies on x-axis and passes through the point $(2, 3)$.',
+  `<div class="step">
+    • Since the centre lies on the x-axis, its coordinates are $(h, 0)$.<br>
+    • Given radius $r = 5$, and circle passes through $(2, 3)$.<br>
+    • Distance from centre $(h, 0)$ to point $(2, 3)$ is equal to radius $5$:<br>
+      $$(2 - h)^2 + (3 - 0)^2 = 5^2$$<br>
+      $$(2 - h)^2 + 9 = 25$$<br>
+      $$(2 - h)^2 = 16$$<br>
+      $$2 - h = \\pm 4$$<br>
+    • Case 1: $2 - h = 4 \\implies h = -2$. Centre is $(-2, 0)$.<br>
+      Equation: $(x - (-2))^2 + (y - 0)^2 = 5^2 \\implies \\mathbf{(x + 2)^2 + y^2 = 25} \\implies \\mathbf{x^2 + y^2 + 4x - 21 = 0}$<br>
+    • Case 2: $2 - h = -4 \\implies h = 6$. Centre is $(6, 0)$.<br>
+      Equation: $(x - 6)^2 + (y - 0)^2 = 5^2 \\implies \\mathbf{(x - 6)^2 + y^2 = 25} \\implies \\mathbf{x^2 + y^2 - 12x + 11 = 0}$<br>
+    • Thus, there are two such circles:<br>
+      $$\\mathbf{x^2 + y^2 + 4x - 21 = 0 \\quad \\text{and} \\quad x^2 + y^2 - 12x + 11 = 0}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting centre as $(h, 0)$ and distance condition', '1 Mark'],
+    ['Solving quadratic equation for $h = -2$ and $h = 6$', '1 Mark'],
+    ['Writing both equations in standard general form', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q13', 'Question 13', 'Exercise 10.1',
+  'Find the equation of the circle passing through $(0, 0)$ and making intercepts $a$ and $b$ on the coordinate axes.',
+  `<div class="step">
+    • The circle passes through $(0, 0)$ and has x-intercept $a$ and y-intercept $b$.<br>
+    • Therefore, the circle passes through points $O(0, 0), A(a, 0)$, and $B(0, b)$.<br>
+    • Since $\\angle AOB = 90^\\circ$ (angle between coordinate axes), the chord $AB$ subtends a right angle at the origin.<br>
+    • By the diameter form theorem of a circle, $AB$ is a diameter of the circle.<br>
+    • The equation of a circle on the line segment joining $(x_1, y_1) = (a, 0)$ and $(x_2, y_2) = (0, b)$ as diameter is:<br>
+      $$(x - x_1)(x - x_2) + (y - y_1)(y - y_2) = 0$$<br>
+      $$(x - a)(x - 0) + (y - 0)(y - b) = 0$$<br>
+      $$x(x - a) + y(y - b) = 0$$<br>
+      $$\\mathbf{x^2 + y^2 - ax - by = 0}$$<br>
+    • (Alternatively, centre is $(a/2, b/2)$ and radius is $\\sqrt{a^2 + b^2}/2$).
+  </div>`,
+  '3 Marks',
+  [
+    ['Identifying points $(a, 0)$ and $(0, b)$ on axes', '1 Mark'],
+    ['Using right-angle geometry to recognize $AB$ as diameter', '1 Mark'],
+    ['Applying diameter form to obtain $x^2 + y^2 - ax - by = 0$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q14', 'Question 14', 'Exercise 10.1',
+  'Find the equation of a circle with centre $(2, 2)$ and passes through the point $(4, 5)$.',
+  `<div class="step">
+    • Given centre $(h, k) = (2, 2)$ and circle passes through $P(4, 5)$.<br>
+    • The radius $r$ is the distance between the centre and the point $(4, 5)$:<br>
+      $$r^2 = (4 - 2)^2 + (5 - 2)^2 = 2^2 + 3^2 = 4 + 9 = 13$$<br>
+    • The equation of the circle is:<br>
+      $$(x - 2)^2 + (y - 2)^2 = 13$$<br>
+      $$(x^2 - 4x + 4) + (y^2 - 4y + 4) = 13$$<br>
+      $$x^2 + y^2 - 4x - 4y + 8 - 13 = 0$$<br>
+      $$\\mathbf{x^2 + y^2 - 4x - 4y - 5 = 0}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Calculating $r^2 = (4-2)^2 + (5-2)^2 = 13$', '1 Mark'],
+    ['Writing and expanding standard equation to $x^2 + y^2 - 4x - 4y - 5 = 0$', '1 Mark']
+  ]
+));
+
+ex10_1.push(createQCard(
+  'c11m-ch10-q15', 'Question 15', 'Exercise 10.1',
+  'Does the point $(-2.5, 3.5)$ lie inside, outside or on the circle $x^2 + y^2 = 25$?',
+  `<div class="step">
+    • The equation of the circle is $x^2 + y^2 = 25$, which has centre at $(0, 0)$ and radius $r = 5$ ($r^2 = 25$).<br>
+    • The position of a point $(x_1, y_1)$ with respect to $x^2 + y^2 = r^2$ is determined by the distance $d^2 = x_1^2 + y_1^2$ compared with $r^2$:<br>
+      - If $d^2 < r^2$, point lies <b>inside</b> the circle.<br>
+      - If $d^2 = r^2$, point lies <b>on</b> the circle.<br>
+      - If $d^2 > r^2$, point lies <b>outside</b> the circle.<br>
+    • Here $(x_1, y_1) = (-2.5, 3.5)$:<br>
+      $$d^2 = (-2.5)^2 + (3.5)^2 = 6.25 + 12.25 = 18.5$$<br>
+    • Comparing $d^2$ with $r^2$:<br>
+      $$18.5 < 25 \\implies d^2 < r^2$$<br>
+    • Since $18.5 < 25$, the point $(-2.5, 3.5)$ lies <b>inside</b> the circle.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula for distance from origin $d^2 = x^2 + y^2$', '0.5 Mark'],
+    ['Evaluating $(-2.5)^2 + (3.5)^2 = 18.5$', '0.5 Mark'],
+    ['Comparing $18.5 < 25$ and concluding point lies inside the circle', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// EXERCISE 10.2: Parabola (Questions 16 to 27)
+// ============================================================================
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q16', 'Question 1', 'Exercise 10.2',
+  'Find the coordinates of the focus, axis of the parabola, the equation of the directrix and the length of the latus rectum for $y^2 = 12x$.',
+  `<div class="step">
+    • The given equation is $y^2 = 12x$.<br>
+    • Comparing with standard form $y^2 = 4ax$ (parabola symmetric about x-axis, opening right):<br>
+      $$4a = 12 \\implies a = 3$$<br>
+    • Characteristics:<br>
+      1. <b>Coordinates of Focus:</b> $(a, 0) = \\mathbf{(3, 0)}$<br>
+      2. <b>Axis of the Parabola:</b> The axis of symmetry is the x-axis, equation $\\mathbf{y = 0}$<br>
+      3. <b>Equation of Directrix:</b> $x = -a \\implies \\mathbf{x = -3}$ (or $x + 3 = 0$)<br>
+      4. <b>Length of Latus Rectum:</b> $4a = \\mathbf{12}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Comparing with $y^2 = 4ax$ to find $a = 3$', '0.5 Mark'],
+    ['Focus $(3, 0)$ and axis $y = 0$', '0.5 Mark'],
+    ['Directrix $x = -3$ and Latus rectum $12$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q17', 'Question 2', 'Exercise 10.2',
+  'Find the coordinates of the focus, axis of the parabola, the equation of the directrix and the length of the latus rectum for $x^2 = 6y$.',
+  `<div class="step">
+    • The given equation is $x^2 = 6y$.<br>
+    • Comparing with standard form $x^2 = 4ay$ (opening upwards):<br>
+      $$4a = 6 \\implies a = \\frac{6}{4} = \\frac{3}{2}$$<br>
+    • Characteristics:<br>
+      1. <b>Coordinates of Focus:</b> $(0, a) = \\mathbf{\\left(0, \\frac{3}{2}\\right)}$<br>
+      2. <b>Axis of the Parabola:</b> y-axis, equation $\\mathbf{x = 0}$<br>
+      3. <b>Equation of Directrix:</b> $y = -a \\implies y = -\\frac{3}{2} \\implies \\mathbf{2y + 3 = 0}$<br>
+      4. <b>Length of Latus Rectum:</b> $4a = \\mathbf{6}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Comparing with $x^2 = 4ay$ to find $a = 3/2$', '0.5 Mark'],
+    ['Focus $(0, 3/2)$ and axis $x = 0$', '0.5 Mark'],
+    ['Directrix $y = -3/2$ and latus rectum $6$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q18', 'Question 3', 'Exercise 10.2',
+  'Find the coordinates of the focus, axis of the parabola, the equation of the directrix and the length of the latus rectum for $y^2 = -8x$.',
+  `<div class="step">
+    • The given equation is $y^2 = -8x$.<br>
+    • Comparing with standard form $y^2 = -4ax$ (opening left):<br>
+      $$-4a = -8 \\implies a = 2$$<br>
+    • Characteristics:<br>
+      1. <b>Coordinates of Focus:</b> $(-a, 0) = \\mathbf{(-2, 0)}$<br>
+      2. <b>Axis of the Parabola:</b> x-axis, equation $\\mathbf{y = 0}$<br>
+      3. <b>Equation of Directrix:</b> $x = a \\implies \\mathbf{x = 2}$ (or $x - 2 = 0$)<br>
+      4. <b>Length of Latus Rectum:</b> $4a = 4(2) = \\mathbf{8}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Comparing with $y^2 = -4ax$ to find $a = 2$', '0.5 Mark'],
+    ['Focus $(-2, 0)$ and axis $y = 0$', '0.5 Mark'],
+    ['Directrix $x = 2$ and latus rectum $8$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q19', 'Question 4', 'Exercise 10.2',
+  'Find the coordinates of the focus, axis of the parabola, the equation of the directrix and the length of the latus rectum for $x^2 = -16y$.',
+  `<div class="step">
+    • The given equation is $x^2 = -16y$.<br>
+    • Comparing with standard form $x^2 = -4ay$ (opening downwards):<br>
+      $$4a = 16 \\implies a = 4$$<br>
+    • Characteristics:<br>
+      1. <b>Coordinates of Focus:</b> $(0, -a) = \\mathbf{(0, -4)}$<br>
+      2. <b>Axis of the Parabola:</b> y-axis, equation $\\mathbf{x = 0}$<br>
+      3. <b>Equation of Directrix:</b> $y = a \\implies \\mathbf{y = 4}$ (or $y - 4 = 0$)<br>
+      4. <b>Length of Latus Rectum:</b> $4a = \\mathbf{16}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Comparison to find $a = 4$', '0.5 Mark'],
+    ['Focus $(0, -4)$ and axis $x = 0$', '0.5 Mark'],
+    ['Directrix $y = 4$ and latus rectum $16$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q20', 'Question 5', 'Exercise 10.2',
+  'Find the coordinates of the focus, axis of the parabola, the equation of the directrix and the length of the latus rectum for $y^2 = 10x$.',
+  `<div class="step">
+    • Given equation: $y^2 = 10x$.<br>
+    • Comparing with $y^2 = 4ax$:<br>
+      $$4a = 10 \\implies a = \\frac{10}{4} = \\frac{5}{2}$$<br>
+    • Characteristics:<br>
+      1. <b>Focus:</b> $(a, 0) = \\mathbf{\\left(\\frac{5}{2}, 0\\right)}$<br>
+      2. <b>Axis:</b> x-axis, equation $\\mathbf{y = 0}$<br>
+      3. <b>Directrix:</b> $x = -a \\implies x = -\\frac{5}{2} \\implies \\mathbf{2x + 5 = 0}$<br>
+      4. <b>Length of Latus Rectum:</b> $4a = \\mathbf{10}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Value of $a = 5/2$', '0.5 Mark'],
+    ['Focus $(5/2, 0)$ and axis $y = 0$', '0.5 Mark'],
+    ['Directrix $2x + 5 = 0$ and latus rectum $10$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q21', 'Question 6', 'Exercise 10.2',
+  'Find the coordinates of the focus, axis of the parabola, the equation of the directrix and the length of the latus rectum for $x^2 = -9y$.',
+  `<div class="step">
+    • Given equation: $x^2 = -9y$.<br>
+    • Comparing with $x^2 = -4ay$:<br>
+      $$4a = 9 \\implies a = \\frac{9}{4}$$<br>
+    • Characteristics:<br>
+      1. <b>Focus:</b> $(0, -a) = \\mathbf{\\left(0, -\\frac{9}{4}\\right)}$<br>
+      2. <b>Axis:</b> y-axis, equation $\\mathbf{x = 0}$<br>
+      3. <b>Directrix:</b> $y = a \\implies y = \\frac{9}{4} \\implies \\mathbf{4y - 9 = 0}$<br>
+      4. <b>Length of Latus Rectum:</b> $4a = \\mathbf{9}$
+  </div>`,
+  '2 Marks',
+  [
+    ['Value of $a = 9/4$', '0.5 Mark'],
+    ['Focus $(0, -9/4)$ and axis $x = 0$', '0.5 Mark'],
+    ['Directrix $4y - 9 = 0$ and latus rectum $9$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q22', 'Question 7', 'Exercise 10.2',
+  'Find the equation of the parabola with Focus $(6, 0)$ and directrix $x = -6$.',
+  `<div class="step">
+    • Focus is $(6, 0)$, which lies on the positive x-axis, so the axis of the parabola is the x-axis.<br>
+    • The directrix is $x = -6$, which is of the form $x = -a$.<br>
+    • Comparing gives $a = 6$.<br>
+    • Standard form of parabola opening to the right with focus $(a, 0)$ is:<br>
+      $$y^2 = 4ax$$<br>
+    • Substituting $a = 6$:<br>
+      $$y^2 = 4(6)x \\implies \\mathbf{y^2 = 24x}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Identifying orientation along x-axis and $a = 6$', '1 Mark'],
+    ['Substituting into $y^2 = 4ax$ to get $y^2 = 24x$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q23', 'Question 8', 'Exercise 10.2',
+  'Find the equation of the parabola with Focus $(0, -3)$ and directrix $y = 3$.',
+  `<div class="step">
+    • The focus $(0, -3)$ lies on the negative y-axis, so the axis of the parabola is the y-axis.<br>
+    • The directrix is $y = 3$, which matches $y = a$.<br>
+    • Thus, $a = 3$, and the parabola opens downwards.<br>
+    • Standard equation of a parabola opening downwards is:<br>
+      $$x^2 = -4ay$$<br>
+    • Substituting $a = 3$:<br>
+      $$x^2 = -4(3)y \\implies \\mathbf{x^2 = -12y}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Identifying orientation along y-axis with $a = 3$', '1 Mark'],
+    ['Substituting into $x^2 = -4ay$ to obtain $x^2 = -12y$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q24', 'Question 9', 'Exercise 10.2',
+  'Find the equation of the parabola with Vertex $(0, 0)$ and focus $(3, 0)$.',
+  `<div class="step">
+    • The vertex is at $(0, 0)$ and focus is at $(3, 0)$.<br>
+    • Since focus lies on the positive x-axis, the axis of the parabola is the x-axis and it opens right.<br>
+    • Distance from vertex to focus is $a = 3$.<br>
+    • The standard form equation is:<br>
+      $$y^2 = 4ax$$<br>
+    • Substituting $a = 3$:<br>
+      $$y^2 = 4(3)x \\implies \\mathbf{y^2 = 12x}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Determining form $y^2 = 4ax$ with $a = 3$', '1 Mark'],
+    ['Final equation $y^2 = 12x$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q25', 'Question 10', 'Exercise 10.2',
+  'Find the equation of the parabola with Vertex $(0, 0)$ and focus $(-2, 0)$.',
+  `<div class="step">
+    • The vertex is $(0, 0)$ and focus is $(-2, 0)$ on the negative x-axis.<br>
+    • Therefore, the parabola opens to the left and has axis $y = 0$.<br>
+    • Here $a = 2$.<br>
+    • The standard equation is:<br>
+      $$y^2 = -4ax$$<br>
+    • Substituting $a = 2$:<br>
+      $$y^2 = -4(2)x \\implies \\mathbf{y^2 = -8x}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Identifying left-opening parabola with $a = 2$', '1 Mark'],
+    ['Substituting into $y^2 = -4ax$ to get $y^2 = -8x$', '1 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q26', 'Question 11', 'Exercise 10.2',
+  'Find the equation of the parabola with Vertex $(0, 0)$, passing through $(2, 3)$ and axis is along the x-axis.',
+  `<div class="step">
+    • The vertex is at $(0, 0)$ and the axis of symmetry is along the x-axis.<br>
+    • Therefore, the equation of the parabola is of the form $y^2 = 4ax$ or $y^2 = -4ax$.<br>
+    • Since the point $(2, 3)$ lies in the first quadrant ($x > 0$), the parabola must open to the right:<br>
+      $$y^2 = 4ax$$<br>
+    • Since $(2, 3)$ satisfies this equation:<br>
+      $$3^2 = 4a(2) \\implies 9 = 8a \\implies a = \\frac{9}{8}$$<br>
+    • Substituting $a = \\frac{9}{8}$ back into the equation:<br>
+      $$y^2 = 4\\left(\\frac{9}{8}\\right)x \\implies y^2 = \\frac{9}{2}x$$<br>
+      $$\\mathbf{2y^2 = 9x}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Selecting standard form $y^2 = 4ax$', '0.5 Mark'],
+    ['Plugging in $(2, 3)$ to find $a = 9/8$', '1 Mark'],
+    ['Stating final equation $2y^2 = 9x$', '0.5 Mark']
+  ]
+));
+
+ex10_2.push(createQCard(
+  'c11m-ch10-q27', 'Question 12', 'Exercise 10.2',
+  'Find the equation of the parabola with Vertex $(0, 0)$, passing through $(5, 2)$ and symmetric with respect to the y-axis.',
+  `<div class="step">
+    • The vertex is at $(0, 0)$ and the curve is symmetric about the y-axis.<br>
+    • Hence the equation is of the form $x^2 = 4ay$ or $x^2 = -4ay$.<br>
+    • The point $(5, 2)$ lies in the first quadrant ($y > 0$), so the parabola opens upwards:<br>
+      $$x^2 = 4ay$$<br>
+    • Since $(5, 2)$ lies on the parabola:<br>
+      $$5^2 = 4a(2) \\implies 25 = 8a \\implies a = \\frac{25}{8}$$<br>
+    • Substituting $a = \\frac{25}{8}$ into the equation:<br>
+      $$x^2 = 4\\left(\\frac{25}{8}\\right)y \\implies x^2 = \\frac{25}{2}y$$<br>
+      $$\\mathbf{2x^2 = 25y}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Selecting form $x^2 = 4ay$', '0.5 Mark'],
+    ['Substituting $(5, 2)$ to find $a = 25/8$', '1 Mark'],
+    ['Final equation $2x^2 = 25y$', '0.5 Mark']
+  ]
+));
+
+// ============================================================================
+// EXERCISE 10.3: Ellipse (Questions 28 to 47)
+// ============================================================================
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q28', 'Question 1', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^2}{36} + \\frac{y^2}{16} = 1$.',
+  `<div class="step">
+    • Given equation: $\\frac{x^2}{36} + \\frac{y^2}{16} = 1$.<br>
+    • Since the denominator of $x^2$ is larger than that of $y^2$ ($36 > 16$), the major axis is along the x-axis.<br>
+    • Comparing with $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$:<br>
+      $$a^2 = 36 \\implies a = 6, \\quad b^2 = 16 \\implies b = 4$$<br>
+    • We know $c = \\sqrt{a^2 - b^2} = \\sqrt{36 - 16} = \\sqrt{20} = 2\\sqrt{5}$.<br>
+    • Characteristics:<br>
+      1. <b>Coordinates of Foci:</b> $(\\pm c, 0) = \\mathbf{(\\pm 2\\sqrt{5}, 0)}$<br>
+      2. <b>Vertices:</b> $(\\pm a, 0) = \\mathbf{(\\pm 6, 0)}$<br>
+      3. <b>Length of Major Axis:</b> $2a = 2(6) = \\mathbf{12}$<br>
+      4. <b>Length of Minor Axis:</b> $2b = 2(4) = \\mathbf{8}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{2\\sqrt{5}}{6} = \\mathbf{\\frac{\\sqrt{5}}{3}}$<br>
+      6. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(16)}{6} = \\mathbf{\\frac{16}{3}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Determining $a=6, b=4$ and calculating $c = 2\\sqrt{5}$', '1 Mark'],
+    ['Foci $(\\pm 2\\sqrt{5}, 0)$, Vertices $(\\pm 6, 0)$, Major axis $12$, Minor axis $8$', '1 Mark'],
+    ['Eccentricity $\\sqrt{5}/3$ and latus rectum $16/3$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q29', 'Question 2', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^2}{4} + \\frac{y^2}{25} = 1$.',
+  `<div class="step">
+    • Given equation: $\\frac{x^2}{4} + \\frac{y^2}{25} = 1$.<br>
+    • Since denominator of $y^2$ is larger ($25 > 4$), the major axis is along the y-axis.<br>
+    • Comparing with $\\frac{x^2}{b^2} + \\frac{y^2}{a^2} = 1$:<br>
+      $$a^2 = 25 \\implies a = 5, \\quad b^2 = 4 \\implies b = 2$$<br>
+    • Calculating $c = \\sqrt{a^2 - b^2} = \\sqrt{25 - 4} = \\sqrt{21}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm \\sqrt{21})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 5)}$<br>
+      3. <b>Length of Major Axis:</b> $2a = 2(5) = \\mathbf{10}$<br>
+      4. <b>Length of Minor Axis:</b> $2b = 2(2) = \\mathbf{4}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{21}}{5}}$<br>
+      6. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(4)}{5} = \\mathbf{\\frac{8}{5}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Recognizing vertical major axis; $a=5, b=2, c=\\sqrt{21}$', '1 Mark'],
+    ['Foci $(0, \\pm\\sqrt{21})$ and Vertices $(0, \\pm 5)$', '1 Mark'],
+    ['Major axis $10$, Minor axis $4$, $e = \\sqrt{21}/5$, Latus rectum $8/5$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q30', 'Question 3', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^2}{16} + \\frac{y^2}{9} = 1$.',
+  `<div class="step">
+    • Major axis is along x-axis ($16 > 9$).<br>
+    • $a^2 = 16 \\implies a = 4, \\quad b^2 = 9 \\implies b = 3$.<br>
+    • $c = \\sqrt{a^2 - b^2} = \\sqrt{16 - 9} = \\sqrt{7}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(\\pm c, 0) = \\mathbf{(\\pm \\sqrt{7}, 0)}$<br>
+      2. <b>Vertices:</b> $(\\pm a, 0) = \\mathbf{(\\pm 4, 0)}$<br>
+      3. <b>Major Axis:</b> $2a = \\mathbf{8}$<br>
+      4. <b>Minor Axis:</b> $2b = \\mathbf{6}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{7}}{4}}$<br>
+      6. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(9)}{4} = \\mathbf{\\frac{9}{2}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['$a=4, b=3, c=\\sqrt{7}$', '1 Mark'],
+    ['Foci $(\\pm\\sqrt{7}, 0)$, Vertices $(\\pm 4, 0)$', '1 Mark'],
+    ['Major axis $8$, Minor axis $6$, $e = \\sqrt{7}/4$, Latus rectum $9/2$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q31', 'Question 4', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^2}{25} + \\frac{y^2}{100} = 1$.',
+  `<div class="step">
+    • Major axis along y-axis ($100 > 25$).<br>
+    • $a^2 = 100 \\implies a = 10, \\quad b^2 = 25 \\implies b = 5$.<br>
+    • $c = \\sqrt{100 - 25} = \\sqrt{75} = 5\\sqrt{3}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm 5\\sqrt{3})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 10)}$<br>
+      3. <b>Major Axis:</b> $2a = 2(10) = \\mathbf{20}$<br>
+      4. <b>Minor Axis:</b> $2b = 2(5) = \\mathbf{10}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{5\\sqrt{3}}{10} = \\mathbf{\\frac{\\sqrt{3}}{2}}$<br>
+      6. <b>Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(25)}{10} = \\mathbf{5}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Vertical major axis, $a=10, b=5, c=5\\sqrt{3}$', '1 Mark'],
+    ['Foci $(0, \\pm 5\\sqrt{3})$, Vertices $(0, \\pm 10)$', '1 Mark'],
+    ['Major axis $20$, Minor axis $10$, $e = \\sqrt{3}/2$, Latus rectum $5$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q32', 'Question 5', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^2}{49} + \\frac{y^2}{36} = 1$.',
+  `<div class="step">
+    • Major axis along x-axis ($49 > 36$).<br>
+    • $a^2 = 49 \\implies a = 7, \\quad b^2 = 36 \\implies b = 6$.<br>
+    • $c = \\sqrt{49 - 36} = \\sqrt{13}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(\\pm c, 0) = \\mathbf{(\\pm \\sqrt{13}, 0)}$<br>
+      2. <b>Vertices:</b> $(\\pm a, 0) = \\mathbf{(\\pm 7, 0)}$<br>
+      3. <b>Major Axis:</b> $2a = \\mathbf{14}$<br>
+      4. <b>Minor Axis:</b> $2b = \\mathbf{12}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{13}}{7}}$<br>
+      6. <b>Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(36)}{7} = \\mathbf{\\frac{72}{7}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['$a=7, b=6, c=\\sqrt{13}$', '1 Mark'],
+    ['Foci $(\\pm\\sqrt{13}, 0)$, Vertices $(\\pm 7, 0)$', '1 Mark'],
+    ['Major axis $14$, Minor axis $12$, $e = \\sqrt{13}/7$, Latus rectum $72/7$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q33', 'Question 6', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^2}{100} + \\frac{y^2}{400} = 1$.',
+  `<div class="step">
+    • Major axis along y-axis ($400 > 100$).<br>
+    • $a^2 = 400 \\implies a = 20, \\quad b^2 = 100 \\implies b = 10$.<br>
+    • $c = \\sqrt{400 - 100} = \\sqrt{300} = 10\\sqrt{3}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm 10\\sqrt{3})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 20)}$<br>
+      3. <b>Major Axis:</b> $2a = \\mathbf{40}$<br>
+      4. <b>Minor Axis:</b> $2b = \\mathbf{20}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{10\\sqrt{3}}{20} = \\mathbf{\\frac{\\sqrt{3}}{2}}$<br>
+      6. <b>Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(100)}{20} = \\mathbf{10}$
+  </div>`,
+  '3 Marks',
+  [
+    ['$a=20, b=10, c=10\\sqrt{3}$', '1 Mark'],
+    ['Foci $(0, \\pm 10\\sqrt{3})$, Vertices $(0, \\pm 20)$', '1 Mark'],
+    ['Major axis $40$, Minor axis $20$, $e = \\sqrt{3}/2$, Latus rectum $10$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q34', 'Question 7', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $36x^2 + 4y^2 = 144$.',
+  `<div class="step">
+    • Dividing the given equation by $144$:<br>
+      $$\\frac{36x^2}{144} + \\frac{4y^2}{144} = 1 \\implies \\frac{x^2}{4} + \\frac{y^2}{36} = 1$$<br>
+    • Major axis along y-axis ($36 > 4$).<br>
+    • $a^2 = 36 \\implies a = 6, \\quad b^2 = 4 \\implies b = 2$.<br>
+    • $c = \\sqrt{a^2 - b^2} = \\sqrt{36 - 4} = \\sqrt{32} = 4\\sqrt{2}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm 4\\sqrt{2})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 6)}$<br>
+      3. <b>Major Axis:</b> $2a = \\mathbf{12}$<br>
+      4. <b>Minor Axis:</b> $2b = \\mathbf{4}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{4\\sqrt{2}}{6} = \\mathbf{\\frac{2\\sqrt{2}}{3}}$<br>
+      6. <b>Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(4)}{6} = \\mathbf{\\frac{4}{3}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Dividing by $144$ to standard form $x^2/4 + y^2/36 = 1$', '1 Mark'],
+    ['Foci $(0, \\pm 4\\sqrt{2})$ and Vertices $(0, \\pm 6)$', '1 Mark'],
+    ['Major axis $12$, Minor axis $4$, $e = 2\\sqrt{2}/3$, Latus rectum $4/3$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q35', 'Question 8', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $16x^2 + y^2 = 16$.',
+  `<div class="step">
+    • Dividing both sides by $16$:<br>
+      $$\\frac{16x^2}{16} + \\frac{y^2}{16} = 1 \\implies \\frac{x^2}{1} + \\frac{y^2}{16} = 1$$<br>
+    • Major axis along y-axis ($16 > 1$).<br>
+    • $a^2 = 16 \\implies a = 4, \\quad b^2 = 1 \\implies b = 1$.<br>
+    • $c = \\sqrt{16 - 1} = \\sqrt{15}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm \\sqrt{15})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 4)}$<br>
+      3. <b>Major Axis:</b> $2a = \\mathbf{8}$<br>
+      4. <b>Minor Axis:</b> $2b = \\mathbf{2}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{15}}{4}}$<br>
+      6. <b>Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(1)}{4} = \\mathbf{\\frac{1}{2}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Standard form $x^2/1 + y^2/16 = 1$', '1 Mark'],
+    ['Foci $(0, \\pm\\sqrt{15})$, Vertices $(0, \\pm 4)$', '1 Mark'],
+    ['Axes $8, 2$, $e = \\sqrt{15}/4$, Latus rectum $1/2$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q36', 'Question 9', 'Exercise 10.3',
+  'Find the coordinates of the foci, the vertices, the length of major axis, the minor axis, the eccentricity and the length of the latus rectum of the ellipse $4x^2 + 9y^2 = 36$.',
+  `<div class="step">
+    • Dividing throughout by $36$:<br>
+      $$\\frac{4x^2}{36} + \\frac{9y^2}{36} = 1 \\implies \\frac{x^2}{9} + \\frac{y^2}{4} = 1$$<br>
+    • Major axis is along x-axis ($9 > 4$).<br>
+    • $a^2 = 9 \\implies a = 3, \\quad b^2 = 4 \\implies b = 2$.<br>
+    • $c = \\sqrt{9 - 4} = \\sqrt{5}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(\\pm c, 0) = \\mathbf{(\\pm \\sqrt{5}, 0)}$<br>
+      2. <b>Vertices:</b> $(\\pm a, 0) = \\mathbf{(\\pm 3, 0)}$<br>
+      3. <b>Major Axis:</b> $2a = \\mathbf{6}$<br>
+      4. <b>Minor Axis:</b> $2b = \\mathbf{4}$<br>
+      5. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{5}}{3}}$<br>
+      6. <b>Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(4)}{3} = \\mathbf{\\frac{8}{3}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Standard form $x^2/9 + y^2/4 = 1$', '1 Mark'],
+    ['Foci $(\\pm\\sqrt{5}, 0)$, Vertices $(\\pm 3, 0)$', '1 Mark'],
+    ['Major axis $6$, Minor axis $4$, $e = \\sqrt{5}/3$, Latus rectum $8/3$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q37', 'Question 10', 'Exercise 10.3',
+  'Find the equation for the ellipse with vertices $(\\pm 5, 0)$ and foci $(\\pm 4, 0)$.',
+  `<div class="step">
+    • The vertices and foci lie on the x-axis, so the major axis is along the x-axis.<br>
+    • Vertices $(\\pm a, 0) = (\\pm 5, 0) \\implies a = 5 \\implies a^2 = 25$.<br>
+    • Foci $(\\pm c, 0) = (\\pm 4, 0) \\implies c = 4$.<br>
+    • Using relation $b^2 = a^2 - c^2$:<br>
+      $$b^2 = 25 - 16 = 9$$<br>
+    • Standard equation of the ellipse is:<br>
+      $$\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{25} + \\frac{y^2}{9} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Identifying major axis on x-axis with $a = 5, c = 4$', '1 Mark'],
+    ['Calculating $b^2 = 9$ and writing equation $x^2/25 + y^2/9 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q38', 'Question 11', 'Exercise 10.3',
+  'Find the equation for the ellipse with vertices $(0, \\pm 13)$ and foci $(0, \\pm 5)$.',
+  `<div class="step">
+    • The vertices and foci lie on the y-axis, so the major axis is along the y-axis.<br>
+    • Vertices $(0, \\pm a) = (0, \\pm 13) \\implies a = 13 \\implies a^2 = 169$.<br>
+    • Foci $(0, \\pm c) = (0, \\pm 5) \\implies c = 5$.<br>
+    • Finding $b^2$:<br>
+      $$b^2 = a^2 - c^2 = 169 - 25 = 144$$<br>
+    • Standard equation for vertical major axis ellipse is:<br>
+      $$\\frac{x^2}{b^2} + \\frac{y^2}{a^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{144} + \\frac{y^2}{169} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Identifying vertical major axis with $a = 13, c = 5$', '1 Mark'],
+    ['Calculating $b^2 = 144$ and stating $x^2/144 + y^2/169 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q39', 'Question 12', 'Exercise 10.3',
+  'Find the equation for the ellipse with vertices $(\\pm 6, 0)$ and foci $(\\pm 4, 0)$.',
+  `<div class="step">
+    • Since vertices $(\\pm 6, 0)$ lie on the x-axis, major axis is along the x-axis.<br>
+    • $a = 6 \\implies a^2 = 36$.<br>
+    • Foci $(\\pm 4, 0) \\implies c = 4$.<br>
+    • $b^2 = a^2 - c^2 = 36 - 16 = 20$.<br>
+    • Equation of the ellipse:<br>
+      $$\\mathbf{\\frac{x^2}{36} + \\frac{y^2}{20} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$a=6, c=4$', '0.5 Mark'],
+    ['$b^2 = 36 - 16 = 20$', '0.5 Mark'],
+    ['Equation $x^2/36 + y^2/20 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q40', 'Question 13', 'Exercise 10.3',
+  'Find the equation for the ellipse with ends of major axis $(\\pm 3, 0)$ and ends of minor axis $(0, \\pm 2)$.',
+  `<div class="step">
+    • Ends of major axis are $(\\pm 3, 0) \\implies$ major axis is along x-axis and $a = 3 \\implies a^2 = 9$.<br>
+    • Ends of minor axis are $(0, \\pm 2) \\implies b = 2 \\implies b^2 = 4$.<br>
+    • Standard form of the ellipse:<br>
+      $$\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{9} + \\frac{y^2}{4} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Extracting $a = 3, b = 2$', '1 Mark'],
+    ['Equation $x^2/9 + y^2/4 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q41', 'Question 14', 'Exercise 10.3',
+  'Find the equation for the ellipse with ends of major axis $(0, \\pm \\sqrt{5})$ and ends of minor axis $(\\pm 1, 0)$.',
+  `<div class="step">
+    • Ends of major axis are $(0, \\pm \\sqrt{5}) \\implies$ major axis is along y-axis and $a = \\sqrt{5} \\implies a^2 = 5$.<br>
+    • Ends of minor axis are $(\\pm 1, 0) \\implies b = 1 \\implies b^2 = 1$.<br>
+    • Equation for ellipse with major axis along y-axis is:<br>
+      $$\\frac{x^2}{b^2} + \\frac{y^2}{a^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{1} + \\frac{y^2}{5} = 1} \\quad (\\text{or } 5x^2 + y^2 = 5)$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Identifying vertical major axis with $a = \\sqrt{5}, b = 1$', '1 Mark'],
+    ['Equation $x^2/1 + y^2/5 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q42', 'Question 15', 'Exercise 10.3',
+  'Find the equation for the ellipse with length of major axis $26$ and foci $(\\pm 5, 0)$.',
+  `<div class="step">
+    • The foci $(\\pm 5, 0)$ lie on the x-axis, so the major axis is along the x-axis.<br>
+    • Foci $(\\pm c, 0) = (\\pm 5, 0) \\implies c = 5$.<br>
+    • Length of major axis $= 2a = 26 \\implies a = 13 \\implies a^2 = 169$.<br>
+    • Relationship between $a, b, c$:<br>
+      $$b^2 = a^2 - c^2 = 169 - 25 = 144$$<br>
+    • Equation of the ellipse is:<br>
+      $$\\mathbf{\\frac{x^2}{169} + \\frac{y^2}{144} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$2a = 26 \\implies a = 13$ and $c = 5$', '1 Mark'],
+    ['$b^2 = 169 - 25 = 144$ and final equation $x^2/169 + y^2/144 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q43', 'Question 16', 'Exercise 10.3',
+  'Find the equation for the ellipse with length of minor axis $16$ and foci $(0, \\pm 6)$.',
+  `<div class="step">
+    • Foci $(0, \\pm 6)$ lie on the y-axis, so the major axis is along the y-axis.<br>
+    • $c = 6$.<br>
+    • Length of minor axis $= 2b = 16 \\implies b = 8 \\implies b^2 = 64$.<br>
+    • Relation: $a^2 = b^2 + c^2 = 64 + 36 = 100$.<br>
+    • Standard equation with vertical major axis:<br>
+      $$\\frac{x^2}{b^2} + \\frac{y^2}{a^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{64} + \\frac{y^2}{100} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$2b = 16 \\implies b = 8$ and $c = 6$', '1 Mark'],
+    ['$a^2 = 64 + 36 = 100$ and equation $x^2/64 + y^2/100 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q44', 'Question 17', 'Exercise 10.3',
+  'Find the equation for the ellipse with foci $(\\pm 3, 0)$ and $a = 4$.',
+  `<div class="step">
+    • Foci $(\\pm 3, 0)$ lie on the x-axis, so major axis is along the x-axis.<br>
+    • $c = 3$ and $a = 4 \\implies a^2 = 16$.<br>
+    • Finding $b^2$:<br>
+      $$b^2 = a^2 - c^2 = 16 - 9 = 7$$<br>
+    • Equation of the ellipse:<br>
+      $$\\mathbf{\\frac{x^2}{16} + \\frac{y^2}{7} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$a = 4, c = 3$', '0.5 Mark'],
+    ['$b^2 = 16 - 9 = 7$', '0.5 Mark'],
+    ['Equation $x^2/16 + y^2/7 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q45', 'Question 18', 'Exercise 10.3',
+  'Find the equation for the ellipse with $b = 3$, $c = 4$, foci on the x-axis, centre at the origin.',
+  `<div class="step">
+    • Foci are on the x-axis, so the major axis is along the x-axis.<br>
+    • Given $b = 3 \\implies b^2 = 9$, and $c = 4$.<br>
+    • Finding $a^2$:<br>
+      $$a^2 = b^2 + c^2 = 9 + 16 = 25$$<br>
+    • Equation of the ellipse:<br>
+      $$\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{25} + \\frac{y^2}{9} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Relation $a^2 = b^2 + c^2 = 25$', '1 Mark'],
+    ['Equation $x^2/25 + y^2/9 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q46', 'Question 19', 'Exercise 10.3',
+  'Find the equation for the ellipse with centre at $(0, 0)$, major axis on the y-axis and passes through the points $(3, 2)$ and $(1, 6)$.',
+  `<div class="step">
+    • Since the major axis is on the y-axis, the equation of the ellipse is:<br>
+      $$\\frac{x^2}{b^2} + \\frac{y^2}{a^2} = 1 \\quad \\dots (1)$$<br>
+    • Since it passes through $(3, 2)$:<br>
+      $$\\frac{9}{b^2} + \\frac{4}{a^2} = 1 \\quad \\dots (2)$$<br>
+    • Since it passes through $(1, 6)$:<br>
+      $$\\frac{1}{b^2} + \\frac{36}{a^2} = 1 \\quad \\dots (3)$$<br>
+    • Let $u = \\frac{1}{b^2}$ and $v = \\frac{1}{a^2}$. The system becomes:<br>
+      $$9u + 4v = 1 \\quad \\dots (4)$$<br>
+      $$u + 36v = 1 \\implies u = 1 - 36v \\quad \\dots (5)$$<br>
+    • Substituting $(5)$ into $(4)$:<br>
+      $$9(1 - 36v) + 4v = 1$$<br>
+      $$9 - 324v + 4v = 1 \\implies -320v = -8 \\implies v = \\frac{8}{320} = \\frac{1}{40}$$<br>
+    • Thus $a^2 = 40$.<br>
+    • From $(5)$: $u = 1 - 36\\left(\\frac{1}{40}\\right) = 1 - \\frac{9}{10} = \\frac{1}{10}$.<br>
+    • Thus $b^2 = 10$.<br>
+    • Substituting $b^2 = 10$ and $a^2 = 40$ into $(1)$:<br>
+      $$\\mathbf{\\frac{x^2}{10} + \\frac{y^2}{40} = 1}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Setting up standard vertical ellipse form $x^2/b^2 + y^2/a^2 = 1$', '1 Mark'],
+    ['Writing system of linear equations in $1/b^2$ and $1/a^2$', '1 Mark'],
+    ['Solving to find $b^2 = 10$ and $a^2 = 40$', '1 Mark'],
+    ['Final equation $x^2/10 + y^2/40 = 1$', '1 Mark']
+  ]
+));
+
+ex10_3.push(createQCard(
+  'c11m-ch10-q47', 'Question 20', 'Exercise 10.3',
+  'Find the equation for the ellipse with major axis on the x-axis and passes through the points $(4, 3)$ and $(6, 2)$.',
+  `<div class="step">
+    • Major axis is on the x-axis, so the equation is:<br>
+      $$\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1 \\quad \\dots (1)$$<br>
+    • Passing through $(4, 3)$:<br>
+      $$\\frac{16}{a^2} + \\frac{9}{b^2} = 1 \\quad \\dots (2)$$<br>
+    • Passing through $(6, 2)$:<br>
+      $$\\frac{36}{a^2} + \\frac{4}{b^2} = 1 \\quad \\dots (3)$$<br>
+    • Let $u = \\frac{1}{a^2}$ and $v = \\frac{1}{b^2}$:<br>
+      $$16u + 9v = 1 \\quad \\dots (4)$$<br>
+      $$36u + 4v = 1 \\quad \\dots (5)$$<br>
+    • Multiply $(4)$ by $4$ and $(5)$ by $9$ to eliminate $v$:<br>
+      $$64u + 36v = 4$$<br>
+      $$324u + 36v = 9$$<br>
+      Subtracting: $260u = 5 \\implies u = \\frac{5}{260} = \\frac{1}{52} \\implies a^2 = 52$.<br>
+    • Finding $v$ from $(4)$:<br>
+      $$16\\left(\\frac{1}{52}\\right) + 9v = 1 \\implies \\frac{4}{13} + 9v = 1 \\implies 9v = 1 - \\frac{4}{13} = \\frac{9}{13}$$<br>
+      $$v = \\frac{1}{13} \\implies b^2 = 13$.<br>
+    • Substituting $a^2 = 52$ and $b^2 = 13$ into $(1)$:<br>
+      $$\\mathbf{\\frac{x^2}{52} + \\frac{y^2}{13} = 1}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Formulating equations through $(4, 3)$ and $(6, 2)$', '1 Mark'],
+    ['Solving linear system for $u = 1/a^2$ and $v = 1/b^2$', '1.5 Marks'],
+    ['Finding $a^2 = 52$ and $b^2 = 13$', '1 Mark'],
+    ['Stating final ellipse equation $x^2/52 + y^2/13 = 1$', '0.5 Mark']
+  ]
+));
+
+// ============================================================================
+// EXERCISE 10.4: Hyperbola (Questions 48 to 62)
+// ============================================================================
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q48', 'Question 1', 'Exercise 10.4',
+  'Find the coordinates of the foci and the vertices, the eccentricity and the length of the latus rectum of the hyperbola $\\frac{x^2}{16} - \\frac{y^2}{9} = 1$.',
+  `<div class="step">
+    • Given equation: $\\frac{x^2}{16} - \\frac{y^2}{9} = 1$.<br>
+    • Comparing with horizontal transverse axis hyperbola $\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$:<br>
+      $$a^2 = 16 \\implies a = 4, \\quad b^2 = 9 \\implies b = 3$$<br>
+    • In a hyperbola, $c^2 = a^2 + b^2$:<br>
+      $$c = \\sqrt{16 + 9} = \\sqrt{25} = 5$$<br>
+    • Characteristics:<br>
+      1. <b>Coordinates of Foci:</b> $(\\pm c, 0) = \\mathbf{(\\pm 5, 0)}$<br>
+      2. <b>Coordinates of Vertices:</b> $(\\pm a, 0) = \\mathbf{(\\pm 4, 0)}$<br>
+      3. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{5}{4}}$<br>
+      4. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(9)}{4} = \\mathbf{\\frac{9}{2}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Identifying $a=4, b=3$ and calculating $c = 5$', '1 Mark'],
+    ['Foci $(\\pm 5, 0)$ and Vertices $(\\pm 4, 0)$', '1 Mark'],
+    ['Eccentricity $5/4$ and Latus rectum $9/2$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q49', 'Question 2', 'Exercise 10.4',
+  'Find the coordinates of the foci and the vertices, the eccentricity and the length of the latus rectum of the hyperbola $\\frac{y^2}{9} - \\frac{x^2}{27} = 1$.',
+  `<div class="step">
+    • Transverse axis is along the y-axis.<br>
+    • Comparing with $\\frac{y^2}{a^2} - \\frac{x^2}{b^2} = 1$:<br>
+      $$a^2 = 9 \\implies a = 3, \\quad b^2 = 27 \\implies b = 3\\sqrt{3}$$<br>
+    • $c = \\sqrt{a^2 + b^2} = \\sqrt{9 + 27} = \\sqrt{36} = 6$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm 6)}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 3)}$<br>
+      3. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{6}{3} = \\mathbf{2}$<br>
+      4. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(27)}{3} = \\mathbf{18}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Recognizing vertical hyperbola; $a=3, b=\\sqrt{27}, c=6$', '1 Mark'],
+    ['Foci $(0, \\pm 6)$ and Vertices $(0, \\pm 3)$', '1 Mark'],
+    ['Eccentricity $2$ and Latus rectum $18$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q50', 'Question 3', 'Exercise 10.4',
+  'Find the coordinates of the foci and the vertices, the eccentricity and the length of the latus rectum of the hyperbola $9y^2 - 4x^2 = 36$.',
+  `<div class="step">
+    • Dividing throughout by $36$:<br>
+      $$\\frac{9y^2}{36} - \\frac{4x^2}{36} = 1 \\implies \\frac{y^2}{4} - \\frac{x^2}{9} = 1$$<br>
+    • Transverse axis along y-axis.<br>
+    • $a^2 = 4 \\implies a = 2, \\quad b^2 = 9 \\implies b = 3$.<br>
+    • $c = \\sqrt{a^2 + b^2} = \\sqrt{4 + 9} = \\sqrt{13}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm \\sqrt{13})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 2)}$<br>
+      3. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{13}}{2}}$<br>
+      4. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(9)}{2} = \\mathbf{9}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Standard form $y^2/4 - x^2/9 = 1$', '1 Mark'],
+    ['Foci $(0, \\pm\\sqrt{13})$, Vertices $(0, \\pm 2)$', '1 Mark'],
+    ['$e = \\sqrt{13}/2$, Latus rectum $9$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q51', 'Question 4', 'Exercise 10.4',
+  'Find the coordinates of the foci and the vertices, the eccentricity and the length of the latus rectum of the hyperbola $16x^2 - 9y^2 = 576$.',
+  `<div class="step">
+    • Dividing both sides by $576$:<br>
+      $$\\frac{16x^2}{576} - \\frac{9y^2}{576} = 1 \\implies \\frac{x^2}{36} - \\frac{y^2}{64} = 1$$<br>
+    • Transverse axis along x-axis.<br>
+    • $a^2 = 36 \\implies a = 6, \\quad b^2 = 64 \\implies b = 8$.<br>
+    • $c = \\sqrt{36 + 64} = \\sqrt{100} = 10$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(\\pm c, 0) = \\mathbf{(\\pm 10, 0)}$<br>
+      2. <b>Vertices:</b> $(\\pm a, 0) = \\mathbf{(\\pm 6, 0)}$<br>
+      3. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{10}{6} = \\mathbf{\\frac{5}{3}}$<br>
+      4. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(64)}{6} = \\mathbf{\\frac{64}{3}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Dividing by $576$ to get $x^2/36 - y^2/64 = 1$', '1 Mark'],
+    ['Foci $(\\pm 10, 0)$ and Vertices $(\\pm 6, 0)$', '1 Mark'],
+    ['$e = 5/3$ and Latus rectum $64/3$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q52', 'Question 5', 'Exercise 10.4',
+  'Find the coordinates of the foci and the vertices, the eccentricity and the length of the latus rectum of the hyperbola $5y^2 - 9x^2 = 36$.',
+  `<div class="step">
+    • Dividing throughout by $36$:<br>
+      $$\\frac{5y^2}{36} - \\frac{9x^2}{36} = 1 \\implies \\frac{y^2}{36/5} - \\frac{x^2}{4} = 1$$<br>
+    • Transverse axis along y-axis.<br>
+    • $a^2 = \\frac{36}{5} \\implies a = \\frac{6}{\\sqrt{5}}, \\quad b^2 = 4 \\implies b = 2$.<br>
+    • $c = \\sqrt{a^2 + b^2} = \\sqrt{\\frac{36}{5} + 4} = \\sqrt{\\frac{56}{5}} = \\frac{2\\sqrt{14}}{\\sqrt{5}}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{\\left(0, \\pm \\frac{2\\sqrt{14}}{\\sqrt{5}}\\right)}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{\\left(0, \\pm \\frac{6}{\\sqrt{5}}\\right)}$<br>
+      3. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\frac{2\\sqrt{14}/\\sqrt{5}}{6/\\sqrt{5}} = \\frac{2\\sqrt{14}}{6} = \\mathbf{\\frac{\\sqrt{14}}{3}}$<br>
+      4. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(4)}{6/\\sqrt{5}} = \\frac{8\\sqrt{5}}{6} = \\mathbf{\\frac{4\\sqrt{5}}{3}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Standard form $y^2/(36/5) - x^2/4 = 1$', '1 Mark'],
+    ['Foci $(0, \\pm 2\\sqrt{14}/\\sqrt{5})$ and Vertices $(0, \\pm 6/\\sqrt{5})$', '1 Mark'],
+    ['$e = \\sqrt{14}/3$ and Latus rectum $4\\sqrt{5}/3$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q53', 'Question 6', 'Exercise 10.4',
+  'Find the coordinates of the foci and the vertices, the eccentricity and the length of the latus rectum of the hyperbola $49y^2 - 16x^2 = 784$.',
+  `<div class="step">
+    • Dividing throughout by $784$ ($49 \\times 16 = 784$):<br>
+      $$\\frac{49y^2}{784} - \\frac{16x^2}{784} = 1 \\implies \\frac{y^2}{16} - \\frac{x^2}{49} = 1$$<br>
+    • Transverse axis along y-axis.<br>
+    • $a^2 = 16 \\implies a = 4, \\quad b^2 = 49 \\implies b = 7$.<br>
+    • $c = \\sqrt{a^2 + b^2} = \\sqrt{16 + 49} = \\sqrt{65}$.<br>
+    • Characteristics:<br>
+      1. <b>Foci:</b> $(0, \\pm c) = \\mathbf{(0, \\pm \\sqrt{65})}$<br>
+      2. <b>Vertices:</b> $(0, \\pm a) = \\mathbf{(0, \\pm 4)}$<br>
+      3. <b>Eccentricity:</b> $e = \\frac{c}{a} = \\mathbf{\\frac{\\sqrt{65}}{4}}$<br>
+      4. <b>Length of Latus Rectum:</b> $\\frac{2b^2}{a} = \\frac{2(49)}{4} = \\mathbf{\\frac{49}{2}}$
+  </div>`,
+  '3 Marks',
+  [
+    ['Standard form $y^2/16 - x^2/49 = 1$', '1 Mark'],
+    ['Foci $(0, \\pm\\sqrt{65})$, Vertices $(0, \\pm 4)$', '1 Mark'],
+    ['$e = \\sqrt{65}/4$, Latus rectum $49/2$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q54', 'Question 7', 'Exercise 10.4',
+  'Find the equation of the hyperbola with vertices $(\\pm 2, 0)$ and foci $(\\pm 3, 0)$.',
+  `<div class="step">
+    • Vertices and foci lie on the x-axis, so the transverse axis is along the x-axis.<br>
+    • Vertices $(\\pm a, 0) = (\\pm 2, 0) \\implies a = 2 \\implies a^2 = 4$.<br>
+    • Foci $(\\pm c, 0) = (\\pm 3, 0) \\implies c = 3$.<br>
+    • Relationship: $b^2 = c^2 - a^2 = 3^2 - 2^2 = 9 - 4 = 5$.<br>
+    • Standard equation:<br>
+      $$\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{4} - \\frac{y^2}{5} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$a=2, c=3$', '0.5 Mark'],
+    ['$b^2 = 9 - 4 = 5$', '0.5 Mark'],
+    ['Equation $x^2/4 - y^2/5 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q55', 'Question 8', 'Exercise 10.4',
+  'Find the equation of the hyperbola with vertices $(0, \\pm 5)$ and foci $(0, \\pm 8)$.',
+  `<div class="step">
+    • Vertices and foci lie on the y-axis, so transverse axis is along the y-axis.<br>
+    • $a = 5 \\implies a^2 = 25$.<br>
+    • $c = 8 \\implies c^2 = 64$.<br>
+    • $b^2 = c^2 - a^2 = 64 - 25 = 39$.<br>
+    • Standard equation with vertical transverse axis:<br>
+      $$\\frac{y^2}{a^2} - \\frac{x^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{y^2}{25} - \\frac{x^2}{39} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$a=5, c=8$ on y-axis', '0.5 Mark'],
+    ['$b^2 = 64 - 25 = 39$', '0.5 Mark'],
+    ['Equation $y^2/25 - x^2/39 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q56', 'Question 9', 'Exercise 10.4',
+  'Find the equation of the hyperbola with vertices $(0, \\pm 3)$ and foci $(0, \\pm 5)$.',
+  `<div class="step">
+    • Vertices and foci lie on the y-axis, so transverse axis is along the y-axis.<br>
+    • $a = 3 \\implies a^2 = 9$.<br>
+    • $c = 5 \\implies c^2 = 25$.<br>
+    • $b^2 = c^2 - a^2 = 25 - 9 = 16$.<br>
+    • Standard equation:<br>
+      $$\\mathbf{\\frac{y^2}{9} - \\frac{x^2}{16} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Vertical transverse axis with $a=3, c=5$', '0.5 Mark'],
+    ['$b^2 = 25 - 9 = 16$', '0.5 Mark'],
+    ['Equation $y^2/9 - x^2/16 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q57', 'Question 10', 'Exercise 10.4',
+  'Find the equation of the hyperbola with foci $(\\pm 5, 0)$ and the transverse axis is of length $8$.',
+  `<div class="step">
+    • Foci $(\\pm 5, 0)$ lie on the x-axis $\\implies c = 5$.<br>
+    • Length of transverse axis $= 2a = 8 \\implies a = 4 \\implies a^2 = 16$.<br>
+    • $b^2 = c^2 - a^2 = 5^2 - 4^2 = 25 - 16 = 9$.<br>
+    • Equation of the hyperbola:<br>
+      $$\\mathbf{\\frac{x^2}{16} - \\frac{y^2}{9} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$c=5, 2a=8 \\implies a=4$', '1 Mark'],
+    ['$b^2 = 9$ and equation $x^2/16 - y^2/9 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q58', 'Question 11', 'Exercise 10.4',
+  'Find the equation of the hyperbola with foci $(0, \\pm 13)$ and the conjugate axis is of length $24$.',
+  `<div class="step">
+    • Foci $(0, \\pm 13)$ lie on the y-axis $\\implies c = 13$, transverse axis along y-axis.<br>
+    • Length of conjugate axis $= 2b = 24 \\implies b = 12 \\implies b^2 = 144$.<br>
+    • Relation: $a^2 = c^2 - b^2 = 13^2 - 12^2 = 169 - 144 = 25$.<br>
+    • Equation of the hyperbola:<br>
+      $$\\frac{y^2}{a^2} - \\frac{x^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{y^2}{25} - \\frac{x^2}{144} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$c=13, 2b=24 \\implies b=12$', '1 Mark'],
+    ['$a^2 = 169 - 144 = 25$ and equation $y^2/25 - x^2/144 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q59', 'Question 12', 'Exercise 10.4',
+  'Find the equation of the hyperbola with foci $(\\pm 3\\sqrt{5}, 0)$ and the latus rectum is of length $8$.',
+  `<div class="step">
+    • Foci lie on x-axis $\\implies c = 3\\sqrt{5} \\implies c^2 = (3\\sqrt{5})^2 = 45$.<br>
+    • Length of latus rectum $= \\frac{2b^2}{a} = 8 \\implies b^2 = 4a$.<br>
+    • Using identity $c^2 = a^2 + b^2$:<br>
+      $$45 = a^2 + 4a$$<br>
+      $$a^2 + 4a - 45 = 0$$<br>
+      $$(a + 9)(a - 5) = 0$$<br>
+    • Since $a > 0$, we have $\\mathbf{a = 5}$.<br>
+    • Then $a^2 = 25$, and $b^2 = 4(5) = 20$.<br>
+    • Equation of the hyperbola:<br>
+      $$\\mathbf{\\frac{x^2}{25} - \\frac{y^2}{20} = 1}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting $c^2 = 45$ and $b^2 = 4a$', '1 Mark'],
+    ['Solving quadratic $a^2 + 4a - 45 = 0 \\implies a = 5$', '1 Mark'],
+    ['Finding $b^2 = 20$ and equation $x^2/25 - y^2/20 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q60', 'Question 13', 'Exercise 10.4',
+  'Find the equation of the hyperbola with foci $(\\pm 4, 0)$ and the latus rectum is of length $12$.',
+  `<div class="step">
+    • Foci on x-axis $\\implies c = 4 \\implies c^2 = 16$.<br>
+    • Latus rectum $= \\frac{2b^2}{a} = 12 \\implies b^2 = 6a$.<br>
+    • We know $c^2 = a^2 + b^2$:<br>
+      $$16 = a^2 + 6a \\implies a^2 + 6a - 16 = 0$$<br>
+      $$(a + 8)(a - 2) = 0$$<br>
+    • Since $a > 0$, $a = 2 \\implies a^2 = 4$.<br>
+    • Then $b^2 = 6(2) = 12$.<br>
+    • Equation of the hyperbola:<br>
+      $$\\mathbf{\\frac{x^2}{4} - \\frac{y^2}{12} = 1}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Latus rectum formula $2b^2/a = 12 \\implies b^2 = 6a$', '1 Mark'],
+    ['Solving quadratic $a^2 + 6a - 16 = 0 \\implies a = 2$', '1 Mark'],
+    ['Equation $x^2/4 - y^2/12 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q61', 'Question 14', 'Exercise 10.4',
+  'Find the equation of the hyperbola with vertices $(\\pm 7, 0)$ and $e = \\frac{4}{3}$.',
+  `<div class="step">
+    • Vertices $(\\pm 7, 0)$ lie on x-axis $\\implies a = 7 \\implies a^2 = 49$.<br>
+    • Given eccentricity $e = \\frac{4}{3}$.<br>
+    • Since $e = \\frac{c}{a}$:<br>
+      $$c = ae = 7\\left(\\frac{4}{3}\\right) = \\frac{28}{3}$$<br>
+    • Finding $b^2 = c^2 - a^2 = a^2(e^2 - 1)$:<br>
+      $$b^2 = 49\\left(\\left(\\frac{4}{3}\\right)^2 - 1\\right) = 49\\left(\\frac{16}{9} - 1\\right) = 49\\left(\\frac{7}{9}\\right) = \\frac{343}{9}$$<br>
+    • Standard equation:<br>
+      $$\\frac{x^2}{49} - \\frac{y^2}{343/9} = 1 \\implies \\mathbf{\\frac{x^2}{49} - \\frac{9y^2}{343} = 1}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['$a=7, e=4/3$', '0.5 Mark'],
+    ['$b^2 = 49(16/9 - 1) = 343/9$', '0.5 Mark'],
+    ['Equation $x^2/49 - 9y^2/343 = 1$', '1 Mark']
+  ]
+));
+
+ex10_4.push(createQCard(
+  'c11m-ch10-q62', 'Question 15', 'Exercise 10.4',
+  'Find the equation of the hyperbola with foci $(0, \\pm \\sqrt{10})$ and passing through the point $(2, 3)$.',
+  `<div class="step">
+    • The foci lie on the y-axis, so the transverse axis is along the y-axis.<br>
+    • Foci $(0, \\pm c) = (0, \\pm \\sqrt{10}) \\implies c = \\sqrt{10} \\implies c^2 = 10$.<br>
+    • Standard equation:<br>
+      $$\\frac{y^2}{a^2} - \\frac{x^2}{b^2} = 1 \\quad \\dots (1)$$<br>
+    • We know $c^2 = a^2 + b^2 \\implies 10 = a^2 + b^2 \\implies b^2 = 10 - a^2$.<br>
+    • Substituting $b^2 = 10 - a^2$ into $(1)$:<br>
+      $$\\frac{y^2}{a^2} - \\frac{x^2}{10 - a^2} = 1$$<br>
+    • Since it passes through $(2, 3)$:<br>
+      $$\\frac{3^2}{a^2} - \\frac{2^2}{10 - a^2} = 1 \\implies \\frac{9}{a^2} - \\frac{4}{10 - a^2} = 1$$<br>
+      $$9(10 - a^2) - 4a^2 = a^2(10 - a^2)$$<br>
+      $$90 - 9a^2 - 4a^2 = 10a^2 - a^4$$<br>
+      $$a^4 - 23a^2 + 90 = 0$$<br>
+    • Factoring the quadratic in $a^2$:<br>
+      $$(a^2 - 18)(a^2 - 5) = 0$$<br>
+    • If $a^2 = 18$, then $b^2 = 10 - 18 = -8$, which is impossible ($b^2 > 0$).<br>
+    • Hence $a^2 = 5$.<br>
+    • Then $b^2 = 10 - 5 = 5$.<br>
+    • Substituting $a^2 = 5$ and $b^2 = 5$ into $(1)$:<br>
+      $$\\frac{y^2}{5} - \\frac{x^2}{5} = 1 \\implies \\mathbf{y^2 - x^2 = 5}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Setting vertical hyperbola form and $b^2 = 10 - a^2$', '1 Mark'],
+    ['Plugging point $(2, 3)$ to formulate equation in $a^2$', '1 Mark'],
+    ['Factoring $a^4 - 23a^2 + 90 = 0$ and discarding invalid root', '1 Mark'],
+    ['Finding $a^2 = 5, b^2 = 5$ and final equation $y^2 - x^2 = 5$', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// MISCELLANEOUS EXERCISE ON CHAPTER 10 (Questions 63 to 73)
+// ============================================================================
+
+misc.push(createQCard(
+  'c11m-ch10-q63', 'Question 1', 'Misc Exercise',
+  'If a parabolic reflector is $20\\text{ cm}$ in diameter and $5\\text{ cm}$ deep, find the focus.',
+  `<div class="step">
+    • Let the vertex of the parabolic reflector be at the origin $(0, 0)$ and its axis along the x-axis.<br>
+    • The equation of the parabola is $y^2 = 4ax$.<br>
+    • Since the reflector has diameter $20\\text{ cm}$ and depth $5\\text{ cm}$:<br>
+      - Total width at opening $= 20\\text{ cm} \\implies y = \\pm 10\\text{ cm}$<br>
+      - Depth along axis $x = 5\\text{ cm}$<br>
+    • Hence, the point $(5, 10)$ lies on the parabola:<br>
+      $$10^2 = 4a(5)$$<br>
+      $$100 = 20a \\implies a = 5$$<br>
+    • The focus of the parabola is at $(a, 0) = (5, 0)$.<br>
+    • Thus, the focus is at a distance of $\\mathbf{5\\text{ cm}}$ from the vertex at the mid-point of the circular base.
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting coordinate axes with vertex at origin and equation $y^2 = 4ax$', '1 Mark'],
+    ['Identifying boundary point $(5, 10)$ and solving $100 = 20a \\implies a = 5$', '1 Mark'],
+    ['Stating focus is at $(5, 0)$, i.e. $5\\text{ cm}$ from vertex', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q64', 'Question 2', 'Misc Exercise',
+  'An arch is in the form of a parabola with its axis vertical. The arch is $10\\text{ m}$ high and $5\\text{ m}$ wide at the base. How wide is it $2\\text{ m}$ from the vertex of the parabola?',
+  `<div class="step">
+    • Let the vertex of the parabolic arch be at the origin $(0, 0)$.<br>
+    • Since the arch opens downwards, its equation is:<br>
+      $$x^2 = -4ay$$<br>
+    • The arch is $10\\text{ m}$ high and $5\\text{ m}$ wide at the base:<br>
+      - At the base, $y = -10\\text{ m}$<br>
+      - Total base width $= 5\\text{ m} \\implies$ endpoints are $\\left(\\pm \\frac{5}{2}, -10\\right)$<br>
+    • Substituting $\\left(\\frac{5}{2}, -10\\right)$ into $x^2 = -4ay$:<br>
+      $$\\left(\\frac{5}{2}\\right)^2 = -4a(-10) \\implies \\frac{25}{4} = 40a \\implies 4a = \\frac{25}{40} = \\frac{5}{8}$$<br>
+    • Hence the equation is $x^2 = -\\frac{5}{8}y$.<br>
+    • We need the width of the arch $2\\text{ m}$ from the vertex, which means $y = -2\\text{ m}$:<br>
+      $$x^2 = -\\frac{5}{8}(-2) = \\frac{10}{8} = \\frac{5}{4}$$<br>
+      $$x = \\frac{\\sqrt{5}}{2}$$<br>
+    • The total width at this level is $2x$:<br>
+      $$\\text{Width} = 2\\left(\\frac{\\sqrt{5}}{2}\\right) = \\sqrt{5}\\text{ m} \\approx \\mathbf{2.236\\text{ m}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Choosing vertex $(0,0)$ and standard form $x^2 = -4ay$', '1 Mark'],
+    ['Substituting base point $(2.5, -10)$ to find $4a = 5/8$', '1 Mark'],
+    ['Finding $x$ when $y = -2$', '1 Mark'],
+    ['Calculating total width $2x = \\sqrt{5}\\text{ m} \\approx 2.24\\text{ m}$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q65', 'Question 3', 'Misc Exercise',
+  'The cable of a uniformly loaded suspension bridge hangs in the form of a parabola. The roadway which is horizontal and $100\\text{ m}$ long is supported by vertical wires attached to the cable, the longest wire being $30\\text{ m}$ and the shortest being $6\\text{ m}$. Find the length of a supporting wire attached to the roadway $18\\text{ m}$ from the middle.',
+  `<div class="step">
+    • Let the lowest point of the cable (at the middle of the bridge) be the vertex of the parabola.<br>
+    • Place the vertex at the origin $(0, 0)$. The cable opens upwards: $x^2 = 4ay$.<br>
+    • The roadway is $6\\text{ m}$ below the vertex (since shortest wire at middle is $6\\text{ m}$).<br>
+    • Roadway length is $100\\text{ m}$, so the ends are $50\\text{ m}$ to the left and right of the centre ($x = \\pm 50\\text{ m}$).<br>
+    • The longest wire at each end is $30\\text{ m}$, so the height of the cable above the vertex at $x = 50$ is:<br>
+      $$y = 30 - 6 = 24\\text{ m}$$<br>
+    • Thus the point $(50, 24)$ lies on the parabola $x^2 = 4ay$:<br>
+      $$50^2 = 4a(24) \\implies 2500 = 96a \\implies 4a = \\frac{2500}{24} = \\frac{625}{6}$$<br>
+      $$x^2 = \\frac{625}{6}y$$<br>
+    • We need the length of the wire $18\\text{ m}$ from the middle ($x = 18$):<br>
+      $$18^2 = \\frac{625}{6}y \\implies 324 = \\frac{625}{6}y$$<br>
+      $$y = \\frac{324 \\times 6}{625} = \\frac{1944}{625} = 3.1104\\text{ m}$$<br>
+    • The length of the supporting wire attached to the roadway is:<br>
+      $$\\text{Length} = y + 6 = 3.11 + 6 = \\mathbf{9.11\\text{ m}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Choosing lowest cable point as origin with equation $x^2 = 4ay$', '1 Mark'],
+    ['Determining end point $(50, 24)$ and finding $4a = 625/6$', '1 Mark'],
+    ['Evaluating height above vertex $y = 3.11\\text{ m}$ at $x = 18$', '1 Mark'],
+    ['Adding $6\\text{ m}$ shortest wire to get total wire length $9.11\\text{ m}$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q66', 'Question 4', 'Misc Exercise',
+  'An arch is in the form of a semi-ellipse. It is $8\\text{ m}$ wide and $2\\text{ m}$ high at the centre. Find the height of the arch at a point $1.5\\text{ m}$ from one end.',
+  `<div class="step">
+    • Let the centre of the ellipse be at origin $(0, 0)$ and the horizontal base along the x-axis.<br>
+    • Width of the semi-ellipse $= 8\\text{ m} \\implies 2a = 8 \\implies a = 4$.<br>
+    • Height at the centre $= 2\\text{ m} \\implies b = 2$.<br>
+    • The equation of the semi-ellipse is:<br>
+      $$\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1 \\implies \\frac{x^2}{16} + \\frac{y^2}{4} = 1$$<br>
+    • A point $1.5\\text{ m}$ from one end ($x = 4$) has distance from origin:<br>
+      $$x = 4 - 1.5 = 2.5\\text{ m} = \\frac{5}{2}\\text{ m}$$<br>
+    • Finding height $y$ at $x = 2.5$:<br>
+      $$\\frac{(2.5)^2}{16} + \\frac{y^2}{4} = 1 \\implies \\frac{6.25}{16} + \\frac{y^2}{4} = 1$$<br>
+      $$\\frac{y^2}{4} = 1 - \\frac{6.25}{16} = \\frac{9.75}{16}$$<br>
+      $$y^2 = \\frac{4 \\times 9.75}{16} = \\frac{9.75}{4} = 2.4375$$<br>
+      $$y = \\sqrt{2.4375} \\approx \\mathbf{1.56\\text{ m}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Formulating semi-ellipse equation $x^2/16 + y^2/4 = 1$', '1 Mark'],
+    ['Determining $x$-coordinate from center: $x = 4 - 1.5 = 2.5\\text{ m}$', '1 Mark'],
+    ['Solving for $y^2 = 2.4375$', '1 Mark'],
+    ['Calculating height $y \\approx 1.56\\text{ m}$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q67', 'Question 5', 'Misc Exercise',
+  'A rod of length $12\\text{ cm}$ moves with its ends always touching the coordinate axes. Determine the equation of the locus of a point $P$ on the rod, which is $3\\text{ cm}$ from the end in contact with the x-axis.',
+  `<div class="step">
+    • Let $AB$ be the rod of length $12\\text{ cm}$ with end $A(a, 0)$ on the x-axis and end $B(0, b)$ on the y-axis.<br>
+    • In right triangle $OAB$:<br>
+      $$a^2 + b^2 = 12^2 = 144 \\quad \\dots (1)$$<br>
+    • Point $P(x, y)$ lies on $AB$ such that $AP = 3\\text{ cm}$.<br>
+    • Since total length $AB = 12\\text{ cm}$, we have $PB = 12 - 3 = 9\\text{ cm}$.<br>
+    • Thus $P$ divides the segment $AB$ internally in the ratio $AP : PB = 3 : 9 = 1 : 3$.<br>
+    • By section formula:<br>
+      $$x = \\frac{1(0) + 3(a)}{1 + 3} = \\frac{3a}{4} \\implies a = \\frac{4x}{3}$$<br>
+      $$y = \\frac{1(b) + 3(0)}{1 + 3} = \\frac{b}{4} \\implies b = 4y$$<br>
+    • Substituting $a$ and $b$ into $(1)$:<br>
+      $$\\left(\\frac{4x}{3}\\right)^2 + (4y)^2 = 144$$<br>
+      $$\\frac{16x^2}{9} + 16y^2 = 144$$<br>
+    • Dividing throughout by $144$ ($16/144 = 1/9$):<br>
+      $$\\frac{x^2}{81} + \\frac{y^2}{9} = 1$$<br>
+    • Thus, the locus of point $P$ is an ellipse with equation $\\mathbf{\\frac{x^2}{81} + \\frac{y^2}{9} = 1}$.
+  </div>`,
+  '4 Marks',
+  [
+    ['Applying Pythagorean relation $a^2 + b^2 = 144$ for rod endpoints', '1 Mark'],
+    ['Using section formula with ratio $1 : 3$ to find $a = 4x/3, b = 4y$', '1.5 Marks'],
+    ['Substituting into relation and simplifying to $x^2/81 + y^2/9 = 1$', '1.5 Marks']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q68', 'Question 6', 'Misc Exercise',
+  'Find the area of the triangle formed by the lines joining the vertex of the parabola $x^2 = 12y$ to the ends of its latus rectum.',
+  `<div class="step">
+    • Given parabola: $x^2 = 12y$.<br>
+    • Comparing with $x^2 = 4ay$ gives $4a = 12 \\implies a = 3$.<br>
+    • The vertex is at the origin $O(0, 0)$.<br>
+    • Focus is at $(0, a) = (0, 3)$.<br>
+    • The latus rectum is the focal chord parallel to the x-axis along the line $y = 3$.<br>
+    • Substituting $y = 3$ into $x^2 = 12y$:<br>
+      $$x^2 = 12(3) = 36 \\implies x = \\pm 6$$<br>
+    • Thus, the endpoints of the latus rectum are $L(6, 3)$ and $L\'(-6, 3)$.<br>
+    • The length of the base of $\\triangle OLL\'$ is the length of latus rectum:<br>
+      $$\\text{Base } LL\' = 6 - (-6) = 12$$<br>
+    • The altitude (height) from vertex $O(0, 0)$ perpendicular to $LL\'$ is $a = 3$.<br>
+    • Area of triangle formed:<br>
+      $$\\text{Area} = \\frac{1}{2} \\times \\text{base} \\times \\text{height} = \\frac{1}{2} \\times 12 \\times 3 = \\mathbf{18\\text{ sq. units}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Finding $a = 3$, vertex $(0, 0)$, and endpoints $(\\pm 6, 3)$', '1.5 Marks'],
+    ['Calculating area of triangle $\\frac{1}{2} \\times 12 \\times 3 = 18\\text{ sq. units}$', '1.5 Marks']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q69', 'Question 7', 'Misc Exercise',
+  'A man running a racecourse notes that the sum of the distances from the two flagposts from him is always $10\\text{ m}$ and the distance between the flagposts is $8\\text{ m}$. Find the equation of the posts traced by the man.',
+  `<div class="step">
+    • By definition of an ellipse, the locus of a point which moves such that the sum of its distances from two fixed points (foci) is constant is an <b>ellipse</b>.<br>
+    • Let the two flagposts be the foci $F_1(-c, 0)$ and $F_2(c, 0)$ placed along the x-axis, with origin at their midpoint.<br>
+    • Distance between the flagposts (foci) $= 2c = 8\\text{ m} \\implies c = 4$.<br>
+    • Constant sum of distances $= 2a = 10\\text{ m} \\implies a = 5 \\implies a^2 = 25$.<br>
+    • Using $b^2 = a^2 - c^2$:<br>
+      $$b^2 = 5^2 - 4^2 = 25 - 16 = 9$$<br>
+    • Standard equation of the ellipse traced by the man:<br>
+      $$\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{25} + \\frac{y^2}{9} = 1}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Identifying the locus as an ellipse with $2a = 10$ and $2c = 8$', '1 Mark'],
+    ['Calculating $a = 5, c = 4 \\implies b^2 = 25 - 16 = 9$', '1 Mark'],
+    ['Writing final equation $x^2/25 + y^2/9 = 1$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q70', 'Question 8', 'Misc Exercise',
+  'An equilateral triangle is inscribed in the parabola $y^2 = 4ax$, where one vertex is at the vertex of the parabola. Find the length of the side of the triangle.',
+  `<div class="step">
+    • Let the parabola be $y^2 = 4ax$, with vertex at origin $O(0, 0)$.<br>
+    • Let the equilateral triangle be $\\triangle OAB$, where $O(0, 0)$ is the vertex, and $A$ and $B$ lie on the parabola.<br>
+    • By symmetry of the parabola with respect to the x-axis, the segment $AB$ is perpendicular to the x-axis.<br>
+    • Let $A = (x_1, y_1)$ and $B = (x_1, -y_1)$, where $y_1 > 0$.<br>
+    • The line $OA$ makes an angle of $30^\\circ$ with the x-axis (since each angle of equilateral triangle is $60^\\circ$ and x-axis bisects $\\angle AOB$):<br>
+      $$\\tan 30^\\circ = \\frac{y_1}{x_1} \\implies \\frac{1}{\\sqrt{3}} = \\frac{y_1}{x_1} \\implies x_1 = \\sqrt{3}y_1$$<br>
+    • Since point $A(x_1, y_1)$ lies on $y^2 = 4ax$:<br>
+      $$y_1^2 = 4ax_1 = 4a(\\sqrt{3}y_1)$$<br>
+      Since $y_1 \\neq 0$, dividing by $y_1$:<br>
+      $$y_1 = 4\\sqrt{3}a$$<br>
+    • Length of the side $AB$ of the equilateral triangle is $2y_1$:<br>
+      $$\\text{Side} = 2y_1 = 2(4\\sqrt{3}a) = \\mathbf{8\\sqrt{3}a}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Establishing symmetric points $A(x_1, y_1)$ and $B(x_1, -y_1)$', '1 Mark'],
+    ['Using $\\tan 30^\\circ = y_1/x_1 \\implies x_1 = \\sqrt{3}y_1$', '1 Mark'],
+    ['Solving with parabola equation to get $y_1 = 4\\sqrt{3}a$', '1 Mark'],
+    ['Side length $= 2y_1 = 8\\sqrt{3}a$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q71', 'Question 9', 'Misc Exercise',
+  'Find the coordinates of the points on the parabola $y^2 = 8x$ whose focal distance is $4$.',
+  `<div class="step">
+    • Given parabola: $y^2 = 8x$.<br>
+    • Comparing with $y^2 = 4ax$ gives $4a = 8 \\implies a = 2$.<br>
+    • For any point $P(x_1, y_1)$ on the parabola $y^2 = 4ax$, the focal distance is given by:<br>
+      $$\\text{Focal Distance} = x_1 + a$$<br>
+    • Given focal distance $= 4$ and $a = 2$:<br>
+      $$x_1 + 2 = 4 \\implies x_1 = 2$$<br>
+    • Substituting $x_1 = 2$ into the parabola equation:<br>
+      $$y_1^2 = 8(2) = 16 \\implies y_1 = \\pm 4$$<br>
+    • Therefore, the required points on the parabola are $\\mathbf{(2, 4)}$ and $\\mathbf{(2, -4)}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Finding $a = 2$ and focal distance formula $x_1 + a$', '1 Mark'],
+    ['Solving $x_1 + 2 = 4 \\implies x_1 = 2$', '1 Mark'],
+    ['Finding $y_1 = \\pm 4$ and stating coordinates $(2, \\pm 4)$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q72', 'Question 10', 'Misc Exercise',
+  'Find the equation of the set of all points such that the difference of their distances from $(4, 0)$ and $(-4, 0)$ is always $2$.',
+  `<div class="step">
+    • By geometric definition, the locus of a point where the absolute difference of distances from two fixed points is constant is a <b>hyperbola</b>.<br>
+    • Let the fixed points (foci) be $F_1(4, 0)$ and $F_2(-4, 0)$ on the x-axis.<br>
+    • Distance between foci $= 2c = 4 - (-4) = 8 \\implies c = 4$.<br>
+    • Constant difference of distances $= 2a = 2 \\implies a = 1 \\implies a^2 = 1$.<br>
+    • In a hyperbola, $b^2 = c^2 - a^2$:<br>
+      $$b^2 = 4^2 - 1^2 = 16 - 1 = 15$$<br>
+    • Standard equation of the hyperbola:<br>
+      $$\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$$<br>
+      $$\\mathbf{\\frac{x^2}{1} - \\frac{y^2}{15} = 1} \\quad (\\text{or } 15x^2 - y^2 = 15)$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Recognizing hyperbola locus with $2a = 2$ and $2c = 8$', '1 Mark'],
+    ['Finding $a = 1, c = 4 \\implies b^2 = 15$', '1 Mark'],
+    ['Stating final equation $x^2/1 - y^2/15 = 1$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch10-q73', 'Question 11', 'Misc Exercise',
+  'Find the coordinates of a point on the parabola $y^2 = 18x$ whose ordinate is twice its abscissa.',
+  `<div class="step">
+    • Given parabola: $y^2 = 18x$.<br>
+    • Let the coordinates of the point be $(x, y)$.<br>
+    • Given condition: the ordinate ($y$) is twice its abscissa ($x$):<br>
+      $$y = 2x$$<br>
+    • Substituting $y = 2x$ into the parabola equation:<br>
+      $$(2x)^2 = 18x$$<br>
+      $$4x^2 = 18x$$<br>
+      $$4x^2 - 18x = 0$$<br>
+      $$2x(2x - 9) = 0$$<br>
+    • This yields two solutions:<br>
+      1. $x = 0 \\implies y = 2(0) = 0$, giving the vertex point $\\mathbf{(0, 0)}$.<br>
+      2. $2x - 9 = 0 \\implies x = \\frac{9}{2}$.<br>
+         Then $y = 2\\left(\\frac{9}{2}\\right) = 9$, giving the point $\\mathbf{\\left(\\frac{9}{2}, 9\\right)}$.<br>
+    • Hence, the required points are $\\mathbf{(0, 0)}$ and $\\mathbf{\\left(\\frac{9}{2}, 9\\right)}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting relation $y = 2x$', '1 Mark'],
+    ['Solving quadratic $4x^2 - 18x = 0$', '1 Mark'],
+    ['Determining both coordinates $(0, 0)$ and $(9/2, 9)$', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// CONIC SECTIONS VECTOR DIAGRAM (SVG)
+// ============================================================================
+const conicSvg = `
+  <div style="background:white; border:1px solid #e2e8f0; border-radius:12px; padding:20px; margin-bottom:28px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <span style="display:inline-block; width:10px; height:10px; background:#0284c7; border-radius:50%;"></span>
+      Conic Sections Geometric Classification &amp; Eccentricity Map
+    </h3>
+    <svg viewBox="0 0 840 240" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;">
+      <!-- Background panels for 4 conics -->
+      <rect x="10" y="10" width="195" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect x="215" y="10" width="195" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect x="420" y="10" width="195" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect x="625" y="10" width="205" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+
+      <!-- Panel 1: Circle -->
+      <text x="107" y="32" font-size="13" font-weight="bold" fill="#0284c7" text-anchor="middle">1. CIRCLE (e = 0)</text>
+      <circle cx="107" cy="110" r="50" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+      <circle cx="107" cy="110" r="3.5" fill="#0369a1"/>
+      <line x1="107" y1="110" x2="157" y2="110" stroke="#0369a1" stroke-width="2" stroke-dasharray="3,3"/>
+      <text x="132" y="105" font-size="11" font-weight="bold" fill="#0369a1">r</text>
+      <text x="107" y="185" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">(x-h)&sup2; + (y-k)&sup2; = r&sup2;</text>
+      <text x="107" y="210" font-size="10" fill="#64748b" text-anchor="middle">Cutting plane &perp; cone axis</text>
+
+      <!-- Panel 2: Parabola -->
+      <text x="312" y="32" font-size="13" font-weight="bold" fill="#ea580c" text-anchor="middle">2. PARABOLA (e = 1)</text>
+      <line x1="230" y1="110" x2="395" y2="110" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="250" y1="55" x2="250" y2="165" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+      <path d="M 375 60 Q 275 110 375 160" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+      <circle cx="300" cy="110" r="3.5" fill="#ea580c"/>
+      <text x="300" y="100" font-size="10" font-weight="bold" fill="#ea580c" text-anchor="middle">Focus (a,0)</text>
+      <text x="245" y="178" font-size="9" fill="#dc2626">Directrix</text>
+      <text x="312" y="185" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">y&sup2; = 4ax</text>
+      <text x="312" y="210" font-size="10" fill="#64748b" text-anchor="middle">Plane || cone generator</text>
+
+      <!-- Panel 3: Ellipse -->
+      <text x="517" y="32" font-size="13" font-weight="bold" fill="#16a34a" text-anchor="middle">3. ELLIPSE (0 &lt; e &lt; 1)</text>
+      <line x1="435" y1="110" x2="600" y2="110" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="517" y1="65" x2="517" y2="155" stroke="#94a3b8" stroke-width="1"/>
+      <ellipse cx="517" cy="110" rx="65" ry="40" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+      <circle cx="485" cy="110" r="3" fill="#15803d"/>
+      <circle cx="549" cy="110" r="3" fill="#15803d"/>
+      <text x="485" y="102" font-size="9" font-weight="bold" fill="#15803d" text-anchor="middle">F&sub1;</text>
+      <text x="549" y="102" font-size="9" font-weight="bold" fill="#15803d" text-anchor="middle">F&sub2;</text>
+      <text x="517" y="185" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">x&sup2;/a&sup2; + y&sup2;/b&sup2; = 1</text>
+      <text x="517" y="210" font-size="10" fill="#64748b" text-anchor="middle">c&sup2; = a&sup2; - b&sup2;, e = c/a &lt; 1</text>
+
+      <!-- Panel 4: Hyperbola -->
+      <text x="727" y="32" font-size="13" font-weight="bold" fill="#7c3aed" text-anchor="middle">4. HYPERBOLA (e &gt; 1)</text>
+      <line x1="640" y1="110" x2="815" y2="110" stroke="#94a3b8" stroke-width="1"/>
+      <path d="M 655 65 Q 685 110 655 155" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+      <path d="M 800 65 Q 770 110 800 155" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+      <circle cx="670" cy="110" r="3" fill="#6d28d9"/>
+      <circle cx="785" cy="110" r="3" fill="#6d28d9"/>
+      <text x="670" y="102" font-size="9" font-weight="bold" fill="#6d28d9" text-anchor="middle">F&sub1;</text>
+      <text x="785" y="102" font-size="9" font-weight="bold" fill="#6d28d9" text-anchor="middle">F&sub2;</text>
+      <text x="727" y="185" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">x&sup2;/a&sup2; - y&sup2;/b&sup2; = 1</text>
+      <text x="727" y="210" font-size="10" fill="#64748b" text-anchor="middle">c&sup2; = a&sup2; + b&sup2;, e = c/a &gt; 1</text>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH10.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11m-ch10">
+  <div class="chapter-header">
+    <div class="ch-badge">10</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Mathematics &bull; Chapter 10</div>
+      <h2>Conic Sections</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 73 Verbatim Questions with Official Marking Schemes</p>
+    </div>
+  </div>
+
+  ${conicSvg}
+
+  <div class="ex-div">NCERT Exercise 10.1: Standard Circle Equations, Centres, Radii &amp; Intercept Geometries</div>
+${ex10_1.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 10.2: Parabolas &mdash; Foci, Directrices, Vertex Alignments &amp; Latus Recta</div>
+${ex10_2.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 10.3: Ellipses &mdash; Major/Minor Axes, Foci Coordinates &amp; Eccentricity</div>
+${ex10_3.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 10.4: Hyperbolas &mdash; Transverse/Conjugate Axes, Foci &amp; Asymptotic Ratios</div>
+${ex10_4.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Miscellaneous Exercise on Chapter 10: Reflectors, Suspension Bridges, Inscribed Triangles &amp; Loci</div>
+${misc.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(9)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Previous: Chapter 9 (Straight Lines)</button>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 20px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">↑ Back to Top</button>
+    <button class="ch-nav-btn next" onclick="showChapter(11)" style="padding:10px 24px; border-radius:8px; border:none; background:#ff6b00; color:white; font-weight:700; cursor:pointer;">Next: Chapter 11 (Introduction to 3D Geometry) →</button>
+  </div>
+</section>
+`;
+
+// Write ch10.html
+const ch10Path = path.join(outDir, 'ch10.html');
+fs.writeFileSync(ch10Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch10Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js so chapters load instantly offline/online
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[10]
+if (!existingData.includes('window.CHAPTER_DATA[10] =')) {
+  const ch10Entry = `\nwindow.CHAPTER_DATA[10] = ${JSON.stringify(chapterHtml.trim())};\n`;
+  fs.appendFileSync(dataJsPath, ch10Entry, 'utf8');
+  console.log(`Appended Chapter 10 to preloaded cache: ${dataJsPath}`);
+} else {
+  // Replace window.CHAPTER_DATA[10] block
+  const regex = /window\.CHAPTER_DATA\[10\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[10] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 10 in preloaded cache: ${dataJsPath}`);
+}

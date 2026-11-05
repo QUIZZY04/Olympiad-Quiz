@@ -1,0 +1,437 @@
+/**
+ * Generator for Class 9 Sanskrit - Chapter 1: भारतीवसन्तगीतिः (Bhāratīvasantagītiḥ)
+ * NCERT Rationalised 2026–27 Syllabus • Shemushi Prathamo Bhagah (Code 122)
+ * All 6 Verbatim Textbook Exercises (25 sub-questions) + CBSE Step Marking Rubrics + Competency HOTS
+ * Strictly zero shortage, custom vector SVG, offline preloaded cache.
+ * NO PDF download buttons/toolbars (strictly restricted to Physics Ch 7).
+ */
+const fs = require('fs');
+const path = require('path');
+
+const ch1Path = path.join(__dirname, '..', '..', 'chapters-c9sk', 'ch1.html');
+const cachePath = path.join(__dirname, '..', '..', 'chapters-c9sk', 'chapters-data.js');
+
+// High-fidelity custom SVG: Saraswati Veena, Vasanta Spring blossoms & Cultural Awakening
+const svgDiagram = `
+  <div style="margin:22px 0; background:white; padding:18px; border-radius:14px; border:1.5px solid #ede9fe; box-shadow:0 3px 12px rgba(124,58,237,0.06);">
+    <h3 style="font-size:1.02rem; font-weight:800; color:#5b21b6; margin-bottom:12px; display:flex; align-items:center; gap:8px; font-family:'Noto Sans Devanagari', sans-serif;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      काव्य-दर्शनम्: सरस्वती-वीणावादनम्, वसन्त-प्रकृति-सौन्दर्यम् तथा राष्ट्रिय-नवजागरणम्
+    </h3>
+    <svg viewBox="0 0 780 250" style="width:100%; height:auto; font-family:'Noto Sans Devanagari', system-ui, sans-serif;">
+      <!-- Panel 1: Saraswati & Cultural Awakening -->
+      <rect x="15" y="15" width="375" height="220" rx="10" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+      <text x="32" y="38" font-size="12" font-weight="bold" fill="#5b21b6">१. माँ भारती (सरस्वती) एवं वीणा-सङ्गीतम्:</text>
+
+      <!-- Center Veena Motif -->
+      <g transform="translate(40, 55)">
+        <rect x="0" y="0" width="325" height="155" rx="8" fill="#ffffff" stroke="#ede9fe"/>
+        <!-- Veena Representation -->
+        <ellipse cx="60" cy="80" rx="36" ry="46" fill="#fdf4ff" stroke="#c084fc" stroke-width="2"/>
+        <ellipse cx="60" cy="80" rx="20" ry="26" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.5"/>
+        <!-- Veena Neck / Danda -->
+        <line x1="86" y1="80" x2="270" y2="35" stroke="#9333ea" stroke-width="5" stroke-linecap="round"/>
+        <!-- Strings -->
+        <line x1="86" y1="78" x2="268" y2="33" stroke="#d8b4fe" stroke-width="1.2"/>
+        <line x1="86" y1="80" x2="270" y2="35" stroke="#fef08a" stroke-width="1.2"/>
+        <line x1="86" y1="82" x2="272" y2="37" stroke="#d8b4fe" stroke-width="1.2"/>
+        <!-- Pegs / Frets -->
+        <circle cx="260" cy="38" r="4" fill="#6b21a8"/>
+        <circle cx="245" cy="42" r="4" fill="#6b21a8"/>
+        <circle cx="230" cy="46" r="4" fill="#6b21a8"/>
+        <!-- Soundwaves / Notes -->
+        <text x="140" y="70" font-size="14" fill="#7c3aed">♫</text>
+        <text x="180" y="55" font-size="18" fill="#9333ea">♪</text>
+        <text x="210" y="80" font-size="13" fill="#c026d3">♫</text>
+        <text x="15" y="140" font-size="8.8" font-weight="bold" fill="#6b21a8">• ‘निनादय नवीनामये वाणि वीणाम्’</text>
+        <text x="175" y="140" font-size="8.2" fill="#475569">— नवचेतना, स्वाभिमानः, स्वाधीनता</text>
+      </g>
+
+      <!-- Panel 2: Vasanta Season & Yamuna Banks -->
+      <rect x="405" y="15" width="360" height="220" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+      <text x="422" y="38" font-size="12" font-weight="bold" fill="#166534">२. वसन्त-ऋतोः प्राकृतिकं वैभवम्:</text>
+
+      <g transform="translate(420, 55)">
+        <rect x="0" y="0" width="330" height="155" rx="8" fill="#ffffff" stroke="#dcfce7"/>
+        <!-- Elements of Vasanta -->
+        <!-- 1. Rasalah (Mangoes) -->
+        <rect x="12" y="15" width="145" height="58" rx="6" fill="#fef9c3" stroke="#fde047"/>
+        <text x="20" y="32" font-size="9" font-weight="bold" fill="#854d0e">सरसाः रसालाः (आम्रमञ्जरी):</text>
+        <text x="20" y="47" font-size="7.8" fill="#713f12">• मधुरमञ्जरीपिञ्जरीभूतमालाः</text>
+        <text x="20" y="60" font-size="7.8" fill="#713f12">• कोकिलाकाकलीनां कूजनम्</text>
+
+        <!-- 2. Yamuna & Madhavi Creeper -->
+        <rect x="168" y="15" width="150" height="58" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+        <text x="176" y="32" font-size="9" font-weight="bold" fill="#1e40af">कलिन्दात्मजा (यमुना):</text>
+        <text x="176" y="47" font-size="7.8" fill="#1e3a8a">• सवानीरतीरे (वेत्रलतासहिते)</text>
+        <text x="176" y="60" font-size="7.8" fill="#1e3a8a">• नता मधुमाधवीनां पङ्क्तिः</text>
+
+        <!-- 3. Malay Maruta & Bhramara -->
+        <rect x="12" y="82" width="306" height="60" rx="6" fill="#fdf4ff" stroke="#f0abfc"/>
+        <text x="20" y="100" font-size="9" font-weight="bold" fill="#86198f">मलयमारुतः एवं भ्रमराणाम् अलि-ततिः:</text>
+        <text x="20" y="116" font-size="7.8" fill="#701a75">• मन्दं मन्दं वहति समीरे कलिन्दात्मजायाः तीरे</text>
+        <text x="20" y="130" font-size="8" font-weight="bold" fill="#a21caf">• मलिनां ततिमवलोक्य वीणां निनादय (भ्रमराणां गुञ्जारवः)</text>
+      </g>
+    </svg>
+  </div>
+`;
+
+// Chapter 1 Section HTML
+const ch1Html = `<section class="chapter-section" id="ch1" data-book="shemushi">
+  <div class="chapter-header">
+    <div class="ch-badge">पाठः १</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">पद्यभागः (गीतिः) • शेमुषी प्रथमो भागः (Code 122)</div>
+      <h2>प्रथमः पाठः — भारतीवसन्तगीतिः</h2>
+      <p class="ch-author">रचयिता: पण्डित-जानकीवल्लभ-शास्त्री (गीतिसङ्ग्रहः: ‘काकली’)</p>
+    </div>
+  </div>
+
+  <div class="theme-card">
+    <div class="theme-header">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <span>पाठ-सारः एवं मुख्य-सन्देशः (Chapter Summary & Central Theme)</span>
+    </div>
+    <div class="theme-body">
+      <p>प्रस्तुतोऽयं पाठः आधुनिकसंस्कृतसाहित्यस्य प्रख्यातस्य कवेः <strong>पण्डित-जानकीवल्लभशास्त्रिणः</strong> ‘काकली’ इति गीतिसङ्ग्रहात् सङ्कलितोऽस्ति। अत्र कविः स्वाधीनता-सङ्ग्रामस्य पृष्ठभूमौ भारतमातुः सांस्कृतिक-जागरणार्थं वाग्देवीं भगवतीं सरस्वतीं सम्बोध्य प्रार्थयते यत् सा नवीनाम् ओजस्विनीं च वीणां वादयतु, येन जनमानसे नूतना चेतना, स्वाभिमानः, सत्य-न्याय-नीतिलीना च राष्ट्रभक्तिः सञ्चारिता भवेत्।</p>
+      <p style="margin-top:8px;font-style:italic;color:#6b21a8;"><strong>काव्य-सौन्दर्यम्:</strong> अस्मिन् गीते वसन्तऋतोः मनमोहकं प्राकृतिकं वातावरणम्, आम्रमञ्जरीणां सौरभम्, यमुनातीरे वेतसलतानां सौन्दर्यम्, कोकिलानां मधुरकूजनं तथा भ्रमराणां गुञ्जारवः अतिरमणीयतया चित्रितः अस्ति।</p>
+    </div>
+  </div>
+
+  <!-- Custom Educational SVG -->
+  ${svgDiagram}
+
+  <div class="ex-div">📖 एनसीईआरटी अभ्यास-प्रश्नोत्तराणि एवं सीबीएसई अंक-योजना (NCERT Exercises & CBSE Marking Rubrics 2026-27)</div>
+
+  <!-- अभ्यासः १ -->
+  <div class="q-card" id="c9sk_ch1_q1">
+    <div class="q-head" onclick="toggleQ('c9sk_ch1_q1')">
+      <div class="q-head-left">
+        <span class="q-num">अभ्यासः १ (क-ङ) — एकपदेन उत्तरं लिखत</span>
+        <span class="word-limit-pill">शब्द-सीमा: १-२ शब्दाः (Only 1-2 words as per CBSE Rubric)</span>
+      </div>
+      <div class="q-text">
+        अधोलिखितानां प्रश्नानाम् उत्तराणि एकपदेन लिखत:<br>
+        (क) कविः कां सम्बोधयति?<br>
+        (ख) कविः वाणीं कां वादयितुं प्रार्थयति?<br>
+        (ग) कीदृशीं वीणां निनादयितुं प्रार्थयति?<br>
+        (घ) गीतिं कथं गातुं कथयति?<br>
+        (ङ) सरसाः रसालाः कदा लसन्ति?
+      </div>
+      <div class="q-marks">१/२ × ५ = २.५ अंकाः</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ सीबीएसई मानक उत्तरम् (CBSE Model Answer & Detailed Explanation)</div>
+        <div class="answer-text">
+          <div class="sans-ans-block">
+            <p><strong>(क)</strong> <span class="ans-highlight">वाणीम्</span> (सरस्वतीम्)</p>
+            <p><strong>(ख)</strong> <span class="ans-highlight">वीणाम्</span></p>
+            <p><strong>(ग)</strong> <span class="ans-highlight">नवीनाम्</span></p>
+            <p><strong>(घ)</strong> <span class="ans-highlight">मृदुम्</span> (ललितनीतिलीनाम्)</p>
+            <p><strong>(ङ)</strong> <span class="ans-highlight">वसन्ते</span> (वसन्तसमये)</p>
+          </div>
+          <div class="hi-trans">
+            <strong>हिन्दी व्याख्या एवं व्याकरण-टिप्पणी:</strong><br>
+            • (क) कवि देवी सरस्वती (वाणी) को सम्बोधित करता है।<br>
+            • (ख) कवि वाणी से वीणा बजाने की प्रार्थना करता है।<br>
+            • (ग) वह ओज और चेतना जगाने वाली नवीन वीणा बजाने का अनुरोध करता है।<br>
+            • (घ) कवि सुंदर नीतियों से परिपूर्ण कोमल और मधुर गीत गाने को कहता है।<br>
+            • (ङ) रसीले आम के वृक्ष वसंत ऋतु में सुशोभित होते हैं।
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">📋 सीबीएसई चरणबद्ध अंक-विभाजन योजना (CBSE Step Marking Rubrics 2026-27)</div>
+          <div class="marking-row"><span class="marking-key">(क) ‘वाणीम्’ शुद्ध द्वितीया-एकवचन-पदाय</span><span class="marking-marks">१/२ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(ख) ‘वीणाम्’ शुद्ध पदस्य लेखनाय</span><span class="marking-marks">१/२ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(ग) ‘नवीनाम्’ विशेषणपदस्य शुद्धरूपाय</span><span class="marking-marks">१/२ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(घ) ‘मृदुम्’ क्रियाविशेषणपदाय</span><span class="marking-marks">१/२ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(ङ) ‘वसन्ते’ सप्तमी-विभक्तियुक्तपदाय</span><span class="marking-marks">१/२ अंकः</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- अभ्यासः २ -->
+  <div class="q-card" id="c9sk_ch1_q2">
+    <div class="q-head" onclick="toggleQ('c9sk_ch1_q2')">
+      <div class="q-head-left">
+        <span class="q-num">अभ्यासः २ (क-घ) — पूर्णवाक्येन उत्तरं लिखत</span>
+        <span class="word-limit-pill">शब्द-सीमा: १०-२० शब्दाः (Full Sentence with Subject-Verb Agreement)</span>
+      </div>
+      <div class="q-text">
+        अधोलिखितानां प्रश्नानाम् उत्तराणि संस्कृतभाषया पूर्णवाक्येन लिखत:<br>
+        (क) कविः वाणीं किं कथयति?<br>
+        (ख) वसन्ते किं भवति?<br>
+        (ग) सलिलं तव वीणामाकर्ण्य कथम् उच्चलेत्?<br>
+        (घ) कविः भगवतीं भारतीं कस्याः तीरे मधुमाधवीनां नतां पङ्क्तिम् अवलोक्य वीणां वादयितुं कथयति?
+      </div>
+      <div class="q-marks">१ × ४ = ४ अंकाः</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ सीबीएसई मानक उत्तरम् (CBSE Model Answer & Detailed Explanation)</div>
+        <div class="answer-text">
+          <div class="sans-ans-block">
+            <p><strong>(क)</strong> कविः वाणीं कथयति यत्— अयि वाणि! नवीनां वीणां निनादय, ललितनीतिलीनां मृदुं गीतिं च गाय।</p>
+            <p><strong>(ख)</strong> वसन्ते मधुरमञ्जरीपिञ्जरीभूतमालाः सरसाः रसालाः लसन्ति, ललितकोकिलाकाकलीनां कलापाः च विलसन्ति।</p>
+            <p><strong>(ग)</strong> तव ओजस्विनीं वीणामाकर्ण्य नदीनां कान्तसलिलं सलीलम् (क्रीडासहितम्) उच्चलेत्।</p>
+            <p><strong>(घ)</strong> कविः भगवतीं भारतीं कलिन्दात्मजायाः (यमुनायाः) सवानीरतीरे नतां मधुमाधवीनां पङ्क्तिम् अवलोक्य वीणां वादयितुं कथयति।</p>
+          </div>
+          <div class="hi-trans">
+            <strong>हिन्दी व्याख्या:</strong><br>
+            • (क) कवि वाणी (सरस्वती) से प्रार्थना करता है कि हे माँ! नई वीणा बजाओ और सुंदर नीतियों से युक्त मधुर गीत का गायन करो।<br>
+            • (ख) वसंत ऋतु में पीली मंजरियों से युक्त रसीले आम के पेड़ सुशोभित होते हैं तथा सुंदर कूकने वाली कोयलों के समूह मधुर गान करते हैं।<br>
+            • (ग) माँ सरस्वती की वीणा का पावन नाद सुनकर शांत और निर्मल जल क्रीड़ा करता हुआ उछलने लगता है।<br>
+            • (घ) कवि भगवती सरस्वती से यमुना नदी के बेंत की लताओं से घिरे तट पर झुकी हुई सुंदर मालती (मधुमाधवी) लताओं की पंक्तियों को देखकर वीणा वादन करने को कहता है।
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">📋 सीबीएसई चरणबद्ध अंक-विभाजन योजना (CBSE Step Marking Rubrics 2026-27)</div>
+          <div class="marking-row"><span class="marking-key">(क) पूर्णवाक्ये शुद्ध-कर्तृ-क्रिया-सहितं कथनप्रतिपादनम्</span><span class="marking-marks">१ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(ख) रसाल-कोकिला-उभयोः यथार्थोल्लेखेन वाक्यरचना</span><span class="marking-marks">१ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(ग) ‘सलीलमुच्छलेत्’ इत्यस्य शुद्धान्वयप्रयोगः</span><span class="marking-marks">१ अंकः</span></div>
+          <div class="marking-row"><span class="marking-key">(घ) ‘कलिन्दात्मजायाः सवानीरतीरे’ शुद्ध-विभक्ति-प्रयोगः</span><span class="marking-marks">१ अंकः</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- अभ्यासः ३ -->
+  <div class="q-card" id="c9sk_ch1_q3">
+    <div class="q-head" onclick="toggleQ('c9sk_ch1_q3')">
+      <div class="q-head-left">
+        <span class="q-num">अभ्यासः ३ — पर्यायपदानां मेलनम्</span>
+        <span class="word-limit-pill">स्तम्भद्वयस्य यथार्थमेलनम्</span>
+      </div>
+      <div class="q-text">
+        ‘क’ स्तम्भे पदानि, ‘ख’ स्तम्भे तेषां पर्यायपदानि दत्तानि। तानि चित्वा पदानां समक्षे लिखत:<br>
+        <strong>‘क’ स्तम्भः:</strong> (क) सरस्वती, (ख) आम्रम्, (ग) पवनः, (घ) तटे, (ङ) भ्रमराणाम्<br>
+        <strong>‘ख’ स्तम्भः:</strong> तीरे, अलीनाम्, समीरः, वाणी, रसालः
+      </div>
+      <div class="q-marks">१/२ × ५ = २.५ अंकाः</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ सीबीएसई मानक उत्तरम् (CBSE Model Answer & Detailed Explanation)</div>
+        <div class="answer-text">
+          <table style="width:100%; border-collapse:collapse; margin:10px 0; font-size:0.9rem;">
+            <thead>
+              <tr style="background:#f5f3ff; text-align:left; border-bottom:2px solid #ddd6fe;">
+                <th style="padding:10px; color:#5b21b6;">‘क’ स्तम्भः (मूलपदम्)</th>
+                <th style="padding:10px; color:#5b21b6;">‘ख’ स्तम्भः (पर्यायपदम्)</th>
+                <th style="padding:10px; color:#5b21b6;">हिन्दी अर्थः</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #f1f5f9;">
+                <td style="padding:9px; font-weight:700;">(क) सरस्वती</td>
+                <td style="padding:9px; font-weight:700; color:#7c3aed;">वाणी</td>
+                <td style="padding:9px; color:#64748b;">विद्या की देवी माँ सरस्वती</td>
+              </tr>
+              <tr style="border-bottom:1px solid #f1f5f9;">
+                <td style="padding:9px; font-weight:700;">(ख) आम्रम्</td>
+                <td style="padding:9px; font-weight:700; color:#7c3aed;">रसालः</td>
+                <td style="padding:9px; color:#64748b;">आम का फल / वृक्ष</td>
+              </tr>
+              <tr style="border-bottom:1px solid #f1f5f9;">
+                <td style="padding:9px; font-weight:700;">(ग) पवनः</td>
+                <td style="padding:9px; font-weight:700; color:#7c3aed;">समीरः</td>
+                <td style="padding:9px; color:#64748b;">वायु / हवा</td>
+              </tr>
+              <tr style="border-bottom:1px solid #f1f5f9;">
+                <td style="padding:9px; font-weight:700;">(घ) तटे</td>
+                <td style="padding:9px; font-weight:700; color:#7c3aed;">तीरे</td>
+                <td style="padding:9px; color:#64748b;">किनारे पर</td>
+              </tr>
+              <tr>
+                <td style="padding:9px; font-weight:700;">(ङ) भ्रमराणाम्</td>
+                <td style="padding:9px; font-weight:700; color:#7c3aed;">अलीनाम्</td>
+                <td style="padding:9px; color:#64748b;">भौरों का</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">📋 सीबीएसई चरणबद्ध अंक-विभाजन योजना (CBSE Step Marking Rubrics 2026-27)</div>
+          <div class="marking-row"><span class="marking-key">प्रत्येकस्मिन् शुद्ध-पर्यायपद-मेलनाय</span><span class="marking-marks">१/२ अंकः</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- अभ्यासः ४ -->
+  <div class="q-card" id="c9sk_ch1_q4">
+    <div class="q-head" onclick="toggleQ('c9sk_ch1_q4')">
+      <div class="q-head-left">
+        <span class="q-num">अभ्यासः ४ — संस्कृतभाषया वाक्यरचना</span>
+        <span class="word-limit-pill">व्याकरणसम्मत शुद्धवाक्यम्</span>
+      </div>
+      <div class="q-text">
+        अधोलिखितानि पदानि प्रयुज्य संस्कृतभाषया वाक्यरचनां कुरुत:<br>
+        (क) निनादय<br>
+        (ख) मन्दमन्दम्<br>
+        (ग) मारुतः<br>
+        (घ) सलिलम्<br>
+        (ङ) सुमनः
+      </div>
+      <div class="q-marks">१/२ × ५ = २.५ अंकाः</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ सीबीएसई मानक उत्तरम् (CBSE Model Answer & Detailed Explanation)</div>
+        <div class="answer-text">
+          <div class="sans-ans-block">
+            <p><strong>(क) निनादय (बजाओ):</strong><br>
+            वाक्यम्: <span class="ans-highlight">अयि वाणि! नवीनां वीणां निनादय।</span><br>
+            <em>(हिन्दी: हे सरस्वती! नई वीणा को बजाओ।)</em></p>
+
+            <p style="margin-top:10px;"><strong>(ख) मन्दमन्दम् (धीरे-धीरे):</strong><br>
+            वाक्यम्: <span class="ans-highlight">उद्याने मलयमारुतः मन्दमन्दं वहति।</span><br>
+            <em>(हिन्दी: बगीचे में मलय समीर धीरे-धीरे बहता है।)</em></p>
+
+            <p style="margin-top:10px;"><strong>(ग) मारुतः (हवा/वायु):</strong><br>
+            वाक्यम्: <span class="ans-highlight">वसन्तऋतौ सुगन्धितः मारुतः सर्वान् आह्लादयति।</span><br>
+            <em>(हिन्दी: वसंत ऋतु में सुगंधित वायु सबको आनंदित करती है।)</em></p>
+
+            <p style="margin-top:10px;"><strong>(घ) सलिलम् (जल/पानी):</strong><br>
+            वाक्यम्: <span class="ans-highlight">कलिन्दात्मजायाः सलिलं निर्मलं शीतलं च भवति।</span><br>
+            <em>(हिन्दी: यमुना नदी का जल स्वच्छ और शीतल होता है।)</em></p>
+
+            <p style="margin-top:10px;"><strong>(ङ) सुमनः (फूल/पुष्प):</strong><br>
+            वाक्यम्: <span class="ans-highlight">ललितायां लतायां मनोहरः सुमनः विकसति।</span><br>
+            <em>(हिन्दी: सुंदर लता पर मनोहर फूल खिलता है।)</em></p>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">📋 सीबीएसई चरणबद्ध अंक-विभाजन योजना (CBSE Step Marking Rubrics 2026-27)</div>
+          <div class="marking-row"><span class="marking-key">पदानां सार्थकेन व्याकरणसम्मत-प्रयोगेण प्रतिवाक्यम्</span><span class="marking-marks">१/२ अंकः</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- अभ्यासः ५ -->
+  <div class="q-card" id="c9sk_ch1_q5">
+    <div class="q-head" onclick="toggleQ('c9sk_ch1_q5')">
+      <div class="q-head-left">
+        <span class="q-num">अभ्यासः ५ — प्रथमश्लोकस्य भावार्थः</span>
+        <span class="word-limit-pill">हिन्दीभाषया आङ्ग्लभाषया वा आशयलेखनम्</span>
+      </div>
+      <div class="q-text">
+        प्रथमश्लोकस्य आशयं हिन्दीभाषया आङ्ग्लभाषया वा लिखत:<br>
+        <em>‘निनादय नवीनामये वाणि वीणाम्<br>
+        मृदुं गाय गीतिं ललितनीतिलीनाम्।<br>
+        मधुरमञ्जरीपिञ्जरीभूतमालाः<br>
+        वसन्ते लसन्तीह सरसा रसालाः<br>
+        कलापाः ललितकोकिलाकाकलीनाम्॥’</em>
+      </div>
+      <div class="q-marks">३ अंकाः</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ सीबीएसई मानक उत्तरम् (CBSE Model Answer & Detailed Explanation)</div>
+        <div class="answer-text">
+          <p><strong>१. हिन्दीभाषया आशयः (Bhavarth in Hindi):</strong></p>
+          <div class="hi-trans" style="margin-top:6px; line-height:1.75;">
+            हे माँ सरस्वती! आप अपनी नवीन और ओजस्वी वीणा का वादन कीजिए तथा सुंदर और कल्याणकारी नीतियों से परिपूर्ण मधुर गीत का गान कीजिए।<br><br>
+            इस वसंत ऋतु में पीले-पीले परागकणों और मधुर मंजरियों से आच्छादित रसीले आम के वृक्षों की कतारें अत्यंत शोभायमान हो रही हैं, और उन पर मधुर कूक करने वाली सुंदर कोयलों के झुंड मनमोहक गान कर रहे हैं। कवि माँ शारदा से प्रार्थना करता है कि इस मनोहर प्राकृतिक वातावरण में वह जनमानस में नव-स्फूर्ति, स्वाधीनता, सांस्कृतिक गरिमा और देशप्रेम का अलौकिक संगीत भर दें।
+          </div>
+
+          <p style="margin-top:14px;"><strong>२. English Purport (आङ्ग्लभाषया आशयः):</strong></p>
+          <div style="background:#faf5ff; border-left:3px solid #7c3aed; padding:10px 14px; border-radius:0 8px 8px 0; font-size:0.88rem; color:#4c1d95; line-height:1.7;">
+            "O Goddess Saraswati! Resonate Thy pristine, inspiring lyre (Veena) and sing a melodious song enriched with righteous, sublime values. In this vibrant spring season, rows of luscious mango trees laden with golden, honey-sweet blossoms are radiating splendour, while flocks of charming cuckoos warble sweetly in harmony. O Mother Divine, awaken the hearts of the nation with the sublime melody of freedom, righteous ideals, and patriotic consciousness."
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">📋 सीबीएसई चरणबद्ध अंक-विभाजन योजना (CBSE Step Marking Rubrics 2026-27)</div>
+          <div class="marking-row"><span class="marking-key">कवेः मूल-आशयस्य एवं प्रकृतेः वर्णनस्य सम्यक् प्रतिपादनम्</span><span class="marking-marks">१.५ अंकाः</span></div>
+          <div class="marking-row"><span class="marking-key">भाषायाः सरलता, स्पष्टता एवं साहित्यिक-सौष्ठवम्</span><span class="marking-marks">१.५ अंकाः</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- अभ्यासः ६ -->
+  <div class="q-card" id="c9sk_ch1_q6">
+    <div class="q-head" onclick="toggleQ('c9sk_ch1_q6')">
+      <div class="q-head-left">
+        <span class="q-num">अभ्यासः ६ — विलोमपदानि लिखत</span>
+        <span class="word-limit-pill">सटीक विलोमपदानि</span>
+      </div>
+      <div class="q-text">
+        अधोलिखितपदानां विलोमपदानि लिखत:<br>
+        (क) कठोरम्<br>
+        (ख) कटु<br>
+        (ग) शीघ्रम्<br>
+        (घ) प्राचीनम्<br>
+        (ङ) नीरसः
+      </div>
+      <div class="q-marks">१/२ × ५ = २.५ अंकाः</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ सीबीएसई मानक उत्तरम् (CBSE Model Answer & Detailed Explanation)</div>
+        <div class="answer-text">
+          <div class="sans-ans-block">
+            <p><strong>(क) कठोरम्</strong> $\times$ <span class="ans-highlight">मृदुम् / कोमलम्</span></p>
+            <p><strong>(ख) कटु</strong> $\times$ <span class="ans-highlight">मधुरम्</span></p>
+            <p><strong>(ग) शीघ्रम्</strong> $\times$ <span class="ans-highlight">मन्दम् / शनैः / मन्दमन्दम्</span></p>
+            <p><strong>(घ) प्राचीनम्</strong> $\times$ <span class="ans-highlight">नवीनम् / अर्वाचीनम्</span></p>
+            <p><strong>(ङ) नीरसः</strong> $\times$ <span class="ans-highlight">सरसः</span></p>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">📋 सीबीएसई चरणबद्ध अंक-विभाजन योजना (CBSE Step Marking Rubrics 2026-27)</div>
+          <div class="marking-row"><span class="marking-key">प्रत्येकस्मिन् शुद्ध-विलोमपदलेखनाय</span><span class="marking-marks">१/२ अंकः</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ Section -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 योग्यता-आधारिताः एवं मूल्यपरक-प्रश्नाः (CBSE Competency-Based / HOTS Questions)</span>
+      <span class="cbq-badge">NEP 2020 Aligned</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #7c3aed;">
+        <div class="cbq-type" style="color:#7c3aed;">योग्यता-आधारितः प्रश्नः (NEP 2020 Competency HOTS Question)</div>
+        <div class="cbq-question">
+          <strong>प्रश्नः:</strong> ‘भारतीवसन्तगीतिः’ इति गीते कविः प्रकृतेः सौन्दर्यं वर्णयन् कीदृशीं राष्ट्रिय-चेतनां जाग्रतीं च उद्घोषयति? (शब्द-सीमा: ३०-४० शब्दाः | अंकाः: २)
+        </div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ उत्तरं पश्यतु (Show Answer)</button>
+        <div class="cbq-answer">
+          <p>अस्मिन् पाठे कविः स्वाधीनता-आन्दोलनस्य पृष्ठभूमौ प्रकृतेः नववसन्तस्य माधुर्येण सह देशभक्तेः नूतनजागरणस्य च आह्वानं करोति। यथा वसन्ते मञ्जरीभिः प्रकृतिः पुनर्नवीकृता भवति, तथैव सरस्वत्याः वीणावादनस्य ओजस्वी-नादेन भारतीयजनेषु नवीना ऊर्जा, स्वाभिमानः, नीतिनिष्ठा राष्ट्रभक्तिश्च सञ्चारिता भवेदिति कवेः मूल-उद्देश्यम् अस्ति।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter Nav Buttons -->
+  <div class="chapter-nav-btns">
+    <div></div>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ शीर्षं प्रति (Back to Top)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(2)">अग्रिमः पाठः: स्वर्णकाकः (Ch 2) →</button>
+  </div>
+</section>`;
+
+// Write ch1.html
+fs.writeFileSync(ch1Path, ch1Html, 'utf8');
+console.log(`Successfully generated Chapter 1: ${ch1Path} (${ch1Html.length} bytes)`);
+
+// Initialize or update chapters-data.js cache
+let cacheContent = `// Preloaded Class 9 Sanskrit NCERT Solutions Bundle (Shemushi Prathamo Bhagah)\n`;
+cacheContent += `// Provides instant 0ms switching with zero latency\n`;
+cacheContent += `window.PRELOADED_CHAPTERS_C9SK = window.PRELOADED_CHAPTERS_C9SK || {};\n`;
+cacheContent += `window.PRELOADED_CHAPTERS_C9SK["1"] = ${JSON.stringify(ch1Html)};\n`;
+
+fs.writeFileSync(cachePath, cacheContent, 'utf8');
+console.log(`Successfully initialized preloaded cache: ${cachePath}`);

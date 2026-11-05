@@ -1,0 +1,622 @@
+// scripts/builders/gen-c11b-ch3.js
+// Chapter 3: Plant Kingdom (All 11 Verbatim Questions)
+const { createQCard, saveChapter } = require('./c11b-helper');
+
+const questions = [];
+
+const svgCh3 = `
+  <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:18px; margin-bottom:24px;">
+    <div style="font-weight:800; color:#166534; font-size:0.95rem; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Plant Kingdom Classification &amp; Alternation of Generations
+    </div>
+    <svg viewBox="0 0 850 250" width="100%" height="auto" style="max-height:250px; font-family:'Plus Jakarta Sans',sans-serif;">
+      <!-- Plant Kingdom Taxonomy Map -->
+      <rect x="10" y="10" width="460" height="230" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+      <text x="240" y="30" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">KINGDOM PLANTAE (EMBRYOPHYTA &amp; THALLOPHYTA)</text>
+      
+      <!-- Thallophyta -->
+      <rect x="25" y="45" width="130" height="85" rx="6" fill="#ecfdf5" stroke="#10b981"/>
+      <text x="90" y="65" font-size="10" font-weight="bold" fill="#065f46" text-anchor="middle">ALGAE</text>
+      <text x="90" y="80" font-size="7.5" fill="#047857" text-anchor="middle">&bull; Chlorophyceae (Green)</text>
+      <text x="90" y="95" font-size="7.5" fill="#047857" text-anchor="middle">&bull; Phaeophyceae (Brown)</text>
+      <text x="90" y="110" font-size="7.5" fill="#047857" text-anchor="middle">&bull; Rhodophyceae (Red)</text>
+      <text x="90" y="123" font-size="7" fill="#64748b" text-anchor="middle">Non-vascular &bull; Thalloid</text>
+
+      <!-- Bryophyta -->
+      <rect x="175" y="45" width="135" height="85" rx="6" fill="#f0fdf4" stroke="#4ade80"/>
+      <text x="242" y="65" font-size="10" font-weight="bold" fill="#166534" text-anchor="middle">BRYOPHYTA</text>
+      <text x="242" y="80" font-size="7.5" fill="#15803d" text-anchor="middle">&bull; Liverworts (Marchantia)</text>
+      <text x="242" y="95" font-size="7.5" fill="#15803d" text-anchor="middle">&bull; Mosses (Funaria, Sphagnum)</text>
+      <text x="242" y="110" font-size="7" fill="#64748b" text-anchor="middle">"Amphibians of Plant Kingdom"</text>
+      <text x="242" y="123" font-size="7" fill="#64748b" text-anchor="middle">Dominant Gametophyte (n)</text>
+
+      <!-- Pteridophyta -->
+      <rect x="330" y="45" width="125" height="85" rx="6" fill="#fefce8" stroke="#facc15"/>
+      <text x="392" y="65" font-size="10" font-weight="bold" fill="#854d0e" text-anchor="middle">PTERIDOPHYTA</text>
+      <text x="392" y="80" font-size="7.5" fill="#713f12" text-anchor="middle">&bull; Ferns, Selaginella, Equisetum</text>
+      <text x="392" y="95" font-size="7" fill="#64748b" text-anchor="middle">First Vascular Plants (Xylem/Phloem)</text>
+      <text x="392" y="110" font-size="7" fill="#64748b" text-anchor="middle">Dominant Sporophyte (2n)</text>
+      <text x="392" y="123" font-size="7" fill="#15803d" text-anchor="middle">Origin of Heterospory</text>
+
+      <!-- Spermatophyta (Seed Plants) -->
+      <rect x="25" y="145" width="430" height="85" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="240" y="162" font-size="10" font-weight="bold" fill="#334155" text-anchor="middle">SPERMATOPHYTA (SEED-BEARING TRACHEOPHYTES)</text>
+      
+      <rect x="40" y="172" width="190" height="50" rx="4" fill="#ffffff" stroke="#94a3b8"/>
+      <text x="135" y="188" font-size="9" font-weight="bold" fill="#0f172a" text-anchor="middle">Gymnosperms (Naked Seeds)</text>
+      <text x="135" y="202" font-size="7.5" fill="#64748b" text-anchor="middle">Ovules not enclosed in ovary &bull; Cycas, Pinus</text>
+      <text x="135" y="214" font-size="7.5" fill="#64748b" text-anchor="middle">Cones, Tracheids, Anemophilous Pollination</text>
+
+      <rect x="250" y="172" width="190" height="50" rx="4" fill="#ffffff" stroke="#94a3b8"/>
+      <text x="345" y="188" font-size="9" font-weight="bold" fill="#0f172a" text-anchor="middle">Angiosperms (Flowering Plants)</text>
+      <text x="345" y="202" font-size="7.5" fill="#64748b" text-anchor="middle">Seeds enclosed inside fruit &bull; Monocots &amp; Dicots</text>
+      <text x="345" y="214" font-size="7.5" fill="#64748b" text-anchor="middle">Double Fertilization &bull; Triple Fusion (PEN 3n)</text>
+
+      <!-- Alternation of Generations Graphic on Right -->
+      <rect x="490" y="10" width="350" height="230" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="665" y="30" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">HAPLO-DIPLONTIC LIFE CYCLE</text>
+
+      <!-- Sporophyte Circle -->
+      <circle cx="580" cy="110" r="45" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+      <text x="580" y="105" font-size="9.5" font-weight="bold" fill="#065f46" text-anchor="middle">Sporophyte</text>
+      <text x="580" y="120" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">(2n)</text>
+
+      <!-- Gametophyte Circle -->
+      <circle cx="750" cy="110" r="45" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+      <text x="750" y="105" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">Gametophyte</text>
+      <text x="750" y="120" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="middle">(n)</text>
+
+      <!-- Arrows -->
+      <path d="M 625,95 Q 665,65 705,95" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+      <text x="665" y="70" font-size="8.5" font-weight="bold" fill="#dc2626" text-anchor="middle">MEIOSIS (R!)</text>
+      <text x="665" y="82" font-size="7.5" fill="#475569" text-anchor="middle">Spores (n)</text>
+
+      <path d="M 705,125 Q 665,155 625,125" stroke="#16a34a" stroke-width="2" fill="none"/>
+      <text x="665" y="152" font-size="8.5" font-weight="bold" fill="#16a34a" text-anchor="middle">SYNGAMY (Fertilization)</text>
+      <text x="665" y="164" font-size="7.5" fill="#475569" text-anchor="middle">Zygote (2n)</text>
+
+      <!-- Life cycle summary pill -->
+      <rect x="510" y="185" width="310" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="520" y="202" font-size="8" fill="#334155">&bull; <strong>Bryophytes:</strong> Gametophyte (n) dominant &amp; free-living; Sporophyte dependent.</text>
+      <text x="520" y="216" font-size="8" fill="#334155">&bull; <strong>Pteridophytes:</strong> Sporophyte (2n) dominant &amp; vascular; Gametophyte small.</text>
+    </svg>
+  </div>
+`;
+
+// Q1
+questions.push(createQCard(
+  'c11b-ch3-q1', 'Question 1', 'NCERT Exercise',
+  'What is the basis of classification of algae?',
+  `<div class="step">
+    <strong>Scientific Basis of Classification of Algae into Three Major Classes:</strong><br>
+    Algae are classified into three primary classes—<strong>Chlorophyceae</strong> (green algae), <strong>Phaeophyceae</strong> (brown algae), and <strong>Rhodophyceae</strong> (red algae)—based primarily on the following fundamental criteria:<br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:0.84rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:2px solid #059669; text-align:left;">
+            <th style="padding:8px 10px; color:#065f46;">Classification Criteria</th>
+            <th style="padding:8px 10px; color:#065f46;">Chlorophyceae (Green)</th>
+            <th style="padding:8px 10px; color:#065f46;">Phaeophyceae (Brown)</th>
+            <th style="padding:8px 10px; color:#065f46;">Rhodophyceae (Red)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">1. Major Photosynthetic Pigments</td>
+            <td style="padding:8px 10px;">Chlorophyll $a$, $b$</td>
+            <td style="padding:8px 10px;">Chlorophyll $a$, $c$, and xanthophyll carotenoid <strong>fucoxanthin</strong></td>
+            <td style="padding:8px 10px;">Chlorophyll $a$, $d$, and phycobiliprotein <strong>r-phycoerythrin</strong></td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">2. Stored Food Material</td>
+            <td style="padding:8px 10px;">True <strong>Starch</strong> (stored in pyrenoids)</td>
+            <td style="padding:8px 10px;">Complex carbohydrates: <strong>Laminarin</strong> or <strong>Mannitol</strong></td>
+            <td style="padding:8px 10px;"><strong>Floridean Starch</strong> (structurally similar to amylopectin and glycogen)</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">3. Cell Wall Composition</td>
+            <td style="padding:8px 10px;">Inner cellulose, outer pectose layer</td>
+            <td style="padding:8px 10px;">Cellulose covered externally by a gelatinous coating of <strong>algin</strong></td>
+            <td style="padding:8px 10px;">Cellulose, pectin, and sulfated phycocolloids (agar, carrageen)</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px; font-weight:700;">4. Flagellar Number &amp; Position of Insertion</td>
+            <td style="padding:8px 10px;">2–8, equal, apical</td>
+            <td style="padding:8px 10px;">2, unequal, lateral</td>
+            <td style="padding:8px 10px; color:#dc2626; font-weight:700;">Completely absent in all life stages</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`,
+  '4 Marks',
+  [
+    ['Major photosynthetic pigments across Chlorophyceae, Phaeophyceae, Rhodophyceae', '1 Mark'],
+    ['Nature of stored reserve food (starch vs. laminarin/mannitol vs. floridean starch)', '1 Mark'],
+    ['Cell wall chemical composition (cellulose, algin, phycocolloids)', '1 Mark'],
+    ['Flagellar apparatus (equal apical vs. unequal lateral vs. completely absent)', '1 Mark']
+  ]
+));
+
+// Q2
+questions.push(createQCard(
+  'c11b-ch3-q2', 'Question 2', 'NCERT Exercise',
+  'When and where does reduction division take place in the life cycle of a liverwort, a moss, a fern, a gymnosperm and an angiosperm?',
+  `<div class="step">
+    <strong>Site and Timing of Reduction Division (Meiosis) Across Plant Groups:</strong><br><br>
+    <strong>1. Liverwort (e.g., <em>Marchantia</em>):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Where:</strong> Inside the <strong>capsule</strong> of the diploid sporophyte.</li>
+      <li><strong>When:</strong> During <strong>sporogenesis</strong>, when diploid spore mother cells (SMCs) undergo meiosis to form haploid spores ($n$) which are dispersed with the help of hygroscopic elaters.</li>
+    </ul>
+    <strong>2. Moss (e.g., <em>Funaria</em>, <em>Polytrichum</em>):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Where:</strong> Inside the spore sac within the <strong>capsule</strong> region of the sporophyte (surrounding the columella).</li>
+      <li><strong>When:</strong> During spore formation, spore mother cells undergo meiosis to yield haploid spores released via peristomial teeth.</li>
+    </ul>
+    <strong>3. Fern (e.g., <em>Dryopteris</em>, <em>Pteris</em>):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Where:</strong> Inside the <strong>sporangia</strong> borne in clusters called <strong>sori</strong> on the ventral surface of fertile leaves (sporophylls).</li>
+      <li><strong>When:</strong> Diploid spore mother cells undergo meiosis to produce haploid spores, which germinate into the independent monoecious gametophyte (prothallus).</li>
+    </ul>
+    <strong>4. Gymnosperm (e.g., <em>Pinus</em>, <em>Cycas</em>):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Where &amp; When:</strong> Occurs in two distinct sporangia:
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Microsporangia (pollen sacs):</em> Diploid microspore mother cells undergo meiosis to form haploid microspores (pollen grains).</li>
+          <li><em>Megasporangia (nucellus of ovule):</em> A single diploid megaspore mother cell (MMC) undergoes meiosis to produce a linear tetrad of 4 haploid megaspores, of which 3 degenerate and 1 forms the functional female gametophyte with archegonia.</li>
+        </ul>
+      </li>
+    </ul>
+    <strong>5. Angiosperm (Flowering Plants):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li><strong>Where &amp; When:</strong>
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Anther (Microsporangium):</em> Microspore mother cells (pollen mother cells / PMC) undergo meiosis to generate haploid microspores (pollen grains).</li>
+          <li><em>Ovule (Megasporangium):</em> Megaspore mother cell inside the nucellus undergoes meiosis to produce 4 haploid megaspores (one functional megaspore forms the 7-celled, 8-nucleate female embryo sac).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Liverwort & Moss: capsule of sporophyte during spore mother cell meiosis', '1 Mark'],
+    ['Fern: inside sporangia/sori on sporophylls', '1 Mark'],
+    ['Gymnosperm: microsporangia (pollen) & megasporangium/nucellus (megaspore)', '1 Mark'],
+    ['Angiosperm: anther locules (PMC to pollen) & ovule nucellus (MMC to embryo sac)', '1 Mark']
+  ]
+));
+
+// Q3
+questions.push(createQCard(
+  'c11b-ch3-q3', 'Question 3', 'NCERT Exercise',
+  'Name three groups of plants that bear archegonia. Briefly describe the life cycle of any one of them.',
+  `<div class="step">
+    <strong>Three Groups of Plants Bearing Archegonia (Archegoniatae):</strong><br>
+    The female sex organ called the <strong>archegonium</strong> (flask-shaped multicellular organ consisting of a neck and a venter enclosing an egg cell) is present in:
+    <ol style="margin:6px 0 10px 20px;">
+      <li><strong>Bryophyta</strong> (Liverworts and Mosses)</li>
+      <li><strong>Pteridophyta</strong> (Ferns, Horsetails, Club mosses)</li>
+      <li><strong>Gymnosperms</strong> (Conifers, Cycads, Ginkgo)</li>
+    </ol>
+    <em>(Note: Archegonia are completely absent in Angiosperms, where they are replaced by the reduced embryo sac).</em><br><br>
+    <strong>Brief Life Cycle of Bryophyta (e.g., <em>Funaria</em> / Moss):</strong>
+    <ul style="margin:6px 0 10px 20px;">
+      <li><strong>Dominant Phase (Gametophyte - n):</strong> The conspicuous, free-living, independent phase is the haploid gametophyte consisting of leafy shoots anchored to soil by multicellular rhizoids.</li>
+      <li><strong>Sex Organs:</strong> Formed at the apices of leafy stems:
+        <ul style="margin:2px 0 4px 15px;">
+          <li>Male organ: <strong>Antheridium</strong> (club-shaped, producing biflagellated, motile antherozoids).</li>
+          <li>Female organ: <strong>Archegonium</strong> (flask-shaped, with neck canal cells and a venter containing a non-motile egg).</li>
+        </ul>
+      </li>
+      <li><strong>Fertilization (Zooidogamy):</strong> Water is essential for reproduction. Antherozoids swim through a thin film of water towards the chemotactic stimulus of the archegonium. Syngamy produces a diploid zygote ($2n$).</li>
+      <li><strong>Dependent Sporophyte Phase (2n):</strong> The zygote does not undergo immediate meiosis; it develops into a multicellular diploid sporophyte consisting of a <strong>foot, seta, and capsule</strong>, which remains permanently attached to and nutritionally dependent on the green gametophyte.</li>
+      <li><strong>Spore Dispersal &amp; Germination:</strong> Spore mother cells in the capsule undergo meiosis to form haploid spores. Spores germinate into a juvenile creeping, green, filamentous stage called the <strong>protonema</strong>, which later develops leafy gametophore buds.</li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Correct naming of 3 archegoniate groups (Bryophytes, Pteridophytes, Gymnosperms)', '1 Mark'],
+    ['Identification of dominant haploid gametophyte and water requirement for fertilization', '1 Mark'],
+    ['Description of dependent sporophyte (foot, seta, capsule) and meiotic spore formation', '1 Mark'],
+    ['Mention of protonema stage in moss life cycle and alternation of generations', '1 Mark']
+  ]
+));
+
+// Q4
+questions.push(createQCard(
+  'c11b-ch3-q4', 'Question 4', 'NCERT Exercise',
+  'Mention the ploidy of the following: protonemal cell of a moss; primary endosperm nucleus in dicot, leaf cell of a moss; prothallus cell of a fern; gemma cell in Marchantia; meristem cell of monocot, ovum of a liverwort, and zygote of a fern.',
+  `<div class="step">
+    <strong>Exact Ploidy Levels of the Given Plant Cells:</strong><br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:0.86rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:2px solid #059669; text-align:left;">
+            <th style="padding:8px 12px; color:#065f46;">Cell / Structure</th>
+            <th style="padding:8px 12px; color:#065f46;">Ploidy Level</th>
+            <th style="padding:8px 12px; color:#065f46;">Biological Justification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">1. Protonemal cell of a moss</td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">Haploid ($n$)</td>
+            <td style="padding:8px 12px;">Directly develops from the mitotic germination of a meiotically produced haploid spore.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">2. Primary Endosperm Nucleus (PEN) in dicot</td>
+            <td style="padding:8px 12px; color:#dc2626; font-weight:800;">Triploid ($3n$)</td>
+            <td style="padding:8px 12px;">Result of triple fusion: 1 haploid male gamete ($n$) + 2 haploid polar nuclei ($n+n$).</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">3. Leaf cell of a moss</td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">Haploid ($n$)</td>
+            <td style="padding:8px 12px;">Forms part of the main vegetative body of the gametophyte ($n$).</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">4. Prothallus cell of a fern</td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">Haploid ($n$)</td>
+            <td style="padding:8px 12px;">The prothallus is the independent gametophytic phase grown from a haploid spore.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">5. Gemma cell in <em>Marchantia</em></td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">Haploid ($n$)</td>
+            <td style="padding:8px 12px;">Asexual vegetative propagule produced on the haploid gametophytic thallus.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">6. Meristem cell of monocot</td>
+            <td style="padding:8px 12px; color:#2563eb; font-weight:800;">Diploid ($2n$)</td>
+            <td style="padding:8px 12px;">Actively dividing somatic vegetative tissue of the dominant sporophyte ($2n$).</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">7. Ovum (egg cell) of a liverwort</td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">Haploid ($n$)</td>
+            <td style="padding:8px 12px;">Female gamete produced by mitosis inside the haploid archegonium.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px; font-weight:700;">8. Zygote of a fern</td>
+            <td style="padding:8px 12px; color:#2563eb; font-weight:800;">Diploid ($2n$)</td>
+            <td style="padding:8px 12px;">Formed by syngamy (fusion) of haploid antherozoid ($n$) and haploid ovum ($n$).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`,
+  '4 Marks',
+  [
+    ['Protonemal cell (n) and Primary endosperm nucleus (3n)', '1 Mark'],
+    ['Leaf cell of moss (n) and Prothallus cell of fern (n)', '1 Mark'],
+    ['Gemma cell of Marchantia (n) and Meristem cell of monocot (2n)', '1 Mark'],
+    ['Ovum of liverwort (n) and Zygote of fern (2n)', '1 Mark']
+  ]
+));
+
+// Q5
+questions.push(createQCard(
+  'c11b-ch3-q5', 'Question 5', 'NCERT Exercise',
+  'Write a note on economic importance of algae and gymnosperms.',
+  `<div class="step">
+    <strong>A. Economic Importance of Algae:</strong>
+    <ul style="margin:6px 0 10px 20px;">
+      <li><strong>Carbon Fixation &amp; Oxygen Production:</strong> Algae carry out at least 50% of the total carbon dioxide fixation on Earth via photosynthesis, serving as fundamental primary producers in aquatic food chains.</li>
+      <li><strong>Direct Food Source:</strong> Over 70 species of marine algae are edible, notably <em>Porphyra</em> (Nori), <em>Laminaria</em> (Kombu), and <em>Sargassum</em>.</li>
+      <li><strong>Hydrocolloids (Phycocolloids):</strong>
+        <ul style="margin:2px 0 4px 15px;">
+          <li><strong>Agar-agar:</strong> Derived from red algae (<em>Gelidium</em> and <em>Gracilaria</em>); used worldwide to solidify bacteriological culture media and prepare jellies, ice creams, and desserts.</li>
+          <li><strong>Algin:</strong> Hydrocolloid extracted from brown algae (e.g., <em>Laminaria</em>, <em>Ascophyllum</em>); used as a stabilizer, thickener in foods, paints, and dental impressions.</li>
+          <li><strong>Carrageenan:</strong> Extracted from red alga <em>Chondrus crispus</em>; used as a clearing and emulsifying agent.</li>
+        </ul>
+      </li>
+      <li><strong>Single Cell Protein (SCP) &amp; Space Food:</strong> Unicellular green alga <em>Chlorella</em> and cyanobacterium <em>Spirulina</em> are exceptionally rich in proteins and vitamins, used as nutritional supplements and food for space travelers.</li>
+    </ul>
+    <strong>B. Economic Importance of Gymnosperms:</strong>
+    <ul style="margin:6px 0 10px 20px;">
+      <li><strong>Timber and Softwood:</strong> Conifers such as <em>Pinus</em>, <em>Cedrus deodara</em>, <em>Picea</em> (Spruce), and <em>Abies</em> (Fir) yield premium softwood lumber for heavy construction, railway sleepers, furniture, and packing cases.</li>
+      <li><strong>Paper Pulp:</strong> Conifer wood fibers are extensively digested to manufacture high-grade paper, newsprint, and rayon.</li>
+      <li><strong>Resins &amp; Turpentine:</strong> <em>Pinus roxburghii</em> yields oleoresin, which is distilled to produce <strong>turpentine oil</strong> (used in paints and varnishes) and <strong>rosin</strong> (used in sealing wax, waterproofing, and violin bows).</li>
+      <li><strong>Medicinal Products:</strong>
+        <ul style="margin:2px 0 4px 15px;">
+          <li><strong>Taxol:</strong> Highly potent anticancer drug extracted from the bark of <em>Taxus brevifolia</em> (Yew).</li>
+          <li><strong>Ephedrine:</strong> Alkaloid extracted from <em>Ephedra</em>, used in treating asthma and respiratory bronchial spasms.</li>
+        </ul>
+      </li>
+      <li><strong>Edible Seeds (Chilgoza):</strong> Seeds of <em>Pinus gerardiana</em> (Chilgoza) are rich in fats and eaten as roasted dry fruits.</li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Economic value of algae: carbon fixation, agar, algin/carrageen, edible seaweeds, Chlorella SCP', '2 Marks'],
+    ['Economic value of gymnosperms: timber/softwood, paper pulp, turpentine/resins, Taxol & Ephedrine, Chilgoza', '2 Marks']
+  ]
+));
+
+// Q6
+questions.push(createQCard(
+  'c11b-ch3-q6', 'Question 6', 'NCERT Exercise',
+  'Both gymnosperms and angiosperms bear seeds, then why are they classified separately?',
+  `<div class="step">
+    <strong>Scientific Rationale for Classifying Gymnosperms and Angiosperms Separately:</strong><br>
+    Although both Gymnosperms and Angiosperms belong to the overarching division <strong>Spermatophyta</strong> (seed-bearing plants), they diverge fundamentally in crucial morphological and reproductive features:<br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:0.85rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:2px solid #059669; text-align:left;">
+            <th style="padding:8px 10px; color:#065f46;">Distinguishing Feature</th>
+            <th style="padding:8px 10px; color:#065f46;">Gymnosperms (<em>gymnos</em> = naked; <em>sperma</em> = seed)</th>
+            <th style="padding:8px 10px; color:#065f46;">Angiosperms (<em>angeion</em> = vessel; <em>sperma</em> = seed)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">1. Ovule &amp; Seed Enclosure</td>
+            <td style="padding:8px 10px; color:#dc2626; font-weight:700;">Ovules are <strong>naked</strong>, borne directly exposed on megasporophyll surfaces before and after fertilization.</td>
+            <td style="padding:8px 10px; color:#16a34a; font-weight:700;">Ovules are completely enclosed inside the protective cavity of an <strong>ovary</strong> (carpel).</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">2. Fruit Formation</td>
+            <td style="padding:8px 10px;">No ovary exists; hence, <strong>no true fruits</strong> are ever formed. Seeds remain naked on cone scales.</td>
+            <td style="padding:8px 10px;">Post-fertilization, the ovary matures into a <strong>true fruit</strong> containing enclosed seeds.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">3. Reproductive Organs</td>
+            <td style="padding:8px 10px;">Reproduce via distinct unisexual <strong>strobili or cones</strong> (microsporangiate and megasporangiate cones).</td>
+            <td style="padding:8px 10px;">Reproduce via specialized bisexual or unisexual <strong>flowers</strong> with perianth/calyx/corolla.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 10px; font-weight:700;">4. Double Fertilization</td>
+            <td style="padding:8px 10px;">Absent. Endosperm is pre-fertilization tissue and <strong>haploid ($n$)</strong>.</td>
+            <td style="padding:8px 10px;">Universal hallmark: <strong>Double fertilization</strong> occurs; endosperm is post-fertilization <strong>triploid ($3n$)</strong>.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px; font-weight:700;">5. Vascular Elements</td>
+            <td style="padding:8px 10px;">Xylem lacks true vessels (only tracheids; except Gnetales); phloem lacks companion cells (possesses albuminous cells).</td>
+            <td style="padding:8px 10px;">Xylem contains true vessels (tracheae); phloem possesses sieve tubes with companion cells.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`,
+  '3 Marks',
+  [
+    ['Naked ovules/seeds on sporophylls vs. ovules enclosed within an ovary maturing into fruit', '1.5 Marks'],
+    ['Absence of double fertilization & haploid endosperm vs. double fertilization & triploid endosperm', '1 Mark'],
+    ['Cones/strobili vs. flowers; tracheids vs. true xylem vessels', '0.5 Mark']
+  ]
+));
+
+// Q7
+questions.push(createQCard(
+  'c11b-ch3-q7', 'Question 7', 'NCERT Exercise',
+  'What is heterospory? Briefly comment on its significance. Give two examples.',
+  `<div class="step">
+    <strong>Definition of Heterospory:</strong><br>
+    <strong>Heterospory</strong> is the phenomenon of producing two distinctly different morphological and functional types of spores by the same plant sporophyte:
+    <ol style="margin:4px 0 8px 20px;">
+      <li><strong>Microspores:</strong> Smaller in size, produced in microsporangia, and germinate to produce the reduced male gametophyte.</li>
+      <li><strong>Megaspores:</strong> Much larger in size, produced in megasporangia, and germinate to produce the nutrient-rich female gametophyte.</li>
+    </ol>
+    <strong>Biological &amp; Evolutionary Significance (Precursor to the Seed Habit):</strong><br>
+    Heterospory is considered one of the greatest milestones in plant evolution and directly paved the way for the origin of the seed habit in higher plants:
+    <ul style="margin:6px 0 10px 20px;">
+      <li><strong>Endosporic Development &amp; Retention:</strong> In heterosporous pteridophytes, the megaspore is not immediately shed; it is retained and germinates inside the parent megasporangium, shielded from environmental stresses.</li>
+      <li><strong>Abundant Maternal Nutrition:</strong> The large megaspore accumulates rich food reserves, nourishing the developing embryo within the female gametophyte.</li>
+      <li><strong>Development of Zygote inside Female Gametophyte:</strong> The fertilized zygote develops into a young embryo while still residing on the parent sporophyte. This retention of the developing embryo inside the megasporangium on the maternal plant is the critical evolutionary precursor to the <strong>seed habit</strong> seen in gymnosperms and angiosperms.</li>
+    </ul>
+    <strong>Two Examples of Heterosporous Pteridophytes:</strong><br>
+    1. <em>Selaginella</em> (Spike moss)<br>
+    2. <em>Salvinia</em> (Aquatic water fern) &bull; (Also <em>Marsilea</em>, <em>Isoetes</em>).
+  </div>`,
+  '3 Marks',
+  [
+    ['Definition of heterospory: production of microspores and megaspores', '1 Mark'],
+    ['Evolutionary significance: retention on parent sporophyte as direct precursor of seed habit', '1 Mark'],
+    ['Two correct examples: Selaginella and Salvinia', '1 Mark']
+  ]
+));
+
+// Q8
+questions.push(createQCard(
+  'c11b-ch3-q8', 'Question 8', 'NCERT Exercise',
+  'Explain briefly the following terms with suitable examples: (i) protonema (ii) antheridium (iii) archegonium (iv) diplontic (v) sporophyll (vi) isogamy.',
+  `<div class="step">
+    <strong>Concise Explanation of Botanical Terms:</strong><br><br>
+    <strong>(i) Protonema:</strong><br>
+    The juvenile, creeping, green, branched, frequently filamentous haploid gametophytic stage in the life cycle of mosses, formed directly by the mitotic germination of a spore. It reproduces vegetatively by fragmentation and develops lateral buds that grow into leafy gametophores. <em>Example: Funaria, Sphagnum.</em><br><br>
+    <strong>(ii) Antheridium:</strong><br>
+    The multicellular, club-shaped or spherical male sex organ in cryptogams (algae, bryophytes, pteridophytes) surrounded by a sterile jacket of cells that produces flagellated, motile male gametes called antherozoids. <em>Example: Marchantia, Dryopteris.</em><br><br>
+    <strong>(iii) Archegonium:</strong><br>
+    The multicellular, flask-shaped female sex organ found in bryophytes, pteridophytes, and gymnosperms. It consists of a slender upper neck (containing neck canal cells) and a swollen lower venter containing a single non-motile egg (ovum). <em>Example: Riccia, Pinus.</em><br><br>
+    <strong>(iv) Diplontic Life Cycle:</strong><br>
+    A life cycle pattern wherein the dominant, free-living, photosynthetic phase of the plant is the diploid sporophyte ($2n$). The gametophytic phase is represented only by single to few-celled haploid gametes produced directly by meiosis. <em>Example: Fucus (brown alga), and all Gymnosperms and Angiosperms.</em><br><br>
+    <strong>(v) Sporophyll:</strong><br>
+    A specialized leaf or leaf-like laminar organ that bears sporangia on its surface or in its axils. In many pteridophytes and gymnosperms, sporophylls aggregate compactly to form strobili or cones. <em>Example: Fertile fronds of Dryopteris, Microsporophylls of Cycas.</em><br><br>
+    <strong>(vi) Isogamy:</strong><br>
+    A primitive mode of sexual reproduction characterized by the fusion of two morphologically similar and physiologically compatible gametes of equal size and shape (either both flagellated/motile or both non-motile). <em>Example: Chlamydomonas debaryanum, Ulothrix (flagellated motile), and Spirogyra (non-motile).</em>
+  </div>`,
+  '3 Marks',
+  [
+    ['Accurate definition and example for Protonema & Antheridium', '1 Mark'],
+    ['Accurate definition and example for Archegonium & Diplontic cycle', '1 Mark'],
+    ['Accurate definition and example for Sporophyll & Isogamy', '1 Mark']
+  ]
+));
+
+// Q9
+questions.push(createQCard(
+  'c11b-ch3-q9', 'Question 9', 'NCERT Exercise',
+  'Differentiate between the following: (a) red algae and brown algae (b) liverworts and moss (c) homosporous and heterosporous pteridophyte.',
+  `<div class="step">
+    <strong>(a) Differences Between Red Algae and Brown Algae:</strong><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.84rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+            <th style="padding:6px 10px;">Trait</th><th style="padding:6px 10px;">Red Algae (Rhodophyceae)</th><th style="padding:6px 10px;">Brown Algae (Phaeophyceae)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Pigments</td><td style="padding:6px 10px;">Chlorophyll $a$, $d$, and <strong>r-phycoerythrin</strong>.</td><td style="padding:6px 10px;">Chlorophyll $a$, $c$, and <strong>fucoxanthin</strong>.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Stored Food</td><td style="padding:6px 10px;"><strong>Floridean starch</strong>.</td><td style="padding:6px 10px;"><strong>Laminarin</strong> or <strong>mannitol</strong>.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Flagella</td><td style="padding:6px 10px;">Completely absent at all stages.</td><td style="padding:6px 10px;">2 unequal lateral flagella in zoospores/gametes.</td></tr>
+          <tr><td style="padding:6px 10px; font-weight:700;">Examples</td><td style="padding:6px 10px;"><em>Polysiphonia, Gracilaria, Gelidium</em>.</td><td style="padding:6px 10px;"><em>Ectocarpus, Dictyota, Fucus, Laminaria</em>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <strong>(b) Differences Between Liverworts and Mosses:</strong><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.84rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+            <th style="padding:6px 10px;">Trait</th><th style="padding:6px 10px;">Liverworts (Hepaticopsida)</th><th style="padding:6px 10px;">Mosses (Bryopsida)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Plant Body</td><td style="padding:6px 10px;">Dorsoventrally flattened, prostrate thalloid (e.g., <em>Marchantia</em>).</td><td style="padding:6px 10px;">Erect cylindrical axis bearing spirally arranged leaves.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Rhizoids</td><td style="padding:6px 10px;">Unicellular and unbranched.</td><td style="padding:6px 10px;">Multicellular with oblique septa and branched.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Protonema</td><td style="padding:6px 10px;">Absent; spore directly forms thallus.</td><td style="padding:6px 10px;">Prominent juvenile filamentous protonema present.</td></tr>
+          <tr><td style="padding:6px 10px; font-weight:700;">Spore Dispersal</td><td style="padding:6px 10px;">By hygroscopic elaters inside capsule.</td><td style="padding:6px 10px;">By sophisticated peristomial teeth mechanism.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <strong>(c) Differences Between Homosporous and Heterosporous Pteridophytes:</strong><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.84rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:1.5px solid #059669; text-align:left;">
+            <th style="padding:6px 10px;">Trait</th><th style="padding:6px 10px;">Homosporous Pteridophytes</th><th style="padding:6px 10px;">Heterosporous Pteridophytes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Spore Type</td><td style="padding:6px 10px;">Produce only one kind of spore identical in size.</td><td style="padding:6px 10px;">Produce two morphologically distinct spores: microspores and megaspores.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px; font-weight:700;">Gametophyte</td><td style="padding:6px 10px;">Monoecious (bisexual) prothallus bearing both antheridia and archegonia.</td><td style="padding:6px 10px;">Dioecious (unisexual): microspores form male gametophytes, megaspores form female.</td></tr>
+          <tr><td style="padding:6px 10px; font-weight:700;">Examples</td><td style="padding:6px 10px;"><em>Dryopteris, Pteris, Lycopodium, Equisetum</em>.</td><td style="padding:6px 10px;"><em>Selaginella, Salvinia, Marsilea</em>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`,
+  '4 Marks',
+  [
+    ['Clear tabular differentiation of red vs brown algae (pigments, food, flagella)', '1.5 Marks'],
+    ['Differentiation of liverworts vs mosses (thallus vs erect, rhizoids, protonema)', '1.5 Marks'],
+    ['Differentiation of homosporous vs heterosporous pteridophytes with examples', '1 Mark']
+  ]
+));
+
+// Q10
+questions.push(createQCard(
+  'c11b-ch3-q10', 'Question 10', 'NCERT Exercise',
+  'Match the following (Column I with Column II):<br>(a) Chlamydomonas — (i) Moss<br>(b) Cycas — (ii) Pteridophyte<br>(c) Selaginella — (iii) Alga<br>(d) Sphagnum — (iv) Gymnosperm',
+  `<div class="step">
+    <strong>Accurate Column Matching with Botanical Classification:</strong><br><br>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:0.88rem;">
+        <thead>
+          <tr style="background:#ecfdf5; border-bottom:2px solid #059669; text-align:left;">
+            <th style="padding:8px 12px; color:#065f46;">Column I</th>
+            <th style="padding:8px 12px; color:#065f46;">Column II (Correct Match)</th>
+            <th style="padding:8px 12px; color:#065f46;">Taxonomic Justification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">(a) <em>Chlamydomonas</em></td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">(iii) Alga</td>
+            <td style="padding:8px 12px;">Unicellular, biflagellated green alga belonging to Chlorophyceae.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">(b) <em>Cycas</em></td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">(iv) Gymnosperm</td>
+            <td style="padding:8px 12px;">Naked-seeded plant with palm-like habit, pinnate leaves, and coralloid roots.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:8px 12px; font-weight:700;">(c) <em>Selaginella</em></td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">(ii) Pteridophyte</td>
+            <td style="padding:8px 12px;">Vascular cryptogam (club moss) displaying heterospory and rhizophore.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px; font-weight:700;">(d) <em>Sphagnum</em></td>
+            <td style="padding:8px 12px; color:#16a34a; font-weight:800;">(i) Moss</td>
+            <td style="padding:8px 12px;">Peat moss (Bryophyta) with high water retention capacity used as packing material.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <strong>Final Correct Option Matching Sequence:</strong><br>
+    <strong>(a) &rarr; (iii), &nbsp; (b) &rarr; (iv), &nbsp; (c) &rarr; (ii), &nbsp; (d) &rarr; (i)</strong>
+  </div>`,
+  '2 Marks',
+  [
+    ['(a) Chlamydomonas matched to (iii) Alga', '0.5 Mark'],
+    ['(b) Cycas matched to (iv) Gymnosperm', '0.5 Mark'],
+    ['(c) Selaginella matched to (ii) Pteridophyte', '0.5 Mark'],
+    ['(d) Sphagnum matched to (i) Moss', '0.5 Mark']
+  ]
+));
+
+// Q11
+questions.push(createQCard(
+  'c11b-ch3-q11', 'Question 11', 'NCERT Exercise',
+  'Describe the important characteristics of gymnosperms.',
+  `<div class="step">
+    <strong>Comprehensive Anatomical, Morphological &amp; Reproductive Features of Gymnosperms:</strong><br>
+    Gymnosperms (from Greek <em>gymnos</em> = naked; <em>sperma</em> = seed) are seed-bearing vascular plants characterized by the following diagnostic features:<br><br>
+    <strong>1. Naked Ovules and Absence of Fruit:</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li>The ovules are not enclosed by an ovary wall; they remain freely exposed on the surface of megasporophylls before and after fertilization. Consequently, seeds are naked, and no true fruits are produced.</li>
+    </ul>
+    <strong>2. Habit and Morphological Adaptations (Xerophytic Nature):</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li>Include medium-sized trees to colossal tall trees (e.g., giant red-wood tree <em>Sequoia sempervirens</em>, one of the tallest living trees) and shrubs.</li>
+      <li>Possess a well-developed <strong>tap root system</strong>. In some genera, roots exhibit specialized symbiotic associations:
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Pinus:</em> Roots form obligate fungal associations called <strong>mycorrhizae</strong>.</li>
+          <li><em>Cycas:</em> Specialized apogeotropic <strong>coralloid roots</strong> harbor symbiotic nitrogen-fixing cyanobacteria (<em>Anabaena cycadae</em>, <em>Nostoc</em>).</li>
+        </ul>
+      </li>
+      <li>Leaves are xerophytically adapted to withstand extreme temperature, wind, and water stress: needle-like leaves (reducing surface area), thick cuticle, and deeply sunken stomata.</li>
+    </ul>
+    <strong>3. Vascular Tissue Architecture:</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li>Xylem consists primarily of <strong>tracheids</strong> with bordered pits (true xylem vessels are absent, except in advanced order Gnetales: <em>Gnetum</em>, <em>Ephedra</em>, <em>Welwitschia</em>).</li>
+      <li>Phloem contains sieve cells and albuminous cells (lacks true sieve tubes and companion cells).</li>
+    </ul>
+    <strong>4. Heterospory and Cone (Strobilus) Formation:</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li>All gymnosperms are strictly <strong>heterosporous</strong>, producing haploid microspores and megaspores.</li>
+      <li>Sporophylls are spirally arranged along an axis to form compact <strong>strobili or cones</strong>:
+        <ul style="margin:2px 0 4px 15px;">
+          <li><em>Male strobili (pollen cones):</em> Bear microsporophylls with microsporangia where pollen grains develop. The pollen grain represents the highly reduced male gametophyte.</li>
+          <li><em>Female strobili (seed cones):</em> Bear megasporophylls with megasporangia (ovules).</li>
+        </ul>
+      </li>
+    </ul>
+    <strong>5. Fertilization and Embryogeny:</strong>
+    <ul style="margin:4px 0 8px 20px;">
+      <li>Pollination is strictly <strong>anemophilous</strong> (wind-pollinated). Pollen grains reach the micropyle of ovules directly.</li>
+      <li>Fertilization occurs via a pollen tube carrying non-motile male gametes directly to the archegonia in the ovule (<strong>siphonogamy</strong>).</li>
+      <li>Endosperm is formed <em>prior to fertilization</em> from the female gametophyte and is therefore permanently <strong>haploid ($n$)</strong>.</li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Naked ovules/seeds, habit (Sequoia), tap roots, mycorrhiza (Pinus), coralloid roots (Cycas)', '1 Mark'],
+    ['Xerophytic leaf adaptations (needle leaves, sunken stomata) & vascular traits (tracheids)', '1 Mark'],
+    ['Heterospory and unisexual strobili/cones (male vs female)', '1 Mark'],
+    ['Anemophilous pollination, siphonogamy, and haploid pre-fertilization endosperm', '1 Mark']
+  ]
+));
+
+// Save Chapter 3
+saveChapter(
+  3,
+  'Plant Kingdom',
+  svgCh3,
+  'NCERT Textbook Exercise 1 to 11: Algae, Bryophytes, Pteridophytes, Gymnosperms, Alternation of Generations & Life Cycles',
+  questions,
+  'Animal Kingdom'
+);

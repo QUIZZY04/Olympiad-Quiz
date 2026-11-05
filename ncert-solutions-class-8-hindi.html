@@ -48,7 +48,7 @@
         "@type": "ListItem",
         "position": 3,
         "name": "Class 8",
-        "item": "https://olympiadquiz.org/ncert-solutions.html#class8"
+        "item": "https://olympiadquiz.org/ncert-solutions-class-8.html"
       },
       {
         "@type": "ListItem",
@@ -219,15 +219,221 @@
     .nav-btn:hover{border-color:var(--brand);color:var(--brand);}
     .mob-sidebar-toggle{display:none;}
     .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;}
-    @media(max-width:900px){
-      .sidebar{position:fixed;left:-340px;top:0;height:100vh;z-index:300;transition:left 0.3s;box-shadow:4px 0 20px rgba(0,0,0,0.15);}
-      .sidebar.open{left:0;}
-      .sidebar-overlay.show{display:block;}
-      .mob-sidebar-toggle{display:block;position:fixed;bottom:20px;left:20px;z-index:250;background:var(--brand);color:white;border:none;padding:12px 20px;border-radius:999px;font-size:0.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(124,58,237,0.4);}
-      .main-content{padding:0 16px 28px;}
-      .breadcrumb-bar{padding:12px 16px;top:57px;}
+    /* Uniform Mobile Control Bar & Viewport Optimization */
+    .mobile-chapter-selector-bar { display: none; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @media (max-width: 900px), (max-width: 960px) {
+      .mobile-chapter-selector-bar {
+        display: block !important;
+        position: sticky;
+        top: 56px;
+        z-index: 850;
+        background: #ffffff;
+        padding: 7px 10px 8px;
+        border-bottom: 2px solid var(--brand, #0284c7);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .mob-selector-card {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+      .mob-selector-row {
+        display: grid;
+        grid-template-columns: minmax(115px, 34%) 1fr;
+        gap: 8px;
+        align-items: flex-end;
+        width: 100%;
+      }
+      .mob-select-group {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+      }
+      .mob-select-label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.68rem;
+        font-weight: 800;
+        color: var(--brand, #0284c7);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1;
+      }
+      .mob-label-with-badge {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        min-width: 0;
+      }
+      .mob-current-badge {
+        font-size: 0.68rem;
+        font-weight: 800;
+        background: var(--brand-light, #f0f9ff);
+        color: var(--brand, #0284c7);
+        padding: 1px 7px;
+        border-radius: 999px;
+        border: 1px solid var(--brand, #0284c7);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 120px;
+        line-height: 1.2;
+      }
+      .mob-dropdown-wrap {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+      }
+      .mob-dropdown {
+        width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: #ffffff;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 8px 24px 8px 9px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #1e293b;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        line-height: 1.2;
+        height: 36px;
+      }
+      .mob-dropdown:focus {
+        border-color: var(--brand, #0284c7);
+        box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      }
+      .mob-dropdown-arrow {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 0.62rem;
+        color: var(--brand, #0284c7);
+        opacity: 0.85;
+      }
+
+      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
+      .breadcrumb-bar, .chapter-chips-bar, .chapter-chips, .chips-bar { display: none !important; }
+      .sidebar { display: none !important; }
+      .sidebar-overlay { display: none !important; }
+      .mob-sidebar-toggle, .mob-toggle { display: none !important; }
+      .navbar-links, .nav-links { display: none !important; }
+
+      /* Compact hero banner on mobile */
+      .hero-banner { padding: 14px 10px 12px; }
+      .hero-banner h1 { font-size: 1.25rem; margin-bottom: 2px; }
+      .hero-banner p { font-size: 0.78rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .hero-badges, .hero-meta-pills, .book-tabs { display: none !important; }
+
+      /* Full width for main layout and content */
+      .main-layout, .layout-container, .layout-wrapper { display: block !important; width: 100% !important; margin: 0 !important; }
+      .main-content, .content-area { padding: 8px 4px 36px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+
+      /* Compact Chapter Header & full width */
+      .chapter-header { padding-bottom: 10px; margin-bottom: 12px; gap: 10px; }
+      .ch-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; line-height: 38px; }
+      .chapter-header-info h2 { font-size: 1.15rem; line-height: 1.35; }
+      .chapter-header-info p { font-size: 0.76rem; }
+
+      .ex-div, .exercise-div { padding: 8px 10px; font-size: 0.82rem; margin: 16px 0 10px; }
+
+      /* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
+      .q-card, .q-card-box {
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+      .q-head, .q-header {
+        padding: 10px 12px !important;
+        gap: 8px 10px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .q-num, .q-type {
+        order: 1 !important;
+        font-size: 0.72rem !important;
+        padding: 3px 8px !important;
+        border-radius: 6px !important;
+        white-space: normal !important;
+        max-width: calc(100% - 100px) !important;
+        line-height: 1.25 !important;
+      }
+      .q-marks {
+        order: 2 !important;
+        margin-left: auto !important;
+        font-size: 0.68rem !important;
+        padding: 3px 7px !important;
+        flex-shrink: 0 !important;
+      }
+      .q-toggle {
+        order: 3 !important;
+        width: 22px !important;
+        height: 22px !important;
+        flex-shrink: 0 !important;
+      }
+      .q-text, .q-title {
+        order: 4 !important;
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        font-size: 0.90rem !important;
+        line-height: 1.55 !important;
+        padding-top: 4px !important;
+        word-break: break-word !important;
+      }
+      .q-answer, .q-body {
+        padding: 0 10px 14px !important;
+      }
+      .answer-box {
+        padding: 12px 10px !important;
+        margin-top: 8px !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .answer-label { font-size: 0.7rem !important; margin-bottom: 6px !important; }
+      .answer-text {
+        font-size: 0.88rem !important;
+        line-height: 1.65 !important;
+        word-break: break-word !important;
+      }
+      .step {
+        font-size: 0.85rem !important;
+        padding: 6px 10px !important;
+        margin: 6px 0 !important;
+        word-break: break-word !important;
+      }
+      .marking-scheme { margin-top: 10px !important; padding-top: 8px !important; }
+      .marking-title { font-size: 0.7rem !important; margin-bottom: 6px !important; }
+      .marking-row { font-size: 0.75rem !important; padding: 3px 0 !important; }
+      .marking-marks { font-size: 0.7rem !important; }
+
+      .chapter-nav-btns, .ch-nav-btns { margin-top: 20px !important; padding: 12px 2px 0 !important; gap: 6px !important; }
+      .ch-nav-btn { padding: 8px 10px !important; font-size: 0.76rem !important; border-radius: 8px !important; }
     }
-  </style>
+  
+</style>
 
 <style>
 /* ── NCERT SUBJECT BREADCRUMB & SWITCHER ── */
@@ -336,7 +542,7 @@
         <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content" style="display:none;position:absolute;top:100%;left:0;background:white;border:1px solid #e2e8f0;border-radius:10px;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:1000;padding:6px;">
           <a href="ncert-solutions.html" style="display:block;padding:8px 14px;color:#334155;text-decoration:none;font-size:0.85rem;border-radius:6px;font-weight:600;">All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions.html#class6" style="display:block;padding:8px 14px;color:#7c3aed;text-decoration:none;font-size:0.85rem;border-radius:6px;font-weight:700;">Class 6 Solutions (All 6 Subjects) ✨</a>
+          <a href="ncert-solutions-class-6.html" style="display:block;padding:8px 14px;color:#7c3aed;text-decoration:none;font-size:0.85rem;border-radius:6px;font-weight:700;">Class 6 Solutions (All 6 Subjects) ✨</a>
           <a href="ncert-solutions-class-9-hindi.html" style="font-weight:700;color:#ea580c;">Class 9 Hindi 🇮🇳</a>
           <a href="ncert-solutions-class-9-english.html" style="display:block;padding:8px 14px;color:#0284c7;font-weight:700;text-decoration:none;font-size:0.85rem;border-radius:6px;background:#f0f9ff;">Class 9 English 📖 <span style="background:#0284c7;color:white;font-size:0.62rem;padding:1px 5px;border-radius:4px;margin-left:4px;">NEW</span></a>
           <a href="ncert-solutions-class-9-science.html" style="display:block;padding:8px 14px;color:#059669;font-weight:700;text-decoration:none;font-size:0.85rem;border-radius:6px;background:#ecfdf5;">Class 9 Science 🔬 <span style="background:#059669;color:white;font-size:0.62rem;padding:1px 5px;border-radius:4px;margin-left:4px;">NEW</span></a>
@@ -373,7 +579,7 @@
       <li class="ncert-bc-sep">/</li>
       <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
       <li class="ncert-bc-sep">/</li>
-      <li><a href="ncert-solutions.html#class8">Class 8</a></li>
+      <li><a href="ncert-solutions-class-8.html">Class 8</a></li>
       <li class="ncert-bc-sep">/</li>
       <li class="ncert-bc-current">Hindi</li>
     </ol>
@@ -414,6 +620,85 @@
 
 <button class="mob-sidebar-toggle" onclick="toggleSidebar()">&#128218; पाठ चुनें</button>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- Mobile Subject & Chapter Sticky Navigation Bar -->
+<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
+  <div class="mob-selector-card">
+    <div class="mob-selector-row">
+      <!-- Subject Dropdown Group -->
+      <div class="mob-select-group mob-subject-group">
+        <label class="mob-select-label" for="mobileSubjectSelect">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>Subject</span>
+        </label>
+        <div class="mob-dropdown-wrap">
+          <select id="mobileSubjectSelect" class="mob-dropdown" aria-label="Select Subject" onchange="if(this.value) window.location.href=this.value;">
+            <option value="ncert-solutions-class-8-maths.html">📐 Maths</option>
+            <option value="ncert-solutions-class-8-science.html">🔬 Science</option>
+            <option value="ncert-solutions-class-8-sst.html">🏛️ Social Science</option>
+            <option value="ncert-solutions-class-8-english.html">📘 English</option>
+            <option value="ncert-solutions-class-8-hindi.html" selected>🇮🇳 Hindi</option>
+            <option value="ncert-solutions-class-8-sanskrit.html">🕉️ Sanskrit</option>
+            <option value="ncert-solutions-class-8.html">📚 Class 8 All Subjects</option>
+          </select>
+          <div class="mob-dropdown-arrow">▼</div>
+        </div>
+      </div>
+
+      <!-- Chapter Dropdown Group -->
+      <div class="mob-select-group mob-chapter-group">
+        <div class="mob-label-with-badge">
+          <label class="mob-select-label" for="mobileChapterSelect">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Chapter</span>
+          </label>
+          <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
+        </div>
+        <div class="mob-dropdown-wrap">
+          <select id="mobileChapterSelect" class="mob-dropdown" aria-label="Select Chapter" onchange="showChapter(parseInt(this.value))">
+        <option value="1">पाठ 1: ध्वनि (वसंत)</option>
+        <option value="2">पाठ 2: लाख की चूड़ियाँ (वसंत)</option>
+        <option value="3">पाठ 3: बस की यात्रा (वसंत)</option>
+        <option value="4">पाठ 4: दीवानों की हस्ती (वसंत)</option>
+        <option value="5">पाठ 5: चिट्ठियों की अनूठी दुनिया (वसंत)</option>
+        <option value="6">पाठ 6: भगवान के डाकिये (वसंत)</option>
+        <option value="7">पाठ 7: क्या निराश हुआ जाए (वसंत)</option>
+        <option value="8">पाठ 8: यह सबसे कठिन समय नहीं (वसंत)</option>
+        <option value="9">पाठ 9: कबीर की साखियाँ (वसंत)</option>
+        <option value="10">पाठ 10: कामचोर (वसंत)</option>
+        <option value="11">पाठ 11: जब सिनेमा ने बोलना सीखा (वसंत)</option>
+        <option value="12">पाठ 12: सुदामा चरित (वसंत)</option>
+        <option value="13">पाठ 13: जहाँ पहिया है (वसंत)</option>
+        <option value="14">पाठ 14: अकबरी लोटा (वसंत)</option>
+        <option value="15">पाठ 15: सूरदास के पद (वसंत)</option>
+        <option value="16">पाठ 16: पानी की कहानी (वसंत)</option>
+        <option value="17">पाठ 17: बाज और साँप (वसंत)</option>
+        <option value="18">पाठ 18: टोपी (वसंत)</option>
+        <option value="19">पाठ 1: गुड़िया (दूर्वा)</option>
+        <option value="20">पाठ 2: दो गौरैया (दूर्वा)</option>
+        <option value="21">पाठ 3: चिट्ठियों में यूरोप (दूर्वा)</option>
+        <option value="22">पाठ 4: ओस (दूर्वा)</option>
+        <option value="23">पाठ 5: नाटक में नाटक (दूर्वा)</option>
+        <option value="24">पाठ 6: सागर यात्रा (दूर्वा)</option>
+        <option value="25">पाठ 7: उठ किसान ओ (दूर्वा)</option>
+        <option value="26">पाठ 8: सस्ते का चक्कर (दूर्वा)</option>
+        <option value="27">पाठ 9: एक खिलाड़ी की कुछ यादें (दूर्वा)</option>
+        <option value="28">पाठ 10: बस की सैर (दूर्वा)</option>
+        <option value="29">पाठ 11: हिंदी ने जिनकी जिंदगी बदली (दूर्वा)</option>
+        <option value="30">पाठ 12: आषाढ़ का पहला दिन (दूर्वा)</option>
+        <option value="31">पाठ 13: अन्याय के खिलाफ (दूर्वा)</option>
+        <option value="32">पाठ 14: बच्चों के प्रिय श्री केशव शंकर पिल्लई (दूर्वा)</option>
+        <option value="33">पाठ 15: फर्श पर (दूर्वा)</option>
+        <option value="34">पाठ 16: बूढ़ी अम्मा की बात (दूर्वा)</option>
+        <option value="35">पाठ 17: वह सुबह कभी तो आएगी (दूर्वा)</option>
+        <option value="36">पाठ 18: आओ पत्रिका निकालें (दूर्वा)</option>
+      </select>
+          <div class="mob-dropdown-arrow">▼</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="main-layout">
   <aside class="sidebar" id="sidebar">
@@ -526,6 +811,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">खान-पान में परिवर्तन के उदाहरण</span><span class="marking-marks">1 अंक</span></div><div class="marking-row"><span class="marking-key">पहनावा और दिनचर्या पर प्रभाव</span><span class="marking-marks">1 अंक</span></div><div class="marking-row"><span class="marking-key">स्वास्थ्य और मनोदशा पर प्रभाव</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch1_q1">
+        <div class="q-head" onclick="toggleQ('h_ch1_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">वसंत ऋतु को 'ऋतुराज' क्यों कहा जाता है? प्रकृति में इस ऋतु में आने वाले प्रमुख परिवर्तनों का वर्णन कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>'ऋतुराज' कहे जाने का कारण:</strong> वसंत को सभी छह ऋतुओं का राजा माना जाता है क्योंकि इस समय न तो अधिक सर्दी होती है और न ही अधिक गर्मी। मौसम अत्यंत सुहावना, स्वास्थ्यवर्धक और मनोहारी होता है।</p><p><strong>प्राकृतिक परिवर्तन:</strong> पेड़ों पर पुरानी पत्तियाँ गिरकर नए कोमल पत्ते और कलियाँ खिल उठती हैं। चारों ओर रंग-बिरंगे फूल महकते हैं और सरसों के पीले फूल प्रकृति की छटा में चार चाँद लगा देते हैं। कोयल की मधुर कूक और बागों में भौंरों की गूँज नवजीवन और उमंग का संचार करती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">ऋतुराज कहे जाने का कारण व सुहावना मौसम</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">पेड़-पौधों, फूलों व जीव-जंतुओं में नवजीवन का वर्णन</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch1_q7">
+        <div class="q-head" onclick="toggleQ('ch1_q7')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'ध्वनि' कविता में कवि 'निराला' प्रकृति के माध्यम से मानव समाज, विशेषकर युवा पीढ़ी को क्या संदेश देना चाहते हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>कविता का मूल संदेश:</strong> महाप्राण सूर्यकांत त्रिपाठी 'निराला' प्रकृति के नववसंत, खिली कलियों और प्रभात के माध्यम से समाज के युवाओं को यह संदेश देते हैं कि वे निराशा, उदासी, प्रमाद और आलस्य का परित्याग करें। जिस प्रकार वसंत प्रकृति में नई ऊर्जा, सुगंध और हरियाली भर देता है, उसी प्रकार युवाओं को अपने पुरुषार्थ, कर्मठता और रचनात्मक कार्यों से देश व समाज में नवजीवन का संचार करना चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">युवा पीढ़ी से आलस्य व निराशा त्यागने का आह्वान</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">नवचेतना, कर्मठता और समाज कल्याण का संदेश</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -651,6 +980,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch2_q1">
+        <div class="q-head" onclick="toggleQ('h_ch2_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'लाख' की वस्तुओं का निर्माण भारत के किन-किन राज्यों में प्रमुखता से होता है? लाख से चूड़ियों के अतिरिक्त क्या-क्या वस्तुएँ बनाई जाती हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>प्रमुख राज्य:</strong> भारत में लाख का सर्वाधिक उत्पादन व निर्माण कार्य राजस्थान (विशेषकर जयपुर), झारखंड, छत्तीसगढ़, पश्चिम बंगाल तथा मध्य प्रदेश में होता है।</p><p><strong>लाख से बनने वाली वस्तुएँ:</strong> चूड़ियों के अतिरिक्त लाख से सुंदर सजावटी खिलौने, मूर्तियाँ, गले के हार, झुमके, डाक-घरों में पार्सल सील करने वाली मोहर (लाख-मुहर), बटन और कलात्मक डिब्बे बनाए जाते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">राज्यों के सही नाम (राजस्थान, झारखंड आदि)</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">लाख से बनने वाली विभिन्न वस्तुओं का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch2_q2">
+        <div class="q-head" onclick="toggleQ('h_ch2_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">पाठ में आए व्यक्तिवाचक, जातिवाचक और भाववाचक संज्ञा के दो-दो उदाहरण छाँटकर लिखिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>संज्ञा के भेद व उदाहरण:</strong></p><ul><li><strong>व्यक्तिवाचक संज्ञा:</strong> बदलू, जनार्दन (विशिष्ट व्यक्तियों के नाम)।</li><li><strong>जातिवाचक संज्ञा:</strong> काँच, चूड़ी, गाय, मकान (वस्तु या प्राणी की पूरी जाति का बोध कराने वाले शब्द)।</li><li><strong>भाववाचक संज्ञा:</strong> सुंदरता, व्यथा, प्रसन्नता, कोमलता (गुण, दशा या भाव का बोध कराने वाले शब्द)।</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">व्यक्तिवाचक व जातिवाचक संज्ञा के सही उदाहरण</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">भाववाचक संज्ञा के सही उदाहरण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch2_q8">
+        <div class="q-head" onclick="toggleQ('ch2_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'मशीनी युग ने कितने हाथ काट दिए हैं'—इस पंक्ति में लेखक ने समाज की किस गंभीर आर्थिक व मानवीय व्यथा की ओर संकेत किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>व्यथा व यथार्थ:</strong> इस पंक्ति द्वारा लेखक ने मशीनीकरण और आधुनिक औद्योगीकरण के कारण पारंपरिक हस्तशिल्पियों और कुटीर उद्योग कारीगरों के बेरोजगार होने की मर्मस्पर्शी व्यथा व्यक्त की है। मशीनों के आगमन से जो काम सैकड़ों हाथ मिलकर करते थे, वह काम एक अकेली मशीन करने लगी है। परिणामस्वरूप बदलू जैसे लाखों कुशल कारीगर अपनी पुश्तैनी आजीविका से वंचित होकर भुखमरी, लाचारी और गरीबी के कगार पर पहुँच गए हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">मशीनीकरण से पारंपरिक कारीगरों की बेरोजगारी</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">कुटीर उद्योग के ह्रास व कारीगरों की आर्थिक लाचारी का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -771,6 +1166,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch3_q1">
+        <div class="q-head" onclick="toggleQ('h_ch3_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">सविनय अवज्ञा आंदोलन किसके नेतृत्व में, किस वर्ष और किस उद्देश्य से प्रारंभ हुआ था? संक्षेप में लिखिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>नेतृत्व व वर्ष:</strong> सविनय अवज्ञा आंदोलन महात्मा गांधी के नेतृत्व में सन् 1930 में ऐतिहासिक 'दांडी मार्च' (नमक सत्याग्रह) के साथ प्रारंभ हुआ था।</p><p><strong>प्रमुख उद्देश्य:</strong> ब्रिटिश हुकूमत के अन्यायपूर्ण कानूनों (विशेषकर नमक पर कर लगाने वाले कानून) का शांतिपूर्ण व अहिंसक तरीके से उल्लंघन करना और भारत को पूर्ण स्वराज्य (स्वतंत्रता) दिलाना था। लेखक ने पुरानी बस के खटारा अंगों के आपसी असहयोग की तुलना इसी आंदोलन से की है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">गांधीजी का नेतृत्व व वर्ष 1930 दांडी मार्च</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">अहिंसक कानून उल्लंघन व स्वराज्य का उद्देश्य</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch3_q2">
+        <div class="q-head" onclick="toggleQ('h_ch3_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'बस', 'वश' और 'बस' तीन भिन्नार्थक शब्द हैं। इनके अर्थ स्पष्ट करते हुए दो-दो सार्थक वाक्य बनाइए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>शब्दार्थ एवं वाक्य-प्रयोग:</strong></p><ul><li>1. <strong>बस (सवारी/वाहन):</strong> हम सुबह की बस से विद्यालय जाते हैं। / बस समय पर स्टेशन पहुँच गई।</li><li>2. <strong>वश (नियंत्रण/अधीनता):</strong> क्रोध आने पर मन को वश में रखना चाहिए। / प्रकृति के नियमों पर किसी का वश नहीं चलता।</li><li>3. <strong>बस (पर्याप्त/काफी):</strong> बस, अब मुझे और भोजन नहीं चाहिए। / बस करो, अब बहुत बातें हो गईं।</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">तीनों शब्दों के सही अर्थ स्पष्ट करना</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">शुद्ध व्याकरणिक वाक्यों में प्रयोग</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch3_q8">
+        <div class="q-head" onclick="toggleQ('ch3_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'बस की यात्रा' पाठ में गांधी जी के असहयोग और सविनय अवज्ञा आंदोलनों का सांकेतिक प्रयोग लेखक ने किस व्यंग्यात्मक संदर्भ में किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>व्यंग्यात्मक संदर्भ:</strong> लेखक हरिशंकर परसाई ने पुरानी, खटारा बस की दयनीय दशा का वर्णन करते हुए व्यंग्य किया है कि जिस प्रकार स्वतंत्रता संग्राम में देशवासी विदेशी सत्ता के साथ असहयोग कर रहे थे, उसी प्रकार इस बस का प्रत्येक पुर्जा एक-दूसरे के साथ असहयोग कर रहा था। सीट बॉडी को छोड़कर आगे निकल जाती थी, कभी इंजन पूरी बॉडी से हिलने लगता था। पूरी बस सविनय अवज्ञा आंदोलन के दौर से गुजरती हुई मालिक की लोभी प्रवृत्ति पर करारा प्रहार करती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">खटारा बस के पुर्जों के आपसी असहयोग का प्रतीकात्मक चित्रण</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">मुनाफाखोर बस-मालिकों की उपेक्षा पर व्यंग्य</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -867,6 +1328,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">अहंकार-शून्यता और निस्वार्थता</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">निरंतर गतिशीलता व घुमक्कड़ स्वभाव</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch4_q1">
+        <div class="q-head" onclick="toggleQ('h_ch4_q1')">
+          <span class="q-num">प्र.5</span>
+          <div class="q-text">कवि ने अपने आने को 'उल्लास' और जाने को 'आँसू बनकर बह जाना' क्यों कहा है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>आने को उल्लास कहना:</strong> दीवाने जहाँ भी जाते हैं, अपनी मस्तमौला और निस्वार्थ प्रकृति से लोगों के दुखों को भुलाकर उनके चेहरों पर खुशियाँ और आशा का संचार करते हैं, इसलिए उनका आगमन उल्लास कहलाता है।</p><p><strong>जाने को आँसू कहना:</strong> दीवाने किसी एक स्थान पर टिककर नहीं रहते, वे आगे बढ़ जाते हैं। उनके जाने पर लोगों को उनके बिछोह का गहरा दुख होता है और उनकी आँखों से वियोग के आँसू बहने लगते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">आने पर उल्लास व खुशी का प्रसार</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">जाने पर वियोग व आँसू बहने का भाव</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch4_q2">
+        <div class="q-head" onclick="toggleQ('h_ch4_q2')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">दीवानों की हस्ती कविता से हमें समाज में किस प्रकार का मानवीय दृष्टिकोण अपनाने की प्रेरणा मिलती है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कविता हमें यह प्रेरणा देती है कि हमें स्वार्थ, मोह-माया और संकीर्ण भेदभाव से ऊपर उठकर सभी के साथ समानता और प्रेम का व्यवहार करना चाहिए। दूसरों के दुखों को अपना समझना और अपने पास जो कुछ भी प्रेम व सद्भावना है, उसे बिना किसी भेद के समाज में बाँटना ही सच्चा जीवन है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">निस्वार्थ प्रेम व समानता का दृष्टिकोण</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">दूसरों के दुख बाँटना व सद्भावना का प्रसार</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch4_q7">
+        <div class="q-head" onclick="toggleQ('ch4_q7')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'दीवानों की हस्ती' कविता में कवि भगवतीचरण वर्मा ने सांसारिक बंधनों और मोह-माया से परे 'दीवाने' के जीवन-दर्शन को किस रूप में प्रस्तुत किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>दीवानों का जीवन-दर्शन:</strong> कवि के अनुसार दीवाने वे मस्तमौला और देशप्रेमी लोग हैं जिनका अपना कोई निश्चित ठिकाना या निजी स्वार्थ नहीं होता। वे जहाँ भी जाते हैं, खुशियों और उल्लास की धूल उड़ाते चलते हैं और जब विदा होते हैं तो लोगों की आँखों में आँसू छोड़ जाते हैं। वे दुनिया से जो प्यार पाते हैं, बदले में उससे कहीं अधिक स्नेह और स्वतंत्रता का संदेश लुटाकर बिना किसी पछतावे के आगे बढ़ जाते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">निस्वार्थ, मस्तमौला और फक्कड़ स्वभाव का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">संसार को खुशियाँ बाँटने व स्वाधीनता के प्रति समर्पण</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -992,6 +1519,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch5_q1">
+        <div class="q-head" onclick="toggleQ('h_ch5_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">पत्र धरोहर के रूप में सहेजकर रखे जा सकते हैं, परंतु आधुनिक SMS या WhatsApp संदेश नहीं। तर्क सहित स्पष्ट कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>पत्र धरोहर क्यों हैं:</strong> पत्रों में लेखक की निजी हस्तलिपि, आत्मीय भावनाएँ और समय की ऐतिहासिक संस्कृति सुरक्षित रहती है। गांधीजी, नेहरूजी और रवींद्रनाथ टैगोर के पत्र आज भी संग्रहालयों और पुस्तकालयों में देश की अमूल्य ऐतिहासिक धरोहर हैं।</p><p><strong>SMS क्यों नहीं:</strong> मोबाइल संदेशों में भावनात्मक गहराई कम होती है, वे संक्षिप्त होते हैं और फोन की मेमोरी भर जाने या तकनीकी खराबी के कारण शीघ्र ही नष्ट या डिलीट हो जाते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">पत्रों की आत्मीयता व ऐतिहासिक प्रमाणिकता</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">SMS की क्षणभंगुरता व डिलीट होने की प्रकृति</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch5_q2">
+        <div class="q-head" onclick="toggleQ('h_ch5_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">किसी औपचारिक पत्र और अनौपचारिक पत्र में क्या मूलभूत अंतर होता है? स्पष्ट कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>औपचारिक पत्र (Formal Letters):</strong> ये अधिकारियों, प्रधानाचार्यों, समाचार संपादकों या व्यापारियों को लिखे जाते हैं। इनमें नपी-तुली, शिष्टाचारपूर्ण भाषा, विषय (Subject) और संदर्भ का कठोर पालन किया जाता है; व्यक्तिगत भावनाओं का कोई स्थान नहीं होता।</p><p><strong>अनौपचारिक पत्र (Informal Letters):</strong> ये माता-पिता, मित्रों और सगे-संबंधियों को लिखे जाते हैं। इनमें आत्मीयता, कुशल-क्षेम और निजी भावनाओं का सहज व अनौपचारिक वर्णन होता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">औपचारिक पत्र की भाषा व संरचना</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">अनौपचारिक पत्र की आत्मीयता व स्वरूप</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch5_q8">
+        <div class="q-head" onclick="toggleQ('ch5_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">पत्र लेखन की कला के विकास और आज के आधुनिक संचार साधनों (एसएमएस, व्हाट्सएप) के बावजूद पत्रों के ऐतिहासिक महत्व पर विचार कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>पत्रों का ऐतिहासिक व आत्मीय महत्व:</strong> आधुनिक संचार साधन जैसे एसएमएस और ईमेल तात्कालिक संदेश तो भेज सकते हैं, किंतु पत्रों जैसी आत्मीयता, भाव-गहराई और स्थायित्व उनमें नहीं होता। पत्रों को धरोहर के रूप में वर्षों तक सहेजकर रखा जा सकता है, जैसे महात्मा गांधी, जवाहरलाल नेहरू और रवींद्रनाथ टैगोर के पत्र आज भी अमूल्य ऐतिहासिक दस्तावेज हैं। पत्र एक व्यक्ति के चिंतन और युग के जीवंत दस्तावेज होते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">तात्कालिक साधनों की तुलना में पत्रों की आत्मीयता व भाव-गहराई</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">ऐतिहासिक दस्तावेज व धरोहर के रूप में पत्रों का संरक्षण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -1088,6 +1681,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">निस्वार्थ सेवा व सार्वभौमिक प्रेम का दृष्टिकोण</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">सृष्टि को एक परिवार मानने की सीख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch6_q1">
+        <div class="q-head" onclick="toggleQ('h_ch6_q1')">
+          <span class="q-num">प्र.5</span>
+          <div class="q-text">'एक देश की धरती दूसरे देश को सुगंध भेजती है' — कवि ने इस पंक्ति के माध्यम से किस वैश्विक संदेश को उजागर किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कवि रामधारी सिंह 'दिनकर' ने इस पंक्ति के माध्यम से <strong>विश्व-बंधुत्व, सौहार्द और सार्वभौमिक प्रेम</strong> का संदेश दिया है। प्रकृति (हवा, खुशबू, बादल, जल) इंसानों द्वारा खींची गई राजनीतिक सीमाओं या धर्म-जाति के बंधनों को नहीं मानती। जिस प्रकार प्रकृति बिना किसी भेदभाव के सभी देशों को अपनी सुगंध और वर्षा उपहार में देती है, उसी प्रकार मानव को भी द्वेष और संकीर्णता त्यागकर प्रेम से रहना चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">विश्व-बंधुत्व व सीमाओं से परे प्रेम का संदेश</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">प्रकृति की समदृष्टि का दृष्टांत</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch6_q2">
+        <div class="q-head" onclick="toggleQ('h_ch6_q2')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">पक्षी और बादल द्वारा लाई गई चिट्ठियों को कौन बाँचते हैं और क्यों?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>पक्षी और बादल द्वारा लाई गई प्रेम, सद्भाव और एकता की चिट्ठियों को <strong>पेड़, पौधे, पानी और पहाड़</strong> बाँचते (पढ़ते) हैं। ऐसा इसलिए है क्योंकि प्रकृति और उसके उपादान मानव की तरह संकीर्ण सीमाओं और स्वार्थ में नहीं बँधे हैं; वे प्रकृति की मूक भाषा और एकता के संदेश को सहज ही समझ लेते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">पेड़, पौधे, पानी, पहाड़ बाँचते हैं</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">प्रकृति की मूक भाषा व स्वार्थहीनता का कारण</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch6_q7">
+        <div class="q-head" onclick="toggleQ('ch6_q7')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'भगवान के डाकिये' कविता में रामधारी सिंह 'दिनकर' ने बादलों और पक्षियों को सीमाओं से परे 'विश्व-बंधुत्व' का संवाहक कैसे बताया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>विश्व-बंधुत्व का संदेश:</strong> कवि दिनकर जी के अनुसार पक्षी और बादल प्रकृति के ऐसे मुक्त दूत हैं जो किसी देश की राजनीतिक सीमा या सरहद को नहीं मानते। एक देश की हवा की सुगंध पक्षियों के पंखों पर तैरकर दूसरे देश में पहुँचती है और एक देश के तालाबों-समुद्रों से उठा भाप दूसरे देश में अमृत रूपी जल बनकर बरसता है। प्रकृति बिना किसी भेदभाव के सभी देशों को प्रेम, सद्भाव, एकता और विश्व-बंधुत्व का संदेश देती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">राजनैतिक सीमाओं के बंधन से मुक्त प्रकृति का चित्रण</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">एक देश की सुगंध व भाप का दूसरे देश में बरसना (सद्भाव)</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -1213,6 +1872,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch7_q1">
+        <div class="q-head" onclick="toggleQ('h_ch7_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">लेखक ने पाठ का शीर्षक 'क्या निराश हुआ जाए' क्यों रखा होगा? क्या आप इस शीर्षक से सहमत हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>शीर्षक की सार्थकता:</strong> समाज में भ्रष्टाचार, छल-कपट और बेईमानी की अनेक घटनाएँ घटती हैं, जिससे निराशा होना स्वाभाविक है। परंतु लेखक ने अपने व्यक्तिगत अनुभवों (जैसे बस कंडक्टर द्वारा दूध-पानी लाना और टिकट बाबू द्वारा 90 रुपये लौटाना) से सिद्ध किया है कि मनुष्यता और सच्चाई अभी समाप्त नहीं हुई है। अतः निराश होने की आवश्यकता नहीं है।</p><p><strong>सहमति:</strong> हम इस शीर्षक से पूर्णतः सहमत हैं क्योंकि यह निराशा के घोर अंधकार में आशा, विश्वास और सकारात्मकता का प्रकाश जगाता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">शीर्षक का औचित्य व मानवीय अच्छाई का तर्क</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">सहमति व सकारात्मक दृष्टिकोण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch7_q2">
+        <div class="q-head" onclick="toggleQ('h_ch7_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">द्वंद्व समास किसे कहते हैं? पाठ में प्रयुक्त द्वंद्व समास के तीन उदाहरण छाँटकर लिखिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>द्वंद्व समास:</strong> जिस समास के दोनों पद प्रधान होते हैं तथा विग्रह करने पर 'और', 'या', 'अथवा' लगता है, उसे द्वंद्व समास कहते हैं। इसके पदों के बीच प्रायः योजक चिह्न (-) होता है।</p><p><strong>पाठ से उदाहरण:</strong></p><ul><li>1. सुख-दुख = सुख और दुख</li><li>2. चोरी-डकैती = चोरी और डकैती</li><li>3. दोष-गुण = दोष और गुण</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">द्वंद्व समास की परिभाषा</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">पाठ से तीन शुद्ध उदाहरण व विग्रह</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch7_q8">
+        <div class="q-head" onclick="toggleQ('ch7_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'क्या निराश हुआ जाए' निबंध में हजारीप्रसाद द्विवेदी जी ने समाचार-पत्रों में छपने वाली नकारात्मक खबरों के बीच किन मानवीय घटनाओं से आशावान रहने की प्रेरणा दी है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>आशावादिता की प्रेरणा:</strong> लेखक बताते हैं कि यद्यपि अखबार चोरी, भ्रष्टाचार, हिंसा और बेईमानी की खबरों से भरे रहते हैं, फिर भी समाज में सच्चाई और ईमानदारी पूरी तरह समाप्त नहीं हुई है। रेलवे टिकट बाबू द्वारा ईमानदारी से बचे हुए नब्बे रुपये वापस लौटाना और बस कंडक्टर द्वारा रात में साइकिल से अपने बच्चों के लिए दूध व पानी लेकर आना यह सिद्ध करता है कि मनुष्यता आज भी जीवित है, अतः हमें निराश होने की आवश्यकता नहीं है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">टिकट बाबू और बस कंडक्टर की ईमानदारी के प्रसंग</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">मानवीयता व सच्चाई के जीवित रहने से आशा का संदेश</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -1309,6 +2034,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">मानवीय जिज्ञासा व अदम्य साहस</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">चुनौतियों के पार आशा का संदेश</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch8_q1">
+        <div class="q-head" onclick="toggleQ('h_ch8_q1')">
+          <span class="q-num">प्र.5</span>
+          <div class="q-text">चिड़िया चोंच में तिनका दबाए उड़ने की तैयारी में क्यों है? वह तिनकों का क्या करेगी?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>उड़ने की तैयारी:</strong> चिड़िया अपनी चोंच में तिनका दबाकर इसलिए उड़ना चाहती है क्योंकि सूरज डूबने वाला है और रात होने से पहले उसे अपने और अपने बच्चों के लिए सुरक्षित बसेरा (घोंसला) तैयार करना है।</p><p><strong>तिनकों का उपयोग:</strong> वह तिनकों को जोड़-जोड़कर एक मजबूत और आरामदायक घोंसला बनाएगी, जिसमें अंडे सेने और आने वाले नन्हें बच्चों को सर्दी, धूप और आँधी से सुरक्षित रखा जा सके। यह चिड़िया का जीवन के प्रति अटूट विश्वास और कर्मठता दर्शाता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">शाम होने से पहले आश्रय बनाने की तैयारी</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">घोंसले के निर्माण व जीवन रक्षा का उद्देश्य</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch8_q2">
+        <div class="q-head" onclick="toggleQ('h_ch8_q2')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'यह सबसे कठिन समय नहीं' कविता का मूल संदेश क्या है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कविता का मूल संदेश यह है कि जब तक जीवन में आशा, कर्मठता, मानवीय संवेदना और दूसरों की सहायता की भावना शेष है, तब तक कठिन से कठिन परिस्थिति में भी निराश नहीं होना चाहिए। जीवन निरंतर गतिमान है और आशावादी रहकर हर संकट को पार किया जा सकता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">आशावादिता और अटूट कर्मठता का संदेश</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">संकटों से विचलित न होने की प्रेरणा</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch8_q7">
+        <div class="q-head" onclick="toggleQ('ch8_q7')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'यह सबसे कठिन समय नहीं' कविता में जया जादवानी ने तिनका ले जाती चिड़िया और स्टेशन पर यात्रियों की प्रतीक्षा के माध्यम से किस जीवेषणा को व्यक्त किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>जीवन के प्रति अटूट आस्था:</strong> कवयित्री कहती हैं कि वर्तमान समय सबसे कठिन या निराशाजनक नहीं है क्योंकि जीवन की स्वाभाविक गतिविधियाँ निरंतर जारी हैं। चिड़िया चोंच में तिनका दबाकर घोंसला बनाने की तैयारी में उड़ने को तत्पर है, गिरती हुई पत्ती को थामने के लिए सहारा देने वाला हाथ मौजूद है, और स्टेशन पर रेलगाड़ी पकड़ने के लिए आज भी लोग अपने प्रियजनों की प्रतीक्षा कर रहे हैं। जब तक उम्मीद और कर्म जारी है, समय कठिन नहीं हो सकता।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">चिड़िया द्वारा तिनका बटोरना व सहारा देने वाले हाथ का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">उम्मीद, जीवन-प्रवाह और सकारात्मक दृष्टि का प्रतिपादन</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -1434,6 +2225,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch9_q1">
+        <div class="q-head" onclick="toggleQ('h_ch9_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">कबीरदास जी पाँवों के नीचे दबने वाली घास की निंदा करने से क्यों मना करते हैं? इस साखी का प्रतीकात्मक अर्थ क्या है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>निंदा न करने का कारण:</strong> कबीरदास जी कहते हैं कि पाँवों तले रौंदी जाने वाली तुच्छ घास की भी निंदा (अपमान) नहीं करनी चाहिए, क्योंकि यदि उसी घास का एक छोटा-सा तिनका उड़कर आँख में पड़ जाए, तो वह असहनीय पीड़ा देता है।</p><p><strong>प्रतीकात्मक अर्थ:</strong> समाज के किसी भी निर्बल, निर्धन या छोटे व्यक्ति को असहाय समझकर उसका तिरस्कार नहीं करना चाहिए। समय आने पर एक कमजोर व्यक्ति का आक्रोश या सामर्थ्य भी बड़े से बड़े अहंकारी के लिए भारी कष्ट का कारण बन सकता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">तिनके के आँख में पड़ने से पीड़ा का दृष्टांत</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">कमजोर वर्ग के सम्मान व समानता का प्रतीकार्थ</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch9_q2">
+        <div class="q-head" onclick="toggleQ('h_ch9_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">कबीर की भाषा को 'सधुक्कड़ी' या 'पंचमेल खिचड़ी' क्यों कहा जाता है? स्पष्ट कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कबीरदास जी एक घुमक्कड़ संत (साधु) थे। वे ज्ञानोपदेश के लिए उत्तर भारत के विभिन्न प्रांतों में भ्रमण करते रहे। इसलिए उनकी वाणी में किसी एक बोली का कठोर नियम नहीं है, बल्कि राजस्थानी, भोजपुरी, अवधी, पंजाबी, ब्रजभाषा और खड़ी बोली के शब्दों का सहज मिश्रण पाया जाता है। साधुओं की भाषा होने और पाँच से अधिक बोलियों का समावेश होने के कारण ही आचार्य रामचंद्र शुक्ल ने इसे 'सधुक्कड़ी' और श्यामसुंदर दास ने 'पंचमेल खिचड़ी' कहा है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">घुमक्कड़ स्वभाव व विभिन्न बोलियों का समावेश</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">सधुक्कड़ी / पंचमेल खिचड़ी नामकरण का कारण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch9_q8">
+        <div class="q-head" onclick="toggleQ('ch9_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">कबीरदास जी ने 'जाति न पूछो साधु की, पूछ लीजिये ज्ञान' साखी द्वारा तत्कालीन समाज की किस रूढ़िवादिता पर कड़ा प्रहार किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>रूढ़िवादिता पर प्रहार:</strong> संत कबीरदास जी ने जन्म-आधारित वर्ण-व्यवस्था और जातिगत श्रेष्ठता के पाखंड पर तीखा प्रहार किया है। उनका मत है कि किसी ज्ञानी या संत का मूल्यांकन उसकी जाति, कुल या जन्म से नहीं, बल्कि उसके आध्यात्मिक ज्ञान, आचरण और सद्गुणों से किया जाना चाहिए। जिस प्रकार तलवार खरीदते समय म्यान की सुंदरता का नहीं, तलवार की धार की पैनाहट का मोल होता है, उसी प्रकार मनुष्य के गुणों का सम्मान होना चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">जातिगत भेदभाव व बाह्य आडंबरों का खंडन</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">तलवार और म्यान के दृष्टांत द्वारा गुण-पूजा का समर्थन</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -1549,6 +2406,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">अब्बा का कड़ा फरमान (खाना बंद करने की धमकी)</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">बच्चों का पुनः कामचोर बन जाना</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch10_q1">
+        <div class="q-head" onclick="toggleQ('h_ch10_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">घर के दैनिक सामान्य कार्यों में बच्चों की भागीदारी बढ़ाने के लिए माता-पिता को क्या व्यावहारिक उपाय अपनाने चाहिए?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>व्यावहारिक उपाय:</strong></p><ul><li>1. <strong>आयु अनुसार काम सौंपना:</strong> बच्चों पर अचानक भारी काम थोपने के बजाय उनकी आयु के अनुसार छोटे काम (जैसे स्कूल बैग व्यवस्थित करना, जूते पॉलिश करना, पौधों को पानी देना) सौंपने चाहिए।</li><li>2. <strong>प्रोत्साहन व प्रशंसा:</strong> काम पूरा करने पर बच्चों की सराहना करनी चाहिए जिससे उनमें आत्मविश्वास और जिम्मेदारी की भावना जगे।</li><li>3. <strong>काम को खेल बनाना:</strong> काम को सजा न बनाकर रोचक खेल या पारिवारिक सहयोग की गतिविधि के रूप में प्रस्तुत करना चाहिए।</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">उम्र के अनुसार सरल कार्य सौंपना</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">सराहना व पारिवारिक सहयोग का वातावरण बनाना</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch10_q2">
+        <div class="q-head" onclick="toggleQ('h_ch10_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">पाठ में प्रयुक्त निम्नलिखित मुहावरों का अर्थ लिखकर वाक्यों में प्रयोग कीजिए: (i) भीगी बिल्ली बनना, (ii) कमर सीधी करना।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>मुहावरों का अर्थ एवं वाक्य-प्रयोग:</strong></p><ul><li>(i) <strong>भीगी बिल्ली बनना (डर कर सहम जाना):</strong> कमरे में पिताजी के अचानक आते ही शोर मचाते बच्चे भीगी बिल्ली बन गए।</li><li>(ii) <strong>कमर सीधी करना (थोड़ा विश्राम करना):</strong> सुबह से खेत में काम करने के बाद किसान ने छायादार पेड़ के नीचे बैठकर थोड़ी कमर सीधी की।</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">(i) भीगी बिल्ली बनना का अर्थ व वाक्य</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">(ii) कमर सीधी करना का अर्थ व वाक्य</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch10_q8">
+        <div class="q-head" onclick="toggleQ('ch10_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'कामचोर' कहानी में इस्मत चुग़ताई ने संयुक्त परिवार में बच्चों के पालन-पोषण और काम सिखाने के किस व्यावहारिक पक्ष को हास्य-व्यंग्य के साथ प्रस्तुत किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>पारिवारिक व्यंग्य:</strong> कहानी में दिखाया गया है कि बच्चों को बिना सोचे-समझे अचानक काम पर लगा देने से सुधार के स्थान पर अराजकता फैल जाती है। बच्चे दरी झाड़ते हुए पूरे घर में धूल उड़ा देते हैं, मुर्गियों को तितर-बितर कर देते हैं और भैंस दुहने के चक्कर में घर में कीचड़ मचा देते हैं। लेखक यह सीख देता है कि बच्चों को काम सिखाने के लिए धैर्य, सही मार्गदर्शन, योजना और अनुशासन आवश्यक है, केवल आदेश देने से बात नहीं बनती।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">बिना योजना बच्चों से काम कराने से उत्पन्न अव्यवस्था</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">सकारात्मक मार्गदर्शन और धैर्य की आवश्यकता का संदेश</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -1674,6 +2597,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch11_q1">
+        <div class="q-head" onclick="toggleQ('h_ch11_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">मूक सिनेमा और सवाक सिनेमा में क्या अंतर होता है? भारत की पहली सवाक फिल्म और उसके निर्देशक का नाम लिखिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>अंतर:</strong></p><ul><li><strong>मूक सिनेमा:</strong> इसमें केवल दृश्य और अभिनेताओं के हाव-भाव होते थे, संवाद नहीं सुनाई देते थे। संवादों को स्क्रीन पर लिखित पट्टियों (टाइटल कार्ड) के रूप में दिखाया जाता था।</li><li><strong>सवाक सिनेमा:</strong> इसमें दृश्य के साथ-साथ अभिनेताओं की आवाज़, संवाद, गीत और संगीत प्रत्यक्ष सुनाई देते हैं।</li></ul><p><strong>पहली बोलती फिल्म:</strong> 14 मार्च 1931 को प्रदर्शित <strong>'आलम आरा'</strong> भारत की पहली सवाक फिल्म थी, जिसके निर्देशक <strong>अर्देशिर एम. ईरानी</strong> थे।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">मूक और सवाक सिनेमा में मूलभूत अंतर</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">आलम आरा और अर्देशिर ईरानी का नाम</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch11_q2">
+        <div class="q-head" onclick="toggleQ('h_ch11_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'सवाक' शब्द 'वाक्' में 'स' उपसर्ग लगाने से बना है। 'स' उपसर्ग लगाकर चार नए सार्थक शब्द बनाइए और उनके अर्थ लिखिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>'स' उपसर्ग (अर्थ: सहित / साथ):</strong></p><ul><li>1. <strong>स + जीव = सजीव</strong> (जीवन सहित / जीवित प्राणी)</li><li>2. <strong>स + परिवार = सपरिवार</strong> (परिवार के साथ)</li><li>3. <strong>स + फल = सफल</strong> (सफलता सहित / कामयाब)</li><li>4. <strong>स + कुशल = सकुशल</strong> (कुशलता सहित / खैरियत से)</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">उपसर्ग की सही पहचान व विच्छेद</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">चारों नवीन शब्द व उनके अर्थ</span><span class="marking-marks">2 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch11_q8">
+        <div class="q-head" onclick="toggleQ('ch11_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">भारत की पहली सवाक (बोलती) फिल्म 'आलम आरा' के निर्माण में अर्देशिर एम. ईरानी को किन तकनीकी व ध्वन्यात्मक चुनौतियों का सामना करना पड़ा?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>तकनीकी चुनौतियाँ:</strong> 14 मार्च 1931 को प्रदर्शित 'आलम आरा' के समय भारत में साउंड-प्रूफ स्टूडियो नहीं थे। शूटिंग पास की रेलवे लाइन के निकट होती थी, इसलिए रेलगाड़ियों के शोर से बचने के लिए अर्देशिर ईरानी को रात में मूक होकर शूटिंग करनी पड़ती थी। दिन में चलने वाले जनरेटर के शोर से बचने के लिए लाइव साउंड रिकॉर्डिंग माइक्रोफोन अभिनेताओं के कपड़ों में छुपाकर की जाती थी। इस प्रकार कठिन परिश्रम से भारत का सिनेमा मूक से सवाक बना।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">साउंड-प्रूफ स्टूडियो के अभाव में रात की शूटिंग</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">ध्वनि संयोजन व तकनीकी साधनों की कमी से जूझने का वर्णन</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -1789,6 +2778,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">झोपड़ी के स्थान पर स्वर्ण महल का खड़ा होना</span><span class="marking-marks">2 अंक</span></div><div class="marking-row"><span class="marking-key">द्वारका समझकर रास्ता भटकने का भ्रम</span><span class="marking-marks">2 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch12_q1">
+        <div class="q-head" onclick="toggleQ('h_ch12_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">सुदामा की विपन्न अवस्था देखकर श्रीकृष्ण की क्या प्रतिक्रिया हुई? कवि नरोत्तमदास के अनुसार वर्णन कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>सुदामा के फटेहाल वस्त्र, दुर्बल शरीर और पैरों में बिंधे अनगिनत काँटों को देखकर द्वारकाधीश श्रीकृष्ण अत्यंत द्रवित और व्याकुल हो उठे। वे अपने बालसखा के गले लगकर फफक-फफक कर रो पड़े। उनका रुदन इतना मार्मिक था कि उन्होंने सुदामा के चरण धोने के लिए मँगाए गए परात के पानी को छुआ तक नहीं, बल्कि अपने <strong>नैनों के आंसुओं से ही मित्र के पैर धो डाले</strong> ('पानी परात को हाथ छुयो नहिं, नैनन के जल सो पग धोये')।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">श्रीकृष्ण की व्याकुलता व अश्रुपात</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">अश्रु-जल से चरण प्रक्षालन का भावपूर्ण उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch12_q2">
+        <div class="q-head" onclick="toggleQ('h_ch12_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">पाठ में आए निम्नलिखित ब्रजभाषा के शब्दों के मानक हिंदी रूप लिखिए: (i) पगात, (ii) दुरबल, (iii) पँवरि, (iv) पोटरि।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>ब्रजभाषा शब्द एवं मानक हिंदी रूप:</strong></p><ul><li>(i) <strong>पगात:</strong> पगड़ी (साफा)</li><li>(ii) <strong>दुरबल:</strong> दुर्बल (कमजोर / दुबला-पतला)</li><li>(iii) <strong>पँवरि:</strong> पौर / द्वार (दरवाजा)</li><li>(iv) <strong>पोटरि:</strong> पोटली (गाँठ बंधी छोटी थैली)</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">(i) व (ii) के सही मानक रूप</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">(iii) व (iv) के सही मानक रूप</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch12_q8">
+        <div class="q-head" onclick="toggleQ('ch12_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'सुदामा चरित' सवैये में नरोत्तमदास जी ने श्रीकृष्ण और सुदामा के मिलन का जो सजीव और मार्मिक चित्र खींचा है, उसकी काव्यगत विशेषताओं का उल्लेख कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>काव्यगत सौंदर्य:</strong> नरोत्तमदास जी द्वारा रचित सवैया ब्रजभाषा का अप्रतिम उदाहरण है। सुदामा की दीन-हीन दशा देखकर भगवान श्रीकृष्ण का सिंहासन छोड़कर नंगे पाँव दौड़ पड़ना, सुदामा के पैरों के काँटे निकालना और <em>'पानी परात को हाथ छुयो नहिं, नैनन के जल सों पग धोये'</em> पंक्ति में अतिशयोक्ति अलंकार का अत्यंत स्वाभाविक, आत्मीय और भावविभोर कर देने वाला प्रयोग हुआ है। यह प्रसंग निस्वार्थ मित्रता का अमर आदर्श स्थापित करता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">ब्रजभाषा की मधुरता व नैनन के जल से पैर धोने का भाव</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">सच्ची निष्काम मित्रता का आदर्श निरूपण</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -1914,6 +2969,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch13_q1">
+        <div class="q-head" onclick="toggleQ('h_ch13_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">पुडुकोट्टई जिले में साइकिल चलाना महिलाओं के लिए केवल एक सवारी नहीं, बल्कि सामाजिक क्रांति और आर्थिक आत्मनिर्भरता का प्रतीक कैसे बना?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>पुडुकोट्टई की रूढ़िवादी ग्रामीण पृष्ठभूमि में महिलाओं ने साइकिल चलाकर पुरुष-प्रधान व्यवस्था की बेड़ियों को तोड़ा:</p><ul><li>1. <strong>समय की बचत व आत्मनिर्भरता:</strong> बस अड्डों पर घंटों पुरुषों या बसों पर निर्भर रहने के बजाय महिलाएँ स्वयं कृषि उत्पाद दूर-दराज के गाँवों में बेचने जाने लगीं, जिससे उनकी आय में वृद्धि हुई।</li><li>2. <strong>घरेलू कार्यों में सुगमता:</strong> पीने का पानी ढोना, बच्चों को स्कूल छोड़ना और घरेलू सामान लाना अब वे चंद मिनटों में खुद करने लगीं।</li><li>3. <strong>आत्मसम्मान व आज़ादी:</strong> साइकिल चलाने से उनमें गजब का आत्मविश्वास और स्वतंत्रता की भावना जागृत हुई।</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">आत्मनिर्भरता व आर्थिक लाभ का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">आत्मसम्मान व रूढ़ियों को तोड़ने का विवरण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch13_q2">
+        <div class="q-head" onclick="toggleQ('h_ch13_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">निम्नलिखित शब्दों में से मूल शब्द और प्रत्यय अलग-अलग करके लिखिए: (i) गतिशीलता, (ii) साक्षरता, (iii) आत्मनिर्भरता।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>मूल शब्द एवं प्रत्यय विच्छेद:</strong></p><ul><li>(i) <strong>गतिशीलता:</strong> गतिशील (मूल शब्द) + <strong>ता</strong> (प्रत्यय) [अथवा: गति + शील + ता]</li><li>(ii) <strong>साक्षरता:</strong> साक्षर (मूल शब्द) + <strong>ता</strong> (प्रत्यय)</li><li>(iii) <strong>आत्मनिर्भरता:</strong> आत्मनिर्भर (मूल शब्द) + <strong>ता</strong> (प्रत्यय)</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">तीनों शब्दों के सही मूल शब्द छाँटना</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">'ता' प्रत्यय को शुद्ध रूप से अलग करना</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch13_q8">
+        <div class="q-head" onclick="toggleQ('ch13_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'जहाँ पहिया है' रिपोर्टाज में पी. साईनाथ ने पुडुकोट्टई (तमिलनाडु) की ग्रामीण महिलाओं के साइकिल आंदोलन को सामाजिक स्वाधीनता का प्रतीक क्यों माना है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>सामाजिक क्रांति का प्रतीक:</strong> पुडुकोट्टई की रूढ़िवादी, गरीब और नवसाक्षर ग्रामीण महिलाओं के लिए साइकिल चलाना केवल एक सवारी नहीं, बल्कि पुरुष-प्रधान समाज की संकीर्ण बेड़ियों को तोड़ने का सशक्त माध्यम बना। साइकिल से उनकी पुरुषों पर निर्भरता समाप्त हुई, बसों का इंतजार छूटा, पीने का पानी लाने और सब्जियाँ बेचने के समय की बचत हुई तथा उनमें असीम आत्मसम्मान, आर्थिक स्वावलंबन और व्यक्तिगत स्वतंत्रता की भावना का उदय हुआ।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">पुरुष-प्रधान रूढ़ियों को तोड़कर स्वतंत्रता प्राप्त करना</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">आर्थिक स्वावलंबन, समय की बचत और आत्मसम्मान में वृद्धि</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -2029,6 +3150,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">पत्नी के संदूक से चुपके से पैसे चुराने का रहस्य</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">पैसे वापस सही सलामत रखने की घबराहट</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch14_q1">
+        <div class="q-head" onclick="toggleQ('h_ch14_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">पंडित बिलवासी मिश्र ने लोटे की ऐतिहासिकता सिद्ध करने के लिए अंग्रेज़ को क्या मनगढ़ंत कथा सुनाई?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>बिलवासी जी ने अपनी वाकपटुता का परिचय देते हुए अंग्रेज़ से कहा कि यह कोई साधारण लोटा नहीं, बल्कि ऐतिहासिक <strong>'अकबरी लोटा'</strong> है। उन्होंने गढ़ी हुई कहानी बताई कि 16वीं सदी में शेरशाह सूरी से हारने के बाद हुमायूँ सिंध के रेगिस्तान में प्यास से मर रहा था, तब एक ब्राह्मण ने इसी लोटे से पानी पिलाकर उसकी जान बचाई थी। बाद में अकबर ने उस ब्राह्मण को दस सोने के लोटे देकर यह ऐतिहासिक लोटा ले लिया था और वह जीवन भर इसी लोटे से वज़ू करता रहा।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">हुमायूँ की जान बचाने का मनगढ़ंत प्रसंग</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">अकबर द्वारा सोने के लोटे देकर खरीदने की कथा</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch14_q2">
+        <div class="q-head" onclick="toggleQ('h_ch14_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">लाला झाऊलाल के लोटे में क्या-क्या कमियाँ थीं? पाठ के आधार पर लोटे की बनावट का हास्यपूर्ण चित्रण कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>लोटे की बनावट अत्यंत बेडौल और भद्दी थी। उसका आकार कुछ ऐसा था मानो उसका बाप डमरू और माँ चिलम रही हो। लोटा बिल्कुल सीधा नहीं था, एक तरफ से पिचका हुआ था। लाला झाऊलाल को वह लोटा बिल्कुल पसंद नहीं था, परंतु पत्नी के क्रोध और मान-मर्यादा के डर से वे चुपचाप उसी लोटे में पानी पीने लगे थे।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">लोटे की भद्दी बनावट (डमरू-चिलम उपमा)</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">झाऊलाल की विवशता व हास्य रस</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch14_q8">
+        <div class="q-head" onclick="toggleQ('ch14_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'अकबरी लोटा' कहानी में लाला झाऊलाल के स्वाभिमान की रक्षा के लिए पंडित बिलवासी मिश्र ने जो हास्यपूर्ण चाल चली, उसकी समीक्षा कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>चतुराई व हास्य-योजना:</strong> जब छत से गिरे लोटे से भीगे अंग्रेज ने हंगामा किया, तो बिलवासी जी ने स्थिति को भांपते हुए उसी साधारण और बेडौल लोटे को ऐतिहासिक 'अकबरी लोटा' बता दिया। उन्होंने अंग्रेज के पुरातत्व-प्रेम की कमजोरी का लाभ उठाकर उसे पाँच सौ रुपये में बेच दिया और लाला झाऊलाल को पत्नी के सामने अपमानित होने से बचा लिया। यह प्रसंग मित्र-धर्म की रक्षा में प्रत्युत्पन्नमतित्व (हाजिरजवाबी) का बेजोड़ उदाहरण है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">बेडौल लोटे को ऐतिहासिक अकबरी लोटा सिद्ध करना</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">हाजिरजवाबी से मित्र के स्वाभिमान की रक्षा और हास्य प्रभाव</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -2154,6 +3341,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch15_q1">
+        <div class="q-head" onclick="toggleQ('h_ch15_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">माता यशोदा बालकृष्ण को दूध पिलाने के लिए क्या-क्या प्रलोभन देती हैं और श्रीकृष्ण मन ही मन क्या सोचते हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>माता यशोदा के प्रलोभन:</strong> माता यशोदा कान्हा को कच्चा दूध पिलाने के लिए कहती हैं कि रोज़ दूध पीने से तुम्हारी चोटी भैया बलराम की चोटी की तरह लंबी, मोटी और घनी हो जाएगी, तथा कंघी करते और गूँथते समय नागिन की तरह जमीन पर लोटने लगेगी।</p><p><strong>श्रीकृष्ण का सोचना:</strong> बालकृष्ण शिकायत करते हैं कि मैं तो कब से दूध पी रहा हूँ, फिर भी मेरी चोटी अभी तक छोटी ही है। मुझे माखन-रोटी क्यों नहीं दी जाती?</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">बलराम जैसी लंबी चोटी का प्रलोभन</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">बालकृष्ण की चतुर बाल-सुलभ शिकायत</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch15_q2">
+        <div class="q-head" onclick="toggleQ('h_ch15_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">सूरदास के पदों में प्रयुक्त 'वात्सल्य रस' के प्रमुख सौंदर्य तत्वों पर प्रकाश डालिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>सूरदास वात्सल्य रस के अद्वितीय सम्राट हैं। उनके पदों में माँ यशोदा के अगाध मातृत्व, बालकृष्ण की नटखट बाल-लीलाओं, तोतली बोली, चोटी के प्रति बाल-सुलभ जिज्ञासा और माखन चोरी की मासूम चतुराई का अत्यंत सजीव, मनोवैज्ञानिक और स्वाभाविक चित्रण हुआ है। पद गेय हैं और ब्रजभाषा की मिठास से ओत-प्रोत हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">बाल मनोविज्ञान व बाल-लीलाओं का सजीव अंकन</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">मातृत्व व ब्रजभाषा की मधुरता का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch15_q8">
+        <div class="q-head" onclick="toggleQ('ch15_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">सूरदास के पदों में बाल-सुलभ चंचलता, बाल-मनोविज्ञान और माता यशोदा के वात्सल्य प्रेम की क्या-क्या विशेषताएँ उभरकर आती हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>बाल-मनोविज्ञान व वात्सल्य:</strong> सूरदास जी ने बालकृष्ण की चंचलता का अनुपम वर्णन किया है। कृष्ण का मैया यशोदा से यह पूछना कि <em>'मैया, कबहिं बढ़ैगी चोटी?'</em> और शिकायत करना कि कच्चा दूध पिलाने के बाद भी चोटी नहीं बढ़ी, बाल-हठ और भोलापन प्रकट करता है। वहीं माखन चोरी पकड़े जाने पर <em>'मैया, मैं नहिं माखन खायो'</em> कहकर ग्वाल-बालों पर दोना मुख पर लिपटाने का आरोप लगाना बाल-सुलभ चतुराई और यशोदा के निश्छल वात्सल्य को अमर बना देता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">चोटी बढ़ने की भोली शिकायत व बाल-हठ</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">माखन चोरी की चतुराई और वात्सल्य रस का निरूपण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -2269,6 +3522,72 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">वाष्पीकरण और बादल निर्माण</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">वर्षा, नदी प्रवाह और पुनर्चक्रण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch16_q1">
+        <div class="q-head" onclick="toggleQ('h_ch16_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">ओस की बूँद अपनी यात्रा के दौरान किन-किन प्रमुख अवस्थाओं और प्राकृतिक रूपों से होकर गुज़री?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>ओस की बूँद की यात्रा:</strong></p><ul><li>1. <strong>उत्पत्ति:</strong> करोड़ों वर्ष पूर्व सूर्य से निकले ज्वलंत गैसीय पिंड में हाइड्रोजन और ऑक्सीजन के रासायनिक मेल से जल-बूँद बनी।</li><li>2. <strong>बर्फ व समुद्र:</strong> सदियों तक ठंडे बर्फ खंड के रूप में समुद्र में तैरती रही, फिर गर्म जलधारा में पिघलकर गहराइयों में घूमी।</li><li>3. <strong>वाष्प व बादल:</strong> सूर्य की ऊष्मा से भाप बनकर आकाश में बादलों का अंग बनी और मूसलाधार वर्षा बनकर पहाड़ों पर गिरी।</li><li>4. <strong>भूगर्भ व पादप:</strong> चट्टानों से रिसकर भूमि के नीचे पहुँची, जहाँ पेड़ की जड़ों द्वारा खींची जाकर पत्तियों के रंध्रों से ओस के रूप में बेर की झाड़ी पर आ बैठी।</li></ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">रासायनिक मेल व बर्फ/समुद्र की अवस्थाएँ</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">वाष्प, बादल व भूगर्भ/पेड़ की पत्तियों की यात्रा</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch16_q2">
+        <div class="q-head" onclick="toggleQ('h_ch16_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">पेड़ की जड़ों के रोएँ (मूलरोम) जल की बूँदों के साथ किस प्रकार का व्यवहार करते हैं? पाठ के आधार पर स्पष्ट कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>ओस की बूँद ने पेड़ के मूलरोमों को अत्यंत क्रूर और निर्दयी बताया। उसने कहा कि मिट्टी में छिपे असंख्य रोएँ बड़े बलपूर्वक जल कणों को अपनी ओर खींच लेते हैं। कुछ जल तो पेड़ अपने भोजन निर्माण के लिए रख लेता है, परंतु अधिकांश जल को चूसकर बाहर फेंक देता है। इस प्रक्रिया में लाखों जल कणों का अस्तित्व समाप्त हो जाता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">मूलरोमों द्वारा बलपूर्वक जल अवशोषण</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">भोजन निर्माण व वाष्पोत्सर्जन का भावपूर्ण वर्णन</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch16_q8">
+        <div class="q-head" onclick="toggleQ('ch16_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'पानी की कहानी' पाठ में रामचंद्र तिवारी ने ओस की बूँद के आत्मवृत्त द्वारा जल-चक्र और पृथ्वी के भूवैज्ञानिक इतिहास को किस प्रकार रोचक बनाया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>वैज्ञानिक रोचकता:</strong> लेखक ने ओस की बूँद को मानवीकृत कर उसके मुख से अपनी उत्पत्ति (हाइड्रोजन और ऑक्सीजन के रासायनिक संयोग), सूर्य के प्रलयंकारी ताप, पृथ्वी के ठंडे होने, समुद्र की गहराइयों में ज्वालामुखी विस्फोट, चट्टानों के भीतर रिसने और अंततः बेर के पेड़ की जड़ों द्वारा खींचे जाने की आत्मकथा कहलाई है। जटिल जल-चक्र और भूगर्भ विज्ञान को एक रोमांचक कथा में पिरोकर प्रस्तुत करना इस पाठ का अद्भुत वैशिष्ट्य है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">हाइड्रोजन व ऑक्सीजन के मिलन से जल की उत्पत्ति</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">भूगर्भ, समुद्र व पौधों से वाष्पीकरण तक जल-चक्र की रोचक कथा</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -2394,6 +3713,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch17_q1">
+        <div class="q-head" onclick="toggleQ('h_ch17_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">घायल बाज ने लहूलुहान अवस्था में भी अंतिम बार आकाश में उड़ने का प्रयास क्यों किया? बाज के चरित्र से हमें क्या शिक्षा मिलती है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>उड़ने का प्रयास:</strong> बाज स्वतंत्रता, साहस और शौर्य का प्रतीक था। उसने जीवन भर खुले आकाश की अनंत ऊँचाइयों को नापा था। गुफा की दुर्गंधयुक्त, संकीर्ण और पराधीन जिंदगी उसके स्वाभिमानी स्वभाव के विरुद्ध थी। वह कायरों की तरह घुट-घुटकर मरने के बजाय उड़ते हुए वीरगति पाना चाहता था।</p><p><strong>शिक्षा:</strong> बाज के चरित्र से हमें जीवन की अंतिम साँस तक संघर्ष करने, स्वाभिमान बनाए रखने और स्वतंत्रता के लिए बड़े से बड़ा बलिदान देने की अमर प्रेरणा मिलती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">स्वाभिमानी जीवन व स्वतंत्रता की तड़प</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">साहस, कर्मठता व संघर्ष की प्रेरणा</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch17_q2">
+        <div class="q-head" onclick="toggleQ('h_ch17_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">साँप के लिए आकाश की असीम ऊँचाइयों का क्या मूल्य था? साँप और बाज के जीवन-दर्शन में क्या मूलभूत अंतर था?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>साँप का दृष्टिकोण:</strong> साँप के लिए आकाश की ऊँचाइयों का कोई मूल्य नहीं था। वह आकाश को निस्सार और व्यर्थ मानता था जहाँ न कोई दीवार है, न सहारा। उसका मानना था कि अपनी अँधेरी, सीलन भरी सुरक्षित गुफा में रेंगना ही सबसे बड़ा सुख है।</p><p><strong>जीवन-दर्शन में अंतर:</strong> बाज जोखिम उठाकर आज़ाद उड़ने वाला साहसी योद्धा था, जबकि साँप सुरक्षा की खातिर संकीर्ण दायरे में सीमित रहने वाला भीरु व संतोषी प्राणी था।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">साँप की संकीर्ण व सुरक्षा-प्रधान सोच</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">बाज के साहसिक व साँप के भीरु जीवन-दर्शन में भेद</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch17_q8">
+        <div class="q-head" onclick="toggleQ('ch17_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'बाज और साँप' कहानी में निर्मल वर्मा ने 'स्वतंत्रता और वीरता' तथा 'संकीर्णता और कायरता' के दो विपरीत जीवन-मूल्यों को किस प्रकार आमने-सामने खड़ा किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>जीवन-मूल्यों का द्वंद्व:</strong> बाज उन्मुक्त आकाश, साहस, संघर्ष और आत्मबलिदान का प्रतीक है जो घायल अवस्था में भी अंतिम साँस तक उड़ने का प्रयास करता है और कहता है कि <em>'आकाश की असीम शून्यता में स्वतंत्रता का आनंद ही सच्चा जीवन है'</em>। इसके विपरीत साँप संकीर्ण गुफा, अंधकार, कायरता और संतोषी जीवन का प्रतीक है जो खतरे से डरकर सीलन भरी गुफा में सुरक्षित रहने को ही श्रेष्ठ मानता है। अंत में लहरें बाज के बलिदान की गाथा गाती हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">बाज का असीम आकाश, स्वतंत्रता व संघर्ष के प्रतीक के रूप में चित्रण</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">साँप की संकीर्णता व अंत में अमर बलिदान की प्रेरणा</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -2514,6 +3899,72 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch18_q1">
+        <div class="q-head" onclick="toggleQ('h_ch18_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">गवरैया को सुंदर टोपी पहनाने में किन-किन श्रमजीवियों ने सहयोग किया? गवरैया ने उनके श्रम का क्या मूल्य चुकाया?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>सहयोग करने वाले श्रमजीवी:</strong></p><ul><li>1. <strong>धुनिया:</strong> रुई को धुना। गवरैया ने आधी रुई पारिश्रमिक में दी।</li><li>2. <strong>कोरी:</strong> सूत काता। गवरैया ने आधा सूत पारिश्रमिक में दिया।</li><li>3. <strong>बुनकर:</strong> महीन कपड़ा बुना। गवरैया ने आधा थान कपड़ा बुनकर को दिया।</li><li>4. <strong>दरज़ी:</strong> फूँदनेदार सुंदर टोपी सिली। गवरैया ने दो टोपियों में से एक टोपी दरज़ी को दी और नकद मजदूरी भी दी।</li></ul><p><strong>श्रम का सम्मान:</strong> राजा सभी से बेगार (मुफ्त काम) करवाता था, जबकि गवरैया ने सभी को वाजिब और दोगुना मेहनताना दिया, जिससे सभी ने मन लगाकर काम किया।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">चारों कारीगरों के नाम व कार्य</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">उचित पारिश्रमिक व श्रम के सम्मान का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="h_ch18_q2">
+        <div class="q-head" onclick="toggleQ('h_ch18_q2')">
+          <span class="q-num">प्र.7</span>
+          <div class="q-text">'टोपी' कहानी सत्ता के शोषण और श्रम के सम्मान पर किस प्रकार करारा व्यंग्य करती है? स्पष्ट कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कहानी में राजा निरंकुश और शोषक सत्ता का प्रतीक है, जो प्रजा और कारीगरों से बिना मजदूरी दिए 'बेगार' करवाता है। इसलिए उसके राज्य में कारीगर बेमन और घटिया काम करते हैं। इसके विपरीत, एक छोटी-सी चिड़िया गवरैया श्रम का उचित मूल्य देती है, जिससे कारीगर प्रसन्न होकर श्रेष्ठ टोपी बनाते हैं। कहानी यह सिद्ध करती है कि जनता और कारीगरों के परिश्रम का सम्मान करके ही समाज में सौंदर्य और खुशहाली आ सकती है, तानाशाही से नहीं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">राजा की बेगार प्रथा व शोषण पर व्यंग्य</span><span class="marking-marks">1.5 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">श्रम के सम्मान से श्रेष्ठता की सिद्धि</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch18_q8">
+        <div class="q-head" onclick="toggleQ('ch18_q8')">
+          <span class="q-num">प्र.8</span>
+          <div class="q-text">'टोपी' कहानी में संजय ने गवरइया के दृढ़ निश्चय, श्रम के सम्मान और राजा की अकर्मण्यता पर किस प्रकार करारा व्यंग्य किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>कहानी का मूल भाव व व्यंग्य:</strong> नन्हीं गवरइया को रुई का एक फाहा मिलता है। वह धुनिए, कोरी, बुनकर और दर्जी को उनका पूरा पारिश्रमिक (मजदूरी) आधा-आधा देकर सुंदर फुंदनेदार टोपी तैयार करवाती है। इसके विपरीत राजा प्रजा पर अत्याचार कर बेगार करवाता है और अंत में गवरइया की टोपी छीन लेता है। गवरइया राजा को 'कंगाल' कहकर उसकी टोपी वापस फेंकने पर विवश कर देती है, जो यह सिद्ध करता है कि परिश्रम का सम्मान करने वाला निर्धन भी शोषक राजा से श्रेष्ठ होता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">उचित पारिश्रमिक देकर काम कराने का आदर्श</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">शोषक राजा की बेगार प्रथा पर तीखा व्यंग्य</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -2610,6 +4061,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">खिलौनों में सजीवता का अनुभव करना</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">बाल मनोविज्ञान व कल्पनाशीलता का प्रभाव</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch19_q1">
+        <div class="q-head" onclick="toggleQ('h_ch19_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">कविता में गुड़िया के प्रति बाल-मन के अनुराग और स्नेह का चित्रण किस प्रकार किया गया है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कविता में मेले से खरीदी गई नन्हीं गुड़िया बाल-मन के प्रेम, कल्पना और ममता का केंद्र है। बच्ची उसे बड़ी जतन से सजाती है, नए कपड़े पहनाती है और अपनी सबसे प्रिय सहेली की तरह सहेजकर रखती है, जो बचपन की निश्छल आत्मीयता को दर्शाता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">बाल-मन का निश्छल स्नेह व गुड़िया की साज-संभाल</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">बचपन की सहज कल्पनाशीलता का उल्लेख</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch19_q6">
+        <div class="q-head" onclick="toggleQ('ch19_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'गुड़िया' कविता में कुँवर नारायण ने मेले से खरीदी गई पुरानी गुड़िया के माध्यम से बच्चे की किस असीम ममता और कल्पनाशीलता को उभारा है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>बच्चे का निश्छल प्रेम:</strong> मेले में अनेक नई और कीमती वस्तुएँ होने के बावजूद बच्चे का हृदय एक नुक्कड़ पर पड़ी पुरानी, चिथड़ों में लिपटी गुड़िया पर आ टिकता है। वह मोल-भाव करके उस गुड़िया को खरीद लाता है और उसे सुंदर वस्त्र पहनाकर अपनी छोटी बहन की भाँति सहेजता है। यह प्रसंग सिद्ध करता है कि बच्चों के लिए बाहरी चमक-दमक की तुलना में आत्मीय भावनात्मक लगाव और अपनत्व का मूल्य कहीं अधिक होता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">पुरानी चिथड़ों वाली गुड़िया के प्रति बच्चे का आकर्षण</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">निस्वार्थ अपनत्व व मानवीय संवेदना का चित्रण</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -2716,6 +4211,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch20_q1">
+        <div class="q-head" onclick="toggleQ('h_ch20_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">लेखक और उनकी पत्नी ने गौरैयों को कमरे से बाहर निकालने के क्या-क्या प्रयास किए और अंत में क्या निर्णय लिया?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>उन्होंने पंखे बंद किए, खिड़की-दरवाजे खोले और झाड़ू लेकर उन्हें उड़ाने की कोशिश की। परंतु जब उन्होंने देखा कि गौरैया अपने घोंसले में भूखे बच्चों के लिए तिनके और दाने लेकर बार-बार लौटती हैं, तो उनका हृदय वात्सल्य से भर गया और उन्होंने उन्हें कमरे में ही रहने देने का सहृदय निर्णय लिया।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">भगाने के प्रयास (पंखे बंद करना, झाड़ू आदि)</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">घोंसले के बच्चों को देखकर सहृदय निर्णय</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch20_q6">
+        <div class="q-head" onclick="toggleQ('ch20_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'दो गौरैया' कहानी में भीष्म साहनी ने मनुष्य द्वारा प्रकृति और पक्षियों को अपने घर से बाहर निकालने के व्यर्थ प्रयास को किस मानवीय संवेदना से जोड़ा है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>प्रकृति और मनुष्य का सहअस्तित्व:</strong> लेखक और उनकी पत्नी कमरे में घोंसला बनाने वाली दो नन्हीं गौरैयों को बाहर निकालने के लिए पंखा बंद करते हैं, खिड़कियाँ बंद करते हैं और डंडों से भगाते हैं। परंतु जब वे देखते हैं कि गौरैया अपने तिनके लेकर बार-बार कमरे में लौट आती हैं और पंखे के ब्लेड पर उदास होकर बैठी हैं, तो उनका कठोर हृदय पिघल जाता है। वे समझ जाते हैं कि यह घर केवल मनुष्यों का नहीं, प्रकृति के इन नन्हें प्राणियों का भी समान बसेरा है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">पक्षियों को भगाने के प्रयासों की व्यर्थता</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">सह-अस्तित्व व मूक पक्षियों के प्रति करुणा का उदय</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -2812,6 +4351,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">यूरोपीय नागरिक अनुशासन व निजता</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">भारतीय पारिवारिक अपनत्व व दोनों की तुलना</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch21_q1">
+        <div class="q-head" onclick="toggleQ('h_ch21_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">पत्र में लेखक ने यूरोप के प्राकृतिक सौंदर्य और वहाँ के लोगों के अनुशासन की क्या विशेषताएँ बताई हैं?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>लेखक ने यूरोप के घने देवदार के जंगलों, स्वच्छ झीलों और बर्फीले पहाड़ों का मनोहारी चित्रण किया। साथ ही वहाँ के नागरिकों द्वारा स्वच्छता, समय की पाबंदी और सार्वजनिक नियमों के कड़ाई से पालन करने की अनुशासनप्रियता की प्रशंसा की।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">प्राकृतिक छटा (पहाड़, झील, वन)</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">स्वच्छता व समय-पालन का अनुशासन</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch21_q6">
+        <div class="q-head" onclick="toggleQ('ch21_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'चिट्ठियों में यूरोप' यात्रा-वृत्तांत में नरेश सक्सेना ने यूरोप के विभिन्न देशों के किन सांस्कृतिक व पर्यावरणीय वैशिष्ट्यों का सजीव वर्णन किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>यूरोपीय संस्कृति व पर्यावरण:</strong> लेखक ने पत्रों के माध्यम से यूरोप की स्वच्छता, ऐतिहासिक इमारतों के संरक्षण, कड़े ट्रैफिक अनुशासन और प्राकृतिक सौंदर्य का चित्रण किया है। वे बताते हैं कि यूरोपीय समाज में समय की पाबंदी, पुस्तकालयों का समृद्ध उपयोग और पर्यावरण के प्रति नागरिक चेतना कितनी गहरी है, जिससे भारतीय छात्रों को अपने देश में भी स्वच्छता और अनुशासन अपनाने की प्रेरणा मिलती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">स्वच्छता, ट्रैफिक अनुशासन व ऐतिहासिक धरोहरों का संरक्षण</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">नागरिक चेतना से मिलने वाली सकारात्मक प्रेरणा</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -2918,6 +4501,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch22_q1">
+        <div class="q-head" onclick="toggleQ('h_ch22_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">कवि सोहनलाल द्विवेदी ने ओस की बूँदों की तुलना किन-किन प्राकृतिक उपादानों से की है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कवि ने हरी घास और पत्तों पर बिखरी ओस की बूँदों की तुलना चमकते मोतियों, दमकते हीरों और प्रातःकालीन प्रकृति के गले में सजे देदीप्यमान नवरत्नों के हार से की है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">मोती और हीरों से तुलना</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">प्रकृति के गले के रत्न-हार का रूपक</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch22_q6">
+        <div class="q-head" onclick="toggleQ('ch22_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'ओस' कविता में सोहनलाल द्विवेदी ने प्रातःकाल हरी घास पर बिखरी ओस की बूँदों के सौंदर्य का वर्णन किन उपमानों से किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>काव्यगत उपमान:</strong> कवि ने हरी घास पर चमकती ओस की बूँदों को रात्रि द्वारा बिखेरे गए बहुमूल्य <em>'मोतियों का हार'</em> और <em>'हीरों की लड़ियाँ'</em> कहा है। पत्तों, फूलों और डालों पर बिखरे इन रत्नों को देखकर कवि का मन इतना मुग्ध हो जाता है कि वह इन अंजलि भर ओस कणों को घर ले जाकर इन पर एक सुंदर कविता रचने की इच्छा व्यक्त करता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">मोती और हीरों के लड़ियों से ओस की तुलना</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">प्रकृति के सौंदर्य पर मुग्ध होकर कविता रचने की आकांक्षा</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -3014,6 +4641,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">संकट में शांत रहकर त्वरित बुद्धि का प्रयोग</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">कुशल नेतृत्व व टीम के बचाव की सीख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch23_q1">
+        <div class="q-head" onclick="toggleQ('h_ch23_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">राकेश ने अपने साथियों द्वारा नाटक बिगाड़ दिए जाने पर स्थिति को किस प्रकार कुशलतापूर्वक संभाला?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>राकेश ने मंच के पीछे से निकलकर दर्शकों से कहा कि उसके साथी तो मंच पर नाटक का पूर्वाभ्यास (रिहर्सल) कर रहे थे और असली नाटक तो अब शुरू होगा। उसकी इस त्वरित बुद्धि और हाजिरजवाबी से बिगड़ा हुआ नाटक सफल प्रदर्शन में बदल गया।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">रिहर्सल का बहाना बनाकर स्थिति संभालना</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">हाजिरजवाबी और अभिनय कुशलता</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch23_q6">
+        <div class="q-head" onclick="toggleQ('ch23_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'नाटक में नाटक' कहानी में मंगल सक्सेना ने राकेश के सूझबूझ और प्रत्युत्पन्नमतित्व से बिगड़े हुए नाटक को किस प्रकार सफल मंचन में बदला?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>राकेश की अद्भुत सूझबूझ:</strong> हाथ में प्लास्टर बंधा होने के कारण राकेश मंच पर नहीं आ सकता था। जब साथी कलाकार मंच पर संवाद भूलकर आपस में झगड़ने लगे, तो राकेश ने तुरंत मंच पर आकर स्थिति संभाली। उसने दर्शकों से कहा कि यह कलाकारों का रिहर्सल था और असली नाटक अब शुरू होगा। इस चतुराई से उसने न केवल नाटक के मखौल को टाला, बल्कि दर्शकों से भरपूर तालियाँ बटोरकर नाटक को ऐतिहासिक सफलता दिलाई।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">कलाकारों के संवाद भूलने पर बिगड़ी स्थिति का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">राकेश की हाजिरजवाबी से नाटक का सफल समापन</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -3120,6 +4791,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch24_q1">
+        <div class="q-head" onclick="toggleQ('h_ch24_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'सागर यात्रा' के दौरान नाविक दल को समुद्र में किन-किन प्राकृतिक संकटों का सामना करना पड़ा?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>नाविक दल को प्रचंड समुद्री तूफानों, ऊँची उठती भयंकर लहरों, दिशाभ्रम पैदा करने वाले घने कोहरे तथा नौका के तकनीकी पुर्जों में खराबी जैसी गंभीर चुनौतियों का धैर्य और अदम्य साहस से सामना करना पड़ा।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">तूफान, लहरें व कोहरे की चुनौतियाँ</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">धैर्य और अदम्य साहस का प्रदर्शन</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch24_q6">
+        <div class="q-head" onclick="toggleQ('ch24_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'सागर यात्रा' पाठ में कर्नल सविंदर सिंह बाजवा और उनकी टीम ने नौका द्वारा समुद्र की किन विकट चुनौतियों पर विजय प्राप्त की?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>साहसिक सागर यात्रा:</strong> कर्नल बाजवा और उनके दल ने 'तृष्णा' नौका से विश्व-परिक्रमा की। समुद्र में भयंकर तूफानों, विशाल लहरों, दिशाभ्रम, पेयजल की कमी और तकनीकी खराबी जैसी जानलेवा चुनौतियों का सामना उन्होंने अदम्य साहस, धैर्य और टीम-भावना से किया। यह यात्रा भारतीय सेना के शौर्य, संकल्प और मानवीय इच्छाशक्ति की अमर विजय गाथा है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">समुद्री तूफानों और तकनीकी संकटों का सामना</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">अदम्य साहस, अनुशासन और टीम-भावना की विजय</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -3216,6 +4931,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">कठोर परिश्रम द्वारा समूचे संसार का पोषण</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">खाद्य सुरक्षा व अर्थव्यवस्था की रीढ़ होना</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch25_q1">
+        <div class="q-head" onclick="toggleQ('h_ch25_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">कवि त्रिलोचन ने 'उठ किसान ओ' कविता में किसान को किस प्रकार की कर्मठता का संदेश दिया है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कवि ने किसान को बादलों के आगमन पर आलस्य त्यागकर हल-बैल के साथ खेतों में जुटने का आह्वान किया है। किसान का पसीना ही बंजर धरती को हरी-भरी फसलों में बदलकर राष्ट्र के भरण-पोषण का आधार बनता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">बादलों के आगमन पर कर्मठता का आह्वान</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">श्रम से धरती को समृद्ध करने का संदेश</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch25_q6">
+        <div class="q-head" onclick="toggleQ('ch25_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'उठ किसान ओ' कविता में कवि त्रिलोचन ने बादलों के आगमन पर धरती के शृंगार और किसान के उल्लास को किस रूप में व्यक्त किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>किसान और वर्षा का उल्लास:</strong> कवि किसान का आह्वान करते हुए कहते हैं कि आसमान में घिर आए काले बादल वर्षा की सौगात लेकर आए हैं। सूखी धरती अब तृप्त होगी, खेतों में हरियाली की चादर बिछेगी और फसलें लहलहाएंगी। किसान के अथक श्रम को प्रकृति का वरदान मिलने वाला है, अतः वह आलस्य त्यागकर हल-बैल लेकर खेतों में नए जीवन का स्वागत करने के लिए उठ खड़ा हो।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">बादलों के आगमन से सूखी धरती की तृप्ति का वर्णन</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">किसान के परिश्रम को फलीभूत करने का उल्लासमय आह्वान</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -3322,6 +5081,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch26_q1">
+        <div class="q-head" onclick="toggleQ('h_ch26_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">एकांकी 'सस्ते का चक्कर' से हमें एक जागरूक उपभोक्ता के रूप में क्या व्यावहारिक सीख मिलती है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>एकांकी से हमें सीख मिलती है कि केवल सस्ते दामों के लालच में आकर बिना सोचे-समझे घटिया या मिलावटी वस्तुएँ नहीं खरीदनी चाहिए, क्योंकि घटिया वस्तुएँ अंततः आर्थिक नुकसान और परेशानी का कारण बनती हैं। गुणवत्ता सदैव प्राथमिकता होनी चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">सस्ते के लालच से बचने की सीख</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">गुणवत्ता और सतर्कता को प्राथमिकता</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch26_q6">
+        <div class="q-head" onclick="toggleQ('ch26_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'सस्ते का चक्कर' एकांकी में लेखक ने सस्ते और घटिया सामान के लालच में पड़ने वाले उपभोक्ताओं की किस मानसिकता पर व्यंग्य किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>उपभोक्ता मानसिकता पर व्यंग्य:</strong> एकांकी में दिखाया गया है कि लोग ब्रांडेड और गुणवत्तापूर्ण सामान के स्थान पर कुछ पैसे बचाने के लिए सड़क किनारे का घटिया माल खरीद लेते हैं। परिणाम यह होता है कि सस्ता सामान घर पहुँचते ही टूट जाता है या खराब हो जाता है, जिससे अंततः दोहरा नुकसान होता है। नाटककार यह सीख देता है कि गुणवत्ता और टिकाऊपन ही वास्तविक बचत है, सस्ते के फेर में पड़ना मूर्खता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">गुणवत्ता की उपेक्षा कर सस्ता सामान खरीदने का लालच</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">दोहरे आर्थिक नुकसान व उपभोक्ता जागरूकता का संदेश</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -3418,6 +5221,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">टीम भावना (Teamwork) को व्यक्तिगत प्रतिभा से ऊपर मानना</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">अनुशासन और विनम्रता की महत्ता</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch27_q1">
+        <div class="q-head" onclick="toggleQ('h_ch27_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">महान हॉकी खिलाड़ी ध्यानचंद और केशव दत्त के खेल के प्रति समर्पण से युवा पीढ़ी को क्या प्रेरणा मिलती है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>उनके जीवन से युवाओं को कठोर अनुशासन, निस्वार्थ देशप्रेम, टीम भावना और विपरीत परिस्थितियों में भी लक्ष्य के प्रति अटूट एकाग्रता बनाए रखने की अमर प्रेरणा मिलती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">कठोर अभ्यास व एकाग्रता</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">देश के लिए खेलने का गौरव व खेल भावना</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch27_q6">
+        <div class="q-head" onclick="toggleQ('ch27_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'एक खिलाड़ी की कुछ यादें' संस्मरण में हॉकी के दिग्गज केशव दत्त ने भारतीय हॉकी के स्वर्णिम युग और ध्यानचंद के खेल कौशल के विषय में क्या बताया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>हॉकी का स्वर्णिम युग:</strong> केशव दत्त ने लंदन ओलंपिक (1948) और हेलसिंकी ओलंपिक (1952) में भारत द्वारा स्वर्ण पदक जीतने के रोमांचक संस्मरण साझा किए हैं। वे मेजर ध्यानचंद की जादुई स्टिक और निस्वार्थ खेल-भावना को याद करते हुए बताते हैं कि भारतीय हॉकी खिलाड़ियों के लिए तिरंगे की प्रतिष्ठा सर्वोच्च थी। सीमित संसाधनों के बावजूद उनका समर्पण आज के खिलाड़ियों के लिए महान प्रेरणा है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">ओलंपिक स्वर्ण पदक की ऐतिहासिक उपलब्धियाँ</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">मेजर ध्यानचंद का जादुई कौशल व देशप्रेम की भावना</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -3524,6 +5371,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch28_q1">
+        <div class="q-head" onclick="toggleQ('h_ch28_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">वल्ली ने अपनी पहली बस यात्रा के दौरान किस प्रकार बुद्धिमत्ता और आत्म-संयम का परिचय दिया?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>वल्ली ने अपने पास जमा एक-एक पैसे को बचाकर किराए की व्यवस्था की। उसने कंडक्टर द्वारा दी गई मुफ्त की कोल्डड्रिंक पीने से मना कर दिया और अनजान शहर में बस से नीचे उतरने के प्रलोभन से बचकर पूरा आत्म-नियंत्रण दिखाया।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">किराये के लिए पैसों की बचत</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">अनजान शहर में सतर्कता व आत्म-संयम</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch28_q6">
+        <div class="q-head" onclick="toggleQ('ch28_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'बस की सैर' कहानी में आठ वर्षीय वल्ली की आत्मनिर्भरता, जिज्ञासा और पहली बार अकेले शहर जाने के साहस की क्या विशेषताएँ हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>वल्ली का साहस व समझदारी:</strong> वल्ली एक स्वाभिमानी और अत्यंत जिज्ञासु बालिका है। बस की सैर करने के लिए वह महीनों तक पाई-पाई बचाकर साठ पैसे का किराया जुटाती है। अकेले शहर जाते समय वह कंडक्टर के मजाक से विचलित नहीं होती और किसी अजनबी की मुफ्त कोल्डड्रिंक स्वीकार नहीं करती। लौटते समय मरी हुई गाय को देखकर जीवन और मृत्यु के गूढ़ रहस्य को समझना उसकी परिपक्वता को दर्शाता है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">किराया जुटाने का अनुशासन व स्वावलंबन</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">अजनबियों से सतर्कता व जीवन-मृत्यु की परिपक्व समझ</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -3620,6 +5511,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">राष्ट्रीय संपर्क सूत्र व सांस्कृतिक एकता</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">वैश्विक स्तर पर 150+ विश्वविद्यालयों में अध्ययन</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch29_q1">
+        <div class="q-head" onclick="toggleQ('h_ch29_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">फादर कामिल बुल्के ने हिंदी भाषा और भारतीय संस्कृति के संवर्धन में क्या ऐतिहासिक योगदान दिया?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>बेल्जियम से भारत आकर उन्होंने हिंदी और संस्कृत का गहन अध्ययन किया। उन्होंने प्रामाणिक 'अंग्रेजी-हिंदी कोश' तैयार किया और रामकथा की उत्पत्ति व विकास पर अमर शोध ग्रंथ लिखकर हिंदी को राष्ट्रभाषा बनाने का आजीवन प्रयास किया।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">अंग्रेजी-हिंदी कोश का निर्माण</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">रामकथा शोध व हिंदी का आजीवन प्रचार</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch29_q6">
+        <div class="q-head" onclick="toggleQ('ch29_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'हिंदी ने जिनकी जिंदगी बदल दी' आलेख में विदेशी विद्वानों के हिंदी प्रेम और इसके वैश्विक प्रसार के किन प्रसंगों का उल्लेख है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>हिंदी का वैश्विक गौरव:</strong> इस आलेख में फादर कामिल बुल्के, रोनाल्ड स्टुअर्ट मैकग्रेगर जैसे विदेशी विद्वानों का उल्लेख है जिन्होंने अपनी मातृभाषा छोड़कर हिंदी भाषा, तुलसीदास के रामचरितमानस और भारतीय संस्कृति को अपनाया। फादर बुल्के द्वारा तैयार 'अंग्रेजी-हिंदी शब्दकोश' हिंदी साहित्य की अमूल्य निधि है। यह सिद्ध करता है कि हिंदी अपनी सरलता, वैज्ञानिक लिपि और समृद्ध साहित्य के कारण वैश्विक आकर्षण का केंद्र है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">फादर कामिल बुल्के के हिंदी समर्पण व शब्दकोश का उल्लेख</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">हिंदी की वैज्ञानिकता व वैश्विक भाषाई स्वीकार्यता</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -3726,6 +5661,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch30_q1">
+        <div class="q-head" onclick="toggleQ('h_ch30_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">आषाढ़ के पहले दिन वर्षा के आगमन पर प्रकृति और ग्रामीण जनजीवन में क्या परिवर्तन दिखाई देते हैं?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>आषाढ़ के पहले दिन मेघों के गरजने और मूसलाधार वर्षा से तपती धरती की प्यास बुझती है। सोंधी सुगंध हवा में फैल जाती है, मयूर नाचने लगते हैं और किसान नए उत्साह से खेतों में बुआई की तैयारी करने लगते हैं।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">धरती की प्यास बुझना व सोंधी खुशबू</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">मयूर का नृत्य व किसानों का उल्लास</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch30_q6">
+        <div class="q-head" onclick="toggleQ('ch30_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'आषाढ़ का पहला दिन' कविता में भवानीप्रसाद मिश्र ने वर्षा की पहली फुहार से प्रकृति, ग्रामीण जीवन और मन के उल्लास का कैसा चित्र खींचा है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>आषाढ़ के प्रथम दिवस का सौंदर्य:</strong> ग्रीष्म ऋतु की झुलसाने वाली धूप के बाद जब आषाढ़ के पहले दिन काले मेघ बरसते हैं, तो धरती से सोंधी सुगंध उठती है। मोर पंख फैलाकर नाचने लगते हैं, मेंढकों की टर्र-टर्र गूँजने लगती है और किसान खेतों की ओर हल लेकर प्रसन्न मन से दौड़ पड़ते हैं। यह कविता जीवन में नए संकल्प और नवसृजन के आनंद की मधुर अभिव्यक्ति है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">सोंधी मिट्टी की सुगंध व पशु-पक्षियों का उल्लास</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">किसानों का उत्साह व नवसृजन के आनंद की अभिव्यक्ति</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -3822,6 +5801,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">प्रजा की रक्षा हेतु आत्मसमर्पण व शहादत</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">'मन्यम वीरुडू' की उपाधि व ऐतिहासिक स्थान</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch31_q1">
+        <div class="q-head" onclick="toggleQ('h_ch31_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">अल्लूरी सीताराम राजू ने आदिवासियों के अधिकारों और वन संपदा के लिए ब्रिटिश सत्ता से किस प्रकार लोहा लिया?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>उन्होंने रंपा विद्रोह का नेतृत्व करते हुए जनजातीय लोगों को एकजुट किया। अंग्रेजों के अन्यायपूर्ण वन कानूनों के विरुद्ध छापामार युद्ध लड़ा और आदिवासियों की स्वाधीनता और संस्कृति की रक्षा के लिए अपने प्राण न्योछावर कर दिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">रंपा विद्रोह व छापामार संघर्ष</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">आदिवासियों के वन अधिकारों के लिए बलिदान</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch31_q6">
+        <div class="q-head" onclick="toggleQ('ch31_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'अन्याय के खिलाफ' पाठ में अल्लूरी सीताराम राजू के नेतृत्व में आंध्र प्रदेश के आदिवासियों द्वारा अंग्रेजों के विरुद्ध लड़े गए रंपा विद्रोह की ऐतिहासिक भूमिका क्या थी?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>रंपा विद्रोह का महत्व:</strong> अंग्रेजों ने 'मद्रास फॉरेस्ट एक्ट' बनाकर आदिवासियों से उनके जंगलों में जाने, मवेशी चराने और पोडू (झूम) खेती करने का अधिकार छीन लिया था। अल्लूरी सीताराम राजू ने आदिवासियों को संगठित कर गांधीजी के असहयोग आंदोलन और अहिंसा के साथ-साथ अंग्रेजों के सशस्त्र दमन का डटकर मुकाबला किया। उन्होंने आदिवासियों के जल-जंगल-जमीन के अधिकारों की रक्षा के लिए प्राणों का बलिदान दिया।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">वन कानूनों द्वारा आदिवासियों के अधिकारों का हनन</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">सीताराम राजू का नेतृत्व व जल-जंगल-जमीन के लिए संघर्ष</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -3928,6 +5951,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch32_q1">
+        <div class="q-head" onclick="toggleQ('h_ch32_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">केशव शंकर पिल्लई ने अंतरराष्ट्रीय बाल चित्रकला प्रतियोगिता और गुड़िया संग्रहालय की स्थापना क्यों की?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>वे बच्चों की रचनात्मक प्रतिभा को वैश्विक मंच देना चाहते थे। विभिन्न देशों की संस्कृतियों, वेशभूषा और बच्चों के बीच पारस्परिक मित्रता को बढ़ावा देने के उद्देश्य से उन्होंने दिल्ली में अंतरराष्ट्रीय गुड़िया संग्रहालय की स्थापना की।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">बाल रचनात्मकता को अंतरराष्ट्रीय मंच देना</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">विश्व-बंधुत्व व सांस्कृतिक समन्वय का उद्देश्य</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch32_q6">
+        <div class="q-head" onclick="toggleQ('ch32_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'बच्चों के प्रिय श्री केशव शंकर पिल्लई' जीवनी में भारतीय राजनीतिक कार्टूनकला के जनक 'शंकर' के बाल-साहित्य और बाल-चित्रकला के प्रति योगदान पर प्रकाश डालिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>शंकर का युगांतकारी योगदान:</strong> के. शंकर पिल्लई ने न केवल भारत में राजनीतिक कार्टूनकला को प्रतिष्ठित किया, बल्कि बच्चों के सर्वांगीण विकास के लिए 'चिल्ड्रन्स बुक ट्रस्ट' (CBT) की स्थापना की। उन्होंने अंतरराष्ट्रीय बाल-चित्रकला प्रतियोगिता शुरू की जिसमें दुनिया भर के बच्चे भाग लेते थे। नई दिल्ली में अंतरराष्ट्रीय गुड़िया संग्रहालय (Dolls Museum) की स्थापना उनके बच्चों के प्रति अनन्य प्रेम का शाश्वत प्रतीक है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">चिल्ड्रन्स बुक ट्रस्ट और अंतरराष्ट्रीय बाल-चित्रकला प्रतियोगिता</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">गुड़िया संग्रहालय की स्थापना व बाल-साहित्य में योगदान</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -4024,6 +6091,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">शोषण के स्थान पर प्रेम और ममता का प्रसार</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">नई पीढ़ी के आशावान कदमों का स्वागत</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch33_q1">
+        <div class="q-head" onclick="toggleQ('h_ch33_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'फर्श पर' कविता में घरेलू कामकाजी महिलाओं के अनथक श्रम को किस प्रकार सम्मानित किया गया है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कविता में फर्श पर पोछा लगाने, सफाई करने वाली माँ और महिलाओं के श्रम को अत्यंत गरिमामय बताया गया है। उनका मौन श्रम ही घर को रहने योग्य और सुंदर बनाता है, जिसकी समाज को कद्र करनी चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">महिलाओं के मौन श्रम की महत्ता</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">श्रम की गरिमा व समाज में सम्मान की आवश्यकता</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch33_q6">
+        <div class="q-head" onclick="toggleQ('ch33_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'फर्श पर' कविता में निर्मला पुतुल ने घरेलू कामगार स्त्रियों के मूक श्रम, त्याग और पारिवारिक उपेक्षा पर क्या मार्मिक विचार व्यक्त किए हैं?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>घरेलू श्रम की उपेक्षा पर संवेदना:</strong> कवयित्री दर्शाती हैं कि एक स्त्री दिन भर घर के फर्श को चमकाने, झाड़ू-पोंछा करने और बर्तनों की सफाई में अपनी जवानी और ऊर्जा खपा देती है। लोग चमकते हुए फर्श की तो तारीफ करते हैं, किंतु उस फर्श को चमकाने वाली स्त्री के थके हुए हाथों, फटी एड़ियों और उसके अंतर्मन के दर्दों को कोई नहीं देखता। कविता स्त्री श्रम को सम्मान और मानवीय संवेदना देने की पुरजोर वकालत करती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">घरेलू कामगार स्त्री के अनथक श्रम का चित्रण</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">श्रम के अवमूल्यन पर प्रहार व मानवीय सम्मान की माँग</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -4130,6 +6241,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch34_q1">
+        <div class="q-head" onclick="toggleQ('h_ch34_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'बूढ़ी अम्मा की बात' कहानी पारिवारिक मूल्यों और वृद्धजनों के अनुभवों के प्रति क्या दृष्टिकोण सिखाती है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>कहानी सिखाती है कि वृद्धजनों का अनुभव जीवन की सबसे बड़ी पूंजी है। परिवार में उनके प्रति आदर, सेवा और अपनत्व का भाव रखना चाहिए; आधुनिकता की अंधी दौड़ में बुजुर्गों की उपेक्षा कभी नहीं करनी चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">बुजुर्गों के अनुभवों की अमूल्य पूंजी</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">आदर, सेवा व पारिवारिक आत्मीयता का भाव</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch34_q6">
+        <div class="q-head" onclick="toggleQ('ch34_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'बूढ़ी अम्मा की बात' लोककथा में जल-संरक्षण और प्राकृतिक संसाधनों के प्रति पूर्वजों की पारंपरिक सूझबूझ से हमें क्या प्रेरणा मिलती है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>पारंपरिक जल-संरक्षण का संदेश:</strong> लोककथा में बूढ़ी अम्मा बताती हैं कि वर्षा की एक-एक बूँद अनमोल है। पूर्वज तालाबों, बावडियों और कुओं की नियमित सफाई करते थे और छत के वर्षा जल को टांकों में सहेजते थे। आज आधुनिक मनुष्य ने अंधाधुंध भूजल दोहन कर जल-संकट उत्पन्न कर दिया है। यह कहानी हमें प्राचीन जल-सहेजन पद्धतियों को पुनर्जीवित करने और जल की बर्बादी रोकने की गंभीर प्रेरणा देती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">बावडियों, तालाबों व टांकों की पारंपरिक जल-संस्कृति</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">अंधाधुंध दोहन की रोकथाम व जल-संरक्षण की सीख</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -4226,6 +6381,50 @@
             <div class="marking-scheme">
               <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
               <div class="marking-row"><span class="marking-key">न्याय और गरिमापूर्ण जीवन की अटूट उम्मीद</span><span class="marking-marks">1.5 अंक</span></div><div class="marking-row"><span class="marking-key">संघर्षशील संकल्प और सकारात्मक दृष्टिकोण</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="h_ch35_q1">
+        <div class="q-head" onclick="toggleQ('h_ch35_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">भोपाल गैस त्रासदी की पीड़िता सलमा के संघर्ष से हमें जीवन में विपरीत परिस्थितियों का सामना करने की क्या सीख मिलती है?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>असहनीय शारीरिक पीड़ा और त्रासदी के भयानक परिणामों को झेलने के बावजूद सलमा ने कभी हिम्मत नहीं हारी। उसका जीवन हमें सिखाता है कि न्याय और अधिकारों के लिए आशावादी रहकर निरंतर संघर्ष करते रहना चाहिए।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">त्रासदी में भी अटूट जीवटता व साहस</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">अन्याय के विरुद्ध आशावादी संघर्ष की सीख</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch35_q6">
+        <div class="q-head" onclick="toggleQ('ch35_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'वह सुबह कभी तो आएगी' संस्मरण में सलमा ने भोपाल गैस त्रासदी के पीड़ितों के न्याय, स्वास्थ्य और पुनर्वास के संघर्ष को किस अदम्य जिजीविषा से प्रस्तुत किया है?</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>भोपाल त्रासदी और न्याय का संघर्ष:</strong> 1984 की यूनियन कार्बाइड जहरीली गैस रिसाव की पीड़िता सलमा ने बचपन से असाध्य बीमारियों, शारीरिक दुर्बलता और गरीबी को झेला। इसके बावजूद उसने हार नहीं मानी और गैस पीड़ितों के निःशुल्क इलाज, शुद्ध पेयजल और अंतरराष्ट्रीय न्यायालयों में उचित मुआवजे के लिए संघर्ष किया। सलमा का जीवन अंधकार में भी 'वह सुबह कभी तो आएगी' की अटूट आशा और संघर्षशील साहस का प्रतीक है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">गैस त्रासदी के शारीरिक व आर्थिक दुष्प्रभावों का सामना</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">पीड़ितों के अधिकारों के लिए अनवरत संघर्ष और आशावादिता</span><span class="marking-marks">1.5 अंक</span></div>
             </div>
           </div>
         </div>
@@ -4332,6 +6531,50 @@
         </div>
       </div>
 
+            <div class="q-card" id="h_ch36_q1">
+        <div class="q-head" onclick="toggleQ('h_ch36_q1')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">विद्यालय में हस्तलिखित पत्रिका निकालने की क्या उपयोगिता और शैक्षणिक लाभ हैं?</div>
+          <span class="q-marks">2 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p>हस्तलिखित पत्रिका से विद्यार्थियों में मौलिक लेखन, चित्रकला, संपादन और रचनात्मक अभिव्यक्ति का विकास होता है। यह विद्यार्थियों में सहकारिता, साहित्यिक रुचि और टीम भावना को सुदृढ़ करती है।</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+              <div class="marking-row"><span class="marking-key">मौलिक लेखन व संपादन कौशल का विकास</span><span class="marking-marks">1 अंक</span></div>
+              <div class="marking-row"><span class="marking-key">सहकारिता और साहित्यिक अभिरुचि को बढ़ावा</span><span class="marking-marks">1 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="q-card" id="ch36_q6">
+        <div class="q-head" onclick="toggleQ('ch36_q6')">
+          <span class="q-num">प्र.6</span>
+          <div class="q-text">'आओ पत्रिका निकालें' व्यावहारिक पाठ में विद्यालय स्तर पर हस्तलिखित या मुद्रित पत्रिका निकालने की संपूर्ण प्रक्रिया और लाभों पर विचार कीजिए।</div>
+          <span class="q-marks">3 अंक</span>
+          <div class="q-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></div>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">&#128161; सम्पूर्ण उत्तर (CBSE अंक योजना 2026-27 अनुसार):</div>
+            <div class="answer-text">
+              <p><strong>पत्रिका संपादन प्रक्रिया व लाभ:</strong></p><ol><li><strong>प्रक्रिया:</strong> संपादकीय मंडल का गठन, विषय-वस्तु (कविता, कहानी, निबंध, चित्रकला) का आमंत्रण, पांडुलिपि का प्रूफ-शोधन, सुंदर पृष्ठ-सज्जा और प्रकाशन।</li><li><strong>शैक्षणिक लाभ:</strong> पत्रिका निकालने से छात्रों में रचनात्मक लेखन, आलोचनात्मक चिंतन, संपादन कौशल, टीम वर्क और भाषाई शुद्धता का असाधारण विकास होता है तथा उनकी प्रतिभा को मंच मिलता है।</li></ol>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">&#128203; CBSE अंक विभाजन:</div>
+                <div class="marking-row"><span class="marking-key">संपादकीय मंडल, चयन व पृष्ठ-सज्जा की प्रक्रिया</span><span class="marking-marks">1.5 अंक</span></div>
+                <div class="marking-row"><span class="marking-key">छात्रों में रचनात्मकता, भाषा-कौशल और नेतृत्व क्षमता का विकास</span><span class="marking-marks">1.5 अंक</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="cbq-section">
         <div class="cbq-header">
           <span>&#129504; दक्षता-आधारित प्रश्न (CBQ) — CBSE Board Pattern 2026-27</span>
@@ -4393,6 +6636,12 @@ function generateBreadcrumbs() {
 }
 
 function showChapter(n) {
+    // Sync mobile select & badge
+    const mobSelect = document.getElementById('mobileChapterSelect');
+    if (mobSelect) mobSelect.value = String(typeof num !== 'undefined' ? num : (typeof n !== 'undefined' ? n : currentCh));
+    const mobBadge = document.getElementById('mobCurrentBadge');
+    if (mobBadge) mobBadge.textContent = 'Chapter ' + (typeof num !== 'undefined' ? num : (typeof n !== 'undefined' ? n : currentCh));
+
   currentCh = n;
   document.querySelectorAll('.chapter-section').forEach(s => s.classList.add('hidden'));
   const sec = document.getElementById('ch'+n);

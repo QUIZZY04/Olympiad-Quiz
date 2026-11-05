@@ -125,19 +125,8 @@ const mmSidebar = mathsMelaChapters.map(ch => ({
 }));
 
 mathsMelaChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const extraQs = mathsMelaExtra[chId] || [];
-  const expandedP1 = (mathsMelaExpandedPart1 && mathsMelaExpandedPart1[chId]) || [];
-  const expandedFull = (mathsMelaFullExercises && mathsMelaFullExercises[chId]) || [];
-  
-  let currentQs = [...baseQs, ...extraQs, ...expandedP1, ...expandedFull];
-  const target = targetCounts[chId] || 20;
-
-  if (currentQs.length < target) {
-    const generated = generateRichQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${mathsMelaChapters[idx - 1].title}`, filename: `maths-mela-ch${idx}.html` } : null;
   const nextLink = idx < mathsMelaChapters.length - 1 ? { label: `Ch ${idx + 2}: ${mathsMelaChapters[idx + 1].title}`, filename: `maths-mela-ch${idx + 2}.html` } : null;
@@ -176,17 +165,8 @@ const mmgSidebar = mathMagicChapters.map(ch => ({
 }));
 
 mathMagicChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const extraQs = mathMagicExtra[chId] || [];
-  
-  let currentQs = [...baseQs, ...extraQs];
-  const target = targetCounts[chId] || 25;
-
-  if (currentQs.length < target) {
-    const generated = generateRichQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${mathMagicChapters[idx - 1].title}`, filename: `math-magic-ch${idx}.html` } : null;
   const nextLink = idx < mathMagicChapters.length - 1 ? { label: `Ch ${idx + 2}: ${mathMagicChapters[idx + 1].title}`, filename: `math-magic-ch${idx + 2}.html` } : null;

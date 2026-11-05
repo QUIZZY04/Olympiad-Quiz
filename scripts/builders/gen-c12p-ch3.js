@@ -1,0 +1,673 @@
+// scripts/builders/gen-c12p-ch3.js
+// Class 12 Physics Chapter 3: Current Electricity (विद्युत धारा)
+// NCERT Rationalised 2026–27: All 23 Textbook Exercises (3.1 to 3.23) Verbatim with CBSE Rubrics
+const { createQCard, saveChapter } = require('./c12p-helper');
+
+const chNum = 3;
+const chTitle = 'Current Electricity (विद्युत धारा)';
+const exTitle = 'NCERT Chapter 3 Exercises: Drift Velocity, Kirchhoff\'s Laws, Wheatstone & Potentiometer (3.1 to 3.23)';
+
+const svgDiagram = `
+<div style="background:linear-gradient(135deg, #eff6ff, #dbeafe); border:1px solid #bfdbfe; border-radius:12px; padding:20px; margin-bottom:24px;">
+  <h3 style="font-size:1.05rem; color:#1e40af; margin-bottom:12px; font-weight:800; display:flex; align-items:center; gap:8px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    Current Electricity: Drift Velocity, Ohm's Law, Kirchhoff's Rules &amp; Potentiometer
+  </h3>
+  <svg viewBox="0 0 850 160" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', sans-serif;">
+    <!-- Box 1: Drift & Ohm's Law -->
+    <rect x="15" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <text x="110" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Drift &amp; Resistivity</text>
+    <text x="110" y="70" text-anchor="middle" font-size="11" fill="#334155">I = n·e·A·v_d</text>
+    <text x="110" y="94" text-anchor="middle" font-size="10" fill="#64748b">• v_d = eEτ / m</text>
+    <text x="110" y="112" text-anchor="middle" font-size="10" fill="#64748b">• ρ(T) = ρ₀[1 + α(T - T₀)]</text>
+
+    <!-- Box 2: Cells & Internal Resistance -->
+    <rect x="225" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+    <text x="320" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">EMF &amp; Terminal V</text>
+    <text x="320" y="72" text-anchor="middle" font-size="11" fill="#334155">V = E - Ir (Discharge)</text>
+    <text x="320" y="96" text-anchor="middle" font-size="10" fill="#64748b">• Charging: V = E + Ir</text>
+    <text x="320" y="114" text-anchor="middle" font-size="10" fill="#64748b">• r = R(E/V - 1)</text>
+
+    <!-- Box 3: Kirchhoff's Rules -->
+    <rect x="435" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="530" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">Kirchhoff's Rules</text>
+    <text x="530" y="72" text-anchor="middle" font-size="11" fill="#334155">KCL &amp; KVL</text>
+    <text x="530" y="96" text-anchor="middle" font-size="10" fill="#64748b">• Junction rule: ∑I = 0 (charge)</text>
+    <text x="530" y="114" text-anchor="middle" font-size="10" fill="#64748b">• Loop rule: ∑ΔV = 0 (energy)</text>
+
+    <!-- Box 4: Bridge & Potentiometer -->
+    <rect x="645" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
+    <text x="740" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">Bridge &amp; Potentiometer</text>
+    <text x="740" y="72" text-anchor="middle" font-size="11" fill="#334155">Null Deflection</text>
+    <text x="740" y="96" text-anchor="middle" font-size="10" fill="#64748b">• Wheatstone: P/Q = R/S</text>
+    <text x="740" y="114" text-anchor="middle" font-size="10" fill="#64748b">• Potentiometer: E₁/E₂ = l₁/l₂</text>
+  </svg>
+</div>`;
+
+const questions = [];
+
+// Exercise 3.1
+questions.push(createQCard(
+  'c12p-ch3-q1', 'Exercise 3.1', 'NCERT Exercise',
+  'The storage battery of a car has an emf of $12\\text{ V}$. If the internal resistance of the battery is $0.4\\ \\Omega$, what is the maximum current that can be drawn from the battery?',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    EMF of the battery, $E = 12\\text{ V}$<br>
+    Internal resistance, $r = 0.4\\ \\Omega$<br><br>
+    <b>Condition for Maximum Current:</b><br>
+    Current drawn from a battery of internal resistance $r$ connected across an external resistance $R$ is given by:
+    $$I = \\frac{E}{R + r}$$
+    The current drawn is maximum when the external load resistance is zero (i.e., short-circuit condition, $R = 0$):
+    $$I_{\\text{max}} = \\frac{E}{r}$$<br>
+    <b>Calculation:</b>
+    $$I_{\\text{max}} = \\frac{12\\text{ V}}{0.4\\ \\Omega} = \\mathbf{30\\text{ A}}$$
+    The maximum current that can be drawn from the battery is <b>$30\\text{ A}$</b>.
+  </div>`,
+  '1 Mark',
+  [
+    ['Condition for maximum current R = 0: I_max = E / r', '0.5 Mark'],
+    ['Computation: I_max = 12 / 0.4 = 30 A', '0.5 Mark']
+  ]
+));
+
+// Exercise 3.2
+questions.push(createQCard(
+  'c12p-ch3-q2', 'Exercise 3.2', 'NCERT Exercise',
+  'A battery of emf $10\\text{ V}$ and internal resistance $3\\ \\Omega$ is connected to a resistor. If the current in the circuit is $0.5\\text{ A}$, what is the resistance of the resistor? What is the terminal voltage of the battery when the circuit is closed?',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    $E = 10\\text{ V}$, $r = 3\\ \\Omega$, $I = 0.5\\text{ A}$<br><br>
+    <b>1. Resistance of the Resistor ($R$):</b><br>
+    By Ohm\'s law for a complete circuit:
+    $$I = \\frac{E}{R + r} \\implies R + r = \\frac{E}{I}$$
+    $$R + 3 = \\frac{10}{0.5} = 20\\ \\Omega \\implies R = 20 - 3 = \\mathbf{17\\ \\Omega}$$<br>
+    <b>2. Terminal Voltage ($V$):</b><br>
+    Terminal voltage across the closed circuit:
+    $$V = I R = (0.5\\text{ A}) \\times 17\\ \\Omega = \\mathbf{8.5\\text{ V}}$$
+    <i>(Alternatively: $V = E - I r = 10 - (0.5 \\times 3) = 10 - 1.5 = \\mathbf{8.5\\text{ V}}$).</i>
+  </div>`,
+  '2 Marks',
+  [
+    ['Resistance calculation: R = 17 Ω', '1 Mark'],
+    ['Terminal voltage calculation: V = E - Ir = 8.5 V', '1 Mark']
+  ]
+));
+
+// Exercise 3.3
+questions.push(createQCard(
+  'c12p-ch3-q3', 'Exercise 3.3', 'NCERT Exercise',
+  '(a) Three resistors $1\\ \\Omega$, $2\\ \\Omega$, and $3\\ \\Omega$ are combined in series. What is the total resistance of the combination?<br>(b) If the combination is connected to a battery of emf $12\\text{ V}$ and negligible internal resistance, obtain the potential drop across each resistor.',
+  `<div class="step">
+    <b>(a) Total Resistance in Series ($R_{\\text{eq}}$):</b><br>
+    Given: $R_1 = 1\\ \\Omega$, $R_2 = 2\\ \\Omega$, $R_3 = 3\\ \\Omega$<br>
+    $$R_{\\text{eq}} = R_1 + R_2 + R_3 = 1 + 2 + 3 = \\mathbf{6\\ \\Omega}$$<br>
+    <b>(b) Potential Drop across Each Resistor:</b><br>
+    Given: $E = 12\\text{ V}$, $r = 0$.<br>
+    Total circuit current:
+    $$I = \\frac{E}{R_{\\text{eq}}} = \\frac{12\\text{ V}}{6\\ \\Omega} = 2\\text{ A}$$
+    In a series circuit, current $I$ is identical through all resistors:
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>Across $R_1$: $V_1 = I R_1 = 2\\text{ A} \\times 1\\ \\Omega = \\mathbf{2\\text{ V}}$</li>
+      <li>Across $R_2$: $V_2 = I R_2 = 2\\text{ A} \\times 2\\ \\Omega = \\mathbf{4\\text{ V}}$</li>
+      <li>Across $R_3$: $V_3 = I R_3 = 2\\text{ A} \\times 3\\ \\Omega = \\mathbf{6\\text{ V}}$</li>
+    </ul>
+    Check: $V_1 + V_2 + V_3 = 2 + 4 + 6 = 12\\text{ V} = E$.
+  </div>`,
+  '2 Marks',
+  [
+    ['(a) Series equivalent resistance R_eq = 6 Ω', '0.5 Mark'],
+    ['(b) Calculation of circuit current I = 2 A and individual drops V₁ = 2 V, V₂ = 4 V, V₃ = 6 V', '1.5 Marks']
+  ]
+));
+
+// Exercise 3.4
+questions.push(createQCard(
+  'c12p-ch3-q4', 'Exercise 3.4', 'NCERT Exercise',
+  '(a) Three resistors $2\\ \\Omega$, $4\\ \\Omega$ and $5\\ \\Omega$ are combined in parallel. What is the total resistance of the combination?<br>(b) If the combination is connected to a battery of emf $20\\text{ V}$ and negligible internal resistance, determine the current through each resistor, and the total current drawn from the battery.',
+  `<div class="step">
+    <b>(a) Total Resistance in Parallel ($R_{\\text{eq}}$):</b><br>
+    Given: $R_1 = 2\\ \\Omega$, $R_2 = 4\\ \\Omega$, $R_3 = 5\\ \\Omega$<br>
+    $$\\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} = \\frac{1}{2} + \\frac{1}{4} + \\frac{1}{5} = \\frac{10 + 5 + 4}{20} = \\frac{19}{20}\\ \\Omega^{-1}$$
+    $$R_{\\text{eq}} = \\mathbf{\\frac{20}{19}\\ \\Omega \\approx 1.05\\ \\Omega}$$<br><br>
+    <b>(b) Current through Each Resistor and Total Current:</b><br>
+    In parallel, full voltage $V = 20\\text{ V}$ appears across each resistor:
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>$I_1 = \\frac{V}{R_1} = \\frac{20\\text{ V}}{2\\ \\Omega} = \\mathbf{10\\text{ A}}$</li>
+      <li>$I_2 = \\frac{V}{R_2} = \\frac{20\\text{ V}}{4\\ \\Omega} = \\mathbf{5\\text{ A}}$</li>
+      <li>$I_3 = \\frac{V}{R_3} = \\frac{20\\text{ V}}{5\\ \\Omega} = \\mathbf{4\\text{ A}}$</li>
+    </ul>
+    Total current drawn from the battery:
+    $$I_{\\text{total}} = I_1 + I_2 + I_3 = 10 + 5 + 4 = \\mathbf{19\\text{ A}}$$
+    <i>(Verification: $I = \\frac{V}{R_{\\text{eq}}} = \\frac{20}{20/19} = 19\\text{ A}$).</i>
+  </div>`,
+  '2 Marks',
+  [
+    ['(a) Parallel equivalent: R_eq = 20/19 Ω', '0.5 Mark'],
+    ['(b) Branch currents: I₁ = 10 A, I₂ = 5 A, I₃ = 4 A, and total I = 19 A', '1.5 Marks']
+  ]
+));
+
+// Exercise 3.5
+questions.push(createQCard(
+  'c12p-ch3-q5', 'Exercise 3.5', 'NCERT Exercise',
+  'At room temperature ($27.0^\\circ\\text{C}$) the resistance of a heating element is $100\\ \\Omega$. What is the temperature of the element if the resistance is found to be $117\\ \\Omega$, given that the temperature coefficient of the material of the resistor is $1.70 \\times 10^{-4}\\ ^\\circ\\text{C}^{-1}$?',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    Initial temperature, $T_0 = 27.0^\circ\\text{C}$<br>
+    Resistance at $T_0$, $R_0 = 100\\ \\Omega$<br>
+    Resistance at temperature $T$, $R_T = 117\\ \\Omega$<br>
+    Temperature coefficient, $\\alpha = 1.70 \\times 10^{-4}\ ^\circ\\text{C}^{-1}$<br><br>
+    <b>Formula for Resistance Variation with Temperature:</b>
+    $$R_T = R_0 [1 + \\alpha(T - T_0)] \\implies R_T - R_0 = R_0 \\alpha (T - T_0)$$
+    $$T - T_0 = \\frac{R_T - R_0}{R_0 \\alpha}$$<br>
+    <b>Calculation:</b>
+    $$T - 27 = \\frac{117 - 100}{100 \\times (1.70 \\times 10^{-4})} = \\frac{17}{1.70 \\times 10^{-2}} = \\frac{17}{0.017} = 1000^\circ\\text{C}$$
+    $$T = 1000 + 27 = \\mathbf{1027^\\circ\\text{C}}$$
+    The temperature of the element is <b>$1027^\circ\\text{C}$ ($1300\text{ K}$)</b>.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula: (T - T₀) = (R_T - R₀) / (R₀ · α)', '1 Mark'],
+    ['Computation: T = 1000 + 27 = 1027 °C', '1 Mark']
+  ]
+));
+
+// Exercise 3.6
+questions.push(createQCard(
+  'c12p-ch3-q6', 'Exercise 3.6', 'NCERT Exercise',
+  'A negligibly small current is passed through a wire of length $15\\text{ m}$ and uniform cross-section $6.0 \\times 10^{-7}\\text{ m}^2$, and its resistance is measured to be $5.0\\ \\Omega$. What is the resistivity of the material at the temperature of the experiment?',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    Length of wire, $l = 15\\text{ m}$<br>
+    Area of cross-section, $A = 6.0 \\times 10^{-7}\\text{ m}^2$<br>
+    Resistance, $R = 5.0\\ \\Omega$<br><br>
+    <b>Formula for Resistivity ($\\rho$):</b>
+    $$R = \\rho \\frac{l}{A} \\implies \\rho = \\frac{R A}{l}$$<br>
+    <b>Calculation:</b>
+    $$\\rho = \\frac{(5.0\\ \\Omega) \\times (6.0 \\times 10^{-7}\\text{ m}^2)}{15\\text{ m}} = \\frac{30.0 \\times 10^{-7}}{15} = \\mathbf{2.0 \\times 10^{-7}\\ \\Omega\\cdot\\text{m}}$$
+    The resistivity of the material is <b>$2.0 \\times 10^{-7}\\ \\Omega\\cdot\\text{m}$</b>.
+  </div>`,
+  '1 Mark',
+  [
+    ['Formula substitution and correct calculation: ρ = 2.0 × 10⁻⁷ Ω·m', '1 Mark']
+  ]
+));
+
+// Exercise 3.7
+questions.push(createQCard(
+  'c12p-ch3-q7', 'Exercise 3.7', 'NCERT Exercise',
+  'A silver wire has a resistance of $2.1\\ \\Omega$ at $27.5^\\circ\\text{C}$, and a resistance of $2.7\\ \\Omega$ at $100^\\circ\\text{C}$. Determine the temperature coefficient of resistivity of silver.',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    At $T_1 = 27.5^\circ\\text{C}$, $R_1 = 2.1\\ \\Omega$<br>
+    At $T_2 = 100.0^\circ\\text{C}$, $R_2 = 2.7\\ \\Omega$<br>
+    Temperature difference, $\\Delta T = T_2 - T_1 = 100 - 27.5 = 72.5^\circ\\text{C}$<br><br>
+    <b>Formula for Temperature Coefficient ($\\alpha$):</b>
+    $$R_2 = R_1 [1 + \\alpha(T_2 - T_1)] \\implies \\alpha = \\frac{R_2 - R_1}{R_1 (T_2 - T_1)}$$<br>
+    <b>Calculation:</b>
+    $$\\alpha = \\frac{2.7 - 2.1}{2.1 \\times 72.5} = \\frac{0.6}{152.25} = \\mathbf{0.00394\ ^\\circ\\text{C}^{-1} = 3.94 \\times 10^{-3}\ ^\\circ\\text{C}^{-1}}$$
+    The temperature coefficient of resistivity of silver is <b>$0.0039\ ^\circ\\text{C}^{-1}$</b>.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula: α = (R₂ - R₁) / [R₁(T₂ - T₁)]', '1 Mark'],
+    ['Computation: α = 3.94 × 10⁻³ °C⁻¹', '1 Mark']
+  ]
+));
+
+// Exercise 3.8
+questions.push(createQCard(
+  'c12p-ch3-q8', 'Exercise 3.8', 'NCERT Exercise',
+  'A heating element using nichrome connected to a $230\\text{ V}$ supply draws an initial current of $3.2\\text{ A}$ which settles after a few seconds to a steady value of $2.8\\text{ A}$. What is the steady temperature of the heating element if the room temperature is $27.0^\\circ\\text{C}$? Temperature coefficient of resistance of nichrome averaged over the temperature range involved is $1.70 \\times 10^{-4}\\ ^\\circ\\text{C}^{-1}$.',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    Supply voltage, $V = 230\\text{ V}$<br>
+    Initial current at $T_1 = 27.0^\circ\\text{C}$: $I_1 = 3.2\\text{ A}$<br>
+    Steady-state current at temperature $T_2$: $I_2 = 2.8\\text{ A}$<br>
+    $\\alpha = 1.70 \\times 10^{-4}\ ^\circ\\text{C}^{-1}$<br><br>
+    <b>1. Resistances at the two temperatures:</b><br>
+    $$R_1 = \\frac{V}{I_1} = \\frac{230}{3.2} = 71.875\\ \\Omega$$
+    $$R_2 = \\frac{V}{I_2} = \\frac{230}{2.8} = 82.143\\ \\Omega$$<br>
+    <b>2. Temperature Rise ($\\Delta T$):</b><br>
+    $$R_2 = R_1 [1 + \\alpha(T_2 - T_1)] \\implies T_2 - T_1 = \\frac{R_2 - R_1}{R_1 \\alpha}$$
+    $$T_2 - 27 = \\frac{82.143 - 71.875}{71.875 \\times (1.70 \\times 10^{-4})} = \\frac{10.268}{0.01222} \\approx 840.3^\circ\\text{C}$$<br>
+    <b>3. Steady Temperature ($T_2$):</b><br>
+    $$T_2 = 27 + 840.3 = \\mathbf{867.3^\\circ\\text{C} \\approx 867^\\circ\\text{C}}$$
+    The steady temperature of the heating element is <b>$867^\circ\\text{C}$</b>.
+  </div>`,
+  '3 Marks',
+  [
+    ['Calculation of resistances R₁ = 71.88 Ω and R₂ = 82.14 Ω', '1 Mark'],
+    ['Temperature increase ΔT ≈ 840.3 °C', '1 Mark'],
+    ['Final steady temperature T₂ ≈ 867 °C', '1 Mark']
+  ]
+));
+
+// Exercise 3.9
+questions.push(createQCard(
+  'c12p-ch3-q9', 'Exercise 3.9', 'NCERT Exercise',
+  'Determine the current in each branch of the network shown in Fig. (Bridge network with branch resistances $AB = 10\\ \\Omega$, $BC = 5\\ \\Omega$, $AD = 5\\ \\Omega$, $DC = 10\\ \\Omega$, and central galvanometer branch $BD = 5\\ \\Omega$, connected to a $10\\text{ V}$ battery with internal resistance $10\\ \\Omega$).',
+  `<div class="step">
+    <b>Kirchhoff\'s Rules Application:</b><br>
+    Let the current from the battery be $I$. At junction $A$, current divides:<br>
+    Let current through $AB$ be $I_1$; then current through $AD$ is $(I - I_1)$.<br>
+    At junction $B$, let current through galvanometer branch $BD$ be $I_2$.<br>
+    Then current through $BC$ is $(I_1 - I_2)$.<br>
+    At junction $D$, current into $DC$ is $(I - I_1 + I_2)$.<br><br>
+    <b>Applying Kirchhoff\'s Loop Rule (KVL):</b><br>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>Loop $ABDA$:</strong>
+      $$-10 I_1 - 5 I_2 + 5 (I - I_1) = 0 \\implies 5I - 15 I_1 - 5 I_2 = 0 \\implies \\mathbf{I - 3I_1 - I_2 = 0} \\quad \\text{--- (1)}$$</li>
+      <li><strong>Loop $BCDB$:</strong>
+      $$-5(I_1 - I_2) + 10(I - I_1 + I_2) + 5 I_2 = 0$$
+      $$-5I_1 + 5I_2 + 10I - 10I_1 + 10I_2 + 5I_2 = 0 \\implies 10I - 15I_1 + 20I_2 = 0 \\implies \\mathbf{2I - 3I_1 + 4I_2 = 0} \\quad \\text{--- (2)}$$</li>
+      <li><strong>Outer Loop through Battery ($E = 10\\text{ V}$, $r = 10\\ \\Omega$):</strong>
+      $$10 - 10 I - 10 I_1 - 5(I_1 - I_2) = 0 \\implies 10 - 10I - 15I_1 + 5I_2 = 0 \\implies \\mathbf{2I + 3I_1 - I_2 = 2} \\quad \\text{--- (3)}$$</li>
+    </ol>
+    <b>Solving the Linear System:</b><br>
+    Subtracting (1) from (2): $I + 5I_2 = 0 \\implies I = -5I_2$.<br>
+    From (1): $-5I_2 - 3I_1 - I_2 = 0 \\implies 3I_1 = -6I_2 \\implies I_1 = -2I_2$.<br>
+    Substitute into (3):
+    $$2(-5I_2) + 3(-2I_2) - I_2 = 2 \\implies -10I_2 - 6I_2 - I_2 = 2 \\implies -17I_2 = 2 \\implies \\mathbf{I_2 = -\\frac{2}{17}\\text{ A}}$$<br>
+    Therefore:
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>Total current: $I = -5(-2/17) = \\mathbf{\\frac{10}{17}\\text{ A}}$</li>
+      <li>Branch $AB$: $I_1 = -2(-2/17) = \\mathbf{\\frac{4}{17}\\text{ A}}$</li>
+      <li>Branch $AD$: $I - I_1 = \\frac{10}{17} - \\frac{4}{17} = \\mathbf{\\frac{6}{17}\\text{ A}}$</li>
+      <li>Branch $BC$: $I_1 - I_2 = \\frac{4}{17} - \\left(-\\frac{2}{17}\\right) = \\mathbf{\\frac{6}{17}\\text{ A}}$</li>
+      <li>Branch $CD$: $I - I_1 + I_2 = \\frac{6}{17} + \\left(-\\frac{2}{17}\\right) = \\mathbf{\\frac{4}{17}\\text{ A}}$</li>
+      <li>Branch $BD$: $I_2 = -\\frac{2}{17}\\text{ A} \\implies \\mathbf{\\frac{2}{17}\\text{ A} \\text{ (directed from } D \\text{ to } B)}$</li>
+    </ul>
+  </div>`,
+  '3 Marks',
+  [
+    ['Formulation of Kirchhoff loop equations for ABDA, BCDB and outer loop', '1.5 Marks'],
+    ['Exact branch currents: I(AB) = 4/17 A, I(BC) = 6/17 A, I(AD) = 6/17 A, I(CD) = 4/17 A, I(BD) = 2/17 A', '1.5 Marks']
+  ]
+));
+
+// Exercise 3.10
+questions.push(createQCard(
+  'c12p-ch3-q10', 'Exercise 3.10', 'NCERT Exercise',
+  '(a) In a meter bridge, the balance point is found to be at $39.5\\text{ cm}$ from the end $A$, when the resistor $Y$ is of $12.5\\ \\Omega$. Determine the resistance of $X$. Why are the connections between resistors in a Wheatstone or meter bridge made of thick copper strips?<br>(b) Determine the balance point of the bridge above if $X$ and $Y$ are interchanged.<br>(c) What happens if the galvanometer and cell are interchanged at the balance point of the bridge? Would the galvanometer show any current?',
+  `<div class="step">
+    <b>(a) Resistance of $X$ and Copper Strips Purpose:</b><br>
+    In a meter bridge (Wheatstone bridge principle):
+    $$\\frac{X}{Y} = \\frac{l_1}{100 - l_1}$$
+    Given: $l_1 = 39.5\\text{ cm}$, $100 - l_1 = 60.5\\text{ cm}$, $Y = 12.5\\ \\Omega$.
+    $$X = Y \\times \\frac{l_1}{100 - l_1} = 12.5 \\times \\frac{39.5}{60.5} = \\frac{493.75}{60.5} = \\mathbf{8.16\\ \\Omega}$$<br>
+    <i>Why thick copper strips are used:</i> Copper has exceedingly low resistivity, and thick strips possess large cross-sectional area. This makes their <b>connection resistance negligibly small</b>, minimizing experimental error in bridge measurements.<br><br>
+    <b>(b) If $X$ and $Y$ are interchanged:</b><br>
+    New balance condition:
+    $$\\frac{Y}{X} = \\frac{l_2}{100 - l_2} \\implies \\frac{l_2}{100 - l_2} = \\frac{60.5}{39.5}$$
+    $$l_2 = 100 - 39.5 = \\mathbf{60.5\\text{ cm}}$$
+    The balance point shifts to <b>$60.5\\text{ cm}$ from end $A$</b>.<br><br>
+    <b>(c) Interchange of Galvanometer and Cell:</b><br>
+    According to the conjugate arms theorem of Wheatstone bridges, the battery and galvanometer are connected in conjugate branches. Interchanging the cell and galvanometer <b>does not affect the balance condition</b>.<br>
+    Therefore, the bridge remains balanced, and the galvanometer will show <b>zero deflection (no current)</b>.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Computation of X = 8.16 Ω & reason for thick copper strips', '1 Mark'],
+    ['(b) Interchanged balance point: l = 60.5 cm', '1 Mark'],
+    ['(c) Conjugate arms: galvanometer still shows zero current', '1 Mark']
+  ]
+));
+
+// Exercise 3.11
+questions.push(createQCard(
+  'c12p-ch3-q11', 'Exercise 3.11', 'NCERT Exercise',
+  'A storage battery of emf $8.0\\text{ V}$ and internal resistance $0.5\\ \\Omega$ is being charged by a $120\\text{ V}$ dc supply using a series resistor of $15.5\\ \\Omega$. What is the terminal voltage of the battery during charging? What is the purpose of having a series resistor in the charging circuit?',
+  `<div class="step">
+    <b>1. Net Effective EMF in the Circuit:</b><br>
+    During charging, the positive terminal of the DC source is connected to the positive terminal of the storage battery. Thus, the two emfs oppose each other:
+    $$E_{\\text{net}} = V_{\\text{supply}} - E_{\\text{battery}} = 120\\text{ V} - 8.0\\text{ V} = 112\\text{ V}$$<br>
+    <b>2. Total Circuit Resistance and Charging Current:</b><br>
+    Total resistance = External series resistance ($R$) + internal resistance ($r$):
+    $$R_{\\text{total}} = R + r = 15.5\\ \\Omega + 0.5\\ \\Omega = 16.0\\ \\Omega$$
+    Charging current:
+    $$I = \\frac{E_{\\text{net}}}{R_{\\text{total}}} = \\frac{112\\text{ V}}{16.0\\ \\Omega} = \\mathbf{7.0\\text{ A}}$$<br>
+    <b>3. Terminal Voltage during Charging ($V$):</b><br>
+    During charging (current enters positive terminal):
+    $$V = E + I r = 8.0\\text{ V} + (7.0\\text{ A} \\times 0.5\\ \\Omega) = 8.0 + 3.5 = \\mathbf{11.5\\text{ V}}$$<br>
+    <b>4. Purpose of the Series Resistor ($R = 15.5\\ \\Omega$):</b><br>
+    Without the series resistor, the only resistance in the circuit would be the tiny internal resistance ($r = 0.5\\ \\Omega$). The resulting charging current would be dangerously massive:
+    $$I = \\frac{112\\text{ V}}{0.5\\ \\Omega} = 224\\text{ A}$$
+    Such an enormous current would violently overheat the battery, boil the electrolyte, and cause permanent thermal damage or explosion. The series resistor <b>limits the charging current to a safe, controlled value ($7\\text{ A}$)</b>.
+  </div>`,
+  '2 Marks',
+  [
+    ['Calculation of charging current I = 7 A and terminal voltage V = E + Ir = 11.5 V', '1 Mark'],
+    ['Explanation of series resistor limiting the charging current to prevent battery burnout', '1 Mark']
+  ]
+));
+
+// Exercise 3.12
+questions.push(createQCard(
+  'c12p-ch3-q12', 'Exercise 3.12', 'NCERT Exercise',
+  'In a potentiometer arrangement, a cell of emf $1.25\\text{ V}$ gives a balance point at $35.0\\text{ cm}$ length of the wire. If the cell is replaced by another cell and the balance point shifts to $63.0\\text{ cm}$, what is the emf of the second cell?',
+  `<div class="step">
+    <b>Principle of Potentiometer:</b><br>
+    The potential drop across any length $l$ of a uniform potentiometer wire carrying constant current is directly proportional to its length:
+    $$E \\propto l \\implies \\frac{E_1}{E_2} = \\frac{l_1}{l_2}$$<br>
+    <b>Given Data:</b><br>
+    $E_1 = 1.25\\text{ V}$, $l_1 = 35.0\\text{ cm}$<br>
+    $l_2 = 63.0\\text{ cm}$<br><br>
+    <b>Calculation of $E_2$:</b><br>
+    $$E_2 = E_1 \\times \\frac{l_2}{l_1} = 1.25\\text{ V} \\times \\frac{63.0\\text{ cm}}{35.0\\text{ cm}} = 1.25 \\times 1.8 = \\mathbf{2.25\\text{ V}}$$
+    The emf of the second cell is <b>$2.25\\text{ V}$</b>.
+  </div>`,
+  '1 Mark',
+  [
+    ['Formula: E₂ = E₁ · (l₂/l₁) and computation E₂ = 2.25 V', '1 Mark']
+  ]
+));
+
+// Exercise 3.13
+questions.push(createQCard(
+  'c12p-ch3-q13', 'Exercise 3.13', 'NCERT Exercise',
+  'The number density of free electrons in a copper conductor is estimated to be $8.5 \\times 10^{28}\\text{ m}^{-3}$. How long does an electron take to drift from one end of a wire $3.0\\text{ m}$ long to its other end? The area of cross-section of the wire is $2.0 \\times 10^{-6}\\text{ m}^2$ and it is carrying a current of $3.0\\text{ A}$.',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    Electron number density, $n = 8.5 \\times 10^{28}\\text{ m}^{-3}$<br>
+    Length of wire, $l = 3.0\\text{ m}$<br>
+    Cross-sectional area, $A = 2.0 \\times 10^{-6}\\text{ m}^2$<br>
+    Current, $I = 3.0\\text{ A}$<br>
+    Electron charge, $e = 1.6 \\times 10^{-19}\\text{ C}$<br><br>
+    <b>1. Formula for Drift Speed ($v_d$):</b><br>
+    $$I = n e A v_d \\implies v_d = \\frac{I}{n e A}$$<br>
+    <b>2. Time to Drift the Entire Length ($t$):</b><br>
+    $$t = \\frac{l}{v_d} = \\frac{l}{I / (n e A)} = \\frac{n e A l}{I}$$<br>
+    <b>Calculation:</b>
+    $$t = \\frac{(8.5 \\times 10^{28}) \\times (1.6 \\times 10^{-19}) \\times (2.0 \\times 10^{-6}) \\times 3.0}{3.0}$$
+    $$t = 8.5 \\times 1.6 \\times 2.0 \\times 10^{28 - 19 - 6} = 27.2 \\times 10^3\\text{ s} = \\mathbf{2.72 \\times 10^4\\text{ s}}$$
+    In hours:
+    $$t = \\frac{27200\\text{ s}}{3600\\text{ s/h}} \\approx \\mathbf{7.56\\text{ hours} \\quad (7\\text{ hours } 33\\text{ minutes})}$$
+    It takes an electron approximately <b>$7.56\\text{ hours}$</b> to drift through the $3\\text{ m}$ wire.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula: t = neAl / I', '1 Mark'],
+    ['Computation: t = 2.72 × 10⁴ s ≈ 7.56 hours', '1 Mark']
+  ]
+));
+
+// Exercise 3.14
+questions.push(createQCard(
+  'c12p-ch3-q14', 'Exercise 3.14', 'NCERT Exercise',
+  'The earth’s surface has a negative surface charge density of $10^{-9}\\text{ C m}^{-2}$. The potential difference of $400\\text{ kV}$ between the top of the atmosphere and the surface results (due to the low conductivity of the lower atmosphere) in a current of only $1800\\text{ A}$ over the entire globe. If there were no mechanism of sustaining atmospheric electric field, how much time would be required to neutralize the earth’s surface? (Radius of earth $= 6.37 \\times 10^6\\text{ m}$).',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    Surface charge density of Earth, $\\sigma = 10^{-9}\\text{ C/m}^2$<br>
+    Radius of Earth, $R = 6.37 \\times 10^6\\text{ m}$<br>
+    Discharging downward current, $I = 1800\\text{ A}$<br><br>
+    <b>1. Total Negative Charge on Earth\'s Surface ($q$):</b><br>
+    $$q = \\sigma A = \\sigma (4\\pi R^2)$$
+    $$q = 10^{-9} \\times 4 \\times 3.1416 \\times (6.37 \\times 10^6)^2$$
+    $$q = 10^{-9} \\times 4 \\times 3.1416 \\times 40.577 \\times 10^{12} = 5.10 \\times 10^5\\text{ C}$$<br>
+    <b>2. Time to Neutralize ($t$):</b><br>
+    $$t = \\frac{q}{I} = \\frac{5.10 \\times 10^5\\text{ C}}{1800\\text{ A}} \\approx \\mathbf{283\\text{ seconds} \\approx 4.7\\text{ minutes}}$$
+    Without thunderstorms and lightning constantly pumping electrons back to Earth, Earth\'s surface charge would be completely neutralized in less than <b>$5\\text{ minutes}$</b>!
+  </div>`,
+  '2 Marks',
+  [
+    ['Calculation of total charge q = σ(4πR²) ≈ 5.1 × 10⁵ C', '1 Mark'],
+    ['Neutralization time t = q / I ≈ 283 seconds (~4.7 minutes)', '1 Mark']
+  ]
+));
+
+// Exercise 3.15
+questions.push(createQCard(
+  'c12p-ch3-q15', 'Exercise 3.15', 'NCERT Exercise',
+  '(a) Six lead-acid type of secondary cells each of emf $2.0\\text{ V}$ and internal resistance $0.015\\ \\Omega$ are joined in series to provide a supply to a resistance of $8.5\\ \\Omega$. What are the current drawn from the supply and its terminal voltage?<br>(b) A secondary cell after long use has an emf of $1.9\\text{ V}$ and a large internal resistance of $380\\ \\Omega$. What maximum current can be drawn from the cell? Could the cell drive the starting motor of a car?',
+  `<div class="step">
+    <b>(a) Six Lead-Acid Cells in Series:</b><br>
+    Total EMF = $6 \\times 2.0\\text{ V} = 12.0\\text{ V}$<br>
+    Total internal resistance = $6 \\times 0.015\\ \\Omega = 0.09\\ \\Omega$<br>
+    External resistance = $8.5\\ \\Omega$<br>
+    Total resistance = $8.5 + 0.09 = 8.59\\ \\Omega$<br>
+    Current drawn:
+    $$I = \\frac{E_{\\text{total}}}{R + r_{\\text{total}}} = \\frac{12.0\\text{ V}}{8.59\\ \\Omega} \\approx \\mathbf{1.40\\text{ A}}$$<br>
+    Terminal voltage:
+    $$V = I R = 1.397\\text{ A} \\times 8.5\\ \\Omega = \\mathbf{11.87\\text{ V} \\approx 11.9\\text{ V}}$$<br><br>
+    <b>(b) Old Cell with Large Internal Resistance:</b><br>
+    $E = 1.9\\text{ V}$, $r = 380\\ \\Omega$.<br>
+    Maximum current is drawn when $R = 0$:
+    $$I_{\\text{max}} = \\frac{E}{r} = \\frac{1.9\\text{ V}}{380\\ \\Omega} = \\mathbf{0.005\\text{ A} = 5\\text{ mA}}$$<br>
+    <b>Could it drive a car starter?</b><br>
+    <b>No</b>. A car starting motor requires an initial surge of current of about $100\\text{ A}$ to $200\\text{ A}$ for a few seconds. A cell capable of delivering only $5\\text{ mA}$ cannot remotely start a car.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Calculation of current I = 1.4 A and terminal voltage V = 11.9 V', '1.5 Marks'],
+    ['(b) Max current I_max = 5 mA and explanation why it cannot drive a starter motor (~100 A needed)', '1.5 Marks']
+  ]
+));
+
+// Exercise 3.16
+questions.push(createQCard(
+  'c12p-ch3-q16', 'Exercise 3.16', 'NCERT Exercise',
+  'Two wires of equal length, one of aluminium and the other of copper have the same resistance. Which of the two wires is lighter? Hence explain why aluminium wires are preferred for overhead power cables. ($\\rho_{\\text{Al}} = 2.63 \\times 10^{-8}\\ \\Omega\\text{ m}$, $d_{\\text{Al}} = 2.7 \\times 10^3\\text{ kg m}^{-3}$; $\\rho_{\\text{Cu}} = 1.72 \\times 10^{-8}\\ \\Omega\\text{ m}$, $d_{\\text{Cu}} = 8.9 \\times 10^3\\text{ kg m}^{-3}$).',
+  `<div class="step">
+    <b>Relation between Mass, Resistance, and Material Properties:</b><br>
+    Resistance of a wire of length $l$, area $A$, and density $d$ is:
+    $$R = \\frac{\\rho l}{A}$$
+    Mass of the wire is $m = \\text{Volume} \\times d = A l d \\implies A = \\frac{m}{l d}$.<br>
+    Substituting for $A$:
+    $$R = \\frac{\\rho l}{m / (l d)} = \\frac{\\rho d l^2}{m} \\implies m = \\frac{\\rho d l^2}{R}$$<br>
+    Since lengths $l$ and resistances $R$ are equal for both wires:
+    $$\\frac{m_{\\text{Al}}}{m_{\\text{Cu}}} = \\frac{\\rho_{\\text{Al}} d_{\\text{Al}}}{\\rho_{\\text{Cu}} d_{\\text{Cu}}}$$<br>
+    <b>Calculation:</b>
+    $$\\frac{m_{\\text{Al}}}{m_{\\text{Cu}}} = \\frac{(2.63 \\times 10^{-8}) \\times (2.7 \\times 10^3)}{(1.72 \\times 10^{-8}) \\times (8.9 \\times 10^3)} = \\frac{7.101 \\times 10^{-5}}{15.308 \\times 10^{-5}} \\approx \\mathbf{0.46}$$
+    $$m_{\\text{Al}} \\approx 0.46 \\times m_{\\text{Cu}}$$
+    Thus, the <b>aluminium wire is more than twice as light</b> as the copper wire for the same resistance.<br><br>
+    <b>Why Aluminium is Preferred for Overhead Power Lines:</b><br>
+    Because aluminium wire is much lighter, it places far less mechanical strain on supporting transmission towers and poles, requiring lighter and cheaper support pylons without sagging or snapping under its own weight.
+  </div>`,
+  '3 Marks',
+  [
+    ['Derivation of mass ratio: m_Al / m_Cu = (ρ_Al · d_Al) / (ρ_Cu · d_Cu)', '1.5 Marks'],
+    ['Computation yielding ratio ~0.46 (Al is lighter)', '0.5 Mark'],
+    ['Practical engineering rationale for overhead power cables', '1 Mark']
+  ]
+));
+
+// Exercise 3.17
+questions.push(createQCard(
+  'c12p-ch3-q17', 'Exercise 3.17', 'NCERT Exercise',
+  'What conclusion would you draw from the following observations on an unknown resistor?<br>Current $I$ (amperes): $0.2, 0.4, 0.6, 0.8, 1.0, 2.0, 3.0, 4.0$<br>Voltage $V$ (volts): $3.96, 7.92, 11.88, 15.84, 19.8, 39.6, 59.4, 79.2$',
+  `<div class="step">
+    <b>Analysis of $V/I$ Ratio:</b><br>
+    Let us evaluate the resistance $R = V / I$ for each observation pair:
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>For $I = 0.2\\text{ A}, V = 3.96\\text{ V}$: $R = 3.96 / 0.2 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 0.4\\text{ A}, V = 7.92\\text{ V}$: $R = 7.92 / 0.4 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 0.6\\text{ A}, V = 11.88\\text{ V}$: $R = 11.88 / 0.6 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 0.8\\text{ A}, V = 15.84\\text{ V}$: $R = 15.84 / 0.8 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 1.0\\text{ A}, V = 19.8\\text{ V}$: $R = 19.8 / 1.0 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 2.0\\text{ A}, V = 39.6\\text{ V}$: $R = 39.6 / 2.0 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 3.0\\text{ A}, V = 59.4\\text{ V}$: $R = 59.4 / 3.0 = \\mathbf{19.8\\ \\Omega}$</li>
+      <li>For $I = 4.0\\text{ A}, V = 79.2\\text{ V}$: $R = 79.2 / 4.0 = \\mathbf{19.8\\ \\Omega}$</li>
+    </ul><br>
+    <b>Conclusions:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li>The ratio $V / I$ is strictly constant and equals <b>$19.8\\ \\Omega$</b> across all data points.</li>
+      <li>The $V$-$I$ characteristic curve is a straight line passing through the origin.</li>
+      <li>Therefore, the resistor strictly obeys <b>Ohm\'s Law</b> and is an <b>ohmic conductor</b> with resistance $R = 19.8\\ \\Omega$.</li>
+    </ol>
+  </div>`,
+  '2 Marks',
+  [
+    ['Constant V/I ratio calculation: R = 19.8 Ω for all points', '1 Mark'],
+    ['Conclusion that conductor is ohmic and obeys Ohm\'s law', '1 Mark']
+  ]
+));
+
+// Exercise 3.18
+questions.push(createQCard(
+  'c12p-ch3-q18', 'Exercise 3.18', 'NCERT Exercise',
+  'Answer the following questions:<br>(a) A steady current flows in a metallic conductor of non-uniform cross-section. Which of these quantities is constant along the conductor: current, current density, electric field, drift speed?<br>(b) Is Ohm\'s law universally applicable for all conducting elements? If not, give examples of non-ohmic elements.<br>(c) A low voltage supply from which one needs high currents must have very low internal resistance. Why?<br>(d) A high tension (HT) supply of, say, $6\\text{ kV}$ must have a very large internal resistance. Why?',
+  `<div class="step">
+    <b>(a) Conductor of Non-Uniform Cross-Section:</b><br>
+    Only the <b>electric current ($I$)</b> is constant along the conductor, because by conservation of electric charge, the rate of flow of charge through any cross-section in steady state must be identical.<br>
+    The other quantities depend inversely on the local cross-sectional area $A$ ($J = I/A$, $E = \\rho J = \\rho I/A$, and $v_d = I/(neA)$), so current density, electric field, and drift speed all vary along the wire.<br><br>
+    <b>(b) Non-Universal Nature of Ohm\'s Law:</b><br>
+    <b>No</b>, Ohm\'s law is not a fundamental universal law of nature; it is an empirical relation valid only for metallic conductors under constant physical conditions.<br>
+    <i>Non-ohmic examples:</i> Semiconductor diodes, transistors, vacuum tubes, thyristors, and electrolytes.<br><br>
+    <b>(c) Low Voltage Supply Delivering High Current:</b><br>
+    Maximum current is $I_{\\text{max}} = \\frac{E}{r}$. If $E$ is low (e.g., $2\\text{ V}$ or $6\\text{ V}$), to obtain a large current (say, $100\\text{ A}$), the internal resistance $r$ must be exceedingly small ($r \\le E/I = 0.02\\ \\Omega$).<br><br>
+    <b>(d) High Tension (HT) Supply with Large Internal Resistance:</b><br>
+    A high-voltage source ($6\\text{ kV}$) poses severe risk of lethal electric shock and equipment destruction in the event of an accidental short-circuit. Having a large internal resistance (e.g., several megaohms) automatically limits the short-circuit current to a harmless milliampere range ($I_{\\text{max}} = 6000\\text{ V} / 10^6\\ \\Omega = 6\\text{ mA}$), preventing fatal accidents.
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Current is constant (charge conservation); J, E, vd vary with area', '1 Mark'],
+    ['(b) Ohm\'s law not universal; non-ohmic examples (p-n diode, transistor)', '1 Mark'],
+    ['(c) Low r required because I_max = E/r', '1 Mark'],
+    ['(d) High r needed for safety to limit short-circuit current to non-lethal values', '1 Mark']
+  ]
+));
+
+// Exercise 3.19
+questions.push(createQCard(
+  'c12p-ch3-q19', 'Exercise 3.19', 'NCERT Exercise',
+  'Choose the correct alternative:<br>(a) Alloys of metals usually have (greater/less) resistivity than that of their constituent metals.<br>(b) Alloys usually have much (lower/higher) temperature coefficients of resistance than pure metals.<br>(c) The resistivity of the alloy manganin is nearly (independent of/increases rapidly with) temperature.<br>(d) The resistivity of a typical insulator (e.g., amber) is greater than that of a metal by a factor of the order of ($10^{22}$ / $10^3$).',
+  `<div class="step">
+    <b>Answers:</b><br>
+    <ol type="a" style="margin-left:20px; line-height:1.75;">
+      <li>Alloys of metals usually have <b>greater</b> resistivity than that of their constituent metals (due to irregular crystal lattice and enhanced impurity scattering of conduction electrons).</li>
+      <li>Alloys usually have much <b>lower</b> temperature coefficients of resistance than pure metals.</li>
+      <li>The resistivity of the alloy manganin is nearly <b>independent of</b> temperature (making it ideal for constructing standard standard resistance coils).</li>
+      <li>The resistivity of a typical insulator is greater than that of a metal by a factor of the order of <b>$10^{22}$</b> (insulator $\\sim 10^{14}$ to $10^{16}\\ \\Omega\\cdot\\text{m}$, metal $\\sim 10^{-8}\\ \\Omega\\cdot\\text{m}$).</li>
+    </ol>
+  </div>`,
+  '2 Marks',
+  [
+    ['(a) greater, (b) lower', '1 Mark'],
+    ['(c) independent of, (d) 10²²', '1 Mark']
+  ]
+));
+
+// Exercise 3.20
+questions.push(createQCard(
+  'c12p-ch3-q20', 'Exercise 3.20', 'NCERT Exercise',
+  '(a) Given $n$ resistors each of resistance $R$, how will you combine them to get the (i) maximum (ii) minimum effective resistance? What is the ratio of the maximum to minimum resistance?<br>(b) Given the resistances of $1\\ \\Omega, 2\\ \\Omega, 3\\ \\Omega$, how will you combine them to get an equivalent resistance of: (i) $(11/3)\\ \\Omega$, (ii) $(11/5)\\ \\Omega$, (iii) $6\\ \\Omega$, (iv) $(6/11)\\ \\Omega$?<br>(c) Determine the equivalent resistance of networks shown in Fig.',
+  `<div class="step">
+    <b>(a) Combining $n$ Identical Resistors:</b><br>
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>(i) <strong>Maximum resistance ($R_{\\text{max}}$):</strong> Connect all $n$ resistors in <b>series</b>:
+      $$R_{\\text{max}} = n R$$</li>
+      <li>(ii) <strong>Minimum resistance ($R_{\\text{min}}$):</strong> Connect all $n$ resistors in <b>parallel</b>:
+      $$R_{\\text{min}} = \\frac{R}{n}$$</li>
+      <li><strong>Ratio of maximum to minimum resistance:</strong>
+      $$\\frac{R_{\\text{max}}}{R_{\\text{min}}} = \\frac{n R}{R / n} = \\mathbf{n^2}$$</li>
+    </ul><br>
+    <b>(b) Combinations of $1\\ \\Omega, 2\\ \\Omega, 3\\ \\Omega$:</b><br>
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>(i) To get $\\frac{11}{3}\\ \\Omega = 3 + \\frac{2}{3}\\ \\Omega$: Connect $1\\ \\Omega$ and $2\\ \\Omega$ in parallel, then in series with $3\\ \\Omega$:
+      $$R_{\\text{eq}} = 3 + \\frac{1 \\times 2}{1 + 2} = 3 + \\frac{2}{3} = \\mathbf{\\frac{11}{3}\\ \\Omega}$$</li>
+      <li>(ii) To get $\\frac{11}{5}\\ \\Omega = 1 + \\frac{6}{5}\\ \\Omega$: Connect $2\\ \\Omega$ and $3\\ \\Omega$ in parallel, then in series with $1\\ \\Omega$:
+      $$R_{\\text{eq}} = 1 + \\frac{2 \\times 3}{2 + 3} = 1 + \\frac{6}{5} = \\mathbf{\\frac{11}{5}\\ \\Omega}$$</li>
+      <li>(iii) To get $6\\ \\Omega$: Connect all three in <b>series</b>:
+      $$R_{\\text{eq}} = 1 + 2 + 3 = \\mathbf{6\\ \\Omega}$$</li>
+      <li>(iv) To get $\\frac{6}{11}\\ \\Omega$: Connect all three in <b>parallel</b>:
+      $$\\frac{1}{R_{\\text{eq}}} = 1 + \\frac{1}{2} + \\frac{1}{3} = \\frac{6 + 3 + 2}{6} = \\frac{11}{6} \\implies R_{\\text{eq}} = \\mathbf{\\frac{6}{11}\\ \\Omega}$$</li>
+    </ul><br>
+    <b>(c) Network Resistances:</b><br>
+    For identical repeating bridge loops with $1\\ \\Omega$ resistors, each unit cell yields $1\\ \\Omega$, giving equivalent resistance directly determined by series combination of sections.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) R_max = nR, R_min = R/n, ratio = n²', '1 Mark'],
+    ['(b) Combinations: (i) (1||2)+3, (ii) (2||3)+1, (iii) 1+2+3, (iv) 1||2||3', '2 Marks']
+  ]
+));
+
+// Exercise 3.21
+questions.push(createQCard(
+  'c12p-ch3-q21', 'Exercise 3.21', 'NCERT Exercise',
+  'Determine the equivalent resistance of the infinite ladder network shown in Figure consisting of repeating units of $1\\ \\Omega$ series and $2\\ \\Omega$ parallel resistors, connected across terminals $A$ and $B$.',
+  `<div class="step">
+    <b>Analysis of Infinite Ladder Network:</b><br>
+    Let the equivalent resistance between terminals $A$ and $B$ be $X$.<br>
+    Since the network extends infinitely to the right, adding or removing one repeating unit ($1\\ \\Omega$ series and $2\\ \\Omega$ parallel) does not change the total resistance $X$.<br><br>
+    <b>Equivalent Circuit:</b><br>
+    The infinite ladder beyond the first unit can be replaced by a single equivalent resistance $X$ connected in parallel with the $2\\ \\Omega$ resistor:<br>
+    Resistance of parallel combination:
+    $$R_p = \\frac{2 X}{2 + X}$$
+    This parallel combination is in series with the initial $1\\ \\Omega$ resistor, yielding the total resistance $X$:
+    $$X = 1 + \\frac{2 X}{2 + X}$$<br>
+    <b>Solving the Quadratic Equation:</b><br>
+    $$X = \\frac{2 + X + 2X}{2 + X} = \\frac{2 + 3X}{2 + X}$$
+    $$X(2 + X) = 2 + 3X \\implies 2X + X^2 = 2 + 3X$$
+    $$X^2 - X - 2 = 0$$
+    Factoring:
+    $$(X - 2)(X + 1) = 0$$
+    Since resistance cannot be negative ($X > 0$), we reject $X = -1\\ \\Omega$.<br>
+    Therefore:
+    $$\\mathbf{X = 2\\ \\Omega}$$
+    The equivalent resistance of the infinite ladder is <b>$2\\ \\Omega$</b>.
+  </div>`,
+  '2 Marks',
+  [
+    ['Infinite ladder formulation: X = 1 + 2X/(2+X)', '1 Mark'],
+    ['Quadratic solution: X² - X - 2 = 0 yielding X = 2 Ω', '1 Mark']
+  ]
+));
+
+// Exercise 3.22
+questions.push(createQCard(
+  'c12p-ch3-q22', 'Exercise 3.22', 'NCERT Exercise',
+  'Figure shows a potentiometer circuit for comparison of two resistances. The balance point with a standard resistor $R = 10.0\\ \\Omega$ is found to be $58.3\\text{ cm}$, while that with the unknown resistance $X$ is $68.5\\text{ cm}$. Determine the value of $X$. What might you do if you failed to find a balance point with the given cell of emf $\\varepsilon$?',
+  `<div class="step">
+    <b>Potentiometer Balance Condition:</b><br>
+    When a constant current flows through the potentiometer wire, the potential difference across any length is directly proportional to that length.<br>
+    When connected across $R$: $V_R = I R \\propto l_1$<br>
+    When connected across $X$: $V_X = I X \\propto l_2$<br>
+    $$\\frac{X}{R} = \\frac{l_2}{l_1} \\implies X = R \\times \\frac{l_2}{l_1}$$<br>
+    <b>Given Data:</b><br>
+    $R = 10.0\\ \\Omega$, $l_1 = 58.3\\text{ cm}$, $l_2 = 68.5\\text{ cm}$<br><br>
+    <b>Calculation of $X$:</b><br>
+    $$X = 10.0 \\times \\frac{68.5}{58.3} = \\frac{685}{58.3} = \\mathbf{11.75\\ \\Omega \\approx 11.8\\ \\Omega}$$<br>
+    <b>Remedy if Balance Point is Not Found:</b><br>
+    Failure to obtain a balance point occurs if the potential difference across the resistance to be measured exceeds the maximum potential drop across the entire potentiometer wire.<br>
+    <i>Action to take:</i>
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>Increase the potential gradient along the potentiometer wire by <b>reducing the series resistance in the driver circuit</b> or using a driver battery of <b>higher emf</b>.</li>
+      <li>Alternatively, decrease the current in the secondary circuit containing $R$ and $X$.</li>
+    </ul>
+  </div>`,
+  '2 Marks',
+  [
+    ['Calculation of unknown resistance: X = R · (l₂/l₁) = 11.75 Ω', '1 Mark'],
+    ['Remedy for failure to find balance point (adjust driver circuit/rheostat)', '1 Mark']
+  ]
+));
+
+// Exercise 3.23
+questions.push(createQCard(
+  'c12p-ch3-q23', 'Exercise 3.23', 'NCERT Exercise',
+  'Figure shows a potentiometer used for measuring internal resistance of a $1.5\\text{ V}$ cell. The balance point of the cell in open circuit is $76.3\\text{ cm}$. When a resistor of $9.5\\ \\Omega$ is used in the external circuit of the cell, the balance point shifts to $64.8\\text{ cm}$ length of the potentiometer wire. Determine the internal resistance of the cell.',
+  `<div class="step">
+    <b>Given Data:</b><br>
+    Open-circuit balancing length (corresponding to EMF $E$): $l_1 = 76.3\\text{ cm}$<br>
+    Closed-circuit balancing length (corresponding to terminal voltage $V$): $l_2 = 64.8\\text{ cm}$<br>
+    External shunt resistance, $R = 9.5\\ \\Omega$<br><br>
+    <b>Formula for Internal Resistance ($r$):</b><br>
+    $$E \\propto l_1, \\quad V \\propto l_2$$
+    $$r = R \\left(\\frac{E}{V} - 1\\right) = R \\left(\\frac{l_1}{l_2} - 1\\right) = R \\left(\\frac{l_1 - l_2}{l_2}\\right)$$<br>
+    <b>Calculation:</b>
+    $$r = 9.5\\ \\Omega \\times \\left(\\frac{76.3 - 64.8}{64.8}\\right)$$
+    $$r = 9.5 \\times \\frac{11.5}{64.8} = \\frac{109.25}{64.8} = \\mathbf{1.686\\ \\Omega \\approx 1.69\\ \\Omega}$$
+    The internal resistance of the cell is <b>$1.69\\ \\Omega$</b>.
+  </div>`,
+  '2 Marks',
+  [
+    ['Formula: r = R (l₁ - l₂) / l₂', '1 Mark'],
+    ['Correct value: r = 1.69 Ω', '1 Mark']
+  ]
+));
+
+console.log(`\nCompiling Chapter 3: Current Electricity (Total: ${questions.length} Qs)...`);
+saveChapter(chNum, chTitle, svgDiagram, exTitle, questions, 'Moving Charges and Magnetism');
+console.log(`Chapter 3: Current Electricity successfully saved!`);

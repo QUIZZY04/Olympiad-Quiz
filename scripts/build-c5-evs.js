@@ -626,7 +626,7 @@ const htmlContent = `<!DOCTYPE html>
   <footer class="site-footer">
     <div style="max-width:1200px;margin:0 auto;">
       <p style="margin-bottom:8px;">© 2026-27 OlympiadQuiz. All official NCERT textbook questions and solutions are strictly aligned with CBSE curriculum guidelines.</p>
-      <p><a href="index.html">Home</a> • <a href="ncert-solutions.html">NCERT Solutions Directory</a> • <a href="ncert-solutions-class-5.html">Class 5 Hub</a> • <a href="privacy.html">Privacy</a></p>
+      <p><a href="index.html">Home</a> • <a href="ncert-solutions.html">NCERT Solutions Directory</a> • <a href="ncert-solutions-class-5.html">Class 5 Hub</a> • <a href="privacy-policy.html">Privacy</a></p>
     </div>
   </footer>
 

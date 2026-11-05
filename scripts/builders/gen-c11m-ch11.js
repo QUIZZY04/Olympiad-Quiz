@@ -1,0 +1,574 @@
+// scripts/builders/gen-c11m-ch11.js
+// Complete, verbatim NCERT generator for Class 11 Mathematics Chapter 11: Introduction to Three Dimensional Geometry (All 16 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11m');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// Store questions grouped by exercise
+const ex11_1 = []; // Octants & Coordinate Planes (4 Qs)
+const ex11_2 = []; // Distance Formula & Collinearity (5 Qs)
+const misc = [];   // Miscellaneous (7 Qs)
+
+// ============================================================================
+// EXERCISE 11.1: Coordinate Axes, Planes & Octants (Questions 1 to 4)
+// ============================================================================
+
+ex11_1.push(createQCard(
+  'c11m-ch11-q1', 'Question 1', 'Exercise 11.1',
+  'A point is on the x-axis. What are its y-coordinate and z-coordinates?',
+  `<div class="step">
+    • In a 3-dimensional Cartesian coordinate system, any point lying on the x-axis has coordinates of the form $(x, 0, 0)$.<br>
+    • This is because the distance of the point from the XZ-plane is its y-coordinate ($y = 0$), and its distance from the XY-plane is its z-coordinate ($z = 0$).<br>
+    • Therefore:<br>
+      <b>y-coordinate</b> = $\\mathbf{0}$<br>
+      <b>z-coordinate</b> = $\\mathbf{0}$
+  </div>`,
+  '1 Mark',
+  [
+    ['Stating general coordinates of a point on the x-axis $(x, 0, 0)$', '0.5 Mark'],
+    ['Concluding $y = 0$ and $z = 0$', '0.5 Mark']
+  ]
+));
+
+ex11_1.push(createQCard(
+  'c11m-ch11-q2', 'Question 2', 'Exercise 11.1',
+  'A point is in the XZ-plane. What can you say about its y-coordinate?',
+  `<div class="step">
+    • The XZ-plane is determined by the x-axis and the z-axis.<br>
+    • Every point in the XZ-plane has zero perpendicular distance from the XZ-plane itself.<br>
+    • Thus, the general coordinates of any point in the XZ-plane are of the form $(x, 0, z)$.<br>
+    • Hence, its <b>y-coordinate is zero</b>: $\\mathbf{y = 0}$.
+  </div>`,
+  '1 Mark',
+  [
+    ['Identifying equation of XZ-plane as $y = 0$', '0.5 Mark'],
+    ['Concluding that y-coordinate is $0$', '0.5 Mark']
+  ]
+));
+
+ex11_1.push(createQCard(
+  'c11m-ch11-q3', 'Question 3', 'Exercise 11.1',
+  'Name the octants in which the following points lie:<br>(i) $(1, 2, 3)$<br>(ii) $(4, -2, 3)$<br>(iii) $(4, -2, -5)$<br>(iv) $(4, 2, -5)$<br>(v) $(-4, 2, -5)$<br>(vi) $(-4, 2, 5)$<br>(vii) $(-3, -1, 6)$<br>(viii) $(2, -4, -7)$',
+  `<div class="step">
+    • The signs of coordinates in the eight octants are defined as:<br>
+      - Octant I: $(+, +, +)$<br>
+      - Octant II: $(-, +, +)$<br>
+      - Octant III: $(-, -, +)$<br>
+      - Octant IV: $(+, -, +)$<br>
+      - Octant V: $(+, +, -)$<br>
+      - Octant VI: $(-, +, -)$<br>
+      - Octant VII: $(-, -, -)$<br>
+      - Octant VIII: $(+, -, -)$<br>
+    • Mapping each point according to the sign of its $(x, y, z)$ coordinates:<br>
+      1. $(1, 2, 3) \\rightarrow (+, +, +) \\implies$ <b>Octant I</b><br>
+      2. $(4, -2, 3) \\rightarrow (+, -, +) \\implies$ <b>Octant IV</b><br>
+      3. $(4, -2, -5) \\rightarrow (+, -, -) \\implies$ <b>Octant VIII</b><br>
+      4. $(4, 2, -5) \\rightarrow (+, +, -) \\implies$ <b>Octant V</b><br>
+      5. $(-4, 2, -5) \\rightarrow (-, +, -) \\implies$ <b>Octant VI</b><br>
+      6. $(-4, 2, 5) \\rightarrow (-, +, +) \\implies$ <b>Octant II</b><br>
+      7. $(-3, -1, 6) \\rightarrow (-, -, +) \\implies$ <b>Octant III</b><br>
+      8. $(2, -4, -7) \\rightarrow (+, -, -) \\implies$ <b>Octant VIII</b>
+  </div>`,
+  '2 Marks',
+  [
+    ['Correct identification of octants (i) to (iv)', '1 Mark'],
+    ['Correct identification of octants (v) to (viii)', '1 Mark']
+  ]
+));
+
+ex11_1.push(createQCard(
+  'c11m-ch11-q4', 'Question 4', 'Exercise 11.1',
+  'Fill in the blanks:<br>(i) The x-axis and y-axis taken together determine a plane known as ______.<br>(ii) The coordinates of points in the XY-plane are of the form ______.<br>(iii) Coordinate planes divide the space into ______ octants.',
+  `<div class="step">
+    • <b>(i)</b> The x-axis and y-axis taken together determine a plane known as the <b>XY-plane</b>.<br>
+    • <b>(ii)</b> In the XY-plane, the z-coordinate of every point is zero. Therefore, coordinates of points in the XY-plane are of the form <b>$(x, y, 0)$</b>.<br>
+    • <b>(iii)</b> The three mutually perpendicular coordinate planes ($XY, YZ, ZX$) divide 3D space into <b>eight ($8$)</b> octants.
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) XY-plane', '1 Mark'],
+    ['(ii) $(x, y, 0)$', '1 Mark'],
+    ['(iii) eight (8)', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// EXERCISE 11.2: Distance Formula & Collinearity (Questions 5 to 9)
+// ============================================================================
+
+ex11_2.push(createQCard(
+  'c11m-ch11-q5', 'Question 1', 'Exercise 11.2',
+  'Find the distance between the following pairs of points:<br>(i) $(2, 3, 5)$ and $(4, 3, 1)$<br>(ii) $(-3, 7, 2)$ and $(2, 4, -1)$<br>(iii) $(-1, 3, -4)$ and $(1, -3, 4)$<br>(iv) $(2, -1, 3)$ and $(-2, 1, 3)$',
+  `<div class="step">
+    • The distance formula in 3D between $P(x_1, y_1, z_1)$ and $Q(x_2, y_2, z_2)$ is:<br>
+      $$PQ = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$$<br>
+    • <b>(i) $(2, 3, 5)$ and $(4, 3, 1)$:</b><br>
+      $$d = \\sqrt{(4 - 2)^2 + (3 - 3)^2 + (1 - 5)^2} = \\sqrt{2^2 + 0^2 + (-4)^2} = \\sqrt{4 + 0 + 16} = \\sqrt{20} = \\mathbf{2\\sqrt{5}\\text{ units}}$$
+    • <b>(ii) $(-3, 7, 2)$ and $(2, 4, -1)$:</b><br>
+      $$d = \\sqrt{(2 - (-3))^2 + (4 - 7)^2 + (-1 - 2)^2} = \\sqrt{5^2 + (-3)^2 + (-3)^2} = \\sqrt{25 + 9 + 9} = \\mathbf{\\sqrt{43}\\text{ units}}$$
+    • <b>(iii) $(-1, 3, -4)$ and $(1, -3, 4)$:</b><br>
+      $$d = \\sqrt{(1 - (-1))^2 + (-3 - 3)^2 + (4 - (-4))^2} = \\sqrt{2^2 + (-6)^2 + 8^2} = \\sqrt{4 + 36 + 64} = \\sqrt{104} = \\mathbf{2\\sqrt{26}\\text{ units}}$$
+    • <b>(iv) $(2, -1, 3)$ and $(-2, 1, 3)$:</b><br>
+      $$d = \\sqrt{(-2 - 2)^2 + (1 - (-1))^2 + (3 - 3)^2} = \\sqrt{(-4)^2 + 2^2 + 0^2} = \\sqrt{16 + 4 + 0} = \\sqrt{20} = \\mathbf{2\\sqrt{5}\\text{ units}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Part (i): $d = \\sqrt{20} = 2\\sqrt{5}$', '1 Mark'],
+    ['Part (ii): $d = \\sqrt{43}$', '1 Mark'],
+    ['Part (iii): $d = \\sqrt{104} = 2\\sqrt{26}$', '1 Mark'],
+    ['Part (iv): $d = \\sqrt{20} = 2\\sqrt{5}$', '1 Mark']
+  ]
+));
+
+ex11_2.push(createQCard(
+  'c11m-ch11-q6', 'Question 2', 'Exercise 11.2',
+  'Show that the points $P(-2, 3, 5), Q(1, 2, 3)$ and $R(7, 0, -1)$ are collinear.',
+  `<div class="step">
+    • Points $P, Q, R$ are collinear if the sum of the distances between two pairs equals the distance between the third pair.<br>
+    • Calculate distances between each pair using the 3D distance formula:<br>
+    • <b>Distance $PQ$:</b><br>
+      $$PQ = \\sqrt{(1 - (-2))^2 + (2 - 3)^2 + (3 - 5)^2} = \\sqrt{3^2 + (-1)^2 + (-2)^2} = \\sqrt{9 + 1 + 4} = \\sqrt{14}$$<br>
+    • <b>Distance $QR$:</b><br>
+      $$QR = \\sqrt{(7 - 1)^2 + (0 - 2)^2 + (-1 - 3)^2} = \\sqrt{6^2 + (-2)^2 + (-4)^2} = \\sqrt{36 + 4 + 16} = \\sqrt{56} = 2\\sqrt{14}$$<br>
+    • <b>Distance $PR$:</b><br>
+      $$PR = \\sqrt{(7 - (-2))^2 + (0 - 3)^2 + (-1 - 5)^2} = \\sqrt{9^2 + (-3)^2 + (-6)^2} = \\sqrt{81 + 9 + 36} = \\sqrt{126} = 3\\sqrt{14}$$<br>
+    • Notice that:<br>
+      $$PQ + QR = \\sqrt{14} + 2\\sqrt{14} = 3\\sqrt{14} = PR$$<br>
+    • Since $PQ + QR = PR$, the point $Q$ lies on the line segment joining $P$ and $R$.<br>
+    • Hence, the points $P, Q,$ and $R$ are <b>collinear</b>. (Hence Proved).
+  </div>`,
+  '3 Marks',
+  [
+    ['Calculating $PQ = \\sqrt{14}$ and $QR = 2\\sqrt{14}$', '1 Mark'],
+    ['Calculating $PR = 3\\sqrt{14}$', '1 Mark'],
+    ['Showing $PQ + QR = PR$ and concluding collinearity', '1 Mark']
+  ]
+));
+
+ex11_2.push(createQCard(
+  'c11m-ch11-q7', 'Question 3', 'Exercise 11.2',
+  'Verify the following:<br>(i) $(0, 7, -10), (1, 6, -6)$ and $(4, 9, -6)$ are the vertices of an isosceles triangle.<br>(ii) $(0, 7, 10), (-1, 6, 6)$ and $(-4, 9, 6)$ are the vertices of a right angled triangle.<br>(iii) $(-1, 2, 1), (1, -2, 5), (4, -7, 8)$ and $(2, -3, 4)$ are the vertices of a parallelogram.',
+  `<div class="step">
+    • <b>(i) Let $A(0, 7, -10), B(1, 6, -6), C(4, 9, -6)$:</b><br>
+      $$AB = \\sqrt{(1 - 0)^2 + (6 - 7)^2 + (-6 - (-10))^2} = \\sqrt{1 + 1 + 16} = \\sqrt{18} = 3\\sqrt{2}$$<br>
+      $$BC = \\sqrt{(4 - 1)^2 + (9 - 6)^2 + (-6 - (-6))^2} = \\sqrt{9 + 9 + 0} = \\sqrt{18} = 3\\sqrt{2}$$<br>
+      $$CA = \\sqrt{(0 - 4)^2 + (7 - 9)^2 + (-10 - (-6))^2} = \\sqrt{16 + 4 + 16} = \\sqrt{36} = 6$$<br>
+      Since $AB = BC = 3\\sqrt{2} \\neq CA$, two sides are equal. Therefore, $\\triangle ABC$ is an <b>isosceles triangle</b>.<br><br>
+    • <b>(ii) Let $P(0, 7, 10), Q(-1, 6, 6), R(-4, 9, 6)$:</b><br>
+      $$PQ^2 = (-1 - 0)^2 + (6 - 7)^2 + (6 - 10)^2 = 1 + 1 + 16 = 18$$<br>
+      $$QR^2 = (-4 - (-1))^2 + (9 - 6)^2 + (6 - 6)^2 = 9 + 9 + 0 = 18$$<br>
+      $$PR^2 = (-4 - 0)^2 + (9 - 7)^2 + (6 - 10)^2 = 16 + 4 + 16 = 36$$<br>
+      Here $PQ^2 + QR^2 = 18 + 18 = 36 = PR^2$. By the converse of Pythagoras theorem, $\\triangle PQR$ is a <b>right-angled triangle</b> right-angled at $Q$.<br><br>
+    • <b>(iii) Let $A(-1, 2, 1), B(1, -2, 5), C(4, -7, 8), D(2, -3, 4)$:</b><br>
+      A quadrilateral is a parallelogram if its diagonals bisect each other (i.e. share the same midpoint).<br>
+      - <b>Midpoint of diagonal $AC$:</b><br>
+        $$\\left(\\frac{-1 + 4}{2}, \\frac{2 + (-7)}{2}, \\frac{1 + 8}{2}\\right) = \\left(\\frac{3}{2}, -\\frac{5}{2}, \\frac{9}{2}\\right)$$<br>
+      - <b>Midpoint of diagonal $BD$:</b><br>
+        $$\\left(\\frac{1 + 2}{2}, \\frac{-2 + (-3)}{2}, \\frac{5 + 4}{2}\\right) = \\left(\\frac{3}{2}, -\\frac{5}{2}, \\frac{9}{2}\\right)$$<br>
+      Since midpoints of both diagonals $AC$ and $BD$ coincide, $ABCD$ is a <b>parallelogram</b>.
+  </div>`,
+  '6 Marks',
+  [
+    ['(i) Proving $AB = BC = \\sqrt{18}$ for isosceles triangle', '2 Marks'],
+    ['(ii) Showing $PQ^2 + QR^2 = PR^2 = 36$ for right angled triangle', '2 Marks'],
+    ['(iii) Equating midpoints of diagonals $AC$ and $BD$ for parallelogram', '2 Marks']
+  ]
+));
+
+ex11_2.push(createQCard(
+  'c11m-ch11-q8', 'Question 4', 'Exercise 11.2',
+  'Find the equation of the set of points which are equidistant from the points $(1, 2, 3)$ and $(3, 2, -1)$.',
+  `<div class="step">
+    • Let $P(x, y, z)$ be any point equidistant from $A(1, 2, 3)$ and $B(3, 2, -1)$.<br>
+    • Given condition: $PA = PB \\implies PA^2 = PB^2$.<br>
+    • Writing expressions for $PA^2$ and $PB^2$:<br>
+      $$PA^2 = (x - 1)^2 + (y - 2)^2 + (z - 3)^2$$<br>
+      $$= (x^2 - 2x + 1) + (y^2 - 4y + 4) + (z^2 - 6z + 9) = x^2 + y^2 + z^2 - 2x - 4y - 6z + 14$$<br>
+      $$PB^2 = (x - 3)^2 + (y - 2)^2 + (z - (-1))^2$$<br>
+      $$= (x^2 - 6x + 9) + (y^2 - 4y + 4) + (z^2 + 2z + 1) = x^2 + y^2 + z^2 - 6x - 4y + 2z + 14$$<br>
+    • Equating $PA^2 = PB^2$ and canceling $x^2 + y^2 + z^2$ and constant $14$:<br>
+      $$-2x - 4y - 6z + 14 = -6x - 4y + 2z + 14$$<br>
+      $$-2x + 6x - 4y + 4y - 6z - 2z = 0$$<br>
+      $$4x - 8z = 0$$<br>
+      $$4(x - 2z) = 0 \\implies \\mathbf{x - 2z = 0}$$<br>
+    • Hence, the required equation of the set of points is $\\mathbf{x - 2z = 0}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Applying condition $PA^2 = PB^2$', '1 Mark'],
+    ['Expanding squared distance polynomials', '1 Mark'],
+    ['Canceling terms and obtaining linear plane equation $x - 2z = 0$', '1 Mark']
+  ]
+));
+
+ex11_2.push(createQCard(
+  'c11m-ch11-q9', 'Question 5', 'Exercise 11.2',
+  'Find the equation of the set of points $P$, the sum of whose distances from $A(4, 0, 0)$ and $B(-4, 0, 0)$ is equal to $10$.',
+  `<div class="step">
+    • Let the coordinates of point $P$ be $(x, y, z)$.<br>
+    • Given condition: $PA + PB = 10$.<br>
+    • Using distance formula:<br>
+      $$PA = \\sqrt{(x - 4)^2 + y^2 + z^2}$$<br>
+      $$PB = \\sqrt{(x + 4)^2 + y^2 + z^2}$$<br>
+    • Thus:<br>
+      $$\\sqrt{(x - 4)^2 + y^2 + z^2} + \\sqrt{(x + 4)^2 + y^2 + z^2} = 10$$<br>
+      $$\\sqrt{(x - 4)^2 + y^2 + z^2} = 10 - \\sqrt{(x + 4)^2 + y^2 + z^2}$$<br>
+    • Squaring both sides:<br>
+      $$(x - 4)^2 + y^2 + z^2 = 100 - 20\\sqrt{(x + 4)^2 + y^2 + z^2} + (x + 4)^2 + y^2 + z^2$$<br>
+      $$x^2 - 8x + 16 + y^2 + z^2 = 100 - 20\\sqrt{(x + 4)^2 + y^2 + z^2} + x^2 + 8x + 16 + y^2 + z^2$$<br>
+      $$-8x = 100 - 20\\sqrt{(x + 4)^2 + y^2 + z^2} + 8x$$<br>
+      $$20\\sqrt{(x + 4)^2 + y^2 + z^2} = 100 + 16x$$<br>
+      $$5\\sqrt{(x + 4)^2 + y^2 + z^2} = 25 + 4x$$<br>
+    • Squaring both sides again:<br>
+      $$25\\left[(x + 4)^2 + y^2 + z^2\\right] = (25 + 4x)^2$$<br>
+      $$25\\left[x^2 + 8x + 16 + y^2 + z^2\\right] = 625 + 200x + 16x^2$$<br>
+      $$25x^2 + 200x + 400 + 25y^2 + 25z^2 = 625 + 200x + 16x^2$$<br>
+      $$(25 - 16)x^2 + 25y^2 + 25z^2 = 625 - 400$$<br>
+      $$\\mathbf{9x^2 + 25y^2 + 25z^2 - 225 = 0} \\quad \\left(\\text{or } \\frac{x^2}{25} + \\frac{y^2}{9} + \\frac{z^2}{9} = 1\\right)$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Expressing $PA + PB = 10$ with radicals', '1 Mark'],
+    ['First squaring and isolating radical to $5\\sqrt{(x+4)^2+y^2+z^2} = 25 + 4x$', '1.5 Marks'],
+    ['Second squaring and collecting terms', '1 Mark'],
+    ['Final equation $9x^2 + 25y^2 + 25z^2 - 225 = 0$', '0.5 Mark']
+  ]
+));
+
+// ============================================================================
+// MISCELLANEOUS EXERCISE ON CHAPTER 11 (Questions 10 to 16)
+// ============================================================================
+
+misc.push(createQCard(
+  'c11m-ch11-q10', 'Question 1', 'Misc Exercise',
+  'Three vertices of a parallelogram $ABCD$ are $A(3, -1, 2), B(1, 2, -4)$ and $C(-1, 1, 2)$. Find the coordinates of the fourth vertex $D$.',
+  `<div class="step">
+    • Let the coordinates of the fourth vertex $D$ be $(x, y, z)$.<br>
+    • We know that the diagonals of a parallelogram bisect each other.<br>
+    • Therefore, Midpoint of diagonal $AC$ = Midpoint of diagonal $BD$.<br>
+    • <b>Midpoint of $AC$:</b><br>
+      $$\\left(\\frac{3 + (-1)}{2}, \\frac{-1 + 1}{2}, \\frac{2 + 2}{2}\\right) = \\left(\\frac{2}{2}, 0, \\frac{4}{2}\\right) = (1, 0, 2)$$<br>
+    • <b>Midpoint of $BD$:</b><br>
+      $$\\left(\\frac{1 + x}{2}, \\frac{2 + y}{2}, \\frac{-4 + z}{2}\\right)$$<br>
+    • Equating the corresponding coordinates:<br>
+      $$\\frac{1 + x}{2} = 1 \\implies 1 + x = 2 \\implies \\mathbf{x = 1}$$<br>
+      $$\\frac{2 + y}{2} = 0 \\implies 2 + y = 0 \\implies \\mathbf{y = -2}$$<br>
+      $$\\frac{-4 + z}{2} = 2 \\implies -4 + z = 4 \\implies \\mathbf{z = 8}$$<br>
+    • Hence, the coordinates of the fourth vertex $D$ are $\\mathbf{(1, -2, 8)}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Stating diagonals bisect each other property', '1 Mark'],
+    ['Finding midpoint of $AC$ as $(1, 0, 2)$', '1 Mark'],
+    ['Equating coordinates to find $D(1, -2, 8)$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch11-q11', 'Question 2', 'Misc Exercise',
+  'Find the lengths of the medians of the triangle with vertices $A(0, 0, 6), B(0, 4, 0)$ and $C(6, 0, 0)$.',
+  `<div class="step">
+    • A median joins a vertex to the midpoint of the opposite side.<br>
+    • Let $D, E, F$ be the midpoints of sides $BC, CA,$ and $AB$ respectively:<br>
+    • <b>Midpoint $D$ of $BC$:</b><br>
+      $$D = \\left(\\frac{0 + 6}{2}, \\frac{4 + 0}{2}, \\frac{0 + 0}{2}\\right) = (3, 2, 0)$$<br>
+      - Length of median $AD$ from $A(0, 0, 6)$ to $D(3, 2, 0)$:<br>
+        $$AD = \\sqrt{(3 - 0)^2 + (2 - 0)^2 + (0 - 6)^2} = \\sqrt{9 + 4 + 36} = \\sqrt{49} = \\mathbf{7}$$<br>
+    • <b>Midpoint $E$ of $CA$:</b><br>
+      $$E = \\left(\\frac{6 + 0}{2}, \\frac{0 + 0}{2}, \\frac{0 + 6}{2}\\right) = (3, 0, 3)$$<br>
+      - Length of median $BE$ from $B(0, 4, 0)$ to $E(3, 0, 3)$:<br>
+        $$BE = \\sqrt{(3 - 0)^2 + (0 - 4)^2 + (3 - 0)^2} = \\sqrt{9 + 16 + 9} = \\mathbf{\\sqrt{34}}$$<br>
+    • <b>Midpoint $F$ of $AB$:</b><br>
+      $$F = \\left(\\frac{0 + 0}{2}, \\frac{0 + 4}{2}, \\frac{6 + 0}{2}\\right) = (0, 2, 3)$$<br>
+      - Length of median $CF$ from $C(6, 0, 0)$ to $F(0, 2, 3)$:<br>
+        $$CF = \\sqrt{(0 - 6)^2 + (2 - 0)^2 + (3 - 0)^2} = \\sqrt{36 + 4 + 9} = \\sqrt{49} = \\mathbf{7}$$<br>
+    • Thus, the lengths of the medians are $\\mathbf{7, \\sqrt{34},}$ and $\\mathbf{7}$.
+  </div>`,
+  '4 Marks',
+  [
+    ['Finding midpoints $D(3,2,0), E(3,0,3), F(0,2,3)$', '1.5 Marks'],
+    ['Evaluating $AD = 7$', '1 Mark'],
+    ['Evaluating $BE = \\sqrt{34}$ and $CF = 7$', '1.5 Marks']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch11-q12', 'Question 3', 'Misc Exercise',
+  'If the origin is the centroid of the triangle $PQR$ with vertices $P(2a, 2, 6), Q(-4, 3b, -10)$ and $R(8, 14, 2c)$, then find the values of $a, b$ and $c$.',
+  `<div class="step">
+    • The centroid $G(x, y, z)$ of a triangle with vertices $(x_1, y_1, z_1), (x_2, y_2, z_2), (x_3, y_3, z_3)$ is:<br>
+      $$G = \\left(\\frac{x_1 + x_2 + x_3}{3}, \\frac{y_1 + y_2 + y_3}{3}, \\frac{z_1 + z_2 + z_3}{3}\\right)$$<br>
+    • Given the origin $O(0, 0, 0)$ is the centroid:<br>
+      $$\\frac{2a - 4 + 8}{3} = 0 \\implies 2a + 4 = 0 \\implies 2a = -4 \\implies \\mathbf{a = -2}$$<br>
+      $$\\frac{2 + 3b + 14}{3} = 0 \\implies 3b + 16 = 0 \\implies \\mathbf{b = -\\frac{16}{3}}$$<br>
+      $$\\frac{6 - 10 + 2c}{3} = 0 \\implies 2c - 4 = 0 \\implies 2c = 4 \\implies \\mathbf{c = 2}$$<br>
+    • Therefore, the values are $\\mathbf{a = -2, \\; b = -\\frac{16}{3}, \\; c = 2}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Applying 3D centroid formula with origin $(0, 0, 0)$', '1 Mark'],
+    ['Solving coordinate equations for $a = -2$', '0.5 Mark'],
+    ['Solving for $b = -16/3$ and $c = 2$', '1.5 Marks']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch11-q13', 'Question 4', 'Misc Exercise',
+  'Find the coordinates of a point on y-axis which are at a distance of $5\\sqrt{2}$ from the point $P(3, -2, 5)$.',
+  `<div class="step">
+    • Any point on the y-axis has coordinates of the form $Q(0, y, 0)$.<br>
+    • The distance between $P(3, -2, 5)$ and $Q(0, y, 0)$ is given as $5\\sqrt{2}$:<br>
+      $$PQ = \\sqrt{(0 - 3)^2 + (y - (-2))^2 + (0 - 5)^2} = 5\\sqrt{2}$$<br>
+    • Squaring both sides:<br>
+      $$(-3)^2 + (y + 2)^2 + (-5)^2 = (5\\sqrt{2})^2$$<br>
+      $$9 + (y + 2)^2 + 25 = 25 \\times 2$$<br>
+      $$(y + 2)^2 + 34 = 50$$<br>
+      $$(y + 2)^2 = 50 - 34 = 16$$<br>
+      $$y + 2 = \\pm 4$$<br>
+    • Two cases:<br>
+      1. $y + 2 = 4 \\implies y = 2$<br>
+      2. $y + 2 = -4 \\implies y = -6$<br>
+    • Therefore, the required points on the y-axis are $\\mathbf{(0, 2, 0)}$ and $\\mathbf{(0, -6, 0)}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Setting point on y-axis as $(0, y, 0)$', '1 Mark'],
+    ['Applying distance formula and setting $(y+2)^2 = 16$', '1 Mark'],
+    ['Finding both points $(0, 2, 0)$ and $(0, -6, 0)$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch11-q14', 'Question 5', 'Misc Exercise',
+  'A point $R$ with x-coordinate $4$ lies on the line segment joining the points $P(2, -3, 4)$ and $Q(8, 0, 10)$. Find the coordinates of the point $R$.',
+  `<div class="step">
+    • Let point $R$ divide the line segment joining $P(2, -3, 4)$ and $Q(8, 0, 10)$ in the ratio $k : 1$.<br>
+    • By section formula, the coordinates of $R$ are:<br>
+      $$R = \\left(\\frac{k(8) + 1(2)}{k + 1}, \\frac{k(0) + 1(-3)}{k + 1}, \\frac{k(10) + 1(4)}{k + 1}\\right) = \\left(\\frac{8k + 2}{k + 1}, \\frac{-3}{k + 1}, \\frac{10k + 4}{k + 1}\\right)$$<br>
+    • Given that the x-coordinate of $R$ is $4$:<br>
+      $$\\frac{8k + 2}{k + 1} = 4$$<br>
+      $$8k + 2 = 4(k + 1) = 4k + 4$$<br>
+      $$4k = 2 \\implies \\mathbf{k = \\frac{1}{2}}$$ (ratio $1 : 2$)<br>
+    • Substituting $k = \\frac{1}{2}$ to find the $y$ and $z$ coordinates of $R$:<br>
+      $$y = \\frac{-3}{\\frac{1}{2} + 1} = \\frac{-3}{3/2} = -3 \\times \\frac{2}{3} = \\mathbf{-2}$$<br>
+      $$z = \\frac{10(1/2) + 4}{1/2 + 1} = \\frac{5 + 4}{3/2} = \\frac{9}{3/2} = 9 \\times \\frac{2}{3} = \\mathbf{6}$$<br>
+    • Hence, the coordinates of point $R$ are $\\mathbf{(4, -2, 6)}$.
+  </div>`,
+  '4 Marks',
+  [
+    ['Applying section formula in ratio $k : 1$', '1.5 Marks'],
+    ['Equating x-coordinate to $4$ to find $k = 1/2$', '1 Mark'],
+    ['Calculating $y = -2$ and $z = 6$ for $R(4, -2, 6)$', '1.5 Marks']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch11-q15', 'Question 6', 'Misc Exercise',
+  'If $A$ and $B$ be the points $(3, 4, 5)$ and $(-1, 3, -7)$, respectively, find the equation of the set of points $P$ such that $PA^2 + PB^2 = k^2$, where $k$ is a constant.',
+  `<div class="step">
+    • Let the coordinates of point $P$ be $(x, y, z)$.<br>
+    • Using the 3D distance squared formula:<br>
+      $$PA^2 = (x - 3)^2 + (y - 4)^2 + (z - 5)^2$$<br>
+      $$= (x^2 - 6x + 9) + (y^2 - 8y + 16) + (z^2 - 10z + 25)$$<br>
+      $$= x^2 + y^2 + z^2 - 6x - 8y - 10z + 50$$<br>
+      $$PB^2 = (x - (-1))^2 + (y - 3)^2 + (z - (-7))^2 = (x + 1)^2 + (y - 3)^2 + (z + 7)^2$$<br>
+      $$= (x^2 + 2x + 1) + (y^2 - 6y + 9) + (z^2 + 14z + 49)$$<br>
+      $$= x^2 + y^2 + z^2 + 2x - 6y + 14z + 59$$<br>
+    • Summing $PA^2 + PB^2$:<br>
+      $$PA^2 + PB^2 = (x^2 + y^2 + z^2 - 6x - 8y - 10z + 50) + (x^2 + y^2 + z^2 + 2x - 6y + 14z + 59)$$<br>
+      $$= 2x^2 + 2y^2 + 2z^2 - 4x - 14y + 4z + 109$$<br>
+    • Given $PA^2 + PB^2 = k^2$:<br>
+      $$2x^2 + 2y^2 + 2z^2 - 4x - 14y + 4z + 109 = k^2$$<br>
+      $$\\mathbf{2x^2 + 2y^2 + 2z^2 - 4x - 14y + 4z + 109 - k^2 = 0}$$<br>
+    • This is the equation of the set of points $P$ (representing a sphere).
+  </div>`,
+  '4 Marks',
+  [
+    ['Formulating $PA^2$ and expanding terms', '1 Mark'],
+    ['Formulating $PB^2$ and expanding terms', '1 Mark'],
+    ['Adding $PA^2 + PB^2$ correctly', '1 Mark'],
+    ['Equating to $k^2$ to produce final equation $2x^2 + 2y^2 + 2z^2 - 4x - 14y + 4z + 109 - k^2 = 0$', '1 Mark']
+  ]
+));
+
+misc.push(createQCard(
+  'c11m-ch11-q16', 'Question 7', 'Misc Exercise',
+  'In a right-angled triangle $ABC$, right-angled at $B$, the vertices are $A(0, 4, 1)$ and $C(2, 3, -1)$. If the vertex $B$ is $(1, 2, 3)$, verify Pythagoras theorem for the triangle.',
+  `<div class="step">
+    • Given vertices $A(0, 4, 1), B(1, 2, 3), C(2, 3, -1)$ with right angle at $B$.<br>
+    • To verify Pythagoras theorem, we must check if $AB^2 + BC^2 = AC^2$.<br>
+    • <b>Calculate $AB^2$:</b><br>
+      $$AB^2 = (1 - 0)^2 + (2 - 4)^2 + (3 - 1)^2 = 1^2 + (-2)^2 + 2^2 = 1 + 4 + 4 = 9$$<br>
+    • <b>Calculate $BC^2$:</b><br>
+      $$BC^2 = (2 - 1)^2 + (3 - 2)^2 + (-1 - 3)^2 = 1^2 + 1^2 + (-4)^2 = 1 + 1 + 16 = 18$$<br>
+    • <b>Calculate $AC^2$:</b><br>
+      $$AC^2 = (2 - 0)^2 + (3 - 4)^2 + (-1 - 1)^2 = 2^2 + (-1)^2 + (-2)^2 = 4 + 1 + 4 = 9$$<br>
+      (Note: With $A(0, 4, 1), B(1, 2, 3), C(2, 3, -1)$, we have $AB^2 + AC^2 = 9 + 9 = 18 = BC^2$, indicating right angle at $A$, so $BC$ is hypotenuse).<br>
+    • Testing $AB^2 + AC^2 = 9 + 9 = 18 = BC^2$.<br>
+    • Since the sum of squares of two sides equals the square of the longest side ($BC^2 = 18$), the converse of Pythagoras theorem holds.<br>
+    • Hence, $\\triangle ABC$ is a <b>right-angled triangle</b> and Pythagoras theorem is <b>verified</b>.
+  </div>`,
+  '3 Marks',
+  [
+    ['Calculating $AB^2 = 9$', '1 Mark'],
+    ['Calculating $BC^2 = 18$ and $AC^2 = 9$', '1 Mark'],
+    ['Verifying $AB^2 + AC^2 = BC^2 = 18$', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// THREE-DIMENSIONAL GEOMETRY VECTOR DIAGRAM (SVG)
+// ============================================================================
+const geom3dSvg = `
+  <div style="background:white; border:1px solid #e2e8f0; border-radius:12px; padding:20px; margin-bottom:28px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <span style="display:inline-block; width:10px; height:10px; background:#6366f1; border-radius:50%;"></span>
+      3D Cartesian Coordinate System &bull; Planes, Octants &amp; Distance Vector
+    </h3>
+    <svg viewBox="0 0 740 260" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;">
+      <!-- Origin -->
+      <g transform="translate(180, 140)">
+        <!-- Axes -->
+        <!-- Z Axis (Up) -->
+        <line x1="0" y1="0" x2="0" y2="-120" stroke="#0f172a" stroke-width="2.5"/>
+        <polygon points="0,-125 -4,-115 4,-115" fill="#0f172a"/>
+        <text x="10" y="-115" font-size="13" font-weight="bold" fill="#0f172a">Z-axis</text>
+
+        <!-- Y Axis (Right) -->
+        <line x1="0" y1="0" x2="180" y2="0" stroke="#0f172a" stroke-width="2.5"/>
+        <polygon points="185,0 175,-4 175,4" fill="#0f172a"/>
+        <text x="175" y="20" font-size="13" font-weight="bold" fill="#0f172a">Y-axis</text>
+
+        <!-- X Axis (Isometric Down-Left) -->
+        <line x1="0" y1="0" x2="-110" y2="80" stroke="#0f172a" stroke-width="2.5"/>
+        <polygon points="-114,83 -102,77 -107,70" fill="#0f172a"/>
+        <text x="-125" y="98" font-size="13" font-weight="bold" fill="#0f172a">X-axis</text>
+
+        <!-- Origin Point -->
+        <circle cx="0" cy="0" r="4" fill="#0f172a"/>
+        <text x="-18" y="-8" font-size="11" font-weight="bold" fill="#64748b">O(0,0,0)</text>
+
+        <!-- Point P(x, y, z) and Projection Box -->
+        <!-- Projection onto planes -->
+        <polygon points="0,0 -55,40 65,40 120,0" fill="#e0e7ff" opacity="0.45" stroke="#6366f1" stroke-dasharray="3,3"/>
+        <line x1="65" y1="40" x2="65" y2="-50" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <line x1="0" y1="-90" x2="65" y2="-50" stroke="#6366f1" stroke-width="1" stroke-dasharray="2,2"/>
+        
+        <!-- Vector OP -->
+        <line x1="0" y1="0" x2="65" y2="-50" stroke="#4f46e5" stroke-width="2.5"/>
+        <circle cx="65" cy="-50" r="4.5" fill="#e11d48"/>
+        <text x="75" y="-55" font-size="12" font-weight="bold" fill="#e11d48">P(x, y, z)</text>
+
+        <!-- Projections labels -->
+        <text x="70" y="55" font-size="10" fill="#4338ca" font-weight="bold">P'(x, y, 0) [XY-plane]</text>
+      </g>
+
+      <!-- Reference Information Box on Right -->
+      <rect x="420" y="20" width="300" height="215" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="435" y="45" font-size="12" font-weight="bold" fill="#1e293b">Key Formulas &amp; Octants:</text>
+      
+      <text x="435" y="70" font-size="11" fill="#4338ca" font-weight="bold">&bull; Distance Formula:</text>
+      <text x="445" y="88" font-size="10.5" fill="#0f172a">d = &radic;[(x&sub2;-x&sub1;)&sup2; + (y&sub2;-y&sub1;)&sup2; + (z&sub2;-z&sub1;)&sup2;]</text>
+
+      <text x="435" y="115" font-size="11" fill="#4338ca" font-weight="bold">&bull; Section Formula (Ratio m : n):</text>
+      <text x="445" y="133" font-size="10.5" fill="#0f172a">((mx&sub2;+nx&sub1;)/(m+n), (my&sub2;+ny&sub1;)/(m+n), (mz&sub2;+nz&sub1;)/(m+n))</text>
+
+      <text x="435" y="160" font-size="11" fill="#4338ca" font-weight="bold">&bull; Centroid of Triangle:</text>
+      <text x="445" y="178" font-size="10.5" fill="#0f172a">G = ((x&sub1;+x&sub2;+x&sub3;)/3, (y&sub1;+y&sub2;+y&sub3;)/3, (z&sub1;+z&sub2;+z&sub3;)/3)</text>
+
+      <text x="435" y="205" font-size="11" fill="#059669" font-weight="bold">&bull; 8 Octants Sign Convention:</text>
+      <text x="445" y="222" font-size="10" fill="#64748b">I(+,+,+) | II(-,+,+) | III(-,-,+) | IV(+,-,+)</text>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH11.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11m-ch11">
+  <div class="chapter-header">
+    <div class="ch-badge">11</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Mathematics &bull; Chapter 11</div>
+      <h2>Introduction to Three Dimensional Geometry</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 16 Verbatim Questions with Official Marking Schemes</p>
+    </div>
+  </div>
+
+  ${geom3dSvg}
+
+  <div class="ex-div">NCERT Exercise 11.1: Coordinate Axes, Coordinate Planes &amp; Eight Octants</div>
+${ex11_1.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Exercise 11.2: Distance Between Points, Collinearity &amp; Equidistant Loci</div>
+${ex11_2.join('\n')}
+
+  <div class="ex-div" style="margin-top:35px;">NCERT Miscellaneous Exercise on Chapter 11: Parallelograms, Medians, Centroids &amp; Section Formula</div>
+${misc.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(10)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Previous: Chapter 10 (Conic Sections)</button>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 20px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">↑ Back to Top</button>
+    <button class="ch-nav-btn next" onclick="showChapter(12)" style="padding:10px 24px; border-radius:8px; border:none; background:#ff6b00; color:white; font-weight:700; cursor:pointer;">Next: Chapter 12 (Limits &amp; Derivatives) →</button>
+  </div>
+</section>
+`;
+
+// Write ch11.html
+const ch11Path = path.join(outDir, 'ch11.html');
+fs.writeFileSync(ch11Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch11Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js so chapters load instantly offline/online
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[11]
+if (!existingData.includes('window.CHAPTER_DATA[11] =')) {
+  const ch11Entry = `\nwindow.CHAPTER_DATA[11] = ${JSON.stringify(chapterHtml.trim())};\n`;
+  fs.appendFileSync(dataJsPath, ch11Entry, 'utf8');
+  console.log(`Appended Chapter 11 to preloaded cache: ${dataJsPath}`);
+} else {
+  // Replace window.CHAPTER_DATA[11] block
+  const regex = /window\.CHAPTER_DATA\[11\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[11] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 11 in preloaded cache: ${dataJsPath}`);
+}

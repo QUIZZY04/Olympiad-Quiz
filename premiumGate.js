@@ -232,6 +232,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("NCERT Solutions (Class 1–10)", true)}
               ${featureLi("Detailed performance analytics", true)}
               ${featureLi("1-hour wait between tests", false)}
               ${featureLi("All India Live Tests included", false)}
@@ -246,6 +247,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
             <ul class="pg-plan-features">
               ${featureLi("1 test/day, up to 4/week", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("NCERT Solutions (Class 1–10)", true)}
               ${featureLi("Performance analytics", false)}
               ${featureLi("Unlimited test attempts", false)}
               ${featureLi("All India Live Tests included", false)}
@@ -260,6 +262,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("NCERT Solutions (Class 1–10)", true)}
               ${featureLi("Detailed performance analytics", true)}
               ${featureLi("1-hour wait between tests", false)}
               ${featureLi("All India Live Tests included", false)}
@@ -287,6 +290,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("NCERT Solutions (Class 1–10)", true)}
               ${featureLi("Detailed performance analytics", true)}
               ${featureLi("No waiting between tests", true)}
               ${featureLi(`${GOLD_LIVE_TESTS_PER_MONTH} All India Live Tests/month (worth &#8377;${GOLD_LIVE_TESTS_PER_MONTH * LIVE_TEST_VALUE_INR})`, true)}
@@ -303,6 +307,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("NCERT Solutions (Class 1–10)", true)}
               ${featureLi("Detailed performance analytics", true)}
               ${featureLi("No waiting between tests", true)}
               ${featureLi(`${DIAMOND_LIVE_TESTS_PER_MONTH} All India Live Tests/month (worth &#8377;${DIAMOND_LIVE_TESTS_PER_MONTH * LIVE_TEST_VALUE_INR})`, true)}

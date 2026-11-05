@@ -59,7 +59,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"What fraction of a clockwise revolution does the hour hand of a clock turn through, when it goes from: (a) 3 to 9 (b) 4 to 7 (c) 7 to 10 (d) 12 to 9?","acceptedAnswer":{"@type":"Answer","text":"Clock Revolutions: Total hours on clock face = 12 hours. • (a) 3 to 9: 6 hours -> 6/12 = 1/2 revolution (2 right angles). • (b) 4 to 7: 3 hours -> 3/12 = 1/4 revolution (1 right angle). • (c) 7 to 10: 3 hours -> 3/12 = 1/4 revolution (1 right angle). • (d) 12 to 9: 9 hours -> 9/12 = 3/4 revolution ("}},{"@type":"Question","name":"Name the types of following triangles: (a) Triangle with lengths of sides 7 cm, 8 cm and 9 cm. (b) ΔABC with AB = 8.7 cm, AC = 7 cm and BC = 6 cm. (c) ΔPQR such","acceptedAnswer":{"@type":"Answer","text":"Triangle Classification: • (a) All sides unequal -> Scalene triangle . • (b) All sides unequal -> Scalene triangle . • (c) All three sides equal -> Equilateral triangle . • (d) One angle = 90° -> Right-angled triangle . • (e) One right angle and two equal sides -> Isosceles right-angled triangle ."}},{"@type":"Question","name":"Name each polygon: (a) 3 sides (b) 4 sides (c) 5 sides (d) 6 sides (e) 8 sides. Also state number of faces, edges and vertices of a triangular prism.","acceptedAnswer":{"@type":"Answer","text":"Polygons & 3D Shapes: • 3 sides: Triangle ; 4 sides: Quadrilateral ; 5 sides: Pentagon ; 6 sides: Hexagon ; 8 sides: Octagon . • Triangular Prism: &nbsp;&nbsp;Faces (F) = 5 (2 triangular bases + 3 rectangular sides) &nbsp;&nbsp;Edges (E) = 9 &nbsp;&nbsp;Vertices (V) = 6. &nbsp;&nbsp;Verification: F "}},{"@type":"Question","name":"Aviation Navigation: Runway Compass Headings: An aircraft flying North makes a turn. (a) If it turns clockwise by 2 right angles, what is its new heading? (b) I","acceptedAnswer":{"@type":"Answer","text":"(a) Heading: North + 180° = South . (b) Anti-clockwise from East: 3/4 turn (270°) anti-clockwise from East faces South . (c) Angle: Angle between NE (45°) and NW (315°) is 90° (Right angle) ."}}]
+    "mainEntity": [{"@type":"Question","name":"What fraction of a clockwise revolution does the hour hand of a clock turn through, when it goes from: (a) 3 to 9 (b) 4 to 7 (c) 7 to 10 (d) 12 to 9?","acceptedAnswer":{"@type":"Answer","text":"Clock Revolutions: Total hours on clock face = 12 hours. • (a) 3 to 9: 6 hours -> 6/12 = 1/2 revolution (2 right angles). • (b) 4 to 7: 3 hours -> 3/12 = 1/4 revolution (1 right angle). • (c) 7 to 10: 3 hours -> 3/12 = 1/4 revolution (1 right angle). • (d) 12 to 9: 9 hours -> 9/12 = 3/4 revolution ("}},{"@type":"Question","name":"Name the types of following triangles: (a) Triangle with lengths of sides 7 cm, 8 cm and 9 cm. (b) ΔABC with AB = 8.7 cm, AC = 7 cm and BC = 6 cm. (c) ΔPQR such","acceptedAnswer":{"@type":"Answer","text":"Triangle Classification: • (a) All sides unequal -> Scalene triangle . • (b) All sides unequal -> Scalene triangle . • (c) All three sides equal -> Equilateral triangle . • (d) One angle = 90° -> Right-angled triangle . • (e) One right angle and two equal sides -> Isosceles right-angled triangle ."}},{"@type":"Question","name":"Name each polygon: (a) 3 sides (b) 4 sides (c) 5 sides (d) 6 sides (e) 8 sides. Also state number of faces, edges and vertices of a triangular prism.","acceptedAnswer":{"@type":"Answer","text":"Polygons &amp; 3D Shapes: • 3 sides: Triangle ; 4 sides: Quadrilateral ; 5 sides: Pentagon ; 6 sides: Hexagon ; 8 sides: Octagon . • Triangular Prism: &nbsp;&nbsp;Faces (F) = 5 (2 triangular bases + 3 rectangular sides) &nbsp;&nbsp;Edges (E) = 9 &nbsp;&nbsp;Vertices (V) = 6. &nbsp;&nbsp;Verification: F "}},{"@type":"Question","name":"Aviation Navigation: Runway Compass Headings: An aircraft flying North makes a turn. (a) If it turns clockwise by 2 right angles, what is its new heading? (b) I","acceptedAnswer":{"@type":"Answer","text":"(a) Heading: North + 180° = South . (b) Anti-clockwise from East: 3/4 turn (270°) anti-clockwise from East faces South . (c) Angle: Angle between NE (45°) and NW (315°) is 90° (Right angle) ."}}]
   }
   </script>
   
@@ -540,6 +540,20 @@
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
   </style>
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -717,14 +731,14 @@
         <div class="ch-badge">5</div>
         <div class="chapter-header-info">
           <h2>Chapter 5: Understanding Elementary Shapes</h2>
-          <p>NCERT Mathematics (Classic) (Class 6) — Measuring Line Segments, Angles (Right, Straight, Acute, Obtuse, Reflex), Clock Revolutions & Directions, Perpendicular Lines, Classification of Triangles, Quadrilaterals, 3D Shapes | CBSE 2026-27</p>
+          <p>NCERT Mathematics (Classic) (Class 6) — Measuring Line Segments, Angles (Right, Straight, Acute, Obtuse, Reflex), Clock Revolutions &amp; Directions, Perpendicular Lines, Classification of Triangles, Quadrilaterals, 3D Shapes | CBSE 2026-27</p>
         </div>
       </div>
       
     <div class="concept-card">
       <div class="concept-header">📌 Key Concepts &amp; Formulas</div>
       <ul class="concept-list">
-        <li>Angles & Revolutions: 1 full turn = 360°, 1/2 turn = 180° (Straight angle), 1/4 turn = 90° (Right angle).</li><li>Classification of Triangles by Sides: Scalene (all unequal), Isosceles (2 equal), Equilateral (all 3 equal).</li><li>Classification by Angles: Acute-angled (all <90°), Right-angled (one =90°), Obtuse-angled (one >90°).</li><li>Quadrilaterals: Parallelogram, Rectangle, Rhombus, Square, Trapezium.</li><li>3D Polyhedra: Faces (F), Vertices (V), Edges (E). Euler's Formula: F + V - E = 2.</li>
+        <li>Angles &amp; Revolutions: 1 full turn = 360°, 1/2 turn = 180° (Straight angle), 1/4 turn = 90° (Right angle).</li><li>Classification of Triangles by Sides: Scalene (all unequal), Isosceles (2 equal), Equilateral (all 3 equal).</li><li>Classification by Angles: Acute-angled (all <90°), Right-angled (one =90°), Obtuse-angled (one >90°).</li><li>Quadrilaterals: Parallelogram, Rectangle, Rhombus, Square, Trapezium.</li><li>3D Polyhedra: Faces (F), Vertices (V), Edges (E). Euler's Formula: F + V - E = 2.</li>
       </ul>
     </div>
   
@@ -798,7 +812,7 @@
           <div class="answer-box">
             <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
             <div class="answer-text">
-              <div class="step"><strong>Polygons & 3D Shapes:</strong><br>• 3 sides: <strong>Triangle</strong>; 4 sides: <strong>Quadrilateral</strong>; 5 sides: <strong>Pentagon</strong>; 6 sides: <strong>Hexagon</strong>; 8 sides: <strong>Octagon</strong>.<br>• <strong>Triangular Prism:</strong><br>&nbsp;&nbsp;Faces (F) = 5 (2 triangular bases + 3 rectangular sides)<br>&nbsp;&nbsp;Edges (E) = 9<br>&nbsp;&nbsp;Vertices (V) = 6.<br>&nbsp;&nbsp;Verification: F + V - E = 5 + 6 - 9 = 2 (Euler's formula verified).</div>
+              <div class="step"><strong>Polygons &amp; 3D Shapes:</strong><br>• 3 sides: <strong>Triangle</strong>; 4 sides: <strong>Quadrilateral</strong>; 5 sides: <strong>Pentagon</strong>; 6 sides: <strong>Hexagon</strong>; 8 sides: <strong>Octagon</strong>.<br>• <strong>Triangular Prism:</strong><br>&nbsp;&nbsp;Faces (F) = 5 (2 triangular bases + 3 rectangular sides)<br>&nbsp;&nbsp;Edges (E) = 9<br>&nbsp;&nbsp;Vertices (V) = 6.<br>&nbsp;&nbsp;Verification: F + V - E = 5 + 6 - 9 = 2 (Euler's formula verified).</div>
             </div>
             
             <div class="marking-scheme">
@@ -855,7 +869,12 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
+      if (el) {
+        el.classList.toggle('open');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([el]);
+        }
+      }
     }
 
     // Toggle Competency Answer

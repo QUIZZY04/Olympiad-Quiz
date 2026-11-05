@@ -5,6 +5,47 @@ const vasant = require('./data-c7h-vasant.js');
 const mahabharat = require('./data-c7h-mahabharat.js');
 const durva = require('./data-c7h-durva.js');
 
+const vasantAdds = require('./builders/c7h-additions-vasant.js');
+const durvaAdds = require('./builders/c7h-additions-durva.js');
+const mahabharatAdds = require('./builders/c7h-additions-mahabharat.js');
+
+// Merge additions into units
+vasant.forEach(u => {
+  const adds = vasantAdds[u.id];
+  if (adds && adds.length > 0) {
+    if (!u.exercises) u.exercises = [];
+    adds.forEach(a => {
+      if (!u.exercises.some(e => e.id === a.id)) {
+        u.exercises.push(a);
+      }
+    });
+  }
+});
+
+durva.forEach(u => {
+  const adds = durvaAdds[u.id];
+  if (adds && adds.length > 0) {
+    if (!u.exercises) u.exercises = [];
+    adds.forEach(a => {
+      if (!u.exercises.some(e => e.id === a.id)) {
+        u.exercises.push(a);
+      }
+    });
+  }
+});
+
+mahabharat.forEach(u => {
+  const adds = mahabharatAdds[u.id];
+  if (adds && adds.length > 0) {
+    if (!u.exercises) u.exercises = [];
+    adds.forEach(a => {
+      if (!u.exercises.some(e => e.id === a.id)) {
+        u.exercises.push(a);
+      }
+    });
+  }
+});
+
 const allUnits = [...vasant, ...mahabharat, ...durva];
 const rootDir = path.join(__dirname, '..');
 const chaptersDir = path.join(rootDir, 'chapters-c7h');

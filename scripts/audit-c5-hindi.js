@@ -53,7 +53,7 @@ if (!jsonLdMatches || jsonLdMatches.length < 3) {
 
 // 4. Verify Chapter Sections
 const expectedVeena = Array.from({length: 12}, (_, i) => `ch_v${i + 1}`);
-const expectedRimjhim = Array.from({length: 14}, (_, i) => `ch_r${i + 1}`);
+const expectedRimjhim = Array.from({length: 18}, (_, i) => `ch_r${i + 1}`);
 
 console.log("\n[4] Verifying Chapter Sections:");
 let missingSections = 0;
@@ -71,13 +71,13 @@ expectedRimjhim.forEach(id => {
 });
 
 if (missingSections === 0) {
-  console.log(`✅ All 12 Veena chapters (ch_v1 to ch_v12) and 14 Rimjhim units (ch_r1 to ch_r14) present.`);
+  console.log(`✅ All 12 Veena chapters (ch_v1 to ch_v12) and 18 Rimjhim chapters (ch_r1 to ch_r18) present.`);
 } else {
   errors += missingSections;
 }
 
 // 5. Count Question Cards, Markings & CBQs
-const qCardCount = (content.match(/class="q-card"/g) || []).length;
+const qCardCount = (content.match(/class="q-card/g) || []).length;
 const rubricCount = (content.match(/class="marking-scheme"/g) || []).length;
 const cbqCount = (content.match(/class="cbq-card"/g) || []).length;
 const svgCount = (content.match(/<svg/g) || []).length;
@@ -91,14 +91,14 @@ console.log(`   - SVG Vector Diagrams:  ${svgCount}`);
 if (qCardCount < 100) {
   console.warn("⚠️ Total questions under 100, checking coverage...");
 } else {
-  console.log("✅ Question density is comprehensive (107+ questions).");
+  console.log("✅ Question density is comprehensive (200+ questions).");
 }
 
-if (cbqCount !== 26) {
-  console.error(`❌ Expected 26 CBQ cards (12 Veena + 14 Rimjhim), found ${cbqCount}`);
+if (cbqCount !== 30) {
+  console.error(`❌ Expected 30 CBQ cards (12 Veena + 18 Rimjhim), found ${cbqCount}`);
   errors++;
 } else {
-  console.log("✅ All 26 chapters have an individual NEP 2020 CBQ Case Study.");
+  console.log("✅ All 30 chapters have an individual NEP 2020 CBQ Case Study.");
 }
 
 // 6. Navigation and Links Check

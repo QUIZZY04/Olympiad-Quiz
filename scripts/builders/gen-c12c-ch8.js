@@ -1,0 +1,895 @@
+// scripts/builders/gen-c12c-ch8.js
+// Class 12 Chemistry Chapter 8: Aldehydes, Ketones and Carboxylic Acids (ऐल्डिहाइड, कीटोन एवं कार्बोक्सिलिक अम्ल)
+// Full Coverage: 5 In-Text Questions + 27 End-of-Chapter Exercises = 32 Questions Verbatim
+const { createQCard, saveChapter } = require('./c12c-helper');
+
+const chNum = 8;
+const chTitle = 'Aldehydes, Ketones and Carboxylic Acids (ऐल्डिहाइड, कीटोन एवं कार्बोक्सिलिक अम्ल)';
+const exTitle = 'NCERT Chapter 8: In-Text Questions (8.1–8.5) & End-of-Chapter Exercises (8.1–8.27)';
+
+const svgDiagram = `
+<div style="background:linear-gradient(135deg, #fef2f2, #fee2e2); border:1px solid #fca5a5; border-radius:12px; padding:20px; margin-bottom:24px;">
+  <h3 style="font-size:1.05rem; color:#991b1b; margin-bottom:12px; font-weight:800; display:flex; align-items:center; gap:8px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    Carbonyl Chemistry: Nucleophilic Addition, Condensations & Carboxylic Acidity
+  </h3>
+  <svg viewBox="0 0 850 160" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', sans-serif;">
+    <!-- Box 1: Nucleophilic Addition -->
+    <rect x="15" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#ef4444" stroke-width="2"/>
+    <text x="110" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">Nucleophilic Addition</text>
+    <text x="110" y="70" text-anchor="middle" font-size="11" fill="#334155">>C=O + Nu⁻ → >C(O⁻)Nu</text>
+    <text x="110" y="94" text-anchor="middle" font-size="10" fill="#64748b">• Reactivity: HCHO > RCHO > R₂CO</text>
+    <text x="110" y="112" text-anchor="middle" font-size="10" fill="#64748b">• Addition of HCN, NaHSO₃, RMgX</text>
+
+    <!-- Box 2: Aldol & Cannizzaro -->
+    <rect x="225" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
+    <text x="320" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">Aldol & Cannizzaro</text>
+    <text x="320" y="72" text-anchor="middle" font-size="11" fill="#334155">α-Hydrogen Dependent</text>
+    <text x="320" y="96" text-anchor="middle" font-size="10" fill="#64748b">• Aldol: With α-H (dil. NaOH)</text>
+    <text x="320" y="114" text-anchor="middle" font-size="10" fill="#64748b">• Cannizzaro: No α-H (50% NaOH)</text>
+
+    <!-- Box 3: Distinguishing Tests -->
+    <rect x="435" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+    <text x="530" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">Chemical Tests</text>
+    <text x="530" y="72" text-anchor="middle" font-size="11" fill="#334155">Tollens, Fehling, Iodoform</text>
+    <text x="530" y="96" text-anchor="middle" font-size="10" fill="#64748b">• Tollens: Silver mirror (Aldehydes)</text>
+    <text x="530" y="114" text-anchor="middle" font-size="10" fill="#64748b">• Iodoform: Yellow CHI₃ (CH₃CO-)</text>
+
+    <!-- Box 4: Carboxylic Acids -->
+    <rect x="645" y="20" width="190" height="115" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="740" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">Carboxylic Acids</text>
+    <text x="740" y="72" text-anchor="middle" font-size="11" fill="#334155">R-COOH Acidity</text>
+    <text x="740" y="96" text-anchor="middle" font-size="10" fill="#64748b">• Carboxylate ion: 2 equivalent O⁻</text>
+    <text x="740" y="114" text-anchor="middle" font-size="10" fill="#64748b">• HVZ reaction (α-halogenation)</text>
+  </svg>
+</div>`;
+
+const questions = [];
+
+// ============================================================================
+// PART 1: NCERT IN-TEXT QUESTIONS (8.1 to 8.5)
+// ============================================================================
+
+// Question 8.1 (In-Text)
+questions.push(createQCard(
+  'c12c-ch8-q1', 'In-Text 8.1', 'NCERT In-Text',
+  'Write the structures of the following compounds:<br>(i) $\\alpha$-Methoxypropionaldehyde<br>(ii) 3-Hydroxybutanal<br>(iii) 2-Hydroxycyclopentanecarbaldehyde<br>(iv) 4-Oxopentanal<br>(v) Di-sec-butyl ketone<br>(vi) 4-Fluoroacetophenone',
+  `<div class="step">
+    <b>Structures:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>$\\alpha$-Methoxypropionaldehyde:</strong>
+        $$\\text{CH}_3-\\text{CH(OCH}_3)-\\text{CHO} \\quad (\\text{2-Methoxypropanal})$$</li>
+      <li><strong>3-Hydroxybutanal (Aldol):</strong>
+        $$\\text{CH}_3-\\text{CH(OH)}-\\text{CH}_2-\\text{CHO}$$</li>
+      <li><strong>2-Hydroxycyclopentanecarbaldehyde:</strong>
+        Cyclopentane ring with $-\\text{CHO}$ at $C_1$ and $-\\text{OH}$ at $C_2$.</li>
+      <li><strong>4-Oxopentanal:</strong>
+        $$\\text{CH}_3-\\text{CO}-\\text{CH}_2-\\text{CH}_2-\\text{CHO}$$</li>
+      <li><strong>Di-sec-butyl ketone:</strong>
+        $$\\text{CH}_3-\\text{CH}_2-\\text{CH(CH}_3)-\\text{CO}-\\text{CH(CH}_3)-\\text{CH}_2-\\text{CH}_3 \\quad (\\text{3,5-Dimethylheptan-4-one})$$</li>
+      <li><strong>4-Fluoroacetophenone:</strong>
+        Benzene ring with $-\\text{COCH}_3$ at position 1 and $-\\text{F}$ at position 4 ($p\\text{-F-C}_6\\text{H}_4-\\text{COCH}_3$).</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) to (iii) structures drawn correctly', '1½ Marks'],
+    ['(iv) to (vi) structures drawn correctly', '1½ Marks']
+  ]
+));
+
+// Question 8.2 (In-Text)
+questions.push(createQCard(
+  'c12c-ch8-q2', 'In-Text 8.2', 'NCERT In-Text',
+  'Write the structures of products of the following reactions:<br>(i) Benzene + $\\text{C}_2\\text{H}_5\\text{COCl} / \\text{anhyd. AlCl}_3$<br>(ii) $(\\text{C}_6\\text{H}_5\\text{CH}_2)_2\\text{Cd} + 2\\text{CH}_3\\text{COCl}$<br>(iii) $\\text{H}_3\\text{C}-\\text{C}\\equiv\\text{C}-\\text{H} + \\text{H}_2\\text{O} \\xrightarrow{\\text{Hg}^{2+}, \\text{H}_2\\text{SO}_4}$<br>(iv) 4-Nitrotoluene + $\\text{CrO}_2\\text{Cl}_2 / \\text{CS}_2$, followed by $\\text{H}_3\\text{O}^+$',
+  `<div class="step">
+    <b>Products & Reactions:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Friedel-Crafts Acylation of Benzene:</strong>
+        $$\\text{C}_6\\text{H}_6 + \\text{CH}_3\\text{CH}_2\\text{COCl} \\xrightarrow{\\text{anhyd. AlCl}_3} \\mathbf{\\text{C}_6\\text{H}_5\\text{COCH}_2\\text{CH}_3 (\\text{Propiophenone / 1-Phenylpropan-1-one})} + \\text{HCl}$$</li>
+      <li><strong>Dialkylcadmium with Acid Chloride:</strong>
+        $$(\\text{C}_6\\text{H}_5\\text{CH}_2)_2\\text{Cd} + 2\\text{CH}_3\\text{COCl} \\rightarrow \\mathbf{2\\text{C}_6\\text{H}_5\\text{CH}_2\\text{COCH}_3 (\\text{1-Phenylpropan-2-one})} + \\text{CdCl}_2$$</li>
+      <li><strong>Mercuric-Catalysed Hydration of Propyne:</strong>
+        Addition of water follows Markovnikov\'s rule yielding an enol which tautomerises to acetone:
+        $$\\text{CH}_3-\\text{C}\\equiv\\text{CH} + \\text{H}_2\\text{O} \\xrightarrow{\\text{Hg}^{2+}/\\text{H}_2\\text{SO}_4} [\\text{CH}_3-\\text{C(OH)}=\\text{CH}_2] \\rightleftharpoons \\mathbf{\\text{CH}_3\\text{COCH}_3 (\\text{Propan-2-one / Acetone})}$$</li>
+      <li><strong>Etard Reaction of 4-Nitrotoluene:</strong>
+        Selective chromyl chloride oxidation of the methyl group to form an aldehyde:
+        $$p\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{CH}_3 \\xrightarrow{1.\\; \\text{CrO}_2\\text{Cl}_2 / \\text{CS}_2,\\; 2.\\; \\text{H}_3\\text{O}^+} \\mathbf{p\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{CHO} (\\text{4-Nitrobenzaldehyde})}$$</li>
+    </ol>
+  </div>`,
+  '4 Marks',
+  [
+    ['(i) Propiophenone', '1 Mark'],
+    ['(ii) 1-Phenylpropan-2-one + CdCl₂', '1 Mark'],
+    ['(iii) Propan-2-one via enol tautomerisation', '1 Mark'],
+    ['(iv) 4-Nitrobenzaldehyde via Etard oxidation', '1 Mark']
+  ]
+));
+
+// Question 8.3 (In-Text)
+questions.push(createQCard(
+  'c12c-ch8-q3', 'In-Text 8.3', 'NCERT In-Text',
+  'Arrange the following compounds in increasing order of their boiling points:<br>$$\\text{CH}_3\\text{CHO}, \\quad \\text{CH}_3\\text{CH}_2\\text{OH}, \\quad \\text{CH}_3\\text{OCH}_3, \\quad \\text{CH}_3\\text{CH}_2\\text{CH}_3$$',
+  `<div class="step">
+    <b>Analysis of Intermolecular Forces (Comparable Molecular Masses ~44 to 46):</b>
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li><strong>Propane ($\\text{CH}_3\\text{CH}_2\\text{CH}_3$, $M = 44$):</strong> Non-polar hydrocarbon; held together only by weak <b>van der Waals dispersion forces</b>. Lowest boiling point ($231\\text{ K}$).</li>
+      <li><strong>Methoxymethane ($\\text{CH}_3\\text{OCH}_3$, $M = 46$):</strong> Dipolar ether with weak dipole-dipole attractions ($248\\text{ K}$).</li>
+      <li><strong>Ethanal ($\\text{CH}_3\\text{CHO}$, $M = 44$):</strong> Polar carbonyl compound with substantial <b>dipole-dipole interactions</b> ($294\\text{ K}$).</li>
+      <li><strong>Ethanol ($\\text{CH}_3\\text{CH}_2\\text{OH}$, $M = 46$):</strong> Possesses strong <b>intermolecular hydrogen bonding</b>. Highest boiling point ($351\\text{ K}$).</li>
+    </ul>
+    <br>
+    <b>Increasing Order:</b>
+    $$\\mathbf{\\text{CH}_3\\text{CH}_2\\text{CH}_3 < \\text{CH}_3\\text{OCH}_3 < \\text{CH}_3\\text{CHO} < \\text{CH}_3\\text{CH}_2\\text{OH}}$$
+  </div>`,
+  '2 Marks',
+  [
+    ['Correct order of boiling points', '1 Mark'],
+    ['Clear justification: van der Waals < dipole-dipole < H-bonding', '1 Mark']
+  ]
+));
+
+// Question 8.4 (In-Text)
+questions.push(createQCard(
+  'c12c-ch8-q4', 'In-Text 8.4', 'NCERT In-Text',
+  'Would you expect benzaldehyde to be more reactive or less reactive in nucleophilic addition reactions than propanal? Explain your answer.',
+  `<div class="step">
+    <b>Answer: Benzaldehyde is less reactive than propanal.</b><br><br>
+    <b>Scientific Reason:</b><br>
+    Nucleophilic addition to a carbonyl group occurs by attack of the nucleophile on the electrophilic carbonyl carbon ($>\\text{C}^{\\delta+}=\\text{O}^{\\delta-}$). The higher the magnitude of positive charge on carbon, the faster the reaction.<br><br>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>Resonance Effect in Benzaldehyde:</strong>
+        In benzaldehyde ($\\text{C}_6\\text{H}_5\\text{CHO}$), the carbonyl carbon is directly conjugated with the benzene ring. Due to the electron-donating resonance effect ($+R$) of the benzene ring, $\\pi$-electrons delocalize into the carbonyl carbon:
+        $$\\text{C}_6\\text{H}_5-\\text{CH}=\\text{O} \\longleftrightarrow \\text{C}_6\\text{H}_5^+=\\text{CH}-\\text{O}^-$$
+        This resonance donation significantly <b>reduces the electrophilicity (positive charge density)</b> of the carbonyl carbon.</li>
+      <li><strong>Propanal ($\\text{CH}_3\\text{CH}_2\\text{CHO}$):</strong>
+        In propanal, the ethyl group exhibits only a weak $+I$ inductive effect, which diminishes positive charge to a far smaller extent than the powerful resonance delocalization in benzaldehyde. Furthermore, benzaldehyde is more sterically crowded than propanal.</li>
+    </ol>
+  </div>`,
+  '2 Marks',
+  [
+    ['Identification that benzaldehyde is less reactive', '½ Mark'],
+    ['Resonance delocalization from benzene ring reducing electrophilicity of carbonyl carbon', '1½ Marks']
+  ]
+));
+
+// Question 8.5 (In-Text)
+questions.push(createQCard(
+  'c12c-ch8-q5', 'In-Text 8.5', 'NCERT In-Text',
+  'Predict the products of the following reactions:<br>(i) Cyclopentanone + $\\text{NH}_2\\text{OH}$<br>(ii) Cyclohexanone + 2,4-DNP (2,4-dinitrophenylhydrazine)<br>(iii) $\\text{CH}_3\\text{CH}_2\\text{CH}=\\text{CHCHO} + \\text{H}_2\\text{N}-\\text{NH}-\\text{CONH}_2$ (semicarbazide)',
+  `<div class="step">
+    <b>Nucleophilic Addition-Elimination Reactions (Condensation with Ammonia Derivatives):</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Cyclopentanone + Hydroxylamine:</strong>
+        Condensation with loss of water produces an oxime:
+        $$\\text{C}_5\\text{H}_8\\text{O} + \\text{H}_2\\text{N}-\\text{OH} \\xrightarrow{\\text{H}^+} \\mathbf{\\text{Cyclopentanone oxime}} + \\text{H}_2\\text{O}$$</li>
+      <li><strong>Cyclohexanone + 2,4-Dinitrophenylhydrazine:</strong>
+        Forms a yellow/orange crystalline 2,4-DNP hydrazone:
+        $$\\text{C}_6\\text{H}_{10}\\text{O} + \\text{H}_2\\text{N}-\\text{NH}-\\text{C}_6\\text{H}_3(\\text{NO}_2)_2 \\rightarrow \\mathbf{\\text{Cyclohexanone 2,4-dinitrophenylhydrazone}} + \\text{H}_2\\text{O}$$</li>
+      <li><strong>$\\text{CH}_3\\text{CH}_2\\text{CH}=\\text{CHCHO} + \\text{H}_2\\text{N}-\\text{NH}-\\text{CONH}_2$:</strong>
+        Only the hydrazine $-\\text{NH}_2$ acts as a nucleophile (the amide $-\\text{CONH}_2$ nitrogen has its lone pair delocalized by resonance):
+        $$\\mathbf{\\text{CH}_3\\text{CH}_2\\text{CH}=\\text{CH}-\\text{CH}=\\text{N}-\\text{NH}-\\text{CONH}_2 (\\text{Pent-2-en-1-al semicarbazone})} + \\text{H}_2\\text{O}$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Cyclopentanone oxime', '1 Mark'],
+    ['(ii) Cyclohexanone 2,4-DNP derivative', '1 Mark'],
+    ['(iii) Semicarbazone with correct regioselectivity of NH₂', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// PART 2: NCERT END-OF-CHAPTER EXERCISES (8.1 to 8.27)
+// ============================================================================
+
+// Exercise 8.1
+questions.push(createQCard(
+  'c12c-ch8-q6', 'Exercise 8.1', 'NCERT Exercise',
+  'What is meant by the following terms? Give an example of the reaction in each case:<br>(i) Cyanohydrin<br>(ii) Acetal<br>(iii) Semicarbazone<br>(iv) Aldol<br>(v) Hemiacetal<br>(vi) Oxime<br>(vii) Ketal<br>(viii) Imine<br>(ix) 2,4-DNP-derivative<br>(x) Schiff\'s base',
+  `<div class="step">
+    <b>Definitions and Chemical Examples:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Cyanohydrin:</strong> Compounds containing a hydroxyl group and a cyano group on the same carbon [$>\\text{C(OH)(CN)}$].
+        <br><em>Example:</em> $\\text{CH}_3\\text{CHO} + \\text{HCN} \\rightarrow \\mathbf{\\text{CH}_3\\text{CH(OH)CN}}$ (Acetaldehyde cyanohydrin).</li>
+      <li><strong>Acetal:</strong> Gem-dialkoxy compounds produced by the reaction of an aldehyde with two equivalents of a monohydric alcohol in presence of dry $\\text{HCl}$ gas [$R-\\text{CH(OR')}_2$].
+        <br><em>Example:</em> $\\text{CH}_3\\text{CHO} + 2\\text{C}_2\\text{H}_5\\text{OH} \\xrightarrow{\\text{dry HCl}} \\mathbf{\\text{CH}_3\\text{CH(OC}_2\\text{H}_5)_2}$ (Acetaldehyde diethyl acetal).</li>
+      <li><strong>Semicarbazone:</strong> Derivatives formed by the condensation of an aldehyde or ketone with semicarbazide in weakly acidic medium [$>\\text{C}=\\text{N}-\\text{NH}-\\text{CONH}_2$].
+        <br><em>Example:</em> Acetone semicarbazone [$(\\text{CH}_3)_2\\text{C}=\\text{N}-\\text{NH}-\\text{CONH}_2$].</li>
+      <li><strong>Aldol:</strong> A $\\beta$-hydroxy aldehyde or ketone formed by self-condensation of two molecules of carbonyl compound having $\\alpha$-hydrogen in presence of dilute base.
+        <br><em>Example:</em> 3-Hydroxybutanal [$\\text{CH}_3\\text{CH(OH)CH}_2\\text{CHO}$].</li>
+      <li><strong>Hemiacetal:</strong> An alkoxy alcohol formed by addition of one mole of alcohol to an aldehyde [$R-\\text{CH(OH)(OR')}$].
+        <br><em>Example:</em> $\\text{CH}_3\\text{CHO} + \\text{C}_2\\text{H}_5\\text{OH} \\xrightarrow{\\text{HCl}} \\mathbf{\\text{CH}_3\\text{CH(OH)(OC}_2\\text{H}_5)}$.</li>
+      <li><strong>Oxime:</strong> Formed by condensation of aldehydes/ketones with hydroxylamine [$>\\text{C}=\\text{N}-\\text{OH}$].
+        <br><em>Example:</em> Acetaldoxime [$\\text{CH}_3\\text{CH}=\\text{N}-\\text{OH}$].</li>
+      <li><strong>Ketal:</strong> Gem-dialkoxy compounds formed by the reaction of a ketone with a dihydric alcohol (like ethylene glycol) in presence of dry $\\text{HCl}$.
+        <br><em>Example:</em> Ethylene ketal of propan-2-one.</li>
+      <li><strong>Imine:</strong> Compounds containing a carbon-nitrogen double bond ($>\\text{C}=\\text{N}-R$) formed from ammonia or primary amines.</li>
+      <li><strong>2,4-DNP-Derivative:</strong> Orange/yellow crystalline solids formed with 2,4-dinitrophenylhydrazine, used for characterising carbonyl compounds.</li>
+      <li><strong>Schiff\'s Base:</strong> An azomethine ($>\\text{C}=\\text{N}-\\text{Ar}$) formed by the reaction of an aldehyde/ketone with a primary aromatic amine ($\text{ArNH}_2$).</li>
+    </ol>
+  </div>`,
+  '5 Marks',
+  [
+    ['(i) to (v) terms defined with examples', '2½ Marks'],
+    ['(vi) to (x) terms defined with examples', '2½ Marks']
+  ]
+));
+
+// Exercise 8.2
+questions.push(createQCard(
+  'c12c-ch8-q7', 'Exercise 8.2', 'NCERT Exercise',
+  'Name the following compounds according to IUPAC system of nomenclature:<br>(i) $\\text{CH}_3\\text{CH(CH}_3)\\text{CH}_2\\text{CH}_2\\text{CHO}$<br>(ii) $\\text{CH}_3\\text{CH}_2\\text{COCH(C}_2\\text{H}_5)\\text{CH}_2\\text{CH}_2\\text{Cl}$<br>(iii) $\\text{CH}_3\\text{CH}=\\text{CHCHO}$<br>(iv) $\\text{CH}_3\\text{COCH}_2\\text{COCH}_3$<br>(v) $\\text{CH}_3\\text{CH(CH}_3)\\text{CH}_2\\text{C(CH}_3)_2\\text{COCH}_3$<br>(vi) $(\\text{CH}_3)_3\\text{CCH}_2\\text{COOH}$<br>(vii) $o\\text{-HOOC-C}_6\\text{H}_4-\\text{CHO}$',
+  `<div class="step">
+    <b>IUPAC Names:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>$\\text{CH}_3\\text{CH(CH}_3)\\text{CH}_2\\text{CH}_2\\text{CHO}$:</strong> 4-Methylpentanal</li>
+      <li><strong>$\\text{CH}_3\\text{CH}_2\\text{COCH(C}_2\\text{H}_5)\\text{CH}_2\\text{CH}_2\\text{Cl}$:</strong> 6-Chloro-4-ethylhexan-3-one</li>
+      <li><strong>$\\text{CH}_3\\text{CH}=\\text{CHCHO}$:</strong> But-2-en-1-al (Crotonaldehyde)</li>
+      <li><strong>$\\text{CH}_3\\text{COCH}_2\\text{COCH}_3$:</strong> Pentane-2,4-dione (Acetylacetone)</li>
+      <li><strong>$\\text{CH}_3\\text{CH(CH}_3)\\text{CH}_2\\text{C(CH}_3)_2\\text{COCH}_3$:</strong> 3,3,5-Trimethylhexan-2-one</li>
+      <li><strong>$(\\text{CH}_3)_3\\text{CCH}_2\\text{COOH}$:</strong> 3,3-Dimethylbutanoic acid</li>
+      <li><strong>$o\\text{-HOOC-C}_6\\text{H}_4-\\text{CHO}$:</strong> 2-Formylbenzoic acid</li>
+    </ol>
+  </div>`,
+  '3½ Marks',
+  [
+    ['All 7 IUPAC names correctly determined with proper principal functional group priority', '½ Mark × 7 = 3½ Marks']
+  ]
+));
+
+// Exercise 8.3
+questions.push(createQCard(
+  'c12c-ch8-q8', 'Exercise 8.3', 'NCERT Exercise',
+  'Draw the structures of the following derivatives:<br>(i) The 2,4-dinitrophenylhydrazone of benzaldehyde<br>(ii) Cyclopropanone oxime<br>(iii) Acetaldehydedimethylacetal<br>(iv) The semicarbazone of cyclobutanone<br>(v) The ethylene ketal of hexan-3-one<br>(vi) The methyl hemiacetal of formaldehyde',
+  `<div class="step">
+    <b>Structures:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>2,4-DNP of Benzaldehyde:</strong>
+        $$\\text{C}_6\\text{H}_5-\\text{CH}=\\text{N}-\\text{NH}-\\text{C}_6\\text{H}_3(2,4\\text{-(NO}_2)_2)$$</li>
+      <li><strong>Cyclopropanone oxime:</strong>
+        A three-membered cyclopropane ring with $=N-OH$ attached to one vertex.</li>
+      <li><strong>Acetaldehydedimethylacetal:</strong>
+        $$\\text{CH}_3-\\text{CH(OCH}_3)_2$$</li>
+      <li><strong>Semicarbazone of cyclobutanone:</strong>
+        A four-membered cyclobutane ring with $=N-NH-CONH_2$ attached to one vertex.</li>
+      <li><strong>Ethylene ketal of hexan-3-one:</strong>
+        $$\\text{CH}_3\\text{CH}_2-\\text{C(O-CH}_2\\text{CH}_2\\text{-O)}-\\text{CH}_2\\text{CH}_2\\text{CH}_3$$
+        (1,3-dioxolane ring at $C_3$ of hexane).</li>
+      <li><strong>Methyl hemiacetal of formaldehyde:</strong>
+        $$\\text{H}-\\text{CH(OH)(OCH}_3) \\quad \\text{or} \\quad \\text{HO}-\\text{CH}_2-\\text{OCH}_3$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) to (iii) structures drawn accurately', '1½ Marks'],
+    ['(iv) to (vi) structures drawn accurately', '1½ Marks']
+  ]
+));
+
+// Exercise 8.4
+questions.push(createQCard(
+  'c12c-ch8-q9', 'Exercise 8.4', 'NCERT Exercise',
+  'Predict the products formed when cyclohexanecarbaldehyde reacts with following reagents:<br>(i) $\\text{PhMgBr}$ and then $\\text{H}_3\\text{O}^+$<br>(ii) Tollens\' reagent<br>(iii) Semicarbazide and weak acid<br>(iv) Excess ethanol and acid<br>(v) Zinc amalgam and dilute hydrochloric acid',
+  `<div class="step">
+    <b>Reactions of Cyclohexanecarbaldehyde ($\text{C}_6\text{H}_{11}\text{CHO}$):</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>With $\\text{PhMgBr}$ then $\\text{H}_3\\text{O}^+$:</strong>
+        Grignard addition gives a secondary alcohol:
+        $$\\mathbf{\\text{Cyclohexyl(phenyl)methanol}} \\quad [\\text{C}_6\\text{H}_{11}-\\text{CH(OH)}-\\text{C}_6\\text{H}_5]$$</li>
+      <li><strong>With Tollens\' reagent:</strong>
+        Oxidation of aldehyde to carboxylate with silver mirror:
+        $$\\mathbf{\\text{Cyclohexanecarboxylate ion}} \\quad [\\text{C}_6\\text{H}_{11}\\text{COO}^-] + \\mathbf{2\\text{Ag} \\downarrow (\\text{silver mirror})}$$</li>
+      <li><strong>With Semicarbazide and weak acid:</strong>
+        $$\\mathbf{\\text{Cyclohexanecarbaldehyde semicarbazone}} \\quad [\\text{C}_6\\text{H}_{11}-\\text{CH}=\\text{N}-\\text{NH}-\\text{CONH}_2] + \\text{H}_2\\text{O}$$</li>
+      <li><strong>With Excess ethanol and dry $\\text{HCl}$:</strong>
+        Forms a diethyl acetal:
+        $$\\mathbf{\\text{Cyclohexanecarbaldehyde diethyl acetal}} \\quad [\\text{C}_6\\text{H}_{11}-\\text{CH(OC}_2\\text{H}_5)_2] + \\text{H}_2\\text{O}$$</li>
+      <li><strong>With $\\text{Zn-Hg} / \\text{HCl}$ (Clemmensen Reduction):</strong>
+        Reduction of carbonyl group to methylene group ($-\\text{CHO} \\rightarrow -\\text{CH}_3$):
+        $$\\mathbf{\\text{Methylcyclohexane}} \\quad [\\text{C}_6\\text{H}_{11}-\\text{CH}_3] + \\text{H}_2\\text{O}$$</li>
+    </ol>
+  </div>`,
+  '5 Marks',
+  [
+    ['(i) Cyclohexyl(phenyl)methanol', '1 Mark'],
+    ['(ii) Cyclohexanecarboxylate ion + Ag mirror', '1 Mark'],
+    ['(iii) Semicarbazone derivative', '1 Mark'],
+    ['(iv) Diethyl acetal', '1 Mark'],
+    ['(v) Methylcyclohexane (Clemmensen)', '1 Mark']
+  ]
+));
+
+// Exercise 8.5
+questions.push(createQCard(
+  'c12c-ch8-q10', 'Exercise 8.5', 'NCERT Exercise',
+  'Which of the following compounds would undergo aldol condensation, which the Cannizzaro reaction and which neither? Write the structures of the expected products of aldol condensation and Cannizzaro reaction:<br>(i) Methanal, (ii) 2-Methylpentanal, (iii) Benzaldehyde, (iv) Benzophenone, (v) Cyclohexanone, (vi) 1-Phenylpropanone, (vii) Phenylacetaldehyde, (viii) 2,2-Dimethylbutanal, (ix) 2,2-Dimethylpropanal.',
+  `<div class="step">
+    <b>Classification Based on Presence/Absence of $\\alpha$-Hydrogen:</b>
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li><strong>Undergo Aldol Condensation (Contain at least one $\\alpha$-hydrogen):</strong>
+        <br>• <strong>2-Methylpentanal:</strong> Forms $\beta$-hydroxy aldehyde aldol product.
+        <br>• <strong>Cyclohexanone:</strong> Forms 2-(1-hydroxycyclohexyl)cyclohexan-1-one.
+        <br>• <strong>1-Phenylpropanone:</strong> Forms cross/self aldol condensation product.
+        <br>• <strong>Phenylacetaldehyde [$\\text{C}_6\\text{H}_5\\text{CH}_2\\text{CHO}$]:</strong> Has two $\alpha$-hydrogens; forms aldol product.</li>
+      <li><strong>Undergo Cannizzaro Reaction (Aldehydes with NO $\\alpha$-hydrogen):</strong>
+        <br>• <strong>Methanal ($\text{HCHO}$):</strong> Yields $\\mathbf{\\text{CH}_3\\text{OH}}$ (methanol) + $\\mathbf{\\text{HCOONa}}$ (sodium formate).
+        <br>• <strong>Benzaldehyde ($\text{C}_6\text{H}_5\text{CHO}$):</strong> Yields $\\mathbf{\\text{C}_6\\text{H}_5\\text{CH}_2\\text{OH}}$ (benzyl alcohol) + $\\mathbf{\\text{C}_6\\text{H}_5\\text{COONa}}$ (sodium benzoate).
+        <br>• <strong>2,2-Dimethylbutanal [$\\text{CH}_3\\text{CH}_2\\text{C(CH}_3)_2\\text{CHO}$]:</strong> Yields 2,2-dimethylbutan-1-ol + sodium 2,2-dimethylbutanoate.
+        <br>• <strong>2,2-Dimethylpropanal [$(\\text{CH}_3)_3\\text{C-CHO}$]:</strong> Yields neopentyl alcohol + sodium pivalate.</li>
+      <li><strong>Undergo Neither:</strong>
+        <br>• <strong>Benzophenone [$\\text{C}_6\\text{H}_5\\text{COC}_6\\text{H}_5$]:</strong> A ketone with no $\alpha$-hydrogen. (Ketones do not undergo Cannizzaro reaction).</li>
+    </ul>
+  </div>`,
+  '4 Marks',
+  [
+    ['Accurate categorization into Aldol, Cannizzaro, and Neither', '2 Marks'],
+    ['Writing structures of products for Aldol and Cannizzaro', '2 Marks']
+  ]
+));
+
+// Exercise 8.6
+questions.push(createQCard(
+  'c12c-ch8-q11', 'Exercise 8.6', 'NCERT Exercise',
+  'How will you convert ethanal into the following compounds?<br>(i) Butane-1,3-diol<br>(ii) But-2-enal<br>(iii) But-2-enoic acid',
+  `<div class="step">
+    <b>Syntheses from Ethanal ($\text{CH}_3\text{CHO}$):</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Ethanal to Butane-1,3-diol:</strong>
+        Step 1: Aldol condensation of ethanal with dilute $\\text{NaOH}$ gives 3-hydroxybutanal:
+        $$2\\text{CH}_3\\text{CHO} \\xrightarrow{\\text{dil. NaOH}} \\text{CH}_3-\\text{CH(OH)}-\\text{CH}_2-\\text{CHO}$$
+        Step 2: Reduction with sodium borohydride ($\\text{NaBH}_4$):
+        $$\\text{CH}_3-\\text{CH(OH)}-\\text{CH}_2-\\text{CHO} \\xrightarrow{\\text{NaBH}_4} \\mathbf{\\text{CH}_3-\\text{CH(OH)}-\\text{CH}_2-\\text{CH}_2\\text{OH}} \\quad (\\text{Butane-1,3-diol})$$</li>
+      <li><strong>Ethanal to But-2-enal (Crotonaldehyde):</strong>
+        Aldol condensation followed by heating to eliminate water:
+        $$2\\text{CH}_3\\text{CHO} \\xrightarrow{\\text{dil. NaOH}} \\text{CH}_3-\\text{CH(OH)}-\\text{CH}_2-\\text{CHO} \\xrightarrow{\\Delta, -\\text{H}_2\\text{O}} \\mathbf{\\text{CH}_3-\\text{CH}=\\text{CH}-\\text{CHO}} \\quad (\\text{But-2-enal})$$</li>
+      <li><strong>Ethanal to But-2-enoic acid:</strong>
+        Oxidation of but-2-enal using mild Tollens\' reagent (to prevent oxidation of the double bond):
+        $$\\text{CH}_3-\\text{CH}=\\text{CH}-\\text{CHO} + 2[\\text{Ag(NH}_3)_2]^+ + 3\\text{OH}^- \\rightarrow \\mathbf{\\text{CH}_3-\\text{CH}=\\text{CH}-\\text{COO}^-} \\xrightarrow{\\text{H}^+} \\mathbf{\\text{CH}_3-\\text{CH}=\\text{CH}-\\text{COOH}}$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Aldol + NaBH₄ to butane-1,3-diol', '1 Mark'],
+    ['(ii) Aldol + dehydration to but-2-enal', '1 Mark'],
+    ['(iii) Selective oxidation with Tollens\' reagent to but-2-enoic acid', '1 Mark']
+  ]
+));
+
+// Exercise 8.7
+questions.push(createQCard(
+  'c12c-ch8-q12', 'Exercise 8.7', 'NCERT Exercise',
+  'Write structural formulas and names of four possible aldol condensation products from propanal and butanal. Indicate which are simple and which are cross-aldol products.',
+  `<div class="step">
+    <b>Four Aldol Condensation Products:</b><br><br>
+    <b>A. Simple (Self) Aldol Products:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>From two molecules of propanal ($\text{CH}_3\text{CH}_2\text{CHO}$):</strong>
+        $$\\mathbf{\\text{CH}_3\\text{CH}_2-\\text{CH}=\\text{C(CH}_3)-\\text{CHO}} \\quad (\\mathbf{2-\\text{Methylpent-2-en-1-al}})$$</li>
+      <li><strong>From two molecules of butanal ($\text{CH}_3\text{CH}_2\text{CH}_2\text{CHO}$):</strong>
+        $$\\mathbf{\\text{CH}_3\\text{CH}_2\\text{CH}_2-\\text{CH}=\\text{C(C}_2\\text{H}_5)-\\text{CHO}} \\quad (\\mathbf{2-\\text{Ethylhex-2-en-1-al}})$$</li>
+    </ol>
+    <br>
+    <b>B. Cross Aldol Products:</b>
+    <ol start="3" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Propanal (electrophile) + Butanal (nucleophile, losing $\alpha$-H from butanal):</strong>
+        $$\\mathbf{\\text{CH}_3\\text{CH}_2-\\text{CH}=\\text{C(C}_2\\text{H}_5)-\\text{CHO}} \\quad (\\mathbf{2-\\text{Ethylpent-2-en-1-al}})$$</li>
+      <li><strong>Butanal (electrophile) + Propanal (nucleophile, losing $\alpha$-H from propanal):</strong>
+        $$\\mathbf{\\text{CH}_3\\text{CH}_2\\text{CH}_2-\\text{CH}=\\text{C(CH}_3)-\\text{CHO}} \\quad (\\mathbf{2-\\text{Methylhex-2-en-1-al}})$$</li>
+    </ol>
+  </div>`,
+  '4 Marks',
+  [
+    ['Two self-aldol products drawn and named', '2 Marks'],
+    ['Two cross-aldol products drawn and named', '2 Marks']
+  ]
+));
+
+// Exercise 8.8
+questions.push(createQCard(
+  'c12c-ch8-q13', 'Exercise 8.8', 'NCERT Exercise',
+  'An organic compound with the molecular formula $\\text{C}_9\\text{H}_{10}\\text{O}$ forms 2,4-DNP derivative, reduces Tollens\' reagent and undergoes Cannizzaro reaction. On vigorous oxidation, it gives 1,2-benzenedicarboxylic acid. Identify the compound.',
+  `<div class="step">
+    <b>Deductions:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li>Forms 2,4-DNP derivative and reduces Tollens\' reagent $\\implies$ Contains an <b>aldehyde group ($-\\text{CHO}$)</b>.</li>
+      <li>Undergoes Cannizzaro reaction $\\implies$ The aldehyde group has <b>no $\\alpha$-hydrogen</b> atom directly adjacent to it (must be directly bonded to a benzene ring).</li>
+      <li>Vigorous oxidation produces <b>1,2-benzenedicarboxylic acid (phthalic acid)</b> $\\implies$ It must be an ortho-disubstituted benzene derivative with two side chains at positions 1 and 2.</li>
+      <li>Molecular formula $\\text{C}_9\\text{H}_{10}\\text{O}$:
+        <br>Benzene ring ($\text{C}_6\text{H}_4$) + aldehyde group ($-\\text{CHO}$) leaves $\\text{C}_2\\text{H}_5$ (an ethyl group).
+        <br>Hence, the compound is <b>2-Ethylbenzaldehyde (or $o$-ethylbenzaldehyde)</b>.</li>
+    </ol>
+    <br>
+    <b>Reactions:</b>
+    $$o\\text{-C}_2\\text{H}_5-\\text{C}_6\\text{H}_4-\\text{CHO} \\xrightarrow{\\text{Tollens'}} o\\text{-C}_2\\text{H}_5-\\text{C}_6\\text{H}_4-\\text{COO}^- + 2\\text{Ag} \\downarrow$$
+    $$o\\text{-C}_2\\text{H}_5-\\text{C}_6\\text{H}_4-\\text{CHO} \\xrightarrow{\\text{KMnO}_4 / \\text{KOH}, \\Delta} \\mathbf{\\text{C}_6\\text{H}_4(1,2\\text{-(COOH)}_2)} \\quad (\\text{Phthalic acid})$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Stepwise deduction of aldehyde with no α-H', '1 Mark'],
+    ['Ortho-disubstituted ring from phthalic acid product', '1 Mark'],
+    ['Identification as 2-ethylbenzaldehyde with equations', '1 Mark']
+  ]
+));
+
+// Exercise 8.9
+questions.push(createQCard(
+  'c12c-ch8-q14', 'Exercise 8.9', 'NCERT Exercise',
+  'An organic compound (A) (molecular formula $\\text{C}_8\\text{H}_{16}\\text{O}_2$) was hydrolysed with dilute sulphuric acid to give a carboxylic acid (B) and an alcohol (C). Oxidation of (C) with chromic acid produced (B). (C) on dehydration gives but-1-ene. Write equations for the reactions involved.',
+  `<div class="step">
+    <b>Deductions:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li>Compound (A) $\\text{C}_8\\text{H}_{16}\\text{O}_2$ undergoes acid hydrolysis to give carboxylic acid (B) and alcohol (C) $\\implies$ <b>(A) is an ester</b>.</li>
+      <li>Alcohol (C) on dehydration gives but-1-ene ($\\text{CH}_3\\text{CH}_2\\text{CH}=\\text{CH}_2$) $\\implies$ <b>(C) is Butan-1-ol [$\\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{CH}_2\\text{OH}$]</b>.</li>
+      <li>Oxidation of alcohol (C) with chromic acid gives acid (B) $\\implies$ <b>(B) must be Butanoic acid [$\\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{COOH}$]</b>.</li>
+      <li>Therefore, ester (A) is <b>Butyl butanoate</b>:
+        $$\\mathbf{(A) = \\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{COO}-\\text{CH}_2\\text{CH}_2\\text{CH}_2\\text{CH}_3} \\quad (\\text{C}_8\\text{H}_{16}\\text{O}_2)$$</li>
+    </ol>
+    <br>
+    <b>Reactions:</b>
+    $$\\text{CH}_3(\\text{CH}_2)_2\\text{COO}(\\text{CH}_2)_3\\text{CH}_3 + \\text{H}_2\\text{O} \\xrightarrow{\\text{H}^+} \\mathbf{\\text{CH}_3(\\text{CH}_2)_2\\text{COOH} (B)} + \\mathbf{\\text{CH}_3(\\text{CH}_2)_3\\text{OH} (C)}$$
+    $$\\text{CH}_3(\\text{CH}_2)_3\\text{OH} \\xrightarrow{\\text{H}_2\\text{CrO}_4} \\mathbf{\\text{CH}_3(\\text{CH}_2)_2\\text{COOH} (B)}$$
+    $$\\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{CH}_2\\text{OH} \\xrightarrow{\\text{conc. } \\text{H}_2\\text{SO}_4, \\Delta} \\mathbf{\\text{CH}_3\\text{CH}_2\\text{CH}=\\text{CH}_2} + \\text{H}_2\\text{O}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Identification of (A) as butyl butanoate', '1 Mark'],
+    ['Identification of (B) as butanoic acid and (C) as butan-1-ol', '1 Mark'],
+    ['Balanced chemical equations for all steps', '1 Mark']
+  ]
+));
+
+// Exercise 8.10
+questions.push(createQCard(
+  'c12c-ch8-q15', 'Exercise 8.10', 'NCERT Exercise',
+  'Arrange the following compounds in increasing order of their property as indicated:<br>(i) Acidity: $\\text{F-CH}_2\\text{COOH}, \\text{Cl-CH}_2\\text{COOH}, \\text{Br-CH}_2\\text{COOH}, \\text{CH}_3\\text{COOH}$<br>(ii) Acidity: $\\text{CH}_3\\text{CH}_2\\text{CH(Br)COOH}, \\text{CH}_3\\text{CH(Br)CH}_2\\text{COOH}, (\\text{CH}_3)_2\\text{CHCOOH}, \\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{COOH}$<br>(iii) Reactivity towards nucleophilic addition: Benzaldehyde, p-Tolualdehyde, p-Nitrobenzaldehyde, Acetophenone',
+  `<div class="step">
+    <b>Orders with Reasons:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Acidity (Inductive effect of halogen $-I: \\text{F} > \\text{Cl} > \\text{Br} > \\text{H}$):</strong>
+        $$\\mathbf{\\text{CH}_3\\text{COOH} < \\text{Br-CH}_2\\text{COOH} < \\text{Cl-CH}_2\\text{COOH} < \\text{F-CH}_2\\text{COOH}}$$</li>
+      <li><strong>Acidity (Distance of $-I$ group from carboxyl group):</strong>
+        <br>The closer the $-I$ halogen is to the carboxyl carbon ($\alpha > \beta$), the stronger the stabilization of carboxylate ion. Alkyl groups with $+I$ effect decrease acidity.
+        $$\\mathbf{(\\text{CH}_3)_2\\text{CHCOOH} < \\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{COOH} < \\text{CH}_3\\text{CH(Br)CH}_2\\text{COOH} < \\text{CH}_3\\text{CH}_2\\text{CH(Br)COOH}}$$</li>
+      <li><strong>Reactivity towards Nucleophilic Addition:</strong>
+        <br>Aldehydes are more reactive than ketones. Electron-withdrawing groups ($-\\text{NO}_2$) increase reactivity; electron-donating groups ($-\\text{CH}_3$) decrease reactivity:
+        $$\\mathbf{\\text{Acetophenone} < p\\text{-Tolualdehyde} < \\text{Benzaldehyde} < p\\text{-Nitrobenzaldehyde}}$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Correct acidity order with electronegativity justification', '1 Mark'],
+    ['(ii) Correct acidity order with distance of inductive effect justification', '1 Mark'],
+    ['(iii) Correct nucleophilic reactivity order with electronic effects justification', '1 Mark']
+  ]
+));
+
+// Exercise 8.11
+questions.push(createQCard(
+  'c12c-ch8-q16', 'Exercise 8.11', 'NCERT Exercise',
+  'How will you bring about the following conversions in not more than two steps?<br>(i) Propanone to propene<br>(ii) Benzoic acid to benzaldehyde<br>(iii) Ethanol to 3-hydroxybutanal<br>(iv) Benzene to m-nitroacetophenone<br>(v) Benzaldehyde to benzophenone',
+  `<div class="step">
+    <b>Two-Step Conversions:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Propanone to Propene:</strong>
+        $$\\text{CH}_3\\text{COCH}_3 \\xrightarrow{\\text{NaBH}_4} \\text{CH}_3\\text{CH(OH)CH}_3 \\xrightarrow{\\text{conc. } \\text{H}_2\\text{SO}_4, 443\\text{ K}} \\mathbf{\\text{CH}_3-\\text{CH}=\\text{CH}_2}$$</li>
+      <li><strong>Benzoic acid to Benzaldehyde:</strong>
+        $$\\text{C}_6\\text{H}_5\\text{COOH} \\xrightarrow{\\text{SOCl}_2} \\text{C}_6\\text{H}_5\\text{COCl} \\xrightarrow{\\text{H}_2 / \\text{Pd-BaSO}_4, \\text{quinoline (Rosenmund)}} \\mathbf{\\text{C}_6\\text{H}_5\\text{CHO}}$$</li>
+      <li><strong>Ethanol to 3-Hydroxybutanal:</strong>
+        $$\\text{CH}_3\\text{CH}_2\\text{OH} \\xrightarrow{\\text{PCC}} \\text{CH}_3\\text{CHO} \\xrightarrow{\\text{dil. NaOH (Aldol)}} \\mathbf{\\text{CH}_3\\text{CH(OH)CH}_2\\text{CHO}}$$</li>
+      <li><strong>Benzene to $m$-nitroacetophenone:</strong>
+        $$\\text{C}_6\\text{H}_6 + \\text{CH}_3\\text{COCl} \\xrightarrow{\\text{anhyd. AlCl}_3} \\text{C}_6\\text{H}_5\\text{COCH}_3 \\xrightarrow{\\text{conc. } \\text{HNO}_3 + \\text{H}_2\\text{SO}_4} \\mathbf{m\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{COCH}_3}$$</li>
+      <li><strong>Benzaldehyde to Benzophenone:</strong>
+        $$\\text{C}_6\\text{H}_5\\text{CHO} + \\text{C}_6\\text{H}_5\\text{MgBr} \\rightarrow (\\text{C}_6\\text{H}_5)_2\\text{CHOH} \\xrightarrow{\\text{CrO}_3} \\mathbf{\\text{C}_6\\text{H}_5-\\text{CO}-\\text{C}_6\\text{H}_5}$$</li>
+    </ol>
+  </div>`,
+  '5 Marks',
+  [
+    ['Each correct two-step conversion with accurate reagents', '1 Mark × 5 = 5 Marks']
+  ]
+));
+
+// Exercise 8.12
+questions.push(createQCard(
+  'c12c-ch8-q17', 'Exercise 8.12', 'NCERT Exercise',
+  'Describe the following reactions with equations:<br>(i) Acetylation<br>(ii) Cannizzaro reaction<br>(iii) Cross aldol condensation<br>(iv) Decarboxylation',
+  `<div class="step">
+    <b>Reaction Descriptions:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Acetylation:</strong> Introduction of an acetyl group ($\text{CH}_3\text{CO}-$) into an organic compound containing an active hydrogen ($-\text{OH}, -\text{NH}_2$) using acetyl chloride or acetic anhydride in presence of pyridine:
+        $$\\text{C}_6\\text{H}_5\\text{OH} + \\text{CH}_3\\text{COCl} \\xrightarrow{\\text{pyridine}} \\mathbf{\\text{C}_6\\text{H}_5\\text{OCOCH}_3 (\\text{Phenyl acetate})} + \\text{HCl}$$</li>
+      <li><strong>Cannizzaro Reaction:</strong> Aldehydes which do not have an $\alpha$-hydrogen atom, on treatment with concentrated alkali ($50\\% \\text{ NaOH}$), undergo self-oxidation and reduction (disproportionation):
+        $$2\\text{HCHO} + \\text{conc. NaOH} \\rightarrow \\mathbf{\\text{CH}_3\\text{OH}} + \\mathbf{\\text{HCOONa}}$$</li>
+      <li><strong>Cross Aldol Condensation:</strong> Aldol condensation between two different aldehydes or ketones, producing up to four different products if both contain $\alpha$-hydrogens:
+        $$\\text{CH}_3\\text{CHO} + \\text{C}_6\\text{H}_5\\text{CHO} \\xrightarrow{\\text{dil. NaOH}} \\mathbf{\\text{C}_6\\text{H}_5-\\text{CH}=\\text{CH}-\\text{CHO} (\\text{Cinnamaldehyde})} + \\text{H}_2\\text{O}$$</li>
+      <li><strong>Decarboxylation:</strong> Carboxylic acids lose carbon dioxide to form hydrocarbons when their sodium salts are heated with sodalime ($\text{NaOH} + \text{CaO}$ in $3:1$ ratio):
+        $$\\text{CH}_3\\text{COONa} + \\text{NaOH} \\xrightarrow{\\text{CaO}, \\Delta} \\mathbf{\\text{CH}_4} + \\text{Na}_2\\text{CO}_3$$</li>
+    </ol>
+  </div>`,
+  '4 Marks',
+  [
+    ['(i) Acetylation definition and equation', '1 Mark'],
+    ['(ii) Cannizzaro disproportionation equation', '1 Mark'],
+    ['(iii) Cross aldol equation', '1 Mark'],
+    ['(iv) Sodalime decarboxylation equation', '1 Mark']
+  ]
+));
+
+// Exercise 8.13
+questions.push(createQCard(
+  'c12c-ch8-q18', 'Exercise 8.13', 'NCERT Exercise',
+  'Give simple chemical tests to distinguish between the following pairs of compounds:<br>(i) Propanal and Propanone<br>(ii) Acetophenone and Benzophenone<br>(iii) Phenol and Benzoic acid<br>(iv) Benzoic acid and Ethyl benzoate<br>(v) Pentan-2-one and Pentan-3-one<br>(vi) Benzaldehyde and Acetophenone<br>(vii) Ethanal and Propanal',
+  `<div class="step">
+    <b>Chemical Distinguishing Tests:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Propanal vs Propanone:</strong>
+        <br>• <em>Tollens\' Test:</em> Propanal reduces Tollens\' reagent to give a <b>shining silver mirror</b>. Propanone gives no reaction.
+        <br>• <em>Fehling\'s Test:</em> Propanal gives a red precipitate of $\text{Cu}_2\text{O}$; propanone does not.</li>
+      <li><strong>Acetophenone vs Benzophenone:</strong>
+        <br>• <em>Iodoform Test:</em> Acetophenone contains a methyl ketone group ($\text{CH}_3\text{CO}-$); warming with $\text{I}_2 + \text{NaOH}$ gives a <b>yellow precipitate of iodoform ($\text{CHI}_3$)</b>. Benzophenone lacks $\text{CH}_3\text{CO}-$ and gives no precipitate.</li>
+      <li><strong>Phenol vs Benzoic acid:</strong>
+        <br>• <em>Sodium Bicarbonate ($\text{NaHCO}_3$) Test:</em> Benzoic acid is stronger than carbonic acid and produces <b>brisk effervescence of $\text{CO}_2$ gas</b>. Phenol does not react.
+        <br>• <em>Neutral $\text{FeCl}_3$ Test:</em> Phenol gives a characteristic violet coloration; benzoic acid gives a buff-coloured precipitate.</li>
+      <li><strong>Benzoic acid vs Ethyl benzoate:</strong>
+        <br>• <em>$\text{NaHCO}_3$ Test:</em> Benzoic acid gives brisk effervescence of $\text{CO}_2$; ethyl benzoate (an ester) does not.</li>
+      <li><strong>Pentan-2-one vs Pentan-3-one:</strong>
+        <br>• <em>Iodoform Test:</em> Pentan-2-one ($\text{CH}_3\text{COCH}_2\text{CH}_2\text{CH}_3$) has a methyl ketone group and gives yellow precipitate of $\text{CHI}_3$. Pentan-3-one gives no reaction.</li>
+      <li><strong>Benzaldehyde vs Acetophenone:</strong>
+        <br>• <em>Tollens\' Test:</em> Benzaldehyde gives a silver mirror; acetophenone does not.
+        <br>• <em>Iodoform Test:</em> Acetophenone gives yellow $\text{CHI}_3$ ppt; benzaldehyde does not.</li>
+      <li><strong>Ethanal vs Propanal:</strong>
+        <br>• <em>Iodoform Test:</em> Ethanal ($\text{CH}_3\text{CHO}$) has a $\text{CH}_3\text{CO}-$ group and gives yellow precipitate of $\text{CHI}_3$. Propanal ($\text{CH}_3\text{CH}_2\text{CHO}$) does not give the iodoform test.</li>
+    </ol>
+  </div>`,
+  '4 Marks',
+  [
+    ['(i) to (iii) valid distinguishing tests and observations', '2 Marks'],
+    ['(iv) to (vii) valid distinguishing tests and observations', '2 Marks']
+  ]
+));
+
+// Exercise 8.14
+questions.push(createQCard(
+  'c12c-ch8-q19', 'Exercise 8.14', 'NCERT Exercise',
+  'How will you prepare the following compounds from benzene? You may use any inorganic reagent and any organic reagent having not more than one carbon atom:<br>(i) Methyl benzoate<br>(ii) m-Nitrobenzoic acid<br>(iii) p-Nitrobenzoic acid<br>(iv) Phenylacetic acid<br>(v) p-Nitrobenzaldehyde',
+  `<div class="step">
+    <b>Syntheses from Benzene:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Methyl benzoate:</strong>
+        $$\\text{C}_6\\text{H}_6 + \\text{CH}_3\\text{Cl} \\xrightarrow{\\text{anhyd. AlCl}_3} \\text{C}_6\\text{H}_5\\text{CH}_3 \\xrightarrow{\\text{alk. } \\text{KMnO}_4, \\Delta} \\text{C}_6\\text{H}_5\\text{COOH} \\xrightarrow{\\text{CH}_3\\text{OH} / \\text{H}^+} \\mathbf{\\text{C}_6\\text{H}_5\\text{COOCH}_3}$$</li>
+      <li><strong>$m$-Nitrobenzoic acid:</strong>
+        $$\\text{C}_6\\text{H}_6 \\xrightarrow{\\text{CH}_3\\text{Cl} / \\text{AlCl}_3} \\text{C}_6\\text{H}_5\\text{CH}_3 \\xrightarrow{\\text{KMnO}_4} \\text{C}_6\\text{H}_5\\text{COOH} \\xrightarrow{\\text{conc. } \\text{HNO}_3 + \\text{H}_2\\text{SO}_4} \\mathbf{m\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{COOH}}$$</li>
+      <li><strong>$p$-Nitrobenzoic acid:</strong>
+        $$\\text{C}_6\\text{H}_6 \\xrightarrow{\\text{CH}_3\\text{Cl} / \\text{AlCl}_3} \\text{C}_6\\text{H}_5\\text{CH}_3 \\xrightarrow{\\text{HNO}_3 / \\text{H}_2\\text{SO}_4} p\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{CH}_3 \\xrightarrow{\\text{KMnO}_4} \\mathbf{p\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{COOH}}$$</li>
+      <li><strong>Phenylacetic acid:</strong>
+        $$\\text{C}_6\\text{H}_6 \\xrightarrow{\\text{CH}_3\\text{Cl} / \\text{AlCl}_3} \\text{C}_6\\text{H}_5\\text{CH}_3 \\xrightarrow{\\text{Cl}_2 / h\\nu} \\text{C}_6\\text{H}_5\\text{CH}_2\\text{Cl} \\xrightarrow{\\text{KCN}} \\text{C}_6\\text{H}_5\\text{CH}_2\\text{CN} \\xrightarrow{\\text{H}_3\\text{O}^+} \\mathbf{\\text{C}_6\\text{H}_5\\text{CH}_2\\text{COOH}}$$</li>
+      <li><strong>$p$-Nitrobenzaldehyde:</strong>
+        $$\\text{C}_6\\text{H}_6 \\xrightarrow{\\text{CH}_3\\text{Cl} / \\text{AlCl}_3} \\text{C}_6\\text{H}_5\\text{CH}_3 \\xrightarrow{\\text{HNO}_3 / \\text{H}_2\\text{SO}_4} p\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{CH}_3 \\xrightarrow{1.\\; \\text{CrO}_2\\text{Cl}_2 / \\text{CS}_2,\\; 2.\\; \\text{H}_3\\text{O}^+} \\mathbf{p\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{CHO}}$$</li>
+    </ol>
+  </div>`,
+  '5 Marks',
+  [
+    ['(i) to (v) syntheses conforming to 1-carbon reagent limitation', '1 Mark × 5 = 5 Marks']
+  ]
+));
+
+// Exercise 8.15 to 8.27
+questions.push(createQCard(
+  'c12c-ch8-q20', 'Exercise 8.15', 'NCERT Exercise',
+  'Explain the mechanism of nucleophilic addition to a carbonyl group. Why are aldehydes generally more reactive than ketones towards nucleophilic additions?',
+  `<div class="step">
+    <b>1. Mechanism of Nucleophilic Addition:</b>
+    <ul style="margin-left:20px; line-height:1.75;">
+      <li>The carbonyl carbon is $sp^2$ hybridised and coplanar. Due to higher electronegativity of oxygen, the $>\\text{C}=\\text{O}$ bond is strongly polarised ($>\\text{C}^{\\delta+}=\\text{O}^{\\delta-}$).</li>
+      <li><strong>Step 1 (Slow, RDS):</strong> The nucleophile ($:\\text{Nu}^-$) attacks the planar electrophilic carbon from a direction perpendicular to the plane, converting the $sp^2$ hybridised carbon into a <b>tetrahedral alkoxide intermediate</b> ($sp^3$).</li>
+      <li><strong>Step 2 (Fast):</strong> The alkoxide intermediate captures a proton ($\text{H}^+$) from the medium to yield the neutral addition product.</li>
+    </ul>
+    <br>
+    <b>2. Why Aldehydes are More Reactive than Ketones:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>Electronic Factor:</strong> Ketones have two electron-donating alkyl groups ($+I$ effect) attached to the carbonyl carbon, which significantly diminish the partial positive charge on carbon. Aldehydes have only one alkyl group (or none in $\text{HCHO}$); hence, their carbonyl carbon is more electrophilic.</li>
+      <li><strong>Steric Factor:</strong> Ketones possess two bulky alkyl groups surrounding the carbonyl carbon, hindering the approach of the nucleophile. In aldehydes, the presence of one small hydrogen atom causes minimal steric crowding in the tetrahedral transition state.</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['Two-step nucleophilic addition mechanism with tetrahedral intermediate', '1 Mark'],
+    ['Electronic factor (+I effect in ketones diminishing positive charge)', '1 Mark'],
+    ['Steric hindrance in ketones vs aldehydes', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q21', 'Exercise 8.16', 'NCERT Exercise',
+  'Write the mechanism of acid-catalysed esterification of carboxylic acids with alcohols.',
+  `<div class="step">
+    <b>Mechanism of Acid-Catalysed Esterification:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>Protonation of Carbonyl Oxygen:</strong>
+        Protonation by the acid catalyst increases the electrophilicity of the carbonyl carbon:
+        $$R-\\text{COOH} + \\text{H}^+ \\rightleftharpoons R-\\text{C}^+(\\text{OH})_2$$</li>
+      <li><strong>Nucleophilic Attack by Alcohol:</strong>
+        The lone pair of oxygen of alcohol ($R'-\\text{OH}$) attacks the protonated carbonyl carbon to form a tetrahedral intermediate:
+        $$R-\\text{C}^+(\\text{OH})_2 + R'-\\ddot{\\text{O}}\\text{H} \\rightleftharpoons R-\\text{C(OH)}_2-\\text{O}^+(\\text{H})R'$$</li>
+      <li><strong>Proton Transfer:</strong>
+        Proton transfers from the alkoxy oxygen to one of the $-\\text{OH}$ groups, transforming it into a good leaving group ($-\\text{O}^+\\text{H}_2$):
+        $$R-\\text{C(OH)}_2-\\text{O}^+(\\text{H})R' \\rightleftharpoons R-\\text{C(OH)}(\\text{O}^+\\text{H}_2)(\\text{OR'})$$</li>
+      <li><strong>Elimination of Water & Deprotonation:</strong>
+        Loss of water yields protonated ester, which loses a proton to regenerate the acid catalyst and form ester:
+        $$R-\\text{C(OH)}(\\text{O}^+\\text{H}_2)(\\text{OR'}) \\xrightarrow{-\\text{H}_2\\text{O}} R-\\text{C}^+(\\text{OH})(\\text{OR'}) \\xrightarrow{-\\text{H}^+} \\mathbf{R-\\text{COOR'} (\\text{Ester})}$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['Step 1 & 2: Protonation and nucleophilic attack of alcohol', '1½ Marks'],
+    ['Step 3 & 4: Proton transfer, elimination of water, and deprotonation', '1½ Marks']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q22', 'Exercise 8.17', 'NCERT Exercise',
+  'Give reasons for the following:<br>(i) Carboxylic acids do not give characteristic reactions of carbonyl group (such as 2,4-DNP or NaHSO3 addition).<br>(ii) Chloroacetic acid is a stronger acid than acetic acid.<br>(iii) Benzoic acid is a stronger acid than acetic acid.',
+  `<div class="step">
+    <b>Explanations:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Carboxylic Acids Do Not Show Carbonyl Reactions:</strong>
+        In carboxylic acids ($R-\\text{COOH}$), the lone pair of electrons on the hydroxyl oxygen atom is in conjugation with the carbonyl double bond:
+        $$R-\\text{C}(=\\text{O})-\\ddot{\\text{O}}\\text{H} \\longleftrightarrow R-\\text{C}(\\text{O}^-)=\\text{O}^+\\text{H}$$
+        This resonance delocalization diminishes the partial positive charge on the carbonyl carbon substantially compared to aldehydes and ketones. Hence, it is not electrophilic enough to undergo addition reactions with 2,4-DNP, $\\text{NaHSO}_3$, or hydroxylamine.</li>
+      <li><strong>Chloroacetic Acid Stronger than Acetic Acid:</strong>
+        Chlorine is an electronegative atom that exerts an electron-withdrawing inductive ($-I$) effect. It disperses the negative charge on the carboxylate anion ($\\text{Cl}-\\text{CH}_2-\\text{COO}^-$), stabilizing the conjugate base and increasing acidity ($pK_a = 2.87$ vs $4.76$ for acetic acid).</li>
+      <li><strong>Benzoic Acid Stronger than Acetic Acid:</strong>
+        In benzoic acid ($\\text{C}_6\\text{H}_5\\text{COOH}$), the carboxyl carbon is attached to an $sp^2$ hybridised carbon of the phenyl ring. The $sp^2$ carbon has higher $s$-character (33%) and is electron-withdrawing ($-I$) relative to the $sp^3$ methyl carbon in acetic acid ($+I$). This stabilizes the benzoate ion, making benzoic acid ($pK_a = 4.20$) stronger than acetic acid ($pK_a = 4.76$).</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Resonance with lone pair of OH group reducing carbonyl electrophilicity', '1 Mark'],
+    ['(ii) -I effect of chlorine stabilizing chloroacetate ion', '1 Mark'],
+    ['(iii) sp² phenyl ring -I effect vs sp³ methyl +I effect', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q23', 'Exercise 8.18', 'NCERT Exercise',
+  'Write equations for the following named reactions:<br>(i) Hell-Volhard-Zelinsky (HVZ) reaction<br>(ii) Clemmensen reduction<br>(iii) Wolff-Kishner reduction<br>(iv) Stephen reaction<br>(v) Etard reaction',
+  `<div class="step">
+    <b>Named Organic Reactions:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Hell-Volhard-Zelinsky (HVZ) Reaction:</strong>
+        Carboxylic acids having $\alpha$-hydrogen react with chlorine or bromine in presence of red phosphorus to yield $\alpha$-halocarboxylic acids:
+        $$R-\\text{CH}_2\\text{COOH} \\xrightarrow{1.\\; \\text{X}_2 / \\text{Red P},\\; 2.\\; \\text{H}_2\\text{O}} \\mathbf{R-\\text{CH(X)}-\\text{COOH}} \\quad (\\text{X} = \\text{Cl, Br})$$</li>
+      <li><strong>Clemmensen Reduction:</strong>
+        Reduction of aldehydes/ketones to alkanes using zinc amalgam and concentrated hydrochloric acid:
+        $$>\\text{C}=\\text{O} + 4[\\text{H}] \\xrightarrow{\\text{Zn-Hg} / \\text{conc. HCl}} \\mathbf{>\\text{CH}_2} + \\text{H}_2\\text{O}$$</li>
+      <li><strong>Wolff-Kishner Reduction:</strong>
+        Carbonyl compounds are converted to alkanes by heating with hydrazine followed by $\\text{KOH}$ in ethylene glycol:
+        $$>\\text{C}=\\text{O} \\xrightarrow{\\text{H}_2\\text{NNH}_2} >\\text{C}=\\text{N}-\\text{NH}_2 \\xrightarrow{\\text{KOH} / \\text{glycol}, \\Delta} \\mathbf{>\\text{CH}_2} + \\text{N}_2 \\uparrow$$</li>
+      <li><strong>Stephen Reaction:</strong>
+        Nitriles are reduced with stannous chloride and $\\text{HCl}$ to imine hydrochloride, which on hydrolysis yields aldehydes:
+        $$R-\\text{CN} + \\text{SnCl}_2 + 2\\text{HCl} \\rightarrow R-\\text{CH}=\\text{NH} \\cdot \\text{HCl} \\xrightarrow{\\text{H}_3\\text{O}^+} \\mathbf{R-\\text{CHO}} + \\text{NH}_4\\text{Cl}$$</li>
+      <li><strong>Etard Reaction:</strong>
+        Chromyl chloride ($\\text{CrO}_2\\text{Cl}_2$) in $\\text{CS}_2$ oxidises the methyl group of toluene to a chromium complex, which on hydrolysis yields benzaldehyde:
+        $$\\text{C}_6\\text{H}_5\\text{CH}_3 + 2\\text{CrO}_2\\text{Cl}_2 \\xrightarrow{\\text{CS}_2} \\text{C}_6\\text{H}_5\\text{CH(OCrOHCl}_2)_2 \\xrightarrow{\\text{H}_3\\text{O}^+} \\mathbf{\\text{C}_6\\text{H}_5\\text{CHO}} + \\text{Cr}^{3+}$$</li>
+    </ol>
+  </div>`,
+  '5 Marks',
+  [
+    ['All 5 named reactions with accurate reagents and balanced equations', '1 Mark × 5 = 5 Marks']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q24', 'Exercise 8.19', 'NCERT Exercise',
+  'An organic compound (A) contains $69.77\\%$ carbon, $11.63\\%$ hydrogen and rest oxygen. The molecular mass of the compound is 86. It does not reduce Tollens\' reagent but forms an addition compound with sodium hydrogensulphite and gives positive iodoform test. On vigorous oxidation it gives ethanoic and propanoic acids. Write the possible structure of (A).',
+  `<div class="step">
+    <b>Step-by-Step Elucidation:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>Empirical & Molecular Formula:</strong>
+        <br>• $\\% \\text{O} = 100 - (69.77 + 11.63) = 18.60\\%$
+        <br>• Moles of $\\text{C} = 69.77 / 12 = 5.814 \\implies 5$
+        <br>• Moles of $\\text{H} = 11.63 / 1 = 11.63 \\implies 10$
+        <br>• Moles of $\\text{O} = 18.60 / 16 = 1.1625 \\implies 1$
+        <br>Empirical formula = $\\text{C}_5\\text{H}_{10}\\text{O}$ (Mass = $5(12) + 10 + 16 = 86$).
+        <br>Since molecular mass is 86, <b>Molecular formula is $\\text{C}_5\\text{H}_{10}\\text{O}$</b>.</li>
+      <li>Forms bisulphite adduct but does not reduce Tollens\' reagent $\\implies$ <b>Compound is a ketone</b>.</li>
+      <li>Gives positive iodoform test $\\implies$ Contains a <b>methyl ketone group ($\\text{CH}_3\\text{CO}-$)</b>.</li>
+      <li>Vigorous oxidation cleaves the ketone into ethanoic acid ($\\text{CH}_3\\text{COOH}$) and propanoic acid ($\\text{CH}_3\\text{CH}_2\\text{COOH}$) according to Popoff\'s rule:
+        $$\\mathbf{\\text{CH}_3-\\text{CO}-\\text{CH}_2-\\text{CH}_2-\\text{CH}_3} \\quad (\\mathbf{\\text{Pentan-2-one}})$$</li>
+    </ol>
+  </div>`,
+  '4 Marks',
+  [
+    ['Calculation of molecular formula C₅H₁₀O', '1 Mark'],
+    ['Deduction of methyl ketone group from iodoform and Tollens\' tests', '1½ Marks'],
+    ['Identification as pentan-2-one with oxidation equation', '1½ Marks']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q25', 'Exercise 8.20', 'NCERT Exercise',
+  'Although phenoxide ion has more number of resonating structures than carboxylate ion, carboxylic acid is a stronger acid than phenol. Why?',
+  `<div class="step">
+    <b>Comparison of Resonating Structures of Conjugate Bases:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li><strong>Carboxylate Ion ($R-\\text{COO}^-$):</strong>
+        Has two equivalent resonance structures where the negative charge is delocalized exclusively over <b>two highly electronegative oxygen atoms</b>:
+        $$R-\\text{C}(=\\text{O})-\\text{O}^- \\longleftrightarrow R-\\text{C}(\\text{O}^-)=\\text{O}$$
+        Because oxygen is highly electronegative, having the negative charge on oxygen provides extraordinarily high resonance stabilization.</li>
+      <li><strong>Phenoxide Ion ($\text{C}_6\text{H}_5\text{O}^-$):</strong>
+        Has five resonating structures. However, in three of these structures, the negative charge resides on <b>less electronegative carbon atoms</b> of the aromatic ring (ortho and para carbons).
+        Carbons are far less electronegative than oxygen and cannot accommodate negative charge effectively.</li>
+    </ol>
+    <b>Conclusion:</b> The two equivalent resonance structures of the carboxylate ion with negative charge on electronegative oxygen provide far greater thermodynamic stabilization than the non-equivalent structures of the phenoxide ion with negative charge on carbons. Hence, carboxylic acids ($pK_a \\approx 4-5$) are much stronger acids than phenols ($pK_a \\approx 10$).
+  </div>`,
+  '3 Marks',
+  [
+    ['Resonance of carboxylate ion with negative charge on 2 electronegative oxygens', '1½ Marks'],
+    ['Resonance of phenoxide ion with negative charge on less electronegative carbons', '1½ Marks']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q26', 'Exercise 8.21', 'NCERT Exercise',
+  'Carry out the following conversions: (i) Bromobenzene to 1-phenylethanol, (ii) Benzaldehyde to 3-phenylpropan-1-ol, (iii) Benzoic acid to m-nitrobenzyl alcohol.',
+  `<div class="step">
+    <b>Reaction Pathways:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Bromobenzene to 1-Phenylethanol:</strong>
+        $$\\text{C}_6\\text{H}_5\\text{Br} \\xrightarrow{\\text{Mg} / \\text{dry ether}} \\text{C}_6\\text{H}_5\\text{MgBr} \\xrightarrow{1.\\; \\text{CH}_3\\text{CHO},\\; 2.\\; \\text{H}_3\\text{O}^+} \\mathbf{\\text{C}_6\\text{H}_5-\\text{CH(OH)}-\\text{CH}_3}$$</li>
+      <li><strong>Benzaldehyde to 3-Phenylpropan-1-ol:</strong>
+        $$\\text{C}_6\\text{H}_5\\text{CHO} + \\text{CH}_3\\text{CHO} \\xrightarrow{\\text{dil. NaOH}} \\text{C}_6\\text{H}_5-\\text{CH}=\\text{CH}-\\text{CHO} \\xrightarrow{\\text{H}_2 / \\text{Ni, } \\Delta} \\mathbf{\\text{C}_6\\text{H}_5-\\text{CH}_2-\\text{CH}_2-\\text{CH}_2\\text{OH}}$$</li>
+      <li><strong>Benzoic acid to $m$-nitrobenzyl alcohol:</strong>
+        $$\\text{C}_6\\text{H}_5\\text{COOH} \\xrightarrow{\\text{conc. } \\text{HNO}_3 + \\text{H}_2\\text{SO}_4} m\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{COOH} \\xrightarrow{\\text{NaBH}_4 / \\text{I}_2 \\text{ or } \\text{B}_2\\text{H}_6} \\mathbf{m\\text{-NO}_2-\\text{C}_6\\text{H}_4-\\text{CH}_2\\text{OH}}$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Grignard addition to ethanal', '1 Mark'],
+    ['(ii) Aldol condensation followed by catalytic reduction', '1 Mark'],
+    ['(iii) Nitration followed by selective B₂H₆ reduction', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q27', 'Exercise 8.22', 'NCERT Exercise',
+  'Give reasons: (i) Dialkylcadmium is used for the preparation of ketones from acid chlorides and not Grignard reagents. (ii) Benzaldehyde does not reduce Fehling\'s solution.',
+  `<div class="step">
+    <b>Explanations:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Dialkylcadmium vs Grignard Reagent:</strong>
+        <br>Grignard reagents ($R-\\text{MgX}$) are extraordinarily strong nucleophiles. When reacted with an acid chloride, they initially produce a ketone, but the formed ketone is still very electrophilic and immediately reacts with a second molecule of Grignard reagent to yield a <b>tertiary alcohol</b>:
+        $$R'\\text{COCl} + R\\text{MgX} \\rightarrow R'\\text{COR} \\xrightarrow{R\\text{MgX}} R'R_2\\text{C-OH}$$
+        In contrast, dialkylcadmium ($R_2\\text{Cd}$) is much less reactive (cadmium is less electropositive than magnesium). It is nucleophilic enough to react with the highly reactive acid chloride, but <b>does not react with the ketone formed</b>. Hence, the reaction stops cleanly at the ketone stage:
+        $$2R'\\text{COCl} + R_2\\text{Cd} \\rightarrow \\mathbf{2R'\\text{COR}} + \\text{CdCl}_2$$</li>
+      <li><strong>Benzaldehyde and Fehling\'s Solution:</strong>
+        <br>Fehling\'s reagent is a milder oxidising agent than Tollens\' reagent. In aromatic aldehydes like benzaldehyde, the carbonyl carbon is stabilised by $+R$ resonance donation from the benzene ring, making it less electrophilic and harder to oxidise. Therefore, aromatic aldehydes cannot be oxidised by weaker Fehling\'s solution (though they are easily oxidised by stronger Tollens\' reagent).</li>
+    </ol>
+  </div>`,
+  '2 Marks',
+  [
+    ['Lower nucleophilicity of R₂Cd stopping reaction at ketone', '1 Mark'],
+    ['Fehling\'s reagent is too weak to oxidise resonance-stabilised aromatic aldehydes', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q28', 'Exercise 8.23', 'NCERT Exercise',
+  'An organic compound (A) with molecular formula $\\text{C}_8\\text{H}_8\\text{O}$ forms an orange-red precipitate with 2,4-DNP reagent and gives yellow precipitate on heating with iodine in presence of sodium hydroxide. It neither reduces Tollens\' or Fehling\'s reagent, nor does it decolourise bromine water or Baeyer\'s reagent. On drastic oxidation with chromic acid, it gives a carboxylic acid (B) having molecular formula $\\text{C}_7\\text{H}_6\\text{O}_2$. Identify the compounds (A) and (B) and explain the reactions involved.',
+  `<div class="step">
+    <b>Step-by-Step Deductions:</b>
+    <ol style="margin-left:20px; line-height:1.75;">
+      <li>Forms 2,4-DNP derivative $\\implies$ Contains a <b>carbonyl group ($>\\text{C}=\\text{O}$)</b>.</li>
+      <li>Does not reduce Tollens\' or Fehling\'s reagent $\\implies$ <b>Not an aldehyde; it is a ketone</b>.</li>
+      <li>Gives yellow precipitate of $\\text{CHI}_3$ on heating with $\\text{I}_2 / \\text{NaOH}$ (Iodoform test) $\\implies$ Contains a <b>methyl ketone group ($\\text{CH}_3\\text{CO}-$)</b>.</li>
+      <li>Does not decolourise bromine water $\\implies$ <b>No aliphatic carbon-carbon double or triple bond</b>; high degree of unsaturation ($8 - 4 + 1 = 5$) is due to an aromatic benzene ring.</li>
+      <li>Drastic oxidation gives $\\text{C}_7\\text{H}_6\\text{O}_2$ (Benzoic acid, B).
+        <br>Therefore, compound (A) is <b>Acetophenone (Methyl phenyl ketone, $\\text{C}_6\\text{H}_5\\text{COCH}_3$)</b> and (B) is <b>Benzoic acid ($\\text{C}_6\\text{H}_5\\text{COOH}$)</b>.</li>
+    </ol>
+    <br>
+    <b>Reactions:</b>
+    $$\\text{C}_6\\text{H}_5\\text{COCH}_3 + 3\\text{I}_2 + 4\\text{NaOH} \\rightarrow \\mathbf{\\text{CHI}_3 \\downarrow (\\text{yellow ppt})} + \\text{C}_6\\text{H}_5\\text{COONa} + 3\\text{NaI} + 3\\text{H}_2\\text{O}$$
+    $$\\text{C}_6\\text{H}_5\\text{COCH}_3 \\xrightarrow{\\text{K}_2\\text{Cr}_2\\text{O}_7 / \\text{H}_2\\text{SO}_4, \\Delta} \\mathbf{\\text{C}_6\\text{H}_5\\text{COOH} (\\text{B, Benzoic acid})}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Identification of (A) as acetophenone from 2,4-DNP and iodoform tests', '1½ Marks'],
+    ['Identification of (B) as benzoic acid from oxidation', '1½ Marks'],
+    ['Writing balanced chemical equations for iodoform and oxidation', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q29', 'Exercise 8.24', 'NCERT Exercise',
+  'Write the products of the following reactions:<br>(i) $\\text{CH}_3-\\text{C}\\equiv\\text{C}-\\text{H} + \\text{H}_2\\text{O} \\xrightarrow{\\text{Hg}^{2+}/\\text{H}_2\\text{SO}_4}$<br>(ii) Cyclohexanone + $\\text{HCN} \\rightarrow$<br>(iii) Benzaldehyde + Semicarbazide $\\xrightarrow{\\text{H}^+}$<br>(iv) 4-Methylbenzaldehyde + $\\text{KMnO}_4 / \\text{KOH}, \\Delta \\xrightarrow{\\text{H}^+}$',
+  `<div class="step">
+    <b>Products:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>$\\text{CH}_3-\\text{C}\\equiv\\text{C}-\\text{H} + \\text{H}_2\\text{O} \\xrightarrow{\\text{Hg}^{2+}/\\text{H}_2\\text{SO}_4}$:</strong>
+        $$\\mathbf{\\text{CH}_3\\text{COCH}_3} \\quad (\\text{Propan-2-one / Acetone via enol tautomerisation})$$</li>
+      <li><strong>Cyclohexanone + $\\text{HCN}$:</strong>
+        $$\\mathbf{\\text{Cyclohexanone cyanohydrin}} \\quad [\\text{C}_6\\text{H}_{10}(\\text{OH})(\\text{CN})]$$</li>
+      <li><strong>Benzaldehyde + Semicarbazide:</strong>
+        $$\\mathbf{\\text{Benzaldehyde semicarbazone}} \\quad [\\text{C}_6\\text{H}_5-\\text{CH}=\\text{N}-\\text{NH}-\\text{CONH}_2] + \\text{H}_2\\text{O}$$</li>
+      <li><strong>4-Methylbenzaldehyde + $\\text{KMnO}_4 / \\text{KOH}, \\Delta$:</strong>
+        Both the methyl group and aldehyde group are oxidised to carboxylic acid groups:
+        $$\\mathbf{\\text{Benzene-1,4-dicarboxylic acid (Terephthalic acid)}} \\quad [p\\text{-HOOC}-\\text{C}_6\\text{H}_4-\\text{COOH}]$$</li>
+    </ol>
+  </div>`,
+  '4 Marks',
+  [
+    ['(i) Acetone and (ii) Cyclohexanone cyanohydrin', '2 Marks'],
+    ['(iii) Benzaldehyde semicarbazone and (iv) Terephthalic acid', '2 Marks']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q30', 'Exercise 8.25', 'NCERT Exercise',
+  'How will you convert: (i) Ethanal to propan-2-ol, (ii) Benzaldehyde to $\\alpha$-hydroxyphenylacetic acid (mandelic acid), (iii) Propanone to propene?',
+  `<div class="step">
+    <b>Synthetic Routes:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Ethanal to Propan-2-ol:</strong>
+        $$\\text{CH}_3\\text{CHO} + \\text{CH}_3\\text{MgBr} \\xrightarrow{\\text{dry ether}} \\text{CH}_3-\\text{CH(OMgBr)}-\\text{CH}_3 \\xrightarrow{\\text{H}_3\\text{O}^+} \\mathbf{\\text{CH}_3-\\text{CH(OH)}-\\text{CH}_3 (\\text{Propan-2-ol})}$$</li>
+      <li><strong>Benzaldehyde to $\\alpha$-Hydroxyphenylacetic acid (Mandelic acid):</strong>
+        $$\\text{C}_6\\text{H}_5\\text{CHO} + \\text{HCN} \\xrightarrow{\\text{OH}^-} \\text{C}_6\\text{H}_5-\\text{CH(OH)}-\\text{CN} \\xrightarrow{\\text{H}_3\\text{O}^+, \\Delta} \\mathbf{\\text{C}_6\\text{H}_5-\\text{CH(OH)}-\\text{COOH} (\\text{Mandelic acid})}$$</li>
+      <li><strong>Propanone to Propene:</strong>
+        $$\\text{CH}_3\\text{COCH}_3 \\xrightarrow{\\text{NaBH}_4} \\text{CH}_3\\text{CH(OH)CH}_3 \\xrightarrow{\\text{conc. } \\text{H}_2\\text{SO}_4, 443\\text{ K}} \\mathbf{\\text{CH}_3-\\text{CH}=\\text{CH}_2} + \\text{H}_2\\text{O}$$</li>
+    </ol>
+  </div>`,
+  '3 Marks',
+  [
+    ['(i) Grignard addition of CH₃MgBr to ethanal', '1 Mark'],
+    ['(ii) Cyanohydrin formation followed by hydrolysis to mandelic acid', '1 Mark'],
+    ['(iii) Reduction of propanone followed by dehydration to propene', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q31', 'Exercise 8.26', 'NCERT Exercise',
+  'Give reasons: (i) Melting points of even-carbon aliphatic carboxylic acids are higher than those of the immediately preceding and succeeding odd-carbon homologues (Alternation effect). (ii) Formic acid is stronger than acetic acid.',
+  `<div class="step">
+    <b>Explanations:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>Alternation Effect in Melting Points:</strong>
+        <br>In aliphatic carboxylic acids, the carbon chain adopts a zig-zag conformation.
+        <br>• In acids with an <b>even number of carbon atoms</b>, the terminal $-\\text{CH}_3$ group and the terminal $-\\text{COOH}$ group lie on <b>opposite sides</b> of the zig-zag carbon chain. This arrangement allows the molecules to fit much more compactly and symmetrically into the crystal lattice, resulting in stronger intermolecular lattice forces and higher melting points.
+        <br>• In acids with an <b>odd number of carbon atoms</b>, the $-\\text{CH}_3$ and $-\\text{COOH}$ groups lie on the <b>same side</b> of the chain, causing poor packing efficiency in the crystal lattice and resulting in lower melting points.</li>
+      <li><strong>Formic Acid ($\text{HCOOH}$) Stronger than Acetic Acid ($\text{CH}_3\text{COOH}$):</strong>
+        <br>In acetic acid, the electron-releasing methyl group ($+\\text{I}$ effect) pushes electron density towards the carboxylate group, destabilizing the acetate anion ($\\text{CH}_3\\text{COO}^-$) and reducing its acidity ($pK_a = 4.76$).
+        <br>In formic acid, only a hydrogen atom is attached, which exerts no electron-donating $+I$ effect. Hence, the formate anion ($\\text{HCOO}^-$) is more stable than the acetate anion, making formic acid ($pK_a = 3.75$) about 10 times stronger than acetic acid.</li>
+    </ol>
+  </div>`,
+  '2 Marks',
+  [
+    ['(i) Alternation effect explained via zig-zag packing symmetry in crystal lattice', '1 Mark'],
+    ['(ii) Formic acid vs acetic acid explained via +I effect of methyl group', '1 Mark']
+  ]
+));
+
+questions.push(createQCard(
+  'c12c-ch8-q32', 'Exercise 8.27', 'NCERT Exercise',
+  'Complete the following reactions:<br>(i) $\\text{CH}_3\\text{COOH} + \\text{PCl}_5 \\rightarrow$<br>(ii) $2\\text{CH}_3\\text{COOH} \\xrightarrow{\\text{P}_2\\text{O}_5, \\Delta}$<br>(iii) $\\text{CH}_3\\text{COONa} + \\text{NaOH} \\xrightarrow{\\text{CaO}, \\Delta}$<br>(iv) $\\text{CH}_3\\text{COOH} + \\text{Cl}_2 / \\text{Red P} \\xrightarrow{\\text{H}_2\\text{O}}$',
+  `<div class="step">
+    <b>Reactions of Carboxylic Acids:</b>
+    <ol type="i" style="margin-left:20px; line-height:1.75;">
+      <li><strong>$\\text{CH}_3\\text{COOH} + \\text{PCl}_5$:</strong>
+        $$\\text{CH}_3\\text{COOH} + \\text{PCl}_5 \\rightarrow \\mathbf{\\text{CH}_3\\text{COCl} (\\text{Acetyl chloride})} + \\text{POCl}_3 + \\text{HCl}$$</li>
+      <li><strong>Dehydration with $\\text{P}_2\\text{O}_5$:</strong>
+        $$2\\text{CH}_3\\text{COOH} \\xrightarrow{\\text{P}_2\\text{O}_5, \\Delta} \\mathbf{(\\text{CH}_3\\text{CO})_2\\text{O} (\\text{Acetic anhydride})} + \\text{H}_2\\text{O}$$</li>
+      <li><strong>Decarboxylation with Sodalime:</strong>
+        $$\\text{CH}_3\\text{COONa} + \\text{NaOH} \\xrightarrow{\\text{CaO}, \\Delta} \\mathbf{\\text{CH}_4 (\\text{Methane})} + \\text{Na}_2\\text{CO}_3$$</li>
+      <li><strong>HVZ $\\alpha$-Halogenation:</strong>
+        $$\\text{CH}_3\\text{COOH} + \\text{Cl}_2 \\xrightarrow{1.\\; \\text{Red P},\\; 2.\\; \\text{H}_2\\text{O}} \\mathbf{\\text{Cl}-\\text{CH}_2-\\text{COOH} (\\text{Monochloroacetic acid})} + \\text{HCl}$$</li>
+    </ol>
+  </div>`,
+  '2 Marks',
+  [
+    ['All 4 chemical equations completed with correct products', '½ Mark × 4 = 2 Marks']
+  ]
+));
+
+console.log(`\nCompiling Chapter 8: Aldehydes, Ketones and Carboxylic Acids (Total: ${questions.length} Qs)...`);
+saveChapter(chNum, chTitle, svgDiagram, exTitle, questions, 'Amines');
+console.log(`Chapter 8: Aldehydes, Ketones and Carboxylic Acids successfully saved!`);
+

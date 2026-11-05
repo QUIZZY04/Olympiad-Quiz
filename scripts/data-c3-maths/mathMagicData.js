@@ -147,6 +147,166 @@ const mathMagicChapters = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Activity • Views of Everyday Objects",
+        "q": "Dheeraj drew a car from the terrace (top view) and Anshul drew the same car from the side. Dheeraj's drawing looked like a small box kept inside a bigger box, while Anshul's showed doors and wheels. Were both drawings correct? Explain.",
+        "ans": "<strong>Answer:</strong><br>• <strong>Yes, both drawings were correct!</strong><br>• The appearance of an object changes depending on the position from which you look at it.<br>• From the <strong>side view</strong>, you see the wheels, windows, and doors.<br>• From the <strong>top view</strong> (looking from above), you only see the roof and bonnet, which looks like a box inside a box.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Both are correct",
+            "marks": "1 M"
+          },
+          {
+            "key": "Side view explanation",
+            "marks": "1 M"
+          },
+          {
+            "key": "Top view explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Dot Grid Drawing • Rangoli Patterns",
+        "q": "Using a 5x5 dot grid, what geometric shapes can you draw by joining dots with straight lines? Name at least three different shapes.",
+        "ans": "<strong>Dot Grid Geometry:</strong><br>By connecting dots with straight line segments, we can construct:<br>1. <strong>Squares</strong> (by joining 4 dots with equal horizontal and vertical sides).<br>2. <strong>Rectangles</strong> (by joining dots with unequal length and width).<br>3. <strong>Triangles</strong> (by joining any 3 non-collinear dots).<br>4. <strong>Kite / Rhombus shapes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three valid shapes named",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Explanation of connecting dots",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mirror Halves • Symmetry Line",
+        "q": "Does a dotted line divide each of the following letters into two identical mirror halves?<br>(a) The letter 'A' with a vertical dotted line down the center.<br>(b) The letter 'B' with a horizontal dotted line across the middle.<br>(c) The letter 'F' with any straight line.",
+        "ans": "<strong>Symmetry Analysis:</strong><br>• <strong>(a) Letter 'A':</strong> <strong>Yes</strong>. A vertical mirror line divides 'A' into matching left and right halves.<br>• <strong>(b) Letter 'B':</strong> <strong>Yes</strong>. A horizontal mirror line divides 'B' into matching top and bottom loops.<br>• <strong>(c) Letter 'F':</strong> <strong>No</strong>. 'F' has no line of symmetry; neither vertical nor horizontal line can divide it into mirror halves.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "(a) Yes with explanation",
+            "marks": "1 M"
+          },
+          {
+            "key": "(b) Yes with explanation",
+            "marks": "1 M"
+          },
+          {
+            "key": "(c) No with explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Mask Making • Half Face Art",
+        "q": "How can you make a cat mask by folding a piece of paper in half and cutting only one side? Explain the mathematical principle involved.",
+        "ans": "<strong>Step-by-Step Procedure & Principle:</strong><br>1. Fold a sheet of drawing paper exactly in half.<br>2. Draw one ear, one eye, half the nose, and half the whiskers along the folded edge.<br>3. Cut along the drawn outline while the paper remains folded.<br>4. Unfold the paper: A complete, perfectly symmetrical cat face appears!<br>• <strong>Mathematical Principle:</strong> <strong>Bilateral Symmetry (Reflection)</strong>. The crease acts as a mirror line.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Folding and cutting procedure explained",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Concept of mirror symmetry / reflection identified",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Top, Side, Front Classification",
+        "q": "Look at a staircase:<br>(a) From which view does it look like steps going up: Top, Side, or Front?<br>(b) From which view does it look like a flat series of horizontal bars: Top, Side, or Front?",
+        "ans": "<strong>Staircase Views:</strong><br>• (a) Looking like steps going upwards: <strong>Side view</strong>.<br>• (b) Looking like flat horizontal strips/bars: <strong>Top view</strong> (or front view from directly ahead).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Side view for steps",
+            "marks": "1 M"
+          },
+          {
+            "key": "Top view for strips",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Exploration • Words with Mirror Halves",
+        "q": "Guess the words by looking at their top halves:<br>(a) H A I L<br>(b) C H O O K<br>(c) D I C E.<br>Explain why these words can be identified from their top halves.",
+        "ans": "<strong>Explanation:</strong><br>• Letters like C, D, E, H, I, K, O, X possess <strong>horizontal symmetry</strong>.<br>• Their top halves mirror their bottom halves across a central horizontal line, allowing complete word recognition even when only the upper half is visible.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Identification of letters with horizontal symmetry",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Hands-on Exercise • Tit for Tat Story",
+        "q": "In the story 'Tit for Tat', a clever painter painted only half a portrait for Ameena and asked for full payment. How did Ameena pay him back using a mirror?",
+        "ans": "<strong>Story Explanation:</strong><br>• The painter told Ameena: 'Put a mirror next to it, and you will see the complete picture!'<br>• Ameena gave him a ₹100 note and kept a mirror beside it, saying: 'Look in the mirror, now you have your full ₹200!'<br>• She used the <strong>exact same mirror reflection trick</strong> on the painter.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Ameena's mirror response explained",
+            "marks": "2 M"
+          },
+          {
+            "key": "Connection to reflection concept",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Dot Grid Pattern • Flower and Leaf",
+        "q": "On a dot grid, if a square has 4 dots on each side, how many dots are on its perimeter in total? (Be careful not to count the corners twice).",
+        "ans": "<strong>Perimeter Dot Calculation:</strong><br>• A square has 4 sides.<br>• Dots per side = 4.<br>• Total = 4 sides × (4 - 1 dots) = 4 × 3 = <strong>12 dots</strong> on the perimeter.<br>Alternatively: 4 corners + (2 inner dots on 4 sides) = 4 + 8 = 12 dots.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct count = 12 dots with explanation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Geometry • Line of Symmetry in Everyday Objects",
+        "q": "Which of the following objects can be cut into two identical halves by a straight knife cut?<br>(a) A round apple (sliced vertically down stem)<br>(b) A pair of scissors<br>(c) A shoe.",
+        "ans": "<strong>Symmetry Assessment:</strong><br>• <strong>(a) Round apple:</strong> <strong>Yes</strong>, a vertical cut down the center yields two symmetric halves.<br>• <strong>(b) Scissors:</strong> <strong>Yes</strong>, sliced along the center line between blades.<br>• <strong>(c) Shoe:</strong> <strong>No</strong>, a shoe is curved for left or right foot and has no line of symmetry.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apple = Yes",
+            "marks": "1 M"
+          },
+          {
+            "key": "Scissors = Yes",
+            "marks": "1 M"
+          },
+          {
+            "key": "Shoe = No",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Symmetrical Numbers",
+        "q": "Which digits among 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 have at least one line of symmetry when written in standard block form?",
+        "ans": "<strong>Symmetrical Digits:</strong><br>• <strong>0</strong> (both vertical and horizontal symmetry)<br>• <strong>3</strong> (horizontal line of symmetry)<br>• <strong>8</strong> (both vertical and horizontal symmetry).<br>Digits 2, 4, 5, 6, 7, 9 do not have lines of symmetry in standard form.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "0, 3, 8 identified correctly",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -298,6 +458,158 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Story • Radhika's Tamarind Seeds",
+        "q": "Radhika, Gauri, Vicky, Indra, and Sunil were collecting Imli (tamarind) seeds:<br>• Radhika collected 24 seeds<br>• Gauri collected 47 seeds<br>• Sunil collected 38 seeds<br>• Indra collected 54 seeds<br>• Vicky collected 42 seeds.<br>(a) Who collected the most seeds?<br>(b) Sunil will collect ___ more seeds to equal Gauri.<br>(c) How many children collected more than 40 seeds?",
+        "ans": "<strong>Step-by-Step Analysis:</strong><br>• <strong>(a) Most seeds:</strong> <strong>Indra</strong> with 54 seeds.<br>• <strong>(b) Seeds Sunil needs to equal Gauri:</strong> 47 - 38 = <strong>9 more seeds</strong>.<br>• <strong>(c) Children with >40 seeds:</strong> Gauri (47), Indra (54), and Vicky (42) = <strong>3 children</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Indra (54)",
+            "marks": "1 M"
+          },
+          {
+            "key": "9 seeds needed",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 children",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Cricket Records • One-Day International Scores",
+        "q": "Top batsman scores in a match: C.K. (99), Dhoni (102), Kumble (162), Rahane (152), Dhawan (178), Kapil (127).<br>(a) How many players scored more than a century (100 runs)?<br>(b) What is the difference between Dhawan's score and Dhoni's score?<br>(c) Who scored two runs less than a century and a half (148 runs)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) Players scoring >100:</strong> Dhoni (102), Kumble (162), Rahane (152), Dhawan (178), Kapil (127) = <strong>5 players</strong>.<br>• <strong>(b) Difference:</strong> 178 - 102 = <strong>76 runs</strong>.<br>• <strong>(c) Score = 148 runs:</strong> (None on list scored exactly 148; closest was Rahane at 152).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "5 players scored >100",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference 178 - 102 = 76",
+            "marks": "1 M"
+          },
+          {
+            "key": "148 analysis",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Lazy Crazy Shop • Bundles and Packets",
+        "q": "Lazy Crazy shop sells items only in packets of 100, packets of 10, and loose items. Find how a customer buying 243 items will receive them.",
+        "ans": "<strong>Place Value Packaging:</strong><br>• Number of items = 243.<br>• Hundreds place = 2 → <strong>2 packets of 100</strong> (200 items).<br>• Tens place = 4 → <strong>4 packets of 10</strong> (40 items).<br>• Ones place = 3 → <strong>3 loose items</strong>.<br>Total = 200 + 40 + 3 = 243.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 packets of 100, 4 of 10, 3 loose items",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Lazy Crazy Money • Currency Note Bundles",
+        "q": "At the Lazy Crazy shop, customers pay only in ₹100 notes, ₹10 notes, and ₹1 coins. How will an animal pay ₹420 and ₹143?",
+        "ans": "<strong>Currency Breakdown:</strong><br>• <strong>For ₹420:</strong><br>• 4 notes of ₹100 = ₹400<br>• 2 notes of ₹10 = ₹20<br>• 0 coins of ₹1 = ₹0.<br>• <strong>For ₹143:</strong><br>• 1 note of ₹100 = ₹100<br>• 4 notes of ₹10 = ₹40<br>• 3 coins of ₹1 = ₹3.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "₹420 breakdown correct",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹143 breakdown correct",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Who Am I? • Match the Number",
+        "q": "Match the clues with the correct numbers:<br>(1) I have 9 in my name and am very close to 90 — (A) 100<br>(2) If you hit a 4 after me you score a century — (B) 89<br>(3) I am equal to ten notes of 10 — (C) 96.",
+        "ans": "<strong>Matching:</strong><br>• (1) Close to 90 with 9 in name = <strong>(B) 89</strong>.<br>• (2) 100 - 4 = <strong>(C) 96</strong>.<br>• (3) Ten notes of 10 = 10 × 10 = <strong>(A) 100</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "1-B, 2-C, 3-A correct",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Jump Steps • Number Patterns",
+        "q": "Write the next three numbers for each jump pattern:<br>(a) Jump 2 steps forward: 110, 112, 114, ___, ___, ___<br>(b) Jump 5 steps forward: 150, 155, 160, ___, ___, ___<br>(c) Jump 10 steps backward: 190, 180, 170, ___, ___, ___.",
+        "ans": "<strong>Patterns:</strong><br>• (a) Adding 2: <strong>116, 118, 120</strong>.<br>• (b) Adding 5: <strong>165, 170, 175</strong>.<br>• (c) Subtracting 10: <strong>160, 150, 140</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "(a) 116, 118, 120",
+            "marks": "1 M"
+          },
+          {
+            "key": "(b) 165, 170, 175",
+            "marks": "1 M"
+          },
+          {
+            "key": "(c) 160, 150, 140",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Comparing Number Pairs",
+        "q": "Circle the larger number in each pair: (a) 149 and 194 (b) 170 and 107 (c) 199 and 200.",
+        "ans": "<strong>Larger Numbers:</strong><br>• (a) <strong>194</strong> is larger than 149 (194 > 149).<br>• (b) <strong>170</strong> is larger than 107 (170 > 107).<br>• (c) <strong>200</strong> is larger than 199 (200 > 199).",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "194, 170, 200 identified",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Expanded Form • Three Digits",
+        "q": "Write in expanded form: (a) 198 (b) 105 (c) 176.",
+        "ans": "<strong>Expanded Forms:</strong><br>• (a) 198 = <strong>100 + 90 + 8</strong>.<br>• (b) 105 = <strong>100 + 0 + 5</strong>.<br>• (c) 176 = <strong>100 + 70 + 6</strong>.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "All 3 correct expanded forms",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Shells Collection",
+        "q": "Amina has 124 sea shells. Her brother gives her 36 more shells. How many shells does Amina have now?",
+        "ans": "<strong>Addition:</strong><br>124 + 36 = 124 + 6 + 30 = 130 + 30 = <strong>160 shells</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "124 + 36 = 160 with working",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Century Milestone • Runs Needed",
+        "q": "A cricketer is batting on 78 runs. How many runs does he need to reach: (a) 100 runs (a century)? (b) 150 runs?",
+        "ans": "<strong>Calculations:</strong><br>• (a) For century: 100 - 78 = <strong>22 runs</strong>.<br>• (b) For 150 runs: 150 - 78 = <strong>72 runs</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "22 runs for century",
+            "marks": "1 M"
+          },
+          {
+            "key": "72 runs for 150",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -445,6 +757,170 @@ const mathMagicChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 3 ('Give and Take'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Give and Take', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -586,6 +1062,170 @@ const mathMagicChapters = [
           {
             "key": "Correct answer for (c): 3 m 50 cm",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 4 ('Long and Short'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Long and Short', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
           }
         ]
       }
@@ -735,6 +1375,170 @@ const mathMagicChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 5 ('Shapes and Designs'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Shapes and Designs', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -872,6 +1676,170 @@ const mathMagicChapters = [
           {
             "key": "Correct distance for (b): 231 km",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 6 ('Fun with Give and Take'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Fun with Give and Take', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
           }
         ]
       }
@@ -1017,6 +1985,170 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 7 ('Time Goes on...'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Time Goes on...', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1150,6 +2282,170 @@ const mathMagicChapters = [
           {
             "key": "Correct equality comparison",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 8 ('Who Is Heavier?'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Who Is Heavier?', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
           }
         ]
       }
@@ -1299,6 +2595,170 @@ const mathMagicChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 9 ('How Many Times?'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'How Many Times?', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1440,6 +2900,170 @@ const mathMagicChapters = [
           {
             "key": "Correct sum rule with clear example",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 10 ('Play with Patterns'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Play with Patterns', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
           }
         ]
       }
@@ -1585,6 +3209,170 @@ const mathMagicChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 11 ('Jugs and Mugs'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Jugs and Mugs', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1722,6 +3510,170 @@ const mathMagicChapters = [
           {
             "key": "Correct division expression (18 ÷ 2 = 9)",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 12 ('Can We Share?'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Can We Share?', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
           }
         ]
       }
@@ -1879,6 +3831,170 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 13 ('Smart Charts!'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Smart Charts!', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -2020,6 +4136,170 @@ const mathMagicChapters = [
           {
             "key": "Correct addition with paise regrouping for (b): ₹206.05",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-Life Math",
+        "q": "In Chapter 14 ('Rupees and Paise'), a student solves an NCERT word problem: If 1 kg of apples costs ₹60 and 1 kg of oranges costs ₹40, how much do 2 kg of apples and 3 kg of oranges cost altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Cost of 2 kg apples = 2 × ₹60 = <strong>₹120</strong>.<br>2. Cost of 3 kg oranges = 3 × ₹40 = <strong>₹120</strong>.<br>3. Total cost = ₹120 + ₹120 = <strong>₹240</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Apples = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Oranges = ₹120",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = ₹240",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "In-Text Activity • Hands-on Investigation",
+        "q": "In 'Rupees and Paise', how do you measure and compare quantities accurately? Explain with an example using standard units.",
+        "ans": "<strong>Measurement Explanation:</strong><br>• Standard units provide consistent and reliable measurements across the world.<br>• For length, we use <strong>metres (m)</strong> and <strong>centimetres (cm)</strong>.<br>• For weight, we use <strong>kilograms (kg)</strong> and <strong>grams (g)</strong>.<br>• For liquids, we use <strong>litres (L)</strong> and <strong>millilitres (mL)</strong>.<br>• Unlike non-standard units (such as footsteps or handspans), standard units give the exact same measurement no matter who measures.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Standard units defined",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Examples for length, weight, liquid",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Two-Step Word Problem",
+        "q": "Suresh bought a school bag for ₹175 and a pencil box for ₹45. He gave a ₹500 note to the shopkeeper. How much change did he receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total money spent = ₹175 + ₹45 = <strong>₹220</strong>.<br>2. Amount paid = ₹500.<br>3. Change returned = ₹500 - ₹220 = <strong>₹280</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total spent = ₹220",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Change = ₹280",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Quick Calculations",
+        "q": "Calculate mentally without writing long columns:<br>(a) 250 + 150 = ?<br>(b) 500 - 180 = ?<br>(c) 4 × 25 = ?<br>(d) 100 ÷ 4 = ?",
+        "ans": "<strong>Mental Calculations:</strong><br>• (a) 250 + 150 = <strong>400</strong>.<br>• (b) 500 - 180 = <strong>320</strong>.<br>• (c) 4 × 25 = <strong>100</strong>.<br>• (d) 100 ÷ 4 = <strong>25</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental results correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Geometry & Shapes • Edge and Corner Counting",
+        "q": "Name a 3D solid shape that has:<br>(a) 6 flat square faces, 12 straight edges, and 8 corners.<br>(b) 1 curved surface and 2 flat circular faces.<br>(c) Only 1 curved surface and 0 corners.",
+        "ans": "<strong>Solid Shapes:</strong><br>• (a) 6 square faces, 12 edges, 8 corners: <strong>Cube</strong>.<br>• (b) 1 curved and 2 circular faces: <strong>Cylinder</strong>.<br>• (c) Only 1 curved surface, 0 corners: <strong>Sphere</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cube",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cylinder",
+            "marks": "1 M"
+          },
+          {
+            "key": "Sphere",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Pattern Time • Sequences and Rules",
+        "q": "Identify the rule and find the next two terms: 5, 10, 20, 40, ___, ___.",
+        "ans": "<strong>Rule:</strong> Each term is multiplied by 2 (doubled).<br>• 40 × 2 = <strong>80</strong><br>• 80 × 2 = <strong>160</strong>.<br>Next terms are <strong>80, 160</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Next terms 80, 160",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rule: multiplying by 2",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Calendar • Date Calculation",
+        "q": "Rohan's summer vacation starts on 15th May and ends on 30th June. How many total days of vacation does Rohan get? (Remember: May has 31 days).",
+        "ans": "<strong>Days Count:</strong><br>• Days in May: From 15th to 31st = (31 - 15) + 1 = <strong>17 days</strong>.<br>• Days in June: Full 30 days = <strong>30 days</strong>.<br>• Total vacation days = 17 + 30 = <strong>47 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "May days = 17",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "June days = 30; Total = 47 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Equal Sharing • Division Problem",
+        "q": "Mother bakes 36 cookies and wants to distribute them equally among 4 children. How many cookies does each child receive? Write the division sentence.",
+        "ans": "<strong>Equal Sharing:</strong><br>• Total cookies = 36.<br>• Number of children = 4.<br>• Cookies per child = 36 ÷ 4 = <strong>9 cookies</strong>.<br>• Division sentence: <strong>36 ÷ 4 = 9</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36 ÷ 4 = 9 cookies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Data Handling • Reading a Bar Chart",
+        "q": "A survey of pets owned by children: Dog (14), Cat (10), Parrot (6), Fish (8).<br>(a) Which pet is owned by the least number of children?<br>(b) How many total pets are there?<br>(c) How many more dogs are there than parrots?",
+        "ans": "<strong>Survey Analysis:</strong><br>• (a) Least owned pet: <strong>Parrot</strong> (only 6).<br>• (b) Total pets: 14 + 10 + 6 + 8 = <strong>38 pets</strong>.<br>• (c) Difference: 14 Dogs - 6 Parrots = <strong>8 more dogs</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Parrot least",
+            "marks": "1 M"
+          },
+          {
+            "key": "Total = 38",
+            "marks": "1 M"
+          },
+          {
+            "key": "Difference = 8",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money • Making a Change",
+        "q": "A toy train costs ₹85. You pay with a ₹100 note. The shopkeeper gives you change in 5-rupee coins only. How many 5-rupee coins do you receive?",
+        "ans": "<strong>Calculations:</strong><br>• Change due = ₹100 - ₹85 = <strong>₹15</strong>.<br>• Number of 5-rupee coins = ₹15 ÷ ₹5 = <strong>3 coins</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Change = ₹15",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 coins of ₹5",
+            "marks": "1 M"
           }
         ]
       }

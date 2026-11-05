@@ -1,5 +1,5 @@
 // Official NCERT Class 4 Mathematics (Math-Magic / गणित का जादू) Complete Dataset - Chapters 1 to 14
-// Aligned with Classic CBSE Curriculum (2026-27 Session) - 100% Comprehensive Coverage
+// Classic CBSE Track (2026-27 Session) - 100% Comprehensive Question & Activity Coverage
 
 const mathMagicChapters = [
   {
@@ -87,6 +87,182 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -172,6 +348,182 @@ const mathMagicChapters = [
           {
             "key": "Stadium track calculation: 2,000 ÷ 400 = 5 rounds",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -265,6 +617,182 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -350,6 +878,182 @@ const mathMagicChapters = [
           {
             "key": "February has 29 days and total year has 366 days",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -441,6 +1145,182 @@ const mathMagicChapters = [
           {
             "key": "Back face = 5",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -538,6 +1418,182 @@ const mathMagicChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -623,6 +1679,182 @@ const mathMagicChapters = [
           {
             "key": "Grand total sum of 195 Litres",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -717,6 +1949,182 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -809,6 +2217,182 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -896,6 +2480,182 @@ const mathMagicChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -977,6 +2737,182 @@ const mathMagicChapters = [
           {
             "key": "Correct division yielding 12 shelves",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -1064,6 +3000,182 @@ const mathMagicChapters = [
           {
             "key": "Division: 1500 ÷ 250 = 6 packets",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -1157,6 +3269,182 @@ const mathMagicChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1246,6 +3534,182 @@ const mathMagicChapters = [
           {
             "key": "Accurate 5-bar grouping for 14, 9, and 6",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Building with Bricks • Brick Geometry & Measurement",
+        "q": "A standard brick has length 20 cm, breadth 10 cm, and height 7 cm.<br>(a) What is the shape of a brick?<br>(b) What is the area of its largest face?<br>(c) How many bricks of 20 cm length placed end-to-end make a line 1 metre (100 cm) long?",
+        "ans": "<strong>Brick Mathematics:</strong><br>• <strong>(a) Shape:</strong> A standard brick is a <strong>cuboid</strong>.<br>• <strong>(b) Area of largest face:</strong> Length × Breadth = 20 cm × 10 cm = <strong>200 square centimetres (cm²)</strong>.<br>• <strong>(c) Number of bricks in 1 m:</strong> 1 m = 100 cm. Number of bricks = 100 ÷ 20 = <strong>5 bricks</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Cuboid shape",
+            "marks": "1 M"
+          },
+          {
+            "key": "Area = 200 cm²",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 bricks",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "A Trip to Bhopal • Diesel Fuel Budget",
+        "q": "During a school trip to Bhopal, 4 buses stop at a petrol pump to fill diesel. Each bus takes 50 litres of diesel. If 1 litre of diesel costs ₹70:<br>(a) How many litres of diesel are filled in total?<br>(b) What is the total bill amount the school must pay?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Total diesel:</strong> 4 buses × 50 L = <strong>200 litres</strong>.<br>• <strong>(b) Total bill amount:</strong> 200 L × ₹70/L = <strong>₹14,000</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "200 litres",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "₹14,000 bill",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Long and Short • Height Comparisons",
+        "q": "The world record for Men's High Jump is 245 cm and the Long Jump world record is 895 cm.<br>(a) Express the High Jump record in metres and centimetres.<br>(b) How many more centimetres are needed for the high jump record to reach exactly 2.5 metres (250 cm)?",
+        "ans": "<strong>Calculations:</strong><br>• <strong>(a) High Jump:</strong> 245 cm = <strong>2 metres 45 centimetres</strong>.<br>• <strong>(b) Difference:</strong> 250 cm - 245 cm = <strong>5 centimetres</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 m 45 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "5 cm difference",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Tick-Tick-Tick • Expiry Dates on Food",
+        "q": "A packet of butter shows 'Manufactured: 15/01/26' and 'Best before 180 days from manufacture'. Can it be consumed safely on 15th April 2026? Explain.",
+        "ans": "<strong>Date Verification:</strong><br>• From 15th Jan to 15th April is exactly 3 months (approx. 90 days).<br>• Since 90 days is well within the 180-day shelf life, the butter is <strong>completely safe to consume</strong> on 15th April 2026.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Time elapsed is ~90 days",
+            "marks": "1 M"
+          },
+          {
+            "key": "Safe to consume within 180 days",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "The Junk Seller • Loan and Interest",
+        "q": "Kiran took a loan of ₹300 from a bank to set up her scrap shop. She pays back ₹51 every month for six months.<br>(a) How much money does she pay back in total?<br>(b) How much extra money (interest) did she pay to the bank?",
+        "ans": "<strong>Loan Repayment:</strong><br>• <strong>(a) Total paid:</strong> 6 months × ₹51/month = <strong>₹306</strong>.<br>• <strong>(b) Extra money (interest):</strong> ₹306 - ₹300 = <strong>₹6</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Total repayment = ₹306",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Interest = ₹6",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Jugs and Mugs • Measuring Medicine Dose",
+        "q": "A doctor prescribes a cough syrup bottle of 150 mL for a child. The child takes a 5 mL dose three times a day.<br>(a) How much cough syrup does the child take in one day?<br>(b) For how many days will the 150 mL bottle last?",
+        "ans": "<strong>Dosage Calculations:</strong><br>• <strong>(a) Daily intake:</strong> 3 doses × 5 mL = <strong>15 mL per day</strong>.<br>• <strong>(b) Days bottle lasts:</strong> 150 mL ÷ 15 mL/day = <strong>10 days</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "15 mL daily",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Bottle lasts 10 days",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Carts and Wheels • Circle Geometry",
+        "q": "A cyclist has a bicycle wheel with a radius of 35 cm.<br>(a) What is the diameter of the wheel?<br>(b) What is the relationship between the radius and diameter of any circle?",
+        "ans": "<strong>Circle Properties:</strong><br>• <strong>(a) Diameter:</strong> Diameter = 2 × Radius = 2 × 35 cm = <strong>70 cm</strong>.<br>• <strong>(b) Relationship:</strong> The diameter is always <strong>twice the length of the radius</strong> (D = 2r), passing straight through the circle's center.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Diameter = 70 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "Formula D = 2r stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Halves and Quarters • Fraction Sharing",
+        "q": "Raju has ₹100. He spends 1/2 of his money on a book, and 1/4 of his total money on a pen.<br>(a) How much does the book cost?<br>(b) How much does the pen cost?<br>(c) How much money does Raju have left?",
+        "ans": "<strong>Fractional Expenditure:</strong><br>• <strong>(a) Book (1/2):</strong> ₹100 ÷ 2 = <strong>₹50</strong>.<br>• <strong>(b) Pen (1/4):</strong> ₹100 ÷ 4 = <strong>₹25</strong>.<br>• <strong>(c) Money Left:</strong> ₹100 - (₹50 + ₹25) = ₹100 - ₹75 = <strong>₹25</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Book = ₹50",
+            "marks": "1 M"
+          },
+          {
+            "key": "Pen = ₹25",
+            "marks": "1 M"
+          },
+          {
+            "key": "Remaining = ₹25",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Play with Patterns • Secret Message Cipher",
+        "q": "In a secret code, each letter is replaced by its position in the alphabet (A=1, B=2, C=3, ... Z=26).<br>Decode the secret message: '13 - 1 - 20 - 8 - 19'. What word does it spell?",
+        "ans": "<strong>Decoding Cipher:</strong><br>• 13 = M<br>• 1 = A<br>• 20 = T<br>• 8 = H<br>• 19 = S<br>The secret message spells <strong>MATHS</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct decoding to spell MATHS",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Tables and Shares • Division with Remainder",
+        "q": "A florist has 58 roses. She wants to make bouquets containing 6 roses each.<br>(a) How many complete bouquets can she make?<br>(b) How many roses will be left over?",
+        "ans": "<strong>Division:</strong><br>• 58 ÷ 6 = 9 with a remainder of 4.<br>• <strong>(a) Complete bouquets:</strong> <strong>9 bouquets</strong> (9 × 6 = 54 roses).<br>• <strong>(b) Leftover roses:</strong> 58 - 54 = <strong>4 roses</strong> left over.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 bouquets",
+            "marks": "1 M"
+          },
+          {
+            "key": "4 leftover roses",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • True or False",
+        "q": "State True or False:<br>(a) A square has 4 equal sides and its perimeter is 4 × side.<br>(b) 1 kilometre equals 100 metres.<br>(c) Half past 4 in the afternoon is written as 16:30 in 24-hour time.",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> Perimeter = 4 × side.<br>• (b) <strong>False:</strong> 1 km = 1000 metres.<br>• (c) <strong>True:</strong> 4:30 PM = 12:00 + 4:30 = 16:30 hours.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }

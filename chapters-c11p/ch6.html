@@ -1,0 +1,1231 @@
+<section class="chapter-section" id="c11p-ch6">
+  <div class="chapter-header">
+    <div class="ch-badge">6</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 6</div>
+      <h2>System of Particles and Rotational Motion</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 26 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+      Rotational Dynamics: Pure Rolling Motion Kinematics &amp; Parallel / Perpendicular Axes Theorems
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Pure Rolling on Horizontal Ground -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Pure Rolling Velocity Superposition:</text>
+
+      <!-- Rolling Wheel -->
+      <circle cx="150" cy="125" r="50" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5"/>
+      <circle cx="150" cy="125" r="4" fill="#4c1d95"/>
+      <!-- Ground line -->
+      <line x1="45" y1="175" x2="365" y2="175" stroke="#64748b" stroke-width="2"/>
+
+      <!-- Center velocity v_cm -->
+      <line x1="150" y1="125" x2="205" y2="125" stroke="#2563eb" stroke-width="2.5"/>
+      <polygon points="205,125 195,121 195,129" fill="#2563eb"/>
+      <text x="160" y="118" font-size="9.5" font-weight="bold" fill="#2563eb">v_cm</text>
+
+      <!-- Angular speed omega arrow -->
+      <path d="M 175 100 A 35 35 0 0 1 180 145" fill="none" stroke="#7c3aed" stroke-width="2"/>
+      <polygon points="180,145 186,138 178,136" fill="#7c3aed"/>
+      <text x="188" y="125" font-size="9.5" font-weight="bold" fill="#7c3aed">&omega;</text>
+
+      <!-- Top point velocity 2v_cm -->
+      <line x1="150" y1="75" x2="240" y2="75" stroke="#059669" stroke-width="2.5"/>
+      <polygon points="240,75 230,71 230,79" fill="#059669"/>
+      <text x="175" y="70" font-size="9.5" font-weight="bold" fill="#059669">v_top = 2 v_cm</text>
+
+      <!-- Bottom point P (instantaneous rest) -->
+      <circle cx="150" cy="175" r="3" fill="#dc2626"/>
+      <text x="110" y="195" font-size="9.5" font-weight="bold" fill="#dc2626">v_contact = 0 (Rest)</text>
+
+      <rect x="250" y="90" width="130" height="75" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="258" y="108" font-size="9" font-weight="bold" fill="#5b21b6">Rolling Energy:</text>
+      <text x="258" y="126" font-size="8.5" fill="#334155">&bull; K = &frac12;Mv&sup2; + &frac12;I&omega;&sup2;</text>
+      <text x="258" y="144" font-size="8.5" fill="#334155">&bull; K = &frac12;Mv&sup2;(1 + k&sup2;/R&sup2;)</text>
+      <text x="258" y="158" font-size="8.5" font-weight="bold" fill="#047857">&bull; v_cm = R&omega;</text>
+
+      <!-- Panel 2: Moment of Inertia Theorems -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Fundamental Inertia Theorems:</text>
+
+      <!-- Perpendicular Axes -->
+      <rect x="425" y="55" width="160" height="140" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="435" y="75" font-size="10" font-weight="bold" fill="#1e293b">Perpendicular Axes:</text>
+      <ellipse cx="505" cy="120" rx="45" ry="25" fill="#f1f5f9" stroke="#94a3b8"/>
+      <line x1="505" y1="120" x2="555" y2="120" stroke="#2563eb" stroke-width="1.5"/>
+      <line x1="505" y1="120" x2="505" y2="85" stroke="#059669" stroke-width="1.5"/>
+      <line x1="505" y1="120" x2="505" y2="155" stroke="#7c3aed" stroke-width="2"/>
+      <text x="440" y="178" font-size="9.5" font-weight="bold" fill="#7c3aed">I_z = I_x + I_y</text>
+      <text x="440" y="190" font-size="8" fill="#64748b">(For planar laminae only)</text>
+
+      <!-- Parallel Axes -->
+      <rect x="595" y="55" width="160" height="140" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="605" y="75" font-size="10" font-weight="bold" fill="#1e293b">Parallel Axes:</text>
+      <line x1="640" y1="90" x2="640" y2="160" stroke="#2563eb" stroke-width="2"/>
+      <text x="630" y="85" font-size="8.5" font-weight="bold" fill="#2563eb">I_CM</text>
+      <line x1="710" y1="90" x2="710" y2="160" stroke="#7c3aed" stroke-width="2"/>
+      <text x="705" y="85" font-size="8.5" font-weight="bold" fill="#7c3aed">I</text>
+      <line x1="640" y1="125" x2="710" y2="125" stroke="#dc2626" stroke-dasharray="2,2"/>
+      <text x="670" y="120" font-size="9" font-weight="bold" fill="#dc2626">d</text>
+      <text x="605" y="178" font-size="9.5" font-weight="bold" fill="#5b21b6">I = I_CM + M d&sup2;</text>
+      <text x="605" y="190" font-size="8" fill="#64748b">(Applicable to any 3D body)</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 6.1 to 6.26: Centre of Mass, Torque &amp; Angular Momentum, Moment of Inertia, Rolling Dynamics &amp; Equilibrium</div>
+
+  <!-- c11p-ch6-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q1">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q1')">
+      <div class="q-num">Question 6.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Give the location of the centre of mass of a (i) sphere, (ii) cylinder, (iii) ring, and (iv) cube, each of uniform mass density. Does the centre of mass of a body necessarily lie inside the body?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Locations of Centre of Mass (CM) for bodies of uniform mass density:</b><br><br>
+    • <b>(i) Sphere:</b> The centre of mass lies at its <b>geometric centre</b>.<br>
+    • <b>(ii) Cylinder:</b> The centre of mass lies at the <b>midpoint of its central longitudinal axis of symmetry</b>.<br>
+    • <b>(iii) Ring:</b> The centre of mass lies at the <b>geometric centre of the circular ring</b>.<br>
+    • <b>(iv) Cube:</b> The centre of mass lies at the <b>point of intersection of its space diagonals (geometric centre)</b>.<br><br>
+    <b>Does CM necessarily lie inside the body?</b><br>
+    <b>No, the centre of mass does not necessarily lie inside the material of the body.</b><br>
+    <i>Examples:</i><br>
+    • In a <b>uniform circular ring</b>, the CM lies at its centre, which is in empty space containing no mass.<br>
+    • In a <b>hollow sphere, hollow cylinder, or horse-shoe magnet</b>, the CM lies in the empty hollow interior or outside the material structure.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Locations of CM identified for sphere, cylinder, ring, and cube</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Clarification that CM need not lie inside material of the body</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Physical examples (uniform ring, hollow sphere)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q2">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q2')">
+      <div class="q-num">Question 6.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        In the HCl molecule, the separation between the nuclei of the two atoms is about $1.27\text{ Å}$ ($1\text{ Å} = 10^{-10}\text{ m}$). Find the approximate location of the CM of the molecule, given that a chlorine atom is about $35.5$ times as massive as a hydrogen atom and nearly all the mass of an atom is concentrated in its nucleus.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let the position of the Hydrogen (H) nucleus be chosen as the origin: $x_1 = 0$.<br>
+    Let the mass of the hydrogen atom be $m_H = m$.<br>
+    Then the mass of the chlorine atom is $m_{Cl} = 35.5 m$.<br>
+    Separation distance: $d = 1.27\text{ Å}$. Position of Chlorine nucleus: $x_2 = 1.27\text{ Å}$.<br><br>
+    <b>Centre of Mass Formula:</b><br>
+    $$x_{CM} = \frac{m_H x_1 + m_{Cl} x_2}{m_H + m_{Cl}} = \frac{m(0) + (35.5 m)(1.27)}{m + 35.5 m}$$<br>
+    $$x_{CM} = \frac{35.5 m \times 1.27}{36.5 m} = \frac{35.5 \times 1.27}{36.5} = \frac{45.085}{36.5} \approx \mathbf{1.235\text{ Å}}$$<br><br>
+    In SI units: $x_{CM} \approx 1.24 \times 10^{-10}\text{ m}$.<br>
+    Distance from Chlorine atom: $1.27 - 1.235 = 0.035\text{ Å}$.<br><br>
+    $$\therefore \text{The centre of mass is located at a distance of } \mathbf{1.24\text{ Å}} \text{ from the hydrogen nucleus (very close to the heavy Cl nucleus).}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Coordinate setup with Hydrogen at origin and Chlorine at $x = 1.27\text{ Å}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Application of 2-particle CM formula $x_{CM} = (m_1 x_1 + m_2 x_2)/(m_1 + m_2)$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final calculation: $x_{CM} = 1.235\text{ Å}$ from Hydrogen nucleus</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q3">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q3')">
+      <div class="q-num">Question 6.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A child sits stationary at one end of a long trolley moving uniformly with a speed $v$ on a smooth horizontal floor. If the child gets up and runs about on the trolley in any manner, what is the speed of the CM of the (trolley + child) system?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Analysis of External Forces:</b><br>
+    • The system consists of (trolley + child).<br>
+    • The horizontal floor is smooth, meaning there is <b>zero external horizontal force</b> acting on the combined system ($F_{ext, horizontal} = 0$).<br>
+    • The normal reaction and gravitational forces act vertically and balance each other out ($F_{ext, vertical} = 0$).<br>
+    • The muscular forces exerted by the child and the corresponding friction between the child’s feet and the trolley floor are purely <b>internal forces</b>.<br><br>
+    <b>Newton’s Second Law for a System of Particles:</b><br>
+    $$\vec{F}_{ext} = M_{total} \vec{a}_{CM}$$<br>
+    Since $\vec{F}_{ext} = \mathbf{0}$, the acceleration of the centre of mass is zero:<br>
+    $$\vec{a}_{CM} = \frac{d\vec{v}_{CM}}{dt} = \mathbf{0} \implies \vec{v}_{CM} = \text{constant}$$$$<br><br>
+    $$\mathbf{\text{The speed of the centre of mass of the (trolley + child) system remains unchanged at } v.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Identification of forces between child and trolley as internal forces</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Statement that net external horizontal force is zero ($\vec{F}_{ext} = \mathbf{0}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Conclusion that $\vec{v}_{CM}$ remains constant and equal to $v$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q4">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q4')">
+      <div class="q-num">Question 6.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Show that the area of the triangle contained between the vectors $\vec{a}$ and $\vec{b}$ is one half of the magnitude of $\vec{a} \times \vec{b}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Consider a triangle $OPQ$ formed by vectors $\vec{OP} = \vec{a}$ and $\vec{OQ} = \vec{b}$ originating from the common vertex $O$.<br>
+    Let $\theta$ be the angle between $\vec{a}$ and $\vec{b}$ ($0 \le \theta \le 180^\circ$).<br><br>
+    • Length of the base: $\text{Base } = |\vec{OP}| = |\vec{a}| = a$.<br>
+    • From vertex $Q$, drop a perpendicular $QN$ onto line $OP$.<br>
+    • In right triangle $ONQ$, the height $h$ is given by:<br>
+      $$h = QN = |\vec{OQ}| \sin \theta = |\vec{b}| \sin \theta = b \sin \theta$$<br><br>
+    <b>Area of Triangle $OPQ$:</b><br>
+    $$\text{Area} = \frac{1}{2} \times \text{Base} \times \text{Height} = \frac{1}{2} a (b \sin \theta) = \frac{1}{2} a b \sin \theta$$<br><br>
+    By definition of the vector cross product:<br>
+    $$|\vec{a} \times \vec{b}| = a b \sin \theta$$<br><br>
+    Substituting into the area equation:<br>
+    $$\mathbf{\text{Area of triangle } = \frac{1}{2} |\vec{a} \times \vec{b}|}$$
+    Hence proved.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Geometrical definition of triangle with base $a$ and height $b\sin\theta$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Standard geometric area formula $\frac{1}{2} a b \sin \theta$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Vector cross product magnitude relation $|\vec{a} \times \vec{b}| = ab\sin\theta$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q5">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q5')">
+      <div class="q-num">Question 6.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Show that $\vec{a} \cdot (\vec{b} \times \vec{c})$ is equal in magnitude to the volume of the parallelepiped formed on the three vectors, $\vec{a}$, $\vec{b}$ and $\vec{c}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Consider a parallelepiped whose concurrent edges are represented by vectors $\vec{a}$, $\vec{b}$, and $\vec{c}$.<br><br>
+    <b>1. Area of the Base:</b><br>
+    Let the parallelogram formed by vectors $\vec{b}$ and $\vec{c}$ constitute the base of the parallelepiped.<br>
+    The area of this parallelogram is given by the cross product magnitude:<br>
+    $$\text{Area of base } A = |\vec{b} \times \vec{c}|$$<br>
+    The vector $\vec{n} = \frac{\vec{b} \times \vec{c}}{|\vec{b} \times \vec{c}|}$ is a unit vector perpendicular to the base parallelogram.<br><br>
+    <b>2. Height of Parallelepiped ($h$):</b><br>
+    The vertical height $h$ is the projection of vector $\vec{a}$ along the normal to the base:<br>
+    $$h = |\vec{a} \cdot \hat{n}| = a \cos \phi$$<br>
+    where $\phi$ is the angle between $\vec{a}$ and the normal vector $(\vec{b} \times \vec{c})$.<br><br>
+    <b>3. Volume of Parallelepiped ($V$):</b><br>
+    $$V = \text{Base Area} \times \text{Height} = |\vec{b} \times \vec{c}| \times (a \cos \phi)$$<br>
+    $$V = |\vec{a} \cdot (\vec{b} \times \vec{c})|$$<br><br>
+    $$\mathbf{\text{Hence, the scalar triple product } |\vec{a} \cdot (\vec{b} \times \vec{c})| \text{ equals the volume of the parallelepiped.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Base area expressed as $|\vec{b} \times \vec{c}|$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Height expressed as projection of $\vec{a}$ along normal to base</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Volume formula $V = \text{Area} \times h = |\vec{a} \cdot (\vec{b} \times \vec{c})|$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q6">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q6')">
+      <div class="q-num">Question 6.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Find the components along the x, y, z axes of the angular momentum $\vec{l}$ of a particle, whose position vector is $\vec{r}$ with components $x, y, z$ and momentum is $\vec{p}$ with components $p_x, p_y, p_z$. Show that if the particle moves only in the x-y plane the angular momentum has only a z-component.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Angular momentum is defined as the cross product: $\vec{l} = \vec{r} \times \vec{p}$.<br>
+    In Cartesian coordinates:<br>
+    $$\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}, \quad \vec{p} = p_x\hat{i} + p_y\hat{j} + p_z\hat{k}$$<br>
+    Expanding the determinant:<br>
+    $$\vec{l} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ x & y & z \\ p_x & p_y & p_z \end{vmatrix}$$<br>
+    $$\vec{l} = \hat{i}(y p_z - z p_y) - \hat{j}(x p_z - z p_x) + \hat{k}(x p_y - y p_x)$$<br><br>
+    The components along the three axes are:<br>
+    $$\mathbf{l_x = y p_z - z p_y}$$<br>
+    $$\mathbf{l_y = z p_x - x p_z}$$<br>
+    $$\mathbf{l_z = x p_y - y p_x}$$<br><br>
+    <b>Motion restricted to x-y plane:</b><br>
+    If the particle moves exclusively in the x-y plane:<br>
+    $$z = 0 \quad \text{and} \quad p_z = 0$$<br>
+    Substituting $z = 0$ and $p_z = 0$ into the components:<br>
+    $$l_x = y(0) - (0)p_y = 0$$<br>
+    $$l_y = (0)p_x - x(0) = 0$$<br>
+    $$l_z = x p_y - y p_x \ne 0$$<br>
+    $$\mathbf{\text{Therefore, the angular momentum vector has only a z-component: } \vec{l} = (x p_y - y p_x)\hat{k}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Determinant formulation for cross product $\vec{l} = \vec{r} \times \vec{p}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Derivation of 3 Cartesian components $l_x, l_y, l_z$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Proof for 2D plane motion showing $l_x = 0, l_y = 0$ and only $l_z \ne 0$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q7">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q7')">
+      <div class="q-num">Question 6.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Two particles, each of mass $m$ and speed $v$, move along parallel lines separated by a distance $d$. Show that the vector angular momentum of the two particle system is the same whatever be the point about which the angular momentum is taken.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let the two particles 1 and 2 move along parallel lines with equal speed $v$ in opposite directions (or same direction). In the standard NCERT problem, they move along opposite parallel lines separated by perpendicular distance $d$.<br>
+    Let particle 1 move along line $L_1$ with momentum $\vec{p}_1 = m\vec{v}$, and particle 2 move along line $L_2$ with momentum $\vec{p}_2 = -m\vec{v}$.<br><br>
+    Choose an arbitrary reference origin $O$.<br>
+    Let $\vec{r}_1$ and $\vec{r}_2$ be the position vectors of particles 1 and 2 relative to $O$.<br>
+    Total angular momentum of the system about origin $O$:<br>
+    $$\vec{L}_O = \vec{r}_1 \times \vec{p}_1 + \vec{r}_2 \times \vec{p}_2$$<br>
+    Since $\vec{p}_2 = -\vec{p}_1$:<br>
+    $$\vec{L}_O = \vec{r}_1 \times \vec{p}_1 - \vec{r}_2 \times \vec{p}_1 = (\vec{r}_1 - \vec{r}_2) \times \vec{p}_1$$<br><br>
+    Notice that $(\vec{r}_1 - \vec{r}_2) = \vec{r}_{12}$ is the relative position vector pointing from particle 2 to particle 1.<br>
+    The relative position vector $\vec{r}_{12}$ is completely <b>independent of the choice of origin $O$</b>!<br><br>
+    Magnitude of the angular momentum:<br>
+    $$|\vec{L}| = |\vec{r}_{12} \times \vec{p}_1| = p_1 \cdot (|\vec{r}_{12}| \sin \theta) = (mv) \cdot d = \mathbf{mvd}$$<br>
+    where $d = |\vec{r}_{12}| \sin \theta$ is the constant perpendicular distance between the two parallel lines.<br>
+    The direction is perpendicular to the plane of the two tracks by right-hand thumb rule.<br>
+    $$\mathbf{\text{Hence, the total angular momentum is invariant and identical about any origin.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Expression of total angular momentum $\vec{L} = \vec{r}_1 \times \vec{p}_1 + \vec{r}_2 \times \vec{p}_2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Factoring: $\vec{L} = (\vec{r}_1 - \vec{r}_2) \times \vec{p}_1$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Showing independence from origin via relative position $\vec{r}_{12}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final magnitude $L = mvd$ perpendicular to the plane</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q8">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q8')">
+      <div class="q-num">Question 6.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A non-uniform bar of weight $W$ is suspended at rest by two light strings of lengths $l_1$ and $l_2$ as shown in Fig. 6.13. The angles between the strings and the horizontal are $\theta_1$ and $\theta_2$. Show that the position of the centre of gravity can be calculated by applying translational and rotational equilibrium.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let the bar have length $L$, and let its centre of gravity $G$ be at distance $d$ from the left end.<br>
+    Tensions in the two strings are $T_1$ and $T_2$ making angles $\theta_1$ and $\theta_2$ with the horizontal.<br><br>
+    <b>1. Translational Equilibrium:</b><br>
+    • Horizontal components balance:<br>
+      $$T_1 \cos \theta_1 = T_2 \cos \theta_2 \implies \frac{T_1}{T_2} = \frac{\cos \theta_2}{\cos \theta_1}$$<br>
+    • Vertical components balance the weight $W$ of the bar:<br>
+      $$T_1 \sin \theta_1 + T_2 \sin \theta_2 = W$$<br><br>
+    <b>2. Rotational Equilibrium about Centre of Gravity $G$:</b><br>
+    The net torque about the centre of gravity $G$ must be zero:<br>
+    $$\tau_{net, G} = 0$$<br>
+    $$(T_1 \sin \theta_1) d = (T_2 \sin \theta_2) (L - d)$$<br>
+    $$d \left(T_1 \sin \theta_1 + T_2 \sin \theta_2\right) = T_2 \sin \theta_2 \cdot L$$<br>
+    $$d \cdot W = T_2 \sin \theta_2 \cdot L \implies d = \frac{T_2 \sin \theta_2}{W} L$$<br><br>
+    By solving the linear system for $T_1$ and $T_2$, the exact position $d$ of the centre of gravity $G$ is uniquely determined.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Horizontal force equilibrium: $T_1 \cos\theta_1 = T_2 \cos\theta_2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Vertical force equilibrium: $T_1 \sin\theta_1 + T_2 \sin\theta_2 = W$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Rotational torque balance about $G$: $\tau_{net} = 0$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Formulation for position $d$ of centre of gravity</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q9">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q9')">
+      <div class="q-num">Question 6.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A car weighs $1800\text{ kg}$. The distance between its front and back axles is $1.8\text{ m}$. Its centre of gravity is $1.05\text{ m}$ behind the front axle. Determine the force exerted by the level ground on each front wheel and on each back wheel. (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of car $M = 1800\text{ kg}$<br>
+    • Total weight $W = M g = 1800 \times 9.8 = 17,640\text{ N}$<br>
+    • Wheelbase distance between axles: $D = 1.8\text{ m}$<br>
+    • Distance of CG from front axle: $d_1 = 1.05\text{ m}$<br>
+    • Distance of CG from back axle: $d_2 = 1.8 - 1.05 = 0.75\text{ m}$<br><br>
+    Let $R_f$ be total normal force on the two front wheels, and $R_b$ be total normal force on the two back wheels.<br><br>
+    <b>1. Vertical Force Equilibrium:</b><br>
+    $$R_f + R_b = W = 17640\text{ N} \quad \text{--- (Eq 1)}$$<br><br>
+    <b>2. Torque Equilibrium about the Centre of Gravity (CG):</b><br>
+    $$R_f \times d_1 = R_b \times d_2$$<br>
+    $$R_f \times 1.05 = R_b \times 0.75 \implies R_b = \frac{1.05}{0.75} R_f = 1.4 R_f$$<br><br>
+    <b>3. Solving for Reactions:</b><br>
+    $$R_f + 1.4 R_f = 17640 \implies 2.4 R_f = 17640$$<br>
+    $$R_f = \frac{17640}{2.4} = 7350\text{ N}$$<br>
+    $$R_b = 17640 - 7350 = 10290\text{ N}$$<br><br>
+    <b>4. Force on each individual wheel:</b><br>
+    • On each front wheel: $R_{f1} = \frac{R_f}{2} = \frac{7350}{2} = \mathbf{3675\text{ N}}$<br>
+    • On each back wheel: $R_{b1} = \frac{R_b}{2} = \frac{10290}{2} = \mathbf{5145\text{ N}}$<br><br>
+    $$\therefore \text{Force on each front wheel } = \mathbf{3675\text{ N}}, \quad \text{Force on each back wheel } = \mathbf{5145\text{ N}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Total weight calculation $W = 17640\text{ N}$ and vertical force equilibrium</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Torque balance about CG: $R_f(1.05) = R_b(0.75)$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total front ($7350\text{ N}$) and rear ($10290\text{ N}$) reactions</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Division by 2 for each individual wheel: Front $= 3675\text{ N}$, Rear $= 5145\text{ N}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q10">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q10')">
+      <div class="q-num">Question 6.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        (a) Find the moment of inertia of a sphere about a tangent to the sphere, given the moment of inertia of the sphere about any of its diameters to be $2/5 M R^2$, where $M$ is the mass of the sphere and $R$ is the radius of the sphere.<br>(b) Given the moment of inertia of a disc of mass $M$ and radius $R$ about any of its diameters to be $1/4 M R^2$, find its moment of inertia about an axis normal to the disc and passing through a point on its edge.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Moment of inertia of a sphere about a tangent:</b><br>
+      The tangent line is parallel to the diameter passing through the centre of mass of the sphere, separated by distance $d = R$.<br>
+      By the <b>Parallel Axes Theorem</b> ($I = I_{CM} + M d^2$):<br>
+      $$I_{tangent} = I_{dia} + M R^2 = \frac{2}{5} M R^2 + M R^2 = \mathbf{\frac{7}{5} M R^2}$$<br><br>
+    • <b>(b) Moment of inertia of a disc about an axis normal to disc through edge:</b><br>
+      <i>Step 1:</i> Find $I$ about the central axis perpendicular to the disc plane ($I_z$).<br>
+      By the <b>Perpendicular Axes Theorem</b> ($I_z = I_x + I_y$ for planar lamina):<br>
+      $$I_z = I_{dia} + I_{dia} = \frac{1}{4} M R^2 + \frac{1}{4} M R^2 = \frac{1}{2} M R^2$$<br>
+      <i>Step 2:</i> Shift axis to the edge parallel to the central normal axis ($d = R$).<br>
+      By the <b>Parallel Axes Theorem</b>:<br>
+      $$I_{edge, \perp} = I_z + M R^2 = \frac{1}{2} M R^2 + M R^2 = \mathbf{\frac{3}{2} M R^2}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Parallel axis theorem application for sphere: $I = 2/5 MR^2 + MR^2 = 7/5 MR^2$</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Perpendicular axis theorem for central normal axis: $I_z = 1/2 MR^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Parallel axis theorem shift to edge: $I = 1/2 MR^2 + MR^2 = 3/2 MR^2$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q11 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q11">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q11')">
+      <div class="q-num">Question 6.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Torques of equal magnitude are applied to a hollow cylinder and a solid sphere, both having the same mass and radius. The cylinder is free to rotate about its standard axis of symmetry, and the sphere is free to rotate about an axis through its centre. Which of the two will acquire a greater angular speed after a given time?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass $M$ and radius $R$ are identical for both bodies.<br>
+    • Applied torques are equal: $\tau_c = \tau_s = \tau$.<br>
+    • Starting from rest ($u = 0$, $\omega_0 = 0$).<br><br>
+    <b>1. Moments of Inertia:</b><br>
+    • For hollow thin-walled cylinder about symmetry axis: $I_c = M R^2 = 1.0 M R^2$.<br>
+    • For solid sphere about diametrical axis: $I_s = \frac{2}{5} M R^2 = 0.4 M R^2$.<br>
+    Clearly, $I_c > I_s$.<br><br>
+    <b>2. Angular Acceleration ($\alpha$):</b><br>
+    Using rotational equation $\tau = I \alpha \implies \alpha = \frac{\tau}{I}$:<br>
+    $$\alpha_c = \frac{\tau}{M R^2}$$<br>
+    $$\alpha_s = \frac{\tau}{\frac{2}{5} M R^2} = \frac{5 \tau}{2 M R^2} = 2.5 \alpha_c$$<br>
+    Since $I_s < I_c$, we have $\alpha_s > \alpha_c$.<br><br>
+    <b>3. Angular Speed after time $t$:</b><br>
+    $$\omega = \omega_0 + \alpha t = \alpha t$$<br>
+    Since $\alpha_s > \alpha_c$, we have $\omega_s > \omega_c$.<br><br>
+    $$\mathbf{\text{Therefore, the solid sphere will acquire a greater angular speed.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Moments of inertia comparison: $I_c = MR^2$ vs $I_s = 2/5 MR^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Angular acceleration relation $\alpha = \tau/I$ showing $\alpha_s = 2.5\alpha_c$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Conclusion that solid sphere acquires greater angular velocity $\omega$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q12 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q12">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q12')">
+      <div class="q-num">Question 6.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A solid cylinder of mass $20\text{ kg}$ rotates about its axis with angular speed $100\text{ rad s}^{-1}$. The radius of the cylinder is $0.25\text{ m}$. What is the kinetic energy associated with the rotation of the cylinder? What is the magnitude of angular momentum of the cylinder about its axis?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass $M = 20\text{ kg}$, Radius $R = 0.25\text{ m}$<br>
+    • Angular speed $\omega = 100\text{ rad s}^{-1}$<br><br>
+    <b>1. Moment of Inertia ($I$):</b><br>
+    For a solid cylinder about its central axis:<br>
+    $$I = \frac{1}{2} M R^2 = \frac{1}{2} \times 20 \times (0.25)^2 = 10 \times 0.0625 = \mathbf{0.625\text{ kg m}^2}$$<br><br>
+    <b>2. Rotational Kinetic Energy ($K$):</b><br>
+    $$K = \frac{1}{2} I \omega^2 = \frac{1}{2} \times 0.625 \times (100)^2 = 0.3125 \times 10000 = \mathbf{3125\text{ Joules} = 3.125\text{ kJ}}$$<br><br>
+    <b>3. Magnitude of Angular Momentum ($L$):</b><br>
+    $$L = I \omega = 0.625\text{ kg m}^2 \times 100\text{ rad s}^{-1} = \mathbf{62.5\text{ J s} = 62.5\text{ kg m}^2\text{ s}^{-1}}$$<br><br>
+    $$\therefore \text{Rotational KE } = \mathbf{3125\text{ J}}, \quad \text{Angular momentum } = \mathbf{62.5\text{ J s}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of moment of inertia $I = \frac{1}{2}MR^2 = 0.625\text{ kg m}^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Rotational kinetic energy $K = \frac{1}{2}I\omega^2 = 3125\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Angular momentum magnitude $L = I\omega = 62.5\text{ J s}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q13 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q13">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q13')">
+      <div class="q-num">Question 6.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        (a) A child stands at the centre of a turntable with his two arms outstretched. The turntable is set rotating with an angular speed of $40\text{ rev/min}$. How much is the angular speed of the child if he folds his hands back and thereby reduces his moment of inertia to $2/5$ times the initial value? Assume that the turntable rotates without friction.<br>(b) Show that the child’s new kinetic energy of rotation is more than the initial kinetic energy of rotation. How do you account for this increase in kinetic energy?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Angular speed by Conservation of Angular Momentum:</b><br>
+      Since the turntable rotates without friction, no external torque acts on the system ($\tau_{ext} = 0$).<br>
+      $$L_1 = L_2 \implies I_1 \omega_1 = I_2 \omega_2$$<br>
+      Given $I_2 = \frac{2}{5} I_1$ and $\omega_1 = 40\text{ rev/min}$:<br>
+      $$\omega_2 = \frac{I_1}{I_2} \omega_1 = \frac{I_1}{\frac{2}{5} I_1} \times 40 = \frac{5}{2} \times 40 = \mathbf{100\text{ rev/min}}$$<br><br>
+    • <b>(b) Comparison of Kinetic Energy of Rotation:</b><br>
+      $$K_1 = \frac{1}{2} I_1 \omega_1^2 = \frac{L^2}{2 I_1}$$<br>
+      $$K_2 = \frac{1}{2} I_2 \omega_2^2 = \frac{L^2}{2 I_2} = \frac{L^2}{2 (\frac{2}{5} I_1)} = \frac{5}{2} \left(\frac{L^2}{2 I_1}\right) = 2.5 K_1$$<br>
+      $$\frac{K_2}{K_1} = 2.5 > 1$$<br>
+      The new rotational kinetic energy is $2.5\text{ times}$ the initial value!<br><br>
+    • <b>Source of the Energy Increase:</b><br>
+      The increase in kinetic energy is supplied by the <b>internal chemical/muscular work done by the child</b> in pulling his arms and weights inward against the outward centrifugal inertial force.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Angular momentum conservation setup $I_1\omega_1 = I_2\omega_2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of new angular speed $\omega_2 = 100\text{ rev/min}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Proof that $K_2 = 2.5 K_1 > K_1$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Explanation of muscular work done against centrifugal force</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q14 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q14">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q14')">
+      <div class="q-num">Question 6.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A rope of negligible mass is wound round a hollow cylinder of mass $3\text{ kg}$ and radius $40\text{ cm}$. What is the angular acceleration of the cylinder if the rope is pulled with a force of $30\text{ N}$? What is the linear acceleration of the rope? Assume that there is no slipping.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of hollow cylinder $M = 3\text{ kg}$<br>
+    • Radius $R = 40\text{ cm} = 0.4\text{ m}$<br>
+    • Pulling force $F = 30\text{ N}$<br><br>
+    <b>1. Moment of Inertia of Hollow Cylinder ($I$):</b><br>
+    $$I = M R^2 = 3 \times (0.4)^2 = 3 \times 0.16 = \mathbf{0.48\text{ kg m}^2}$$<br><br>
+    <b>2. Torque exerted on Cylinder ($\tau$):</b><br>
+    $$\tau = F \times R = 30\text{ N} \times 0.4\text{ m} = \mathbf{12\text{ N m}}$$<br><br>
+    <b>3. Angular Acceleration ($\alpha$):</b><br>
+    $$\alpha = \frac{\tau}{I} = \frac{12}{0.48} = \mathbf{25\text{ rad s}^{-2}}$$<br><br>
+    <b>4. Linear Acceleration of the rope ($a$):</b><br>
+    Since the rope unwinds without slipping:<br>
+    $$a = R \alpha = 0.4\text{ m} \times 25\text{ rad s}^{-2} = \mathbf{10\text{ m s}^{-2}}$$<br><br>
+    $$\therefore \text{Angular acceleration } = \mathbf{25\text{ rad s}^{-2}}, \quad \text{Linear acceleration } = \mathbf{10\text{ m s}^{-2}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Moment of inertia of hollow cylinder $I = MR^2 = 0.48\text{ kg m}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Torque calculation $\tau = F R = 12\text{ N m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Angular acceleration $\alpha = \tau/I = 25\text{ rad s}^{-2}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Linear acceleration $a = R\alpha = 10\text{ m s}^{-2}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q15 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q15">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q15')">
+      <div class="q-num">Question 6.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        To maintain a rotor at a uniform angular speed of $200\text{ rad s}^{-1}$, an engine needs to transmit a torque of $180\text{ N m}$. What is the power required by the engine? Assume that the engine is $100\%$ efficient.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Uniform angular speed $\omega = 200\text{ rad s}^{-1}$<br>
+    • Applied torque $\tau = 180\text{ N m}$<br><br>
+    <b>Rotational Power Formula:</b><br>
+    Rotational power is the rotational analogue of linear power ($P = F v$):<br>
+    $$P = \tau \times \omega$$<br><br>
+    Substituting given values:<br>
+    $$P = 180\text{ N m} \times 200\text{ rad s}^{-1} = \mathbf{36,000\text{ Watts} = 36\text{ kW}}$$<br><br>
+    $$\therefore \text{The power required by the engine is } \mathbf{36\text{ kW}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Rotational power formula $P = \tau \omega$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation: $P = 180 \times 200 = 36\text{ kW}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q16 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q16">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q16')">
+      <div class="q-num">Question 6.16</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        From a uniform disk of radius $R$, a circular hole of radius $R/2$ is cut out. The centre of the hole is at $R/2$ from the centre of the original disc. Locate the centre of gravity of the resulting flat body.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let the centre of the original complete disc be at the origin $O(0, 0)$.<br>
+    Let the centre of the cutout circular hole be at $x_1 = +R/2$ on the x-axis.<br>
+    Let the surface mass density of the uniform disc material be $\sigma$.<br><br>
+    • Mass of complete original disc: $M = \sigma \pi R^2$.<br>
+    • Mass of the removed portion: $m = \sigma \pi \left(\frac{R}{2}\right)^2 = \sigma \pi \frac{R^2}{4} = \frac{M}{4}$.<br>
+    • Mass of the remaining portion: $M' = M - m = M - \frac{M}{4} = \frac{3M}{4}$.<br><br>
+    <b>Negative Mass Method for Centre of Gravity:</b><br>
+    The remaining body can be treated as the original disc of mass $M$ at origin $(0, 0)$ plus a negative mass $-m = -M/4$ at $(R/2, 0)$:<br>
+    $$x_{CG} = \frac{M x_0 - m x_1}{M - m} = \frac{M(0) - \left(\frac{M}{4}\right)\left(\frac{R}{2}\right)}{M - \frac{M}{4}}$$<br>
+    $$x_{CG} = \frac{-\frac{M R}{8}}{\frac{3M}{4}} = -\frac{M R}{8} \times \frac{4}{3M} = \mathbf{-\frac{R}{6}}$$<br>
+    By symmetry, $y_{CG} = 0$.<br><br>
+    $$\mathbf{\text{The centre of gravity lies at a distance of } \frac{R}{6} \text{ from the centre of the original disc, on the side opposite to the hole.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Mass calculation of original disc ($M$) and removed disc ($M/4$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formulation of negative mass method for center of gravity</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $x_{CG} = -R/6$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q17 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q17">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q17')">
+      <div class="q-num">Question 6.17</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A metre stick is balanced on a knife edge at its centre. When two coins, each of mass $5\text{ g}$ are put one on top of the other at the $12.0\text{ cm}$ mark, the stick is found to be balanced at $45.0\text{ cm}$. What is the mass of the metre stick?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Length of metre stick $= 100\text{ cm}$.<br>
+    • Centre of mass of the uniform metre stick is at the $50.0\text{ cm}$ mark.<br>
+    • Mass of the two coins: $m = 2 \times 5\text{ g} = 10\text{ g} = 0.01\text{ kg}$.<br>
+    • Coins are placed at $x = 12.0\text{ cm}$.<br>
+    • New knife-edge balance point: $x_{fulcrum} = 45.0\text{ cm}$.<br><br>
+    <b>Torque Balance (Principle of Moments) about Fulcrum ($45.0\text{ cm}$):</b><br>
+    • Distance of coins from fulcrum: $d_1 = 45.0 - 12.0 = 33.0\text{ cm}$ (anticlockwise torque).<br>
+    • Distance of metre stick's centre of mass ($50\text{ cm}$) from fulcrum: $d_2 = 50.0 - 45.0 = 5.0\text{ cm}$ (clockwise torque).<br><br>
+    $$\tau_{anticlockwise} = \tau_{clockwise}$$<br>
+    $$m \times g \times d_1 = M \times g \times d_2$$<br>
+    $$10\text{ g} \times 33.0\text{ cm} = M \times 5.0\text{ cm}$$<br>
+    $$M = \frac{10 \times 33.0}{5.0} = 2 \times 33.0 = \mathbf{66\text{ g} = 0.066\text{ kg}}$$<br><br>
+    $$\therefore \text{The mass of the metre stick is } \mathbf{66\text{ g}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Lever arms identified: coins at $33\text{ cm}$, stick CM at $5\text{ cm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Principle of moments equation: $10 \times 33 = M \times 5$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final mass of metre stick: $66\text{ g}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q18 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q18">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q18')">
+      <div class="q-num">Question 6.18</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A solid sphere rolls down two different inclined planes of the same heights but different angles of inclination.<br>(a) Will it reach the bottom with the same speed in each case?<br>(b) Will it take longer to roll down one plane than the other?<br>(c) If so, which one and why?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Speed at the bottom:</b><br>
+      <b>Yes, it reaches the bottom with the exact same speed in both cases.</b><br>
+      In pure rolling without slipping, friction is static and does zero net work. Mechanical energy is conserved:<br>
+      $$mgh = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2 = \frac{1}{2}mv^2 \left(1 + \frac{k^2}{R^2}\right)$$<br>
+      $$v = \sqrt{\frac{2gh}{1 + \frac{k^2}{R^2}}} = \sqrt{\frac{2gh}{1 + 2/5}} = \sqrt{\frac{10gh}{7}}$$<br>
+      Since height $h$ is identical, speed $v$ depends only on $h$ and is completely independent of the angle of inclination $\theta$.<br><br>
+    • <b>(b) & (c) Time taken:</b><br>
+      <b>Yes, it takes longer to roll down the plane with smaller angle of inclination (gentler slope).</b><br>
+      The acceleration down the incline is:<br>
+      $$a = \frac{g \sin \theta}{1 + \frac{k^2}{R^2}} = \frac{5}{7} g \sin \theta$$<br>
+      The length of the inclined plane is $s = \frac{h}{\sin \theta}$.<br>
+      Time taken to roll down:<br>
+      $$t = \sqrt{\frac{2s}{a}} = \sqrt{\frac{2 \left(\frac{h}{\sin \theta}\right)}{\frac{5}{7}g \sin \theta}} = \frac{1}{\sin \theta} \sqrt{\frac{14h}{5g}}$$<br>
+      $$t \propto \frac{1}{\sin \theta}$$<br>
+      $$\mathbf{\text{The plane with smaller inclination } \theta \text{ has smaller } \sin\theta \text{ and smaller acceleration, so it takes longer.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Speed formula $v = \sqrt{10gh/7}$ showing speed depends only on height $h$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Acceleration formula $a = \frac{5}{7}g\sin\theta$ and length $s = h/\sin\theta$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Conclusion that gentler incline ($t \propto 1/\sin\theta$) takes longer</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q19 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q19">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q19')">
+      <div class="q-num">Question 6.19</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A hoop of radius $2\text{ m}$ weighs $100\text{ kg}$. It rolls along a horizontal floor so that its centre of mass has a speed of $20\text{ cm s}^{-1}$. How much work has to be done to stop it?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Radius $R = 2\text{ m}$<br>
+    • Mass $M = 100\text{ kg}$<br>
+    • CM speed $v = 20\text{ cm s}^{-1} = 0.2\text{ m s}^{-1}$<br>
+    • For a thin ring (hoop): Moment of inertia $I = M R^2$.<br>
+    • For pure rolling: $\omega = \frac{v}{R}$.<br><br>
+    <b>1. Total Kinetic Energy of Rolling Hoop:</b><br>
+    $$K = K_{trans} + K_{rot} = \frac{1}{2} M v^2 + \frac{1}{2} I \omega^2$$<br>
+    $$K = \frac{1}{2} M v^2 + \frac{1}{2} (M R^2) \left(\frac{v}{R}\right)^2 = \frac{1}{2} M v^2 + \frac{1}{2} M v^2 = M v^2$$<br><br>
+    Substituting given numerical values:<br>
+    $$K = 100\text{ kg} \times (0.2\text{ m s}^{-1})^2 = 100 \times 0.04 = \mathbf{4\text{ Joules}}$$<br><br>
+    <b>2. Work required to stop it ($W$):</b><br>
+    By the Work-Energy Theorem:<br>
+    $$W = \Delta K = 0 - K = -4\text{ J}$$<br>
+    Work done against the rolling hoop = $+4\text{ J}$.<br><br>
+    $$\therefore \text{Work that must be done to stop the hoop is } \mathbf{4\text{ Joules}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Kinetic energy breakdown into translation and rotation: $K = Mv^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Numerical substitution: $K = 100 \times (0.2)^2 = 4\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Work-Energy theorem statement for stopping work: $4\text{ J}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q20 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q20">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q20')">
+      <div class="q-num">Question 6.20</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The oxygen molecule has a mass of $5.30 \times 10^{-26}\text{ kg}$ and a moment of inertia of $1.94 \times 10^{-46}\text{ kg m}^2$ about an axis through its centre perpendicular to the lines joining the two atoms. Suppose the mean speed of such a molecule in a gas is $500\text{ m s}^{-1}$ and that its kinetic energy of rotation is two thirds of its kinetic energy of translation. Find the average angular velocity of the molecule.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass $m = 5.30 \times 10^{-26}\text{ kg}$<br>
+    • Moment of inertia $I = 1.94 \times 10^{-46}\text{ kg m}^2$<br>
+    • Mean translational speed $v = 500\text{ m s}^{-1}$<br>
+    • Given condition: $K_{rot} = \frac{2}{3} K_{trans}$<br><br>
+    <b>1. Translational Kinetic Energy ($K_{trans}$):</b><br>
+    $$K_{trans} = \frac{1}{2} m v^2 = \frac{1}{2} (5.30 \times 10^{-26}) \times (500)^2 = 2.65 \times 10^{-26} \times 2.5 \times 10^5 = 6.625 \times 10^{-21}\text{ J}$$<br><br>
+    <b>2. Rotational Kinetic Energy ($K_{rot}$):</b><br>
+    $$K_{rot} = \frac{2}{3} K_{trans} = \frac{2}{3} \times (6.625 \times 10^{-21}) = 4.417 \times 10^{-21}\text{ J}$$<br><br>
+    <b>3. Average Angular Velocity ($\omega$):</b><br>
+    $$K_{rot} = \frac{1}{2} I \omega^2 \implies \omega^2 = \frac{2 K_{rot}}{I}$$<br>
+    $$\omega^2 = \frac{2 \times 4.417 \times 10^{-21}}{1.94 \times 10^{-46}} = \frac{8.833 \times 10^{-21}}{1.94 \times 10^{-46}} \approx 4.553 \times 10^{25}$$<br>
+    $$\omega = \sqrt{4.553 \times 10^{25}} = \sqrt{45.53 \times 10^{24}} \approx \mathbf{6.75 \times 10^{12}\text{ rad s}^{-1}}$$<br><br>
+    $$\therefore \text{Average angular velocity of the molecule is } \mathbf{6.75 \times 10^{12}\text{ rad s}^{-1}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Translational KE calculation $K_{trans} = 6.625 \times 10^{-21}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Rotational KE calculation $K_{rot} = 4.417 \times 10^{-21}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formula $\omega = \sqrt{2K_{rot}/I}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final angular velocity: $6.75 \times 10^{12}\text{ rad s}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q21 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch6-q21">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q21')">
+      <div class="q-num">Question 6.21</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A solid cylinder rolls up an inclined plane of angle of inclination $30^\circ$. At the bottom of the inclined plane the centre of mass of the cylinder has a speed of $5\text{ m s}^{-1}$.<br>(a) How far will the cylinder go up the plane?<br>(b) How long will it take to return to the bottom? (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Angle of inclination $\theta = 30^\circ$<br>
+    • Initial speed at bottom $u = 5\text{ m s}^{-1}$<br>
+    • Solid cylinder: $I = \frac{1}{2} M R^2 \implies \frac{k^2}{R^2} = \frac{1}{2}$<br><br>
+    • <b>(a) Distance up the plane ($s$):</b><br>
+      Total initial kinetic energy at bottom:<br>
+      $$K = \frac{1}{2} M u^2 \left(1 + \frac{k^2}{R^2}\right) = \frac{1}{2} M u^2 \left(1 + \frac{1}{2}\right) = \frac{3}{4} M u^2$$<br>
+      At maximum height $h$, all kinetic energy is converted into gravitational potential energy:<br>
+      $$M g h = \frac{3}{4} M u^2 \implies h = \frac{3 u^2}{4 g} = \frac{3 \times 25}{4 \times 9.8} = \frac{75}{39.2} \approx 1.913\text{ m}$$<br>
+      Distance along the inclined plane $s$:<br>
+      $$s = \frac{h}{\sin 30^\circ} = \frac{1.913}{0.5} = \mathbf{3.826\text{ m} \approx 3.83\text{ m}}$$<br><br>
+    • <b>(b) Time to return to the bottom ($t_{total}$):</b><br>
+      Linear deceleration along the plane during pure rolling:<br>
+      $$a = \frac{g \sin \theta}{1 + \frac{k^2}{R^2}} = \frac{g \sin 30^\circ}{1 + 0.5} = \frac{9.8 \times 0.5}{1.5} = \frac{4.9}{1.5} = 3.267\text{ m s}^{-2}$$<br>
+      Time of ascent to reach rest ($v = 0$):<br>
+      $$t_1 = \frac{u}{a} = \frac{5}{3.267} \approx 1.53\text{ s}$$<br>
+      By symmetry, time of descent $t_2 = t_1 = 1.53\text{ s}$.<br>
+      $$t_{total} = t_1 + t_2 = 2 \times 1.53 = \mathbf{3.06\text{ seconds}}$$<br><br>
+    $$\therefore \text{Distance travelled up } = \mathbf{3.83\text{ m}}, \quad \text{Total round-trip time } = \mathbf{3.06\text{ s}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Energy conservation for rolling cylinder: $Mgh = \frac{3}{4}Mu^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Distance along incline: $s = h/\sin 30^\circ = 3.83\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Rolling acceleration $a = \frac{2}{3}g\sin 30^\circ = 3.27\text{ m s}^{-2}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total round trip time: $2u/a = 3.06\text{ s}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q22 (NCERT Additional Exercise) -->
+  <div class="q-card" id="c11p-ch6-q22">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q22')">
+      <div class="q-num">Question 6.22</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Additional Exercise</span><br>
+        As shown in Fig. 6.20, the two sides of a step ladder BA and CA are $1.6\text{ m}$ long and hinged at A. A rope DE, $0.5\text{ m}$ is tied half way up. A weight $40\text{ kg}$ is suspended from a point F, $1.2\text{ m}$ from B along the ladder BA. Assuming the floor to be frictionless and neglecting the weight of the ladder, find the tension in the rope and forces exerted by the floor on the ladder. (Take $g = 9.8\text{ m s}^{-2}$).
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Length of ladder sides $AB = AC = 1.6\text{ m}$.<br>
+    • Rope $DE = 0.5\text{ m}$ is tied at midpoints $D$ and $E$ ($AD = BD = 0.8\text{ m}$).<br>
+    • In $\triangle ADE$, with $AD = AE = 0.8\text{ m}$ and $DE = 0.5\text{ m}$, the angle with the vertical $\alpha$ is:<br>
+      $$\sin \alpha = \frac{0.25}{0.8} = \frac{5}{16} = 0.3125 \implies \cos \alpha = \sqrt{1 - (0.3125)^2} \approx 0.950$$<br>
+      Half-span on floor: $B C / 2 = 1.6 \sin \alpha = 1.6 \times 0.3125 = 0.5\text{ m}$. Full span $BC = 1.0\text{ m}$.<br>
+    • Load $W = 40 \times 9.8 = 392\text{ N}$ suspended at $F$ ($BF = 1.2\text{ m} \implies AF = 0.4\text{ m}$).<br><br>
+    <b>1. Normal forces exerted by frictionless floor ($N_B, N_C$):</b><br>
+    • Vertical force balance: $N_B + N_C = W = 392\text{ N}$.<br>
+    • Taking torque about point $C$ for the entire ladder:<br>
+      Horizontal distance of $F$ from $B$: $d_F = 1.2 \sin \alpha = 1.2 \times 0.3125 = 0.375\text{ m}$.<br>
+      Distance of $F$ from $C = 1.0 - 0.375 = 0.625\text{ m}$.<br>
+      $$N_B \times (1.0) = W \times 0.625 = 392 \times 0.625 = 245\text{ N}$$<br>
+      $$\mathbf{N_B = 245\text{ N}}, \quad \mathbf{N_C = 392 - 245 = 147\text{ N}}$$<br><br>
+    <b>2. Tension in the rope ($T$):</b><br>
+    Consider rotational equilibrium of the left side $AB$ about hinge $A$:<br>
+    • Torque of $N_B$ about $A$: $N_B \times (0.5\text{ m}) = 245 \times 0.5 = 122.5\text{ N m}$ (anticlockwise).<br>
+    • Torque of load $W$ about $A$: $W \times (0.4 \sin \alpha) = 392 \times (0.4 \times 0.3125) = 49\text{ N m}$ (clockwise).<br>
+    • Torque of tension $T$ about $A$: $T \times (AD \cos \alpha) = T \times (0.8 \times 0.950) = 0.76 T$ (clockwise).<br>
+    Equating clockwise and anticlockwise torques:<br>
+    $$0.76 T + 49 = 122.5 \implies 0.76 T = 73.5$$<br>
+    $$T = \frac{73.5}{0.76} \approx \mathbf{96.7\text{ N}}$$<br><br>
+    $$\therefore N_B = \mathbf{245\text{ N}}, \quad N_C = \mathbf{147\text{ N}}, \quad \text{Tension } T = \mathbf{96.7\text{ N}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Geometrical angles and horizontal spans evaluated</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Normal reactions on floor: $N_B = 245\text{ N}$, $N_C = 147\text{ N}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Torque equilibrium about hinge A to find rope tension: $T = 96.7\text{ N}$</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q23 (NCERT Additional Exercise) -->
+  <div class="q-card" id="c11p-ch6-q23">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q23')">
+      <div class="q-num">Question 6.23</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Additional Exercise</span><br>
+        A man stands on a rotating platform, with his arms stretched horizontally holding a $5\text{ kg}$ weight in each hand. The angular speed of the platform is $30\text{ rev/min}$. The man then brings his arms close to his body with the distance of each weight from the axis changing from $90\text{ cm}$ to $20\text{ cm}$. The moment of inertia of the man together with the platform may be taken to be constant and equal to $7.6\text{ kg m}^2$.<br>(a) What is his new angular speed? (Neglect friction.)<br>(b) Is kinetic energy conserved in the process? If not, from where does the change come about?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • $I_{man+plat} = 7.6\text{ kg m}^2$<br>
+    • Mass of each weight $m = 5\text{ kg}$ (two weights, total $2m$)<br>
+    • Initial distance $r_1 = 90\text{ cm} = 0.9\text{ m}$, Initial angular speed $\omega_1 = 30\text{ rev/min}$<br>
+    • Final distance $r_2 = 20\text{ cm} = 0.2\text{ m}$<br><br>
+    <b>1. Moments of Inertia:</b><br>
+    • Initial total moment of inertia:<br>
+      $$I_1 = I_0 + 2 m r_1^2 = 7.6 + 2(5)(0.9)^2 = 7.6 + 10(0.81) = 7.6 + 8.1 = \mathbf{15.7\text{ kg m}^2}$$<br>
+    • Final total moment of inertia:<br>
+      $$I_2 = I_0 + 2 m r_2^2 = 7.6 + 2(5)(0.2)^2 = 7.6 + 10(0.04) = 7.6 + 0.4 = \mathbf{8.0\text{ kg m}^2}$$<br><br>
+    • <b>(a) New Angular Speed ($\omega_2$):</b><br>
+      By conservation of angular momentum ($I_1 \omega_1 = I_2 \omega_2$):<br>
+      $$\omega_2 = \frac{I_1}{I_2} \omega_1 = \frac{15.7}{8.0} \times 30 = \frac{471}{8.0} = \mathbf{58.875\text{ rev/min} \approx 58.9\text{ rev/min}}$$<br><br>
+    • <b>(b) Kinetic Energy:</b><br>
+      <b>No, kinetic energy is NOT conserved; it increases.</b><br>
+      $$K_1 = \frac{L^2}{2 I_1}, \quad K_2 = \frac{L^2}{2 I_2}$$<br>
+      Since $I_2 < I_1$, we have $K_2 > K_1$.<br>
+      The ratio of kinetic energies is $\frac{K_2}{K_1} = \frac{I_1}{I_2} = \frac{15.7}{8.0} \approx 1.96$.<br>
+      The additional kinetic energy is supplied by the <b>muscular work done by the man</b> in pulling the weights inward against the outward centrifugal inertial force.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of initial and final moments of inertia: $15.7$ and $8.0\text{ kg m}^2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Conservation of angular momentum yielding $\omega_2 = 58.9\text{ rev/min}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Explanation of kinetic energy increase due to internal muscular work</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q24 (NCERT Additional Exercise) -->
+  <div class="q-card" id="c11p-ch6-q24">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q24')">
+      <div class="q-num">Question 6.24</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Additional Exercise</span><br>
+        A bullet of mass $10\text{ g}$ and speed $500\text{ m s}^{-1}$ is fired into a door and gets embedded exactly at the centre of the door. The door is $1.0\text{ m}$ wide and weighs $12\text{ kg}$. It is hinged at one side and rotates about a vertical axis practically without friction. Find the angular speed of the door just after the bullet embeds into it. (Hint: The moment of inertia of the door about the vertical axis at one end is $M L^2 / 3$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of bullet $m = 10\text{ g} = 0.01\text{ kg}$<br>
+    • Speed of bullet $v = 500\text{ m s}^{-1}$<br>
+    • Width of door $L = 1.0\text{ m}$<br>
+    • Mass of door $M = 12\text{ kg}$<br>
+    • Bullet strikes centre of door: distance from hinge $r = \frac{L}{2} = 0.5\text{ m}$.<br><br>
+    <b>1. Initial Angular Momentum about the hinge ($L_i$):</b><br>
+    $$L_i = m v r = 0.01\text{ kg} \times 500\text{ m s}^{-1} \times 0.5\text{ m} = \mathbf{2.5\text{ J s}}$$<br><br>
+    <b>2. Moment of Inertia of (Door + embedded bullet) about hinge ($I$):</b><br>
+    $$I_{door} = \frac{1}{3} M L^2 = \frac{1}{3}(12)(1.0)^2 = 4.0\text{ kg m}^2$$<br>
+    $$I_{bullet} = m r^2 = 0.01 \times (0.5)^2 = 0.0025\text{ kg m}^2$$<br>
+    $$I_{total} = I_{door} + I_{bullet} = 4.0 + 0.0025 = 4.0025\text{ kg m}^2 \approx 4.0\text{ kg m}^2$$<br><br>
+    <b>3. Angular Speed just after collision ($\omega$):</b><br>
+    By conservation of angular momentum about the hinge axis:<br>
+    $$L_f = L_i \implies I_{total} \omega = L_i$$<br>
+    $$\omega = \frac{L_i}{I_{total}} = \frac{2.5}{4.0025} \approx \mathbf{0.625\text{ rad s}^{-1}}$$<br><br>
+    $$\therefore \text{The angular speed of the door is } \mathbf{0.625\text{ rad s}^{-1}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of bullet's initial angular momentum $L = mvr = 2.5\text{ J s}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Moment of inertia of door about hinge $I = \frac{1}{3}ML^2 = 4\text{ kg m}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Conservation of angular momentum to find $\omega = 0.625\text{ rad s}^{-1}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q25 (NCERT Additional Exercise) -->
+  <div class="q-card" id="c11p-ch6-q25">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q25')">
+      <div class="q-num">Question 6.25</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Additional Exercise</span><br>
+        Two discs of moments of inertia $I_1$ and $I_2$ about their respective axes (normal to the disc and passing through the centre), and rotating with angular speeds $\omega_1$ and $\omega_2$ are brought into contact face to face with their axes of rotation coincident.<br>(a) What is the angular speed of the two-disc system?<br>(b) Show that the kinetic energy of the combined system is less than the sum of the initial kinetic energies of the two discs. How do you account for this loss in energy? Take $\omega_1 \ne \omega_2$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Common Angular Speed ($\omega$):</b><br>
+      Since the external torque on the system is zero, total angular momentum is conserved:<br>
+      $$L_f = L_i$$<br>
+      $$(I_1 + I_2) \omega = I_1 \omega_1 + I_2 \omega_2$$<br>
+      $$\mathbf{\omega = \frac{I_1 \omega_1 + I_2 \omega_2}{I_1 + I_2}}$$<br><br>
+    • <b>(b) Loss in Rotational Kinetic Energy:</b><br>
+      Initial kinetic energy: $K_i = \frac{1}{2} I_1 \omega_1^2 + \frac{1}{2} I_2 \omega_2^2$.<br>
+      Final kinetic energy: $K_f = \frac{1}{2} (I_1 + I_2) \omega^2 = \frac{1}{2} (I_1 + I_2) \left(\frac{I_1 \omega_1 + I_2 \omega_2}{I_1 + I_2}\right)^2 = \frac{(I_1 \omega_1 + I_2 \omega_2)^2}{2(I_1 + I_2)}$.<br><br>
+      Loss in kinetic energy $\Delta K = K_i - K_f$:<br>
+      $$\Delta K = \frac{1}{2} I_1 \omega_1^2 + \frac{1}{2} I_2 \omega_2^2 - \frac{(I_1 \omega_1 + I_2 \omega_2)^2}{2(I_1 + I_2)}$$<br>
+      $$\Delta K = \frac{(I_1 \omega_1^2 + I_2 \omega_2^2)(I_1 + I_2) - (I_1^2 \omega_1^2 + I_2^2 \omega_2^2 + 2 I_1 I_2 \omega_1 \omega_2)}{2(I_1 + I_2)}$$<br>
+      $$\Delta K = \frac{I_1 I_2 \omega_1^2 + I_1 I_2 \omega_2^2 - 2 I_1 I_2 \omega_1 \omega_2}{2(I_1 + I_2)} = \mathbf{\frac{I_1 I_2 (\omega_1 - \omega_2)^2}{2(I_1 + I_2)}}$$<br><br>
+      Since $I_1, I_2 > 0$ and $(\omega_1 - \omega_2)^2 > 0$ for $\omega_1 \ne \omega_2$, we have $\Delta K > 0$, proving $K_f < K_i$.<br><br>
+    • <b>Account of energy loss:</b><br>
+      The loss in kinetic energy is dissipated as <b>heat and sound</b> due to frictional slipping between the surfaces of the two discs before they achieve a common angular velocity.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Angular momentum conservation to find common $\omega$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Derivation showing $\Delta K = \frac{I_1 I_2 (\omega_1 - \omega_2)^2}{2(I_1 + I_2)} > 0$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Dissipation explained as friction/heat during interfacial slipping</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch6-q26 (NCERT Additional Exercise) -->
+  <div class="q-card" id="c11p-ch6-q26">
+    <div class="q-head" onclick="toggleQ('c11p-ch6-q26')">
+      <div class="q-num">Question 6.26</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Additional Exercise</span><br>
+        (a) Prove the theorem of perpendicular axes. (Hint: Square of the distance of a point $(x, y)$ in the x-y plane from an axis through the origin and perpendicular to the plane is $x^2 + y^2$).<br>(b) Prove the theorem of parallel axes. (Hint: If the centre of mass of a system of $n$ particles is chosen to be the origin, $\sum m_i \vec{r}_i = \mathbf{0}$).
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Theorem of Perpendicular Axes:</b><br>
+      <i>Statement:</i> For a planar laminar body, the moment of inertia about an axis perpendicular to its plane ($z$-axis) is equal to the sum of its moments of inertia about two mutually perpendicular axes ($x$ and $y$) lying in its plane and intersecting at the point where the perpendicular axis passes through:<br>
+      $$I_z = I_x + I_y$$<br>
+      <i>Proof:</i> Consider a planar lamina in the $x-y$ plane. Let a particle of mass $m_i$ be located at point $(x_i, y_i)$.<br>
+      Distance of $m_i$ from $x$-axis $= y_i \implies I_x = \sum m_i y_i^2$.<br>
+      Distance of $m_i$ from $y$-axis $= x_i \implies I_y = \sum m_i x_i^2$.<br>
+      Distance of $m_i$ from perpendicular $z$-axis $= r_i = \sqrt{x_i^2 + y_i^2}$.<br>
+      $$I_z = \sum m_i r_i^2 = \sum m_i (x_i^2 + y_i^2) = \sum m_i x_i^2 + \sum m_i y_i^2 = I_y + I_x$$<br>
+      $$\mathbf{\therefore I_z = I_x + I_y}$$<br><br>
+    • <b>(b) Theorem of Parallel Axes:</b><br>
+      <i>Statement:</i> The moment of inertia $I$ of any body about an arbitrary axis is equal to its moment of inertia about a parallel axis passing through its centre of mass ($I_{CM}$) plus the product of mass $M$ and the square of the perpendicular distance $d$ between the two axes:<br>
+      $$I = I_{CM} + M d^2$$<br>
+      <i>Proof:</i> Choose the centre of mass of the body as origin $O$.<br>
+      By definition of centre of mass: $\sum m_i \vec{r}_i = \mathbf{0}$.<br>
+      Let the arbitrary axis be at distance $\vec{d}$ from the CM axis.<br>
+      The position vector of mass $m_i$ relative to the new axis is $\vec{R}_i = \vec{r}_i - \vec{d}$ (or $\vec{r}_i + \vec{d}$).<br>
+      Moment of inertia about the new axis:<br>
+      $$I = \sum m_i |\vec{r}_i + \vec{d}|^2 = \sum m_i (r_i^2 + d^2 + 2 \vec{r}_i \cdot \vec{d})$$<br>
+      $$I = \sum m_i r_i^2 + d^2 \sum m_i + 2 \vec{d} \cdot \left(\sum m_i \vec{r}_i\right)$$<br>
+      Since $\sum m_i r_i^2 = I_{CM}$, $\sum m_i = M$, and $\sum m_i \vec{r}_i = \mathbf{0}$:<br>
+      $$\mathbf{I = I_{CM} + M d^2}$$
+      Hence proved.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Statement and proof of perpendicular axis theorem $I_z = I_x + I_y$</span><span class="marking-marks">2.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Statement and vector proof of parallel axis theorem $I = I_{CM} + Md^2$</span><span class="marking-marks">2.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(5)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 5 (Work, Energy &amp; Power)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(7)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 7 (Gravitation) →</button>
+  </div>
+</section>

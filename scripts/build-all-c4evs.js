@@ -109,11 +109,7 @@ const owwSidebar = wondrousWorldChapters.map(ch => ({
 }));
 
 wondrousWorldChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const target = targetCounts[chId] || 16;
-  const generated = generateEvsQuestions(ch, baseQs.length, target);
-  const currentQs = [...baseQs, ...generated];
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${wondrousWorldChapters[idx - 1].title}`, filename: `our-wondrous-world-ch${idx}.html` } : null;
   const nextLink = idx < wondrousWorldChapters.length - 1 ? { label: `Ch ${idx + 2}: ${wondrousWorldChapters[idx + 1].title}`, filename: `our-wondrous-world-ch${idx + 2}.html` } : null;
@@ -153,11 +149,7 @@ const laSidebar = lookingAroundChapters.map(ch => ({
 }));
 
 lookingAroundChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const target = targetCounts[chId] || 16;
-  const generated = generateEvsQuestions(ch, baseQs.length, target);
-  const currentQs = [...baseQs, ...generated];
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${lookingAroundChapters[idx - 1].title}`, filename: `looking-around-ch${idx}.html` } : null;
   const nextLink = idx < lookingAroundChapters.length - 1 ? { label: `Ch ${idx + 2}: ${lookingAroundChapters[idx + 1].title}`, filename: `looking-around-ch${idx + 2}.html` } : null;

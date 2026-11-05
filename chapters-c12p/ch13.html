@@ -1,0 +1,1118 @@
+<section class="chapter-section" id="c12p-ch13">
+  <div class="chapter-header">
+    <div class="ch-badge" style="background:#2563eb;">13</div>
+    <div class="chapter-header-info">
+      <div class="ch-category" style="color:#2563eb;">CBSE Class 12 Physics &bull; Chapter 13</div>
+      <h2>Nuclei</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 21 Verbatim Questions with Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="display:flex; justify-content:center; margin:24px 0;">
+    <svg viewBox="0 0 760 220" style="width:100%; max-width:760px; height:auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+        </marker>
+      </defs>
+      <!-- Title -->
+      <text x="380" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Nuclear Binding Energy Curve ($E_{bn}$ vs $A$) & Radioactive Decay Law</text>
+      
+      <!-- Coordinate Axes for B.E. Curve -->
+      <line x1="60" y1="180" x2="330" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="335" y="184" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#64748b">A (Mass Number)</text>
+
+      <line x1="60" y1="180" x2="60" y2="40" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="55" y="32" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#64748b">E_bn (MeV/nucleon)</text>
+
+      <!-- Binding energy curve -->
+      <path d="M 60 180 Q 75 110, 90 90 T 115 70 T 150 65 T 220 80 T 310 110" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+
+      <!-- Peak at Fe-56 -->
+      <circle cx="150" cy="65" r="4" fill="#ef4444"/>
+      <text x="150" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#ef4444">⁵⁶Fe (8.75 MeV)</text>
+
+      <!-- Fusion and Fission labels -->
+      <text x="95" y="145" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#16a34a">Fusion ↗</text>
+      <text x="250" y="130" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#d97706">↖ Fission</text>
+
+      <!-- Core Formulae -->
+      <text x="360" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Fundamental Nuclear Laws & Formulae:</text>
+      <text x="360" y="80" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Nuclear Radius: $R = R_0 A^{1/3}, \quad R_0 \approx 1.2 \text{ fm}$</text>
+      <text x="360" y="105" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Nuclear Density: $\rho = \frac{m}{\frac{4}{3}\pi R_0^3} \approx 2.3 \times 10^{17} \text{ kg m}^{-3}$ (independent of $A$)</text>
+      <text x="360" y="130" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Mass Defect & B.E.: $\Delta M = [Z m_p + (A - Z) m_n] - M$, $E_b = \Delta M c^2$</text>
+      <text x="360" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Mass-Energy Equivalence: $1 \text{ u} \equiv 931.5 \text{ MeV}$</text>
+      <text x="360" y="180" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Radioactive Decay: $N(t) = N_0 e^{-\lambda t}, \quad T_{1/2} = \frac{\ln 2}{\lambda} = \frac{0.693}{\lambda}$</text>
+      <text x="360" y="205" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Activity: $R = \lambda N = \left|\frac{dN}{dt}\right|, \quad 1 \text{ Ci} = 3.7 \times 10^{10} \text{ Bq}$</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div" style="font-size:0.88rem; font-weight:700; color:#334155; margin-bottom:16px; padding:8px 14px; background:#f1f5f9; border-radius:8px; border-left:4px solid #2563eb;">Exercises 13.1 to 13.21</div>
+
+  <div class="questions-container">
+    
+  <!-- c12p-ch13-q1 (Exercise 13.1) -->
+  <div class="q-card" id="c12p-ch13-q1">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q1')">
+      <div class="q-num">Q 13.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.1</span><br>
+        <strong>(a)</strong> Two stable isotopes of lithium $^{6}_3\text{Li}$ and $^{7}_3\text{Li}$ have respective abundances of $7.5\%$ and $92.5\%$. These isotopes have masses $6.01512 \text{ u}$ and $7.01600 \text{ u}$, respectively. Find the atomic mass of lithium.<br>
+    <strong>(b)</strong> Boron has two stable isotopes, $^{10}_5\text{B}$ and $^{11}_5\text{B}$. Their respective masses are $10.01294 \text{ u}$ and $11.00931 \text{ u}$, and the atomic mass of boron is $10.811 \text{ u}$. Find the abundances of $^{10}_5\text{B}$ and $^{11}_5\text{B}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>(a) Atomic Mass of Lithium:</strong><br>
+    The weighted average atomic mass is:
+    \[
+    m = \frac{\sum f_i m_i}{\sum f_i} = \frac{(7.5 \times 6.01512) + (92.5 \times 7.01600)}{100}
+    \]
+    \[
+    m = \frac{45.1134 + 648.9800}{100} = \frac{694.0934}{100} \approx 6.941 \text{ u}
+    \]</p>
+
+    <p><strong>(b) Abundances of Boron Isotopes:</strong><br>
+    Let the fractional abundance of $^{10}_5\text{B}$ be $x$. Then the abundance of $^{11}_5\text{B}$ is $(100 - x)$.<br>
+    \[
+    10.811 = \frac{x(10.01294) + (100 - x)(11.00931)}{100}
+    \]
+    \[
+    1081.1 = 10.01294 x + 1100.931 - 11.00931 x
+    \]
+    \[
+    (11.00931 - 10.01294) x = 1100.931 - 1081.1
+    \]
+    \[
+    0.99637 x = 19.831 \implies x = \frac{19.831}{0.99637} \approx 19.90\%
+    \]
+    Abundance of $^{11}_5\text{B} = 100 - 19.90 = 80.10\%$.<br>
+    <p><strong>Result:</strong> Abundance of $^{10}_5\text{B} = 19.9\%$ and $^{11}_5\text{B} = 80.1\%$.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of lithium atomic mass $6.941\text{ u}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Formulation and solution of boron abundances ($19.9\%$ and $80.1\%$)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q2 (Exercise 13.2) -->
+  <div class="q-card" id="c12p-ch13-q2">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q2')">
+      <div class="q-num">Q 13.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.2</span><br>
+        The three stable isotopes of neon: $^{20}_{10}\text{Ne}, ^{21}_{10}\text{Ne}$ and $^{22}_{10}\text{Ne}$ have respective abundances of $90.51\%, 0.27\%$ and $9.22\%$. The atomic masses of the three isotopes are $19.99 \text{ u}, 20.99 \text{ u}$ and $21.99 \text{ u}$, respectively. Obtain the average atomic mass of neon.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Calculation:</strong><br>
+    \[
+    m_{avg} = \frac{(90.51 \times 19.99) + (0.27 \times 20.99) + (9.22 \times 21.99)}{100}
+    \]
+    \[
+    90.51 \times 19.99 = 1809.2949
+    \]
+    \[
+    0.27 \times 20.99 = 5.6673
+    \]
+    \[
+    9.22 \times 21.99 = 202.7478
+    \]
+    Sum:
+    \[
+    \text{Total} = 1809.2949 + 5.6673 + 202.7478 = 2017.71 \text{ u}
+    \]
+    \[
+    m_{avg} = \frac{2017.71}{100} \approx 20.18 \text{ u}
+    \]
+    <p><strong>Result:</strong> The average atomic mass of neon is <strong>$20.18 \text{ u}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Weighted average formula setup</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation yielding $20.18\text{ u}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q3 (Exercise 13.3) -->
+  <div class="q-card" id="c12p-ch13-q3">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q3')">
+      <div class="q-num">Q 13.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.3</span><br>
+        Find the energy-equivalent of one atomic mass unit ($1 \text{ u}$) in Joules and in MeV.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Definition:</strong><br>
+    $1 \text{ u} = \frac{1}{12} \times \text{mass of a } ^{12}\text{C atom} = 1.660539 \times 10^{-27} \text{ kg}$.<br>
+    Speed of light $c = 2.997925 \times 10^8 \text{ m s}^{-1}$.</p>
+
+    <p><strong>1. Energy in Joules ($J$):</strong><br>
+    By Einstein’s mass-energy equivalence $E = m c^2$:
+    \[
+    E = (1.660539 \times 10^{-27} \text{ kg}) \times (2.997925 \times 10^8 \text{ m s}^{-1})^2
+    \]
+    \[
+    E = 1.660539 \times 10^{-27} \times 8.98755 \times 10^{16} \approx 1.4924 \times 10^{-10} \text{ J}
+    \]</p>
+
+    <p><strong>2. Energy in MeV:</strong><br>
+    Since $1 \text{ eV} = 1.602176 \times 10^{-19} \text{ J} \implies 1 \text{ MeV} = 1.602176 \times 10^{-13} \text{ J}$:
+    \[
+    E = \frac{1.492418 \times 10^{-10} \text{ J}}{1.602176 \times 10^{-13} \text{ J MeV}^{-1}} \approx 931.49 \text{ MeV} \approx 931.5 \text{ MeV}
+    \]
+    <p><strong>Result:</strong> $1 \text{ u} \equiv 1.492 \times 10^{-10} \text{ J} \equiv 931.5 \text{ MeV}$.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of energy in Joules $1.492 \times 10^{-10}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Conversion to MeV yielding $931.5\text{ MeV}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q4 (Exercise 13.4) -->
+  <div class="q-card" id="c12p-ch13-q4">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q4')">
+      <div class="q-num">Q 13.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.4</span><br>
+        The nucleus $^{56}_{26}\text{Fe}$ has a mass of $55.934939 \text{ u}$. Find its binding energy and binding energy per nucleon.<br>
+    (Given: $m_p = 1.007825 \text{ u}, m_n = 1.008665 \text{ u}$, $1 \text{ u} = 931.5 \text{ MeV}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Atomic number $Z = 26$, Mass number $A = 56$, Neutron number $N = A - Z = 30$<br>
+    Nuclear mass $M(^{56}\text{Fe}) = 55.934939 \text{ u}$</p>
+
+    <p><strong>Step 1: Total Mass of Constituent Nucleons:</strong><br>
+    Mass of 26 protons:
+    \[
+    26 m_p = 26 \times 1.007825 = 26.203450 \text{ u}
+    \]
+    Mass of 30 neutrons:
+    \[
+    30 m_n = 30 \times 1.008665 = 30.259950 \text{ u}
+    \]
+    Sum of nucleon masses:
+    \[
+    26 m_p + 30 m_n = 26.203450 + 30.259950 = 56.463400 \text{ u}
+    \]</p>
+
+    <p><strong>Step 2: Mass Defect $\Delta M$:</strong><br>
+    \[
+    \Delta M = (26 m_p + 30 m_n) - M = 56.463400 - 55.934939 = 0.528461 \text{ u}
+    \]</p>
+
+    <p><strong>Step 3: Binding Energy $E_b$:</strong><br>
+    \[
+    E_b = \Delta M \times 931.5 \text{ MeV} = 0.528461 \times 931.5 \approx 492.26 \text{ MeV}
+    \]</p>
+
+    <p><strong>Step 4: Binding Energy per Nucleon $E_{bn}$:</strong><br>
+    \[
+    E_{bn} = \frac{E_b}{A} = \frac{492.26 \text{ MeV}}{56} \approx 8.79 \text{ MeV/nucleon}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of mass defect $\Delta M = 0.528461\text{ u}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of binding energy $E_b = 492.26\text{ MeV}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $E_{bn} = 8.79\text{ MeV/nucleon}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q5 (Exercise 13.5) -->
+  <div class="q-card" id="c12p-ch13-q5">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q5')">
+      <div class="q-num">Q 13.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.5</span><br>
+        A given coin has a mass of $3.0 \text{ g}$. Calculate the nuclear energy that would be required to separate all the neutrons and protons from each other. For simplicity assume that the coin is entirely made of $^{63}_{29}\text{Cu}$ atoms (mass $= 62.92960 \text{ u}$).<br>
+    ($m_H = 1.007825 \text{ u}, m_n = 1.008665 \text{ u}$, Avogadro's number $N_A = 6.023 \times 10^{23} \text{ mol}^{-1}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Step 1: Number of Atoms in $3.0 \text{ g}$ of $^{63}\text{Cu}$:</strong><br>
+    Molar mass $M \approx 63 \text{ g mol}^{-1}$.<br>
+    \[
+    n = \frac{3.0 \text{ g}}{63 \text{ g mol}^{-1}} \times (6.023 \times 10^{23} \text{ mol}^{-1}) \approx 2.868 \times 10^{22} \text{ atoms}
+    \]</p>
+
+    <p><strong>Step 2: Binding Energy of One $^{63}_{29}\text{Cu}$ Nucleus:</strong><br>
+    $Z = 29$, $N = 63 - 29 = 34$.<br>
+    Mass of constituents:
+    \[
+    29 m_H + 34 m_n = (29 \times 1.007825) + (34 \times 1.008665) = 29.226925 + 34.294610 = 63.521535 \text{ u}
+    \]
+    Mass defect:
+    \[
+    \Delta m = 63.521535 - 62.92960 = 0.591935 \text{ u}
+    \]
+    Binding energy per nucleus:
+    \[
+    E_b = 0.591935 \times 931.5 \approx 551.39 \text{ MeV}
+    \]</p>
+
+    <p><strong>Step 3: Total Energy Required:</strong><br>
+    \[
+    E_{total} = n \times E_b = (2.868 \times 10^{22}) \times 551.39 \text{ MeV} \approx 1.581 \times 10^{25} \text{ MeV}
+    \]
+    In Joules:
+    \[
+    E_{total} = (1.581 \times 10^{25}) \times (1.602 \times 10^{-13} \text{ J}) \approx 2.53 \times 10^{12} \text{ J} = 2.53 \times 10^9 \text{ kJ}
+    \]
+    <p><strong>Significance:</strong> An enormous energy of $\approx 2.53 \times 10^{12} \text{ J}$ is required, illustrating the immense strength of the strong nuclear force holding nucleons together.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of number of nuclei $n = 2.868 \times 10^{22}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mass defect $\Delta m = 0.5919\text{ u}$ and single nucleus $E_b = 551.4\text{ MeV}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total energy $E = 2.53 \times 10^{12}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q6 (Exercise 13.6) -->
+  <div class="q-card" id="c12p-ch13-q6">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q6')">
+      <div class="q-num">Q 13.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.6</span><br>
+        Write nuclear reaction equations for:<br>
+    <strong>(a)</strong> $\alpha$-decay of $^{226}_{88}\text{Ra}$<br>
+    <strong>(b)</strong> $\alpha$-decay of $^{242}_{94}\text{Pu}$<br>
+    <strong>(c)</strong> $\beta^-$-decay of $^{32}_{15}\text{P}$<br>
+    <strong>(d)</strong> $\beta^-$-decay of $^{210}_{83}\text{Bi}$<br>
+    <strong>(e)</strong> $\beta^+$-decay of $^{11}_{6}\text{C}$<br>
+    <strong>(f)</strong> $\beta^+$-decay of $^{97}_{43}\text{Tc}$<br>
+    <strong>(g)</strong> Electron capture of $^{120}_{54}\text{Xe}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Nuclear Decay Equations:</strong></p>
+    <ol style="line-height:1.8;">
+      <li><strong>(a) $\alpha$-decay of $^{226}_{88}\text{Ra}$ ($A-4, Z-2$):</strong>
+      \[
+      ^{226}_{88}\text{Ra} \longrightarrow \, ^{222}_{86}\text{Rn} + \, ^4_2\text{He}
+      \]</li>
+      <li><strong>(b) $\alpha$-decay of $^{242}_{94}\text{Pu}$:</strong>
+      \[
+      ^{242}_{94}\text{Pu} \longrightarrow \, ^{238}_{92}\text{U} + \, ^4_2\text{He}
+      \]</li>
+      <li><strong>(c) $\beta^-$-decay of $^{32}_{15}\text{P}$ ($Z+1$, antineutrino $\bar{\nu}_e$ emitted):</strong>
+      \[
+      ^{32}_{15}\text{P} \longrightarrow \, ^{32}_{16}\text{S} + e^- + \bar{\nu}_e
+      \]</li>
+      <li><strong>(d) $\beta^-$-decay of $^{210}_{83}\text{Bi}$:</strong>
+      \[
+      ^{210}_{83}\text{Bi} \longrightarrow \, ^{210}_{84}\text{Po} + e^- + \bar{\nu}_e
+      \]</li>
+      <li><strong>(e) $\beta^+$-decay of $^{11}_{6}\text{C}$ ($Z-1$, neutrino $\nu_e$ emitted):</strong>
+      \[
+      ^{11}_{6}\text{C} \longrightarrow \, ^{11}_{5}\text{B} + e^+ + \nu_e
+      \]</li>
+      <li><strong>(f) $\beta^+$-decay of $^{97}_{43}\text{Tc}$:</strong>
+      \[
+      ^{97}_{43}\text{Tc} \longrightarrow \, ^{97}_{42}\text{Mo} + e^+ + \nu_e
+      \]</li>
+      <li><strong>(g) Electron capture of $^{120}_{54}\text{Xe}$ ($Z-1$, neutrino emitted):</strong>
+      \[
+      ^{120}_{54}\text{Xe} + e^- \longrightarrow \, ^{120}_{53}\text{I} + \nu_e
+      \]</li>
+    </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">All seven nuclear equations balanced in mass number $A$ and charge $Z$</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Correct identification of neutrinos ($\nu_e$) vs antineutrinos ($\bar{\nu}_e$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q7 (Exercise 13.7) -->
+  <div class="q-card" id="c12p-ch13-q7">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q7')">
+      <div class="q-num">Q 13.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.7</span><br>
+        A radioactive isotope has a half-life of $T$ years. How long will it take the activity to reduce to:<br>
+    <strong>(a)</strong> $3.125\%$,<br>
+    <strong>(b)</strong> $1\%$ of its original value?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Radioactive Decay Law:</strong><br>
+    \[
+    \frac{R}{R_0} = \left( \frac{1}{2} \right)^{t/T} = e^{-\lambda t}
+    \]</p>
+
+    <p><strong>(a) Reduction to $3.125\%$ ($0.03125$):</strong><br>
+    \[
+    \frac{R}{R_0} = 0.03125 = \frac{1}{32} = \left( \frac{1}{2} \right)^5
+    \]
+    Equating powers of $\frac{1}{2}$:
+    \[
+    \frac{t}{T} = 5 \implies t = 5 T \text{ years}
+    \]</p>
+
+    <p><strong>(b) Reduction to $1\%$ ($0.01$):</strong><br>
+    \[
+    \frac{R}{R_0} = 0.01 = \left( \frac{1}{2} \right)^{t/T}
+    \]
+    Taking natural logarithms:
+    \[
+    \ln(0.01) = \frac{t}{T} \ln(0.5) \implies -4.6052 = -0.69315 \left( \frac{t}{T} \right)
+    \]
+    \[
+    t = \frac{4.6052}{0.69315} T \approx 6.64 T \text{ years}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Solution for case (a): $t = 5T$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solution for case (b): $t = 6.64T$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q8 (Exercise 13.8) -->
+  <div class="q-card" id="c12p-ch13-q8">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q8')">
+      <div class="q-num">Q 13.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.8</span><br>
+        The normal activity of living carbon-containing matter is found to be about 15 decays per minute for each gram of carbon. An archaeological specimen found in Mohenjodaro gave an activity of 9 decays per minute per gram of carbon. Estimate the approximate age of the specimen. (Half-life of $^{14}\text{C} = 5730 \text{ years}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Initial activity $R_0 = 15 \text{ min}^{-1} \text{ g}^{-1}$<br>
+    Present activity $R = 9 \text{ min}^{-1} \text{ g}^{-1}$<br>
+    Half-life $T_{1/2} = 5730 \text{ years}$<br>
+    Decay constant $\lambda = \frac{0.693}{5730} \approx 1.209 \times 10^{-4} \text{ yr}^{-1}$</p>
+
+    <p><strong>Radioactive Dating Formula:</strong><br>
+    \[
+    R = R_0 e^{-\lambda t} \implies \frac{R_0}{R} = e^{\lambda t}
+    \]
+    \[
+    \lambda t = \ln\left( \frac{R_0}{R} \right) = \ln\left( \frac{15}{9} \right) = \ln\left( \frac{5}{3} \right) \approx \ln(1.667) \approx 0.5108
+    \]</p>
+
+    <p><strong>Calculation of Age $t$:</strong><br>
+    \[
+    t = \frac{0.5108}{\lambda} = 0.5108 \times \frac{5730}{0.693} = \frac{2926.88}{0.693} \approx 4223.5 \text{ years} \approx 4224 \text{ years}
+    \]
+    <p><strong>Result:</strong> The approximate age of the Mohenjodaro archaeological specimen is <strong>$4224 \text{ years}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Decay law setup $R = R_0 e^{-\lambda t}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Logarithmic calculation $\ln(15/9) = 0.511$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final age estimate $t \approx 4224\text{ years}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q9 (Exercise 13.9) -->
+  <div class="q-card" id="c12p-ch13-q9">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q9')">
+      <div class="q-num">Q 13.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.9</span><br>
+        Obtain the amount of $^{60}_{27}\text{Co}$ necessary to provide a radioactive source of $8.0 \text{ mCi}$ strength. The half-life of $^{60}\text{Co}$ is $5.3 \text{ years}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Activity $R = 8.0 \text{ mCi} = 8.0 \times 10^{-3} \times 3.7 \times 10^{10} \text{ Bq} = 2.96 \times 10^8 \text{ disintegrations s}^{-1}$<br>
+    Half-life $T_{1/2} = 5.3 \text{ years} = 5.3 \times 365.25 \times 24 \times 3600 \approx 1.673 \times 10^8 \text{ s}$<br>
+    Molar mass of $^{60}\text{Co} = 60 \text{ g mol}^{-1}$</p>
+
+    <p><strong>Step 1: Decay Constant $\lambda$:</strong><br>
+    \[
+    \lambda = \frac{0.693}{T_{1/2}} = \frac{0.693}{1.673 \times 10^8 \text{ s}} \approx 4.142 \times 10^{-9} \text{ s}^{-1}
+    \]</p>
+
+    <p><strong>Step 2: Number of Nuclei Required ($N$):</strong><br>
+    \[
+    R = \lambda N \implies N = \frac{R}{\lambda} = \frac{2.96 \times 10^8 \text{ s}^{-1}}{4.142 \times 10^{-9} \text{ s}^{-1}} \approx 7.146 \times 10^{16} \text{ nuclei}
+    \]</p>
+
+    <p><strong>Step 3: Mass of $^{60}\text{Co}$ Required ($m$):</strong><br>
+    \[
+    m = \frac{N}{N_A} \times 60 \text{ g} = \frac{7.146 \times 10^{16}}{6.023 \times 10^{23}} \times 60 = 1.186 \times 10^{-7} \times 60 \approx 7.12 \times 10^{-6} \text{ g} = 7.12 \ \mu\text{g}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Conversion of activity to Becquerels ($2.96 \times 10^8\text{ Bq}$) and $T_{1/2}$ to seconds</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of number of nuclei $N = 7.15 \times 10^{16}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of mass $m = 7.12\ \mu\text{g}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q10 (Exercise 13.10) -->
+  <div class="q-card" id="c12p-ch13-q10">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q10')">
+      <div class="q-num">Q 13.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.10</span><br>
+        The half-life of $^{90}_{38}\text{Sr}$ is $28 \text{ years}$. What is the disintegration rate of $15 \text{ mg}$ of this isotope?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Mass $m = 15 \text{ mg} = 15 \times 10^{-3} \text{ g} = 1.5 \times 10^{-2} \text{ g}$<br>
+    Atomic mass of $^{90}\text{Sr} = 90 \text{ g mol}^{-1}$<br>
+    Half-life $T_{1/2} = 28 \text{ years} = 28 \times 3.156 \times 10^7 \text{ s} \approx 8.837 \times 10^8 \text{ s}$</p>
+
+    <p><strong>Step 1: Number of Nuclei ($N$):</strong><br>
+    \[
+    N = \frac{m}{M} N_A = \frac{1.5 \times 10^{-2} \text{ g}}{90 \text{ g mol}^{-1}} \times (6.023 \times 10^{23}) \approx 1.004 \times 10^{20} \text{ nuclei}
+    \]</p>
+
+    <p><strong>Step 2: Decay Constant $\lambda$:</strong><br>
+    \[
+    \lambda = \frac{0.693}{8.837 \times 10^8 \text{ s}} \approx 7.842 \times 10^{-10} \text{ s}^{-1}
+    \]</p>
+
+    <p><strong>Step 3: Disintegration Rate (Activity $R$):</strong><br>
+    \[
+    R = \lambda N = (7.842 \times 10^{-10} \text{ s}^{-1}) \times (1.004 \times 10^{20}) \approx 7.873 \times 10^{10} \text{ Bq} \text{ (decays s}^{-1}\text{)}
+    \]
+    In Curies:
+    \[
+    R = \frac{7.873 \times 10^{10}}{3.7 \times 10^{10}} \approx 2.13 \text{ Ci}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of number of nuclei $N = 1.004 \times 10^{20}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of decay constant $\lambda = 7.84 \times 10^{-10}\text{ s}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Activity $R = 7.87 \times 10^{10}\text{ Bq} = 2.13\text{ Ci}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q11 (Exercise 13.11) -->
+  <div class="q-card" id="c12p-ch13-q11">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q11')">
+      <div class="q-num">Q 13.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.11</span><br>
+        Obtain approximately the ratio of the nuclear radii of the gold isotope $^{197}_{79}\text{Au}$ and the silver isotope $^{107}_{47}\text{Ag}$. Show that nuclear matter density is independent of mass number $A$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>1. Ratio of Nuclear Radii:</strong><br>
+    The radius of a nucleus of mass number $A$ is given by:
+    \[
+    R = R_0 A^{1/3}
+    \]
+    Therefore:
+    \[
+    \frac{R_{\text{Au}}}{R_{\text{Ag}}} = \left( \frac{A_{\text{Au}}}{A_{\text{Ag}}} \right)^{1/3} = \left( \frac{197}{107} \right)^{1/3} \approx (1.841)^{1/3} \approx 1.225 \approx 1.23
+    \]</p>
+
+    <p><strong>2. Invariance of Nuclear Density:</strong><br>
+    Let $m$ be the average mass of a nucleon ($m \approx 1.66 \times 10^{-27} \text{ kg}$).<br>
+    Total mass of nucleus: $M = m A$.<br>
+    Assuming spherical shape of radius $R = R_0 A^{1/3}$, the nuclear volume is:
+    \[
+    V = \frac{4}{3} \pi R^3 = \frac{4}{3} \pi (R_0 A^{1/3})^3 = \frac{4}{3} \pi R_0^3 A
+    \]
+    The density of nuclear matter is:
+    \[
+    \rho = \frac{M}{V} = \frac{m A}{\frac{4}{3} \pi R_0^3 A} = \frac{3 m}{4 \pi R_0^3}
+    \]
+    Since $m$ and $R_0$ are universal nuclear constants, the mass number $A$ cancels out completely.<br>
+    Taking $R_0 = 1.2 \times 10^{-15} \text{ m}$:
+    \[
+    \rho = \frac{3 \times (1.66 \times 10^{-27})}{4\pi \times (1.2 \times 10^{-15})^3} \approx 2.3 \times 10^{17} \text{ kg m}^{-3}
+    \]
+    Hence, nuclear density is strictly constant and independent of the size or mass number of the nucleus.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of ratio $R_{Au}/R_{Ag} \approx 1.23$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Derivation showing cancellation of $A$ in $\rho = \frac{3m}{4\pi R_0^3}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Numerical order of magnitude $\rho \sim 2.3 \times 10^{17}\text{ kg m}^{-3}$</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q12 (Exercise 13.12) -->
+  <div class="q-card" id="c12p-ch13-q12">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q12')">
+      <div class="q-num">Q 13.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.12</span><br>
+        Find the $Q$-value and the kinetic energy of the emitted $\alpha$-particle in the $\alpha$-decay of:<br>
+    <strong>(a)</strong> $^{226}_{88}\text{Ra} \to \, ^{222}_{86}\text{Rn} + \, ^4_2\text{He}$<br>
+    (Given: $m(^{226}\text{Ra}) = 226.02540 \text{ u}, m(^{222}\text{Rn}) = 222.01750 \text{ u}, m(^4\text{He}) = 4.002603 \text{ u}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Calculation of $Q$-Value:</strong><br>
+    Mass defect of the decay:
+    \[
+    \Delta m = m(^{226}\text{Ra}) - [m(^{222}\text{Rn}) + m(^4\text{He})]
+    \]
+    \[
+    \Delta m = 226.02540 - (222.01750 + 4.002603) = 226.02540 - 226.020103 = 0.005297 \text{ u}
+    \]
+    $Q$-value:
+    \[
+    Q = \Delta m \times 931.5 \text{ MeV} = 0.005297 \times 931.5 \approx 4.934 \text{ MeV}
+    \]</p>
+
+    <p><strong>Kinetic Energy of the $\alpha$-particle ($K_\alpha$):</strong><br>
+    By momentum conservation, the recoil energy of daughter nucleus gives:
+    \[
+    K_\alpha = \left( \frac{A - 4}{A} \right) Q = \left( \frac{226 - 4}{226} \right) Q = \frac{222}{226} \times 4.934 \text{ MeV} \approx 4.847 \text{ MeV} \approx 4.85 \text{ MeV}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of mass defect $\Delta m = 0.005297\text{ u}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $Q = 4.934\text{ MeV}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Recoil formula $K_\alpha = \frac{A-4}{A}Q$ and evaluation $K_\alpha = 4.85\text{ MeV}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q13 (Exercise 13.13) -->
+  <div class="q-card" id="c12p-ch13-q13">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q13')">
+      <div class="q-num">Q 13.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.13</span><br>
+        The radionuclide $^{11}\text{C}$ decays according to:
+    \[
+    ^{11}_6\text{C} \longrightarrow \, ^{11}_5\text{B} + e^+ + \nu_e, \quad T_{1/2} = 20.3 \text{ min}
+    \]
+    The maximum energy of the emitted positron is $0.960 \text{ MeV}$. Given masses: $m(^{11}_6\text{C}) = 11.011434 \text{ u}, m(^{11}_5\text{B}) = 11.009305 \text{ u}, m_e = 0.000548 \text{ u}$. Calculate the $Q$-value and compare it with the maximum positron energy.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Nuclear Mass vs Atomic Mass in $\beta^+$-decay:</strong><br>
+    In positron emission, the decay equation in terms of atomic masses must account for the creation of positron and loss of an orbital electron:
+    \[
+    Q = [m(^{11}_6\text{C}) - m(^{11}_5\text{B}) - 2 m_e] c^2
+    \]</p>
+
+    <p><strong>Calculation:</strong><br>
+    \[
+    \Delta m = 11.011434 - 11.009305 - 2(0.000548) = 0.002129 - 0.001096 = 0.001033 \text{ u}
+    \]
+    \[
+    Q = 0.001033 \times 931.5 \text{ MeV} \approx 0.962 \text{ MeV}
+    \]
+    <p><strong>Comparison:</strong> The calculated $Q$-value ($0.962 \text{ MeV}$) agrees exceptionally well with the experimental maximum kinetic energy of the emitted positron ($0.960 \text{ MeV}$), with the tiny negligible difference accounted for by the daughter recoil.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formula for $Q$ in $\beta^+$ decay including $2m_e$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation $Q = 0.962\text{ MeV}$ and comparison</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q14 (Exercise 13.14) -->
+  <div class="q-card" id="c12p-ch13-q14">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q14')">
+      <div class="q-num">Q 13.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.14</span><br>
+        The nucleus $^{23}_{10}\text{Ne}$ decays by $\beta^-$ emission into $^{23}_{11}\text{Na}$. Write down the $\beta$-decay equation and determine the maximum kinetic energy of the electrons emitted.<br>
+    (Given: $m(^{23}_{10}\text{Ne}) = 22.994466 \text{ u}, m(^{23}_{11}\text{Na}) = 22.989770 \text{ u}$).
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Decay Equation:</strong><br>
+    \[
+    ^{23}_{10}\text{Ne} \longrightarrow \, ^{23}_{11}\text{Na} + e^- + \bar{\nu}_e
+    \]</p>
+
+    <p><strong>$Q$-Value in $\beta^-$-decay:</strong><br>
+    In $\beta^-$ decay, the atomic masses automatically cancel the electron mass:
+    \[
+    Q = [m(^{23}_{10}\text{Ne}) - m(^{23}_{11}\text{Na})] c^2
+    \]
+    \[
+    \Delta m = 22.994466 - 22.989770 = 0.004696 \text{ u}
+    \]
+    \[
+    Q = 0.004696 \times 931.5 \text{ MeV} \approx 4.374 \text{ MeV}
+    \]
+    Neglecting the tiny recoil of the heavy daughter nucleus $^{23}\text{Na}$, the maximum kinetic energy carried by the emitted $\beta^-$ electron (when antineutrino energy $\to 0$) is:
+    \[
+    K_{e, max} \approx Q \approx 4.37 \text{ MeV}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Balanced equation for $\beta^-$ decay with $\bar{\nu}_e$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $Q = K_{max} = 4.37\text{ MeV}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q15 (Exercise 13.15) -->
+  <div class="q-card" id="c12p-ch13-q15">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q15')">
+      <div class="q-num">Q 13.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.15</span><br>
+        Calculate the $Q$-values of the following nuclear reactions:<br>
+    <strong>(a)</strong> $^{1}_1\text{H} + \, ^3_1\text{H} \to \, ^2_1\text{H} + \, ^2_1\text{H}$<br>
+    ($m(^1\text{H}) = 1.007825 \text{ u}, m(^3\text{H}) = 3.016049 \text{ u}, m(^2\text{H}) = 2.014102 \text{ u}$)<br>
+    <strong>(b)</strong> $^{12}_6\text{C} + \, ^{12}_6\text{C} \to \, ^{20}_{10}\text{Ne} + \, ^4_2\text{He}$<br>
+    ($m(^{12}\text{C}) = 12.000000 \text{ u}, m(^{20}\text{Ne}) = 19.992439 \text{ u}, m(^4\text{He}) = 4.002603 \text{ u}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>(a) Reaction $^{1}_1\text{H} + \, ^3_1\text{H} \to \, ^2_1\text{H} + \, ^2_1\text{H}$:</strong><br>
+    Initial mass: $m_i = 1.007825 + 3.016049 = 4.023874 \text{ u}$<br>
+    Final mass: $m_f = 2 \times 2.014102 = 4.028204 \text{ u}$<br>
+    Mass defect:
+    \[
+    \Delta m = m_i - m_f = 4.023874 - 4.028204 = -0.004330 \text{ u}
+    \]
+    \[
+    Q = -0.004330 \times 931.5 \text{ MeV} \approx -4.033 \text{ MeV}
+    \]
+    (Negative $Q$ indicates an <strong>endoergic</strong> reaction requiring energy input).</p>
+
+    <p><strong>(b) Reaction $^{12}_6\text{C} + \, ^{12}_6\text{C} \to \, ^{20}_{10}\text{Ne} + \, ^4_2\text{He}$:</strong><br>
+    Initial mass: $m_i = 2 \times 12.000000 = 24.000000 \text{ u}$<br>
+    Final mass: $m_f = 19.992439 + 4.002603 = 23.995042 \text{ u}$<br>
+    Mass defect:
+    \[
+    \Delta m = 24.000000 - 23.995042 = +0.004958 \text{ u}
+    \]
+    \[
+    Q = +0.004958 \times 931.5 \text{ MeV} \approx +4.618 \text{ MeV}
+    \]
+    (Positive $Q$ indicates an <strong>exoergic</strong> energy-releasing reaction).</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of $Q = -4.03\text{ MeV}$ (endoergic) for (a)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $Q = +4.62\text{ MeV}$ (exoergic) for (b)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q16 (Exercise 13.16) -->
+  <div class="q-card" id="c12p-ch13-q16">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q16')">
+      <div class="q-num">Q 13.16</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.16</span><br>
+        Suppose we consider the fission of a $^{56}_{26}\text{Fe}$ nucleus into two equal fragments, $^{28}_{13}\text{Al}$. Is this fission energetically possible? Argue by working out the $Q$-value of the process.<br>
+    (Given: $m(^{56}_{26}\text{Fe}) = 55.93494 \text{ u}, m(^{28}_{13}\text{Al}) = 27.98191 \text{ u}$).
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Fission Reaction:</strong><br>
+    \[
+    ^{56}_{26}\text{Fe} \longrightarrow \, 2 \, ^{28}_{13}\text{Al}
+    \]</p>
+
+    <p><strong>Mass Defect:</strong><br>
+    \[
+    \Delta m = m(^{56}\text{Fe}) - 2 m(^{28}\text{Al}) = 55.93494 - 2 \times 27.98191 = 55.93494 - 55.96382 = -0.02888 \text{ u}
+    \]</p>
+
+    <p><strong>$Q$-Value:</strong><br>
+    \[
+    Q = \Delta m \times 931.5 \text{ MeV} = -0.02888 \times 931.5 \approx -26.90 \text{ MeV}
+    \]</p>
+
+    <p><strong>Conclusion:</strong><br>
+    Since $Q < 0$ (highly negative), this process is endothermic and requires an external supply of $26.9 \text{ MeV}$. Therefore, spontaneous fission of $^{56}\text{Fe}$ is <strong>energetically impossible</strong>. Indeed, $^{56}\text{Fe}$ is at the absolute peak of the binding energy curve and is the most tightly bound nucleus in nature.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of negative $Q$-value ($Q = -26.9\text{ MeV}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Justification of why spontaneous fission cannot occur</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q17 (Exercise 13.17) -->
+  <div class="q-card" id="c12p-ch13-q17">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q17')">
+      <div class="q-num">Q 13.17</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.17</span><br>
+        The average energy released per fission of $^{239}_{94}\text{Pu}$ is $180 \text{ MeV}$. How much energy, in MeV and Joules, is released if all the atoms in $1.0 \text{ kg}$ of pure $^{239}\text{Pu}$ undergo fission?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Mass $m = 1.0 \text{ kg} = 1000 \text{ g}$<br>
+    Molar mass $M = 239 \text{ g mol}^{-1}$<br>
+    Energy per fission $E_f = 180 \text{ MeV}$<br>
+    Avogadro’s number $N_A = 6.023 \times 10^{23} \text{ mol}^{-1}$</p>
+
+    <p><strong>Step 1: Total Number of Plutonium Nuclei ($N$):</strong><br>
+    \[
+    N = \frac{1000 \text{ g}}{239 \text{ g mol}^{-1}} \times (6.023 \times 10^{23}) \approx 2.520 \times 10^{24} \text{ nuclei}
+    \]</p>
+
+    <p><strong>Step 2: Total Energy Released:</strong><br>
+    In MeV:
+    \[
+    E_{total} = N \times 180 \text{ MeV} = (2.520 \times 10^{24}) \times 180 \approx 4.536 \times 10^{26} \text{ MeV}
+    \]
+    In Joules:
+    \[
+    E_{total} = (4.536 \times 10^{26}) \times (1.602 \times 10^{-13} \text{ J}) \approx 7.27 \times 10^{13} \text{ J}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of number of nuclei $N = 2.52 \times 10^{24}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total energy $4.54 \times 10^{26}\text{ MeV} = 7.27 \times 10^{13}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q18 (Exercise 13.18) -->
+  <div class="q-card" id="c12p-ch13-q18">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q18')">
+      <div class="q-num">Q 13.18</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.18</span><br>
+        A $1000 \text{ MW}$ fission reactor consumes half of its fuel in $5.00 \text{ years}$. How much $^{235}\text{U}$ did it contain initially? Assume that the reactor operates $80\%$ of the time, that all the energy generated comes from the fission of $^{235}\text{U}$ ($200 \text{ MeV}$ per fission).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Thermal power output $P = 1000 \text{ MW} = 10^9 \text{ W}$<br>
+    Total duration $t = 5.00 \text{ years} = 5 \times 365.25 \times 24 \times 3600 \approx 1.578 \times 10^8 \text{ s}$<br>
+    Operating factor $= 80\% = 0.80$<br>
+    Effective operating time $t_{eff} = 0.80 \times 1.578 \times 10^8 = 1.2624 \times 10^8 \text{ s}$<br>
+    Energy per fission $E_f = 200 \text{ MeV} = 200 \times 1.602 \times 10^{-13} \text{ J} = 3.204 \times 10^{-11} \text{ J}$</p>
+
+    <p><strong>Step 1: Total Energy Generated in 5 Years:</strong><br>
+    \[
+    E = P \times t_{eff} = 10^9 \text{ W} \times 1.2624 \times 10^8 \text{ s} = 1.2624 \times 10^{17} \text{ J}
+    \]</p>
+
+    <p><strong>Step 2: Number of Fissions:</strong><br>
+    \[
+    N_{fiss} = \frac{E}{E_f} = \frac{1.2624 \times 10^{17} \text{ J}}{3.204 \times 10^{-11} \text{ J}} \approx 3.940 \times 10^{27} \text{ nuclei}
+    \]</p>
+
+    <p><strong>Step 3: Mass of $^{235}\text{U}$ Consumed ($m_{consumed}$):</strong><br>
+    \[
+    m_{consumed} = \frac{N_{fiss}}{N_A} \times 235 \text{ g} = \frac{3.940 \times 10^{27}}{6.023 \times 10^{23}} \times 235 \text{ g} = 6.5415 \times 10^3 \times 235 \text{ g} \approx 1537.25 \text{ kg}
+    \]</p>
+
+    <p><strong>Step 4: Initial Mass of Uranium Fuel:</strong><br>
+    Since the reactor consumed half of its fuel in this duration:
+    \[
+    m_{initial} = 2 \times m_{consumed} = 2 \times 1537.25 \text{ kg} \approx 3074.5 \text{ kg} \approx 3.07 \times 10^3 \text{ kg}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of total energy generated $E = 1.262 \times 10^{17}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of mass consumed $1537\text{ kg}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of initial fuel mass $m_{initial} = 3075\text{ kg}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q19 (Exercise 13.19) -->
+  <div class="q-card" id="c12p-ch13-q19">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q19')">
+      <div class="q-num">Q 13.19</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.19</span><br>
+        How long can an electric lamp of $100 \text{ W}$ be kept glowing by the complete fusion of $2.0 \text{ kg}$ of deuterium? Take the fusion reaction as:
+    \[
+    ^2_1\text{H} + \, ^2_1\text{H} \longrightarrow \, ^3_2\text{He} + n + 3.27 \text{ MeV}
+    \]
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Mass of deuterium $m = 2.0 \text{ kg} = 2000 \text{ g}$<br>
+    Molar mass $= 2 \text{ g mol}^{-1}$<br>
+    Power of lamp $P = 100 \text{ W}$<br>
+    Energy per pair of deuterons $= 3.27 \text{ MeV}$</p>
+
+    <p><strong>Step 1: Number of Deuteron Nuclei ($N$):</strong><br>
+    \[
+    N = \frac{2000 \text{ g}}{2 \text{ g mol}^{-1}} \times (6.023 \times 10^{23}) = 6.023 \times 10^{26} \text{ deuterons}
+    \]
+    Since each reaction involves 2 deuterons, the number of fusion reactions is:
+    \[
+    N_{rxn} = \frac{N}{2} = 3.0115 \times 10^{26} \text{ reactions}
+    \]</p>
+
+    <p><strong>Step 2: Total Energy Released ($E$):</strong><br>
+    \[
+    E = N_{rxn} \times 3.27 \text{ MeV} = (3.0115 \times 10^{26}) \times 3.27 \text{ MeV} \approx 9.8476 \times 10^{26} \text{ MeV}
+    \]
+    In Joules:
+    \[
+    E = (9.8476 \times 10^{26}) \times (1.602 \times 10^{-13} \text{ J}) \approx 1.5776 \times 10^{14} \text{ J}
+    \]</p>
+
+    <p><strong>Step 3: Duration $t$:</strong><br>
+    \[
+    t = \frac{E}{P} = \frac{1.5776 \times 10^{14} \text{ J}}{100 \text{ W}} = 1.5776 \times 10^{12} \text{ s}
+    \]
+    In years ($1 \text{ yr} \approx 3.156 \times 10^7 \text{ s}$):
+    \[
+    t = \frac{1.5776 \times 10^{12}}{3.156 \times 10^7} \approx 4.998 \times 10^4 \text{ years} \approx 5.0 \times 10^4 \text{ years}
+    \]
+    <p><strong>Result:</strong> The lamp can glow for roughly <strong>$50,000 \text{ years}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of reactions $N/2 = 3.01 \times 10^{26}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total energy calculation $E = 1.58 \times 10^{14}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Time conversion yielding $50,000\text{ years}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q20 (Exercise 13.20) -->
+  <div class="q-card" id="c12p-ch13-q20">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q20')">
+      <div class="q-num">Q 13.20</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.20</span><br>
+        Calculate the height of the electrostatic potential barrier for a head-on collision of two deuterons. (Assume that they can be taken as hard spheres of radius $2.0 \text{ fm}$).
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Radius of each deuteron $R = 2.0 \text{ fm} = 2.0 \times 10^{-15} \text{ m}$<br>
+    At the moment of touching during a head-on collision, the separation between their centres is:
+    \[
+    d = 2 R = 2 \times (2.0 \times 10^{-15} \text{ m}) = 4.0 \times 10^{-15} \text{ m}
+    \]
+    Charge of each deuteron $q = +e = 1.602 \times 10^{-19} \text{ C}$</p>
+
+    <p><strong>Electrostatic Potential Barrier Height ($U$):</strong><br>
+    \[
+    U = \frac{1}{4\pi\varepsilon_0} \frac{e^2}{d} = \frac{(9.0 \times 10^9 \text{ N m}^2 \text{ C}^{-2}) \times (1.602 \times 10^{-19} \text{ C})^2}{4.0 \times 10^{-15} \text{ m}}
+    \]
+    \[
+    U = \frac{9.0 \times 10^9 \times 2.566 \times 10^{-38}}{4.0 \times 10^{-15}} = \frac{2.3094 \times 10^{-28}}{4.0 \times 10^{-15}} \approx 5.774 \times 10^{-14} \text{ J}
+    \]
+    In keV:
+    \[
+    U = \frac{5.774 \times 10^{-14} \text{ J}}{1.602 \times 10^{-16} \text{ J keV}^{-1}} \approx 360 \text{ keV}
+    \]
+    <p><strong>Result:</strong> The height of the Coulomb potential barrier is <strong>$360 \text{ keV}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Centre-to-centre distance $d = 2R = 4.0\text{ fm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Barrier calculation $U \approx 360\text{ keV}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch13-q21 (Exercise 13.21) -->
+  <div class="q-card" id="c12p-ch13-q21">
+    <div class="q-head" onclick="toggleQ('c12p-ch13-q21')">
+      <div class="q-num">Q 13.21</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 13.21</span><br>
+        Draw a plot of binding energy per nucleon ($E_{bn}$) as a function of mass number $A$. State the main conclusions drawn from this curve regarding:<br>
+    <strong>(a)</strong> nuclear stability and saturation of nuclear forces,<br>
+    <strong>(b)</strong> nuclear fission, and<br>
+    <strong>(c)</strong> nuclear fusion.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Features of the Binding Energy per Nucleon Curve:</strong></p>
+    <ol style="line-height:1.8;">
+      <li><strong>Plateau of High Stability:</strong> For intermediate mass numbers ($30 < A < 170$), $E_{bn}$ is practically constant at approximately $8.0 - 8.5 \text{ MeV/nucleon}$, reaching an absolute maximum of $8.75 \text{ MeV/nucleon}$ at $^{56}_{26}\text{Fe}$. These nuclei are the most stable in nature.</li>
+      <li><strong>Saturation of Nuclear Forces:</strong> The constancy of $E_{bn}$ over a broad range of $A$ proves that the strong nuclear force is extremely short-ranged ($sim 1 - 2 \text{ fm}$). A nucleon interacts only with its immediate nearest neighbours, so binding energy is proportional to $A$, leading to constant $E_{bn}$.</li>
+      <li><strong>Drop at Heavy Nuclei & Nuclear Fission:</strong> For very heavy nuclei ($A > 170$, e.g. $^{238}\text{U}$ where $E_{bn} \approx 7.6 \text{ MeV}$), cumulative Coulomb repulsion among many protons reduces $E_{bn}$. When a heavy nucleus undergoes <strong>fission</strong> into two medium-mass fragments ($A \sim 100 - 140$), $E_{bn}$ rises from $\sim 7.6$ to $\sim 8.5 \text{ MeV}$, releasing vast net nuclear energy ($Q \approx 200 \text{ MeV}$).</li>
+      <li><strong>Drop at Light Nuclei & Nuclear Fusion:</strong> For light nuclei ($A < 30$, e.g. $^2\text{H}, ^3\text{H}$), $E_{bn}$ is very low ($< 7 \text{ MeV}$). When two light nuclei undergo <strong>thermonuclear fusion</strong> to form a heavier, more tightly bound nucleus (such as $^4_2\text{He}$ with $E_{bn} \approx 7.1 \text{ MeV}$), the binding energy per nucleon jumps dramatically, liberating immense energy per unit mass.</li>
+    </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Sketch description and maximum at $^{56}\text{Fe}$ ($8.75\text{ MeV}$)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Short-range nature and saturation of nuclear forces explained</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Explanation of nuclear fission (increase in $E_{bn}$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Explanation of nuclear fusion (increase in $E_{bn}$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid #e2e8f0;">
+    <button class="ch-nav-btn prev" onclick="showChapter(12)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer; color:#334155;">← Ch 12</button>
+    <button class="ch-nav-btn next" onclick="showChapter(14)" style="padding:10px 24px; border-radius:8px; border:none; background:#2563eb; color:white; font-weight:700; cursor:pointer;">Next: Ch 14 (Semiconductor Electronics) →</button>
+  </div>
+</section>

@@ -97,16 +97,8 @@ const vnSidebar = veenaChapters.map(ch => ({
 
 veenaChapters.forEach((ch, idx) => {
   const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const extraQs = veenaExtra[chId] || [];
-  
-  let currentQs = [...baseQs, ...extraQs];
-  const target = targetCounts[chId] || 14;
-
-  if (currentQs.length < target) {
-    const generated = generateHindiQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `पाठ ${idx}: ${veenaChapters[idx - 1].title}`, filename: `veena-ch${idx}.html` } : null;
   const nextLink = idx < veenaChapters.length - 1 ? { label: `पाठ ${idx + 2}: ${veenaChapters[idx + 1].title}`, filename: `veena-ch${idx + 2}.html` } : null;
@@ -149,17 +141,8 @@ const rjSidebar = rimjhimChapters.map(ch => ({
 }));
 
 rimjhimChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const extraQs = rimjhimExtra[chId] || [];
-  
-  let currentQs = [...baseQs, ...extraQs];
-  const target = targetCounts[chId] || 16;
-
-  if (currentQs.length < target) {
-    const generated = generateHindiQuestions(ch, currentQs.length, target);
-    currentQs = [...currentQs, ...generated];
-  }
+  // 100% Genuine Physical NCERT Verbatim Questions
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `पाठ ${idx}: ${rimjhimChapters[idx - 1].title}`, filename: `rimjhim-ch${idx}.html` } : null;
   const nextLink = idx < rimjhimChapters.length - 1 ? { label: `पाठ ${idx + 2}: ${rimjhimChapters[idx + 1].title}`, filename: `rimjhim-ch${idx + 2}.html` } : null;

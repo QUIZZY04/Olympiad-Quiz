@@ -1,4 +1,4 @@
-// Official NCERT Class 4 Mathematics (Maths Mela / आनन्दमय गणित) Complete Dataset - Chapters 1 to 14
+// Official NCERT Class 4 Mathematics (Maths Mela) Complete Dataset - Chapters 1 to 14
 // Aligned with New NEP 2020 & NCF-SE 2023 Curriculum (CBSE 2026-27 Session) - 100% Comprehensive Coverage
 
 const mathsMelaChapters = [
@@ -78,6 +78,186 @@ const mathsMelaChapters = [
           {
             "key": "Accurate structural description of 5-face cross net",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 1 ('Shapes Around Us'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -167,6 +347,186 @@ const mathsMelaChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 2 ('Hide and Seek'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -252,6 +612,186 @@ const mathsMelaChapters = [
           {
             "key": "Accurately decoding to 'BALL'",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 3 ('Patterns Around Us'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -350,6 +890,186 @@ const mathsMelaChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 4 ('Thousands Around Us'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -435,6 +1155,186 @@ const mathsMelaChapters = [
           {
             "key": "Equal shaded length proving equivalence",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 5 ('Sharing and Measuring'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -526,6 +1426,186 @@ const mathsMelaChapters = [
           {
             "key": "Part (b): 7,085 m",
             "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 6 ('Measuring Length'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -623,6 +1703,186 @@ const mathsMelaChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 7 ('The Cleanest Village'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -712,6 +1972,186 @@ const mathsMelaChapters = [
           {
             "key": "Borrowing and subtracting from 20 L (8 L 750 mL)",
             "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 8 ('Weigh it, Pour it'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -809,6 +2249,186 @@ const mathsMelaChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 9 ('Equal Groups'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -890,6 +2510,186 @@ const mathsMelaChapters = [
           {
             "key": "Correct division yielding 13 marbles",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 10 ('Elephants, Tigers, and Leopards'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }
@@ -983,6 +2783,186 @@ const mathsMelaChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 11 ('Fun with Symmetry'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1074,6 +3054,186 @@ const mathsMelaChapters = [
             "marks": "1.5 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 12 ('Ticking Clocks and Turning Calendar'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1161,6 +3321,186 @@ const mathsMelaChapters = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 13 ('The Transport Museum'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1246,6 +3586,186 @@ const mathsMelaChapters = [
           {
             "key": "Three groups of 5 tallies plus 3 singles correctly written",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Real-World Context",
+        "q": "In Chapter 14 ('Data Handling'), a classroom project investigates real-world mathematics: If a school bus travels 48 kilometres on 4 litres of diesel, what is the mileage (kilometres per litre) of the bus? How much diesel is needed for a 120-kilometre journey?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. <strong>Mileage calculation:</strong><br>• Distance = 48 km, Diesel used = 4 L.<br>• Mileage = 48 ÷ 4 = <strong>12 km per litre</strong>.<br>2. <strong>Diesel for 120 km:</strong><br>• Required diesel = Total distance ÷ Mileage = 120 ÷ 12 = <strong>10 litres</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Mileage = 12 km/L",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Diesel needed = 10 L",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Practice Time • Measurement & Conversions",
+        "q": "Convert the following measurements into standard units:<br>(a) 4 metres 65 centimetres into centimetres.<br>(b) 3500 millilitres into litres and millilitres.<br>(c) 2 kilograms 750 grams into grams.",
+        "ans": "<strong>Conversions:</strong><br>• (a) 1 m = 100 cm → (4 × 100) + 65 = <strong>465 cm</strong>.<br>• (b) 1000 mL = 1 L → 3500 mL = <strong>3 L 500 mL</strong>.<br>• (c) 1 kg = 1000 g → (2 × 1000) + 750 = <strong>2750 g</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "465 cm",
+            "marks": "1 M"
+          },
+          {
+            "key": "3 L 500 mL",
+            "marks": "1 M"
+          },
+          {
+            "key": "2750 g",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Try These • Geometry and Shapes",
+        "q": "Look at a solid brick:<br>(a) How many faces does a brick have?<br>(b) What is the shape of each face?<br>(c) How many straight edges and how many corners (vertices) does a brick have?",
+        "ans": "<strong>Properties of a Brick (Cuboid):</strong><br>• <strong>(a) Faces:</strong> A brick has <strong>6 flat faces</strong>.<br>• <strong>(b) Shape of faces:</strong> Each face is a <strong>rectangle</strong>.<br>• <strong>(c) Edges and Corners:</strong> It has <strong>12 straight edges</strong> and <strong>8 corners (vertices)</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "6 faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Rectangular faces",
+            "marks": "1 M"
+          },
+          {
+            "key": "12 edges and 8 corners",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Money & Accounts • Rate List Calculation",
+        "q": "At a recycling shop, the rate list shows: Waste paper = ₹12 per kg, Plastic = ₹18 per kg, Iron = ₹25 per kg.<br>Ramesh sells 10 kg of waste paper, 5 kg of plastic, and 4 kg of iron.<br>(a) Find the cost of each item sold.<br>(b) What is the total money Ramesh earns?",
+        "ans": "<strong>Calculations:</strong><br>• Waste paper: 10 × ₹12 = ₹120.<br>• Plastic: 5 × ₹18 = ₹90.<br>• Iron: 4 × ₹25 = ₹100.<br>• <strong>Total Earnings:</strong> ₹120 + ₹90 + ₹100 = <strong>₹310</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Individual costs (₹120, ₹90, ₹100)",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Total = ₹310",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Fractions Exploration • Parts of a Whole",
+        "q": "A rectangular chocolate bar has 16 equal pieces. Reena gives 1/4 of the chocolate to her brother and 1/2 of it to her friend.<br>(a) How many pieces does her brother receive?<br>(b) How many pieces does her friend receive?<br>(c) How many pieces are left for Reena?",
+        "ans": "<strong>Fractional Breakdown:</strong><br>• Total pieces = 16.<br>• Brother's share (1/4): 16 ÷ 4 = <strong>4 pieces</strong>.<br>• Friend's share (1/2): 16 ÷ 2 = <strong>8 pieces</strong>.<br>• Remaining for Reena: 16 - (4 + 8) = 16 - 12 = <strong>4 pieces</strong> (which is 1/4 of the bar).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Brother = 4 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Friend = 8 pieces",
+            "marks": "1 M"
+          },
+          {
+            "key": "Reena = 4 pieces",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Time & Clocks • Elapsed Time",
+        "q": "A school cricket match began at 9:30 AM and concluded at 1:15 PM.<br>(a) Convert 1:15 PM into 24-hour railway clock time.<br>(b) How long did the cricket match last?",
+        "ans": "<strong>Time Calculations:</strong><br>• <strong>(a) 24-hour time:</strong> 1:15 PM = 12:00 + 1:15 = <strong>13:15 hours</strong>.<br>• <strong>(b) Duration:</strong><br>• From 9:30 AM to 12:30 PM = 3 hours.<br>• From 12:30 PM to 1:15 PM = 45 minutes.<br>• Total duration = <strong>3 hours and 45 minutes</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "13:15 hours in 24-hr clock",
+            "marks": "1 M"
+          },
+          {
+            "key": "Duration = 3 hours 45 minutes with steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Perimeter & Area • Fencing a Field",
+        "q": "A square vegetable garden has a side length of 15 metres.<br>(a) What is the total length of wire fence needed to go around the garden once?<br>(b) If fencing costs ₹20 per metre, find the total cost of fencing.",
+        "ans": "<strong>Perimeter & Cost:</strong><br>• <strong>(a) Perimeter of square:</strong> 4 × Side = 4 × 15 m = <strong>60 metres</strong>.<br>• <strong>(b) Total Cost:</strong> Perimeter × Rate = 60 m × ₹20/m = <strong>₹1,200</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Perimeter = 60 m",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Cost = ₹1,200",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • Division and Multiplication",
+        "q": "Solve mentally using number breakdown:<br>(a) 72 ÷ 6 = ?<br>(b) 15 × 8 = ?<br>(c) 25 × 40 = ?<br>(d) 96 ÷ 8 = ?",
+        "ans": "<strong>Solutions:</strong><br>• (a) 72 ÷ 6 = (60 ÷ 6) + (12 ÷ 6) = 10 + 2 = <strong>12</strong>.<br>• (b) 15 × 8 = (10 × 8) + (5 × 8) = 80 + 40 = <strong>120</strong>.<br>• (c) 25 × 40 = (25 × 4) × 10 = 100 × 10 = <strong>1000</strong>.<br>• (d) 96 ÷ 8 = (80 ÷ 8) + (16 ÷ 8) = 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 mental math facts correct",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Patterns & Symmetries • Rotational Turns",
+        "q": "Look at the letter 'H' and the letter 'N':<br>(a) What does each look like after a half-turn (180° rotation)?<br>(b) What does each look like after a quarter-turn (90° rotation)?",
+        "ans": "<strong>Rotational Symmetry:</strong><br>• <strong>(a) Half-turn (180°):</strong> Both 'H' and 'N' look <strong>exactly the same</strong> after a half-turn.<br>• <strong>(b) Quarter-turn (90°):</strong> 'H' rotates to look like 'I' with sleeping bars, and 'N' rotates to look like 'Z'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Half-turn explanation (same)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Quarter-turn explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Smart Charts • Data Interpretation",
+        "q": "In a Class 4 survey of 40 children, 20 like Cricket, 10 like Football, and 10 like Badminton.<br>(a) What fraction of children like Cricket?<br>(b) Draw a simple circular pie chart (Chapati Chart) representing this data.",
+        "ans": "<strong>Data & Chapati Chart:</strong><br>• <strong>(a) Fraction:</strong> 20 out of 40 = 20/40 = <strong>1/2 (half of the class)</strong>.<br>• <strong>(b) Chapati Chart:</strong> A circle divided in half represents Cricket (1/2). The other half is split equally into two quarters (1/4 for Football and 1/4 for Badminton).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Fraction = 1/2 for cricket",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Pie chart sectors explained (1/2, 1/4, 1/4)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Chapter Review • True or False",
+        "q": "State True or False:<br>(a) A circle has no corners and no straight edges.<br>(b) 1 litre is equal to 100 millilitres.<br>(c) The perimeter of any rectangle is 2 × (Length + Breadth).",
+        "ans": "<strong>Answers:</strong><br>• (a) <strong>True:</strong> A circle is a smooth curve with 0 corners.<br>• (b) <strong>False:</strong> 1 Litre is equal to 1000 millilitres.<br>• (c) <strong>True:</strong> Perimeter = 2 × (L + B).",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "True, False, True with explanations",
+            "marks": "3 M"
           }
         ]
       }

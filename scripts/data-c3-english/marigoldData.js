@@ -1,4 +1,4 @@
-// Official NCERT Class 3 English (Marigold Book 3) Complete Dataset - Units 1 to 10
+// Official NCERT Class 3 English (Marigold / मैरीगोल्ड) Complete Dataset - Units 1 to 10
 // Classic CBSE Track (2026-27 Session) - 100% Comprehensive Question & Activity Coverage
 
 const marigoldUnits = [
@@ -127,6 +127,134 @@ const marigoldUnits = [
             "marks": "1.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 1 ('Good Morning & The Magic Garden'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Good Morning & The Magic Garden' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 1, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 1 ('Good Morning & The Magic Garden')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -252,6 +380,134 @@ const marigoldUnits = [
           {
             "key": "Correct bird sound matching for all 4 pairs",
             "marks": "4.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 2 ('Bird Talk & Nina and the Baby Sparrows'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Bird Talk & Nina and the Baby Sparrows' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 2, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 2 ('Bird Talk & Nina and the Baby Sparrows')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
           }
         ]
       }
@@ -393,6 +649,134 @@ const marigoldUnits = [
             "marks": "4.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 3 ('Little by Little & The Enormous Turnip'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Little by Little & The Enormous Turnip' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 3, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 3 ('Little by Little & The Enormous Turnip')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -524,6 +908,134 @@ const marigoldUnits = [
             "marks": "3.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 4 ('Sea Song & A Little Fish Story'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Sea Song & A Little Fish Story' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 4, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 4 ('Sea Song & A Little Fish Story')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -649,6 +1161,134 @@ const marigoldUnits = [
           {
             "key": "Clear ethical and ecological reasons explained",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 5 ('The Balloon Man & The Yellow Butterfly'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'The Balloon Man & The Yellow Butterfly' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 5, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 5 ('The Balloon Man & The Yellow Butterfly')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
           }
         ]
       }
@@ -790,6 +1430,134 @@ const marigoldUnits = [
             "marks": "4.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 6 ('Trains & The Story of the Road'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Trains & The Story of the Road' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 6, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 6 ('Trains & The Story of the Road')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -919,6 +1687,134 @@ const marigoldUnits = [
           {
             "key": "Correct animal sounds for all three prompts",
             "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 7 ('Puppy and I & Little Tiger, Big Tiger'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Puppy and I & Little Tiger, Big Tiger' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 7, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 7 ('Puppy and I & Little Tiger, Big Tiger')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
           }
         ]
       }
@@ -1052,6 +1948,134 @@ const marigoldUnits = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 8 ('What's in the Mailbox? & My Silly Sister'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'What's in the Mailbox? & My Silly Sister' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 8, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 8 ('What's in the Mailbox? & My Silly Sister')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1183,6 +2207,134 @@ const marigoldUnits = [
             "marks": "2.0 M"
           }
         ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 9 ('Don't Tell & He is My Brother'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'Don't Tell & He is My Brother' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 9, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 9 ('Don't Tell & He is My Brother')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
+          }
+        ]
       }
     ],
     "cbq": {
@@ -1312,6 +2464,134 @@ const marigoldUnits = [
           {
             "key": "Accurate recounting of lion's humorous refusal",
             "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "Reading is Fun • Poem Comprehension",
+        "q": "In Unit 10 ('How Creatures Move & The Ship of the Desert'), what does the child/speaker in the poem feel and observe early in the morning?",
+        "ans": "<strong>Comprehension:</strong><br>The speaker feels <strong>joyful, alert, and full of wonder</strong>. She observes the waking sun, singing birds, buzzing bees, and blowing winds, greeting all of nature with happiness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Child's feelings (joy/wonder)",
+            "marks": "1 M"
+          },
+          {
+            "key": "Natural observations",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Talk Time • Morning Routines",
+        "q": "What are the first three things you do after waking up in the morning? Share your routine.",
+        "ans": "<strong>Model Response:</strong><br>1. I brush my teeth and wash my face with cool water.<br>2. I drink a warm glass of water or milk.<br>3. I do a few light morning stretches and wish my family 'Good Morning'.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three logical morning routine steps",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Building • Nature Words",
+        "q": "Find words in 'How Creatures Move & The Ship of the Desert' that describe nature (e.g. flowers, trees, sky, sunlight). List four such words.",
+        "ans": "<strong>Nature Words:</strong><br>1. <strong>Breeze</strong> (gentle wind)<br>2. <strong>Blossom</strong> (blooming flowers)<br>3. <strong>Sunbeam</strong> (shaft of sunlight)<br>4. <strong>Meadow</strong> (green grassland).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four valid nature words",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Answering Why",
+        "q": "In the story section of Unit 10, why were the flowers in the garden fond of the little school children?",
+        "ans": "<strong>Model Answer:</strong><br>The flowers loved the children because the children <strong>brought their watering cans to water their thirsty roots</strong> and gently dug up the ground so the flowers could grow healthily.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Watered thirsty roots",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "Dug the ground / treated flowers kindly",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar & Language • Plural Forms",
+        "q": "Write the plural forms of: (a) Flower (b) Bird (c) Child (d) Leaf.",
+        "ans": "<strong>Plurals:</strong><br>• (a) Flower — <strong>Flowers</strong><br>• (b) Bird — <strong>Birds</strong><br>• (c) Child — <strong>Children</strong> (irregular plural)<br>• (d) Leaf — <strong>Leaves</strong> (f changes to ves).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Flowers, Birds, Children, Leaves",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Word Families",
+        "q": "Add '-ing' to the following action words correctly: (a) Sing (b) Dance (c) Run (d) Play.",
+        "ans": "<strong>Adding -ing:</strong><br>• (a) Sing + ing = <strong>Singing</strong><br>• (b) Dance + ing = <strong>Dancing</strong> (drop the 'e')<br>• (c) Run + ing = <strong>Running</strong> (double the 'n')<br>• (d) Play + ing = <strong>Playing</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Singing, Dancing, Running, Playing",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Think & Discuss • Environmental Care",
+        "q": "How can school students take care of plants and trees in their school garden? Mention two practical steps.",
+        "ans": "<strong>Practical Steps:</strong><br>1. <strong>Regular Watering:</strong> Form a student garden club to water plants daily during recess.<br>2. <strong>Protection:</strong> Put up small protective fences and never pluck leaves or blossoms unnecessarily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two practical steps for garden care",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Animal & Bird Calls",
+        "q": "Match the bird/insect to its characteristic sound: (a) Bee — (1) Chirp (b) Sparrow — (2) Buzz (c) Duck — (3) Quack.",
+        "ans": "<strong>Matching:</strong><br>• (a) Bee — <strong>(2) Buzz</strong><br>• (b) Sparrow — <strong>(1) Chirp</strong><br>• (c) Duck — <strong>(3) Quack</strong>.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All 3 correct sounds",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Writing • A Secret in the Garden",
+        "q": "Imagine birds talking to each other about humans in the garden. What might they say? Write two sentences.",
+        "ans": "<strong>Imaginative Dialogue:</strong><br>The robin said, 'Look at those funny humans! They don't have feathers and they can't even sit on wires!' The sparrow chirped in reply, 'Yes, and they have to walk everywhere on their feet!'",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Creative bird conversation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Review Questions • Story Moral",
+        "q": "What is the most valuable message we take from Unit 10 ('How Creatures Move & The Ship of the Desert')?",
+        "ans": "<strong>Core Message:</strong><br>The chapter teaches us to <strong>appreciate nature, treat every living creature with tenderness, and cherish the simple joys of our surroundings</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Appreciation of nature and kindness to living beings",
+            "marks": "2 M"
           }
         ]
       }

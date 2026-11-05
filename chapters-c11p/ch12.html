@@ -1,0 +1,563 @@
+<section class="chapter-section" id="c11p-ch12">
+  <div class="chapter-header">
+    <div class="ch-badge">12</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 12</div>
+      <h2>Kinetic Theory</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 10 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Molecular Micro-Kinematics: Maxwell-Boltzmann Speed Distribution &amp; Collision Cross-Section Mean Free Path
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Maxwell-Boltzmann Distribution Curves -->
+      <rect x="15" y="15" width="375" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Maxwell-Boltzmann Speed Distribution:</text>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="360" y2="180" stroke="#475569" stroke-width="1.5"/>
+      <polygon points="360,180 352,176 352,184" fill="#475569"/>
+      <text x="310" y="195" font-size="9" font-weight="bold" fill="#475569">Speed (v) &rarr;</text>
+
+      <line x1="50" y1="180" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
+      <polygon points="50,50 46,58 54,58" fill="#475569"/>
+      <text x="25" y="60" font-size="8.5" font-weight="bold" fill="#475569" transform="rotate(-90 25,60)">dN / dv &rarr;</text>
+
+      <!-- Curve T1 (Lower Temperature - Peaked) -->
+      <path d="M 50 180 Q 80 170 110 70 T 170 145 T 260 176 T 340 180" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+      <text x="115" y="65" font-size="9" font-weight="bold" fill="#2563eb">T_1 (Lower Temp)</text>
+
+      <!-- Curve T2 (Higher Temperature - Flattened & Shifted Right) -->
+      <path d="M 50 180 Q 100 175 160 110 T 250 155 T 320 176 T 350 180" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="4,2"/>
+      <text x="210" y="105" font-size="9" font-weight="bold" fill="#ef4444">T_2 &gt; T_1 (Broadened)</text>
+
+      <!-- Characteristic Speeds Markers on T1 -->
+      <line x1="110" y1="70" x2="110" y2="180" stroke="#2563eb" stroke-dasharray="2,2" stroke-width="1.2"/>
+      <text x="82" y="165" font-size="7.5" font-weight="bold" fill="#2563eb">v_mp</text>
+
+      <line x1="124" y1="84" x2="124" y2="180" stroke="#059669" stroke-dasharray="2,2" stroke-width="1.2"/>
+      <text x="120" y="165" font-size="7.5" font-weight="bold" fill="#059669">v_avg</text>
+
+      <line x1="135" y1="98" x2="135" y2="180" stroke="#7c3aed" stroke-dasharray="2,2" stroke-width="1.2"/>
+      <text x="135" y="165" font-size="7.5" font-weight="bold" fill="#7c3aed">v_rms</text>
+
+      <!-- Key Speed Ratio Box -->
+      <rect x="235" y="125" width="145" height="48" rx="4" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="242" y="140" font-size="8" font-weight="bold" fill="#1e40af">Characteristic Ratios:</text>
+      <text x="242" y="153" font-size="7.5" fill="#334155">v_mp : v_avg : v_rms =</text>
+      <text x="242" y="165" font-size="7.5" font-weight="bold" fill="#047857">&radic;2 : &radic;(8/&pi;) : &radic;3 &asymp; 1 : 1.128 : 1.224</text>
+
+      <!-- Panel 2: Mean Free Path & Collision Cylinder -->
+      <rect x="405" y="15" width="360" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="425" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Collision Cylinder &amp; Mean Free Path:</text>
+
+      <!-- Collision Cylinder -->
+      <ellipse cx="460" cy="115" rx="14" ry="42" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <line x1="460" y1="73" x2="620" y2="73" stroke="#7c3aed" stroke-width="1.5"/>
+      <line x1="460" y1="157" x2="620" y2="157" stroke="#7c3aed" stroke-width="1.5"/>
+      <ellipse cx="620" cy="115" rx="14" ry="42" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+
+      <!-- Centre moving molecule -->
+      <circle cx="530" cy="115" r="12" fill="#7c3aed" stroke="#5b21b6" stroke-width="1.5"/>
+      <line x1="530" y1="115" x2="575" y2="115" stroke="#ef4444" stroke-width="2.5"/>
+      <polygon points="575,115 565,111 565,119" fill="#ef4444"/>
+      <text x="545" y="107" font-size="8.5" font-weight="bold" fill="#ef4444">v &Delta;t</text>
+
+      <!-- Target molecule at boundary -->
+      <circle cx="610" cy="85" r="12" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="530" y1="115" x2="610" y2="85" stroke="#64748b" stroke-dasharray="2,2"/>
+      <text x="618" y="75" font-size="7.5" fill="#475569">Collision boundary (d)</text>
+
+      <!-- Diameter dimension line -->
+      <line x1="440" y1="73" x2="440" y2="157" stroke="#475569" stroke-width="1"/>
+      <polygon points="440,73 438,80 442,80" fill="#475569"/>
+      <polygon points="440,157 438,150 442,150" fill="#475569"/>
+      <text x="424" y="118" font-size="8" font-weight="bold" fill="#475569">2d</text>
+
+      <!-- Key Formulas Box -->
+      <rect x="638" y="55" width="118" height="135" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="644" y="72" font-size="8.5" font-weight="bold" fill="#5b21b6">Core Formulas:</text>
+      <text x="644" y="90" font-size="7.5" fill="#334155">&bull; P = &frac13; &rho; v_rms&sup2;</text>
+      <text x="644" y="108" font-size="7.5" fill="#334155">&bull; E = 3/2 k_B T</text>
+      <text x="644" y="126" font-size="7.5" fill="#047857">&bull; &lambda; = 1/(&radic;2 n &pi; d&sup2;)</text>
+      <text x="644" y="144" font-size="7.5" fill="#334155">&bull; &nu;_c = v / &lambda;</text>
+      <text x="644" y="162" font-size="7.5" fill="#b91c1c">&bull; &tau;_c / &tau;_f &asymp; d / &lambda;</text>
+      <text x="644" y="178" font-size="7" fill="#64748b">&bull; C_p - C_v = R</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 12.1 to 12.10: Molecular Nature of Matter, Behavior of Gases, Maxwell-Boltzmann Distribution, Law of Equipartition of Energy, Mean Free Path &amp; Collision Dynamics</div>
+
+  <!-- c11p-ch12-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q1">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q1')">
+      <div class="q-num">Question 12.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Estimate the fraction of molecular volume to the actual volume occupied by oxygen gas at STP. Take the diameter of an oxygen molecule to be $3\text{ \AA}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given Data:<br>
+    • Diameter of oxygen molecule $d = 3\text{ \AA} = 3 \times 10^{-10}\text{ m}$<br>
+    • Radius of oxygen molecule $r = \frac{d}{2} = 1.5 \times 10^{-10}\text{ m}$<br>
+    • Molar volume of ideal gas at STP (actual volume occupied by 1 mole of gas) $V_{\text{actual}} = 22.4\text{ litres} = 22.4 \times 10^{-3}\text{ m}^3$<br>
+    • Avogadro's number $N_A = 6.023 \times 10^{23}\text{ molecules mol}^{-1}$<br><br>
+    <b>1. Volume of a single spherical oxygen molecule ($v_m$):</b><br>
+    $$v_m = \frac{4}{3}\pi r^3 = \frac{4}{3} \times \frac{22}{7} \times (1.5 \times 10^{-10}\text{ m})^3$$<br>
+    $$v_m = \frac{4}{3} \times 3.1416 \times 3.375 \times 10^{-30} = 1.414 \times 10^{-29}\text{ m}^3$$<br><br>
+    <b>2. Total molecular volume of 1 mole of oxygen molecules ($V_{\text{mol}}$):</b><br>
+    $$V_{\text{mol}} = N_A \times v_m = (6.023 \times 10^{23}) \times (1.414 \times 10^{-29}\text{ m}^3) = 8.517 \times 10^{-6}\text{ m}^3$$<br><br>
+    <b>3. Fraction of molecular volume to actual volume occupied:</b><br>
+    $$\text{Fraction} = \frac{V_{\text{mol}}}{V_{\text{actual}}} = \frac{8.517 \times 10^{-6}\text{ m}^3}{22.4 \times 10^{-3}\text{ m}^3} \approx 3.8 \times 10^{-4} \approx 4 \times 10^{-4}$$<br><br>
+    $$\mathbf{\text{The fraction of molecular volume to actual volume occupied is } \approx 3.8 \times 10^{-4} \text{ (or } \approx 4 \times 10^{-4}\text{).}}$$
+    <i>Physical Significance: The actual volume occupied by the molecules themselves is less than $0.04\%$ of the total container volume at STP, which validates the kinetic theory assumption that gas molecules are point masses with negligible individual volume compared to the space between them.</i>
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of single molecular volume $v_m = 1.414 \times 10^{-29}\text{ m}^3$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total volume of $1\text{ mole}$ of molecules $V_{\text{mol}} = N_A v_m = 8.52 \times 10^{-6}\text{ m}^3$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Ratio $V_{\text{mol}} / V_{\text{actual}} \approx 3.8 \times 10^{-4}$ with physical significance</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q2">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q2')">
+      <div class="q-num">Question 12.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Molar volume is the volume occupied by $1\text{ mol}$ of any (ideal) gas at standard temperature and pressure (STP: $1\text{ atmospheric pressure}$, $0^\circ\text{C}$). Show that it is $22.4\text{ litres}$.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given at standard temperature and pressure (STP):<br>
+    • Number of moles $n = 1\text{ mol}$<br>
+    • Standard temperature $T = 0^\circ\text{C} = 273.15\text{ K}$<br>
+    • Standard atmospheric pressure $P = 1\text{ atm} = 1.013 \times 10^5\text{ N m}^{-2} = 1.013 \times 10^5\text{ Pa}$<br>
+    • Universal gas constant $R = 8.314\text{ J mol}^{-1}\text{ K}^{-1}$<br><br>
+    <b>1. Ideal Gas Equation:</b><br>
+    $$P V = n R T \implies V = \frac{n R T}{P}$$<br><br>
+    <b>2. Substituting the standard values:</b><br>
+    $$V = \frac{1\text{ mol} \times 8.314\text{ J mol}^{-1}\text{ K}^{-1} \times 273.15\text{ K}}{1.013 \times 10^5\text{ N m}^{-2}}$$<br>
+    $$V = \frac{2270.97}{1.013 \times 10^5}\text{ m}^3 = 0.022418\text{ m}^3$$<br><br>
+    <b>3. Converting cubic metres to litres:</b><br>
+    Since $1\text{ m}^3 = 1000\text{ litres} = 10^3\text{ L}$:<br>
+    $$V = 0.022418 \times 10^3\text{ litres} = \mathbf{22.418\text{ litres}} \approx \mathbf{22.4\text{ litres}}$$<br><br>
+    $$\mathbf{\text{Hence proved: The molar volume of an ideal gas at STP is } 22.4\text{ litres.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Stating ideal gas relation $V = nRT/P$ with STP parameters</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation in $\text{m}^3$ and conversion to $22.4\text{ L}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q3">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q3')">
+      <div class="q-num">Question 12.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Figure shows plots of $PV/T$ versus $P$ for $1.00 \times 10^{-3}\text{ kg}$ of oxygen gas at two different temperatures.<br>(a) What does the dotted plot signify?<br>(b) Which is true: $T_1 > T_2$ or $T_1 < T_2$?<br>(c) What is the value of $PV/T$ where the curves meet on the y-axis?<br>(d) If we obtained similar plots for $1.00 \times 10^{-3}\text{ kg}$ of hydrogen, would we get the same value of $PV/T$ at the point where the curves meet on the y-axis? If not, what mass of hydrogen yields the same value of $PV/T$ (for low pressure-high temperature region of the plot)? (Molecular mass of $H_2 = 2.02\text{ u}$, of $O_2 = 32.0\text{ u}$, $R = 8.31\text{ J mol}^{-1}\text{ K}^{-1}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>(a) Significance of the dotted plot:</b><br>
+    The dotted horizontal line represents an <b>ideal gas</b>. For an ideal gas, $PV = nRT$, so $\frac{PV}{T} = nR = \text{constant}$, independent of pressure $P$. Real gases deviate from this horizontal line, but approach it as pressure $P \to 0$.<br><br>
+    <b>(b) Temperature relation ($T_1$ vs $T_2$):</b><br>
+    A real gas approaches ideal gas behavior at <b>higher temperature and lower pressure</b> because intermolecular potential energy becomes negligible compared to molecular kinetic energy. Curve $T_1$ is closer to the ideal dotted line than curve $T_2$. Therefore:<br>
+    $$\mathbf{T_1 > T_2}$$<br><br>
+    <b>(c) Value of $PV/T$ at the y-axis intercept:</b><br>
+    At the $y$-axis, pressure $P \to 0$, where all real gases behave as ideal gases:<br>
+    $$\frac{PV}{T} = n R = \frac{m}{M} R$$<br>
+    • Given mass of oxygen $m = 1.00 \times 10^{-3}\text{ kg} = 1.00\text{ g}$<br>
+    • Molar mass of oxygen $M = 32.0\text{ g mol}^{-1} = 32.0 \times 10^{-3}\text{ kg mol}^{-1}$<br>
+    • Universal gas constant $R = 8.314\text{ J mol}^{-1}\text{ K}^{-1}$<br>
+    $$\frac{PV}{T} = \frac{1.00 \times 10^{-3}\text{ kg}}{32.0 \times 10^{-3}\text{ kg mol}^{-1}} \times 8.314\text{ J mol}^{-1}\text{ K}^{-1} = \frac{8.314}{32} = \mathbf{0.26\text{ J K}^{-1}}$$<br><br>
+    <b>(d) Comparison with Hydrogen ($H_2$):</b><br>
+    <b>No</b>, we would not get the same value of $PV/T$ for the same mass ($1.00 \times 10^{-3}\text{ kg}$) because the molar mass of hydrogen ($M_{H_2} = 2.02\text{ g/mol}$) is much smaller than that of oxygen ($M_{O_2} = 32.0\text{ g/mol}$), giving a different number of moles $n = m/M$.<br><br>
+    To obtain the <i>same</i> value of $PV/T = 0.26\text{ J K}^{-1}$ at the $y$-intercept:<br>
+    $$n_{H_2} R = n_{O_2} R \implies \frac{m_{H_2}}{M_{H_2}} = \frac{m_{O_2}}{M_{O_2}}$$<br>
+    $$m_{H_2} = m_{O_2} \times \frac{M_{H_2}}{M_{O_2}} = (1.00 \times 10^{-3}\text{ kg}) \times \frac{2.02}{32.0} = 6.3125 \times 10^{-5}\text{ kg} = \mathbf{6.31 \times 10^{-2}\text{ g} = 0.0631\text{ g}}$$<br><br>
+    $$\mathbf{\text{A mass of } 6.31 \times 10^{-5}\text{ kg (or } 6.31 \times 10^{-2}\text{ g}\text{) of hydrogen is required.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Identification of ideal gas horizontal line & (b) Deducing $T_1 > T_2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Evaluating $PV/T = nR = mR/M = 0.26\text{ J K}^{-1}$ at intercept</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Explanation of molar mass dependence and calculation of $m_{H_2} = 6.31 \times 10^{-5}\text{ kg}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q4">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q4')">
+      <div class="q-num">Question 12.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        An oxygen cylinder of volume $30\text{ litres}$ has an initial gauge pressure of $15\text{ atm}$ and a temperature of $27^\circ\text{C}$. After some oxygen is withdrawn from the cylinder, the gauge pressure drops to $11\text{ atm}$ and its temperature drops to $17^\circ\text{C}$. Estimate the mass of oxygen taken out of the cylinder ($R = 8.31\text{ J mol}^{-1}\text{ K}^{-1}$, molecular mass of $O_2 = 32\text{ u}$).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given Data:<br>
+    • Volume of rigid cylinder $V = 30\text{ litres} = 30 \times 10^{-3}\text{ m}^3 = 0.03\text{ m}^3$<br>
+    • Atmospheric pressure $P_{\text{atm}} = 1\text{ atm}$<br>
+    • Initial gauge pressure $= 15\text{ atm} \implies$ Initial absolute pressure $P_1 = 15 + 1 = 16\text{ atm} = 16 \times 1.013 \times 10^5\text{ Pa} = 1.621 \times 10^6\text{ Pa}$<br>
+    • Initial temperature $T_1 = 27^\circ\text{C} = 27 + 273.15 = 300.15\text{ K} \approx 300\text{ K}$<br>
+    • Final gauge pressure $= 11\text{ atm} \implies$ Final absolute pressure $P_2 = 11 + 1 = 12\text{ atm} = 12 \times 1.013 \times 10^5\text{ Pa} = 1.216 \times 10^6\text{ Pa}$<br>
+    • Final temperature $T_2 = 17^\circ\text{C} = 17 + 273.15 = 290.15\text{ K} \approx 290\text{ K}$<br>
+    • Molecular mass of $O_2$ is $M = 32\text{ g mol}^{-1} = 32 \times 10^{-3}\text{ kg mol}^{-1}$<br><br>
+    <b>1. Initial mass of oxygen in the cylinder ($m_1$):</b><br>
+    $$P_1 V = n_1 R T_1 = \frac{m_1}{M} R T_1 \implies m_1 = \frac{P_1 V M}{R T_1}$$<br>
+    $$m_1 = \frac{(1.621 \times 10^6\text{ N m}^{-2}) \times (0.03\text{ m}^3) \times (32 \times 10^{-3}\text{ kg mol}^{-1})}{8.314\text{ J mol}^{-1}\text{ K}^{-1} \times 300\text{ K}}$$<br>
+    $$m_1 = \frac{1556.16}{2494.2} = \mathbf{0.6239\text{ kg} \approx 0.624\text{ kg}}$$<br><br>
+    <b>2. Final mass of oxygen remaining in the cylinder ($m_2$):</b><br>
+    $$m_2 = \frac{P_2 V M}{R T_2} = \frac{(1.216 \times 10^6\text{ N m}^{-2}) \times (0.03\text{ m}^3) \times (32 \times 10^{-3}\text{ kg mol}^{-1})}{8.314\text{ J mol}^{-1}\text{ K}^{-1} \times 290\text{ K}}$$<br>
+    $$m_2 = \frac{1167.36}{2411.06} = \mathbf{0.4842\text{ kg} \approx 0.484\text{ kg}}$$<br><br>
+    <b>3. Mass of oxygen withdrawn ($Delta m$):</b><br>
+    $$\Delta m = m_1 - m_2 = 0.6239\text{ kg} - 0.4842\text{ kg} = \mathbf{0.1397\text{ kg} \approx 0.14\text{ kg} = 140\text{ g}}$$<br><br>
+    $$\mathbf{\text{The mass of oxygen taken out of the cylinder is approximately } 0.14\text{ kg (or } 140\text{ g}\text{).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Determining absolute initial and final pressures: $P_1 = 16\text{ atm}, P_2 = 12\text{ atm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating initial and remaining masses $m_1 = 0.624\text{ kg}$ and $m_2 = 0.484\text{ kg}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating mass taken out $\Delta m = m_1 - m_2 \approx 0.14\text{ kg}$ (140 g)</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q5">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q5')">
+      <div class="q-num">Question 12.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        An air bubble of volume $1.0\text{ cm}^3$ rises from the bottom of a lake $40\text{ m}$ deep at a temperature of $12^\circ\text{C}$. To what volume does it grow when it reaches the surface, which is at a temperature of $35^\circ\text{C}$?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given Data:<br>
+    • Initial volume of bubble at bottom $V_1 = 1.0\text{ cm}^3 = 1.0 \times 10^{-6}\text{ m}^3$<br>
+    • Depth of lake $h = 40\text{ m}$<br>
+    • Density of water $\rho = 1000\text{ kg m}^{-3}$<br>
+    • Acceleration due to gravity $g = 9.8\text{ m s}^{-2}$<br>
+    • Atmospheric pressure at surface $P_2 = P_{\text{atm}} = 1.013 \times 10^5\text{ Pa}$<br>
+    • Temperature at bottom $T_1 = 12^\circ\text{C} = 12 + 273 = 285\text{ K}$<br>
+    • Temperature at surface $T_2 = 35^\circ\text{C} = 35 + 273 = 308\text{ K}$<br><br>
+    <b>1. Absolute pressure at bottom of lake ($P_1$):</b><br>
+    $$P_1 = P_{\text{atm}} + h \rho g$$<br>
+    $$P_1 = (1.013 \times 10^5) + (40 \times 1000 \times 9.8) = 1.013 \times 10^5 + 3.92 \times 10^5 = 4.933 \times 10^5\text{ Pa}$$<br><br>
+    <b>2. Applying Combined Ideal Gas Law:</b><br>
+    $$\frac{P_1 V_1}{T_1} = \frac{P_2 V_2}{T_2} \implies V_2 = V_1 \times \left(\frac{P_1}{P_2}\right) \times \left(\frac{T_2}{T_1}\right)$$<br><br>
+    <b>3. Evaluation of final volume ($V_2$):</b><br>
+    $$V_2 = (1.0\text{ cm}^3) \times \left(\frac{4.933 \times 10^5\text{ Pa}}{1.013 \times 10^5\text{ Pa}}\right) \times \left(\frac{308\text{ K}}{285\text{ K}}\right)$$<br>
+    $$V_2 = 1.0 \times 4.8697 \times 1.0807 = \mathbf{5.26\text{ cm}^3}$$<br><br>
+    $$\mathbf{\text{The bubble grows to a volume of } 5.26\text{ cm}^3 \text{ (or } 5.3\text{ cm}^3\text{) when it reaches the surface.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of pressure at bottom $P_1 = P_{\text{atm}} + h\rho g = 4.933 \times 10^5\text{ Pa}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Stating ideal gas relation $P_1 V_1 / T_1 = P_2 V_2 / T_2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final volume calculation $V_2 = 5.26\text{ cm}^3$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q6">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q6')">
+      <div class="q-num">Question 12.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Estimate the total number of air molecules (including oxygen, nitrogen, water vapour and other constituents) in a room of capacity $25.0\text{ m}^3$ at a temperature of $27^\circ\text{C}$ and $1\text{ atm}$ pressure.
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given Data:<br>
+    • Volume of room $V = 25.0\text{ m}^3$<br>
+    • Room temperature $T = 27^\circ\text{C} = 27 + 273.15 = 300.15\text{ K} \approx 300\text{ K}$<br>
+    • Pressure $P = 1\text{ atm} = 1.013 \times 10^5\text{ N m}^{-2}$<br>
+    • Boltzmann constant $k_B = 1.38 \times 10^{-23}\text{ J K}^{-1}$<br>
+    • (Or Universal gas constant $R = 8.314\text{ J mol}^{-1}\text{ K}^{-1}$, $N_A = 6.023 \times 10^{23}\text{ mol}^{-1}$)<br><br>
+    <b>1. Ideal Gas Equation in terms of total molecules ($N$):</b><br>
+    $$P V = N k_B T \implies N = \frac{P V}{k_B T}$$<br><br>
+    <b>2. Calculation:</b><br>
+    $$N = \frac{(1.013 \times 10^5\text{ N m}^{-2}) \times (25.0\text{ m}^3)}{(1.38 \times 10^{-23}\text{ J K}^{-1}) \times (300\text{ K})}$$<br>
+    $$N = \frac{2.5325 \times 10^6}{4.14 \times 10^{-21}} = 0.6117 \times 10^{27} = \mathbf{6.12 \times 10^{26}\text{ molecules}}$$<br><br>
+    <i>Alternative check using moles:</i><br>
+    $$n = \frac{PV}{RT} = \frac{1.013 \times 10^5 \times 25.0}{8.314 \times 300} = 1015.3\text{ moles}$$<br>
+    $$N = n \times N_A = 1015.3 \times 6.023 \times 10^{23} = \mathbf{6.12 \times 10^{26}\text{ molecules}}$$<br><br>
+    $$\mathbf{\text{The room contains approximately } 6.12 \times 10^{26}\text{ air molecules.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formula $N = PV / (k_B T)$ or $N = n N_A$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Correct numerical substitution and final answer $6.12 \times 10^{26}\text{ molecules}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q7">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q7')">
+      <div class="q-num">Question 12.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Estimate the average thermal energy of a helium atom at:<br>(i) room temperature ($27^\circ\text{C}$),<br>(ii) the temperature on the surface of the sun ($6000\text{ K}$),<br>(iii) the temperature of $10\text{ million kelvin}$ (the typical core temperature in the case of a star).
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Theoretical Principle:</b><br>
+    Helium is a <b>monoatomic gas</b> with $3$ translational degrees of freedom ($f = 3$) and no rotational or vibrational modes. According to the law of equipartition of energy, the average kinetic/thermal energy per degree of freedom is $\frac{1}{2} k_B T$.<br>
+    Therefore, the average thermal energy of a monoatomic helium atom is:<br>
+    $$E = \frac{3}{2} k_B T$$<br>
+    where Boltzmann's constant $k_B = 1.38 \times 10^{-23}\text{ J K}^{-1}$.<br><br>
+    <b>(i) At room temperature ($T = 27^\circ\text{C} = 300\text{ K}$):</b><br>
+    $$E_1 = \frac{3}{2} \times (1.38 \times 10^{-23}\text{ J K}^{-1}) \times 300\text{ K} = 2.07 \times 10^{-23} \times 300 = \mathbf{6.21 \times 10^{-21}\text{ J}}$$<br>
+    In electron-volts: $E_1 = \frac{6.21 \times 10^{-21}}{1.6 \times 10^{-19}}\text{ eV} \approx 0.039\text{ eV} \approx 0.04\text{ eV}$.<br><br>
+    <b>(ii) At the surface of the sun ($T = 6000\text{ K}$):</b><br>
+    $$E_2 = \frac{3}{2} \times (1.38 \times 10^{-23}\text{ J K}^{-1}) \times 6000\text{ K} = 2.07 \times 10^{-23} \times 6000 = \mathbf{1.242 \times 10^{-19}\text{ J} \approx 1.24 \times 10^{-19}\text{ J}}$$<br>
+    In electron-volts: $E_2 = \frac{1.242 \times 10^{-19}}{1.6 \times 10^{-19}}\text{ eV} \approx 0.78\text{ eV}$.<br><br>
+    <b>(iii) At stellar core temperature ($T = 10\text{ million K} = 10^7\text{ K}$):</b><br>
+    $$E_3 = \frac{3}{2} \times (1.38 \times 10^{-23}\text{ J K}^{-1}) \times 10^7\text{ K} = \mathbf{2.07 \times 10^{-16}\text{ J}}$$<br>
+    In electron-volts: $E_3 = \frac{2.07 \times 10^{-16}}{1.6 \times 10^{-19}}\text{ eV} \approx 1294\text{ eV} \approx 1.29\text{ keV}$.<br><br>
+    $$\mathbf{\text{Summary: } (i)\; 6.21 \times 10^{-21}\text{ J},\; (ii)\; 1.24 \times 10^{-19}\text{ J},\; (iii)\; 2.07 \times 10^{-16}\text{ J.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Law of equipartition formula $E = \frac{3}{2} k_B T$ for monoatomic gas</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(i) Calculation for $T = 300\text{ K}$: $6.21 \times 10^{-21}\text{ J}$</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(ii) Calculation for $T = 6000\text{ K}$: $1.24 \times 10^{-19}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(iii) Calculation for $T = 10^7\text{ K}$: $2.07 \times 10^{-16}\text{ J}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q8">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q8')">
+      <div class="q-num">Question 12.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Three vessels of equal capacity have gases at the same temperature and pressure. The first vessel contains neon (monoatomic), the second contains chlorine (diatomic), and the third contains uranium hexafluoride (polyatomic).<br>(a) Do the vessels contain equal number of respective molecules?<br>(b) Is the root mean square speed of molecules the same in the three cases? If not, in which case is $v_{\text{rms}}$ the largest?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Vessel 1: Neon ($Ne$, monoatomic, $M_1 \approx 20.2\text{ u}$)<br>
+    • Vessel 2: Chlorine ($Cl_2$, diatomic, $M_2 \approx 71\text{ u}$)<br>
+    • Vessel 3: Uranium hexafluoride ($UF_6$, polyatomic, $M_3 = 238 + 6 \times 19 = 352\text{ u}$)<br>
+    • Equal volume ($V$), equal temperature ($T$), equal pressure ($P$).<br><br>
+    <b>(a) Equality of Number of Molecules:</b><br>
+    <b>Yes.</b> According to <b>Avogadro’s hypothesis</b>, equal volumes of all gases under identical conditions of temperature and pressure contain an equal number of molecules.<br>
+    From the ideal gas law: $PV = N k_B T \implies N = \frac{PV}{k_B T}$.<br>
+    Since $P, V, T$ and $k_B$ are identical for all three vessels, all three vessels contain the <b>exact same number of molecules</b>.<br><br>
+    <b>(b) Comparison of Root Mean Square Speed ($v_{\text{rms}}$):</b><br>
+    <b>No.</b> The root mean square speed is given by the kinetic formula:<br>
+    $$v_{\text{rms}} = \sqrt{\frac{3 k_B T}{m}} = \sqrt{\frac{3 R T}{M}}$$<br>
+    where $M$ is the molar mass of the gas.<br>
+    At a fixed temperature $T$, $v_{\text{rms}}$ is <b>inversely proportional to the square root of the molar mass</b>:<br>
+    $$v_{\text{rms}} \propto \frac{1}{\sqrt{M}}$$<br>
+    Comparing the molar masses:<br>
+    $$M_{\text{Neon}} (20.2\text{ u}) < M_{\text{Chlorine}} (71\text{ u}) < M_{\text{UF}_6} (352\text{ u})$$<br>
+    Therefore:<br>
+    $$v_{\text{rms (Neon)}} > v_{\text{rms (Chlorine)}} > v_{\text{rms (UF}_6)}$$<br><br>
+    $$\mathbf{\text{Root mean square speed is the largest for Neon (the lightest gas).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Justification of equal molecules via Avogadro’s Law / $N = PV/(k_BT)$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Formula $v_{\text{rms}} = \sqrt{3RT/M}$ showing inverse proportionality to $\sqrt{M}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Concluding $v_{\text{rms}}$ is largest for Neon due to lowest molar mass</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q9">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q9')">
+      <div class="q-num">Question 12.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        At what temperature is the root mean square speed of an atom in an argon gas cylinder equal to the rms speed of a helium gas atom at $-20^\circ\text{C}$? (Atomic mass of $\text{Ar} = 39.9\text{ u}$, of $\text{He} = 4.0\text{ u}$).
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given Data:<br>
+    • Atomic mass of Argon $M_{\text{Ar}} = 39.9\text{ u}$<br>
+    • Atomic mass of Helium $M_{\text{He}} = 4.0\text{ u}$<br>
+    • Temperature of Helium $T_{\text{He}} = -20^\circ\text{C} = -20 + 273.15 = 253.15\text{ K}$ (or $253\text{ K}$)<br>
+    • Let $T_{\text{Ar}}$ be the temperature of Argon in Kelvin.<br><br>
+    <b>1. Formula for RMS speed:</b><br>
+    $$v_{\text{rms}} = \sqrt{\frac{3 R T}{M}}$$<br><br>
+    <b>2. Equating the two RMS speeds:</b><br>
+    $$v_{\text{rms (Ar)}} = v_{\text{rms (He)}}$$<br>
+    $$\sqrt{\frac{3 R T_{\text{Ar}}}{M_{\text{Ar}}}} = \sqrt{\frac{3 R T_{\text{He}}}{M_{\text{He}}}}$$
+    Squaring both sides and cancelling $3R$:<br>
+    $$\frac{T_{\text{Ar}}}{M_{\text{Ar}}} = \frac{T_{\text{He}}}{M_{\text{He}}} \implies T_{\text{Ar}} = T_{\text{He}} \times \left(\frac{M_{\text{Ar}}}{M_{\text{He}}}\right)$$<br><br>
+    <b>3. Numerical Evaluation:</b><br>
+    $$T_{\text{Ar}} = 253.15\text{ K} \times \left(\frac{39.9}{4.0}\right) = 253.15 \times 9.975 = \mathbf{2525.17\text{ K} \approx 2525\text{ K}}$$<br>
+    In Celsius:<br>
+    $$T_{\text{Ar}} = 2525.17 - 273.15 = \mathbf{2252.02^\circ\text{C} \approx 2252^\circ\text{C}}$$<br><br>
+    $$\mathbf{\text{The temperature of the Argon gas is } 2525\text{ K} \text{ (or } 2252^\circ\text{C}\text{).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Equating $v_{\text{rms}}$ and deriving $T_{\text{Ar}}/M_{\text{Ar}} = T_{\text{He}}/M_{\text{He}}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of absolute temperature $2525\text{ K}$ (or $2252^\circ\text{C}$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch12-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch12-q10">
+    <div class="q-head" onclick="toggleQ('c11p-ch12-q10')">
+      <div class="q-num">Question 12.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Estimate the mean free path and collision frequency of a nitrogen molecule in a cylinder containing nitrogen at $2.0\text{ atm}$ and $17^\circ\text{C}$. Take the radius of a nitrogen molecule to be roughly $1.0\text{ \AA}$. Compare the collision time with the time taken by a molecule to move freely between two successive collisions (Molecular mass of $N_2 = 28.0\text{ u}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given Data:<br>
+    • Pressure $P = 2.0\text{ atm} = 2.0 \times 1.013 \times 10^5\text{ N m}^{-2} = 2.026 \times 10^5\text{ Pa}$<br>
+    • Temperature $T = 17^\circ\text{C} = 17 + 273.15 = 290.15\text{ K} \approx 290\text{ K}$<br>
+    • Molecular radius $r = 1.0\text{ \AA} = 1.0 \times 10^{-10}\text{ m} \implies$ Molecular diameter $d = 2r = 2.0 \times 10^{-10}\text{ m}$<br>
+    • Molecular mass of $N_2$ is $m = \frac{28 \times 10^{-3}\text{ kg mol}^{-1}}{6.023 \times 10^{23}\text{ mol}^{-1}} = 4.65 \times 10^{-26}\text{ kg}$<br>
+    • Boltzmann constant $k_B = 1.38 \times 10^{-23}\text{ J K}^{-1}$<br><br>
+    <b>1. Number density of molecules ($n$):</b><br>
+    $$n = \frac{P}{k_B T} = \frac{2.026 \times 10^5}{(1.38 \times 10^{-23}) \times 290} = \frac{2.026 \times 10^5}{4.002 \times 10^{-21}} = \mathbf{5.06 \times 10^{25}\text{ molecules m}^{-3}}$$<br><br>
+    <b>2. Mean Free Path ($\lambda$):</b><br>
+    $$\lambda = \frac{1}{\sqrt{2} n \pi d^2}$$<br>
+    $$\lambda = \frac{1}{1.414 \times (5.06 \times 10^{25}) \times 3.1416 \times (2.0 \times 10^{-10})^2}$$<br>
+    $$\lambda = \frac{1}{1.414 \times 5.06 \times 10^{25} \times 3.1416 \times 4.0 \times 10^{-20}} = \frac{1}{8.991 \times 10^6} = \mathbf{1.11 \times 10^{-7}\text{ m} = 111\text{ nm}}$$<br><br>
+    <b>3. Average/RMS speed of nitrogen molecule:</b><br>
+    $$v_{\text{rms}} = \sqrt{\frac{3 k_B T}{m}} = \sqrt{\frac{3 \times 1.38 \times 10^{-23} \times 290}{4.65 \times 10^{-26}}} = \sqrt{\frac{1.2006 \times 10^{-20}}{4.65 \times 10^{-26}}} = \sqrt{2.582 \times 10^5} \approx \mathbf{508\text{ m s}^{-1}}$$<br>
+    <i>(Or average speed $v_{\text{avg}} = \sqrt{\frac{8 k_B T}{\pi m}} \approx 468\text{ m s}^{-1}$).</i> Using $v_{\text{rms}} = 508\text{ m s}^{-1}$:<br><br>
+    <b>4. Collision frequency ($\nu_c$):</b><br>
+    $$\nu_c = \frac{v}{\lambda} = \frac{508\text{ m s}^{-1}}{1.11 \times 10^{-7}\text{ m}} = \mathbf{4.58 \times 10^9\text{ collisions s}^{-1} \approx 4.6 \times 10^9\text{ s}^{-1}}$$<br><br>
+    <b>5. Comparison of collision time ($\tau_c$) and free flight time ($\tau_f$):</b><br>
+    • Free flight time between successive collisions: $\tau_f = \frac{\lambda}{v} = \frac{1}{\nu_c} = \frac{1.11 \times 10^{-7}}{508} \approx \mathbf{2.18 \times 10^{-10}\text{ s}$<br>
+    • Collision duration (time during which molecules interact, traversing molecular diameter $d$):<br>
+    $$\tau_c = \frac{d}{v} = \frac{2.0 \times 10^{-10}\text{ m}}{508\text{ m s}^{-1}} \approx \mathbf{3.94 \times 10^{-13}\text{ s}}$$<br>
+    • Ratio of collision time to free transit time:<br>
+    $$\frac{\tau_c}{\tau_f} = \frac{d}{\lambda} = \frac{2.0 \times 10^{-10}\text{ m}}{1.11 \times 10^{-7}\text{ m}} \approx 1.8 \times 10^{-3} \approx \frac{1}{555}$$<br><br>
+    $$\mathbf{\text{The time spent during actual collisions is only } \approx 0.18\% \text{ of the time spent moving freely between collisions.}}$$
+    <i>This rigorous result validates the fundamental kinetic postulate that collisions are practically instantaneous.</i>
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculating number density $n = P/(k_BT) = 5.06 \times 10^{25}\text{ m}^{-3}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating mean free path $\lambda = \frac{1}{\sqrt{2} n \pi d^2} = 1.11 \times 10^{-7}\text{ m}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating collision frequency $\nu_c = v/\lambda \approx 4.6 \times 10^9\text{ s}^{-1}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Comparing collision time $\tau_c$ vs free time $\tau_f$: $\tau_c/\tau_f = d/\lambda \approx 1.8 \times 10^{-3}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(11)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 11 (Thermodynamics)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(13)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 13 (Oscillations) →</button>
+  </div>
+</section>

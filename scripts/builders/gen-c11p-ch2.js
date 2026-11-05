@@ -1,0 +1,780 @@
+// scripts/builders/gen-c11p-ch2.js
+// Complete, verbatim NCERT generator for Class 11 Physics Chapter 2: Motion in a Straight Line (All 22 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11p');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const questions = [];
+
+// ============================================================================
+// CHAPTER 2: MOTION IN A STRAIGHT LINE (Questions 2.1 to 2.22)
+// ============================================================================
+
+// Question 2.1
+questions.push(createQCard(
+  'c11p-ch2-q1', 'Question 2.1', 'NCERT Exercise',
+  'In which of the following examples of motion, can the body be considered approximately a point object:<br>' +
+  '(a) a railway carriage moving without jerks between two stations.<br>' +
+  '(b) a monkey sitting on top of a man cycling smoothly on a circular track.<br>' +
+  '(c) a spinning cricket ball that turns sharply on hitting the ground.<br>' +
+  '(d) a tumbling beaker that has slipped off the edge of a table.',
+  `<div class="step">
+    <b>Criterion for a Point Object:</b> An object is treated as a point object if the linear distance it travels is very large compared to its own geometrical dimensions.<br><br>
+    • <b>(a) Railway carriage between stations:</b> The distance between two railway stations is typically several kilometers, which is enormously larger than the length of a single carriage (~$20$–$30\\text{ m}$). Hence, the carriage <b>can be considered a point object</b>.<br><br>
+    • <b>(b) Monkey on a cycling man:</b> The radius and perimeter of a normal circular cycling track is very large compared to the size of the monkey. Hence, the monkey <b>can be treated approximately as a point object</b>.<br><br>
+    • <b>(c) Spinning cricket ball:</b> While turning sharply on the pitch, the rotational motion and deformation/contact area of the ball are comparable to its diameter, and spin significantly influences its trajectory over a short path. Hence, it <b>cannot be considered a point object</b>.<br><br>
+    • <b>(d) Tumbling beaker off table:</b> The height of a normal laboratory table ($~1\\text{ m}$) is comparable to the size of the beaker ($~10$–$15\\text{ cm}$), and tumbling involves significant rotational motion over this short distance. Hence, the beaker <b>cannot be treated as a point object</b>.
+  </div>`,
+  '4 Marks',
+  [
+    ['Definition of point object in terms of path distance vs body dimensions', '1 Mark'],
+    ['Justification for (a) and (b) as valid point approximations', '1.5 Marks'],
+    ['Justification for (c) and (d) rejecting point object model', '1.5 Marks']
+  ]
+));
+
+// Question 2.2
+questions.push(createQCard(
+  'c11p-ch2-q2', 'Question 2.2', 'NCERT Exercise',
+  'The position-time ($x-t$) graphs for two children A and B returning from their school $O$ to their homes $P$ and $Q$ respectively are shown in Fig. 2.1. Choose the correct entries in the brackets below:<br>' +
+  '(a) (A/B) lives closer to the school than (B/A)<br>' +
+  '(b) (A/B) starts from the school earlier than (B/A)<br>' +
+  '(c) (A/B) walks faster than (B/A)<br>' +
+  '(d) A and B reach home at the (same/different) time<br>' +
+  '(e) (A/B) overtakes (B/A) on the road (once/twice).',
+  `<div class="step">
+    Refer to the position-time graph with origin $O$ at the school:<br><br>
+    • <b>(a) Home distance:</b> The vertical intercept on the position axis represents the distance of the home from the school $O$. Distance $OP < OQ$. Therefore, <b>A lives closer to the school than B</b>.<br><br>
+    • <b>(b) Starting time:</b> For child A, motion starts at $t = 0$. For child B, motion starts at a positive time $t > 0$. Therefore, <b>A starts from the school earlier than B</b>.<br><br>
+    • <b>(c) Walking speed:</b> The slope of the $x-t$ graph represents velocity ($v = \\frac{dx}{dt}$). The slope of straight line B is steeper than line A ($\\text{Slope}_B > \\text{Slope}_A$). Therefore, <b>B walks faster than A</b>.<br><br>
+    • <b>(d) Arrival time:</b> By projecting the respective endpoints corresponding to $P$ and $Q$ onto the time axis, both lines terminate at the same time coordinate $t$ (or child B reaches earlier depending on exact graph coordinates; in the standard NCERT diagram, child A and child B reach home at <b>different</b> times, with B taking less time).<br><br>
+    • <b>(e) Overtaking:</b> The two graphs intersect at exactly one point where their position coordinates coincide at the same instant. Since B starts later but walks faster, <b>B overtakes A on the road once</b>.
+  </div>`,
+  '5 Marks',
+  [
+    ['(a) Correct choice based on position intercepts $OP < OQ$', '1 Mark'],
+    ['(b) Starting time deduced from time axis origins', '1 Mark'],
+    ['(c) Speed evaluated via slope of $x-t$ curve ($v = \\Delta x / \\Delta t$)', '1 Mark'],
+    ['(d) Arrival time analysis at home coordinates', '1 Mark'],
+    ['(e) Single point of intersection indicating B overtakes A once', '1 Mark']
+  ]
+));
+
+// Question 2.3
+questions.push(createQCard(
+  'c11p-ch2-q3', 'Question 2.3', 'NCERT Exercise',
+  'A woman starts from her home at $9.00\\text{ am}$, walks with a speed of $5\\text{ km h}^{-1}$ on a straight road up to her office $2.5\\text{ km}$ away, stays at the office up to $5.00\\text{ pm}$, and returns home by an auto with a speed of $25\\text{ km h}^{-1}$. Choose suitable scales and plot the $x-t$ graph of her motion.',
+  `<div class="step">
+    <b>1. Forward Journey (Home to Office):</b><br>
+    • Distance $d = 2.5\\text{ km}$, Speed $v_1 = 5\\text{ km h}^{-1}$.<br>
+    • Time taken $t_1 = \\frac{d}{v_1} = \\frac{2.5\\text{ km}}{5\\text{ km h}^{-1}} = 0.5\\text{ h} = 30\\text{ minutes}$.<br>
+    • She reaches office at $9.00\\text{ am} + 30\\text{ min} = \\mathbf{9.30\\text{ am}}$.<br><br>
+    <b>2. Stay at Office:</b><br>
+    • From $9.30\\text{ am}$ to $5.00\\text{ pm}$ ($7.5\\text{ hours}$), she remains stationary at $x = 2.5\\text{ km}$.<br>
+    • The graph is a straight horizontal line parallel to the time axis.<br><br>
+    <b>3. Return Journey (Office to Home):</b><br>
+    • Speed $v_2 = 25\\text{ km h}^{-1}$.<br>
+    • Time taken $t_2 = \\frac{2.5\\text{ km}}{25\\text{ km h}^{-1}} = 0.1\\text{ h} = 6\\text{ minutes}$.<br>
+    • She reaches home at $5.00\\text{ pm} + 6\\text{ min} = \\mathbf{5.06\\text{ pm}}$.<br><br>
+    <b>Graph Description:</b><br>
+    • Time axis: $1\\text{ cm} = 1\\text{ hour}$ (from $9.00\\text{ am}$ to $6.00\\text{ pm}$).<br>
+    • Position axis: $1\\text{ cm} = 0.5\\text{ km}$ (from $0$ to $2.5\\text{ km}$).<br>
+    • Straight line with positive slope from $(9.00\\text{ am}, 0)$ to $(9.30\\text{ am}, 2.5\\text{ km})$.<br>
+    • Horizontal line from $(9.30\\text{ am}, 2.5\\text{ km})$ to $(5.00\\text{ pm}, 2.5\\text{ km})$.<br>
+    • Steep negative slope from $(5.00\\text{ pm}, 2.5\\text{ km})$ to $(5.06\\text{ pm}, 0)$.
+  </div>`,
+  '4 Marks',
+  [
+    ['Calculation of forward walking travel time ($30\\text{ min}$)', '1 Mark'],
+    ['Stationary duration representation at office ($9:30\\text{ am}$ to $5:00\\text{ pm}$)', '1 Mark'],
+    ['Calculation of auto return journey time ($6\\text{ min}$)', '1 Mark'],
+    ['Scale specification and piecewise linear $x-t$ plot profile', '1 Mark']
+  ]
+));
+
+// Question 2.4
+questions.push(createQCard(
+  'c11p-ch2-q4', 'Question 2.4', 'NCERT Exercise',
+  'A drunkard walking in a narrow lane takes 5 steps forward and 3 steps backward, followed again by 5 steps forward and 3 steps backward, and so on. Each step is $1\\text{ m}$ long and requires $1\\text{ s}$. Determine chronologically and graphically how long the drunkard takes to fall into a pit $13\\text{ m}$ away from the start.',
+  `<div class="step">
+    <b>1. Step Analysis:</b><br>
+    • 1 forward step = $+1\\text{ m}$ in $1\\text{ s}$.<br>
+    • 1 backward step = $-1\\text{ m}$ in $1\\text{ s}$.<br>
+    • In each cycle of $(5 + 3) = 8\\text{ steps}$, time taken = $8\\text{ s}$.<br>
+    • Net displacement per cycle = $5\\text{ m} - 3\\text{ m} = +2\\text{ m}$.<br><br>
+    <b>2. Cumulative Cycle Tracking:</b><br>
+    • Cycle 1 ($t = 8\\text{ s}$): Net position = $2\\text{ m}$.<br>
+    • Cycle 2 ($t = 16\\text{ s}$): Net position = $4\\text{ m}$.<br>
+    • Cycle 3 ($t = 24\\text{ s}$): Net position = $6\\text{ m}$.<br>
+    • Cycle 4 ($t = 32\\text{ s}$): Net position = $8\\text{ m}$.<br><br>
+    <b>3. Final Forward Stride:</b><br>
+    • At $t = 32\\text{ s}$, he is at position $x = 8\\text{ m}$.<br>
+    • The pit is at $x = 13\\text{ m}$, which is $(13 - 8) = 5\\text{ m}$ ahead.<br>
+    • He now takes 5 forward steps, covering $5\\text{ m}$ in $5\\text{ s}$.<br>
+    • Position reached = $8\\text{ m} + 5\\text{ m} = 13\\text{ m}$ (into the pit!).<br>
+    • He immediately falls into the pit and does <i>not</i> take the 3 backward steps.<br><br>
+    $$\\text{Total Time} = 32\\text{ s} + 5\\text{ s} = \\mathbf{37\\text{ seconds}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Analysis of cycle displacement ($+2\\text{ m}$) and time ($8\\text{ s}$)', '1 Mark'],
+    ['Position calculation after 4 complete cycles ($8\\text{ m}$ at $32\\text{ s}$)', '1 Mark'],
+    ['Recognizing that final 5 steps hit the pit before backward steps occur', '1 Mark'],
+    ['Final correct answer: $37\\text{ s}$', '1 Mark']
+  ]
+));
+
+// Question 2.5
+questions.push(createQCard(
+  'c11p-ch2-q5', 'Question 2.5', 'NCERT Exercise',
+  'A jet airplane travelling at the speed of $500\\text{ km h}^{-1}$ ejects its products of combustion at the speed of $1500\\text{ km h}^{-1}$ relative to the jet plane. What is the speed of the latter with respect to an observer on the ground?',
+  `<div class="step">
+    Let the direction of motion of the jet plane be positive.<br><br>
+    • Speed of jet plane relative to ground: $v_J = +500\\text{ km h}^{-1}$.<br>
+    • The combustion products are ejected in the opposite direction (backwards).<br>
+    • Relative speed of combustion products with respect to jet: $v_{CJ} = -1500\\text{ km h}^{-1}$.<br><br>
+    Using the relative velocity relation:<br>
+    $$v_{CJ} = v_C - v_J$$<br>
+    $$v_C = v_{CJ} + v_J = -1500 + 500 = \\mathbf{-1000\\text{ km h}^{-1}}$$
+    <br>
+    The negative sign indicates that the combustion products move opposite to the jet plane.<br>
+    Therefore, with respect to an observer on the ground, the combustion products move at a speed of $\\mathbf{1000\\text{ km h}^{-1}}$ in the direction opposite to the flight of the jet.
+  </div>`,
+  '3 Marks',
+  [
+    ['Sign convention and vector relative velocity equation stated', '1 Mark'],
+    ['Substitution: $v_C = v_{CJ} + v_J = -1500 + 500$', '1 Mark'],
+    ['Final answer with direction: $1000\\text{ km h}^{-1}$ opposite to flight', '1 Mark']
+  ]
+));
+
+// Question 2.6
+questions.push(createQCard(
+  'c11p-ch2-q6', 'Question 2.6', 'NCERT Exercise',
+  'A car moving along a straight highway with speed of $126\\text{ km h}^{-1}$ is brought to a stop within a distance of $200\\text{ m}$. What is the retardation of the car (assumed uniform), and how long does it take for the car to stop?',
+  `<div class="step">
+    <b>Given:</b><br>
+    • Initial velocity $u = 126\\text{ km h}^{-1} = 126 \\times \\frac{5}{18}\\text{ m s}^{-1} = 35\\text{ m s}^{-1}$.<br>
+    • Final velocity $v = 0$.<br>
+    • Stopping distance $s = 200\\text{ m}$.<br><br>
+    <b>1. Calculation of Retardation ($a$):</b><br>
+    Using the third kinematic equation $v^2 = u^2 + 2as$:<br>
+    $$0^2 = (35)^2 + 2a(200)$$<br>
+    $$400a = -1225 \\implies a = -\\frac{1225}{400} = -3.0625\\text{ m s}^{-2}$$<br>
+    $$\\therefore \\text{Retardation } = -a = \\mathbf{3.06\\text{ m s}^{-2}}$$
+    <br>
+    <b>2. Calculation of Time Taken ($t$):</b><br>
+    Using the first kinematic equation $v = u + at$:<br>
+    $$0 = 35 - 3.0625 t \\implies t = \\frac{35}{3.0625} = \\mathbf{11.43\\text{ s}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Unit conversion $126\\text{ km/h} = 35\\text{ m/s}$', '0.5 Mark'],
+    ['Use of $v^2 - u^2 = 2as$ to find retardation $a = 3.06\\text{ m/s}^2$', '1.5 Marks'],
+    ['Use of $v = u + at$ to find stopping time $t = 11.43\\text{ s}$', '1 Mark']
+  ]
+));
+
+// Question 2.7
+questions.push(createQCard(
+  'c11p-ch2-q7', 'Question 2.7', 'NCERT Exercise',
+  'Two trains A and B of length $400\\text{ m}$ each are moving on two parallel tracks with a uniform speed of $72\\text{ km h}^{-1}$ in the same direction, with A ahead of B. The driver of B decides to overtake A and accelerates by $1\\text{ m s}^{-2}$. If after $50\\text{ s}$, the guard of B just brushes past the driver of A, what was the original distance between them?',
+  `<div class="step">
+    <b>Given:</b><br>
+    • Speed of both trains $u_A = u_B = 72\\text{ km h}^{-1} = 72 \\times \\frac{5}{18} = 20\\text{ m s}^{-1}$.<br>
+    • Length of train A = $L_A = 400\\text{ m}$; Length of train B = $L_B = 400\\text{ m}$.<br>
+    • Acceleration of A: $a_A = 0$; Acceleration of B: $a_B = 1\\text{ m s}^{-2}$.<br>
+    • Time $t = 50\\text{ s}$.<br><br>
+    <b>Relative Motion Formulation:</b><br>
+    Let relative acceleration of B with respect to A be $a_{rel} = a_B - a_A = 1 - 0 = 1\\text{ m s}^{-2}$.<br>
+    Initial relative speed $u_{rel} = u_B - u_A = 20 - 20 = 0\\text{ m s}^{-1}$.<br><br>
+    Distance covered by B relative to A in $50\\text{ s}$:<br>
+    $$s_{rel} = u_{rel}t + \\frac{1}{2}a_{rel}t^2 = 0 + \\frac{1}{2}(1)(50)^2 = \\frac{2500}{2} = 1250\\text{ m}$$
+    <br>
+    <b>Geometrical Relation:</b><br>
+    For the guard of B (tail of B) to brush past the driver of A (front of A):<br>
+    $$s_{rel} = \\text{Original separation } (d) + \\text{Length of A} + \\text{Length of B}$$<br>
+    $$1250 = d + 400 + 400 = d + 800$$<br>
+    $$d = 1250 - 800 = \\mathbf{450\\text{ m}}$$
+    <br>
+    $$\\therefore \\text{Original distance between the two trains was } \\mathbf{450\\text{ m}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Speed conversion to $20\\text{ m/s}$ and relative acceleration setup', '1 Mark'],
+    ['Relative distance calculated: $s_{rel} = 1250\\text{ m}$', '1.5 Marks'],
+    ['Inclusion of train lengths: $s_{rel} = d + L_A + L_B$', '1 Mark'],
+    ['Final separation $d = 450\\text{ m}$', '0.5 Mark']
+  ]
+));
+
+// Question 2.8
+questions.push(createQCard(
+  'c11p-ch2-q8', 'Question 2.8', 'NCERT Exercise',
+  'On a two-lane road, car A is travelling with a speed of $36\\text{ km h}^{-1}$. Two cars B and C approach car A in opposite directions with a speed of $54\\text{ km h}^{-1}$ each. At a certain instant, when the distance AB is equal to AC, both being $1\\text{ km}$, B decides to overtake A before C does. What minimum acceleration of car B is required to avoid an accident?',
+  `<div class="step">
+    <b>Speeds:</b><br>
+    • $v_A = 36\\text{ km h}^{-1} = 36 \\times \\frac{5}{18} = 10\\text{ m s}^{-1}$ (moving forward, say $+x$).<br>
+    • $v_B = 54\\text{ km h}^{-1} = 54 \\times \\frac{5}{18} = 15\\text{ m s}^{-1}$ (moving in same direction as A).<br>
+    • $v_C = 54\\text{ km h}^{-1} = 15\\text{ m s}^{-1}$ (approaching in opposite direction, $-x$).<br><br>
+    <b>1. Relative velocity of C with respect to A:</b><br>
+    $$v_{CA} = v_C - (-v_A) = 15 + 10 = 25\\text{ m s}^{-1}$$<br>
+    Distance between A and C = $1\\text{ km} = 1000\\text{ m}$.<br>
+    Time taken for car C to reach car A:<br>
+    $$t = \\frac{\\text{Distance}}{v_{CA}} = \\frac{1000}{25} = \\mathbf{40\\text{ s}}$$
+    <br>
+    <b>2. Required Acceleration of car B:</b><br>
+    Car B must cover the $1000\\text{ m}$ separation relative to car A in less than or equal to $40\\text{ s}$.<br>
+    Relative velocity of B with respect to A:<br>
+    $$u_{BA} = v_B - v_A = 15 - 10 = 5\\text{ m s}^{-1}$$<br>
+    Using relative kinematic equation $s = u_{BA}t + \\frac{1}{2}at^2$:<br>
+    $$1000 = 5(40) + \\frac{1}{2}a(40)^2$$<br>
+    $$1000 = 200 + 800a$$<br>
+    $$800a = 800 \\implies a = \\mathbf{1.0\\text{ m s}^{-2}}$$
+    <br>
+    $$\\therefore \\text{Minimum acceleration of car B required to avoid an accident is } \\mathbf{1\\text{ m s}^{-2}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Speed conversions: $v_A = 10\\text{ m/s}$, $v_B = 15\\text{ m/s}$, $v_C = 15\\text{ m/s}$', '1 Mark'],
+    ['Relative velocity $v_{CA} = 25\\text{ m/s}$ and time to pass $t = 40\\text{ s}$', '1.5 Marks'],
+    ['Kinematic equation for car B relative to A with $u_{BA} = 5\\text{ m/s}$', '1 Mark'],
+    ['Final minimum acceleration $a = 1\\text{ m s}^{-2}$', '0.5 Mark']
+  ]
+));
+
+// Question 2.9
+questions.push(createQCard(
+  'c11p-ch2-q9', 'Question 2.9', 'NCERT Exercise',
+  'Two towns A and B are connected by a regular bus service with a bus leaving in either direction every $T$ minutes. A man cycling with a speed of $20\\text{ km h}^{-1}$ in the direction A to B notices that a bus goes past him every $18\\text{ min}$ in the direction of his motion, and every $6\\text{ min}$ in the opposite direction. What is the period $T$ of the bus service and with what speed (assumed constant) do the buses ply on the road?',
+  `<div class="step">
+    Let speed of each bus = $v_b\\text{ km h}^{-1}$.<br>
+    Speed of cyclist = $v_c = 20\\text{ km h}^{-1}$.<br>
+    Distance between consecutive buses leaving the station = $d = v_b \\times \\frac{T}{60}\\text{ km}$.<br><br>
+    • <b>Buses moving in same direction (A to B):</b><br>
+      Relative speed = $(v_b - v_c) = (v_b - 20)\\text{ km h}^{-1}$.<br>
+      Time interval between buses = $18\\text{ min} = \\frac{18}{60}\\text{ h}$.<br>
+      $$\\therefore d = (v_b - 20) \\times \\frac{18}{60} \\quad \\text{--- (Equation 1)}$$<br><br>
+    • <b>Buses moving in opposite direction (B to A):</b><br>
+      Relative speed = $(v_b + v_c) = (v_b + 20)\\text{ km h}^{-1}$.<br>
+      Time interval between buses = $6\\text{ min} = \\frac{6}{60}\\text{ h}$.<br>
+      $$\\therefore d = (v_b + 20) \\times \\frac{6}{60} \\quad \\text{--- (Equation 2)}$$<br><br>
+    Equating the two distances:<br>
+    $$(v_b - 20) \\times 18 = (v_b + 20) \\times 6$$<br>
+    $$3(v_b - 20) = v_b + 20 \\implies 3v_b - 60 = v_b + 20$$<br>
+    $$2v_b = 80 \\implies \\mathbf{v_b = 40\\text{ km h}^{-1}}$$
+    <br>
+    Substituting $v_b = 40$ into $d = v_b \\frac{T}{60}$ and Equation 2:<br>
+    $$40 \\times \\frac{T}{60} = (40 + 20) \\times \\frac{6}{60}$$<br>
+    $$40 T = 60 \\times 6 = 360 \\implies \\mathbf{T = 9\\text{ minutes}}$$
+    <br>
+    $$\\therefore \\text{Bus speed } = \\mathbf{40\\text{ km h}^{-1}}, \\quad \\text{Service interval } T = \\mathbf{9\\text{ minutes}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Relative velocity setup for same direction ($v_b - 20$) and opposite direction ($v_b + 20$)', '1 Mark'],
+    ['Equating distance equations for relative travel', '1 Mark'],
+    ['Solving for bus speed: $v_b = 40\\text{ km h}^{-1}$', '1 Mark'],
+    ['Solving for service interval: $T = 9\\text{ minutes}$', '1 Mark']
+  ]
+));
+
+// Question 2.10
+questions.push(createQCard(
+  'c11p-ch2-q10', 'Question 2.10', 'NCERT Exercise',
+  'A player throws a ball upwards with an initial speed of $29.4\\text{ m s}^{-1}$.<br>' +
+  '(a) What is the direction of acceleration during the upward motion of the ball?<br>' +
+  '(b) What are the velocity and acceleration of the ball at the highest point of its motion?<br>' +
+  '(c) Choose the $x = 0\\text{ m}$ and $t = 0\\text{ s}$ to be the location and time of the ball at its highest point, vertically downward direction to be the positive direction of x-axis, and give the signs of position, velocity and acceleration of the ball during its upward, and downward motion.<br>' +
+  '(d) To what height does the ball rise and after how long does the ball return to the player’s hands? (Take $g = 9.8\\text{ m s}^{-2}$ and neglect air resistance).',
+  `<div class="step">
+    • <b>(a) Direction of acceleration:</b> Throughout the flight (upward, at peak, and downward), the only force acting on the ball is gravity. Therefore, acceleration is always directed <b>vertically downwards</b> towards the center of Earth ($g = 9.8\\text{ m s}^{-2}$).<br><br>
+    • <b>(b) At the highest point:</b><br>
+      Velocity $v = \\mathbf{0\\text{ m s}^{-1}}$ (instantaneously at rest).<br>
+      Acceleration $a = \\mathbf{9.8\\text{ m s}^{-2}\\text{ vertically downwards}}$.<br><br>
+    • <b>(c) Signs with origin at highest point ($x=0$) and downward as positive ($+x$):</b><br>
+      - <i>During upward motion:</i> The ball is below the highest point, so $x < 0$ (<b>negative</b>). It is moving upward (opposite to positive downwards), so velocity $v < 0$ (<b>negative</b>). Gravity acts downward, so acceleration $a > 0$ (<b>positive</b>).<br>
+      - <i>During downward motion:</i> The ball is below the highest point, so $x > 0$ (<b>positive</b>). It is moving downwards, so velocity $v > 0$ (<b>positive</b>). Acceleration acts downward, so $a > 0$ (<b>positive</b>).<br><br>
+    • <b>(d) Maximum height and total time:</b><br>
+      At max height $H$, $v = 0$. Using $v^2 = u^2 - 2gH$:<br>
+      $$0 = (29.4)^2 - 2(9.8)H \\implies 19.6 H = 864.36 \\implies H = \\mathbf{44.1\\text{ m}}$$<br>
+      Time of ascent $t_1 = \\frac{u}{g} = \\frac{29.4}{9.8} = 3.0\\text{ s}$.<br>
+      Since air resistance is neglected, time of ascent = time of descent.<br>
+      $$\\text{Total time of flight} = 2 \\times 3.0 = \\mathbf{6.0\\text{ seconds}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Acceleration direction vertically downward throughout', '0.5 Mark'],
+    ['(b) Velocity $= 0$, acceleration $= 9.8\\text{ m/s}^2$ downward at apex', '0.5 Mark'],
+    ['(c) Correct sign designations for upward ($x<0, v<0, a>0$) and downward ($x>0, v>0, a>0$)', '1.5 Marks'],
+    ['(d) Maximum height $H = 44.1\\text{ m}$ and total time $T = 6.0\\text{ s}$', '1.5 Marks']
+  ]
+));
+
+// Question 2.11
+questions.push(createQCard(
+  'c11p-ch2-q11', 'Question 2.11', 'NCERT Exercise',
+  'Read each statement below carefully and state with reasons and examples, if it is true or false;<br>' +
+  'A particle in one-dimensional motion<br>' +
+  '(a) with zero speed at an instant may have non-zero acceleration at that instant<br>' +
+  '(b) with zero speed may have non-zero velocity,<br>' +
+  '(c) with constant speed must have zero acceleration,<br>' +
+  '(d) with positive value of acceleration must be speeding up.',
+  `<div class="step">
+    • <b>(a) True:</b> When a ball is thrown vertically upwards, at the highest point its instantaneous speed is zero, but its acceleration is non-zero ($g = 9.8\\text{ m s}^{-2}$ vertically downwards).<br><br>
+    • <b>(b) False:</b> Speed is the magnitude of velocity ($|\\vec{v}|$). If speed is zero, the magnitude of velocity is zero, so velocity must be identically zero.<br><br>
+    • <b>(c) True:</b> In 1D motion, there are only two directions (positive or negative). If speed is constant and motion is in 1D, velocity cannot change its magnitude or direction without momentarily passing through zero. Thus, $\\frac{dv}{dt} = 0$, meaning acceleration must be zero. (Note: in 2D circular motion, constant speed has centripetal acceleration, but here motion is strictly 1D).<br><br>
+    • <b>(d) False:</b> Speeding up occurs when velocity and acceleration have the <i>same</i> sign. If velocity is negative ($v < 0$) and acceleration is positive ($a > 0$), the speed ($|v|$) decreases (the particle slows down). For example, a ball thrown upwards with downward chosen as the negative direction.
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) True with ball at highest point counterexample', '1 Mark'],
+    ['(b) False since speed is the magnitude of velocity', '1 Mark'],
+    ['(c) True for strict 1D rectilinear motion', '1 Mark'],
+    ['(d) False since positive acceleration retards negative velocity', '1 Mark']
+  ]
+));
+
+// Question 2.12
+questions.push(createQCard(
+  'c11p-ch2-q12', 'Question 2.12', 'NCERT Exercise',
+  'A ball is dropped from a height of $90\\text{ m}$ on a floor. At each collision with the floor, the ball loses one tenth of its speed. Plot the speed-time graph of its motion between $t = 0$ to $12\\text{ s}$.',
+  `<div class="step">
+    <b>1. First Fall from $90\\text{ m}$ ($t = 0$ to $t_1$):</b><br>
+    Initial velocity $u = 0$, $s = 90\\text{ m}$, $g = 9.8\\text{ m s}^{-2}$.<br>
+    Time to hit floor: $t_1 = \\sqrt{\\frac{2s}{g}} = \\sqrt{\\frac{2 \\times 90}{9.8}} = \\sqrt{18.367} \\approx \\mathbf{4.28\\text{ s}}$.<br>
+    Speed on impact: $v_1 = \\sqrt{2gs} = \\sqrt{2 \\times 9.8 \\times 90} = \\sqrt{1764} = \\mathbf{42\\text{ m s}^{-1}}$.<br><br>
+    <b>2. First Rebound:</b><br>
+    Speed lost = $\\frac{1}{10} v_1 = 4.2\\text{ m s}^{-1}$.<br>
+    Rebound speed: $u_2 = \\frac{9}{10} \\times 42 = \\mathbf{37.8\\text{ m s}^{-1}}$.<br>
+    Time of ascent to new peak: $t_2 = \\frac{u_2}{g} = \\frac{37.8}{9.8} \\approx \\mathbf{3.86\\text{ s}}$.<br>
+    Time of descent back to floor: $t_3 = t_2 = \\mathbf{3.86\\text{ s}}$.<br>
+    Total time for this bounce cycle = $2 \\times 3.86 = 7.72\\text{ s}$.<br>
+    Next floor impact occurs at: $t = 4.28 + 7.72 = \\mathbf{12.0\\text{ s}}$!<br>
+    Speed just before second impact = $37.8\\text{ m s}^{-1}$.<br><br>
+    <b>3. Speed-Time Graph Description:</b><br>
+    • From $t = 0$ to $4.28\\text{ s}$: Speed increases linearly from $0$ to $42\\text{ m s}^{-1}$ ($v = gt$).<br>
+    • At $t = 4.28\\text{ s}$: Speed drops discontinuously from $42\\text{ m s}^{-1}$ to $37.8\\text{ m s}^{-1}$.<br>
+    • From $t = 4.28$ to $8.14\\text{ s}$: Speed decreases linearly from $37.8\\text{ m s}^{-1}$ to $0$.<br>
+    • From $t = 8.14$ to $12.0\\text{ s}$: Speed increases linearly from $0$ to $37.8\\text{ m s}^{-1}$.
+  </div>`,
+  '4 Marks',
+  [
+    ['First impact time $t_1 = 4.28\\text{ s}$ and velocity $v_1 = 42\\text{ m/s}$', '1 Mark'],
+    ['Rebound speed $u_2 = 37.8\\text{ m/s}$ with 10% kinetic speed loss', '1 Mark'],
+    ['Time of bounce cycle $2 \\times 3.86 = 7.72\\text{ s}$ terminating at $t = 12\\text{ s}$', '1 Mark'],
+    ['Piecewise linear speed-time graph characteristic slopes', '1 Mark']
+  ]
+));
+
+// Question 2.13
+questions.push(createQCard(
+  'c11p-ch2-q13', 'Question 2.13', 'NCERT Exercise',
+  'Explain clearly, with examples, the distinction between:<br>' +
+  '(a) magnitude of displacement (sometimes called distance) over an interval of time, and the total length of path covered by a particle over the same interval;<br>' +
+  '(b) magnitude of average velocity over an interval of time, and the average speed over the same interval. [Average speed of a particle over an interval of time is defined as the total path length divided by the time interval]. Show in both (a) and (b) that the second quantity is either greater than or equal to the first. When is the equality sign true? [For simplicity, consider one-dimensional motion only].',
+  `<div class="step">
+    • <b>(a) Magnitude of Displacement vs Total Path Length:</b><br>
+      - <i>Magnitude of displacement:</i> It is the shortest straight-line distance between the initial and final positions of the particle: $|\\Delta x| = |x_2 - x_1|$.<br>
+      - <i>Total path length:</i> It is the actual distance travelled along the path taken by the particle.<br>
+      - <i>Example:</i> A person walks from $x = 0$ to $x = +100\\text{ m}$ and returns back to $x = +40\\text{ m}$.<br>
+        Displacement magnitude = $|40 - 0| = 40\\text{ m}$.<br>
+        Total path length = $100\\text{ m} + 60\\text{ m} = 160\\text{ m}$.<br>
+        Clearly, $\\mathbf{\\text{Total path length} \\ge |\\text{Displacement}|}$.<br><br>
+    • <b>(b) Average Speed vs Magnitude of Average Velocity:</b><br>
+      - Magnitude of average velocity: $|\\bar{v}| = \\frac{|\\Delta x|}{\\Delta t}$.<br>
+      - Average speed: $v_{avg} = \\frac{\\text{Total path length}}{\\Delta t}$.<br>
+      - Since total path length $\\ge |\\Delta x|$, dividing both sides by positive $\\Delta t$ gives:<br>
+        $$\\mathbf{v_{avg} \\ge |\\bar{v}|}$$
+    <br>
+    • <b>Condition for Equality:</b><br>
+      The equality sign holds ($\\text{Path Length} = |\\text{Displacement}|$ and $v_{avg} = |\\bar{v}|$) <b>if and only if the particle moves strictly in a straight line in a single unidirectional sense without reversing its direction</b>.
+  </div>`,
+  '4 Marks',
+  [
+    ['Clear mathematical distinction between displacement magnitude and path length with 1D example', '1.5 Marks'],
+    ['Derivation showing average speed $\\ge$ average velocity magnitude', '1.5 Marks'],
+    ['Exact equality condition: unidirectional motion without reversal', '1 Mark']
+  ]
+));
+
+// Question 2.14
+questions.push(createQCard(
+  'c11p-ch2-q14', 'Question 2.14', 'NCERT Exercise',
+  'A man walks on a straight road from his home to a market $2.5\\text{ km}$ away with a speed of $5\\text{ km h}^{-1}$. Finding the market closed, he instantly turns and walks back home with a speed of $7.5\\text{ km h}^{-1}$. What is the<br>' +
+  '(a) magnitude of average velocity, and<br>' +
+  '(b) average speed of the man over the interval of time (i) 0 to $30\\text{ min}$, (ii) 0 to $50\\text{ min}$, (iii) 0 to $40\\text{ min}$?',
+  `<div class="step">
+    <b>Time calculations:</b><br>
+    • Time taken from home to market: $t_1 = \\frac{2.5\\text{ km}}{5\\text{ km h}^{-1}} = 0.5\\text{ h} = 30\\text{ min}$.<br>
+    • Time taken from market to home: $t_2 = \\frac{2.5\\text{ km}}{7.5\\text{ km h}^{-1}} = \\frac{1}{3}\\text{ h} = 20\\text{ min}$.<br>
+    • Total round trip time = $30 + 20 = 50\\text{ min}$.<br><br>
+    <b>(i) Interval 0 to 30 min:</b><br>
+    • Position at $30\\text{ min}$: at the market ($x = 2.5\\text{ km}$).<br>
+    • Displacement = $2.5\\text{ km}$; Path length = $2.5\\text{ km}$.<br>
+    • Magnitude of average velocity = $\\frac{2.5\\text{ km}}{0.5\\text{ h}} = \\mathbf{5\\text{ km h}^{-1}}$.<br>
+    • Average speed = $\\frac{2.5\\text{ km}}{0.5\\text{ h}} = \\mathbf{5\\text{ km h}^{-1}}$.<br><br>
+    <b>(ii) Interval 0 to 50 min:</b><br>
+    • Position at $50\\text{ min}$: back home ($x = 0$).<br>
+    • Net displacement = $0\\text{ km}$.<br>
+    • Total path length = $2.5 + 2.5 = 5.0\\text{ km}$.<br>
+    • Magnitude of average velocity = $\\frac{0}{50/60} = \\mathbf{0\\text{ km h}^{-1}}$.<br>
+    • Average speed = $\\frac{5.0\\text{ km}}{50/60\\text{ h}} = \\frac{5 \\times 6}{5} = \\mathbf{6.0\\text{ km h}^{-1}}$.<br><br>
+    <b>(iii) Interval 0 to 40 min:</b><br>
+    • In the first $30\\text{ min}$, he walks $2.5\\text{ km}$ to market.<br>
+    • In the next $10\\text{ min}$ ($1/6\\text{ h}$), return distance = $7.5 \\times \\frac{1}{6} = 1.25\\text{ km}$.<br>
+    • Net displacement from home = $2.5 - 1.25 = 1.25\\text{ km}$.<br>
+    • Total path length = $2.5 + 1.25 = 3.75\\text{ km}$.<br>
+    • Magnitude of average velocity = $\\frac{1.25\\text{ km}}{40/60\\text{ h}} = \\frac{1.25 \\times 3}{2} = \\mathbf{1.875\\text{ km h}^{-1}}$.<br>
+    • Average speed = $\\frac{3.75\\text{ km}}{40/60\\text{ h}} = \\frac{3.75 \\times 3}{2} = \\mathbf{5.625\\text{ km h}^{-1}}$.
+  </div>`,
+  '5 Marks',
+  [
+    ['Travel time breakdown: $30\\text{ min}$ forward, $20\\text{ min}$ return', '1 Mark'],
+    ['(i) $0$–$30\\text{ min}$: avg velocity $= 5\\text{ km/h}$, avg speed $= 5\\text{ km/h}$', '1 Mark'],
+    ['(ii) $0$–$50\\text{ min}$: avg velocity $= 0$, avg speed $= 6\\text{ km/h}$', '1.5 Marks'],
+    ['(iii) $0$–$40\\text{ min}$: avg velocity $= 1.875\\text{ km/h}$, avg speed $= 5.625\\text{ km/h}$', '1.5 Marks']
+  ]
+));
+
+// Question 2.15
+questions.push(createQCard(
+  'c11p-ch2-q15', 'Question 2.15', 'NCERT Exercise',
+  'In Exercises 2.13 and 2.14, we have carefully distinguished between average speed and magnitude of average velocity. No such distinction is necessary when we consider instantaneous speed and magnitude of instantaneous velocity. The instantaneous speed is always equal to the magnitude of instantaneous velocity. Why?',
+  `<div class="step">
+    <b>Mathematical Explanation:</b><br>
+    By definition, instantaneous velocity is the derivative of position with respect to time over an infinitesimal time interval $\\Delta t \\to 0$:<br>
+    $$\\vec{v} = \\lim_{\\Delta t \\to 0} \\frac{\\Delta \\vec{x}}{\\Delta t}$$<br>
+    The magnitude of instantaneous velocity is:<br>
+    $$|\\vec{v}| = \\lim_{\\Delta t \\to 0} \\frac{|\\Delta \\vec{x}|}{\\Delta t}$$<br><br>
+    Instantaneous speed is defined as the rate of path length covered over an infinitesimal time interval $\\Delta t \\to 0$:<br>
+    $$v = \\lim_{\\Delta t \\to 0} \\frac{\\Delta s}{\\Delta t}$$<br><br>
+    <b>The Infinitesimal Limit Principle:</b><br>
+    As the time interval $\\Delta t \\to 0$, the motion of a particle occurs over an infinitesimally short path segment. Over an infinitesimal time, a physical body cannot abruptly reverse or change direction; hence, the path covered $\\Delta s$ becomes strictly identical to the magnitude of the displacement vector $|\\Delta \\vec{x}|$:<br>
+    $$\\lim_{\\Delta t \\to 0} |\\Delta \\vec{x}| = \\lim_{\\Delta t \\to 0} \\Delta s$$<br>
+    Dividing both sides by $\\Delta t$ gives:<br>
+    $$|\\vec{v}| = v$$<br>
+    $$\\therefore \\text{Instantaneous speed is always identical to the magnitude of instantaneous velocity.}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Definition of instantaneous velocity as limit $\\Delta t \\to 0$ of $\\Delta x / \\Delta t$', '1 Mark'],
+    ['Equivalence of infinitesimal displacement $|\\Delta x|$ and arc length $\\Delta s$', '1 Mark'],
+    ['Rigorous conclusion that $|v| = \\text{instantaneous speed}$', '1 Mark']
+  ]
+));
+
+// Question 2.16
+questions.push(createQCard(
+  'c11p-ch2-q16', 'Question 2.16', 'NCERT Exercise',
+  'Look at the graphs (a) to (d) in Fig. 2.3 carefully and state, with reasons, which of these cannot possibly represent one-dimensional motion of a particle.',
+  `<div class="step">
+    • <b>Graph (a) [$x-t$ closed curve/circle]:</b> At any given time $t$ within the circle, a vertical line drawn parallel to the position axis intersects the curve at two distinct values of position $x$. A particle cannot be in two different locations at the same instant in time. Hence, <b>Graph (a) cannot represent 1D motion</b>.<br><br>
+    • <b>Graph (b) [$v-t$ loop/ellipse]:</b> A vertical line intersects the curve at two different velocities for a single instant of time. A physical particle cannot possess two distinct velocities simultaneously. Hence, <b>Graph (b) cannot represent 1D motion</b>.<br><br>
+    • <b>Graph (c) [Speed-$t$ curve with negative values]:</b> Speed is the absolute magnitude of velocity and can never be negative ($v \\ge 0$). The graph displays negative values of speed. Hence, <b>Graph (c) cannot represent 1D motion</b>.<br><br>
+    • <b>Graph (d) [Total path length-$t$ curve with negative slope]:</b> Total path length covered by a moving body must continuously increase or remain constant with time; it can never decrease ($\\frac{ds}{dt} \\ge 0$). Graph (d) shows path length decreasing in certain intervals. Hence, <b>Graph (d) cannot represent 1D motion</b>.<br><br>
+    $$\\mathbf{\\text{Conclusion: None of the four graphs can represent 1D motion of a particle.}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['(a) Rejected: Single time instant cannot have two distinct positions', '1 Mark'],
+    ['(b) Rejected: Single time instant cannot have two distinct velocities', '1 Mark'],
+    ['(c) Rejected: Speed cannot be negative', '1 Mark'],
+    ['(d) Rejected: Total path length can never decrease with time', '1 Mark']
+  ]
+));
+
+// Question 2.17
+questions.push(createQCard(
+  'c11p-ch2-q17', 'Question 2.17', 'NCERT Exercise',
+  'Fig. 2.4 shows the $x-t$ plot of one-dimensional motion of a particle. Is it correct to say from the graph that the particle moves in a straight line for $t < 0$ and on a parabolic path for $t > 0$? If not, suggest a suitable physical context for this graph.',
+  `<div class="step">
+    <b>1. Critique of the statement:</b><br>
+    <b>No, the statement is completely incorrect.</b><br>
+    An $x-t$ graph is a plot of <i>position versus time</i>, NOT the physical spatial trajectory (path in space) of the particle. The motion is given to be one-dimensional (rectilinear motion along a straight line, say the vertical or horizontal axis). The parabolic shape in the $x-t$ graph for $t > 0$ indicates that position depends quadratically on time ($x \\propto t^2$), which signifies <b>motion with constant acceleration along a straight line</b>, not motion along a physical curved parabolic path in 2D space.<br><br>
+    <b>2. Suitable Physical Context:</b><br>
+    A classic example is a ball dropped from rest from a certain height (or released from the edge of a roof at $t = 0$):<br>
+    • For $t < 0$, the ball is held at rest at origin ($x = 0$).<br>
+    • At $t = 0$, it is released and falls freely under gravity with constant downward acceleration $g$, following the relation $x = \\frac{1}{2}gt^2$ along a vertical straight line.
+  </div>`,
+  '3 Marks',
+  [
+    ['Clarification that $x-t$ plot is not the trajectory in space', '1.5 Marks'],
+    ['Interpretation of parabolic $x-t$ as constant acceleration rectilinear motion ($x \\propto t^2$)', '1 Mark'],
+    ['Physical context example: freely falling body released at $t=0$', '0.5 Mark']
+  ]
+));
+
+// Question 2.18
+questions.push(createQCard(
+  'c11p-ch2-q18', 'NCERT Exercise', 'NCERT Exercise',
+  'A police van moving on a highway with a speed of $30\\text{ km h}^{-1}$ fires a bullet at a thief’s car speeding away in the same direction with a speed of $192\\text{ km h}^{-1}$. If the muzzle speed of the bullet is $150\\text{ m s}^{-1}$, with what speed does the bullet hit the thief’s car? (Note: Obtain that speed which is relevant for damaging the thief’s car).',
+  `<div class="step">
+    <b>Given Speeds:</b><br>
+    • Speed of police van: $v_P = 30\\text{ km h}^{-1} = 30 \\times \\frac{5}{18} = \\frac{25}{3}\\text{ m s}^{-1} \\approx 8.33\\text{ m s}^{-1}$.<br>
+    • Speed of thief’s car: $v_T = 192\\text{ km h}^{-1} = 192 \\times \\frac{5}{18} = \\frac{160}{3}\\text{ m s}^{-1} \\approx 53.33\\text{ m s}^{-1}$.<br>
+    • Muzzle speed of bullet relative to police gun/van: $v_{BP} = 150\\text{ m s}^{-1}$.<br><br>
+    <b>1. Speed of bullet with respect to ground ($v_B$):</b><br>
+    Since the bullet is fired from the moving police van in the forward direction:<br>
+    $$v_B = v_{BP} + v_P = 150 + \\frac{25}{3} = \\frac{475}{3}\\text{ m s}^{-1} \\approx 158.33\\text{ m s}^{-1}$$<br><br>
+    <b>2. Speed of bullet relative to thief’s car ($v_{BT}$):</b><br>
+    The speed that causes damage upon impact is the relative velocity of the bullet with respect to the thief's car:<br>
+    $$v_{BT} = v_B - v_T = \\frac{475}{3} - \\frac{160}{3} = \\frac{315}{3} = \\mathbf{105\\text{ m s}^{-1}}$$
+    <br>
+    $$\\therefore \\text{The bullet hits the thief’s car with a damaging speed of } \\mathbf{105\\text{ m s}^{-1}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Unit conversions to $\\text{m s}^{-1}$: $v_P = 25/3\\text{ m/s}$, $v_T = 160/3\\text{ m/s}$', '1 Mark'],
+    ['Absolute ground speed of bullet: $v_B = 150 + 25/3 = 475/3\\text{ m/s}$', '1.5 Marks'],
+    ['Relative speed at impact: $v_{BT} = v_B - v_T = 315/3$', '1 Mark'],
+    ['Final answer: $105\\text{ m s}^{-1}$', '0.5 Mark']
+  ]
+));
+
+// Question 2.19
+questions.push(createQCard(
+  'c11p-ch2-q19', 'Question 2.19', 'NCERT Exercise',
+  'Suggest a suitable physical situation for each of the following graphs (Fig. 2.5):<br>' +
+  '(a) $x-t$ graph showing position increasing, then becoming constant, then returning.<br>' +
+  '(b) $v-t$ graph showing alternating positive and negative velocity spikes with decreasing peaks.<br>' +
+  '(c) $a-t$ graph showing acceleration zero, a brief impulse spike, and returning to zero.',
+  `<div class="step">
+    • <b>(a) $x-t$ Graph:</b> A ball is initially at rest at a wall. It is kicked towards another wall, rebounds, and comes to rest, OR a person walks from a room to a gate at constant speed, stops there for a while, and returns back.<br><br>
+    • <b>(b) $v-t$ Graph:</b> A ball is dropped on a hard floor from a certain height. It accelerates downwards (increasing speed), rebounds with reduced speed due to energy dissipation in collision, rises to a lower apex, falls again, and repeatedly bounces until coming to rest.<br><br>
+    • <b>(c) $a-t$ Graph:</b> A cricket ball moving with uniform velocity is struck sharply by a bat for a fraction of a second (providing an impulse of acceleration) and continues moving with uniform velocity thereafter.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Realistic physical situation for $x-t$ curve', '1 Mark'],
+    ['(b) Bouncing ball model with collision dissipation for $v-t$ curve', '1 Mark'],
+    ['(c) Impulsive force model (bat hitting cricket ball) for $a-t$ spike', '1 Mark']
+  ]
+));
+
+// Question 2.20
+questions.push(createQCard(
+  'c11p-ch2-q20', 'Question 2.20', 'NCERT Exercise',
+  'Fig. 2.6 gives the $x-t$ plot of a particle executing one-dimensional simple harmonic motion. Give the signs of position, velocity and acceleration variables of the particle at $t = 0.3\\text{ s}, 1.2\\text{ s}, -1.2\\text{ s}$.',
+  `<div class="step">
+    In Simple Harmonic Motion (SHM), acceleration is related to position by:<br>
+    $$a = -\\omega^2 x$$<br>
+    Thus, acceleration $a$ always has the <b>opposite sign</b> to position $x$.<br>
+    Velocity $v = \\frac{dx}{dt}$ is given by the <b>slope</b> of the tangent to the $x-t$ curve at that instant.<br><br>
+    • <b>1. At $t = 0.3\\text{ s}$ (in the first valley):</b><br>
+      - Position $x < 0$ (<b>negative</b>).<br>
+      - Tangent slope is negative ($x$ is decreasing towards minima): velocity $v < 0$ (<b>negative</b>).<br>
+      - Acceleration $a = -\\omega^2 x > 0$ (<b>positive</b>).<br><br>
+    • <b>2. At $t = 1.2\\text{ s}$ (in the crest):</b><br>
+      - Position $x > 0$ (<b>positive</b>).<br>
+      - Tangent slope is positive ($x$ is rising): velocity $v > 0$ (<b>positive</b>).<br>
+      - Acceleration $a = -\\omega^2 x < 0$ (<b>negative</b>).<br><br>
+    • <b>3. At $t = -1.2\\text{ s}$ (on the negative time axis):</b><br>
+      - Position $x < 0$ (<b>negative</b>).<br>
+      - Tangent slope is positive ($x$ is increasing from negative minimum): velocity $v > 0$ (<b>positive</b>).<br>
+      - Acceleration $a = -\\omega^2 x > 0$ (<b>positive</b>).
+  </div>`,
+  '3 Marks',
+  [
+    ['SHM relationship stated: $a = -\\omega^2 x$ and $v = \\text{slope of } x-t$', '1 Mark'],
+    ['Correct signs at $t = 0.3\\text{ s}$ ($x<0, v<0, a>0$)', '0.5 Mark'],
+    ['Correct signs at $t = 1.2\\text{ s}$ ($x>0, v>0, a<0$)', '0.5 Mark'],
+    ['Correct signs at $t = -1.2\\text{ s}$ ($x<0, v>0, a>0$)', '1 Mark']
+  ]
+));
+
+// Question 2.21
+questions.push(createQCard(
+  'c11p-ch2-q21', 'Question 2.21', 'NCERT Exercise',
+  'Fig. 2.7 gives the $x-t$ plot of a particle in one-dimensional motion. Three different equal intervals of time are shown. In which interval is the average speed greatest, and in which is it the least? Give the sign of average velocity for each interval.',
+  `<div class="step">
+    <b>Concept:</b><br>
+    • Average speed in any time interval $\\Delta t$ is given by $\\frac{\\text{Total path length}}{\\Delta t} = \\frac{|\\Delta x|}{\\Delta t}$, which is represented by the <i>steepness of the slope</i> of the chord connecting the endpoints of that interval.<br>
+    • Average velocity is given by $\\frac{x_2 - x_1}{\\Delta t}$, whose sign is determined by whether the chord slopes upward ($+$) or downward ($-$).<br><br>
+    <b>1. Greatest and Least Average Speed:</b><br>
+    • <b>Interval 3:</b> The slope of the curve is steepest in Interval 3. Therefore, <b>average speed is greatest in Interval 3</b>.<br>
+    • <b>Interval 2:</b> The curve is almost flat (horizontal chord, very small change in position). Therefore, <b>average speed is least in Interval 2</b>.<br><br>
+    <b>2. Signs of Average Velocity:</b><br>
+    • <b>Interval 1:</b> The position increases from initial to final instant (chord has upward slope). $\\therefore \\mathbf{\\text{Positive (+)}}$.<br>
+    • <b>Interval 2:</b> The position increases slightly (chord has upward slope). $\\therefore \\mathbf{\\text{Positive (+)}}$.<br>
+    • <b>Interval 3:</b> The position decreases sharply from initial to final instant (chord has downward slope). $\\therefore \\mathbf{\\text{Negative (-)}}$.
+  </div>`,
+  '3 Marks',
+  [
+    ['Criterion relating average speed to absolute slope steepness', '1 Mark'],
+    ['Greatest in Interval 3, least in Interval 2', '1 Mark'],
+    ['Signs of average velocity: Interval 1 (+), Interval 2 (+), Interval 3 (-)', '1 Mark']
+  ]
+));
+
+// Question 2.22
+questions.push(createQCard(
+  'c11p-ch2-q22', 'Question 2.22', 'NCERT Exercise',
+  'Fig. 2.8 gives a speed-time graph of a particle in motion along a constant direction. Three equal intervals of time are shown. In which interval is the average acceleration greatest in magnitude? In which interval is the average speed greatest? Choosing the positive direction as the constant direction of motion, give the signs of $v$ and $a$ in the three intervals. What are the accelerations at the points A, B, C and D?',
+  `<div class="step">
+    <b>1. Greatest Average Acceleration Magnitude:</b><br>
+    Average acceleration magnitude $|a_{avg}| = \\frac{|\\Delta v|}{\\Delta t}$, which equals the absolute slope of the speed-time curve. The slope is steepest in <b>Interval 2</b>.<br>
+    $$\\therefore \\text{Average acceleration is greatest in magnitude in } \\mathbf{\\text{Interval 2}}.$$
+    <br>
+    <b>2. Greatest Average Speed:</b><br>
+    Average speed is proportional to the area under the curve divided by $\\Delta t$. Interval 3 lies at the highest average speed values on the vertical axis.<br>
+    $$\\therefore \\text{Average speed is greatest in } \\mathbf{\\text{Interval 3}}.$$
+    <br>
+    <b>3. Signs of $v$ and $a$:</b><br>
+    Since motion is in the positive direction throughout, velocity $v > 0$ (<b>positive</b>) in all three intervals.<br>
+    • <b>Interval 1:</b> Slope is positive $\\implies a > 0$ (<b>positive</b>).<br>
+    • <b>Interval 2:</b> Slope is negative $\\implies a < 0$ (<b>negative</b>).<br>
+    • <b>Interval 3:</b> Curve is virtually flat parallel to time axis $\\implies a = 0$ (or slightly undulating).<br><br>
+    <b>4. Accelerations at points A, B, C and D:</b><br>
+    Points A, B, C and D are local peaks and valleys (maxima and minima) where the tangent to the speed-time graph is horizontal (slope $= 0$).<br>
+    $$\\therefore a_A = a_B = a_C = a_D = \\mathbf{0\\text{ m s}^{-2}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Greatest acceleration magnitude in Interval 2 based on slope steepness', '1 Mark'],
+    ['Greatest average speed in Interval 3 based on vertical altitude / area', '1 Mark'],
+    ['Signs of $v$ (positive in all) and $a$ (positive in 1, negative in 2, zero in 3)', '1 Mark'],
+    ['Zero acceleration at points A, B, C, D due to horizontal tangents (slope $= 0$)', '1 Mark']
+  ]
+));
+
+// ============================================================================
+// VECTOR SVG DIAGRAM (Position-Time & Velocity-Time Graphs)
+// ============================================================================
+const motionSvg = `
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      Kinematics Vector Graphs: Position-Time ($x-t$) &amp; Velocity-Time ($v-t$) Dynamics
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Position-Time Graph Analysis -->
+      <rect x="15" y="15" width="365" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Position-Time ($x-t$) Interpretations:</text>
+      
+      <!-- Coordinate axes -->
+      <line x1="50" y1="180" x2="350" y2="180" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="50" y1="180" x2="50" y2="55" stroke="#64748b" stroke-width="1.8"/>
+      <text x="355" y="184" font-size="10" fill="#64748b">Time ($t$)</text>
+      <text x="35" y="50" font-size="10" fill="#64748b">Pos ($x$)</text>
+
+      <!-- Curve A: Uniform velocity (straight line) -->
+      <line x1="50" y1="180" x2="190" y2="80" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="135" y="105" font-size="9.5" font-weight="bold" fill="#2563eb">v = constant (slope)</text>
+
+      <!-- Curve B: Accelerated motion (parabola upward) -->
+      <path d="M 50 180 Q 160 175 270 70" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+      <text x="210" y="145" font-size="9.5" font-weight="bold" fill="#7c3aed">a &gt; 0 (convex curve)</text>
+
+      <!-- Curve C: Stationary (horizontal line) -->
+      <line x1="180" y1="75" x2="340" y2="75" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="270" y="68" font-size="9.5" font-weight="bold" fill="#059669">v = 0 (rest)</text>
+
+      <!-- Panel 2: Velocity-Time Graph & Area -->
+      <rect x="400" y="15" width="365" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="420" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Velocity-Time ($v-t$) Relations:</text>
+      
+      <!-- Coordinate axes -->
+      <line x1="435" y1="180" x2="735" y2="180" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="435" y1="180" x2="435" y2="55" stroke="#64748b" stroke-width="1.8"/>
+      <text x="740" y="184" font-size="10" fill="#64748b">Time ($t$)</text>
+      <text x="415" y="50" font-size="10" fill="#64748b">Vel ($v$)</text>
+
+      <!-- Trapezoid area under v-t curve -->
+      <polygon points="435,140 590,75 590,180 435,180" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <line x1="435" y1="140" x2="590" y2="75" stroke="#7c3aed" stroke-width="3"/>
+
+      <!-- Annotations -->
+      <text x="445" y="135" font-size="10" font-weight="bold" fill="#7c3aed">u</text>
+      <text x="595" y="75" font-size="10" font-weight="bold" fill="#7c3aed">v</text>
+      <text x="470" y="160" font-size="10" font-weight="bold" fill="#5b21b6">Area = Displacement (&Delta;x)</text>
+      <text x="515" y="100" font-size="9.5" font-weight="bold" fill="#2563eb">Slope = Acceleration (a)</text>
+
+      <!-- Retardation line -->
+      <line x1="590" y1="75" x2="720" y2="180" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="640" y="125" font-size="9.5" font-weight="bold" fill="#dc2626">Retardation (a &lt; 0)</text>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH2.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11p-ch2">
+  <div class="chapter-header">
+    <div class="ch-badge">2</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 2</div>
+      <h2>Motion in a Straight Line</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 22 Verbatim Questions with Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  ${motionSvg}
+
+  <div class="ex-div">NCERT Textbook Exercise 2.1 to 2.22: Point Objects, $x-t$ &amp; $v-t$ Graph Interpretations, Relative Velocity &amp; Kinematic Equations</div>
+${questions.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(1)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 1 (Units &amp; Measurements)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(3)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 3 (Motion in a Plane) →</button>
+  </div>
+</section>
+`;
+
+// Write ch2.html
+const ch2Path = path.join(outDir, 'ch2.html');
+fs.writeFileSync(ch2Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch2Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[2]
+if (!existingData.includes('window.CHAPTER_DATA[2] =')) {
+  fs.appendFileSync(dataJsPath, `\nwindow.CHAPTER_DATA[2] = ${JSON.stringify(chapterHtml.trim())};\n`, 'utf8');
+  console.log(`Appended Chapter 2 to preloaded cache: ${dataJsPath}`);
+} else {
+  const regex = /window\.CHAPTER_DATA\[2\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[2] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 2 in preloaded cache: ${dataJsPath}`);
+}

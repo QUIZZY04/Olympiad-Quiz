@@ -1,0 +1,625 @@
+// scripts/builders/gen-c11p-ch8.js
+// Complete, verbatim NCERT generator for Class 11 Physics Chapter 8: Mechanical Properties of Solids (All 18 Questions)
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.resolve(__dirname, '..', '..', 'chapters-c11p');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+
+function createQCard(id, num, exercise, qText, answerHtml, marks, rubricRows) {
+  const rubricHtml = rubricRows.map(r => `
+          <div class="marking-row"><span class="marking-key">${r[0]}</span><span class="marking-marks">${r[1]}</span></div>`).join('');
+
+  return `
+  <!-- ${id} (${exercise}) -->
+  <div class="q-card" id="${id}">
+    <div class="q-head" onclick="toggleQ('${id}')">
+      <div class="q-num">${num}</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">${exercise}</span><br>
+        ${qText}
+      </div>
+      <div class="q-marks">[${marks}]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          ${answerHtml}
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          ${rubricHtml}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const questions = [];
+
+// ============================================================================
+// CHAPTER 8: MECHANICAL PROPERTIES OF SOLIDS (Questions 8.1 to 8.18)
+// ============================================================================
+
+// Question 8.1
+questions.push(createQCard(
+  'c11p-ch8-q1', 'Question 8.1', 'NCERT Exercise',
+  'A steel wire of length $4.7\\text{ m}$ and cross-sectional area $3.0 \\times 10^{-5}\\text{ m}^2$ stretches by the same amount as a copper wire of length $3.5\\text{ m}$ and cross-sectional area of $4.0 \\times 10^{-5}\\text{ m}^2$ under a given load. What is the ratio of the Young’s modulus of steel to that of copper?',
+  `<div class="step">
+    Given:<br>
+    • Steel wire: Length $L_s = 4.7\\text{ m}$, Area $A_s = 3.0 \\times 10^{-5}\\text{ m}^2$<br>
+    • Copper wire: Length $L_c = 3.5\\text{ m}$, Area $A_c = 4.0 \\times 10^{-5}\\text{ m}^2$<br>
+    • Same load applied: $F_s = F_c = F$<br>
+    • Equal elongation: $\\Delta L_s = \\Delta L_c = \\Delta L$<br><br>
+    <b>Young’s Modulus Formula:</b><br>
+    $$Y = \\frac{\\text{Stress}}{\\text{Strain}} = \\frac{F / A}{\\Delta L / L} = \\frac{F L}{A \\Delta L}$$<br><br>
+    <b>Ratio of Young’s Moduli:</b><br>
+    $$\\frac{Y_s}{Y_c} = \\frac{\\frac{F L_s}{A_s \\Delta L}}{\\frac{F L_c}{A_c \\Delta L}} = \\frac{L_s}{L_c} \\times \\frac{A_c}{A_s}$$<br>
+    $$\\frac{Y_s}{Y_c} = \\frac{4.7}{3.5} \\times \\frac{4.0 \\times 10^{-5}}{3.0 \\times 10^{-5}} = \\frac{4.7 \\times 4.0}{3.5 \\times 3.0} = \\frac{18.8}{10.5} \\approx \\mathbf{1.79}$$<br><br>
+    $$\\therefore \\text{The ratio of Young’s modulus of steel to that of copper is } \\mathbf{1.79} \\text{ (or } 1.8:1\\text{)}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Young\'s modulus formula $Y = \\frac{FL}{A\\Delta L}$ stated', '1 Mark'],
+    ['Ratio formulation $\\frac{Y_s}{Y_c} = \\frac{L_s A_c}{L_c A_s}$', '1 Mark'],
+    ['Final calculation: $\\frac{Y_s}{Y_c} = 1.79$', '1 Mark']
+  ]
+));
+
+// Question 8.2
+questions.push(createQCard(
+  'c11p-ch8-q2', 'Question 8.2', 'NCERT Exercise',
+  'Figure 8.11 shows the strain-stress curve for a given material. What are (a) Young’s modulus and (b) approximate yield strength for this material?',
+  `<div class="step">
+    Refer to the standard NCERT stress-strain curve:<br><br>
+    • <b>(a) Young’s Modulus ($Y$):</b><br>
+      In the linear proportional region (Hooke’s law region):<br>
+      For a strain $\\epsilon = 0.002$, corresponding stress $\\sigma = 150 \\times 10^6\\text{ N m}^{-2} = 150\\text{ MPa}$.<br>
+      $$Y = \\frac{\\text{Stress}}{\\text{Strain}} = \\frac{150 \\times 10^6\\text{ N m}^{-2}}{0.002} = \\frac{150 \\times 10^6}{2 \\times 10^{-3}} = \\mathbf{7.5 \\times 10^{10}\\text{ N m}^{-2} = 75\\text{ GPa}}$$<br><br>
+    • <b>(b) Approximate Yield Strength (Elastic Limit):</b><br>
+      Yield strength is the maximum stress the material can endure before entering the plastic deformation regime.<br>
+      From the graph, the yield point occurs at the end of the elastic limit:<br>
+      $$\\mathbf{\\text{Yield Strength} \\approx 300 \\times 10^6\\text{ N m}^{-2} = 300\\text{ MPa}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Identification of linear region coordinates from graph', '1 Mark'],
+    ['Calculation of Young\'s modulus: $Y = 7.5 \\times 10^{10}\\text{ N m}^{-2}$', '1 Mark'],
+    ['(b) Yield strength read from graph: $300 \\times 10^6\\text{ N m}^{-2}$', '1 Mark']
+  ]
+));
+
+// Question 8.3
+questions.push(createQCard(
+  'c11p-ch8-q3', 'Question 8.3', 'NCERT Exercise',
+  'The stress-strain graphs for materials A and B are shown in Fig. 8.12. The graphs are drawn to the same scale.<br>' +
+  '(a) Which of the materials has the greater Young’s modulus?<br>' +
+  '(b) Which of the two is the stronger material?',
+  `<div class="step">
+    • <b>(a) Greater Young’s Modulus:</b><br>
+      Young\'s modulus is represented by the <b>slope of the linear proportional region</b> of the stress-strain curve ($Y = \\frac{\\text{Stress}}{\\text{Strain}} = \\text{Slope}$).<br>
+      Comparing the two graphs drawn to identical scales, the linear slope of material A is visibly steeper than that of material B ($\\text{Slope}_A > \\text{Slope}_B$).<br>
+      $$\\mathbf{\\text{Therefore, Material A has the greater Young’s modulus.}}$$<br><br>
+    • <b>(b) Stronger Material:</b><br>
+      The mechanical strength of a material is determined by its <b>ultimate tensile strength</b> (the peak point on the stress-strain curve before fracture).<br>
+      Material A can withstand a significantly larger maximum stress before failure compared to material B.<br>
+      $$\\mathbf{\\text{Therefore, Material A is the stronger material.}}$$
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) Relating Young\'s modulus to initial slope with Material A identified', '1.5 Marks'],
+    ['(b) Relating strength to ultimate stress with Material A identified', '1.5 Marks']
+  ]
+));
+
+// Question 8.4
+questions.push(createQCard(
+  'c11p-ch8-q4', 'Question 8.4', 'NCERT Exercise',
+  'Read the following two statements below carefully and state, with reasons, if it is true or false.<br>' +
+  '(a) The Young’s modulus of rubber is greater than that of steel;<br>' +
+  '(b) The stretching of a coil is determined by its shear modulus.',
+  `<div class="step">
+    • <b>(a) False:</b><br>
+      Young\'s modulus is the ratio of stress to strain ($Y = \\frac{F/A}{\\Delta L/L}$).<br>
+      For a given stretching force and identical cross-sectional area, steel wire produces an extremely minute elongation $\\Delta L$, whereas rubber stretches easily with a very large elongation.<br>
+      Therefore, $\\text{Strain}_{rubber} \\gg \\text{Strain}_{steel}$, which means:<br>
+      $$Y_{steel} \\gg Y_{rubber}$$<br>
+      In fact, $Y_{steel} \\approx 200\\text{ GPa}$, while $Y_{rubber} \\approx 10^{-3}\\text{ GPa}$. Steel is vastly more elastic in the physical sense.<br><br>
+    • <b>(b) True:</b><br>
+      When a helical coil spring is stretched, the length of the spring increases, but the wire itself does not undergo significant tensile elongation. Instead, every segment of the wire undergoes <b>twisting (torsional shear)</b>.<br>
+      Since twisting is a pure shear deformation, the stretching of a coil spring is governed by the <b>shear modulus (modulus of rigidity, $G$)</b> of the wire material.
+  </div>`,
+  '3 Marks',
+  [
+    ['(a) False: Explaining that steel requires vastly more stress for same strain ($Y_{steel} > Y_{rubber}$)', '1.5 Marks'],
+    ['(b) True: Explaining that stretching a coil induces torsional shear stress', '1.5 Marks']
+  ]
+));
+
+// Question 8.5
+questions.push(createQCard(
+  'c11p-ch8-q5', 'Question 8.5', 'NCERT Exercise',
+  'Two wires of diameter $0.25\\text{ cm}$, one made of steel and the other made of brass are loaded as shown in Fig. 8.13. The unloaded length of steel wire is $1.5\\text{ m}$ and that of brass wire is $1.0\\text{ m}$. Compute the elongations of the steel and the brass wires. ($Y_{steel} = 2.0 \\times 10^{11}\\text{ Pa}$, $Y_{brass} = 0.91 \\times 10^{11}\\text{ Pa}$, $g = 9.8\\text{ m s}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Diameter $d = 0.25\\text{ cm} = 2.5 \\times 10^{-3}\\text{ m} \\implies r = 1.25 \\times 10^{-3}\\text{ m}$.<br>
+    • Cross-sectional area $A = \\pi r^2 = 3.1416 \\times (1.25 \\times 10^{-3})^2 \\approx 4.909 \\times 10^{-6}\\text{ m}^2$.<br>
+    • Steel wire ($L_s = 1.5\\text{ m}$): Supports both the $4.0\\text{ kg}$ mass and the $6.0\\text{ kg}$ mass below it.<br>
+      Total mass on steel wire: $M_s = 4.0 + 6.0 = 10.0\\text{ kg}$.<br>
+      Tension $F_s = 10.0 \\times 9.8 = 98\\text{ N}$.<br>
+    • Brass wire ($L_b = 1.0\\text{ m}$): Supports only the bottom $6.0\\text{ kg}$ mass.<br>
+      Tension $F_b = 6.0 \\times 9.8 = 58.8\\text{ N}$.<br><br>
+    <b>1. Elongation of Steel Wire ($\\Delta L_s$):</b><br>
+    $$\\Delta L_s = \\frac{F_s L_s}{A Y_s} = \\frac{98 \\times 1.5}{(4.909 \\times 10^{-6}) \\times (2.0 \\times 10^{11})} = \\frac{147}{9.818 \\times 10^5} \\approx \\mathbf{1.497 \\times 10^{-4}\\text{ m} \\approx 1.5 \\times 10^{-4}\\text{ m}}$$<br><br>
+    <b>2. Elongation of Brass Wire ($\\Delta L_b$):</b><br>
+    $$\\Delta L_b = \\frac{F_b L_b}{A Y_b} = \\frac{58.8 \\times 1.0}{(4.909 \\times 10^{-6}) \\times (0.91 \\times 10^{11})} = \\frac{58.8}{4.467 \\times 10^5} \\approx \\mathbf{1.316 \\times 10^{-4}\\text{ m} \\approx 1.3 \\times 10^{-4}\\text{ m}}$$<br><br>
+    $$\\therefore \\text{Elongation of steel wire } = \\mathbf{1.5 \\times 10^{-4}\\text{ m}}, \\quad \\text{Elongation of brass wire } = \\mathbf{1.3 \\times 10^{-4}\\text{ m}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Tension analysis: $F_s = 98\\text{ N}$ (supporting $10\\text{ kg}$), $F_b = 58.8\\text{ N}$ (supporting $6\\text{ kg}$)', '1.5 Marks'],
+    ['Cross-sectional area calculation $A = 4.91 \\times 10^{-6}\\text{ m}^2$', '0.5 Mark'],
+    ['Steel wire elongation: $\\Delta L_s = 1.5 \\times 10^{-4}\\text{ m}$', '1 Mark'],
+    ['Brass wire elongation: $\\Delta L_b = 1.3 \\times 10^{-4}\\text{ m}$', '1 Mark']
+  ]
+));
+
+// Question 8.6
+questions.push(createQCard(
+  'c11p-ch8-q6', 'Question 8.6', 'NCERT Exercise',
+  'The edge of an aluminium cube is $10\\text{ cm}$ long. One face of the cube is firmly fixed to a vertical wall. A mass of $100\\text{ kg}$ is then attached to the opposite face of the cube. What is the vertical deflection of this face? (Shear modulus of aluminium $= 25\\text{ GPa}$, $g = 9.8\\text{ m s}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Side edge of cube $L = 10\\text{ cm} = 0.1\\text{ m}$<br>
+    • Area of face $A = L^2 = (0.1)^2 = 0.01\\text{ m}^2 = 10^{-2}\\text{ m}^2$<br>
+    • Tangential shearing force: $F = M g = 100\\text{ kg} \\times 9.8\\text{ m s}^{-2} = 980\\text{ N}$<br>
+    • Shear modulus (modulus of rigidity) $G = 25\\text{ GPa} = 25 \\times 10^9\\text{ N m}^{-2}$<br><br>
+    <b>Shear Modulus Formula:</b><br>
+    $$G = \\frac{\\text{Shear Stress}}{\\text{Shear Strain}} = \\frac{F / A}{\\Delta x / L}$$<br>
+    $$\\Delta x = \\frac{F L}{A G}$$<br><br>
+    <b>Calculation of Vertical Deflection ($\\Delta x$):</b><br>
+    $$\\Delta x = \\frac{980 \\times 0.1}{(10^{-2}) \\times (25 \\times 10^9)} = \\frac{98}{2.5 \\times 10^8} = 39.2 \\times 10^{-8}\\text{ m} = \\mathbf{3.92 \\times 10^{-7}\\text{ m}}$$<br><br>
+    $$\\therefore \\text{The vertical deflection of the opposite face is } \\mathbf{3.92 \\times 10^{-7}\\text{ m}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Shear modulus relation $\\Delta x = \\frac{FL}{AG}$', '1 Mark'],
+    ['Force and area evaluations: $F = 980\\text{ N}$, $A = 0.01\\text{ m}^2$', '1 Mark'],
+    ['Final deflection calculation: $\\Delta x = 3.92 \\times 10^{-7}\\text{ m}$', '1 Mark']
+  ]
+));
+
+// Question 8.7
+questions.push(createQCard(
+  'c11p-ch8-q7', 'Question 8.7', 'NCERT Exercise',
+  'Four identical hollow cylindrical columns of mild steel support a big structure of mass $50,000\\text{ kg}$. The inner and outer radii of each column are $30\\text{ cm}$ and $60\\text{ cm}$ respectively. Assuming the load distribution to be uniform, calculate the compressional strain of each column. ($Y_{steel} = 2.0 \\times 10^{11}\\text{ Pa}$, $g = 9.8\\text{ m s}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Total mass $M = 50,000\\text{ kg}$<br>
+    • Total load $W = M g = 50000 \\times 9.8 = 4.9 \\times 10^5\\text{ N}$<br>
+    • Load on each of the four columns: $F = \\frac{W}{4} = \\frac{4.9 \\times 10^5}{4} = 1.225 \\times 10^5\\text{ N}$<br>
+    • Radii: Inner $r_1 = 30\\text{ cm} = 0.3\\text{ m}$, Outer $r_2 = 60\\text{ cm} = 0.6\\text{ m}$<br><br>
+    <b>1. Cross-sectional Area of each hollow column ($A$):</b><br>
+    $$A = \\pi (r_2^2 - r_1^2) = \\pi (0.6^2 - 0.3^2) = \\pi (0.36 - 0.09) = 0.27 \\pi\\text{ m}^2 \\approx 0.8482\\text{ m}^2$$<br><br>
+    <b>2. Compressional Stress on each column:</b><br>
+    $$\\sigma = \\frac{F}{A} = \\frac{1.225 \\times 10^5}{0.27 \\pi} = \\frac{1.225 \\times 10^5}{0.8482} \\approx 1.444 \\times 10^5\\text{ N m}^{-2}$$<br><br>
+    <b>3. Compressional Strain:</b><br>
+    $$\\text{Strain} = \\frac{\\sigma}{Y} = \\frac{1.444 \\times 10^5\\text{ N m}^{-2}}{2.0 \\times 10^{11}\\text{ N m}^{-2}} = \\mathbf{7.22 \\times 10^{-7}}$$<br><br>
+    $$\\therefore \\text{Compressional strain of each column is } \\mathbf{7.22 \\times 10^{-7}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Load on each column $F = W/4 = 1.225 \\times 10^5\\text{ N}$', '1 Mark'],
+    ['Area of hollow annulus $A = \\pi(r_2^2 - r_1^2) = 0.848\\text{ m}^2$', '1.5 Marks'],
+    ['Compressional strain formula $\\text{Strain} = F/(AY)$', '1 Mark'],
+    ['Final calculation: $7.22 \\times 10^{-7}$', '0.5 Mark']
+  ]
+));
+
+// Question 8.8
+questions.push(createQCard(
+  'c11p-ch8-q8', 'Question 8.8', 'NCERT Exercise',
+  'A piece of copper having a rectangular cross-section of $15.2\\text{ mm} \\times 19.1\\text{ mm}$ is pulled in tension with $44,500\\text{ N}$ force, producing only elastic deformation. Calculate the resulting strain? ($Y_{copper} = 1.1 \\times 10^{11}\\text{ Pa}$).',
+  `<div class="step">
+    Given:<br>
+    • Dimensions of cross-section: $b = 15.2\\text{ mm} = 15.2 \\times 10^{-3}\\text{ m}$, $h = 19.1\\text{ mm} = 19.1 \\times 10^{-3}\\text{ m}$<br>
+    • Cross-sectional area $A = b \\times h = (15.2 \\times 10^{-3}) \\times (19.1 \\times 10^{-3}) = 2.9032 \\times 10^{-4}\\text{ m}^2$<br>
+    • Tensile pulling force: $F = 44,500\\text{ N}$<br>
+    • Young’s modulus of copper: $Y = 1.1 \\times 10^{11}\\text{ N m}^{-2}$<br><br>
+    <b>Strain Formula:</b><br>
+    $$\\text{Strain} = \\frac{\\text{Stress}}{Y} = \\frac{F / A}{Y} = \\frac{F}{A Y}$$<br><br>
+    <b>Calculation:</b><br>
+    $$\\text{Strain} = \\frac{44500}{(2.9032 \\times 10^{-4}) \\times (1.1 \\times 10^{11})} = \\frac{44500}{3.1935 \\times 10^7} \\approx \\mathbf{1.39 \\times 10^{-3}}$$<br><br>
+    $$\\therefore \\text{The resulting tensile strain is } \\mathbf{1.39 \\times 10^{-3}} \\text{ (or } 0.139\\%\\text{)}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Cross-sectional area calculation $A = 2.903 \\times 10^{-4}\\text{ m}^2$', '1 Mark'],
+    ['Strain formula $\\text{Strain} = F/(AY)$', '1 Mark'],
+    ['Final calculation: $1.39 \\times 10^{-3}$', '1 Mark']
+  ]
+));
+
+// Question 8.9
+questions.push(createQCard(
+  'c11p-ch8-q9', 'Question 8.9', 'NCERT Exercise',
+  'A steel cable with a radius of $1.5\\text{ cm}$ supports a chairlift at a ski area. If the maximum stress is not to exceed $10^8\\text{ N m}^{-2}$, what is the maximum load the cable can support?',
+  `<div class="step">
+    Given:<br>
+    • Radius of cable $r = 1.5\\text{ cm} = 1.5 \\times 10^{-2}\\text{ m}$<br>
+    • Maximum permissible stress: $\\sigma_{max} = 10^8\\text{ N m}^{-2}$<br><br>
+    <b>1. Cross-sectional Area ($A$):</b><br>
+    $$A = \\pi r^2 = 3.1416 \\times (1.5 \\times 10^{-2})^2 = 3.1416 \\times 2.25 \\times 10^{-4} = 7.0686 \\times 10^{-4}\\text{ m}^2$$<br><br>
+    <b>2. Maximum Load (Force $F_{max}$):</b><br>
+    $$\\sigma_{max} = \\frac{F_{max}}{A} \\implies F_{max} = \\sigma_{max} \\times A$$<br>
+    $$F_{max} = 10^8\\text{ N m}^{-2} \\times (7.0686 \\times 10^{-4}\\text{ m}^2) = \\mathbf{7.07 \\times 10^4\\text{ N}}$$<br><br>
+    $$\\therefore \\text{The maximum load the cable can support is } \\mathbf{7.07 \\times 10^4\\text{ N}} \\text{ (or a mass of } \\approx 7214\\text{ kg}\\text{)}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Cross-sectional area of cable $A = \\pi r^2 = 7.07 \\times 10^{-4}\\text{ m}^2$', '1.5 Marks'],
+    ['Maximum load formula and calculation: $F_{max} = \\sigma A = 7.07 \\times 10^4\\text{ N}$', '1.5 Marks']
+  ]
+));
+
+// Question 8.10
+questions.push(createQCard(
+  'c11p-ch8-q10', 'Question 8.10', 'NCERT Exercise',
+  'A rigid bar of mass $15\\text{ kg}$ is supported symmetrically by three wires each $2.0\\text{ m}$ long. Those at each end are of copper and the middle one is of iron. Determine the ratio of their diameters if each is to have the same tension. ($Y_{copper} = 1.1 \\times 10^{11}\\text{ Pa}$, $Y_{iron} = 1.9 \\times 10^{11}\\text{ Pa}$).',
+  `<div class="step">
+    Given:<br>
+    • Symmetrical arrangement with rigid horizontal bar.<br>
+    • Since the bar is rigid and remains horizontal, all three wires undergo the <b>exact same elongation</b>: $\\Delta L_{copper} = \\Delta L_{iron} = \\Delta L$.<br>
+    • Initial lengths are identical: $L_{copper} = L_{iron} = 2.0\\text{ m}$.<br>
+    • Given condition: Each wire has the same tension: $F_{copper} = F_{iron} = F$.<br><br>
+    <b>Elongation and Young’s Modulus Relation:</b><br>
+    $$\\Delta L = \\frac{F L}{A Y} = \\frac{F L}{\\left(\\frac{\\pi d^2}{4}\\right) Y} = \\frac{4 F L}{\\pi d^2 Y}$$<br><br>
+    Since $\\Delta L, F, L$ are identical for both copper and iron wires:<br>
+    $$d^2 Y = \\text{constant} \\implies d_c^2 Y_c = d_i^2 Y_i$$<br>
+    $$\\left(\\frac{d_c}{d_i}\\right)^2 = \\frac{Y_i}{Y_c}$$<br>
+    $$\\frac{d_c}{d_i} = \\sqrt{\\frac{Y_i}{Y_c}} = \\sqrt{\\frac{1.9 \\times 10^{11}}{1.1 \\times 10^{11}}} = \\sqrt{\\frac{1.9}{1.1}} = \\sqrt{1.727} \\approx \\mathbf{1.314 \\approx 1.3}$$<br><br>
+    $$\\therefore \\text{The ratio of the diameter of the copper wire to that of iron wire is } \\mathbf{1.31:1}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Condition of identical elongation $\\Delta L$ due to rigid horizontal bar', '1 Mark'],
+    ['Derivation of relation $d^2 Y = \\text{constant}$', '1.5 Marks'],
+    ['Ratio calculation $d_c/d_i = \\sqrt{Y_i/Y_c} = 1.31$', '1.5 Marks']
+  ]
+));
+
+// Question 8.11
+questions.push(createQCard(
+  'c11p-ch8-q11', 'Question 8.11', 'NCERT Exercise',
+  'A $14.5\\text{ kg}$ mass, fastened to the end of a steel wire of unstretched length $1.0\\text{ m}$, is whirled in a vertical circle with an angular velocity of $2\\text{ rev s}^{-1}$ at the bottom of the circle. The cross-sectional area of the wire is $0.065\\text{ cm}^2$. Calculate the elongation of the wire when the mass is at the lowest point of its path. ($Y_{steel} = 2.0 \\times 10^{11}\\text{ Pa}$, $g = 9.8\\text{ m s}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Mass $m = 14.5\\text{ kg}$<br>
+    • Radius / length of wire $L = 1.0\\text{ m}$<br>
+    • Frequency at bottom: $\\nu = 2\\text{ rev s}^{-1} \\implies \\omega = 2\\pi \\nu = 2\\pi(2) = 4\\pi\\text{ rad s}^{-1} \\approx 12.566\\text{ rad s}^{-1}$<br>
+    • Area $A = 0.065\\text{ cm}^2 = 0.065 \\times 10^{-4}\\text{ m}^2 = 6.5 \\times 10^{-6}\\text{ m}^2$<br>
+    • $Y = 2.0 \\times 10^{11}\\text{ Pa}$<br><br>
+    <b>1. Net Tension at the Lowest Point ($T$):</b><br>
+    At the lowest point of the vertical circle, tension must support both gravity and provide centripetal acceleration:<br>
+    $$T = m g + m \\omega^2 L = m(g + \\omega^2 L)$$<br>
+    $$\\omega^2 = (4\\pi)^2 = 16\\pi^2 \\approx 16 \\times 9.8696 \\approx 157.91\\text{ s}^{-2}$$<br>
+    $$T = 14.5 \\times (9.8 + 157.91 \\times 1.0) = 14.5 \\times 167.71 = \\mathbf{2431.8\\text{ N}}$$<br><br>
+    <b>2. Elongation of the Wire ($\\Delta L$):</b><br>
+    $$\\Delta L = \\frac{T L}{A Y} = \\frac{2431.8 \\times 1.0}{(6.5 \\times 10^{-6}) \\times (2.0 \\times 10^{11})} = \\frac{2431.8}{1.3 \\times 10^6} \\approx \\mathbf{1.87 \\times 10^{-3}\\text{ m} = 1.87\\text{ mm}}$$<br><br>
+    $$\\therefore \\text{The elongation of the wire at the lowest point is } \\mathbf{1.87\\text{ mm}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Vertical circle tension formula at lowest point $T = m(g + \\omega^2 L)$', '1.5 Marks'],
+    ['Tension calculation: $T = 2431.8\\text{ N}$', '1 Mark'],
+    ['Elongation calculation $\\Delta L = \\frac{TL}{AY} = 1.87\\text{ mm}$', '1.5 Marks']
+  ]
+));
+
+// Question 8.12
+questions.push(createQCard(
+  'c11p-ch8-q12', 'Question 8.12', 'NCERT Exercise',
+  'Compute the bulk modulus of water from the following data: Initial volume $= 100.0\\text{ litre}$, pressure increase $= 100.0\\text{ atm}$ ($1\\text{ atm} = 1.013 \\times 10^5\\text{ Pa}$), final volume $= 100.5\\text{ litre}$ (volume decrease $= 0.5\\text{ litre}$). Compare the bulk modulus of water with that of air (at constant temperature $\\approx 1.0 \\times 10^5\\text{ Pa}$). Explain in simple terms why the ratio is so large.',
+  `<div class="step">
+    Given:<br>
+    • Initial volume $V = 100.0\\text{ L}$<br>
+    • Change in volume $\\Delta V = -0.5\\text{ L}$<br>
+    • Pressure increase $\\Delta P = 100.0\\text{ atm} = 100.0 \\times 1.013 \\times 10^5\\text{ Pa} = 1.013 \\times 10^7\\text{ Pa}$<br><br>
+    <b>1. Bulk Modulus of Water ($B$):</b><br>
+    $$B = -\\frac{\\Delta P}{\\Delta V / V} = \\frac{\\Delta P \\times V}{|\\Delta V|} = \\frac{1.013 \\times 10^7 \\times 100.0}{0.5} = 2.026 \\times 10^9\\text{ Pa} \\approx \\mathbf{2.03 \\times 10^9\\text{ Pa}}$$<br><br>
+    <b>2. Comparison with Bulk Modulus of Air:</b><br>
+    At constant temperature (isothermal conditions), bulk modulus of air equals atmospheric pressure: $B_{air} = P = 1.013 \\times 10^5\\text{ Pa}$.<br>
+    $$\\frac{B_{water}}{B_{air}} = \\frac{2.026 \\times 10^9}{1.013 \\times 10^5} \\approx \\mathbf{2 \\times 10^4 = 20,000}$$<br><br>
+    <b>3. Physical Explanation:</b><br>
+    Gases have vast intermolecular spaces between molecules, so applying pressure easily compresses them. In liquids, molecules are closely packed together almost in contact, with powerful repulsive intermolecular forces resisting compression.<br>
+    $$\\mathbf{\\text{Hence, water is 20,000 times less compressible (much more rigid) than air.}}$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Bulk modulus formula $B = -\\Delta P / (\\Delta V/V)$', '1 Mark'],
+    ['Bulk modulus of water calculation: $2.03 \\times 10^9\\text{ Pa}$', '1.5 Marks'],
+    ['Ratio calculation $B_{water}/B_{air} \\approx 2 \\times 10^4$', '0.5 Mark'],
+    ['Physical explanation based on intermolecular spacing and repulsive forces', '1 Mark']
+  ]
+));
+
+// Question 8.13
+questions.push(createQCard(
+  'c11p-ch8-q13', 'Question 8.13', 'NCERT Exercise',
+  'What is the density of water at a depth where pressure is $80.0\\text{ atm}$, given that its density at the surface is $1.03 \\times 10^3\\text{ kg m}^{-3}$? (Bulk modulus of water $= 2.2 \\times 10^9\\text{ N m}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Surface density $\\rho_0 = 1.03 \\times 10^3\\text{ kg m}^{-3}$<br>
+    • Pressure difference $\\Delta P = 80.0\\text{ atm} = 80.0 \\times 1.013 \\times 10^5\\text{ Pa} = 8.104 \\times 10^6\\text{ Pa}$<br>
+    • Bulk modulus $B = 2.2 \\times 10^9\\text{ Pa}$<br><br>
+    <b>Fractional Change in Density:</b><br>
+    Since mass is constant ($m = \\rho V = \\text{const}$), taking differentials:<br>
+    $$\\frac{d\\rho}{\\rho} = -\\frac{dV}{V}$$<br>
+    From bulk modulus definition: $-\\frac{dV}{V} = \\frac{\\Delta P}{B}$.<br>
+    $$\\frac{\\Delta \\rho}{\\rho_0} = \\frac{\\Delta P}{B} = \\frac{8.104 \\times 10^6}{2.2 \\times 10^9} \\approx 3.684 \\times 10^{-3}$$<br><br>
+    <b>New Density ($\\rho$):</b><br>
+    $$\\rho = \\rho_0 \\left(1 + \\frac{\\Delta P}{B}\\right) = 1.03 \\times 10^3 \\times (1 + 0.003684) = 1.03 \\times 10^3 \\times 1.003684$$<br>
+    $$\\rho = \\mathbf{1.0338 \\times 10^3\\text{ kg m}^{-3} \\approx 1.034 \\times 10^3\\text{ kg m}^{-3}}$$<br><br>
+    $$\\therefore \\text{The density of water at that depth is } \\mathbf{1.034 \\times 10^3\\text{ kg m}^{-3}}.$$
+  </div>`,
+  '4 Marks',
+  [
+    ['Relation between density change and volume change: $\\Delta\\rho/\\rho = -\\Delta V/V$', '1.5 Marks'],
+    ['Fractional change calculation $\\Delta\\rho/\\rho_0 = \\Delta P/B = 3.684 \\times 10^{-3}$', '1.5 Marks'],
+    ['Final density calculation: $1.034 \\times 10^3\\text{ kg m}^{-3}$', '1 Mark']
+  ]
+));
+
+// Question 8.14
+questions.push(createQCard(
+  'c11p-ch8-q14', 'Question 8.14', 'NCERT Exercise',
+  'Compute the fractional change in volume of a glass slab, when subjected to a hydraulic pressure of $10\\text{ atm}$. (Bulk modulus of glass $= 37\\text{ GPa}$).',
+  `<div class="step">
+    Given:<br>
+    • Hydraulic pressure increase $\\Delta P = 10\\text{ atm} = 10 \\times 1.013 \\times 10^5\\text{ Pa} = 1.013 \\times 10^6\\text{ Pa}$<br>
+    • Bulk modulus of glass $B = 37\\text{ GPa} = 37 \\times 10^9\\text{ Pa}$<br><br>
+    <b>Fractional Change in Volume:</b><br>
+    $$B = \\frac{\\Delta P}{|\\Delta V| / V} \\implies \\frac{|\\Delta V|}{V} = \\frac{\\Delta P}{B}$$<br><br>
+    $$\\frac{|\\Delta V|}{V} = \\frac{1.013 \\times 10^6\\text{ Pa}}{37 \\times 10^9\\text{ Pa}} \\approx \\mathbf{2.74 \\times 10^{-5}}$$<br><br>
+    In percentage: $2.74 \\times 10^{-3}\\% = 0.00274\\%$.<br><br>
+    $$\\therefore \\text{The fractional change in volume of the glass slab is } \\mathbf{2.74 \\times 10^{-5}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Pressure conversion $10\\text{ atm} = 1.013 \\times 10^6\\text{ Pa}$', '1 Mark'],
+    ['Fractional volume change formula $|\\Delta V|/V = \\Delta P / B$', '1 Mark'],
+    ['Final calculation: $2.74 \\times 10^{-5}$', '1 Mark']
+  ]
+));
+
+// Question 8.15
+questions.push(createQCard(
+  'c11p-ch8-q15', 'Question 8.15', 'NCERT Exercise',
+  'Determine the volume contraction of a solid copper cube, $10\\text{ cm}$ on an edge, when subjected to a hydraulic pressure of $7.0 \\times 10^6\\text{ Pa}$. (Bulk modulus of copper $= 140\\text{ GPa}$).',
+  `<div class="step">
+    Given:<br>
+    • Edge of copper cube $L = 10\\text{ cm} = 0.1\\text{ m}$<br>
+    • Initial volume $V = L^3 = (0.1\\text{ m})^3 = 10^{-3}\\text{ m}^3$<br>
+    • Hydraulic pressure $\\Delta P = 7.0 \\times 10^6\\text{ Pa}$<br>
+    • Bulk modulus of copper $B = 140\\text{ GPa} = 140 \\times 10^9\\text{ Pa} = 1.4 \\times 10^{11}\\text{ Pa}$<br><br>
+    <b>Volume Contraction Formula:</b><br>
+    $$B = \\frac{\\Delta P}{|\\Delta V| / V} \\implies |\\Delta V| = \\frac{\\Delta P \\times V}{B}$$<br><br>
+    <b>Calculation:</b><br>
+    $$|\\Delta V| = \\frac{(7.0 \\times 10^6\\text{ Pa}) \\times (10^{-3}\\text{ m}^3)}{1.4 \\times 10^{11}\\text{ Pa}} = \\frac{7.0 \\times 10^3}{1.4 \\times 10^{11}} = \\mathbf{5.0 \\times 10^{-8}\\text{ m}^3 = 0.05\\text{ cm}^3}$$<br><br>
+    $$\\therefore \\text{The volume contraction of the copper cube is } \\mathbf{5.0 \\times 10^{-8}\\text{ m}^3} \\text{ (or } 0.05\\text{ cm}^3\\text{)}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Initial volume of cube $V = 10^{-3}\\text{ m}^3$', '1 Mark'],
+    ['Contraction formula $|\\Delta V| = \\Delta P \\cdot V / B$', '1 Mark'],
+    ['Final volume contraction: $5.0 \\times 10^{-8}\\text{ m}^3$', '1 Mark']
+  ]
+));
+
+// Question 8.16
+questions.push(createQCard(
+  'c11p-ch8-q16', 'Question 8.16', 'NCERT Exercise',
+  'How much should the pressure on a litre of water be changed to compress it by $0.10\\%$? (Bulk modulus of water $= 2.2 \\times 10^9\\text{ N m}^{-2}$).',
+  `<div class="step">
+    Given:<br>
+    • Fractional decrease in volume $\\frac{|\\Delta V|}{V} = 0.10\\% = \\frac{0.10}{100} = 1.0 \\times 10^{-3}$<br>
+    • Bulk modulus of water $B = 2.2 \\times 10^9\\text{ N m}^{-2}$<br><br>
+    <b>Pressure Increase Required:</b><br>
+    $$B = \\frac{\\Delta P}{|\\Delta V| / V} \\implies \\Delta P = B \\times \\left(\\frac{|\\Delta V|}{V}\\right)$$<br><br>
+    $$\\Delta P = (2.2 \\times 10^9\\text{ N m}^{-2}) \\times (1.0 \\times 10^{-3}) = \\mathbf{2.2 \\times 10^6\\text{ Pa} = 2.2\\text{ MPa}}$$<br><br>
+    In atmospheres:<br>
+    $$\\Delta P = \\frac{2.2 \\times 10^6}{1.013 \\times 10^5} \\approx \\mathbf{21.7\\text{ atm}}$$<br><br>
+    $$\\therefore \\text{The pressure must be increased by } \\mathbf{2.2 \\times 10^6\\text{ Pa}} \\text{ (or } 21.7\\text{ atm}\\text{)}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Fractional change identified as $10^{-3}$', '1 Mark'],
+    ['Formula $\\Delta P = B \\times (|\\Delta V|/V)$', '1 Mark'],
+    ['Final pressure change: $2.2 \\times 10^6\\text{ Pa} = 21.7\\text{ atm}$', '1 Mark']
+  ]
+));
+
+// Question 8.17
+questions.push(createQCard(
+  'c11p-ch8-q17', 'Question 8.17', 'NCERT Exercise',
+  'Anvils made of single crystals of diamond, with the shape as shown in Fig. 8.14, are used to investigate behaviour of materials under very high pressures. Flat faces at the narrow end of the anvil have a diameter of $0.50\\text{ mm}$, and the wide ends are subjected to a compressional force of $50,000\\text{ N}$. What is the pressure at the tip of the anvil?',
+  `<div class="step">
+    Given:<br>
+    • Compressional force $F = 50,000\\text{ N} = 5.0 \\times 10^4\\text{ N}$<br>
+    • Diameter of flat circular tip: $d = 0.50\\text{ mm} = 0.50 \\times 10^{-3}\\text{ m}$<br>
+    • Radius of tip: $r = \\frac{d}{2} = 0.25 \\times 10^{-3}\\text{ m} = 2.5 \\times 10^{-4}\\text{ m}$<br><br>
+    <b>1. Area of the Tip Face ($A$):</b><br>
+    $$A = \\pi r^2 = 3.1416 \\times (2.5 \\times 10^{-4}\\text{ m})^2 = 3.1416 \\times 6.25 \\times 10^{-8} \\approx 1.9635 \\times 10^{-7}\\text{ m}^2$$<br><br>
+    <b>2. Pressure at the Tip ($P$):</b><br>
+    $$P = \\frac{F}{A} = \\frac{5.0 \\times 10^4\\text{ N}}{1.9635 \\times 10^{-7}\\text{ m}^2} \\approx \\mathbf{2.546 \\times 10^{11}\\text{ Pa} \\approx 2.55 \\times 10^{11}\\text{ Pa}}$$<br><br>
+    In atmospheres: $P \\approx \\frac{2.55 \\times 10^{11}}{1.013 \\times 10^5} \\approx 2.5 \\times 10^6\\text{ atm}$ ($2.5\\text{ million atmospheres}$!).<br><br>
+    $$\\therefore \\text{The pressure at the tip of the anvil is } \\mathbf{2.55 \\times 10^{11}\\text{ Pa}}.$$
+  </div>`,
+  '3 Marks',
+  [
+    ['Tip area calculation $A = \\pi r^2 = 1.9635 \\times 10^{-7}\\text{ m}^2$', '1.5 Marks'],
+    ['Pressure formula and evaluation: $P = F/A = 2.55 \\times 10^{11}\\text{ Pa}$', '1.5 Marks']
+  ]
+));
+
+// Question 8.18
+questions.push(createQCard(
+  'c11p-ch8-q18', 'Question 8.18', 'NCERT Exercise',
+  'A rod of length $1.05\\text{ m}$ having negligible mass is supported at its ends by two wires of steel (wire A) and aluminium (wire B) of equal lengths as shown in Fig. 8.15. The cross-sectional areas of wires A and B are $1.0\\text{ mm}^2$ and $2.0\\text{ mm}^2$, respectively. At what point along the rod should a mass $m$ be suspended in order to produce (a) equal stresses and (b) equal strains in both steel and aluminium wires? ($Y_{steel} = 2.0 \\times 10^{11}\\text{ Pa}$, $Y_{Al} = 7.0 \\times 10^{10}\\text{ Pa}$).',
+  `<div class="step">
+    Given:<br>
+    • Length of rod $L = 1.05\\text{ m}$.<br>
+    • Let mass $m$ be suspended at distance $x$ from the steel wire A.<br>
+    • Distance from aluminium wire B is $(1.05 - x)$.<br>
+    • Areas: $A_s = 1.0\\text{ mm}^2$, $A_{al} = 2.0\\text{ mm}^2$.<br>
+    • Young’s moduli: $Y_s = 2.0 \\times 10^{11}\\text{ Pa}$, $Y_{al} = 7.0 \\times 10^{10}\\text{ Pa} = 0.7 \\times 10^{11}\\text{ Pa}$.<br><br>
+    <b>Torque Equilibrium about point of suspension:</b><br>
+    $$F_s \\times x = F_{al} \\times (1.05 - x) \\implies \\frac{F_s}{F_{al}} = \\frac{1.05 - x}{x} \\quad \\text{--- (Eq 1)}$$<br><br>
+    • <b>(a) Condition for Equal Stresses:</b><br>
+      $$\\sigma_s = \\sigma_{al} \\implies \\frac{F_s}{A_s} = \\frac{F_{al}}{A_{al}} \\implies \\frac{F_s}{F_{al}} = \\frac{A_s}{A_{al}} = \\frac{1.0}{2.0} = 0.5$$<br>
+      Substituting into Eq 1:<br>
+      $$\\frac{1.05 - x}{x} = 0.5 \\implies 1.05 - x = 0.5 x \\implies 1.5 x = 1.05$$<br>
+      $$x = \\frac{1.05}{1.5} = \\mathbf{0.70\\text{ m} = 70\\text{ cm}}$$<br>
+      $$\\mathbf{\\text{For equal stresses, mass should be suspended } 0.70\\text{ m from the steel wire.}}$$<br><br>
+    • <b>(b) Condition for Equal Strains:</b><br>
+      $$\\epsilon_s = \\epsilon_{al} \\implies \\frac{F_s}{A_s Y_s} = \\frac{F_{al}}{A_{al} Y_{al}} \\implies \\frac{F_s}{F_{al}} = \\frac{A_s Y_s}{A_{al} Y_{al}}$$<br>
+      $$\\frac{F_s}{F_{al}} = \\frac{1.0 \\times (2.0 \\times 10^{11})}{2.0 \\times (7.0 \\times 10^{10})} = \\frac{2.0}{1.4} = \\frac{10}{7}$$<br>
+      Substituting into Eq 1:<br>
+      $$\\frac{1.05 - x}{x} = \\frac{10}{7} \\implies 7(1.05 - x) = 10 x$$<br>
+      $$7.35 - 7 x = 10 x \\implies 17 x = 7.35$$<br>
+      $$x = \\frac{7.35}{17} \\approx \\mathbf{0.432\\text{ m} = 43.2\\text{ cm}}$$<br>
+      $$\\mathbf{\\text{For equal strains, mass should be suspended } 0.43\\text{ m from the steel wire.}}$$
+  </div>`,
+  '5 Marks',
+  [
+    ['Rotational torque equilibrium relation $F_s/F_{al} = (1.05 - x)/x$', '1 Mark'],
+    ['(a) Equal stress condition $F_s/F_{al} = A_s/A_{al}$ yielding $x = 0.70\\text{ m}$', '2 Marks'],
+    ['(b) Equal strain condition $F_s/F_{al} = (A_s Y_s)/(A_{al} Y_{al})$ yielding $x = 0.432\\text{ m}$', '2 Marks']
+  ]
+));
+
+// ============================================================================
+// VECTOR SVG DIAGRAM (Stress-Strain Curve & Hooke's Elasticity)
+// ============================================================================
+const solidsSvg = `
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></svg>
+      Continuum Mechanics: Standard Stress-Strain Profile &amp; Elastic Moduli Classification
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Complete Stress-Strain Curve -->
+      <rect x="15" y="15" width="415" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Standard Tensile Stress-Strain Curve for Metallic Wire:</text>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="395" y2="180" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="50" y1="180" x2="50" y2="50" stroke="#64748b" stroke-width="1.5"/>
+      <text x="400" y="184" font-size="10" fill="#64748b">Strain (&epsilon;)</text>
+      <text x="35" y="45" font-size="10" fill="#64748b">Stress (&sigma;)</text>
+
+      <!-- Curve segments -->
+      <!-- O to A (linear proportional limit) -->
+      <line x1="50" y1="180" x2="130" y2="110" stroke="#059669" stroke-width="2.5"/>
+      <circle cx="130" cy="110" r="3" fill="#059669"/>
+      <text x="135" y="108" font-size="9" font-weight="bold" fill="#059669">A (Prop. Limit)</text>
+
+      <!-- A to B (elastic limit / yield point) -->
+      <path d="M 130 110 Q 155 95 180 92" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+      <circle cx="180" cy="92" r="3" fill="#2563eb"/>
+      <text x="185" y="90" font-size="9" font-weight="bold" fill="#2563eb">B (Yield Point)</text>
+
+      <!-- B to D (plastic flow to ultimate tensile strength) -->
+      <path d="M 180 92 Q 260 60 305 65" fill="none" stroke="#d97706" stroke-width="2.5"/>
+      <circle cx="305" cy="65" r="3.5" fill="#d97706"/>
+      <text x="290" y="55" font-size="9" font-weight="bold" fill="#d97706">D (Ultimate Strength)</text>
+
+      <!-- D to E (fracture point) -->
+      <path d="M 305 65 Q 345 75 365 95" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="3,2"/>
+      <circle cx="365" cy="95" r="3.5" fill="#dc2626"/>
+      <text x="345" y="112" font-size="9" font-weight="bold" fill="#dc2626">E (Fracture)</text>
+
+      <!-- Region tags -->
+      <rect x="55" y="155" width="120" height="20" rx="3" fill="#ecfdf5"/>
+      <text x="62" y="168" font-size="8.5" font-weight="bold" fill="#047857">Hooke's Law Region</text>
+
+      <rect x="190" y="155" width="165" height="20" rx="3" fill="#fef2f2"/>
+      <text x="198" y="168" font-size="8.5" font-weight="bold" fill="#b91c1c">Plastic Deformation Range</text>
+
+      <!-- Panel 2: Three Moduli Summary -->
+      <rect x="445" y="15" width="320" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="465" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. The 3 Moduli of Elasticity:</text>
+
+      <g font-size="9.5" fill="#1e293b">
+        <!-- Young's -->
+        <rect x="460" y="52" width="290" height="44" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+        <text x="470" y="70" font-weight="bold" fill="#6d28d9">Young’s Modulus (Y):</text>
+        <text x="470" y="87" fill="#475569">Y = (F/A) / (&Delta;L/L) &bull; Longitudinal stretch</text>
+
+        <!-- Shear -->
+        <rect x="460" y="102" width="290" height="44" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+        <text x="470" y="120" font-weight="bold" fill="#6d28d9">Shear Modulus (G or &eta;):</text>
+        <text x="470" y="137" fill="#475569">G = (F/A) / (&Delta;x/L) = (F/A) / &theta; &bull; Torsion</text>
+
+        <!-- Bulk -->
+        <rect x="460" y="152" width="290" height="50" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+        <text x="470" y="170" font-weight="bold" fill="#6d28d9">Bulk Modulus (B):</text>
+        <text x="470" y="187" fill="#475569">B = -&Delta;P / (&Delta;V/V) &bull; Hydraulic compression</text>
+        <text x="470" y="198" font-size="8" fill="#059669">Compressibility k = 1 / B</text>
+      </g>
+    </svg>
+  </div>
+`;
+
+// ============================================================================
+// ASSEMBLY OF CH8.HTML
+// ============================================================================
+const chapterHtml = `
+<section class="chapter-section" id="c11p-ch8">
+  <div class="chapter-header">
+    <div class="ch-badge">8</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 8</div>
+      <h2>Mechanical Properties of Solids</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 18 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+
+
+  ${solidsSvg}
+
+  <div class="ex-div">NCERT Textbook Exercise 8.1 to 8.18: Stress, Strain, Hooke's Law, Young's Modulus, Shear Modulus, Bulk Modulus &amp; Compressibility</div>
+${questions.join('\n')}
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(7)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 7 (Gravitation)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(9)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 9 (Mechanical Properties of Fluids) →</button>
+  </div>
+</section>
+`;
+
+// Write ch8.html
+const ch8Path = path.join(outDir, 'ch8.html');
+fs.writeFileSync(ch8Path, chapterHtml.trim(), 'utf8');
+console.log(`Successfully generated: ${ch8Path} (${chapterHtml.length} bytes)`);
+
+// Update chapters-data.js
+const dataJsPath = path.join(outDir, 'chapters-data.js');
+let existingData = '';
+if (fs.existsSync(dataJsPath)) {
+  existingData = fs.readFileSync(dataJsPath, 'utf8');
+}
+
+// Append or update window.CHAPTER_DATA[8]
+if (!existingData.includes('window.CHAPTER_DATA[8] =')) {
+  fs.appendFileSync(dataJsPath, `\nwindow.CHAPTER_DATA[8] = ${JSON.stringify(chapterHtml.trim())};\n`, 'utf8');
+  console.log(`Appended Chapter 8 to preloaded cache: ${dataJsPath}`);
+} else {
+  const regex = /window\.CHAPTER_DATA\[8\]\s*=\s*[\s\S]*?;\n/g;
+  const updated = existingData.replace(regex, `window.CHAPTER_DATA[8] = ${JSON.stringify(chapterHtml.trim())};\n`);
+  fs.writeFileSync(dataJsPath, updated, 'utf8');
+  console.log(`Updated Chapter 8 in preloaded cache: ${dataJsPath}`);
+}

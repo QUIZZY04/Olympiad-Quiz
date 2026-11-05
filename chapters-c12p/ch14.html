@@ -1,0 +1,711 @@
+<section class="chapter-section" id="c12p-ch14">
+  <div class="chapter-header">
+    <div class="ch-badge" style="background:#2563eb;">14</div>
+    <div class="chapter-header-info">
+      <div class="ch-category" style="color:#2563eb;">CBSE Class 12 Physics &bull; Chapter 14</div>
+      <h2>Semiconductor Electronics: Materials, Devices and Simple Circuits</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 15 Verbatim Questions with Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="display:flex; justify-content:center; margin:24px 0;">
+    <svg viewBox="0 0 760 220" style="width:100%; max-width:760px; height:auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/>
+        </marker>
+      </defs>
+      <!-- Title -->
+      <text x="380" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">P-N Junction Diode & Full-Wave Rectification Characteristics</text>
+      
+      <!-- P-N Junction Block -->
+      <rect x="70" y="70" width="120" height="90" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="130" y="105" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="#1d4ed8">P-Type</text>
+      <text x="130" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#3b82f6">(Holes majority)</text>
+
+      <rect x="190" y="70" width="120" height="90" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="250" y="105" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="#15803d">N-Type</text>
+      <text x="250" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#16a34a">(Electrons majority)</text>
+
+      <!-- Depletion region band -->
+      <rect x="175" y="70" width="30" height="90" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <text x="190" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#a16207">Depletion Layer</text>
+
+      <!-- Barrier potential arrow (N to P) -->
+      <line x1="200" y1="55" x2="180" y2="55" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="190" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#dc2626">E_barrier</text>
+
+      <!-- Core Formulae & Concepts -->
+      <text x="360" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Core Semiconductor Physics:</text>
+      <text x="360" y="80" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Mass Action Law: $n_e n_h = n_i^2$</text>
+      <text x="360" y="105" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Total Conductivity: $\sigma = e(n_e \mu_e + n_h \mu_h)$</text>
+      <text x="360" y="130" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Cut-off Wavelength for Photodiode: $\lambda_{max} = \frac{h c}{E_g} = \frac{12400}{E_g \text{ (eV)}} \text{ \AA}$</text>
+      <text x="360" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Dynamic Resistance: $r_d = \frac{\Delta V}{\Delta I}$</text>
+      <text x="360" y="180" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Half-Wave Output: $f_{out} = f_{in}$; Full-Wave Output: $f_{out} = 2 f_{in}$</text>
+      <text x="360" y="205" font-family="system-ui, sans-serif" font-size="12" fill="#475569">• Band Gap: Carbon (Diamond) $E_g \approx 5.4 \text{ eV}$, Si $1.1 \text{ eV}$, Ge $0.7 \text{ eV}$</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div" style="font-size:0.88rem; font-weight:700; color:#334155; margin-bottom:16px; padding:8px 14px; background:#f1f5f9; border-radius:8px; border-left:4px solid #2563eb;">Exercises 14.1 to 14.15</div>
+
+  <div class="questions-container">
+    
+  <!-- c12p-ch14-q1 (Exercise 14.1) -->
+  <div class="q-card" id="c12p-ch14-q1">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q1')">
+      <div class="q-num">Q 14.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.1</span><br>
+        In an n-type silicon, which of the following statements is true:<br>
+    <strong>(a)</strong> Electrons are majority carriers and trivalent atoms are the dopants.<br>
+    <strong>(b)</strong> Electrons are minority carriers and pentavalent atoms are the dopants.<br>
+    <strong>(c)</strong> Holes are minority carriers and pentavalent atoms are the dopants.<br>
+    <strong>(d)</strong> Holes are majority carriers and trivalent atoms are the dopants.
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Correct Option: (c) Holes are minority carriers and pentavalent atoms are the dopants.</strong></p>
+    <p><strong>Explanation:</strong><br>
+    • An n-type semiconductor is created by doping tetravalent pure silicon with <strong>pentavalent impurity atoms</strong> (such as Phosphorus, Arsenic, or Antimony) that possess five valence electrons.<br>
+    • Four valence electrons form covalent bonds with neighbouring silicon atoms, while the fifth weakly bound electron becomes free into the conduction band at room temperature.<br>
+    • Consequently, <strong>electrons are majority charge carriers</strong> ($n_e \gg n_h$) and <strong>holes are minority charge carriers</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Correct option (c) with physical doping explanation</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q2 (Exercise 14.2) -->
+  <div class="q-card" id="c12p-ch14-q2">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q2')">
+      <div class="q-num">Q 14.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.2</span><br>
+        Which of the statements given in Exercise 14.1 is true for p-type semiconductors?
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Correct Option: (d) Holes are majority carriers and trivalent atoms are the dopants.</strong></p>
+    <p><strong>Explanation:</strong><br>
+    • A p-type semiconductor is created by doping tetravalent silicon with <strong>trivalent impurity atoms</strong> (such as Boron, Aluminium, or Indium) possessing three valence electrons.<br>
+    • The deficiency of one electron to complete the four covalent bonds creates an electron vacancy or <strong>hole</strong> in the valence band.<br>
+    • Thermal generation adds few electron-hole pairs, making <strong>holes the majority carriers</strong> ($n_h \gg n_e$) and <strong>electrons the minority carriers</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Correct option (d) with trivalent acceptor doping explanation</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q3 (Exercise 14.3) -->
+  <div class="q-card" id="c12p-ch14-q3">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q3')">
+      <div class="q-num">Q 14.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.3</span><br>
+        Carbon, silicon and germanium have four valence electrons each. These are characterised by valence and conduction bands separated by energy band gaps respectively equal to $(E_g)_C, (E_g)_{Si}$ and $(E_g)_{Ge}$. Which of the following statements is true?<br>
+    <strong>(a)</strong> $(E_g)_{Si} < (E_g)_{Ge} < (E_g)_C$<br>
+    <strong>(b)</strong> $(E_g)_C < (E_g)_{Ge} > (E_g)_{Si}$<br>
+    <strong>(c)</strong> $(E_g)_C > (E_g)_{Si} > (E_g)_{Ge}$<br>
+    <strong>(d)</strong> $(E_g)_C = (E_g)_{Si} = (E_g)_{Ge}$
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Correct Option: (c) $(E_g)_C > (E_g)_{Si} > (E_g)_{Ge}$</strong></p>
+    <p><strong>Physical Explanation:</strong><br>
+    • Carbon (diamond structure) has its valence electrons in the small $n = 2$ shell, held extremely tightly by the nucleus, resulting in an enormous band gap $(E_g)_C \approx 5.4 \text{ eV}$ (insulator).<br>
+    • Silicon has valence electrons in the larger $n = 3$ shell, with $(E_g)_{Si} \approx 1.1 \text{ eV}$ (semiconductor).<br>
+    • Germanium has valence electrons in the even larger $n = 4$ shell, shielded by inner shells, yielding $(E_g)_{Ge} \approx 0.7 \text{ eV}$ (semiconductor).<br>
+    As we move down Group 14 of the periodic table, the atomic radius increases and bond energy decreases, causing the band gap $E_g$ to decrease monotonically.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Correct option (c) with atomic size and bandgap trend</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q4 (Exercise 14.4) -->
+  <div class="q-card" id="c12p-ch14-q4">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q4')">
+      <div class="q-num">Q 14.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.4</span><br>
+        In an unbiased p-n junction, holes diffuse from the p-region to the n-region because:<br>
+    <strong>(a)</strong> free electrons in the n-region attract them.<br>
+    <strong>(b)</strong> they move across the junction by the potential barrier.<br>
+    <strong>(c)</strong> hole concentration in the p-region is more as compared to n-region.<br>
+    <strong>(d)</strong> All the above.
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Correct Option: (c) hole concentration in the p-region is more as compared to n-region.</strong></p>
+    <p><strong>Explanation:</strong><br>
+    • Diffusion is a macroscopic statistical transport phenomenon driven strictly by a <strong>spatial concentration gradient</strong> ($dn/dx$).<br>
+    • In a p-n junction, the concentration of holes in the p-side is orders of magnitude greater than in the n-side ($p_p \gg p_n$).<br>
+    • Therefore, holes naturally diffuse across the metallurgical junction from the region of higher concentration (p-side) to the region of lower concentration (n-side).<br>
+    (Note: The built-in potential barrier actually <em>opposes</em> this diffusion, while electron attraction is not the driving mechanism).</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Correct option (c) with concentration gradient explanation</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q5 (Exercise 14.5) -->
+  <div class="q-card" id="c12p-ch14-q5">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q5')">
+      <div class="q-num">Q 14.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.5</span><br>
+        When a forward bias is applied to a p-n junction, it:<br>
+    <strong>(a)</strong> raises the potential barrier.<br>
+    <strong>(b)</strong> reduces the majority carrier current to zero.<br>
+    <strong>(c)</strong> lowers the potential barrier.<br>
+    <strong>(d)</strong> None of the above.
+      </div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Correct Option: (c) lowers the potential barrier.</strong></p>
+    <p><strong>Explanation:</strong><br>
+    • In forward bias, the positive terminal of the external battery is connected to the p-side and the negative terminal to the n-side.<br>
+    • The applied electric field opposes the internal built-in electric field of the barrier ($E_{app}$ opposes $E_{barrier}$).<br>
+    • Consequently, the effective barrier height is reduced from $V_0$ to $(V_0 - V)$, and the depletion layer width shrinks, allowing majority carriers to diffuse freely across the junction and establish a large forward current.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Correct option (c) with barrier lowering mechanism $(V_0 - V)$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q6 (Exercise 14.6) -->
+  <div class="q-card" id="c12p-ch14-q6">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q6')">
+      <div class="q-num">Q 14.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.6</span><br>
+        In half-wave rectification, what is the output frequency if the input ac frequency is $50 \text{ Hz}$? What is the output frequency of a full-wave rectifier for the same input frequency?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>1. Half-Wave Rectifier:</strong><br>
+    • In a half-wave rectifier, current flows through the load only during the positive half-cycles of the AC input voltage, while the negative half-cycles are blocked.<br>
+    • Thus, the pulsating DC output completes one ripple cycle for every single full cycle of the AC input.<br>
+    • Output frequency:
+    \[
+    f_{out} = f_{in} = 50 \text{ Hz}
+    \]</p>
+
+    <p><strong>2. Full-Wave Rectifier:</strong><br>
+    • In a full-wave rectifier (centre-tapped or bridge configuration), both positive and negative half-cycles of the AC input are converted into unidirectional output pulses across the load.<br>
+    • Thus, there are two output pulses for every single input AC cycle.<br>
+    • Output frequency:
+    \[
+    f_{out} = 2 f_{in} = 2 \times 50 \text{ Hz} = 100 \text{ Hz}
+    \]</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Half-wave output frequency $f_{out} = 50\text{ Hz}$ with reasoning</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Full-wave output frequency $f_{out} = 100\text{ Hz}$ with reasoning</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q7 (Exercise 14.7) -->
+  <div class="q-card" id="c12p-ch14-q7">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q7')">
+      <div class="q-num">Q 14.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.7</span><br>
+        A p-n photodiode is fabricated from a semiconductor with a band gap of $2.8 \text{ eV}$. Can it detect a wavelength of $6000 \text{ nm}$?
+      </div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Band gap $E_g = 2.8 \text{ eV}$<br>
+    Incident wavelength $\lambda = 6000 \text{ nm} = 6000 \times 10^{-9} \text{ m} = 6.0 \times 10^{-6} \text{ m}$</p>
+
+    <p><strong>Step 1: Energy of the Incident Photon $E$:</strong><br>
+    \[
+    E = \frac{h c}{\lambda} = \frac{12400 \text{ eV \AA}}{60000 \text{ \AA}} = \frac{12400}{60000} \approx 0.207 \text{ eV}
+    \]
+    Alternatively using SI units:
+    \[
+    E = \frac{(6.626 \times 10^{-34} \text{ J s}) \times (3.0 \times 10^8 \text{ m s}^{-1})}{6.0 \times 10^{-6} \text{ m}} = 3.313 \times 10^{-20} \text{ J}
+    \]
+    \[
+    E = \frac{3.313 \times 10^{-20} \text{ J}}{1.602 \times 10^{-19} \text{ J eV}^{-1}} \approx 0.207 \text{ eV}
+    \]</p>
+
+    <p><strong>Step 2: Threshold Condition for Photodetection:</strong><br>
+    For a photodiode to detect radiation, the incident photon must possess sufficient energy to excite an electron from the valence band to the conduction band across the forbidden energy gap:
+    \[
+    E \ge E_g
+    \]
+    Here $E = 0.207 \text{ eV} \ll E_g = 2.8 \text{ eV}$.<br>
+    <p><strong>Conclusion:</strong> <strong>No</strong>, the photodiode cannot detect this radiation. (Maximum detectable wavelength is $\lambda_{max} = \frac{12400}{2.8} \approx 4429 \text{ \AA} = 443 \text{ nm}$).</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of photon energy $E \approx 0.21\text{ eV}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Comparison $E < E_g$ and final conclusion 'No'</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q8 (Exercise 14.8) -->
+  <div class="q-card" id="c12p-ch14-q8">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q8')">
+      <div class="q-num">Q 14.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.8</span><br>
+        The number of silicon atoms per $\text{m}^3$ is $5 \times 10^{28}$. This is doped simultaneously with $5 \times 10^{22} \text{ atoms m}^{-3}$ of Arsenic and $5 \times 10^{20} \text{ atoms m}^{-3}$ of Indium. Calculate the number of electrons and holes. Given that $n_i = 1.5 \times 10^{16} \text{ m}^{-3}$. Is the material n-type or p-type?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    Donor concentration (Arsenic, pentavalent) $N_D = 5 \times 10^{22} \text{ m}^{-3}$<br>
+    Acceptor concentration (Indium, trivalent) $N_A = 5 \times 10^{20} \text{ m}^{-3}$<br>
+    Intrinsic carrier concentration $n_i = 1.5 \times 10^{16} \text{ m}^{-3}$</p>
+
+    <p><strong>Step 1: Net Donor Concentration ($n_e$):</strong><br>
+    Since $N_D \gg N_A$, the acceptors compensate an equal number of donors:
+    \[
+    n_e \approx N_D - N_A = 5 \times 10^{22} - 0.05 \times 10^{22} = 4.95 \times 10^{22} \text{ m}^{-3}
+    \]</p>
+
+    <p><strong>Step 2: Number of Holes ($n_h$):</strong><br>
+    Applying the Mass-Action Law for semiconductors in thermal equilibrium:
+    \[
+    n_e n_h = n_i^2 \implies n_h = \frac{n_i^2}{n_e}
+    \]
+    \[
+    n_h = \frac{(1.5 \times 10^{16})^2}{4.95 \times 10^{22}} = \frac{2.25 \times 10^{32}}{4.95 \times 10^{22}} \approx 4.545 \times 10^9 \text{ m}^{-3}
+    \]</p>
+
+    <p><strong>Type of Material:</strong><br>
+    Since $n_e \approx 4.95 \times 10^{22} \text{ m}^{-3} \gg n_h \approx 4.55 \times 10^9 \text{ m}^{-3}$, the material is strongly <strong>n-type</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of net electron density $n_e = 4.95 \times 10^{22}\text{ m}^{-3}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mass action law $n_e n_h = n_i^2$ and calculation $n_h = 4.55 \times 10^9\text{ m}^{-3}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Classification as n-type semiconductor</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q9 (Exercise 14.9) -->
+  <div class="q-card" id="c12p-ch14-q9">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q9')">
+      <div class="q-num">Q 14.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.9</span><br>
+        In an intrinsic semiconductor the energy gap $E_g$ is $1.2 \text{ eV}$. Its hole mobility is much smaller than electron mobility and independent of temperature. What is the ratio between conductivity at $600 \text{ K}$ and that at $300 \text{ K}$? Assume that the temperature dependence of intrinsic carrier concentration is given by $n_i = n_0 \exp\left(-\frac{E_g}{2 k_B T}\right)$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong><br>
+    $E_g = 1.2 \text{ eV}$, $T_1 = 300 \text{ K}$, $T_2 = 600 \text{ K}$<br>
+    Boltzmann constant $k_B = 8.617 \times 10^{-5} \text{ eV K}^{-1}$</p>
+
+    <p><strong>Conductivity Relation:</strong><br>
+    Conductivity $\sigma = e n_i (\mu_e + \mu_h)$. Since mobilities are independent of temperature:
+    \[
+    \frac{\sigma(T_2)}{\sigma(T_1)} = \frac{n_i(T_2)}{n_i(T_1)} = \frac{\exp\left(-\frac{E_g}{2 k_B T_2}\right)}{\exp\left(-\frac{E_g}{2 k_B T_1}\right)} = \exp\left[ \frac{E_g}{2 k_B} \left( \frac{1}{T_1} - \frac{1}{T_2} \right) \right]
+    \]</p>
+
+    <p><strong>Calculation:</strong><br>
+    \[
+    \frac{1}{T_1} - \frac{1}{T_2} = \frac{1}{300} - \frac{1}{600} = \frac{1}{600} \text{ K}^{-1}
+    \]
+    Exponent factor:
+    \[
+    x = \frac{E_g}{2 k_B} \left( \frac{1}{600} \right) = \frac{1.2 \text{ eV}}{2 \times (8.617 \times 10^{-5} \text{ eV K}^{-1}) \times 600 \text{ K}} = \frac{1.2}{0.1034} \approx 11.605
+    \]
+    \[
+    \frac{\sigma(600 \text{ K})}{\sigma(300 \text{ K})} = e^{11.605} \approx 1.096 \times 10^5 \approx 1.1 \times 10^5
+    \]
+    <p><strong>Result:</strong> The conductivity increases by a factor of approximately <strong>$1.1 \times 10^5$</strong> (over 100,000 times) as temperature increases from $300 \text{ K}$ to $600 \text{ K}$.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Ratio formula $\sigma_2/\sigma_1 = \exp\left[\frac{E_g}{2k_B}\left(\frac{1}{T_1} - \frac{1}{T_2}\right)\right]$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation yielding ratio $\approx 1.1 \times 10^5$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q10 (Exercise 14.10) -->
+  <div class="q-card" id="c12p-ch14-q10">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q10')">
+      <div class="q-num">Q 14.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.10</span><br>
+        In a p-n junction diode, the current $I$ can be expressed as:
+    \[
+    I = I_0 \left[ \exp\left(\frac{e V}{k_B T}\right) - 1 \right]
+    \]
+    where $I_0 = 5.0 \times 10^{-12} \text{ A}$ is the reverse saturation current, $V$ is the voltage across the diode. Estimate the dynamic resistance of the diode at $T = 300 \text{ K}$ for:<br>
+    <strong>(a)</strong> a forward bias of $0.6 \text{ V}$,<br>
+    <strong>(b)</strong> a forward bias of $0.7 \text{ V}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Thermal Voltage:</strong><br>
+    At $T = 300 \text{ K}$, $V_T = \frac{k_B T}{e} = \frac{(1.38 \times 10^{-23}) \times 300}{1.602 \times 10^{-19}} \approx 0.02585 \text{ V} \approx 26 \text{ mV}$.</p>
+
+    <p><strong>Dynamic Resistance ($r_d$):</strong><br>
+    Differentiating the diode equation with respect to $V$:
+    \[
+    \frac{dI}{dV} = I_0 \left( \frac{e}{k_B T} \right) \exp\left(\frac{e V}{k_B T}\right) = \frac{I + I_0}{V_T} \approx \frac{I}{V_T} \quad (\text{for forward bias where } I \gg I_0)
+    \]
+    Dynamic resistance is:
+    \[
+    r_d = \frac{dV}{dI} \approx \frac{V_T}{I}
+    \]</p>
+
+    <p><strong>(a) For $V = 0.6 \text{ V}$:</strong><br>
+    \[
+    I = (5.0 \times 10^{-12}) \times \exp\left( \frac{0.6}{0.02585} \right) = 5.0 \times 10^{-12} \times e^{23.21} \approx 5.0 \times 10^{-12} \times 1.202 \times 10^{10} \approx 0.0601 \text{ A} = 60.1 \text{ mA}
+    \]
+    \[
+    r_d = \frac{V_T}{I} = \frac{0.02585 \text{ V}}{0.0601 \text{ A}} \approx 0.43 \ \Omega
+    \]</p>
+
+    <p><strong>(b) For $V = 0.7 \text{ V}$:</strong><br>
+    \[
+    I = (5.0 \times 10^{-12}) \times \exp\left( \frac{0.7}{0.02585} \right) \approx 2.87 \text{ A}
+    \]
+    \[
+    r_d = \frac{0.02585 \text{ V}}{2.87 \text{ A}} \approx 0.009 \ \Omega = 9 \text{ m}\Omega
+    \]
+    <p><strong>Conclusion:</strong> The dynamic resistance drops sharply as forward bias voltage exceeds the threshold / knee voltage.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Differentiation giving dynamic conductance $dI/dV = I/V_T$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $r_d \approx 0.43\ \Omega$ at $0.6\text{ V}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculation of $r_d \approx 0.009\ \Omega$ at $0.7\text{ V}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q11 (Exercise 14.11) -->
+  <div class="q-card" id="c12p-ch14-q11">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q11')">
+      <div class="q-num">Q 14.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.11</span><br>
+        Explain the action of a Zener diode as a DC voltage regulator with the help of a neat labelled circuit diagram and its reverse I-V characteristic curve.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Principle of Zener Voltage Regulator:</strong><br>
+    A Zener diode is a heavily doped silicon p-n junction diode designed to operate continuously in the <strong>reverse breakdown region</strong> (Zener breakdown voltage $V_Z$) without getting damaged.<br>
+    In this region, the voltage across the Zener diode remains essentially constant at $V_Z$ over a wide range of reverse currents.</p>
+
+    <p><strong>Circuit Arrangement:</strong><br>
+    • An unregulated fluctuating DC input voltage $V_i$ ($V_i > V_Z$) is connected across the series combination of a current-limiting resistor $R_s$ and the Zener diode (connected in <strong>reverse bias</strong>).<br>
+    • The load resistance $R_L$ is connected in parallel across the Zener diode, so output voltage $V_o = V_Z$.</p>
+
+    <p><strong>Working Mechanism:</strong><br>
+    1. <strong>If Input Voltage $V_i$ Increases:</strong><br>
+    The current through the circuit increases. Because the Zener diode dynamic resistance is virtually zero in breakdown, the Zener current $I_Z$ increases sharply while the voltage across it remains fixed at $V_Z$. The excess voltage drop appears entirely across the series resistor $R_s$ ($Delta V_i = Delta I R_s$). Hence, load voltage $V_o = V_Z$ remains constant.<br>
+    2. <strong>If Load Resistance $R_L$ Changes:</strong><br>
+    If load current $I_L$ increases, the Zener diode automatically decreases its current $I_Z$ such that total current $I = I_Z + I_L$ across $R_s$ stays constant, preserving constant load voltage $V_Z$.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Zener operating principle in reverse breakdown region</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Circuit description with series resistor $R_s$ and parallel load $R_L$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Regulation mechanism for both line fluctuations and load changes</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q12 (Exercise 14.12) -->
+  <div class="q-card" id="c12p-ch14-q12">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q12')">
+      <div class="q-num">Q 14.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.12</span><br>
+        Why are elemental semiconductors limited to Silicon and Germanium, while Carbon is an insulator? Explain on the basis of atomic structure and bond energy.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Atomic Structure of Group 14 Elements:</strong><br>
+    Carbon ($Z = 6$), Silicon ($Z = 14$), and Germanium ($Z = 32$) all have four valence electrons in their outermost shell ($s^2 p^2$).</p>
+
+    <p><strong>Comparison:</strong></p>
+    <ol style="line-height:1.8;">
+      <li><strong>Carbon ($n = 2$):</strong><br>
+      The valence electrons are in the $n = 2$ shell, extremely close to the positively charged nucleus. The nuclear attraction is exceptionally strong. Consequently, the energy required to break a carbon-carbon covalent bond and liberate an electron into the conduction band is very high ($E_g \approx 5.4 \text{ eV}$). At room temperature, thermal energy ($k_B T \approx 0.026 \text{ eV}$) is completely incapable of exciting electrons into the conduction band. Hence, Carbon (diamond) is an <strong>insulator</strong>.</li>
+
+      <li><strong>Silicon ($n = 3$) and Germanium ($n = 4$):</strong><br>
+      In Silicon and Germanium, the valence electrons occupy larger shells ($n = 3$ and $n = 4$). The valence electrons are screened by inner core shells and are located much further from the nucleus, resulting in much smaller band gaps:
+      \[
+      E_g(\text{Si}) = 1.1 \text{ eV}, \quad E_g(\text{Ge}) = 0.72 \text{ eV}
+      \]
+      At room temperature, thermal agitation is sufficient to break a measurable fraction of covalent bonds, exciting electrons into the conduction band and creating holes in the valence band. Thus, they exhibit appreciable electrical conductivity and act as <strong>semiconductors</strong>.</li>
+    </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Atomic shell comparison ($n=2$ for C vs $n=3,4$ for Si, Ge)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Nuclear binding and band gap $E_g \approx 5.4\text{ eV}$ explaining C as insulator</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Smaller band gaps ($1.1\text{ eV}, 0.7\text{ eV}$) enabling semiconductor behavior</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q13 (Exercise 14.13) -->
+  <div class="q-card" id="c12p-ch14-q13">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q13')">
+      <div class="q-num">Q 14.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.13</span><br>
+        Distinguish between metals, insulators, and semiconductors on the basis of energy band theory. Illustrate with neat schematic energy band diagrams.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Band Theory Classification:</strong><br>
+    The electrical conductivity of solids is determined by the width of the forbidden energy band gap ($E_g$) separating the completely or partially filled <strong>valence band (VB)</strong> and the empty <strong>conduction band (CB)</strong>.</p>
+
+    <ol style="line-height:1.8;">
+      <li><strong>Metals (Conductors):</strong><br>
+      • Either the conduction band is partially filled, or the valence band and conduction band <strong>overlap</strong> ($E_g = 0$).<br>
+      • A large density of free electrons ($sim 10^{28} \text{ m}^{-3}$) is readily available to move under any applied electric field.<br>
+      • Electrical resistivity is extremely low ($\rho \sim 10^{-8} \ \Omega\text{ m}$).</li>
+
+      <li><strong>Insulators:</strong><br>
+      • The valence band is completely full, the conduction band is completely empty, and the two are separated by a <strong>very large forbidden energy gap</strong> ($E_g > 3 \text{ eV}$, e.g. diamond $5.4 \text{ eV}$).<br>
+      • Room temperature thermal energy cannot bridge this massive gap, so no free electrons exist in the conduction band.<br>
+      • Resistivity is extremely high ($\rho \sim 10^{11} - 10^{19} \ \Omega\text{ m}$).</li>
+
+      <li><strong>Semiconductors:</strong><br>
+      • The valence band is full and conduction band is empty at absolute zero ($0 \text{ K}$), where they behave as ideal insulators.<br>
+      • They possess a <strong>small forbidden energy gap</strong> ($E_g < 3 \text{ eV}$, e.g., $\text{Si} = 1.1 \text{ eV}, \text{Ge} = 0.7 \text{ eV}$).<br>
+      • At room temperature, thermal excitation promotes a modest number of electrons into the CB, leaving equal holes in the VB.<br>
+      • Resistivity is intermediate ($\rho \sim 10^{-5} - 10^6 \ \Omega\text{ m}$) and decreases exponentially with rising temperature ($d\rho/dT < 0$).</li>
+    </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Metals: overlapping bands / $E_g = 0$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Insulators: large band gap $E_g > 3\text{ eV}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Semiconductors: small band gap $E_g < 3\text{ eV}$ and negative temperature coefficient</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q14 (Exercise 14.14) -->
+  <div class="q-card" id="c12p-ch14-q14">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q14')">
+      <div class="q-num">Q 14.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.14</span><br>
+        Explain the formation of the depletion region and barrier potential across an unbiased p-n junction with the help of a neat diagram.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Formation of P-N Junction:</strong><br>
+    When a p-type semiconductor is joined to an n-type semiconductor at atomic level:</p>
+
+    <ol style="line-height:1.8;">
+      <li><strong>Diffusion Current:</strong><br>
+      Due to the steep concentration gradient, majority holes from the p-side diffuse into the n-side, and majority electrons from the n-side diffuse into the p-side across the metallurgical junction.</li>
+
+      <li><strong>Formation of Depletion Layer:</strong><br>
+      • When an electron diffuses into the p-side, it leaves behind an uncompensated, immobile positive donor ion ($\text{P}^+$ or $\text{As}^+$) on the n-side near the junction.<br>
+      • Similarly, when a hole diffuses into the n-side, it leaves behind an uncompensated, immobile negative acceptor ion ($\text{B}^-$ or $\text{In}^-$) on the p-side near the junction.<br>
+      • This layer of immobile space charges devoid of any free mobile charge carriers is called the <strong>depletion region</strong> (thickness $\sim 0.5 - 1 \ \mu\text{m}$).</li>
+
+      <li><strong>Barrier Potential ($V_0$):</strong><br>
+      • The positive donor ions on the n-side and negative acceptor ions on the p-side set up an internal electric field $\mathbf{E}_{int}$ directed from the n-side to the p-side.<br>
+      • This internal electric field opposes further diffusion of majority carriers across the junction.<br>
+      • It creates a potential difference across the junction known as the <strong>barrier potential</strong> ($V_0 \approx 0.7 \text{ V}$ for Silicon, $0.3 \text{ V}$ for Germanium).</li>
+
+      <li><strong>Equilibrium Condition:</strong><br>
+      The internal field sweeps minority carriers across the junction (drift current). Equilibrium is attained when:
+      \[
+      I_{\text{diffusion}} = I_{\text{drift}}
+      \]
+      resulting in zero net current through an unbiased p-n junction.</li>
+    </ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Mechanism of majority carrier diffusion</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Depletion layer description (immobile donor and acceptor ions)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Barrier potential setup and equilibrium condition ($I_{diff} = I_{drift}$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c12p-ch14-q15 (Exercise 14.15) -->
+  <div class="q-card" id="c12p-ch14-q15">
+    <div class="q-head" onclick="toggleQ('c12p-ch14-q15')">
+      <div class="q-num">Q 14.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#eff6ff; color:#2563eb; padding:2px 8px; border-radius:4px; margin-bottom:4px;">Exercise 14.15</span><br>
+        With the help of a circuit diagram, explain the working of a full-wave rectifier using two p-n junction diodes. Draw the input and output waveforms and explain the role of a capacitor filter.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <p><strong>Working of Full-Wave Centre-Tapped Rectifier:</strong><br>
+    The circuit comprises a step-down transformer whose secondary winding has a centre tap ($CT$) connected to the ground, two p-n junction diodes ($D_1$ and $D_2$), and a load resistance $R_L$.</p>
+
+    <ol style="line-height:1.8;">
+      <li><strong>During Positive Half-Cycle of AC Input:</strong><br>
+      • Upper terminal $A$ is positive with respect to centre tap $CT$, and lower terminal $B$ is negative.<br>
+      • Diode $D_1$ is <strong>forward biased</strong> and conducts, while diode $D_2$ is <strong>reverse biased</strong> and acts as an open circuit.<br>
+      • Current flows through $D_1$, through load $R_L$ from $X$ to $Y$, and returns to the centre tap.</li>
+
+      <li><strong>During Negative Half-Cycle of AC Input:</strong><br>
+      • Terminal $A$ becomes negative with respect to $CT$, and terminal $B$ becomes positive.<br>
+      • Diode $D_1$ is <strong>reverse biased</strong> (cut off), while diode $D_2$ is <strong>forward biased</strong> and conducts.<br>
+      • Current flows through $D_2$, through load $R_L$ in the <em>same direction</em> (from $X$ to $Y$), and returns to $CT$.</li>
+
+      <li><strong>Result:</strong><br>
+      Current flows through the load resistor $R_L$ in the same direction during both half-cycles of the AC input, achieving <strong>full-wave rectification</strong>. Output ripple frequency is $2f_{in}$ ($100 \text{ Hz}$ for $50 \text{ Hz}$ mains).</li>
+    </ol>
+
+    <p><strong>Role of Capacitor Filter:</strong><br>
+    • A large electrolytic capacitor $C$ is connected in parallel across the load resistor $R_L$.<br>
+    • As the rectified voltage rises, the capacitor charges rapidly to the peak voltage $V_m$.<br>
+    • When the diode output voltage begins to fall, the diode turns off, and the capacitor discharges slowly through $R_L$ (time constant $R_L C \gg T/2$).<br>
+    • This prevents the voltage from dropping to zero between pulses, smoothing the pulsating DC into a steady DC output with minimal ripple factor.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Circuit description with centre-tapped transformer and diodes $D_1, D_2$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Working during positive and negative half-cycles with identical load current direction</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Waveforms description (Input AC, Rectified pulsating DC, Filtered DC)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mechanism of capacitor filter (charging to peak, slow discharge $R_L C$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid #e2e8f0;">
+    <button class="ch-nav-btn prev" onclick="showChapter(13)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer; color:#334155;">← Ch 13</button>
+    <a href="../ncert-solutions-class-12.html" class="ch-nav-btn next" style="padding:10px 24px; border-radius:8px; border:none; background:#2563eb; color:white; font-weight:700; text-decoration:none;">Class 12 All Subjects Hub →</a>
+  </div>
+</section>

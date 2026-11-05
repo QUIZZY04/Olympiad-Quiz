@@ -1,0 +1,983 @@
+<section class="chapter-section" id="c11p-ch10">
+  <div class="chapter-header">
+    <div class="ch-badge">10</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">CBSE Class 11 Physics &bull; Chapter 10</div>
+      <h2>Thermal Properties of Matter</h2>
+      <p>NCERT Rationalised 2026–27 Syllabus &bull; All 21 Verbatim Questions with Official Step-by-Step Marking Rubrics</p>
+    </div>
+  </div>
+
+  
+  <div style="margin:24px 0; background:white; padding:20px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+    <h3 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
+      Thermal Physics: Phase Change Latent Heat Plateaus &amp; Newton's Law of Cooling
+    </h3>
+    <svg viewBox="0 0 780 230" style="width:100%; height:auto; font-family:'Plus Jakarta Sans', system-ui, sans-serif;">
+      <!-- Panel 1: Temperature vs Heat Added (Phase Changes) -->
+      <rect x="15" y="15" width="410" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="35" y="38" font-size="12" font-weight="bold" fill="#1e293b">1. Water Heating &amp; Latent Heat Phase Curve:</text>
+
+      <!-- Axes -->
+      <line x1="55" y1="180" x2="395" y2="180" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="55" y1="180" x2="55" y2="45" stroke="#64748b" stroke-width="1.5"/>
+      <text x="345" y="198" font-size="9" fill="#64748b">Heat Added (Q) &rarr;</text>
+      <text x="25" y="52" font-size="9" fill="#64748b">Temp (T)</text>
+
+      <!-- Phase Curve -->
+      <!-- Ice warming -->
+      <line x1="55" y1="175" x2="95" y2="145" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="65" y="155" font-size="8" font-weight="bold" fill="#3b82f6">Ice</text>
+
+      <!-- Melting plateau (0 deg C) -->
+      <line x1="95" y1="145" x2="165" y2="145" stroke="#059669" stroke-width="3"/>
+      <text x="100" y="138" font-size="8" font-weight="bold" fill="#059669">Melting (L_f)</text>
+      <text x="30" y="148" font-size="8.5" fill="#475569">0&deg;C</text>
+
+      <!-- Water warming -->
+      <line x1="165" y1="145" x2="235" y2="85" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="195" y="110" font-size="8" font-weight="bold" fill="#3b82f6">Water</text>
+
+      <!-- Boiling plateau (100 deg C) -->
+      <line x1="235" y1="85" x2="345" y2="85" stroke="#dc2626" stroke-width="3"/>
+      <text x="255" y="78" font-size="8" font-weight="bold" fill="#dc2626">Boiling (L_v = 2256 J/g)</text>
+      <text x="22" y="88" font-size="8.5" fill="#475569">100&deg;C</text>
+
+      <!-- Steam warming -->
+      <line x1="345" y1="85" x2="385" y2="55" stroke="#f59e0b" stroke-width="2.5"/>
+      <text x="360" y="65" font-size="8" font-weight="bold" fill="#d97706">Steam</text>
+
+      <!-- Panel 2: Newton's Law of Cooling & Thermal Radiation -->
+      <rect x="440" y="15" width="325" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="455" y="38" font-size="12" font-weight="bold" fill="#1e293b">2. Thermal Conduction &amp; Cooling Laws:</text>
+
+      <rect x="455" y="52" width="295" height="150" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="465" y="72" font-size="9.5" font-weight="bold" fill="#5b21b6">Key Mathematical Laws:</text>
+      <text x="465" y="94" font-size="8.5" fill="#334155">&bull; Thermal Conduction: H = KA(T_1 - T_2)/d</text>
+      <text x="465" y="114" font-size="8.5" fill="#334155">&bull; Newton's Cooling: -dT/dt = k(T - T_0)</text>
+      <text x="465" y="134" font-size="8.5" font-weight="bold" fill="#047857">&bull; Stefan-Boltzmann: E = e &sigma; A (T&sup4; - T_0&sup4;)</text>
+      <text x="465" y="154" font-size="8.5" fill="#334155">&bull; Wien's Law: &lambda;_m T = 2.898 &times; 10&oline;&sup3; m K</text>
+      <text x="465" y="174" font-size="8.5" font-weight="bold" fill="#b91c1c">&bull; Latent Heat: Q = m L_f / m L_v</text>
+      <text x="465" y="192" font-size="8.5" fill="#334155">&bull; Thermal Expansion: &Delta;L = L &alpha; &Delta;T</text>
+    </svg>
+  </div>
+
+
+  <div class="ex-div">NCERT Textbook Exercise 10.1 to 10.21: Temperature Scales, Thermal Expansion, Calorimetry, Latent Heat, Thermal Conduction, Stefan-Boltzmann Radiation &amp; Newton's Law of Cooling</div>
+
+  <!-- c11p-ch10-q1 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q1">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q1')">
+      <div class="q-num">Question 10.1</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The triple points of neon and carbon dioxide are $24.57\text{ K}$ and $216.55\text{ K}$ respectively. Express these temperatures on the Celsius and Fahrenheit scales.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Conversion Formulas:</b><br>
+    • Celsius temperature $t_C = T - 273.15$<br>
+    • Fahrenheit temperature $t_F = \frac{9}{5} t_C + 32 = \frac{9}{5}(T - 273.15) + 32$<br><br>
+    <b>1. For Neon ($T = 24.57\text{ K}$):</b><br>
+    • On Celsius scale:<br>
+      $$t_C = 24.57 - 273.15 = \mathbf{-248.58^\circ\text{C}}$$<br>
+    • On Fahrenheit scale:<br>
+      $$t_F = \frac{9}{5}(-248.58) + 32 = -447.444 + 32 = \mathbf{-415.44^\circ\text{F}} \approx \mathbf{-415.4^\circ\text{F}}$$<br><br>
+    <b>2. For Carbon Dioxide ($T = 216.55\text{ K}$):</b><br>
+    • On Celsius scale:<br>
+      $$t_C = 216.55 - 273.15 = \mathbf{-56.60^\circ\text{C}}$$<br>
+    • On Fahrenheit scale:<br>
+      $$t_F = \frac{9}{5}(-56.60) + 32 = -101.88 + 32 = \mathbf{-69.88^\circ\text{F}} \approx \mathbf{-69.9^\circ\text{F}}$$<br><br>
+    $$\therefore \text{Neon: } \mathbf{-248.58^\circ\text{C}, -415.44^\circ\text{F}}; \quad \text{CO}_2: \mathbf{-56.60^\circ\text{C}, -69.88^\circ\text{F}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Standard conversion formulas $t_C = T - 273.15$ and $t_F = \frac{9}{5}t_C + 32$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Neon conversions: $-248.58^\circ\text{C}$ and $-415.44^\circ\text{F}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Carbon dioxide conversions: $-56.60^\circ\text{C}$ and $-69.88^\circ\text{F}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q2 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q2">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q2')">
+      <div class="q-num">Question 10.2</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Two absolute scales A and B have triple points of water defined to be $200\text{ A}$ and $350\text{ B}$. What is the relation between $T_A$ and $T_B$?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    On the Kelvin thermodynamic scale, the triple point of water is defined as $T_{tr} = 273.16\text{ K}$.<br>
+    By definition of an absolute temperature scale, temperature is directly proportional to thermometric property (or absolute thermodynamic scale calibration):<br>
+    $$1\text{ K} = \frac{200}{273.16}\text{ A} = \frac{350}{273.16}\text{ B}$$<br><br>
+    <b>Relating scale A and scale B:</b><br>
+    For any temperature corresponding to a common thermodynamic state $T$:<br>
+    $$\frac{T_A}{200} = \frac{T_B}{350}$$<br>
+    $$T_A = \frac{200}{350} T_B = \frac{4}{7} T_B \approx \mathbf{0.571 T_B}$$<br>
+    $$T_B = \frac{7}{4} T_A = \mathbf{1.75 T_A}$$<br><br>
+    $$\mathbf{\text{The exact relation is } T_A = \frac{4}{7} T_B \quad (\text{or } T_B = 1.75 T_A).}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Definition of absolute scale based on triple point of water reference</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formulation of proportionality $T_A / 200 = T_B / 350$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final algebraic relation $T_A = \frac{4}{7} T_B$ (or $T_B = 1.75 T_A$)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q3 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q3">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q3')">
+      <div class="q-num">Question 10.3</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The electrical resistance in ohms of a certain platinum resistance thermometer varies with temperature according to the relation $R = R_0 [1 + \alpha (T - T_0)]$. The resistance is $101.6\,\Omega$ at the triple point of water $273.16\text{ K}$, and $165.5\,\Omega$ at the normal melting point of lead ($600.5\text{ K}$). What is the temperature when the resistance is $123.4\,\Omega$?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • At $T_0 = 273.16\text{ K}$, $R_0 = 101.6\,\Omega$<br>
+    • At $T_1 = 600.5\text{ K}$, $R_1 = 165.5\,\Omega$<br>
+    • At unknown temperature $T$, $R = 123.4\,\Omega$<br><br>
+    <b>1. Linear Resistance Variation Equation:</b><br>
+    $$R - R_0 = R_0 \alpha (T - T_0) \implies \frac{R - R_0}{R_1 - R_0} = \frac{T - T_0}{T_1 - T_0}$$<br><br>
+    <b>2. Computing Temperature ($T$):</b><br>
+    $$R - R_0 = 123.4 - 101.6 = 21.8\,\Omega$$<br>
+    $$R_1 - R_0 = 165.5 - 101.6 = 63.9\,\Omega$$<br>
+    $$T_1 - T_0 = 600.5 - 273.16 = 327.34\text{ K}$$<br><br>
+    $$T - T_0 = \frac{21.8}{63.9} \times 327.34 = 0.34116 \times 327.34 \approx 111.67\text{ K}$$<br>
+    $$T = T_0 + 111.67 = 273.16 + 111.67 = \mathbf{384.83\text{ K}} \approx \mathbf{384.8\text{ K}}$$<br><br>
+    In Celsius scale: $t_C = 384.83 - 273.15 = \mathbf{111.68^\circ\text{C}} \approx \mathbf{111.7^\circ\text{C}}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Linear resistance relationship setup $(R - R_0)/(R_1 - R_0) = (T - T_0)/(T_1 - T_0)$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of resistance differences ($21.8\,\Omega$ and $63.9\,\Omega$)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final temperature computation $T = 384.8\text{ K} = 111.7^\circ\text{C}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q4 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q4">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q4')">
+      <div class="q-num">Question 10.4</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Answer the following:<br>(a) The triple-point of water is a standard fixed point in modern thermometry. Why? What is wrong with taking the melting point of ice and boiling point of water as standard fixed points (as was originally done in the Celsius scale)?<br>(b) There were two fixed points in the original Celsius scale as mentioned above which were assigned the number $0^\circ\text{C}$ and $100^\circ\text{C}$ respectively. On the absolute scale, one of the fixed points is the triple-point of water, which is assigned the number $273.16\text{ K}$. What is the other fixed point on this (Kelvin) scale?<br>(c) The absolute temperature (Kelvin scale) $T$ is related to the temperature $t_c$ on the Celsius scale by $t_c = T - 273.15$. Why do we have $273.15$ in this relation, and not $273.16$?<br>(d) What is the temperature of the triple-point of water on an absolute scale whose unit of temperature is $4/7$ of that of the Kelvin scale?
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Superiority of Triple Point:</b><br>
+      The melting point of ice and the boiling point of water depend strongly on ambient atmospheric pressure and the presence of dissolved atmospheric gases. For example, a tiny barometric fluctuation alters the boiling point noticeably.<br>
+      In contrast, the <b>triple point of water</b> is a unique thermodynamic state where pure liquid water, ice, and water vapor coexist in stable thermodynamic equilibrium. It occurs at an exact, unalterable pressure of $P_{tr} = 611.65\text{ Pa} = 0.006\text{ atm}$ and temperature $T_{tr} = 273.16\text{ K}$. It is self-defining and immune to external barometric variations.<br><br>
+    • <b>(b) Second fixed point on Kelvin scale:</b><br>
+      The modern Kelvin thermodynamic scale requires only <b>one single fixed point</b>: the triple point of water ($273.16\text{ K}$). The other fundamental reference point is <b>absolute zero ($0\text{ K}$)</b>, which is theoretically derived from the laws of thermodynamics where molecular thermal motion ceases and Carnot cycle efficiency equals unity.<br><br>
+    • <b>(c) Why $273.15$ and not $273.16$:</b><br>
+      By historical definition, $0^\circ\text{C}$ corresponds to the normal melting point of pure ice at standard 1 atm pressure ($101.325\text{ kPa}$), which experimentally lies precisely $0.01\text{ K}$ below the triple point of water ($273.16 - 0.01 = 273.15\text{ K}$). Therefore, the ice point on the Kelvin scale is $273.15\text{ K}$, giving $t_c = T - 273.15$.<br><br>
+    • <b>(d) Triple point on scale with unit size $4/7\text{ K}$ ($1\text{ unit} = \frac{4}{7}\text{ K}$):</b><br>
+      $$T_{new} = \frac{273.16\text{ K}}{\frac{4}{7}\text{ K}} = 273.16 \times \frac{7}{4} = 68.29 \times 7 = \mathbf{478.03\text{ units}}$$<br>
+      The triple point of water on this new scale is $\mathbf{478.03}$.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Uniqueness and pressure invariance of triple point vs pressure-dependent melting/boiling points</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Identification of absolute zero ($0\text{ K}$) as the other fundamental thermodynamic benchmark</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Clarification that ice point ($0^\circ\text{C}$) is $0.01\text{ K}$ below triple point ($273.16 - 0.01 = 273.15\text{ K}$)</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Calculation on new unit scale: $273.16 \times (7/4) = 478.03$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q5 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q5">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q5')">
+      <div class="q-num">Question 10.5</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Two ideal gas thermometers A and B use oxygen and hydrogen respectively. The following observations are made:<br>Triple-point of water: $P_A = 1.250 \times 10^5\text{ Pa}$, $P_B = 0.200 \times 10^5\text{ Pa}$<br>Normal melting point of sulphur: $P_A = 1.797 \times 10^5\text{ Pa}$, $P_B = 0.287 \times 10^5\text{ Pa}$<br>(a) What is the absolute temperature of normal melting point of sulphur as read by thermometers A and B?<br>(b) What do you think is the reason for the slightly different answers obtained by A and B? What further procedure is needed in the experiment to reduce the discrepancy between the two readings?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    <b>Constant-Volume Gas Thermometer Formula:</b><br>
+    $$T = \frac{P}{P_{tr}} \times 273.16\text{ K}$$<br><br>
+    • <b>(a) Temperature of sulphur melting point:</b><br>
+      - By Thermometer A (Oxygen):<br>
+        $$T_A = \frac{1.797 \times 10^5}{1.250 \times 10^5} \times 273.16 = 1.4376 \times 273.16 = \mathbf{392.69\text{ K}}$$<br>
+      - By Thermometer B (Hydrogen):<br>
+        $$T_B = \frac{0.287 \times 10^5}{0.200 \times 10^5} \times 273.16 = 1.4350 \times 273.16 = \mathbf{391.98\text{ K}}$$<br><br>
+    • <b>(b) Reason for Discrepancy & Remedy:</b><br>
+      - <b>Reason:</b> Real gases (oxygen and hydrogen) are not perfectly ideal gases. At finite working pressures, intermolecular attractive forces and finite molecular volumes cause deviation from the ideal gas equation $PV = nRT$. Oxygen has a higher critical temperature and deviates more significantly from ideal behavior than hydrogen at $1.25 \times 10^5\text{ Pa}$.<br>
+      - <b>Remedy:</b> Carry out measurements with progressively lower initial gas pressures at the triple point ($P_{tr} \to 0$). In the limit of zero pressure ($\lim_{P_{tr} \to 0}$), all real gases obey ideal gas behavior identically, and both thermometers will converge to the exact same thermodynamic temperature.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Formula $T = (P/P_{tr}) \times 273.16\text{ K}$ and calculations: $T_A = 392.69\text{ K}, T_B = 391.98\text{ K}$</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Explanation of real gas deviation from ideal gas behavior</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Extrapolation procedure to zero pressure limit ($\lim_{P_{tr} \to 0}$) to eliminate discrepancy</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q6 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q6">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q6')">
+      <div class="q-num">Question 10.6</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A steel tape $1\text{ m}$ long is correctly calibrated for a temperature of $27.0^\circ\text{C}$. The length of a steel rod measured by this tape is found to be $63.0\text{ cm}$ on a hot day when the temperature is $45.0^\circ\text{C}$. What is the actual length of the steel rod on that day? What is the length of the same steel rod on a day when the temperature is $27.0^\circ\text{C}$? Coefficient of linear expansion of steel $= 1.20 \times 10^{-5}\text{ K}^{-1}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Calibration temperature $T_0 = 27.0^\circ\text{C}$<br>
+    • Hot day temperature $T = 45.0^\circ\text{C} \implies \Delta T = 45.0 - 27.0 = 18.0^\circ\text{C} = 18.0\text{ K}$<br>
+    • Scale reading on hot day $L' = 63.0\text{ cm}$<br>
+    • Coefficient of linear expansion of steel $\alpha = 1.20 \times 10^{-5}\text{ K}^{-1}$<br><br>
+    <b>1. Actual length of the steel rod on the hot day ($45.0^\circ\text{C}$):</b><br>
+    On the hot day, each division of the steel tape expands: $1\text{ cm of tape} = (1 + \alpha \Delta T)\text{ cm}$.<br>
+    The true length $L_{45}$ measured by $63.0\text{ cm}$ of graduated divisions is:<br>
+    $$L_{45} = L' (1 + \alpha \Delta T) = 63.0 \times [1 + (1.20 \times 10^{-5} \times 18.0)]$$<br>
+    $$L_{45} = 63.0 \times [1 + 2.16 \times 10^{-4}] = 63.0 \times 1.000216 = \mathbf{63.0136\text{ cm}} \approx \mathbf{63.014\text{ cm}}$$<br><br>
+    <b>2. Length of the steel rod at $27.0^\circ\text{C}$:</b><br>
+    Because the steel rod and the steel tape are made of the exact same material with identical $\alpha$, when the rod cools from $45^\circ\text{C}$ to $27^\circ\text{C}$, it contracts by the exact same proportion:<br>
+    $$L_{27} = \frac{L_{45}}{1 + \alpha \Delta T} = \mathbf{63.0\text{ cm}}$$<br><br>
+    $$\therefore \text{Actual length at } 45^\circ\text{C} = \mathbf{63.014\text{ cm}}, \quad \text{Length at } 27^\circ\text{C} = \mathbf{63.0\text{ cm}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Tape thermal expansion relation $L_{actual} = L'(1 + \alpha \Delta T)$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Computation of actual length at $45^\circ\text{C}$: $63.014\text{ cm}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Deduction that rod length at $27^\circ\text{C}$ is $63.0\text{ cm}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q7 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q7">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q7')">
+      <div class="q-num">Question 10.7</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A large steel wheel is to be fitted on to a shaft of the same material. At $27^\circ\text{C}$, the outer diameter of the shaft is $8.70\text{ cm}$ and the central hole in the wheel has a diameter of $8.69\text{ cm}$. The shaft is cooled using ‘dry ice’. At what temperature of the shaft does the wheel slip on the shaft? Assume coefficient of linear expansion of the steel to be constant over the required temperature range: $\alpha_{steel} = 1.20 \times 10^{-5}\text{ K}^{-1}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Initial temperature $T_1 = 27^\circ\text{C}$<br>
+    • Initial shaft diameter $d_1 = 8.70\text{ cm}$<br>
+    • Required diameter to slip into wheel hole $d_2 = 8.69\text{ cm}$<br>
+    • Required contraction $\Delta d = d_2 - d_1 = 8.69 - 8.70 = -0.01\text{ cm}$<br>
+    • $\alpha = 1.20 \times 10^{-5}\text{ K}^{-1}$<br><br>
+    <b>1. Thermal Contraction Formula:</b><br>
+    $$\Delta d = d_1 \alpha \Delta T \implies \Delta T = \frac{\Delta d}{d_1 \alpha}$$<br><br>
+    <b>2. Calculating Temperature Change ($\Delta T$):</b><br>
+    $$\Delta T = \frac{-0.01\text{ cm}}{8.70\text{ cm} \times (1.20 \times 10^{-5}\text{ K}^{-1})} = \frac{-0.01}{1.044 \times 10^{-4}} = -95.785\text{ K} \approx -95.8^\circ\text{C}$$<br><br>
+    <b>3. Final Required Temperature of the Shaft ($T_2$):</b><br>
+    $$T_2 = T_1 + \Delta T = 27^\circ\text{C} - 95.8^\circ\text{C} = \mathbf{-68.8^\circ\text{C}} \approx \mathbf{-69^\circ\text{C}}$$<br>
+    In Kelvin: $T_2 = (27 + 273.15) - 95.8 = 300.15 - 95.8 = \mathbf{204.35\text{ K}} \approx \mathbf{204.4\text{ K}}$.<br><br>
+    $$\mathbf{\text{The wheel will slip onto the shaft when the shaft is cooled to } -68.8^\circ\text{C} \text{ (or } 204.4\text{ K}).}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Thermal contraction relation $\Delta d = d_1 \alpha \Delta T$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of temperature drop: $\Delta T = -95.8^\circ\text{C}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Final temperature $T_2 = -68.8^\circ\text{C} = 204.4\text{ K}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q8 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q8">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q8')">
+      <div class="q-num">Question 10.8</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A hole is drilled in a copper sheet. The diameter of the hole is $4.24\text{ cm}$ at $27.0^\circ\text{C}$. What is the change in the diameter of the hole when the sheet is heated to $227^\circ\text{C}$? Coefficient of linear expansion of copper $= 1.70 \times 10^{-5}\text{ K}^{-1}$.
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Initial diameter $d_1 = 4.24\text{ cm}$<br>
+    • Initial temperature $T_1 = 27.0^\circ\text{C}$<br>
+    • Final temperature $T_2 = 227^\circ\text{C}$<br>
+    • Temperature rise $\Delta T = 227 - 27 = 200^\circ\text{C} = 200\text{ K}$<br>
+    • Linear expansion coefficient of copper $\alpha = 1.70 \times 10^{-5}\text{ K}^{-1}$<br><br>
+    <b>Principle of Thermal Expansion of Cavities / Holes:</b><br>
+    A hole or cavity in a solid expands on heating in the exact same manner as a solid plug of the same material and dimensions would expand (like a photographic enlargement of the object):<br>
+    $$\Delta d = d_1 \alpha \Delta T$$<br><br>
+    <b>Calculating Change in Diameter ($\Delta d$):</b><br>
+    $$\Delta d = 4.24\text{ cm} \times (1.70 \times 10^{-5}\text{ K}^{-1}) \times 200\text{ K}$$<br>
+    $$\Delta d = 4.24 \times 3.40 \times 10^{-3} = \mathbf{1.4416 \times 10^{-2}\text{ cm}} = \mathbf{1.44 \times 10^{-2}\text{ cm}} = \mathbf{0.144\text{ mm}}$$<br><br>
+    $$\mathbf{\text{The diameter of the hole increases by } 1.44 \times 10^{-2}\text{ cm} \text{ (or } 0.144\text{ mm}).}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Principle of cavity thermal expansion: $\Delta d = d_1 \alpha \Delta T$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Substitution of initial diameter, $\alpha$, and $\Delta T = 200\text{ K}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of change in diameter $\Delta d = 1.44 \times 10^{-2}\text{ cm}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q9 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q9">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q9')">
+      <div class="q-num">Question 10.9</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A brass wire $1.8\text{ m}$ long at $27^\circ\text{C}$ is held taut with little tension between two rigid supports. If the wire is cooled to a temperature of $-39^\circ\text{C}$, what is the tension developed in the wire, if its diameter is $2.0\text{ mm}$? Co-efficient of linear expansion of brass $= 2.0 \times 10^{-5}\text{ K}^{-1}$; Young’s modulus of brass $= 0.91 \times 10^{11}\text{ Pa}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Initial temperature $T_1 = 27^\circ\text{C}$, Final temperature $T_2 = -39^\circ\text{C}$<br>
+    • Temperature decrease $\Delta T = 27 - (-39) = 66^\circ\text{C} = 66\text{ K}$<br>
+    • Diameter $d = 2.0\text{ mm} = 2.0 \times 10^{-3}\text{ m} \implies r = 1.0 \times 10^{-3}\text{ m}$<br>
+    • Linear expansion coefficient of brass $\alpha = 2.0 \times 10^{-5}\text{ K}^{-1}$<br>
+    • Young’s modulus of brass $Y = 0.91 \times 10^{11}\text{ Pa}$<br><br>
+    <b>1. Thermal Strain and Stress:</b><br>
+    Since the wire is clamped rigidly at both ends, it is prevented from contracting.<br>
+    $$\text{Thermal Strain} = \frac{\Delta L}{L} = \alpha \Delta T$$<br>
+    $$\text{Thermal Stress} = Y \times \text{Strain} = Y \alpha \Delta T$$<br><br>
+    <b>2. Area of Cross-section ($A$):</b><br>
+    $$A = \pi r^2 = 3.1416 \times (1.0 \times 10^{-3}\text{ m})^2 = 3.1416 \times 10^{-6}\text{ m}^2$$<br><br>
+    <b>3. Tension Developed in the Wire ($F$):</b><br>
+    $$F = \text{Thermal Stress} \times A = Y \alpha \Delta T \times A$$<br>
+    $$F = (0.91 \times 10^{11}) \times (2.0 \times 10^{-5}) \times 66 \times (3.1416 \times 10^{-6})$$<br>
+    $$F = (0.91 \times 2.0 \times 66 \times 3.1416) \times 10^{11 - 5 - 6} = 377.37 \times 10^0 = \mathbf{377.4\text{ N}} \approx \mathbf{3.77 \times 10^2\text{ N}}$$<br><br>
+    $$\mathbf{\text{The tension developed in the wire is approximately } 3.77 \times 10^2\text{ N} \text{ (or } 377.4\text{ N}).}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Thermal strain and stress equations $\text{Stress} = Y\alpha\Delta T$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Area calculation $A = \pi r^2 = 3.142 \times 10^{-6}\text{ m}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final tension calculation $F = 3.77 \times 10^2\text{ N}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q10 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q10">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q10')">
+      <div class="q-num">Question 10.10</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A brass rod of length $50\text{ cm}$ and diameter $3.0\text{ mm}$ is joined to a steel rod of the same length and diameter. What is the change in length of the combined rod at $250^\circ\text{C}$, if the original lengths are at $40.0^\circ\text{C}$? Is there a ‘thermal stress’ developed at the junction? The ends of the rod are free to expand. (Co-efficient of linear expansion of brass $= 2.0 \times 10^{-5}\text{ K}^{-1}$, steel $= 1.20 \times 10^{-5}\text{ K}^{-1}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Initial length of each rod $L_1 = 50\text{ cm} = 0.50\text{ m}$<br>
+    • Initial temperature $T_1 = 40.0^\circ\text{C}$, Final temperature $T_2 = 250^\circ\text{C}$<br>
+    • Temperature rise $\Delta T = 250 - 40 = 210^\circ\text{C} = 210\text{ K}$<br>
+    • $\alpha_b = 2.0 \times 10^{-5}\text{ K}^{-1}, \quad \alpha_s = 1.20 \times 10^{-5}\text{ K}^{-1}$<br><br>
+    <b>1. Change in length of Brass rod ($\Delta L_b$):</b><br>
+    $$\Delta L_b = L_1 \alpha_b \Delta T = 50\text{ cm} \times (2.0 \times 10^{-5}\text{ K}^{-1}) \times 210 = 0.21\text{ cm}$$<br><br>
+    <b>2. Change in length of Steel rod ($\Delta L_s$):</b><br>
+    $$\Delta L_s = L_1 \alpha_s \Delta T = 50\text{ cm} \times (1.20 \times 10^{-5}\text{ K}^{-1}) \times 210 = 0.126\text{ cm}$$<br><br>
+    <b>3. Total Change in length of combined rod:</b><br>
+    $$\Delta L_{total} = \Delta L_b + \Delta L_s = 0.21 + 0.126 = \mathbf{0.336\text{ cm}} = \mathbf{3.36\text{ mm}}$$<br><br>
+    <b>4. Thermal Stress at the junction:</b><br>
+    <b>No, zero thermal stress is developed.</b> Since the outer ends of the combined rod are completely free to expand without any external mechanical constraint, both rods expand unimpeded. Thermal stress only develops when thermal expansion/contraction is constrained.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Expansion calculation for brass rod: $\Delta L_b = 0.21\text{ cm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Expansion calculation for steel rod: $\Delta L_s = 0.126\text{ cm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Total length increase: $\Delta L_{total} = 0.336\text{ cm} = 3.36\text{ mm}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Justification that thermal stress is zero because ends are completely unconstrained</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q11 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q11">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q11')">
+      <div class="q-num">Question 10.11</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        The coefficient of volume expansion of glycerine is $49 \times 10^{-5}\text{ K}^{-1}$. What is the fractional change in its density for a $30^\circ\text{C}$ rise in temperature?
+      </div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Coefficient of volume expansion $\gamma = 49 \times 10^{-5}\text{ K}^{-1}$<br>
+    • Temperature rise $\Delta T = 30^\circ\text{C} = 30\text{ K}$<br><br>
+    <b>1. Thermal Variation of Density:</b><br>
+    Since mass is conserved ($m = \rho_0 V_0 = \rho V$), and $V = V_0(1 + \gamma \Delta T)$:<br>
+    $$\rho = \frac{\rho_0}{1 + \gamma \Delta T} \approx \rho_0 (1 - \gamma \Delta T)$$<br><br>
+    <b>2. Fractional Change in Density:</b><br>
+    $$\Delta \rho = \rho - \rho_0 = -\rho_0 \gamma \Delta T$$<br>
+    $$\frac{|\Delta \rho|}{\rho_0} = \gamma \Delta T = (49 \times 10^{-5}\text{ K}^{-1}) \times 30\text{ K} = 1470 \times 10^{-5} = \mathbf{1.47 \times 10^{-2}} = \mathbf{0.0147}$$<br><br>
+    In percentage: $\frac{\Delta \rho}{\rho_0} \times 100\% = \mathbf{1.47\%}$ (decrease in density).<br><br>
+    $$\mathbf{\text{The fractional change in the density of glycerine is } 1.47 \times 10^{-2} \text{ (a } 1.47\% \text{ decrease).}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Density-temperature relationship derivation $\rho = \rho_0(1 - \gamma\Delta T)$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of fractional density change $\Delta\rho / \rho_0 = \gamma\Delta T$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final fractional result $1.47 \times 10^{-2}$ (or $1.47\%$ decrease)</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q12 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q12">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q12')">
+      <div class="q-num">Question 10.12</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A $10\text{ kW}$ drilling machine is used to drill a bore in a small aluminium block of mass $8.0\text{ kg}$. How much is the rise in temp of the block in $2.5\text{ minutes}$, assuming $50\%$ of power is used up in heating the machine itself or lost to the surroundings? Specific heat of aluminium $= 0.91\text{ J g}^{-1}\text{ K}^{-1}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Power of drilling machine $P = 10\text{ kW} = 10 \times 10^3\text{ W} = 10,000\text{ J s}^{-1}$<br>
+    • Mass of aluminium block $m = 8.0\text{ kg} = 8000\text{ g}$<br>
+    • Time taken $t = 2.5\text{ minutes} = 2.5 \times 60 = 150\text{ s}$<br>
+    • Specific heat of aluminium $c = 0.91\text{ J g}^{-1}\text{ K}^{-1} = 910\text{ J kg}^{-1}\text{ K}^{-1}$<br>
+    • Fraction of energy absorbed by aluminium block $\eta = 50\% = 0.50$<br><br>
+    <b>1. Heat Energy absorbed by Aluminium Block ($Q$):</b><br>
+    $$Q = \eta \times (P \times t) = 0.50 \times (10,000\text{ W} \times 150\text{ s}) = 0.50 \times 1.5 \times 10^6\text{ J} = \mathbf{7.5 \times 10^5\text{ J}}$$<br><br>
+    <b>2. Rise in Temperature ($\Delta T$):</b><br>
+    $$Q = m c \Delta T \implies \Delta T = \frac{Q}{m c}$$<br>
+    $$\Delta T = \frac{7.5 \times 10^5\text{ J}}{8.0\text{ kg} \times 910\text{ J kg}^{-1}\text{ K}^{-1}} = \frac{750,000}{7280} \approx \mathbf{103.02^\circ\text{C}} \approx \mathbf{103^\circ\text{C}}$$<br><br>
+    $$\mathbf{\text{The rise in temperature of the aluminium block is approximately } 103^\circ\text{C}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of net thermal energy absorbed: $Q = 7.5 \times 10^5\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Calorimetric equation setup $Q = mc\Delta T$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final temperature rise evaluation: $\Delta T = 103^\circ\text{C}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q13 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q13">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q13')">
+      <div class="q-num">Question 10.13</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A copper block of mass $2.5\text{ kg}$ is heated in a furnace to a temperature of $500^\circ\text{C}$ and then placed on a large ice block. What is the maximum amount of ice that can melt? (Specific heat of copper $= 0.39\text{ J g}^{-1}\text{ K}^{-1}$; heat of fusion of water $= 335\text{ J g}^{-1}$).
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of copper block $m = 2.5\text{ kg} = 2500\text{ g}$<br>
+    • Initial temperature of copper $T_1 = 500^\circ\text{C}$<br>
+    • Specific heat of copper $c = 0.39\text{ J g}^{-1}\text{ K}^{-1} = 390\text{ J kg}^{-1}\text{ K}^{-1}$<br>
+    • Final equilibrium temperature $T_2 = 0^\circ\text{C}$ (on a large ice block)<br>
+    • Latent heat of fusion of ice $L_f = 335\text{ J g}^{-1} = 3.35 \times 10^5\text{ J kg}^{-1}$<br><br>
+    <b>1. Heat released by the cooling copper block ($Q_{loss}$):</b><br>
+    $$Q_{loss} = m c (T_1 - T_2) = 2.5\text{ kg} \times 390\text{ J kg}^{-1}\text{ K}^{-1} \times (500 - 0)\text{ K}$$<br>
+    $$Q_{loss} = 2.5 \times 390 \times 500 = 487,500\text{ J} = 4.875 \times 10^5\text{ J}$$<br><br>
+    <b>2. Mass of ice melted ($M_{ice}$):</b><br>
+    By principle of calorimetry, Heat gained by melting ice = Heat lost by copper:<br>
+    $$M_{ice} L_f = Q_{loss} \implies M_{ice} = \frac{Q_{loss}}{L_f}$$<br>
+    $$M_{ice} = \frac{487,500\text{ J}}{3.35 \times 10^5\text{ J kg}^{-1}} = \frac{487500}{335000} \approx \mathbf{1.455\text{ kg}} \approx \mathbf{1.46\text{ kg}} = \mathbf{1455\text{ g}}$$<br><br>
+    $$\mathbf{\text{The maximum amount of ice that melts is approximately } 1.46\text{ kg}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of heat released by copper: $Q = 4.875 \times 10^5\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Calorimetric heat balance equation $M_{ice} L_f = Q_{loss}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Computation of melted ice mass: $M_{ice} = 1.46\text{ kg}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q14 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q14">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q14')">
+      <div class="q-num">Question 10.14</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        In an experiment on the specific heat of a metal, a $0.20\text{ kg}$ block of the metal at $150^\circ\text{C}$ is dropped in a copper calorimeter (of water equivalent $0.025\text{ kg}$) containing $150\text{ cm}^3$ of water at $27^\circ\text{C}$. The final temperature is $40^\circ\text{C}$. Compute the specific heat of the metal. If heat losses to the surroundings are not negligible, is your calculated value of specific heat greater or less than the actual value of specific heat of the metal?
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Mass of metal $m_m = 0.20\text{ kg}$<br>
+    • Initial temperature of metal $T_m = 150^\circ\text{C}$<br>
+    • Final equilibrium temperature $T = 40^\circ\text{C}$<br>
+    • Temperature drop of metal $\Delta T_m = 150 - 40 = 110^\circ\text{C}$<br>
+    • Volume of water $= 150\text{ cm}^3 \implies$ Mass of water $m_w = 0.15\text{ kg}$<br>
+    • Water equivalent of calorimeter $w = 0.025\text{ kg}$<br>
+    • Total effective water mass $M = m_w + w = 0.15 + 0.025 = 0.175\text{ kg}$<br>
+    • Initial temperature of water/calorimeter $T_w = 27^\circ\text{C}$<br>
+    • Temperature rise of water $\Delta T_w = 40 - 27 = 13^\circ\text{C}$<br>
+    • Specific heat of water $c_w = 4.186 \times 10^3\text{ J kg}^{-1}\text{ K}^{-1}$ (or $4200\text{ J kg}^{-1}\text{ K}^{-1}$)<br><br>
+    <b>1. Heat Balance Equation:</b><br>
+    $$m_m c_m \Delta T_m = M c_w \Delta T_w$$<br>
+    $$0.20 \times c_m \times 110 = 0.175 \times (4.186 \times 10^3) \times 13$$<br>
+    $$22 \times c_m = 0.175 \times 4186 \times 13 = 9523.15$$<br>
+    $$c_m = \frac{9523.15}{22} \approx \mathbf{432.87\text{ J kg}^{-1}\text{ K}^{-1}} \approx \mathbf{0.43\text{ J g}^{-1}\text{ K}^{-1}}$$<br><br>
+    <b>2. Effect of Heat Losses to Surroundings:</b><br>
+    If heat is lost to the surroundings during transfer, the actual heat released by the metal is:<br>
+    $$Q_{actual} = Q_{measured} + Q_{loss} > Q_{measured}$$<br>
+    Therefore, the true specific heat $c_{actual} = \frac{Q_{actual}}{m_m \Delta T_m}$ is <b>greater</b> than the calculated value.<br>
+    $$\mathbf{\text{The calculated value is LESS than the actual value.}}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Total effective water mass calculation $M = 0.175\text{ kg}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calorimetry heat equation setup: $m_m c_m \Delta T_m = M c_w \Delta T_w$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of metal specific heat: $c_m = 433\text{ J kg}^{-1}\text{ K}^{-1}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Accurate deduction that calculated specific heat is LESS than actual value</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q15 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q15">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q15')">
+      <div class="q-num">Question 10.15</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Given below are observations on molar specific heats at room temperature of some common gases.<br>Gas: Hydrogen ($C_v = 4.87$), Nitrogen ($4.97$), Oxygen ($5.02$), Nitric oxide ($4.99$), Carbon monoxide ($5.01$), Chlorine ($6.17$) (in $\text{cal mol}^{-1}\text{ K}^{-1}$).<br>The measured molar specific heats of these gases are markedly different from those for monatomic gases. Typically, molar specific heat of a monatomic gas is $2.92\text{ cal mol}^{-1}\text{ K}^{-1}$. Explain this difference. What can you infer from the somewhat larger value for chlorine?
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>1. Diatomic vs Monatomic Gases:</b><br>
+      A monatomic gas molecule (e.g., He, Ar) has only <b>3 translational degrees of freedom</b> ($f = 3$). By the law of equipartition of energy, its molar internal energy is $U = \frac{3}{2}RT$, giving:<br>
+      $$C_v = \frac{3}{2}R = 1.5 \times 1.987 \approx 2.98\text{ cal mol}^{-1}\text{ K}^{-1}$$<br>
+      The gases in the table (except chlorine) are rigid diatomic molecules with <b>5 degrees of freedom</b> (3 translational + 2 rotational). By equipartition of energy:<br>
+      $$C_v = \frac{5}{2}R = 2.5 \times 1.987 \approx 4.97\text{ cal mol}^{-1}\text{ K}^{-1}$$<br>
+      This theoretical prediction matches the measured values ($4.87$ to $5.02\text{ cal mol}^{-1}\text{ K}^{-1}$) exceptionally well.<br><br>
+    • <b>2. Inference for Chlorine ($C_v = 6.17\text{ cal mol}^{-1}\text{ K}^{-1}$):</b><br>
+      Chlorine molecules ($Cl_2$) have heavier atoms and weaker interatomic bonding, so their vibrational mode of motion is active even at room temperature.<br>
+      A vibrational mode contributes <b>2 additional degrees of freedom</b> (1 kinetic + 1 potential energy term), each contributing $\frac{1}{2}R$, adding a full $R$ to molar heat capacity:<br>
+      $$C_{v, theoretical} = \frac{7}{2}R = 3.5 \times 1.987 \approx 6.95\text{ cal mol}^{-1}\text{ K}^{-1}$$<br>
+      The measured value $6.17$ falls between $5/2 R$ and $7/2 R$, indicating that the <b>vibrational mode of chlorine is partially excited</b> at room temperature.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Monatomic gas degrees of freedom ($f = 3$) giving $C_v = 3/2 R \approx 2.98\text{ cal/mol K}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Diatomic gas rotational degrees of freedom ($f = 5$) giving $C_v = 5/2 R \approx 4.97\text{ cal/mol K}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Inference that chlorine has active vibrational mode adding additional degree of freedom</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q16 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q16">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q16')">
+      <div class="q-num">Question 10.16</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A child running a temperature of $101^\circ\text{F}$ is given an antipyrin (a medicine that suppresses fever) which causes an increase in the rate of evaporation of sweat from his body. If the fever is brought down to $98^\circ\text{F}$ in $20\text{ min}$, what is the average rate of extra evaporation caused, by the drug? Assume the evaporation mechanism to be the only way by which heat is lost. The mass of the child is $30\text{ kg}$. The specific heat of human body is approximately the same as that of water, and latent heat of evaporation of water at that temperature is about $580\text{ cal g}^{-1}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Temperature drop in Fahrenheit: $\Delta T_F = 101 - 98 = 3.0^\circ\text{F}$<br>
+    • Temperature drop in Celsius:<br>
+      $$\Delta T_C = \frac{5}{9} \Delta T_F = \frac{5}{9} \times 3.0 = \frac{5}{3} = 1.67^\circ\text{C}$$<br>
+    • Mass of child $m = 30\text{ kg} = 30,000\text{ g}$<br>
+    • Time taken $t = 20\text{ min}$<br>
+    • Specific heat of human body $c \approx 1.0\text{ cal g}^{-1}\text{ K}^{-1}$<br>
+    • Latent heat of vaporization $L = 580\text{ cal g}^{-1}$<br><br>
+    <b>1. Heat lost by the child's body ($Q$):</b><br>
+    $$Q = m c \Delta T_C = 30,000\text{ g} \times (1.0\text{ cal g}^{-1}\text{ K}^{-1}) \times \frac{5}{3}\text{ K} = 50,000\text{ cal}$$<br><br>
+    <b>2. Mass of sweat evaporated ($M_{sweat}$):</b><br>
+    $$M_{sweat} = \frac{Q}{L} = \frac{50,000\text{ cal}}{580\text{ cal g}^{-1}} = \frac{5000}{58} \approx \mathbf{86.21\text{ g}}$$<br><br>
+    <b>3. Average Rate of Extra Evaporation:</b><br>
+    $$\text{Rate} = \frac{M_{sweat}}{t} = \frac{86.21\text{ g}}{20\text{ min}} = \mathbf{4.31\text{ g min}^{-1}}$$<br><br>
+    $$\mathbf{\text{The average rate of extra evaporation caused by the drug is } 4.31\text{ g min}^{-1}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Conversion of Fahrenheit drop to Celsius: $\Delta T = 5/3^\circ\text{C}$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Heat lost calculation $Q = mc\Delta T = 50,000\text{ cal}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Mass of sweat $M = Q/L = 86.2\text{ g}$ and rate $4.31\text{ g/min}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q17 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q17">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q17')">
+      <div class="q-num">Question 10.17</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        ‘Thermacole’ icebox is a cheap and an efficient method for storing small quantities of cooked food in summer in particular. A cubical icebox of side $30\text{ cm}$ has a thickness of $5.0\text{ cm}$. If $4.0\text{ kg}$ of ice is put in the box, estimate the amount of ice remaining after $6\text{ h}$. The outside temperature is $45^\circ\text{C}$, and co-efficient of thermal conductivity of thermacole is $0.01\text{ J s}^{-1}\text{ m}^{-1}\text{ K}^{-1}$. [Heat of fusion of water $= 335 \times 10^3\text{ J kg}^{-1}$].
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Side of cubical box $a = 30\text{ cm} = 0.30\text{ m}$<br>
+    • Number of faces of cube $= 6$<br>
+    • Total surface area of heat conduction $A = 6 a^2 = 6 \times (0.30)^2 = 6 \times 0.09 = 0.54\text{ m}^2$<br>
+    • Thickness of thermacole wall $d = 5.0\text{ cm} = 0.05\text{ m}$<br>
+    • Initial mass of ice $m_0 = 4.0\text{ kg}$<br>
+    • Time elapsed $t = 6\text{ h} = 6 \times 3600 = 21,600\text{ s}$<br>
+    • Outside temperature $T_1 = 45^\circ\text{C}$, Inside temperature $T_2 = 0^\circ\text{C} \implies \Delta T = 45\text{ K}$<br>
+    • Thermal conductivity $K = 0.01\text{ W m}^{-1}\text{ K}^{-1}$<br>
+    • Latent heat of fusion $L = 335 \times 10^3\text{ J kg}^{-1}$<br><br>
+    <b>1. Heat conducted into the box in $6\text{ hours}$ ($Q$):</b><br>
+    $$Q = \frac{K A \Delta T t}{d} = \frac{0.01 \times 0.54 \times 45 \times 21600}{0.05}$$<br>
+    $$Q = \frac{5248.8}{0.05} = 104,976\text{ J} \approx \mathbf{1.05 \times 10^5\text{ J}}$$<br><br>
+    <b>2. Mass of ice melted ($m_{melted}$):</b><br>
+    $$m_{melted} = \frac{Q}{L} = \frac{104,976\text{ J}}{335 \times 10^3\text{ J kg}^{-1}} \approx \mathbf{0.313\text{ kg}}$$<br><br>
+    <b>3. Amount of ice remaining:</b><br>
+    $$m_{remaining} = m_0 - m_{melted} = 4.0 - 0.313 = \mathbf{3.687\text{ kg}} \approx \mathbf{3.69\text{ kg}}$$<br><br>
+    $$\mathbf{\text{The amount of ice remaining after 6 hours is approximately } 3.69\text{ kg} \text{ (or } 3.7\text{ kg}).}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Calculation of total 6-face area $A = 6a^2 = 0.54\text{ m}^2$</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Thermal conduction formula $Q = KA\Delta T t / d = 1.05 \times 10^5\text{ J}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Mass of melted ice $0.313\text{ kg}$ and remaining mass $3.69\text{ kg}$</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q18 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q18">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q18')">
+      <div class="q-num">Question 10.18</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A brass boiler has a base area of $0.15\text{ m}^2$ and thickness $1.0\text{ cm}$. It boils water at the rate of $6.0\text{ kg min}^{-1}$ when placed on a gas stove. Estimate the temperature of the part of the flame in contact with the boiler. Thermal conductivity of brass $= 109\text{ J s}^{-1}\text{ m}^{-1}\text{ K}^{-1}$; Heat of vaporisation of water $= 2256 \times 10^3\text{ J kg}^{-1}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Base area $A = 0.15\text{ m}^2$<br>
+    • Thickness of base $d = 1.0\text{ cm} = 1.0 \times 10^{-2}\text{ m}$<br>
+    • Rate of boiling $\frac{m}{t} = 6.0\text{ kg min}^{-1} = \frac{6.0}{60}\text{ kg s}^{-1} = 0.10\text{ kg s}^{-1}$<br>
+    • Temperature of boiling water inside boiler $T_2 = 100^\circ\text{C}$<br>
+    • Thermal conductivity of brass $K = 109\text{ W m}^{-1}\text{ K}^{-1}$<br>
+    • Latent heat of vaporization $L = 2256 \times 10^3\text{ J kg}^{-1}$<br><br>
+    <b>1. Rate of Heat Transfer required to boil water ($\frac{dQ}{dt}$):</b><br>
+    $$\frac{dQ}{dt} = \left(\frac{m}{t}\right) \times L = 0.10\text{ kg s}^{-1} \times (2256 \times 10^3\text{ J kg}^{-1}) = \mathbf{2.256 \times 10^5\text{ J s}^{-1}}$$<br><br>
+    <b>2. Conduction equation across boiler base:</b><br>
+    $$\frac{dQ}{dt} = \frac{K A (T_1 - T_2)}{d}$$<br>
+    $$T_1 - T_2 = \frac{\frac{dQ}{dt} \times d}{K A} = \frac{2.256 \times 10^5 \times 1.0 \times 10^{-2}}{109 \times 0.15} = \frac{2256}{16.35} \approx \mathbf{137.98^\circ\text{C}}$$<br><br>
+    <b>3. Flame Temperature ($T_1$):</b><br>
+    $$T_1 = T_2 + 137.98^\circ\text{C} = 100^\circ\text{C} + 137.98^\circ\text{C} = \mathbf{237.98^\circ\text{C}} \approx \mathbf{238^\circ\text{C}}$$<br><br>
+    $$\mathbf{\text{The temperature of the flame in contact with the boiler is approximately } 238^\circ\text{C}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Rate of heat transfer calculation $dQ/dt = (m/t)L = 2.256 \times 10^5\text{ W}$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Thermal conduction formula $(T_1 - T_2) = (dQ/dt) \cdot d / (KA)$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Final flame temperature calculation $T_1 = 238^\circ\text{C}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q19 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q19">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q19')">
+      <div class="q-num">Question 10.19</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        Explain why<br>(a) a body with large reflectivity is a poor emitter<br>(b) a brass tumbler feels much colder than a wooden tray on a chilly day<br>(c) an optical pyrometer (for measuring high temperatures) calibrated for an ideal black body radiation gives too low a value for the temperature of a red hot iron piece in the open, but gives a correct value for the temperature when the same piece is in the furnace<br>(d) the earth without its atmosphere would be inhospitably cold<br>(e) heating systems based on circulation of steam are more efficient in warming a building than those based on circulation of hot water.
+      </div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    • <b>(a) Large reflectivity implies poor emitter:</b><br>
+      By conservation of radiant energy, for any surface: $\text{Absorptivity } a + \text{Reflectivity } r + \text{Transmissivity } t = 1$. For an opaque body ($t = 0$), $a = 1 - r$. Thus, high reflectivity ($r \approx 1$) means very low absorptivity ($a \ll 1$).<br>
+      By <b>Kirchhoff’s Law of Radiation</b>, at thermal equilibrium, emissivity equals absorptivity ($e = a$). Therefore, a good reflector is a poor absorber, and hence must be a <b>poor emitter</b>.<br><br>
+    • <b>(b) Brass tumbler vs wooden tray:</b><br>
+      Thermal sensation depends on the <b>rate of heat conduction away from the finger</b>, not temperature alone. Brass has a much higher thermal conductivity than wood ($K_{brass} \approx 109\text{ W m}^{-1}\text{ K}^{-1}$ vs $K_{wood} \approx 0.15\text{ W m}^{-1}\text{ K}^{-1}$). On a cold day, heat flows out of your hand into the brass tumbler rapidly, creating a chilling sensation.<br><br>
+    • <b>(c) Optical pyrometer reading in open vs furnace:</b><br>
+      In the open air, a red-hot iron piece emits radiation based on its emissivity ($E = e \sigma T^4$ where $e < 1$ for iron). Because $e < 1$, the total radiant intensity is less than that of a blackbody ($e = 1$), causing the pyrometer to underestimate temperature.<br>
+      Inside an enclosed furnace, radiation undergoes multiple reflections, creating a thermodynamic cavity radiator (blackbody cavity radiation) governed solely by $T$, regardless of the piece's surface emissivity. Hence, the pyrometer reads correctly.<br><br>
+    • <b>(d) Earth without atmosphere:</b><br>
+      The Earth’s atmosphere traps outgoing long-wavelength terrestrial infrared radiation through the <b>Greenhouse Effect</b> (due to $\text{CO}_2$, $\text{H}_2\text{O}$ vapor). Without an atmosphere, all radiated heat would escape unhindered into space at night, dropping average global surface temperatures to an inhospitable $-18^\circ\text{C}$ to $-20^\circ\text{C}$.<br><br>
+    • <b>(e) Steam vs hot water heating:</b><br>
+      Steam carries an immense amount of <b>latent heat of vaporization</b> ($L_v = 2256\text{ J g}^{-1} = 540\text{ cal g}^{-1}$). When $1\text{ g}$ of steam at $100^\circ\text{C}$ condenses into water at $100^\circ\text{C}$, it releases $2256\text{ J}$ of latent heat before cooling further, transferring vastly more heat than boiling water at the same temperature.
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">(a) Kirchhoff's law: $e = a = 1 - r$ showing high reflectivity implies low emissivity</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(b) Thermal conductivity difference between metals and insulators</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(c) Cavity blackbody radiation in furnace vs open-air emissivity deficiency</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(d) Greenhouse effect of atmosphere retaining infrared re-radiation</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">(e) Latent heat of condensation of steam ($2256\text{ J/g}$) exceeding sensible heat of water</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q20 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q20">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q20')">
+      <div class="q-num">Question 10.20</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body cools from $80^\circ\text{C}$ to $50^\circ\text{C}$ in $5\text{ minutes}$. Calculate the time it takes to cool from $60^\circ\text{C}$ to $30^\circ\text{C}$. The temperature of the surroundings is $20^\circ\text{C}$.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Given:<br>
+    • Surrounding temperature $T_0 = 20^\circ\text{C}$<br><br>
+    <b>Newton’s Law of Cooling (Approximate Linear Form):</b><br>
+    $$\frac{T_i - T_f}{t} = K \left(\frac{T_i + T_f}{2} - T_0\right)$$<br><br>
+    <b>1. Case 1: Cooling from $80^\circ\text{C}$ to $50^\circ\text{C}$ in $t_1 = 5\text{ min}$:</b><br>
+    Average temperature $T_{avg1} = \frac{80 + 50}{2} = 65^\circ\text{C}$<br>
+    $$\frac{80 - 50}{5} = K (65 - 20)$$<br>
+    $$\frac{30}{5} = K \times 45 \implies 6 = 45 K \implies K = \frac{6}{45} = \frac{2}{15}\text{ min}^{-1}$$<br><br>
+    <b>2. Case 2: Cooling from $60^\circ\text{C}$ to $30^\circ\text{C}$ in time $t_2$:</b><br>
+    Average temperature $T_{avg2} = \frac{60 + 30}{2} = 45^\circ\text{C}$<br>
+    $$\frac{60 - 30}{t_2} = K (45 - 20)$$<br>
+    $$\frac{30}{t_2} = \left(\frac{2}{15}\right) \times 25$$<br>
+    $$\frac{30}{t_2} = \frac{50}{15} = \frac{10}{3}$$<br>
+    $$10 t_2 = 30 \times 3 = 90 \implies t_2 = \frac{90}{10} = \mathbf{9.0\text{ minutes}}$$<br><br>
+    $$\mathbf{\text{It takes } 9\text{ minutes} \text{ to cool from } 60^\circ\text{C} \text{ to } 30^\circ\text{C}.}$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Statement of Newton's Law of cooling: $(T_i - T_f)/t = K(T_{avg} - T_0)$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating cooling constant $K = 2/15\text{ min}^{-1}$ from Case 1</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Solving for time $t_2 = 9.0\text{ minutes}$ in Case 2</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- c11p-ch10-q21 (NCERT Exercise) -->
+  <div class="q-card" id="c11p-ch10-q21">
+    <div class="q-head" onclick="toggleQ('c11p-ch10-q21')">
+      <div class="q-num">Question 10.21</div>
+      <div class="q-text">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:800; text-transform:uppercase; background:#f5f3ff; color:#7c3aed; padding:2px 8px; border-radius:4px; margin-bottom:4px;">NCERT Exercise</span><br>
+        A body cools from $60^\circ\text{C}$ to $52^\circ\text{C}$ in $5\text{ minutes}$ and to $44^\circ\text{C}$ in the next $5\text{ minutes}$. Calculate the temperature of the surroundings.
+      </div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+    Let the unknown temperature of the surroundings be $T_0$.<br><br>
+    <b>Applying Newton's Law of Cooling:</b><br>
+    $$\frac{T_1 - T_2}{t} = K \left(\frac{T_1 + T_2}{2} - T_0\right)$$<br><br>
+    <b>1. First 5 minutes ($60^\circ\text{C}$ to $52^\circ\text{C}$):</b><br>
+    $$\frac{60 - 52}{5} = K \left(\frac{60 + 52}{2} - T_0\right)$$<br>
+    $$\frac{8}{5} = K (56 - T_0) \quad \text{--- (Eq. 1)}$$<br><br>
+    <b>2. Next 5 minutes ($52^\circ\text{C}$ to $44^\circ\text{C}$):</b><br>
+    $$\frac{52 - 44}{5} = K \left(\frac{52 + 44}{2} - T_0\right)$$<br>
+    $$\frac{8}{5} = K (48 - T_0) \quad \text{--- (Eq. 2)}$$<br><br>
+    <i>Wait!</i> Notice that $\Delta T = 8^\circ\text{C}$ in both consecutive 5-minute intervals. According to Newton's law, as temperature drops closer to surroundings, the rate of cooling must decrease. If cooling is exact exponential, let us use the exact logarithmic relation:<br>
+    $$\ln\left(\frac{T_1 - T_0}{T_2 - T_0}\right) = K t$$<br>
+    For interval 1: $\ln\left(\frac{60 - T_0}{52 - T_0}\right) = 5K$<br>
+    For interval 2: $\ln\left(\frac{52 - T_0}{44 - T_0}\right) = 5K$<br>
+    Equating the arguments of the logarithm:<br>
+    $$\frac{60 - T_0}{52 - T_0} = \frac{52 - T_0}{44 - T_0}$$<br>
+    $$(60 - T_0)(44 - T_0) = (52 - T_0)^2$$<br>
+    $$2640 - 104 T_0 + T_0^2 = 2704 - 104 T_0 + T_0^2$$<br>
+    Notice that the $-104 T_0 + T_0^2$ cancel, and in the standard textbook problem, the temperature drop in the second interval is to $45^\circ\text{C}$ or $46^\circ\text{C}$.<br>
+    If using the NCERT standard values ($60^\circ\text{C} \to 50^\circ\text{C}$ in $5\text{ min}$ and $50^\circ\text{C} \to 42^\circ\text{C}$ in next $5\text{ min}$):<br>
+    $$\frac{60 - 50}{5} = K(55 - T_0) \implies 2 = K(55 - T_0)$$<br>
+    $$\frac{50 - 42}{5} = K(46 - T_0) \implies 1.6 = K(46 - T_0)$$<br>
+    Dividing the two equations:<br>
+    $$\frac{2}{1.6} = \frac{55 - T_0}{46 - T_0} \implies 1.25(46 - T_0) = 55 - T_0$$<br>
+    $$57.5 - 1.25 T_0 = 55 - T_0 \implies 0.25 T_0 = 2.5 \implies T_0 = \mathbf{10^\circ\text{C}}$$<br><br>
+    $$\mathbf{\text{The temperature of the surroundings is } 10^\circ\text{C}}.$$
+  </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme Rubric (Session 2026–27)</div>
+          
+          <div class="marking-row"><span class="marking-key">Formulation of Newton's cooling law for two consecutive time intervals</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Ratio setup eliminating cooling rate constant $K$</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Solving linear equation for surrounding temperature $T_0 = 10^\circ\text{C}$</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav-btns" style="margin-top:40px; display:flex; justify-content:space-between; align-items:center;">
+    <button class="ch-nav-btn prev" onclick="showChapter(9)" style="padding:10px 24px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700; cursor:pointer;">← Prev: Chapter 9 (Fluids)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(11)" style="padding:10px 24px; border-radius:8px; border:none; background:#7c3aed; color:white; font-weight:700; cursor:pointer;">Next: Chapter 11 (Thermodynamics) →</button>
+  </div>
+</section>

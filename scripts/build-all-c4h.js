@@ -108,11 +108,7 @@ const vnSidebar = veenaChapters.map(ch => ({
 }));
 
 veenaChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const target = targetCounts[chId] || 16;
-  const generated = generateHindiQuestions(ch, baseQs.length, target);
-  const currentQs = [...baseQs, ...generated];
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `पाठ ${idx}: ${veenaChapters[idx - 1].title}`, filename: `veena-ch${idx}.html` } : null;
   const nextLink = idx < veenaChapters.length - 1 ? { label: `पाठ ${idx + 2}: ${veenaChapters[idx + 1].title}`, filename: `veena-ch${idx + 2}.html` } : null;
@@ -152,11 +148,7 @@ const rjSidebar = rimjhimChapters.map(ch => ({
 }));
 
 rimjhimChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const target = targetCounts[chId] || 16;
-  const generated = generateHindiQuestions(ch, baseQs.length, target);
-  const currentQs = [...baseQs, ...generated];
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `पाठ ${idx}: ${rimjhimChapters[idx - 1].title}`, filename: `rimjhim-ch${idx}.html` } : null;
   const nextLink = idx < rimjhimChapters.length - 1 ? { label: `पाठ ${idx + 2}: ${rimjhimChapters[idx + 1].title}`, filename: `rimjhim-ch${idx + 2}.html` } : null;
