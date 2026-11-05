@@ -72,3 +72,6 @@ node_modules/
 scripts/backups/
 *.bak
 *.bak.*
+
+# Local-only quiz-question validation tooling (holds its own .env with API keys)
+validator/
