@@ -74,6 +74,13 @@ function injectStyles() {
       font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
       color: var(--muted); margin-bottom: 18px;
     }
+    #pgBlockOverlay .pg-autopay-toggle {
+      display: flex; align-items: flex-start; gap: 10px; text-align: left;
+      max-width: 520px; margin: 0 auto 20px; padding: 12px 16px;
+      background: var(--bg, #f8fafc); border: 1px solid var(--border); border-radius: 12px;
+      font-size: 0.8rem; color: var(--text); cursor: pointer; line-height: 1.4;
+    }
+    #pgBlockOverlay .pg-autopay-toggle input { flex-shrink: 0; margin-top: 2px; width: 16px; height: 16px; accent-color: var(--brand); cursor: pointer; }
     #pgBlockOverlay .pg-plans {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
       margin-bottom: 24px; align-items: stretch;
@@ -189,7 +196,8 @@ function featureLi(text, included) {
  * the user can still use the navbar/back button to go elsewhere, they
  * just can't get past this overlay to reach the quiz itself.
  * @param {number} unlocksAtMs - epoch ms from canStartTest's response.
- * @param {(tier: "silver"|"gold"|"diamond") => void} onUpgrade - called with the chosen tier when a plan button is clicked.
+ * @param {(tier: "silver"|"gold"|"diamond", autoPay: boolean) => void} onUpgrade - called with the
+ *   chosen tier and the Auto-Pay checkbox's state (checked by default) when a plan button is clicked.
  * @param {() => void} [onBack] - called when "Go back" is clicked.
  * @param {{db: import("firebase/firestore").Firestore, uid: string, onResolved: () => void}} [live] -
  *   when provided, opens a live onSnapshot listener on users/{uid} so the
@@ -266,6 +274,10 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
         ${headerHtml}
         <div id="pgCountdown">--:--:--</div>
         <div class="pg-plans-heading">${isSilverCooldown ? "Upgrade now for unlimited, wait-free tests" : "Or continue right now with unlimited tests"}</div>
+        <label class="pg-autopay-toggle">
+          <input type="checkbox" id="pgAutoPayCheckbox" checked>
+          <span><strong>Enable Auto-Pay</strong> - renews automatically via UPI/card mandate each billing cycle. Uncheck for a one-time payment with no auto-renewal.</span>
+        </label>
         <div class="pg-plans${isSilverCooldown ? " pg-plans-3col" : ""}">
           ${currentPlanCardHtml}
           <div class="pg-plan pg-plan-gold">
@@ -304,12 +316,13 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverC
       </div>
     `;
   document.body.appendChild(overlay);
+  const getAutoPay = () => document.getElementById("pgAutoPayCheckbox")?.checked !== false;
   // pgSilverBtn only exists in the free-limit layout - the Silver-cooldown
   // layout omits that card since the user is already on Silver.
   const silverBtn = document.getElementById("pgSilverBtn");
-  if (silverBtn) silverBtn.onclick = () => onUpgrade && onUpgrade("silver");
-  document.getElementById("pgGoldBtn").onclick = () => onUpgrade && onUpgrade("gold");
-  document.getElementById("pgDiamondBtn").onclick = () => onUpgrade && onUpgrade("diamond");
+  if (silverBtn) silverBtn.onclick = () => onUpgrade && onUpgrade("silver", getAutoPay());
+  document.getElementById("pgGoldBtn").onclick = () => onUpgrade && onUpgrade("gold", getAutoPay());
+  document.getElementById("pgDiamondBtn").onclick = () => onUpgrade && onUpgrade("diamond", getAutoPay());
   document.getElementById("pgBackBtn").onclick = () => {
     hideBlockedModal();
     onBack && onBack();
@@ -371,13 +384,22 @@ const TIER_LABEL = {
 };
 
 /**
- * Shared Razorpay-subscription-checkout flow for the Silver/Gold/Diamond
- * plan buttons - one implementation used by every page that can show the
- * pricing modal (quiz.html, chapterwise.html, mock.html, hots.html)
- * instead of each duplicating the same Checkout.js wiring. Requires
+ * Shared Razorpay-checkout flow for the Silver/Gold/Diamond plan buttons -
+ * one implementation used by every page that can show the pricing modal
+ * (quiz.html, chapterwise.html, mock.html, hots.html) instead of each
+ * duplicating the same Checkout.js wiring. Requires
  * https://checkout.razorpay.com/v1/checkout.js to already be loaded on
- * the page. isPremium itself is only ever set by the razorpayWebhook
- * Cloud Function once Razorpay confirms the first charge, never here.
+ * the page.
+ *
+ * Two modes, controlled by `autoPay`:
+ * - autoPay=true (default): today's existing recurring-Subscription flow.
+ *   isPremium itself is only ever set by the razorpayWebhook Cloud
+ *   Function once Razorpay confirms the first charge, never here - the
+ *   `handler` below is optimistic UI only.
+ * - autoPay=false: a plain one-time Order for a single billing period,
+ *   no mandate attached. Verified synchronously in the `handler` (there's
+ *   no webhook for one-time Orders), so the success message here is a
+ *   real confirmation, not an optimistic one.
  * @param {import("firebase/app").FirebaseApp} app
  * @param {"silver"|"gold"|"diamond"} tier
  * @param {(status: "success"|"cancelled"|"failed"|"error") => void} [onSettled] -
@@ -385,48 +407,105 @@ const TIER_LABEL = {
  *   existing caller omits this (plain 2-arg calls keep working unchanged);
  *   it exists so a caller with no pg-plan buttons on screen (e.g. a
  *   post-signup upsell) can still know when to move on.
+ * @param {boolean} [autoPay] - true (default) = recurring auto-pay
+ *   subscription; false = one-time payment, no auto-renewal. Every
+ *   existing caller omits this (defaults to true), preserving today's
+ *   behavior unchanged unless a caller explicitly reads an Auto-Pay
+ *   toggle and passes false.
  */
-export async function startUpgradeCheckout(app, tier, onSettled) {
+export async function startUpgradeCheckout(app, tier, onSettled, autoPay = true) {
   const auth = getAuth(app);
   const functions = getFunctions(app);
   const btn = document.getElementById(BUTTON_ID_BY_TIER[tier] || "pgSilverBtn");
   const originalText = btn ? btn.textContent : "";
   if (btn) { btn.disabled = true; btn.textContent = "Preparing checkout..."; }
   const tierLabel = TIER_LABEL[tier] || TIER_LABEL.silver;
-  try {
-    const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
-    const { data: sub } = await createPremiumSubscription({ tier });
+  const prefill = {
+    name: auth.currentUser?.displayName || "Student",
+    email: auth.currentUser?.email || "",
+    contact: auth.currentUser?.phoneNumber || ""
+  };
+  const theme = { color: tier === "diamond" ? "#0284c7" : "#ff6b00" };
 
-    const options = {
-      key: sub.keyId,
-      subscription_id: sub.subscriptionId,
-      name: "OlympiadQuiz",
-      description: `Premium ${tierLabel} - unlimited test attempts`,
-      handler: function () {
-        hideBlockedModal();
-        alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
-        onSettled && onSettled("success");
-      },
-      modal: {
-        ondismiss: function () {
-          if (btn) { btn.disabled = false; btn.textContent = originalText; }
-          onSettled && onSettled("cancelled");
-        }
-      },
-      prefill: {
-        name: auth.currentUser?.displayName || "Student",
-        email: auth.currentUser?.email || "",
-        contact: auth.currentUser?.phoneNumber || ""
-      },
-      theme: { color: tier === "diamond" ? "#0284c7" : "#ff6b00" }
-    };
-    const rzp = new Razorpay(options);
-    rzp.on('payment.failed', function () {
-      alert("Payment was not completed.");
-      if (btn) { btn.disabled = false; btn.textContent = originalText; }
-      onSettled && onSettled("failed");
-    });
-    rzp.open();
+  try {
+    if (autoPay) {
+      const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
+      const { data: sub } = await createPremiumSubscription({ tier });
+
+      const options = {
+        key: sub.keyId,
+        subscription_id: sub.subscriptionId,
+        name: "OlympiadQuiz",
+        description: `Premium ${tierLabel} - unlimited test attempts (auto-renews)`,
+        handler: function () {
+          hideBlockedModal();
+          alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
+          onSettled && onSettled("success");
+        },
+        modal: {
+          ondismiss: function () {
+            if (btn) { btn.disabled = false; btn.textContent = originalText; }
+            onSettled && onSettled("cancelled");
+          }
+        },
+        prefill,
+        theme
+      };
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function () {
+        alert("Payment was not completed.");
+        if (btn) { btn.disabled = false; btn.textContent = originalText; }
+        onSettled && onSettled("failed");
+      });
+      rzp.open();
+    } else {
+      const createPremiumOrder = httpsCallable(functions, 'createPremiumOrder');
+      const { data: order } = await createPremiumOrder({ tier });
+
+      const options = {
+        key: order.keyId,
+        order_id: order.orderId,
+        amount: order.amount,
+        currency: order.currency,
+        name: "OlympiadQuiz",
+        description: `Premium ${tierLabel} - one-time payment (no auto-renewal)`,
+        handler: async function (response) {
+          try {
+            const verifyPremiumOrderPayment = httpsCallable(functions, 'verifyPremiumOrderPayment');
+            await verifyPremiumOrderPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              tier
+            });
+            hideBlockedModal();
+            alert("Payment successful! Your Premium access is active now - it will NOT auto-renew, so you'll need to pay again once it expires.");
+            onSettled && onSettled("success");
+          } catch (err) {
+            console.error("One-time payment verification failed:", err);
+            alert("Payment was received but activation failed. Please contact support with payment ID: " + response.razorpay_payment_id);
+            onSettled && onSettled("error");
+          } finally {
+            if (btn) { btn.disabled = false; btn.textContent = originalText; }
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            if (btn) { btn.disabled = false; btn.textContent = originalText; }
+            onSettled && onSettled("cancelled");
+          }
+        },
+        prefill,
+        theme
+      };
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function () {
+        alert("Payment was not completed.");
+        if (btn) { btn.disabled = false; btn.textContent = originalText; }
+        onSettled && onSettled("failed");
+      });
+      rzp.open();
+    }
   } catch (err) {
     console.error("Upgrade flow failed:", err);
     alert("Couldn't start checkout right now. Please try again in a moment.");
@@ -462,7 +541,7 @@ export async function guardQuizNavigation(app, testType, navigate, onBlocked) {
     const { data: gate } = await canStartTest({ testType, dryRun: true });
     if (!gate.allowed) {
       onBlocked?.();
-      showBlockedModal(gate.unlocksAt, (tier) => startUpgradeCheckout(app, tier), () => hideBlockedModal(), {
+      showBlockedModal(gate.unlocksAt, (tier, autoPay) => startUpgradeCheckout(app, tier, undefined, autoPay), () => hideBlockedModal(), {
         db: getFirestore(app),
         uid: user.uid,
         onResolved: () => { hideBlockedModal(); navigate(); },

@@ -1825,6 +1825,10 @@ exports.razorpayWebhook = premiumSubscriptions.razorpayWebhook;
 exports.grantComplementaryPremium = premiumSubscriptions.grantComplementaryPremium;
 exports.revokeComplementaryPremium = premiumSubscriptions.revokeComplementaryPremium;
 
+const premiumOneTimePayment = require("./premium/oneTimePayment");
+exports.createPremiumOrder = premiumOneTimePayment.createPremiumOrder;
+exports.verifyPremiumOrderPayment = premiumOneTimePayment.verifyPremiumOrderPayment;
+
 exports.claimIncludedLiveTest = liveTestCredits.claimIncludedLiveTest;
 
 const userModeration = require("./userModeration");
