@@ -807,6 +807,14 @@ border-top:1px solid var(--border);
                         </div>
                     </div>
 
+                    <!-- Free-Plan Only Filter: excludes users with an active (non-expired) paid subscription -->
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: #374151; cursor: pointer; background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px;">
+                            <input type="checkbox" id="emailFreeOnlyFilter" onchange="window.filterActiveUsersGroup()" style="width: auto; margin: 0;">
+                            🆓 Free-plan users only (exclude anyone with an active Silver/Gold/Diamond subscription)
+                        </label>
+                    </div>
+
                     <!-- Live Summary Bar & Toggle Preview Button -->
                     <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 10px;">
                         <div style="font-size: 12px; color: #334155;">
@@ -5206,6 +5214,8 @@ window.loadActiveUsersGroup = async function(force = false) {
                         name: u.name || u.fullName || u.displayName || "Student",
                         classNum: parseClassNumber(u.class ?? u.studentClass ?? u.grade),
                         email_consent: u.email_consent !== false,
+                        isPremium: u.isPremium === true,
+                        premiumExpiresMs: parseDateToEpoch(u.premiumExpiresAt),
                         lastLoginMs: Math.max(
                             parseDateToEpoch(u.lastLogin),
                             parseDateToEpoch(u.lastActive),
@@ -5342,6 +5352,7 @@ window.filterActiveUsersGroup = function() {
 
     const targetType = document.getElementById("emailTargetType").value;
     const isOnlyActive = targetType === "active_class_1_10";
+    const freeOnly = document.getElementById("emailFreeOnlyFilter")?.checked === true;
     const timeframeVal = document.getElementById("emailActiveTimeframe").value;
     const days = timeframeVal === 'all_active' ? 99999 : Number(timeframeVal);
     const cutoffMs = Date.now() - (days * 24 * 60 * 60 * 1000);
@@ -5355,6 +5366,13 @@ window.filterActiveUsersGroup = function() {
         if (!user.email_consent) return;
         const cls = user.classNum;
         if (!cls || cls < 1 || cls > 10) return;
+
+        // Same expiry-aware premium check used elsewhere (e.g. analytics.html,
+        // subscription panel): an expired plan counts as free, not premium.
+        if (freeOnly) {
+            const userIsPremium = user.isPremium === true && (!user.premiumExpiresMs || user.premiumExpiresMs > Date.now());
+            if (userIsPremium) return;
+        }
 
         let isActive = false;
         if (!isOnlyActive) {
@@ -5395,11 +5413,12 @@ window.filterActiveUsersGroup = function() {
     const classesStr = selectedClassesArr.length === 10 ? "Classes 1 to 10" : (selectedClassesArr.length ? `Class ${selectedClassesArr.join(', ')}` : "No classes selected");
     const timeframeLabel = timeframeVal === 'all_active' ? "All-Time Active" : `Active in last ${timeframeVal} days`;
 
+    const freeOnlyNote = freeOnly ? ", free plan only" : "";
     if (summaryText) {
         if (totalCount === 0) {
-            summaryText.innerHTML = `<span style="color:#d97706;">⚠️ 0 active students found in ${classesStr} (${timeframeLabel}). Try expanding timeframe or selecting more classes.</span>`;
+            summaryText.innerHTML = `<span style="color:#d97706;">⚠️ 0 active students found in ${classesStr} (${timeframeLabel}${freeOnlyNote}). Try expanding timeframe or selecting more classes.</span>`;
         } else {
-            summaryText.innerHTML = `🎯 <strong>Target Audience:</strong> <span style="color:#4f46e5;font-weight:800;">${totalCount} active students</span> in ${classesStr} (${timeframeLabel}).`;
+            summaryText.innerHTML = `🎯 <strong>Target Audience:</strong> <span style="color:#4f46e5;font-weight:800;">${totalCount} active students</span> in ${classesStr} (${timeframeLabel}${freeOnlyNote}).`;
         }
     }
 
@@ -5578,8 +5597,9 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
         const classesStr = selectedClassesArr.length === 10 ? "Classes 1 to 10" : (selectedClassesArr.length ? `Class ${selectedClassesArr.join(', ')}` : "None");
         const tfLabel = document.getElementById("emailActiveTimeframe")?.selectedOptions[0]?.text || "selected timeframe";
         const csvNote = emailCsvContacts.length ? ` + ${emailCsvContacts.length} CSV contact(s)` : "";
+        const freeOnlyNote = document.getElementById("emailFreeOnlyFilter")?.checked ? ", free plan only (active subscribers excluded)" : "";
 
-        if (!confirm(`⚠️ WARNING: You are about to send a bulk broadcast email to ${targetEmails.length} active student(s) across ${classesStr} (${tfLabel})${csvNote}.\n\nSubject: "${subject}"\n\nProceed?`)) {
+        if (!confirm(`⚠️ WARNING: You are about to send a bulk broadcast email to ${targetEmails.length} active student(s) across ${classesStr} (${tfLabel}${freeOnlyNote})${csvNote}.\n\nSubject: "${subject}"\n\nProceed?`)) {
             return;
         }
     } else if (targetType === "selected") {

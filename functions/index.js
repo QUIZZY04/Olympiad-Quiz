@@ -691,6 +691,150 @@ exports.sendResultEmail = onDocumentWritten(
   }
 );
 
+// Kill switch - flip to false and redeploy to instantly stop this trigger
+// from sending any further emails, without touching the logic below.
+const ENABLE_FREE_TIER_UPGRADE_EMAIL = true;
+
+/**
+ * Triggered once when a new document is created in 'leaderboard' (i.e. a
+ * test attempt). Sends a one-time promotional "upgrade" email to free-tier
+ * users, separate from the regular per-attempt result email above.
+ *
+ * Fires at most once ever per user, gated by a `freeTierUpgradeEmailSent`
+ * flag on their users/{uid} doc (same pattern as `welcomeEmailSent` in
+ * triggerWelcomeEmail above) - never re-sent even if they later upgrade,
+ * downgrade, or keep taking free tests.
+ */
+exports.sendFreeTierUpgradeEmail = onDocumentCreated(
+  {
+    document: "leaderboard/{resultId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    if (!ENABLE_FREE_TIER_UPGRADE_EMAIL) {
+      return;
+    }
+
+    const resultId = event.params.resultId;
+    const afterData = event.data?.data();
+    const uid = afterData?.uid;
+
+    if (!uid) {
+      return;
+    }
+
+    try {
+      const userRef = db.collection("users").doc(uid);
+      const userSnap = await userRef.get();
+      if (!userSnap.exists) {
+        return;
+      }
+      const u = userSnap.data();
+
+      // Already sent, no email on file, opted out, or this is the admin account.
+      if (u.freeTierUpgradeEmailSent) return;
+      const email = (u.email || afterData.email || "").trim();
+      if (!email) return;
+      if (u.email_consent === false) return;
+      if (email.toLowerCase() === "madhhu52@gmail.com") return;
+
+      // Only send to users who are NOT on an active (non-expired) paid plan -
+      // same expiry-aware check used in analytics.html and the admin panel.
+      const expiresMs = u.premiumExpiresAt?.toMillis ? u.premiumExpiresAt.toMillis() : 0;
+      const isPremiumActive = u.isPremium === true && (!expiresMs || expiresMs > Date.now());
+      if (isPremiumActive) return;
+
+      console.log(`Sending one-time free-tier upgrade email to: ${email} (triggered by result ${resultId})`);
+
+      const brevoApi = getBrevoClient();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: email, name: u.name || u.fullName || "Student" }];
+      sendSmtpEmail.subject = "Your Full Performance Analysis Is Ready to Unlock";
+      sendSmtpEmail.htmlContent = `<body style="background-color: #f8fafc; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0;">Unlimited practice tests plus a full breakdown of strengths and weak topics - plans start at Rs. 149/month.</div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); overflow: hidden;">
+          <!-- Header -->
+          <tr>
+            <td align="center" style="background: linear-gradient(135deg, #ff6b00 0%, #ff8c1a 100%); padding: 36px 20px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 800;">OlympiadQuiz</h1>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding: 35px 30px; color: #111827; line-height: 1.6;">
+              <p style="font-size: 16px; margin: 0 0 20px;">Hi,</p>
+              <p style="font-size: 16px; margin: 0 0 20px;">Your child has just completed a test on OlympiadQuiz - and we can show you exactly where they're doing well, and which topics need more attention.</p>
+              <p style="font-size: 16px; margin: 0 0 20px;">On the Free plan, test scores are visible, but the detailed topic-by-topic breakdown of strengths and weak areas is a feature of our paid plans:</p>
+
+              <div style="background-color: #fff7ed; border: 1px solid #ffedd5; border-radius: 10px; padding: 18px 20px; margin: 0 0 25px;">
+                <p style="margin: 0 0 10px; font-size: 15px;"><strong style="color:#c2410c;">Silver - Rs. 149/month:</strong> Unlimited practice tests (short wait between attempts) + full performance analysis of weak and strong topics.</p>
+                <p style="margin: 0 0 10px; font-size: 15px;"><strong style="color:#c2410c;">Gold - Rs. 349/3 months:</strong> Everything in Silver, plus All India Live Test credits each month.</p>
+                <p style="margin: 0; font-size: 15px;"><strong style="color:#c2410c;">Diamond - Rs. 599/6 months:</strong> Everything in Gold, plus more Live Test credits and personal guidance.</p>
+              </div>
+
+              <p style="font-size: 16px; margin: 0 0 25px;">If you'd like your child to get unlimited practice and a clear picture of where to focus their revision, you can view full plan details and upgrade below.</p>
+
+              <!-- CTA Button -->
+              <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <a href="https://olympiadquiz.org/pricing.html?utm_source=email&utm_medium=lifecycle&utm_campaign=free_tier_first_test" target="_blank" style="background-color: #ff6b00; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block;">
+                      View Plans &amp; Upgrade
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="font-size: 14px; color: #64748b; margin-top: 30px;">Thanks for being part of OlympiadQuiz.</p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                &copy; 2026 OlympiadQuiz. All rights reserved.<br>
+                You're receiving this because your account is registered with OlympiadQuiz. If you'd prefer not to receive emails like this, reply to this email and let us know.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>`;
+      sendSmtpEmail.textContent = `Hi,
+
+Your child has just completed a test on OlympiadQuiz - and we can show you exactly where they're doing well, and which topics need more attention.
+
+On the Free plan, test scores are visible, but the detailed topic-by-topic breakdown of strengths and weak areas is a feature of our paid plans:
+
+- Silver - Rs. 149/month: Unlimited practice tests (short wait between attempts) + full performance analysis of weak and strong topics.
+- Gold - Rs. 349/3 months: Everything in Silver, plus All India Live Test credits each month.
+- Diamond - Rs. 599/6 months: Everything in Gold, plus more Live Test credits and personal guidance.
+
+View plans and upgrade: https://olympiadquiz.org/pricing.html?utm_source=email&utm_medium=lifecycle&utm_campaign=free_tier_first_test
+
+Thanks for being part of OlympiadQuiz.
+
+You're receiving this because your account is registered with OlympiadQuiz. If you'd prefer not to receive emails like this, reply to this email and let us know.`;
+
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+      console.log(`Free-tier upgrade email sent to: ${email}`);
+
+      await userRef.update({
+        freeTierUpgradeEmailSent: true,
+        freeTierUpgradeEmailSentAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    } catch (error) {
+      console.error(`Error in sendFreeTierUpgradeEmail for result ${resultId}:`, error.message);
+    }
+  }
+);
+
 // =================================================================
 // 7. BULK SMS SYSTEM (BREVO)
 // =================================================================
