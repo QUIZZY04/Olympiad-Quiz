@@ -691,6 +691,10 @@ exports.sendResultEmail = onDocumentWritten(
   }
 );
 
+// Kill switch - flip to false and redeploy to instantly stop this trigger
+// from sending any further emails, without touching the logic below.
+const ENABLE_FREE_TIER_UPGRADE_EMAIL = true;
+
 /**
  * Triggered once when a new document is created in 'leaderboard' (i.e. a
  * test attempt). Sends a one-time promotional "upgrade" email to free-tier
@@ -707,6 +711,10 @@ exports.sendFreeTierUpgradeEmail = onDocumentCreated(
     secrets: ["BREVO_API_KEY"],
   },
   async (event) => {
+    if (!ENABLE_FREE_TIER_UPGRADE_EMAIL) {
+      return;
+    }
+
     const resultId = event.params.resultId;
     const afterData = event.data?.data();
     const uid = afterData?.uid;
