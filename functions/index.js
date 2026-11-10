@@ -1973,6 +1973,9 @@ const premiumOneTimePayment = require("./premium/oneTimePayment");
 exports.createPremiumOrder = premiumOneTimePayment.createPremiumOrder;
 exports.verifyPremiumOrderPayment = premiumOneTimePayment.verifyPremiumOrderPayment;
 
+const performanceInsights = require("./premium/performanceInsights");
+exports.getPerformanceInsights = performanceInsights.getPerformanceInsights;
+
 exports.claimIncludedLiveTest = liveTestCredits.claimIncludedLiveTest;
 
 const userModeration = require("./userModeration");
