@@ -125,7 +125,7 @@
     .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
     .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
     .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; text-decoration: none; }
     .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
     .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(67,56,202,.35); }
     .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
@@ -453,24 +453,24 @@
     <div class="breadcrumb-label">Class 11 English Core Chapters (NCERT Rationalised 2026–27)</div>
     <div class="breadcrumb-chips">
       <!-- Hornbill Prose -->
-      <div class="bc-chip active" onclick="showChapter(1)" data-ch="1"><span class="bc-n">1</span> Portrait of a Lady</div>
-      <div class="bc-chip" onclick="showChapter(2)" data-ch="2"><span class="bc-n">2</span> We're Not Afraid to Die</div>
-      <div class="bc-chip" onclick="showChapter(3)" data-ch="3"><span class="bc-n">3</span> Discovering Tut</div>
-      <div class="bc-chip" onclick="showChapter(4)" data-ch="4"><span class="bc-n">4</span> The Adventure</div>
-      <div class="bc-chip" onclick="showChapter(5)" data-ch="5"><span class="bc-n">5</span> Silk Road</div>
+      <a class="bc-chip active" href="chapters-c11e/ch1.html" onclick="showChapter(1); return false;" data-ch="1"><span class="bc-n">1</span> Portrait of a Lady</a>
+      <a class="bc-chip" href="chapters-c11e/ch2.html" onclick="showChapter(2); return false;" data-ch="2"><span class="bc-n">2</span> We're Not Afraid to Die</a>
+      <a class="bc-chip" href="chapters-c11e/ch3.html" onclick="showChapter(3); return false;" data-ch="3"><span class="bc-n">3</span> Discovering Tut</a>
+      <a class="bc-chip" href="chapters-c11e/ch4.html" onclick="showChapter(4); return false;" data-ch="4"><span class="bc-n">4</span> The Adventure</a>
+      <a class="bc-chip" href="chapters-c11e/ch5.html" onclick="showChapter(5); return false;" data-ch="5"><span class="bc-n">5</span> Silk Road</a>
       <!-- Hornbill Poetry -->
-      <div class="bc-chip" onclick="showChapter(6)" data-ch="6"><span class="bc-n">6</span> A Photograph</div>
-      <div class="bc-chip" onclick="showChapter(7)" data-ch="7"><span class="bc-n">7</span> Laburnum Top</div>
-      <div class="bc-chip" onclick="showChapter(8)" data-ch="8"><span class="bc-n">8</span> Voice of the Rain</div>
-      <div class="bc-chip" onclick="showChapter(9)" data-ch="9"><span class="bc-n">9</span> Childhood</div>
-      <div class="bc-chip" onclick="showChapter(10)" data-ch="10"><span class="bc-n">10</span> Father to Son</div>
+      <a class="bc-chip" href="chapters-c11e/ch6.html" onclick="showChapter(6); return false;" data-ch="6"><span class="bc-n">6</span> A Photograph</a>
+      <a class="bc-chip" href="chapters-c11e/ch7.html" onclick="showChapter(7); return false;" data-ch="7"><span class="bc-n">7</span> Laburnum Top</a>
+      <a class="bc-chip" href="chapters-c11e/ch8.html" onclick="showChapter(8); return false;" data-ch="8"><span class="bc-n">8</span> Voice of the Rain</a>
+      <a class="bc-chip" href="chapters-c11e/ch9.html" onclick="showChapter(9); return false;" data-ch="9"><span class="bc-n">9</span> Childhood</a>
+      <a class="bc-chip" href="chapters-c11e/ch10.html" onclick="showChapter(10); return false;" data-ch="10"><span class="bc-n">10</span> Father to Son</a>
       <!-- Snapshots -->
-      <div class="bc-chip" onclick="showChapter(11)" data-ch="11"><span class="bc-n">11</span> White Horse</div>
-      <div class="bc-chip" onclick="showChapter(12)" data-ch="12"><span class="bc-n">12</span> The Address</div>
-      <div class="bc-chip" onclick="showChapter(13)" data-ch="13"><span class="bc-n">13</span> Einstein at School</div>
-      <div class="bc-chip" onclick="showChapter(14)" data-ch="14"><span class="bc-n">14</span> Mother's Day</div>
-      <div class="bc-chip" onclick="showChapter(15)" data-ch="15"><span class="bc-n">15</span> Birth</div>
-    </div>
+      <a class="bc-chip" href="chapters-c11e/ch11.html" onclick="showChapter(11); return false;" data-ch="11"><span class="bc-n">11</span> White Horse</a>
+      <a class="bc-chip" href="chapters-c11e/ch12.html" onclick="showChapter(12); return false;" data-ch="12"><span class="bc-n">12</span> The Address</a>
+      <a class="bc-chip" href="chapters-c11e/ch13.html" onclick="showChapter(13); return false;" data-ch="13"><span class="bc-n">13</span> Einstein at School</a>
+      <a class="bc-chip" href="chapters-c11e/ch14.html" onclick="showChapter(14); return false;" data-ch="14"><span class="bc-n">14</span> Mother's Day</a>
+      <a class="bc-chip" href="chapters-c11e/ch15.html" onclick="showChapter(15); return false;" data-ch="15"><span class="bc-n">15</span> Birth</a>
+    </a>
   </div>
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
@@ -547,7 +547,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#4338ca; letter-spacing:0.05em; margin:16px 0 8px;">Hornbill — Prose</div>
       <ul class="chapter-nav" id="chapterNavListProse">
         <li>
-          <a onclick="showChapter(1)" id="nav-ch1" class="active">
+          <a href="chapters-c11e/ch1.html" onclick="showChapter(1); return false;" id="nav-ch1" class="active">
             <span class="ch-num">1</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 1: The Portrait of a Lady</div>
@@ -556,7 +556,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(2)" id="nav-ch2">
+          <a href="chapters-c11e/ch2.html" onclick="showChapter(2); return false;" id="nav-ch2">
             <span class="ch-num">2</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 2: We're Not Afraid to Die...</div>
@@ -565,7 +565,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(3)" id="nav-ch3">
+          <a href="chapters-c11e/ch3.html" onclick="showChapter(3); return false;" id="nav-ch3">
             <span class="ch-num">3</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 3: Discovering Tut</div>
@@ -574,7 +574,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(4)" id="nav-ch4">
+          <a href="chapters-c11e/ch4.html" onclick="showChapter(4); return false;" id="nav-ch4">
             <span class="ch-num">4</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 4: The Adventure</div>
@@ -583,7 +583,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(5)" id="nav-ch5">
+          <a href="chapters-c11e/ch5.html" onclick="showChapter(5); return false;" id="nav-ch5">
             <span class="ch-num">5</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 5: Silk Road</div>
@@ -596,7 +596,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#4338ca; letter-spacing:0.05em; margin:20px 0 8px;">Hornbill — Poetry</div>
       <ul class="chapter-nav" id="chapterNavListPoetry">
         <li>
-          <a onclick="showChapter(6)" id="nav-ch6">
+          <a href="chapters-c11e/ch6.html" onclick="showChapter(6); return false;" id="nav-ch6">
             <span class="ch-num">6</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 6: A Photograph</div>
@@ -605,7 +605,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(7)" id="nav-ch7">
+          <a href="chapters-c11e/ch7.html" onclick="showChapter(7); return false;" id="nav-ch7">
             <span class="ch-num">7</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 7: The Laburnum Top</div>
@@ -614,7 +614,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(8)" id="nav-ch8">
+          <a href="chapters-c11e/ch8.html" onclick="showChapter(8); return false;" id="nav-ch8">
             <span class="ch-num">8</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 8: The Voice of the Rain</div>
@@ -623,7 +623,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(9)" id="nav-ch9">
+          <a href="chapters-c11e/ch9.html" onclick="showChapter(9); return false;" id="nav-ch9">
             <span class="ch-num">9</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 9: Childhood</div>
@@ -632,7 +632,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(10)" id="nav-ch10">
+          <a href="chapters-c11e/ch10.html" onclick="showChapter(10); return false;" id="nav-ch10">
             <span class="ch-num">10</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 10: Father to Son</div>
@@ -645,7 +645,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#4338ca; letter-spacing:0.05em; margin:20px 0 8px;">Snapshots — Supplementary</div>
       <ul class="chapter-nav" id="chapterNavListSnapshots">
         <li>
-          <a onclick="showChapter(11)" id="nav-ch11">
+          <a href="chapters-c11e/ch11.html" onclick="showChapter(11); return false;" id="nav-ch11">
             <span class="ch-num">11</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 11: Summer of Beautiful White Horse</div>
@@ -654,7 +654,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(12)" id="nav-ch12">
+          <a href="chapters-c11e/ch12.html" onclick="showChapter(12); return false;" id="nav-ch12">
             <span class="ch-num">12</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 12: The Address</div>
@@ -663,7 +663,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(13)" id="nav-ch13">
+          <a href="chapters-c11e/ch13.html" onclick="showChapter(13); return false;" id="nav-ch13">
             <span class="ch-num">13</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 13: Albert Einstein at School</div>
@@ -672,7 +672,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(14)" id="nav-ch14">
+          <a href="chapters-c11e/ch14.html" onclick="showChapter(14); return false;" id="nav-ch14">
             <span class="ch-num">14</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 14: Mother's Day</div>
@@ -681,7 +681,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(15)" id="nav-ch15">
+          <a href="chapters-c11e/ch15.html" onclick="showChapter(15); return false;" id="nav-ch15">
             <span class="ch-num">15</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 15: Birth</div>
