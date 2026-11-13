@@ -72,3 +72,8 @@ node_modules/
 scripts/backups/
 *.bak
 *.bak.*
+*-aryan.*
+*-aryan
+*aryan.html
+*aryan.js
+*aryan.json

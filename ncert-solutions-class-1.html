@@ -18,14 +18,6 @@
   <meta property="og:description" content="100% complete chapter-wise NCERT solutions for Class 1 Maths, English, Hindi, and EVS covering both NEP 2020 and Classic CBSE textbooks across 117 chapters.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@OlympiadQuiz">
-  <meta name="twitter:title" content="NCERT Solutions for Class 1 All Subjects CBSE 2026-27 | OlympiadQuiz">
-  <meta name="twitter:description" content="Complete textbook solutions for Class 1 Maths, English, Hindi, and EVS across 8 official NCERT textbooks with step-by-step marking rubrics.">
-  <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-
   <!-- Schema.org BreadcrumbList -->
   <script type="application/ld+json">
   {
@@ -35,60 +27,6 @@
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
       { "@type": "ListItem", "position": 3, "name": "Class 1 Hub", "item": "https://olympiadquiz.org/ncert-solutions-class-1.html" }
-    ]
-  }
-  </script>
-
-  <!-- Schema.org LearningResource -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LearningResource",
-    "name": "NCERT Solutions for Class 1 All Subjects CBSE 2026-27",
-    "description": "Comprehensive NCERT Solutions for Class 1 covering Mathematics (Joyful Mathematics & Math-Magic), English (Mridang & Marigold), Hindi (Sarangi & Rimjhim), and Environmental Studies (Our Living World & Surroundings).",
-    "educationalLevel": "CBSE Class 1",
-    "learningResourceType": "Textbook Solutions Hub",
-    "inLanguage": ["en", "hi"],
-    "isAccessibleForFree": true,
-    "publisher": {
-      "@type": "Organization",
-      "name": "OlympiadQuiz",
-      "url": "https://olympiadquiz.org/",
-      "logo": { "@type": "ImageObject", "url": "https://olympiadquiz.org/favicon.png" }
-    }
-  }
-  </script>
-
-  <!-- Schema.org FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Which textbooks and subjects are covered in Class 1 NCERT Solutions?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "All 4 core subjects are 100% covered across both NEP 2020 (New NCF-FS) and Classic CBSE tracks: Mathematics (Joyful Mathematics & Math-Magic), English (Mridang & Marigold), Hindi (Sarangi & Rimjhim), and EVS (Our Living World & Surroundings), totaling 8 textbooks and 117 standalone chapters."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are the Class 1 solutions updated for the latest academic session 2026-27?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, all solutions are strictly aligned with the latest CBSE 2026-27 curriculum, NCF-FS guidelines, official step-marking schemes, and NEP 2020 competency-based questions."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are Class 1 NCERT solutions free to access?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, 100% free with no login or payment required. All chapters and questions are accessible directly online on OlympiadQuiz."
-        }
-      }
     ]
   }
   </script>
@@ -202,20 +140,49 @@
     .hub-footer { background:#ffffff; border-top:1px solid var(--border); padding:32px 24px; text-align:center; font-size:0.85rem; color:var(--text-muted); }
     .hub-footer a { color:var(--primary); font-weight:600; }
   </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
   <!-- Top Navbar -->
-  <header class="top-navbar">
-    <a href="index.html" class="brand-logo">
-      <span>⚡ OlympiadQuiz</span>
-      <span class="brand-badge">CBSE 2026-27</span>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
     </a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="ncert-solutions.html">NCERT Solutions</a>
-      <a href="dashboard.html">Dashboard</a>
-    </nav>
-  </header>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
+        </div>
+      </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- Breadcrumbs -->
   <nav class="breadcrumb-bar" aria-label="Breadcrumb">
@@ -333,5 +300,6 @@
     <p>© 2026 OlympiadQuiz. Official NCERT Class 1 Academic Portal. Aligned with NEP 2020 / NCF-FS and CBSE 2026-27 Guidelines.</p>
     <p style="margin-top:6px;"><a href="ncert-solutions.html">Explore All Classes (1 to 10)</a> • <a href="dashboard.html">Student Dashboard</a></p>
   </footer>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

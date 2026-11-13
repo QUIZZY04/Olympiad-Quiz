@@ -544,9 +544,11 @@
   .ncert-bc-switch { overflow-x: auto; width: 100%; padding-bottom: 2px; }
 }
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 <div class="top-progress" id="progressBar"></div>
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="navbar-logo">
@@ -555,30 +557,31 @@
     </a>
     <div class="navbar-links" id="navLinks">
       <a href="index.html" class="nav-link">Home</a>
-      <div class="nav-dropdown" style="position:relative;">
-        <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-6.html" style="font-weight:700;color:#7c3aed;">Class 6 Solutions (All 6 Subjects) ✨</a>
-                              <a href="ncert-solutions-class-10-social-science.html" style="font-weight:700;color:#0d9488;">Class 10 Social Science 🏆</a>
-          <a href="ncert-solutions-class-9-social-science.html" style="font-weight:700;color:#0d9488;">Class 9 Social Science 🌍</a>
-          <a href="ncert-solutions-class-9-hindi.html" style="font-weight:700;color:#ea580c;">Class 9 Hindi 🇮🇳</a>
-          <a href="ncert-solutions-class-9-maths.html" style="font-weight:700;color:#4f46e5;background:#eef2ff;">Class 9 Maths (Ganita Manjari) ✨ (Active)</a>
-          <a href="ncert-solutions-class-9-science.html" style="font-weight:700;color:#059669;">Class 9 Science 🔬 <span style="background:#059669;color:white;font-size:0.62rem;padding:1px 5px;border-radius:4px;margin-left:4px;">NEW</span></a>
-          <a href="ncert-solutions-class-9-english.html" style="color:#0284c7;font-weight:700;">Class 9 English 📖 <span style="background:#0284c7;color:white;font-size:0.62rem;padding:1px 5px;border-radius:4px;margin-left:4px;">NEW</span></a>
-          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths (Ganita Prakash)</a>
-          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
-          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
-          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
-          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
-          <a href="ncert-solutions-class-8-sanskrit.html">Class 8 Sanskrit</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
       <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -5475,5 +5478,6 @@ Put y = &#8722;1: x = 6&#8722;3 = 3 &#8594; Solution (3, &#8722;1)</div>
     });
   }
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

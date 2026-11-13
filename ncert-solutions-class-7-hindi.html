@@ -456,10 +456,12 @@
     }
   
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 <div class="top-progress" id="progressBar"></div>
 
+<!-- NAVBAR -->
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
@@ -472,26 +474,28 @@
       <div class="nav-dropdown">
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#ea580c;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-10-maths.html">Class 10 Maths</a>
-          <a href="ncert-solutions-class-10-social-science.html">Class 10 Social Science</a>
-          <a href="ncert-solutions-class-9-hindi.html">Class 9 Hindi</a>
-          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
-          <a href="ncert-solutions-class-7-maths.html">Class 7 Maths</a>
-          <a href="ncert-solutions-class-7-science.html">Class 7 Science</a>
-          <a href="ncert-solutions-class-7-english.html">Class 7 English</a>
-          <a href="ncert-solutions-class-7-sst.html">Class 7 Social Science</a>
-          <a href="ncert-solutions-class-7-hindi.html" style="font-weight:700;color:#ea580c;background:#fff7ed;">Class 7 Hindi 🇮🇳</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
-      <a href="study.html" class="nav-link">Study Material</a>
-      <a href="chapterwise.html" class="nav-link">Chapterwise Test</a>
-      <a href="mock.html" class="nav-link">Mock Test</a>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
       <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <button class="navbar-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -12667,5 +12671,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>
