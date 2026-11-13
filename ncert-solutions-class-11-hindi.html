@@ -125,7 +125,7 @@
     .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
     .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
     .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; text-decoration: none; }
     .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
     .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(194,65,12,.35); }
     .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
@@ -462,7 +462,9 @@
   </section>
 
   <!-- Desktop Breadcrumb Chips -->
+
   
+
 
   <!-- Sticky Mobile Dropdown Control Bar -->
   <div class="mobile-chapter-bar" id="mobileChapterBar">
@@ -545,7 +547,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#c2410c; letter-spacing:0.05em; margin:16px 0 8px;">आरोह भाग - 1 (गद्य खंड)</div>
       <ul class="chapter-nav" id="chapterNavListGadya">
         <li>
-          <a onclick="showChapter(1)" id="nav-ch1" class="active">
+          <a href="chapters-c11h/ch1.html" onclick="showChapter(1); return false;" id="nav-ch1" class="active">
             <span class="ch-num">1</span>
             <div style="flex:1;">
               <div style="font-weight:700;">नमक का दारोगा</div>
@@ -554,7 +556,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(2)" id="nav-ch2">
+          <a href="chapters-c11h/ch2.html" onclick="showChapter(2); return false;" id="nav-ch2">
             <span class="ch-num">2</span>
             <div style="flex:1;">
               <div style="font-weight:700;">मियाँ नसीरुद्दीन</div>
@@ -563,7 +565,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(3)" id="nav-ch3">
+          <a href="chapters-c11h/ch3.html" onclick="showChapter(3); return false;" id="nav-ch3">
             <span class="ch-num">3</span>
             <div style="flex:1;">
               <div style="font-weight:700;">अपू के साथ ढाई साल</div>
@@ -572,7 +574,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(4)" id="nav-ch4">
+          <a href="chapters-c11h/ch4.html" onclick="showChapter(4); return false;" id="nav-ch4">
             <span class="ch-num">4</span>
             <div style="flex:1;">
               <div style="font-weight:700;">विदाई-संभाषण</div>
@@ -581,7 +583,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(5)" id="nav-ch5">
+          <a href="chapters-c11h/ch5.html" onclick="showChapter(5); return false;" id="nav-ch5">
             <span class="ch-num">5</span>
             <div style="flex:1;">
               <div style="font-weight:700;">गलता लोहा</div>
@@ -590,7 +592,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(6)" id="nav-ch6">
+          <a href="chapters-c11h/ch6.html" onclick="showChapter(6); return false;" id="nav-ch6">
             <span class="ch-num">6</span>
             <div style="flex:1;">
               <div style="font-weight:700;">रजनी</div>
@@ -599,7 +601,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(7)" id="nav-ch7">
+          <a href="chapters-c11h/ch7.html" onclick="showChapter(7); return false;" id="nav-ch7">
             <span class="ch-num">7</span>
             <div style="flex:1;">
               <div style="font-weight:700;">जामुन का पेड़</div>
@@ -608,7 +610,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(8)" id="nav-ch8">
+          <a href="chapters-c11h/ch8.html" onclick="showChapter(8); return false;" id="nav-ch8">
             <span class="ch-num">8</span>
             <div style="flex:1;">
               <div style="font-weight:700;">भारत माता</div>
@@ -621,7 +623,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#c2410c; letter-spacing:0.05em; margin:20px 0 8px;">आरोह भाग - 1 (काव्य खंड)</div>
       <ul class="chapter-nav" id="chapterNavListKavya">
         <li>
-          <a onclick="showChapter(9)" id="nav-ch9">
+          <a href="chapters-c11h/ch9.html" onclick="showChapter(9); return false;" id="nav-ch9">
             <span class="ch-num">9</span>
             <div style="flex:1;">
               <div style="font-weight:700;">कबीर (पद 1)</div>
@@ -630,7 +632,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(10)" id="nav-ch10">
+          <a href="chapters-c11h/ch10.html" onclick="showChapter(10); return false;" id="nav-ch10">
             <span class="ch-num">10</span>
             <div style="flex:1;">
               <div style="font-weight:700;">मीरा (पद 1)</div>
@@ -639,7 +641,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(11)" id="nav-ch11">
+          <a href="chapters-c11h/ch11.html" onclick="showChapter(11); return false;" id="nav-ch11">
             <span class="ch-num">11</span>
             <div style="flex:1;">
               <div style="font-weight:700;">घर की याद</div>
@@ -648,7 +650,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(12)" id="nav-ch12">
+          <a href="chapters-c11h/ch12.html" onclick="showChapter(12); return false;" id="nav-ch12">
             <span class="ch-num">12</span>
             <div style="flex:1;">
               <div style="font-weight:700;">चंपा काले काले अच्छर...</div>
@@ -657,7 +659,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(13)" id="nav-ch13">
+          <a href="chapters-c11h/ch13.html" onclick="showChapter(13); return false;" id="nav-ch13">
             <span class="ch-num">13</span>
             <div style="flex:1;">
               <div style="font-weight:700;">गज़ल</div>
@@ -666,7 +668,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(14)" id="nav-ch14">
+          <a href="chapters-c11h/ch14.html" onclick="showChapter(14); return false;" id="nav-ch14">
             <span class="ch-num">14</span>
             <div style="flex:1;">
               <div style="font-weight:700;">हे भूख! मत मचल...</div>
@@ -675,7 +677,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(15)" id="nav-ch15">
+          <a href="chapters-c11h/ch15.html" onclick="showChapter(15); return false;" id="nav-ch15">
             <span class="ch-num">15</span>
             <div style="flex:1;">
               <div style="font-weight:700;">सबसे खतरनाक</div>
@@ -684,7 +686,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(16)" id="nav-ch16">
+          <a href="chapters-c11h/ch16.html" onclick="showChapter(16); return false;" id="nav-ch16">
             <span class="ch-num">16</span>
             <div style="flex:1;">
               <div style="font-weight:700;">आओ, मिलकर बचाएँ</div>
@@ -697,7 +699,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#c2410c; letter-spacing:0.05em; margin:20px 0 8px;">वितान भाग - 1</div>
       <ul class="chapter-nav" id="chapterNavListVitan">
         <li>
-          <a onclick="showChapter(17)" id="nav-ch17">
+          <a href="chapters-c11h/ch17.html" onclick="showChapter(17); return false;" id="nav-ch17">
             <span class="ch-num">17</span>
             <div style="flex:1;">
               <div style="font-weight:700;">लता मंगेशकर</div>
@@ -706,7 +708,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(18)" id="nav-ch18">
+          <a href="chapters-c11h/ch18.html" onclick="showChapter(18); return false;" id="nav-ch18">
             <span class="ch-num">18</span>
             <div style="flex:1;">
               <div style="font-weight:700;">राजस्थान की रजत बूँदें</div>
@@ -715,7 +717,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(19)" id="nav-ch19">
+          <a href="chapters-c11h/ch19.html" onclick="showChapter(19); return false;" id="nav-ch19">
             <span class="ch-num">19</span>
             <div style="flex:1;">
               <div style="font-weight:700;">आलो-आँधारि</div>
@@ -724,7 +726,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(20)" id="nav-ch20">
+          <a href="chapters-c11h/ch20.html" onclick="showChapter(20); return false;" id="nav-ch20">
             <span class="ch-num">20</span>
             <div style="flex:1;">
               <div style="font-weight:700;">भारतीय कलाएँ</div>

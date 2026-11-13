@@ -1314,7 +1314,7 @@ onAuthStateChanged(auth, async(user)=>{
 
     if (gateResult && !gateResult.allowed) {
         document.getElementById('fullscreenOverlay').style.display = 'none';
-        showBlockedModal(gateResult.unlocksAt, (tier) => startUpgradeCheckout(app, tier), () => window.location.replace("dashboard.html"), {
+        showBlockedModal(gateResult.unlocksAt, (tier, autoPay) => startUpgradeCheckout(app, tier, undefined, autoPay), () => window.location.replace("dashboard.html"), {
             db, uid: user.uid,
             // Fires the instant isPremium flips true (live listener) OR
             // the countdown naturally hits zero - reload re-runs the

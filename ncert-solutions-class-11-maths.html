@@ -187,7 +187,7 @@
     .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
     .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
     .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; text-decoration: none; }
     .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
     .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(37,99,235,.35); }
     .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
@@ -548,6 +548,8 @@
 <!-- Chapter Fast Selector Chips -->
 
 
+
+
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- Main Layout -->
@@ -616,7 +618,7 @@
     <ul class="chapter-nav" id="chapterNav">
       
         <li>
-          <a onclick="showChapter(1)" id="nav-ch1" class="active">
+          <a href="chapters-c11m/ch1.html" onclick="showChapter(1); return false;" id="nav-ch1" class="active">
             <span class="ch-num">1</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 1: Sets</div>
@@ -625,7 +627,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(2)" id="nav-ch2" >
+          <a href="chapters-c11m/ch2.html" onclick="showChapter(2); return false;" id="nav-ch2" >
             <span class="ch-num">2</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 2: Relations and Functions</div>
@@ -634,7 +636,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(3)" id="nav-ch3" >
+          <a href="chapters-c11m/ch3.html" onclick="showChapter(3); return false;" id="nav-ch3" >
             <span class="ch-num">3</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 3: Trigonometric Functions</div>
@@ -643,7 +645,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(4)" id="nav-ch4" >
+          <a href="chapters-c11m/ch4.html" onclick="showChapter(4); return false;" id="nav-ch4" >
             <span class="ch-num">4</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 4: Complex Numbers & Quadratic Equations</div>
@@ -652,7 +654,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(5)" id="nav-ch5" >
+          <a href="chapters-c11m/ch5.html" onclick="showChapter(5); return false;" id="nav-ch5" >
             <span class="ch-num">5</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 5: Linear Inequalities</div>
@@ -661,7 +663,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(6)" id="nav-ch6" >
+          <a href="chapters-c11m/ch6.html" onclick="showChapter(6); return false;" id="nav-ch6" >
             <span class="ch-num">6</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 6: Permutations and Combinations</div>
@@ -670,7 +672,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(7)" id="nav-ch7" >
+          <a href="chapters-c11m/ch7.html" onclick="showChapter(7); return false;" id="nav-ch7" >
             <span class="ch-num">7</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 7: Binomial Theorem</div>
@@ -679,7 +681,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(8)" id="nav-ch8" >
+          <a href="chapters-c11m/ch8.html" onclick="showChapter(8); return false;" id="nav-ch8" >
             <span class="ch-num">8</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 8: Sequences and Series</div>
@@ -688,7 +690,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(9)" id="nav-ch9" >
+          <a href="chapters-c11m/ch9.html" onclick="showChapter(9); return false;" id="nav-ch9" >
             <span class="ch-num">9</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 9: Straight Lines</div>
@@ -697,7 +699,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(10)" id="nav-ch10" >
+          <a href="chapters-c11m/ch10.html" onclick="showChapter(10); return false;" id="nav-ch10" >
             <span class="ch-num">10</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 10: Conic Sections</div>
@@ -706,7 +708,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(11)" id="nav-ch11" >
+          <a href="chapters-c11m/ch11.html" onclick="showChapter(11); return false;" id="nav-ch11" >
             <span class="ch-num">11</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 11: Introduction to 3D Geometry</div>
@@ -715,7 +717,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(12)" id="nav-ch12" >
+          <a href="chapters-c11m/ch12.html" onclick="showChapter(12); return false;" id="nav-ch12" >
             <span class="ch-num">12</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 12: Limits and Derivatives</div>
@@ -724,7 +726,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(13)" id="nav-ch13" >
+          <a href="chapters-c11m/ch13.html" onclick="showChapter(13); return false;" id="nav-ch13" >
             <span class="ch-num">13</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 13: Statistics</div>
@@ -733,7 +735,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(14)" id="nav-ch14" >
+          <a href="chapters-c11m/ch14.html" onclick="showChapter(14); return false;" id="nav-ch14" >
             <span class="ch-num">14</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 14: Probability</div>

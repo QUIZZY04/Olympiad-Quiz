@@ -207,6 +207,18 @@
     .faq-item.open .faq-answer { padding-bottom: 18px; }
 
     .pricing-note { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+
+    .pg-autopay-toggle {
+      display: flex; align-items: flex-start; gap: 12px; text-align: left;
+      max-width: 640px; margin: 0 auto 20px; padding: 14px 18px;
+      background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
+      font-size: 0.86rem; color: var(--text); cursor: pointer; line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0,0,0,.03);
+    }
+    .pg-autopay-toggle input {
+      flex-shrink: 0; margin-top: 3px; width: 18px; height: 18px;
+      accent-color: var(--brand); cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -351,7 +363,13 @@
             <button class="pg-plan-btn pg-plan-btn-diamond" id="pgDiamondBtn">Choose Diamond</button>
         </div>
     </div>
-    <p class="pricing-note">Prices in INR, auto-renews via Razorpay autopay (UPI, card or netbanking). Cancel anytime - premium access continues until the end of your current billing period.</p>
+
+    <label class="pg-autopay-toggle">
+        <input type="checkbox" id="pgAutoPayCheckbox" checked>
+        <span><strong>Enable Auto-Pay</strong> - your plan renews automatically via UPI/card mandate each billing cycle, so you never lose access. Uncheck this for a <strong>one-time payment</strong> instead - no recurring charge, but your plan simply expires at the end of this period unless you pay again.</span>
+    </label>
+
+    <p class="pricing-note">Prices in INR via Razorpay (UPI, card or netbanking). With Auto-Pay on, your plan renews automatically each cycle - cancel anytime and access continues until the current period ends. With Auto-Pay off, it's a single one-time payment with no further charges and no auto-renewal.</p>
 
     <div class="pricing-faq">
         <h2>Frequently Asked Questions</h2>
@@ -438,13 +456,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+function getAutoPay() {
+    return document.getElementById("pgAutoPayCheckbox")?.checked !== false;
+}
+
 function handleUpgradeClick(tier) {
+    const autoPay = getAutoPay();
     if (!auth.currentUser) {
-        sessionStorage.setItem("redirectAfterLogin", "pricing.html?tier=" + tier);
+        // Carries the Auto-Pay choice through the login redirect so it isn't
+        // silently reset to the checkbox's default when the user comes back.
+        sessionStorage.setItem("redirectAfterLogin", "pricing.html?tier=" + tier + "&autopay=" + (autoPay ? "1" : "0"));
         window.location.href = "login.html";
         return;
     }
-    startUpgradeCheckout(app, tier);
+    startUpgradeCheckout(app, tier, undefined, autoPay);
 }
 
 document.getElementById("pgSilverBtn").onclick = () => handleUpgradeClick("silver");
@@ -456,7 +481,11 @@ onAuthStateChanged(auth, (user) => {
         const params = new URLSearchParams(window.location.search);
         const tier = params.get("tier");
         if (tier && ["silver", "gold", "diamond"].includes(tier)) {
-            startUpgradeCheckout(app, tier);
+            const autoPayParam = params.get("autopay");
+            const autoPay = autoPayParam === null ? true : autoPayParam === "1";
+            const checkbox = document.getElementById("pgAutoPayCheckbox");
+            if (checkbox) checkbox.checked = autoPay;
+            startUpgradeCheckout(app, tier, undefined, autoPay);
         }
     }
 });

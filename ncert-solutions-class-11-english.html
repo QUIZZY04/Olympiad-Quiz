@@ -125,7 +125,7 @@
     .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
     .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
     .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; text-decoration: none; }
     .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
     .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(67,56,202,.35); }
     .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
@@ -463,7 +463,9 @@
   </header>
 
   <!-- Breadcrumb Bar & Quick Chips (Desktop) -->
+
   
+
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
   <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
@@ -539,7 +541,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#4338ca; letter-spacing:0.05em; margin:16px 0 8px;">Hornbill — Prose</div>
       <ul class="chapter-nav" id="chapterNavListProse">
         <li>
-          <a onclick="showChapter(1)" id="nav-ch1" class="active">
+          <a href="chapters-c11e/ch1.html" onclick="showChapter(1); return false;" id="nav-ch1" class="active">
             <span class="ch-num">1</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 1: The Portrait of a Lady</div>
@@ -548,7 +550,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(2)" id="nav-ch2">
+          <a href="chapters-c11e/ch2.html" onclick="showChapter(2); return false;" id="nav-ch2">
             <span class="ch-num">2</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 2: We're Not Afraid to Die...</div>
@@ -557,7 +559,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(3)" id="nav-ch3">
+          <a href="chapters-c11e/ch3.html" onclick="showChapter(3); return false;" id="nav-ch3">
             <span class="ch-num">3</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 3: Discovering Tut</div>
@@ -566,7 +568,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(4)" id="nav-ch4">
+          <a href="chapters-c11e/ch4.html" onclick="showChapter(4); return false;" id="nav-ch4">
             <span class="ch-num">4</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 4: The Adventure</div>
@@ -575,7 +577,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(5)" id="nav-ch5">
+          <a href="chapters-c11e/ch5.html" onclick="showChapter(5); return false;" id="nav-ch5">
             <span class="ch-num">5</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 5: Silk Road</div>
@@ -588,7 +590,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#4338ca; letter-spacing:0.05em; margin:20px 0 8px;">Hornbill — Poetry</div>
       <ul class="chapter-nav" id="chapterNavListPoetry">
         <li>
-          <a onclick="showChapter(6)" id="nav-ch6">
+          <a href="chapters-c11e/ch6.html" onclick="showChapter(6); return false;" id="nav-ch6">
             <span class="ch-num">6</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 6: A Photograph</div>
@@ -597,7 +599,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(7)" id="nav-ch7">
+          <a href="chapters-c11e/ch7.html" onclick="showChapter(7); return false;" id="nav-ch7">
             <span class="ch-num">7</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 7: The Laburnum Top</div>
@@ -606,7 +608,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(8)" id="nav-ch8">
+          <a href="chapters-c11e/ch8.html" onclick="showChapter(8); return false;" id="nav-ch8">
             <span class="ch-num">8</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 8: The Voice of the Rain</div>
@@ -615,7 +617,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(9)" id="nav-ch9">
+          <a href="chapters-c11e/ch9.html" onclick="showChapter(9); return false;" id="nav-ch9">
             <span class="ch-num">9</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 9: Childhood</div>
@@ -624,7 +626,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(10)" id="nav-ch10">
+          <a href="chapters-c11e/ch10.html" onclick="showChapter(10); return false;" id="nav-ch10">
             <span class="ch-num">10</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 10: Father to Son</div>
@@ -637,7 +639,7 @@
       <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#4338ca; letter-spacing:0.05em; margin:20px 0 8px;">Snapshots — Supplementary</div>
       <ul class="chapter-nav" id="chapterNavListSnapshots">
         <li>
-          <a onclick="showChapter(11)" id="nav-ch11">
+          <a href="chapters-c11e/ch11.html" onclick="showChapter(11); return false;" id="nav-ch11">
             <span class="ch-num">11</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 11: Summer of Beautiful White Horse</div>
@@ -646,7 +648,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(12)" id="nav-ch12">
+          <a href="chapters-c11e/ch12.html" onclick="showChapter(12); return false;" id="nav-ch12">
             <span class="ch-num">12</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 12: The Address</div>
@@ -655,7 +657,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(13)" id="nav-ch13">
+          <a href="chapters-c11e/ch13.html" onclick="showChapter(13); return false;" id="nav-ch13">
             <span class="ch-num">13</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 13: Albert Einstein at School</div>
@@ -664,7 +666,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(14)" id="nav-ch14">
+          <a href="chapters-c11e/ch14.html" onclick="showChapter(14); return false;" id="nav-ch14">
             <span class="ch-num">14</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 14: Mother's Day</div>
@@ -673,7 +675,7 @@
           </a>
         </li>
         <li>
-          <a onclick="showChapter(15)" id="nav-ch15">
+          <a href="chapters-c11e/ch15.html" onclick="showChapter(15); return false;" id="nav-ch15">
             <span class="ch-num">15</span>
             <div style="flex:1;">
               <div style="font-weight:700;">Ch 15: Birth</div>

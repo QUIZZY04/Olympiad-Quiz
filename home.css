@@ -1430,3 +1430,47 @@ img {
     .how-it-works { padding-top: 44px !important; padding-bottom: 16px !important; }
     .exams-covered { padding-top: 16px !important; padding-bottom: 36px !important; }
 }
+
+/* Homepage NCERT subject cards */
+.home-ncert-card {
+    border-radius: 12px;
+    padding: 14px;
+    text-decoration: none;
+    transition: 0.2s;
+    display: block;
+}
+.home-ncert-card-row { display: flex; align-items: center; gap: 10px; }
+.home-ncert-card-icon { font-size: 1.5rem; }
+.home-ncert-card-title { color: #fff; font-weight: 800; font-size: 0.88rem; }
+.home-ncert-card-subtitle { font-size: 0.72rem; }
+.home-ncert-card-badge {
+    color: #fff;
+    font-size: 0.58rem;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-weight: 800;
+}
+
+.home-ncert-card.theme-orange { background: rgba(234,88,12,0.35); border: 1.5px solid #fb923c; }
+.home-ncert-card.theme-orange .home-ncert-card-subtitle { color: #fed7aa; }
+.home-ncert-card.theme-blue { background: rgba(37,99,235,0.35); border: 1.5px solid #60a5fa; }
+.home-ncert-card.theme-blue .home-ncert-card-subtitle { color: #bfdbfe; }
+.home-ncert-card.theme-green { background: rgba(5,150,105,0.35); border: 1.5px solid #34d399; }
+.home-ncert-card.theme-green .home-ncert-card-subtitle { color: #a7f3d0; }
+.home-ncert-card.theme-rust { background: rgba(194,65,12,0.35); border: 1.5px solid #f97316; }
+.home-ncert-card.theme-rust .home-ncert-card-subtitle { color: #fed7aa; }
+.home-ncert-card.theme-purple { background: rgba(124,58,237,0.35); border: 1.5px solid #a78bfa; }
+.home-ncert-card.theme-purple .home-ncert-card-subtitle { color: #ddd6fe; }
+.home-ncert-card.theme-amber { background: rgba(217,119,6,0.35); border: 1.5px solid #fbbf24; }
+.home-ncert-card.theme-amber .home-ncert-card-subtitle { color: #fde68a; }
+.home-ncert-card.theme-violet { background: rgba(147,51,234,0.35); border: 1.5px solid #c084fc; }
+.home-ncert-card.theme-violet .home-ncert-card-subtitle { color: #f3e8ff; }
+.home-ncert-card.theme-sky { background: rgba(2,132,199,0.35); border: 1.5px solid #38bdf8; }
+.home-ncert-card.theme-sky .home-ncert-card-subtitle { color: #bae6fd; }
+.home-ncert-card.theme-neutral { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+.home-ncert-card.theme-neutral .home-ncert-card-subtitle { color: #a78bfa; }
+
+.home-ncert-card-badge.badge-orange { background: #ea580c; }
+.home-ncert-card-badge.badge-blue { background: #3b82f6; }
+.home-ncert-card-badge.badge-green { background: #10b981; }
+.home-ncert-card-badge.badge-rust { background: #f97316; }

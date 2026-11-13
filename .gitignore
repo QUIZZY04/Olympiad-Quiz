@@ -77,3 +77,6 @@ scripts/backups/
 *aryan.html
 *aryan.js
 *aryan.json
+
+# Local-only quiz-question validation tooling (holds its own .env with API keys)
+validator/

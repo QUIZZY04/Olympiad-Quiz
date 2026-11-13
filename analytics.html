@@ -94,6 +94,24 @@
 .insight-text b { font-size: 13px; color: var(--text); text-transform: capitalize; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
 .insight-text span { font-size: 12px; font-weight: 700; margin-top: 2px; }
 
+/* --- Free-plan insights lock (server already withholds the real data; this is a visual treatment only) --- */
+.insight-locked-group { position: relative; }
+.insight-item.locked { filter: blur(5px); pointer-events: none; user-select: none; }
+.insight-lock-overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; text-align: center; padding: 10px;
+}
+.insight-lock-badge {
+    font-size: 12px; font-weight: 700; color: var(--text); background: var(--surface);
+    padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); box-shadow: var(--shadow-sm, 0 2px 5px rgba(0,0,0,0.05));
+    display: flex; align-items: center; gap: 6px;
+}
+.insight-unlock-btn {
+    margin-top: 16px; width: 100%; padding: 10px; border-radius: 10px; border: none;
+    background: var(--brand); color: #fff; font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.2s;
+}
+.insight-unlock-btn:hover { background: var(--brand-text, #c2410c); }
+
 .btn-view-details {
     background: var(--subtle);
     color: var(--brand);
@@ -251,6 +269,7 @@
       
       <h4 style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); margin-top: 25px; margin-bottom: 10px;">Areas to Improve</h4>
       <div id="liveWeaknesses"></div>
+      <div id="insightsUnlockContainer"></div>
     </div>
   </div>
 
@@ -293,7 +312,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, query, where, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 import { startUpgradeCheckout } from "./premiumGate.js";
+
+// Kill switch - set to false to instantly revert to the old full-page
+// paywall (#analyticsPaywall) for free/expired users, no other changes needed.
+const ENABLE_ANALYTICS_TEASER = true;
 
 const firebaseConfig = {
     apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -305,6 +329,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const functions = getFunctions(app);
 
 document.getElementById("analyticsUpgradeSilver").onclick = () => startUpgradeCheckout(app, "silver");
 document.getElementById("analyticsUpgradeGold").onclick = () => startUpgradeCheckout(app, "gold");
@@ -345,18 +370,25 @@ onAuthStateChanged(auth, async (user) => {
         }
     }
 
-    if (!isAdmin && !isPremium) {
+    if (!ENABLE_ANALYTICS_TEASER && !isAdmin && !isPremium) {
         document.getElementById("analyticsPaywall").style.display = "block";
         return;
     }
     document.getElementById("analyticsContent").style.display = "block";
-    await fetchPerformanceData(user.uid);
+    await fetchPerformanceData(user.uid, isAdmin || isPremium);
   } else {
     window.location.href = "login.html";
   }
 });
 
-async function fetchPerformanceData(uid) {
+async function fetchPerformanceData(uid, isPremiumOrAdmin) {
+  // Insights (strengths/weaknesses) are fetched separately via a callable
+  // that computes them server-side, so free/expired users never receive
+  // the real breakdown in the response - independent of the history query
+  // below, which stays exactly as it was (score/accuracy/history remain
+  // free for everyone, unchanged).
+  renderPerformanceInsights(isPremiumOrAdmin);
+
   const resultsRef = collection(db, "leaderboard");
   const q = query(resultsRef, where("uid", "==", uid));
   const snap = await getDocs(q);
@@ -419,8 +451,6 @@ async function fetchPerformanceData(uid) {
   let liveCount = 0;
   let practiceHistoryHtml = "";
   let practiceCount = 0;
-
-  let liveTopics = {};
 
   const getBadgeHtml = (pct) => {
       let color, bg;
@@ -500,29 +530,6 @@ async function fetchPerformanceData(uid) {
   }
   document.getElementById("practiceHistory").innerHTML = practiceHistoryHtml;
 
-  // Generate Insights
-  let topicAverages = Object.keys(liveTopics).map(k => ({ name: k, avg: liveTopics[k].sum / liveTopics[k].count }));
-  topicAverages.sort((a, b) => b.avg - a.avg);
-
-  let strengthsHtml = "";
-  let weaknessesHtml = "";
-  let strengths = topicAverages.filter(t => t.avg >= 60).slice(0, 3);
-  let weaknesses = topicAverages.filter(t => t.avg < 60).reverse().slice(0, 3);
-
-  if(strengths.length > 0) {
-      strengthsHtml = strengths.map(t => `<div class="insight-item strength"><span class="insight-icon">💪</span><div class="insight-text"><b>${t.name}</b><span style="color:#059669">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
-  } else {
-      strengthsHtml = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">Keep practicing live quizzes to uncover your strengths!</div>`;
-  }
-
-  if(weaknesses.length > 0) {
-      weaknessesHtml = weaknesses.map(t => `<div class="insight-item weakness"><span class="insight-icon">⚠️</span><div class="insight-text"><b>${t.name}</b><span style="color:#dc2626">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
-  } else {
-      weaknessesHtml = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">No major weaknesses detected!</div>`;
-  }
-  document.getElementById("liveStrengths").innerHTML = strengthsHtml;
-  document.getElementById("liveWeaknesses").innerHTML = weaknessesHtml;
-
   // Calculate Averages for Summary
   const avg = allResults.length > 0 ? (totalPercentageSum / allResults.length).toFixed(1) : "0";
   document.getElementById("avgScore").innerText = avg + "%";
@@ -533,6 +540,85 @@ async function fetchPerformanceData(uid) {
   renderTrendChart(labels, scores);
   renderSubjectProficiency(subjectData, subjectCounts);
 }
+
+const INSIGHT_EMPTY_STRENGTHS = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">Keep practicing live quizzes to uncover your strengths!</div>`;
+const INSIGHT_EMPTY_WEAKNESSES = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">No major weaknesses detected!</div>`;
+const INSIGHT_LOADING = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px;">Loading...</div>`;
+
+async function renderPerformanceInsights(isPremiumOrAdmin) {
+  const strengthsEl = document.getElementById("liveStrengths");
+  const weaknessesEl = document.getElementById("liveWeaknesses");
+
+  // Neutral loading state - never flash the wrong view while the plan/data
+  // check is still in flight.
+  strengthsEl.innerHTML = INSIGHT_LOADING;
+  weaknessesEl.innerHTML = INSIGHT_LOADING;
+
+  let result;
+  try {
+    const getInsights = httpsCallable(functions, "getPerformanceInsights");
+    result = (await getInsights()).data;
+  } catch (e) {
+    console.warn("getPerformanceInsights failed:", e);
+    strengthsEl.innerHTML = INSIGHT_EMPTY_STRENGTHS;
+    weaknessesEl.innerHTML = INSIGHT_EMPTY_WEAKNESSES;
+    return;
+  }
+
+  if (result.isPremium) {
+    // Same markup/thresholds the page always used for paid accounts.
+    strengthsEl.innerHTML = result.strengths.length > 0
+      ? result.strengths.map(t => `<div class="insight-item strength"><span class="insight-icon">💪</span><div class="insight-text"><b>${t.name}</b><span style="color:#059669">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("")
+      : INSIGHT_EMPTY_STRENGTHS;
+    weaknessesEl.innerHTML = result.weaknesses.length > 0
+      ? result.weaknesses.map(t => `<div class="insight-item weakness"><span class="insight-icon">⚠️</span><div class="insight-text"><b>${t.name}</b><span style="color:#dc2626">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("")
+      : INSIGHT_EMPTY_WEAKNESSES;
+    return;
+  }
+
+  // Free/expired: only aggregate counts arrived in the response - no subject
+  // names or percentages were ever sent to this browser. Render blurred
+  // dummy placeholder rows (not real data) plus a count and an unlock CTA.
+  renderLockedInsightGroup(strengthsEl, result.strengthCount, "strength", "💪", INSIGHT_EMPTY_STRENGTHS);
+  renderLockedInsightGroup(weaknessesEl, result.weaknessCount, "weakness", "⚠️", INSIGHT_EMPTY_WEAKNESSES);
+
+  const unlockContainer = document.getElementById("insightsUnlockContainer");
+  if (result.strengthCount > 0 || result.weaknessCount > 0) {
+    unlockContainer.innerHTML = `<button type="button" class="insight-unlock-btn" onclick="window.handleAnalyticsUnlockClick()">Unlock Full Performance Analysis</button>`;
+    if (typeof gtag === "function") {
+      gtag("event", "analytics_teaser_view", { weakness_count: result.weaknessCount, strength_count: result.strengthCount });
+    }
+  } else {
+    unlockContainer.innerHTML = "";
+  }
+}
+
+function renderLockedInsightGroup(container, count, kind, icon, emptyMessage) {
+  if (!count || count <= 0) {
+    container.innerHTML = emptyMessage;
+    return;
+  }
+
+  const dummyRows = Array.from({ length: Math.min(count, 3) }, () =>
+    `<div class="insight-item ${kind} locked"><span class="insight-icon">${icon}</span><div class="insight-text"><b>Topic Name</b><span>XX% Avg. Accuracy</span></div></div>`
+  ).join("");
+
+  container.innerHTML = `
+    <div class="insight-locked-group">
+      ${dummyRows}
+      <div class="insight-lock-overlay">
+        <span class="insight-lock-badge">🔒 ${count} ${kind}${count === 1 ? "" : "s"} locked</span>
+      </div>
+    </div>
+  `;
+}
+
+window.handleAnalyticsUnlockClick = function () {
+  if (typeof gtag === "function") {
+    gtag("event", "analytics_teaser_cta_click");
+  }
+  startUpgradeCheckout(app, "silver");
+};
 
 function renderTrendChart(labels, scores) {
   const ctx = document.getElementById('trendChart').getContext('2d');
