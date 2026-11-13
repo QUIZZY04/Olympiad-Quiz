@@ -133,7 +133,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -463,29 +463,7 @@
   </header>
 
   <!-- Breadcrumb Bar & Quick Chips (Desktop) -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label">Class 11 English Core Chapters (NCERT Rationalised 2026–27)</div>
-    <div class="breadcrumb-chips">
-      <!-- Hornbill Prose -->
-      <div class="bc-chip active" onclick="showChapter(1)" data-ch="1"><span class="bc-n">1</span> Portrait of a Lady</div>
-      <div class="bc-chip" onclick="showChapter(2)" data-ch="2"><span class="bc-n">2</span> We're Not Afraid to Die</div>
-      <div class="bc-chip" onclick="showChapter(3)" data-ch="3"><span class="bc-n">3</span> Discovering Tut</div>
-      <div class="bc-chip" onclick="showChapter(4)" data-ch="4"><span class="bc-n">4</span> The Adventure</div>
-      <div class="bc-chip" onclick="showChapter(5)" data-ch="5"><span class="bc-n">5</span> Silk Road</div>
-      <!-- Hornbill Poetry -->
-      <div class="bc-chip" onclick="showChapter(6)" data-ch="6"><span class="bc-n">6</span> A Photograph</div>
-      <div class="bc-chip" onclick="showChapter(7)" data-ch="7"><span class="bc-n">7</span> Laburnum Top</div>
-      <div class="bc-chip" onclick="showChapter(8)" data-ch="8"><span class="bc-n">8</span> Voice of the Rain</div>
-      <div class="bc-chip" onclick="showChapter(9)" data-ch="9"><span class="bc-n">9</span> Childhood</div>
-      <div class="bc-chip" onclick="showChapter(10)" data-ch="10"><span class="bc-n">10</span> Father to Son</div>
-      <!-- Snapshots -->
-      <div class="bc-chip" onclick="showChapter(11)" data-ch="11"><span class="bc-n">11</span> White Horse</div>
-      <div class="bc-chip" onclick="showChapter(12)" data-ch="12"><span class="bc-n">12</span> The Address</div>
-      <div class="bc-chip" onclick="showChapter(13)" data-ch="13"><span class="bc-n">13</span> Einstein at School</div>
-      <div class="bc-chip" onclick="showChapter(14)" data-ch="14"><span class="bc-n">14</span> Mother's Day</div>
-      <div class="bc-chip" onclick="showChapter(15)" data-ch="15"><span class="bc-n">15</span> Birth</div>
-    </div>
-  </div>
+  
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
   <div class="mobile-chapter-selector-bar" id="mobileChapterBar">

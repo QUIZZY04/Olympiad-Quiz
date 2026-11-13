@@ -180,7 +180,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -373,147 +373,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📐 Quick Jump To Chapter — Mridang:</div>
-    <div class="breadcrumb-chips" id="chipsTrack1">
-      
-    <span class="bc-chip active" onclick="showChapter('ch_mrd1')" data-target="ch_mrd1">
-      <span class="bc-n">1</span> My Bicycle
-    </span>
   
-    <span class="bc-chip" onclick="showChapter('ch_mrd2')" data-target="ch_mrd2">
-      <span class="bc-n">2</span> Picture Reading
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd3')" data-target="ch_mrd3">
-      <span class="bc-n">3</span> It is Fun
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd4')" data-target="ch_mrd4">
-      <span class="bc-n">4</span> Seeing without Seeing
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd5')" data-target="ch_mrd5">
-      <span class="bc-n">5</span> Come Back Soon
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd6')" data-target="ch_mrd6">
-      <span class="bc-n">6</span> Between Home and School
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd7')" data-target="ch_mrd7">
-      <span class="bc-n">7</span> This is My Town
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd8')" data-target="ch_mrd8">
-      <span class="bc-n">8</span> A Show of Clouds
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd9')" data-target="ch_mrd9">
-      <span class="bc-n">9</span> My Name
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd10')" data-target="ch_mrd10">
-      <span class="bc-n">10</span> The Crow
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd11')" data-target="ch_mrd11">
-      <span class="bc-n">11</span> The Smart Monkey
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd12')" data-target="ch_mrd12">
-      <span class="bc-n">12</span> Little Drops of Water
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrd13')" data-target="ch_mrd13">
-      <span class="bc-n">13</span> We are all Indians
-    </span>
-  
-    </div>
-    <div class="breadcrumb-chips" id="chipsTrack2" style="display:none;">
-      
-    <span class="bc-chip active" onclick="showChapter('ch_mrg1')" data-target="ch_mrg1">
-      <span class="bc-n">1</span> First Day at School
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg2')" data-target="ch_mrg2">
-      <span class="bc-n">2</span> Haldi’s Adventure
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg3')" data-target="ch_mrg3">
-      <span class="bc-n">3</span> I am Lucky!
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg4')" data-target="ch_mrg4">
-      <span class="bc-n">4</span> I Want
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg5')" data-target="ch_mrg5">
-      <span class="bc-n">5</span> A Smile
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg6')" data-target="ch_mrg6">
-      <span class="bc-n">6</span> The Wind and the Sun
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg7')" data-target="ch_mrg7">
-      <span class="bc-n">7</span> Rain
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg8')" data-target="ch_mrg8">
-      <span class="bc-n">8</span> Storm in the Garden
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg9')" data-target="ch_mrg9">
-      <span class="bc-n">9</span> Zoo Manners
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg10')" data-target="ch_mrg10">
-      <span class="bc-n">10</span> Funny Bunny
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg11')" data-target="ch_mrg11">
-      <span class="bc-n">11</span> Mr. Nobody
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg12')" data-target="ch_mrg12">
-      <span class="bc-n">12</span> Curlylocks and the Three Bears
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg13')" data-target="ch_mrg13">
-      <span class="bc-n">13</span> On My Blackboard I Can Draw
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg14')" data-target="ch_mrg14">
-      <span class="bc-n">14</span> Make It Shorter
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg15')" data-target="ch_mrg15">
-      <span class="bc-n">15</span> I am the Music Man
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg16')" data-target="ch_mrg16">
-      <span class="bc-n">16</span> The Mumbai Musicians
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg17')" data-target="ch_mrg17">
-      <span class="bc-n">17</span> Granny Granny Please Comb My Hair
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg18')" data-target="ch_mrg18">
-      <span class="bc-n">18</span> The Magic Porridge Pot
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg19')" data-target="ch_mrg19">
-      <span class="bc-n">19</span> Strange Talk
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mrg20')" data-target="ch_mrg20">
-      <span class="bc-n">20</span> The Grasshopper and the Ant
-    </span>
-  
-    </div>
-  </div>
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -16607,12 +16467,12 @@
       if (sbTab1) sbTab1.classList.toggle('active', isT1);
       if (sbTab2) sbTab2.classList.toggle('active', !isT1);
 
-      document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
-      document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
+      if (document.getElementById('chipsTrack1')) document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
+      if (document.getElementById('chipsTrack2')) document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
       document.getElementById('navTrack1').style.display = isT1 ? 'block' : 'none';
       document.getElementById('navTrack2').style.display = isT1 ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
       document.getElementById('sidebarTitleText').innerText = isT1 ? track1Name + ' (' + track1Count + ' Chapters)' : track2Name + ' (' + track2Count + ' Chapters)';
     }
 

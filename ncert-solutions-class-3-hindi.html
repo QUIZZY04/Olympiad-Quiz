@@ -174,7 +174,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -363,143 +363,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📖 Quick Jump To Chapter — वीणा (NEP 2020):</div>
-    <div class="breadcrumb-chips" id="chipsVeena">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_vn1')" data-target="ch_vn1">
-    <span class="bc-n">1</span> सीखो
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn2')" data-target="ch_vn2">
-    <span class="bc-n">2</span> चींटी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn3')" data-target="ch_vn3">
-    <span class="bc-n">3</span> कितने पैर?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn4')" data-target="ch_vn4">
-    <span class="bc-n">4</span> बया हमारी चिड़िया रानी!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn5')" data-target="ch_vn5">
-    <span class="bc-n">5</span> आम का पेड़
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn6')" data-target="ch_vn6">
-    <span class="bc-n">6</span> बीरबल की खिचड़ी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn7')" data-target="ch_vn7">
-    <span class="bc-n">7</span> मित्र को पत्र
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn8')" data-target="ch_vn8">
-    <span class="bc-n">8</span> चतुर गीदड़
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn9')" data-target="ch_vn9">
-    <span class="bc-n">9</span> प्रकृति पर्व – फूलदेई
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn10')" data-target="ch_vn10">
-    <span class="bc-n">10</span> रस्साकशी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn11')" data-target="ch_vn11">
-    <span class="bc-n">11</span> एक जादुई पिटारा
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn12')" data-target="ch_vn12">
-    <span class="bc-n">12</span> अपना-अपना काम
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn13')" data-target="ch_vn13">
-    <span class="bc-n">13</span> पेड़ों की अम्मा 'थिमक्का'
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn14')" data-target="ch_vn14">
-    <span class="bc-n">14</span> किसान की होशियारी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn15')" data-target="ch_vn15">
-    <span class="bc-n">15</span> भारत
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn16')" data-target="ch_vn16">
-    <span class="bc-n">16</span> चंद्रयान
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn17')" data-target="ch_vn17">
-    <span class="bc-n">17</span> बोलने वाली माँद
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_vn18')" data-target="ch_vn18">
-    <span class="bc-n">18</span> हम अनेक किंतु एक
-  </span>
-
-    </div>
-    <div class="breadcrumb-chips" id="chipsRimjhim" style="display:none;">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_rj1')" data-target="ch_rj1">
-    <span class="bc-n">1</span> कक्कू
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj2')" data-target="ch_rj2">
-    <span class="bc-n">2</span> शेखीबाज़ मक्खी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj3')" data-target="ch_rj3">
-    <span class="bc-n">3</span> चाँद वाली अम्मा
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj4')" data-target="ch_rj4">
-    <span class="bc-n">4</span> मन करता है
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj5')" data-target="ch_rj5">
-    <span class="bc-n">5</span> बहादुर बित्तो
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj6')" data-target="ch_rj6">
-    <span class="bc-n">6</span> हमसे सब कहते
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj7')" data-target="ch_rj7">
-    <span class="bc-n">7</span> टिपटिपवा
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj8')" data-target="ch_rj8">
-    <span class="bc-n">8</span> बंदर बाँट
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj9')" data-target="ch_rj9">
-    <span class="bc-n">9</span> अक्ल बड़ी या भैंस
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj10')" data-target="ch_rj10">
-    <span class="bc-n">10</span> क्योंजीमल और कैसे कैसलिया
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj11')" data-target="ch_rj11">
-    <span class="bc-n">11</span> मीरा बहन और बाघ
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj12')" data-target="ch_rj12">
-    <span class="bc-n">12</span> जब मुझे साँप ने काटा
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj13')" data-target="ch_rj13">
-    <span class="bc-n">13</span> मिर्च का मज़ा
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_rj14')" data-target="ch_rj14">
-    <span class="bc-n">14</span> सबसे अच्छा पेड़
-  </span>
-
-    </div>
-  </div>
+  
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -18137,12 +18001,12 @@
       if (sbTabRimjhim) sbTabRimjhim.classList.toggle('active', !isVeena);
 
       // Update chips & sidebars
-      document.getElementById('chipsVeena').style.display = isVeena ? 'flex' : 'none';
-      document.getElementById('chipsRimjhim').style.display = isVeena ? 'none' : 'flex';
+      if (document.getElementById('chipsVeena')) document.getElementById('chipsVeena').style.display = isVeena ? 'flex' : 'none';
+      if (document.getElementById('chipsRimjhim')) document.getElementById('chipsRimjhim').style.display = isVeena ? 'none' : 'flex';
       document.getElementById('navVeena').style.display = isVeena ? 'block' : 'none';
       document.getElementById('navRimjhim').style.display = isVeena ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isVeena ? '📖 Quick Jump To Chapter — वीणा (NEP 2020):' : '📖 Quick Jump To Chapter — रिमझिम:';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isVeena ? '📖 Quick Jump To Chapter — वीणा (NEP 2020):' : '📖 Quick Jump To Chapter — रिमझिम:';
       document.getElementById('sidebarTitleText').innerText = isVeena ? '📘 वीणा - Veena (18 पाठ)' : '📙 रिमझिम - Rimjhim (14 पाठ)';
 
       // Show first chapter of that book

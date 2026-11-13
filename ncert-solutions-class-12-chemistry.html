@@ -165,7 +165,7 @@
     .main-layout { max-width: 1400px; margin: 20px auto 48px; padding: 0 24px; display: grid; grid-template-columns: 320px 1fr; gap: 28px; }
 
     /* Sidebar */
-    .sidebar { position: sticky; top: 76px; height: calc(100vh - 96px); overflow-y: auto; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
+    .sidebar { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
     .sidebar-title { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
     .search-box { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 0.86rem; margin-bottom: 14px; outline: none; font-family: inherit; }
     .search-box:focus { border-color: var(--brand); }
@@ -316,21 +316,7 @@
   </header>
 
   <!-- Breadcrumb Bar & Quick Chips (Desktop) -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label">Class 12 Chemistry Chapters (NCERT Rationalised 2026–27)</div>
-    <div class="breadcrumb-chips">
-      <div class="bc-chip active" onclick="showChapter(1)" data-ch="1"><span class="bc-n">1</span> Solutions</div>
-      <div class="bc-chip" onclick="showChapter(2)" data-ch="2"><span class="bc-n">2</span> Electrochemistry</div>
-      <div class="bc-chip" onclick="showChapter(3)" data-ch="3"><span class="bc-n">3</span> Chemical Kinetics</div>
-      <div class="bc-chip" onclick="showChapter(4)" data-ch="4"><span class="bc-n">4</span> d- &amp; f-Block Elements</div>
-      <div class="bc-chip" onclick="showChapter(5)" data-ch="5"><span class="bc-n">5</span> Coordination Compounds</div>
-      <div class="bc-chip" onclick="showChapter(6)" data-ch="6"><span class="bc-n">6</span> Haloalkanes &amp; Haloarenes</div>
-      <div class="bc-chip" onclick="showChapter(7)" data-ch="7"><span class="bc-n">7</span> Alcohols, Phenols &amp; Ethers</div>
-      <div class="bc-chip" onclick="showChapter(8)" data-ch="8"><span class="bc-n">8</span> Aldehydes &amp; Ketones</div>
-      <div class="bc-chip" onclick="showChapter(9)" data-ch="9"><span class="bc-n">9</span> Amines</div>
-      <div class="bc-chip" onclick="showChapter(10)" data-ch="10"><span class="bc-n">10</span> Biomolecules</div>
-    </div>
-  </div>
+  
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
   <div class="mobile-chapter-selector-bar" id="mobileChapterBar">

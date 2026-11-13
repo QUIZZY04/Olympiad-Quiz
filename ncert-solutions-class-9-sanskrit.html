@@ -110,7 +110,7 @@
 
     /* Layout */
     .main-layout { display: flex; max-width: 1380px; margin: 0 auto; min-height: calc(100vh - 180px); }
-    .sidebar { width: 320px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 122px; height: calc(100vh - 122px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 320px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-header { margin-bottom: 14px; }
     .sidebar-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 10px; }
     .search-box { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; font-family: inherit; margin-bottom: 12px; }
@@ -516,28 +516,7 @@
 </div>
 
 <!-- BREADCRUMB & FILTER BAR (DESKTOP) -->
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-inner">
-    <div class="filter-pills">
-      <button class="filter-tab active" onclick="filterCategory('all', this)">सर्वे पाठाः (10)</button>
-      <button class="filter-tab" onclick="filterCategory('poetry', this)">पद्यभागः (3)</button>
-      <button class="filter-tab" onclick="filterCategory('prose', this)">गद्यभागः (5)</button>
-      <button class="filter-tab" onclick="filterCategory('drama', this)">नाटकम् (2)</button>
-    </div>
-    <div class="breadcrumb-chips">
-      <div class="bc-chip active" data-ch="1" data-cat="poetry" onclick="showChapter(1)"><span class="bc-n">१</span> भारतीवसन्तगीतिः</div>
-      <div class="bc-chip" data-ch="2" data-cat="prose" onclick="showChapter(2)"><span class="bc-n">२</span> स्वर्णकाकः</div>
-      <div class="bc-chip" data-ch="3" data-cat="drama" onclick="showChapter(3)"><span class="bc-n">३</span> गोदोहनम्</div>
-      <div class="bc-chip" data-ch="4" data-cat="poetry" onclick="showChapter(4)"><span class="bc-n">४</span> सूक्तिमौक्तिकम्</div>
-      <div class="bc-chip" data-ch="5" data-cat="prose" onclick="showChapter(5)"><span class="bc-n">५</span> भ्रान्तो बालः</div>
-      <div class="bc-chip" data-ch="6" data-cat="prose" onclick="showChapter(6)"><span class="bc-n">६</span> लौहतुला</div>
-      <div class="bc-chip" data-ch="7" data-cat="drama" onclick="showChapter(7)"><span class="bc-n">७</span> सिकतासेतुः</div>
-      <div class="bc-chip" data-ch="8" data-cat="poetry" onclick="showChapter(8)"><span class="bc-n">८</span> जटायोः शौर्यम्</div>
-      <div class="bc-chip" data-ch="9" data-cat="prose" onclick="showChapter(9)"><span class="bc-n">९</span> पर्यावरणम्</div>
-      <div class="bc-chip" data-ch="10" data-cat="prose" onclick="showChapter(10)"><span class="bc-n">१०</span> वाङ्मनःप्राणस्वरूपम्</div>
-    </div>
-  </div>
-</div>
+
 
 <!-- MOBILE CHAPTER SELECTOR (TOP AREA FOR MOBILE USERS) -->
 <!-- Mobile Subject & Chapter Sticky Navigation Bar -->

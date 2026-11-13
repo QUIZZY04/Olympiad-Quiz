@@ -162,7 +162,7 @@
 
     /* LAYOUT */
     .main-layout{display:flex;max-width:1420px;margin:0 auto;min-height:calc(100vh - 180px);}
-    .sidebar{width:340px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:117px;height:calc(100vh - 117px);overflow-y:auto;flex-shrink:0;}
+    .sidebar{width:340px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;}
     .sidebar-title{font-size:0.85rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:0.05em;margin-bottom:12px;}
     .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.85rem;margin-bottom:16px;font-family:inherit;}
     .search-box:focus{outline:none;border-color:var(--brand);}
@@ -633,12 +633,7 @@
   </div>
 </div>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-inner">
-    <div class="breadcrumb-label">Jump to Chapter:</div>
-    <div class="breadcrumb-chips" id="breadcrumbChips"></div>
-  </div>
-</div>
+
 
 <button class="mob-sidebar-toggle" onclick="toggleSidebar()">📖 Select Chapter</button>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -4989,7 +4984,7 @@
   }
 
   function generateBreadcrumbs() {
-    const container = document.getElementById('breadcrumbChips');
+    const container = document.getElementById('breadcrumbChips'); if (!container) return;
     if (!container) return;
     let html = '';
     for (let i = 1; i <= TOTAL_CHAPTERS; i++) {

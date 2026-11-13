@@ -160,7 +160,7 @@
     .bc-chip .bc-n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:rgba(0,0,0,0.12);border-radius:50%;font-size:0.68rem;font-weight:800;}
     .bc-chip.active .bc-n{background:rgba(255,255,255,0.25);}
     .main-layout{display:flex;max-width:1380px;margin:0 auto;min-height:calc(100vh - 180px);}
-    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:130px;height:calc(100vh - 130px);overflow-y:auto;flex-shrink:0;}
+    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;}
     .sidebar-title{font-size:0.85rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:0.05em;margin-bottom:12px;}
     .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.85rem;margin-bottom:16px;font-family:inherit;}
     .search-box:focus{outline:none;border-color:var(--brand);}
@@ -613,17 +613,7 @@
   </div>
 </header>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-inner">
-    <div class="breadcrumb-label">Select Book &amp; Chapter:</div>
-    <div class="book-tabs">
-      <span class="book-tab active" onclick="showBook('honeydew')">&#128218; Honeydew (Prose)</span>
-      <span class="book-tab" onclick="showBook('poems')">&#128221; Poems</span>
-      <span class="book-tab" onclick="showBook('itso')">&#128218; It So Happened</span>
-    </div>
-    <div class="breadcrumb-chips" id="breadcrumbChips"></div>
-  </div>
-</div>
+
 
 <button class="mob-sidebar-toggle" onclick="toggleSidebar()">&#128218; Select Chapter</button>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -5543,7 +5533,7 @@ function showBook(book) {
 }
 
 function generateBreadcrumbs() {
-  const c = document.getElementById('breadcrumbChips');
+  const c = document.getElementById('breadcrumbChips'); if (!c) return;
   c.innerHTML = chapterData[currentBook].map(i =>
     `<div class="bc-chip ${i===currentCh?'active':''}" onclick="showChapter(${i})">
       <span class="bc-n">${i<=10?i:i<=18?'P'+(i-10):i-18}</span>${chapterNames[i].split(' ').slice(0,3).join(' ')}

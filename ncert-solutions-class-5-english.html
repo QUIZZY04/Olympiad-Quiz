@@ -173,7 +173,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -364,95 +364,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📖 Quick Jump To Chapter — Santoor (NEP 2020):</div>
-    <div class="breadcrumb-chips" id="chipsSantoor">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_s1')" data-target="ch_s1">
-    <span class="bc-n">1</span> Papa's Spectacles
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s2')" data-target="ch_s2">
-    <span class="bc-n">2</span> Gone with the Scooter
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s3')" data-target="ch_s3">
-    <span class="bc-n">3</span> The Rainbow
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s4')" data-target="ch_s4">
-    <span class="bc-n">4</span> The Wise Parrot
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s5')" data-target="ch_s5">
-    <span class="bc-n">5</span> The Frog
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s6')" data-target="ch_s6">
-    <span class="bc-n">6</span> What a Tank!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s7')" data-target="ch_s7">
-    <span class="bc-n">7</span> Gilli Danda
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s8')" data-target="ch_s8">
-    <span class="bc-n">8</span> The Decision of the Panchayat
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s9')" data-target="ch_s9">
-    <span class="bc-n">9</span> Vocation
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_s10')" data-target="ch_s10">
-    <span class="bc-n">10</span> Glass Bangles
-  </span>
-
-    </div>
-    <div class="breadcrumb-chips" id="chipsMarigold" style="display:none;">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_m1')" data-target="ch_m1">
-    <span class="bc-n">1</span> Ice-cream Man
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m2')" data-target="ch_m2">
-    <span class="bc-n">2</span> Teamwork
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m3')" data-target="ch_m3">
-    <span class="bc-n">3</span> My Shadow
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m4')" data-target="ch_m4">
-    <span class="bc-n">4</span> Crying
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m5')" data-target="ch_m5">
-    <span class="bc-n">5</span> The Lazy Frog
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m6')" data-target="ch_m6">
-    <span class="bc-n">6</span> Class Discussion
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m7')" data-target="ch_m7">
-    <span class="bc-n">7</span> Topsy-turvy Land
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m8')" data-target="ch_m8">
-    <span class="bc-n">8</span> Nobody's Friend
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m9')" data-target="ch_m9">
-    <span class="bc-n">9</span> Sing a Song of People
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_m10')" data-target="ch_m10">
-    <span class="bc-n">10</span> Malu Bhalu
-  </span>
-
-    </div>
-  </div>
+  
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -18258,11 +18170,11 @@
       if (nav2) nav2.style.display = isB1 ? 'none' : 'block';
 
       // Toggle Breadcrumb Chips
-      document.getElementById('chipsSantoor').style.display = isB1 ? 'flex' : 'none';
-      document.getElementById('chipsMarigold').style.display = isB1 ? 'none' : 'flex';
+      if (document.getElementById('chipsSantoor')) document.getElementById('chipsSantoor').style.display = isB1 ? 'flex' : 'none';
+      if (document.getElementById('chipsMarigold')) document.getElementById('chipsMarigold').style.display = isB1 ? 'none' : 'flex';
 
       // Update Label
-      document.getElementById('chipBarLabel').innerText = isB1
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB1
         ? '📖 Quick Jump To Chapter — Santoor (NEP 2020):'
         : '📙 Quick Jump To Unit — Marigold (Classic CBSE):';
 
@@ -18297,10 +18209,10 @@
         if (nav1) nav1.style.display = !isB2 ? 'block' : 'none';
         if (nav2) nav2.style.display = isB2 ? 'block' : 'none';
 
-        document.getElementById('chipsSantoor').style.display = !isB2 ? 'flex' : 'none';
-        document.getElementById('chipsMarigold').style.display = isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsSantoor')) document.getElementById('chipsSantoor').style.display = !isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsMarigold')) document.getElementById('chipsMarigold').style.display = isB2 ? 'flex' : 'none';
 
-        document.getElementById('chipBarLabel').innerText = isB2
+        if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB2
           ? '📙 Quick Jump To Unit — Marigold (Classic CBSE):'
           : '📖 Quick Jump To Chapter — Santoor (NEP 2020):';
 

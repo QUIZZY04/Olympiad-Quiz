@@ -214,7 +214,7 @@
     .bc-chip.active .bc-n{background:rgba(255,255,255,.25);}
     
     .main-layout{display:flex;max-width:1380px;margin:0 auto;}
-    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:152px;height:calc(100vh - 152px);overflow-y:auto;flex-shrink:0;}
+    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;}
     .sidebar-title{font-size:.82rem;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
     .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;margin-bottom:16px;font-family:inherit;}
     .search-box:focus{outline:none;border-color:var(--brand);}
@@ -475,35 +475,7 @@
   </div>
 </header>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-controls">
-    <div class="breadcrumb-label">📖 Class 10 Communicative — Filter by Section:</div>
-    <div class="book-tabs">
-      <span class="book-tab active" onclick="filterBook('all')">🌟 All 13 Units</span>
-      <span class="book-tab" onclick="filterBook('Fiction')">📖 Fiction (6)</span>
-      <span class="book-tab" onclick="filterBook('Poetry')">📝 Poetry (5)</span>
-      <span class="book-tab" onclick="filterBook('Drama')">🎭 Drama (2)</span>
-    </div>
-  </div>
-  <div class="breadcrumb-chips" id="breadcrumbChips">
-    <!-- Fiction 1-6 -->
-    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1" data-book="Fiction"><span class="bc-n">F1</span>Two Gentlemen Verona</span>
-    <span class="bc-chip" onclick="showChapter(2)" data-ch="2" data-book="Fiction"><span class="bc-n">F2</span>Mrs Packletide Tiger</span>
-    <span class="bc-chip" onclick="showChapter(3)" data-ch="3" data-book="Fiction"><span class="bc-n">F3</span>The Letter</span>
-    <span class="bc-chip" onclick="showChapter(4)" data-ch="4" data-book="Fiction"><span class="bc-n">F4</span>A Shady Plot</span>
-    <span class="bc-chip" onclick="showChapter(5)" data-ch="5" data-book="Fiction"><span class="bc-n">F5</span>Patol Babu</span>
-    <span class="bc-chip" onclick="showChapter(6)" data-ch="6" data-book="Fiction"><span class="bc-n">F6</span>Virtually True</span>
-    <!-- Poetry 7-11 -->
-    <span class="bc-chip" onclick="showChapter(7)" data-ch="7" data-book="Poetry"><span class="bc-n">P1</span>Frog &amp; Nightingale</span>
-    <span class="bc-chip" onclick="showChapter(8)" data-ch="8" data-book="Poetry"><span class="bc-n">P2</span>Not Marble (Sonnet 55)</span>
-    <span class="bc-chip" onclick="showChapter(9)" data-ch="9" data-book="Poetry"><span class="bc-n">P3</span>Ozymandias</span>
-    <span class="bc-chip" onclick="showChapter(10)" data-ch="10" data-book="Poetry"><span class="bc-n">P4</span>Ancient Mariner</span>
-    <span class="bc-chip" onclick="showChapter(11)" data-ch="11" data-book="Poetry"><span class="bc-n">P5</span>Snake</span>
-    <!-- Drama 12-13 -->
-    <span class="bc-chip" onclick="showChapter(12)" data-ch="12" data-book="Drama"><span class="bc-n">D1</span>The Dear Departed</span>
-    <span class="bc-chip" onclick="showChapter(13)" data-ch="13" data-book="Drama"><span class="bc-n">D2</span>Julius Caesar</span>
-  </div>
-</div>
+
 
 <div class="main-layout">
   <div class="sidebar-overlay" id="sidebarOverlay"></div>

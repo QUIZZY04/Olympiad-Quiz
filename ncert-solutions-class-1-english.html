@@ -198,8 +198,8 @@
     /* Sidebar Navigation */
     .sidebar {
       width:var(--sidebar-w); flex-shrink:0; background:#ffffff;
-      border-right:1px solid var(--border); height:calc(100vh - 105px);
-      position:sticky; top:105px; overflow-y:auto; padding:20px;
+      border-right:1px solid var(--border); height:calc(100vh - 60px);
+      position:sticky; top:60px; overflow-y:auto; padding:20px;
       display:flex; flex-direction:column; gap:16px;
     }
     .sidebar-header { display:flex; align-items:center; justify-content:space-between; }
@@ -456,127 +456,7 @@
   </section>
 
   <!-- Horizontal Chapter Quick Jump Bar -->
-  <div class="chapter-chips-bar" id="chipsBar">
-    <div class="chip-bar-label" id="chipBarLabel">📐 Quick Jump To Chapter — Mridang:</div>
-    <div class="chips-group" id="chipsTrack1">
-    <span class="bc-chip active" onclick="showChapter('ch_mr1')" data-target="ch_mr1">
-      <span class="bc-n">1</span> Two Little Hands
-    </span>
   
-    <span class="bc-chip" onclick="showChapter('ch_mr2')" data-target="ch_mr2">
-      <span class="bc-n">2</span> Greetings
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr3')" data-target="ch_mr3">
-      <span class="bc-n">3</span> Picture Time
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr4')" data-target="ch_mr4">
-      <span class="bc-n">4</span> The Cap-Seller and the Monkeys
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr5')" data-target="ch_mr5">
-      <span class="bc-n">5</span> A Farm
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr6')" data-target="ch_mr6">
-      <span class="bc-n">6</span> Fun with Pictures
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr7')" data-target="ch_mr7">
-      <span class="bc-n">7</span> The Food We Eat
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr8')" data-target="ch_mr8">
-      <span class="bc-n">8</span> The Four Seasons
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mr9')" data-target="ch_mr9">
-      <span class="bc-n">9</span> Anandi's Rainbow
-    </span>
-  </div>
-    <div class="chips-group" id="chipsTrack2" style="display:none;">
-    <span class="bc-chip active" onclick="showChapter('ch_mg1')" data-target="ch_mg1">
-      <span class="bc-n">1</span> A Happy Child
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg2')" data-target="ch_mg2">
-      <span class="bc-n">2</span> Three Little Pigs
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg3')" data-target="ch_mg3">
-      <span class="bc-n">3</span> After a Bath
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg4')" data-target="ch_mg4">
-      <span class="bc-n">4</span> The Bubble, the Straw and the Shoe
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg5')" data-target="ch_mg5">
-      <span class="bc-n">5</span> One Little Kitten
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg6')" data-target="ch_mg6">
-      <span class="bc-n">6</span> Lalu and Peelu
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg7')" data-target="ch_mg7">
-      <span class="bc-n">7</span> Once I Saw a Little Bird
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg8')" data-target="ch_mg8">
-      <span class="bc-n">8</span> Mittu and the Yellow Mango
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg9')" data-target="ch_mg9">
-      <span class="bc-n">9</span> Merry-Go-Round
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg10')" data-target="ch_mg10">
-      <span class="bc-n">10</span> Circle
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg11')" data-target="ch_mg11">
-      <span class="bc-n">11</span> If I Were an Apple
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg12')" data-target="ch_mg12">
-      <span class="bc-n">12</span> Our Tree
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg13')" data-target="ch_mg13">
-      <span class="bc-n">13</span> A Kite
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg14')" data-target="ch_mg14">
-      <span class="bc-n">14</span> Sundari
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg15')" data-target="ch_mg15">
-      <span class="bc-n">15</span> A Little Turtle
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg16')" data-target="ch_mg16">
-      <span class="bc-n">16</span> The Tiger and the Mosquito
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg17')" data-target="ch_mg17">
-      <span class="bc-n">17</span> Clouds
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg18')" data-target="ch_mg18">
-      <span class="bc-n">18</span> Anandi's Rainbow
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg19')" data-target="ch_mg19">
-      <span class="bc-n">19</span> Flying-Man
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mg20')" data-target="ch_mg20">
-      <span class="bc-n">20</span> The Tailor and his Friend
-    </span>
-  </div>
-  </div>
 
   <!-- Layout: Sidebar + Main Content -->
   <div class="layout-wrapper">
@@ -16111,12 +15991,12 @@
       if (sbTab1) sbTab1.classList.toggle('active', isT1);
       if (sbTab2) sbTab2.classList.toggle('active', !isT1);
 
-      document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
-      document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
+      if (document.getElementById('chipsTrack1')) document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
+      if (document.getElementById('chipsTrack2')) document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
       document.getElementById('navTrack1').style.display = isT1 ? 'block' : 'none';
       document.getElementById('navTrack2').style.display = isT1 ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
       document.getElementById('sidebarTitleText').innerText = isT1 ? track1Name + ' (' + track1Count + ' Chapters)' : track2Name + ' (' + track2Count + ' Chapters)';
     }
 

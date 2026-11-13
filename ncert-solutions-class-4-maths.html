@@ -174,7 +174,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -363,127 +363,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📐 Quick Jump To Chapter — Maths Mela (NEP 2020):</div>
-    <div class="breadcrumb-chips" id="chipsMela">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_mm1')" data-target="ch_mm1">
-    <span class="bc-n">1</span> Shapes Around Us
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm2')" data-target="ch_mm2">
-    <span class="bc-n">2</span> Hide and Seek
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm3')" data-target="ch_mm3">
-    <span class="bc-n">3</span> Patterns Around Us
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm4')" data-target="ch_mm4">
-    <span class="bc-n">4</span> Thousands Around Us
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm5')" data-target="ch_mm5">
-    <span class="bc-n">5</span> Sharing and Measuring
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm6')" data-target="ch_mm6">
-    <span class="bc-n">6</span> Measuring Length
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm7')" data-target="ch_mm7">
-    <span class="bc-n">7</span> The Cleanest Village
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm8')" data-target="ch_mm8">
-    <span class="bc-n">8</span> Weigh it, Pour it
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm9')" data-target="ch_mm9">
-    <span class="bc-n">9</span> Equal Groups
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm10')" data-target="ch_mm10">
-    <span class="bc-n">10</span> Elephants, Tigers, and Leopards
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm11')" data-target="ch_mm11">
-    <span class="bc-n">11</span> Fun with Symmetry
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm12')" data-target="ch_mm12">
-    <span class="bc-n">12</span> Ticking Clocks and Turning Calendar
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm13')" data-target="ch_mm13">
-    <span class="bc-n">13</span> The Transport Museum
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mm14')" data-target="ch_mm14">
-    <span class="bc-n">14</span> Data Handling
-  </span>
-
-    </div>
-    <div class="breadcrumb-chips" id="chipsMagic" style="display:none;">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_mg1')" data-target="ch_mg1">
-    <span class="bc-n">1</span> Building with Bricks
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg2')" data-target="ch_mg2">
-    <span class="bc-n">2</span> Long and Short
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg3')" data-target="ch_mg3">
-    <span class="bc-n">3</span> A Trip to Bhopal
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg4')" data-target="ch_mg4">
-    <span class="bc-n">4</span> Tick-Tick-Tick
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg5')" data-target="ch_mg5">
-    <span class="bc-n">5</span> The Way The World Looks
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg6')" data-target="ch_mg6">
-    <span class="bc-n">6</span> The Junk Seller
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg7')" data-target="ch_mg7">
-    <span class="bc-n">7</span> Jugs and Mugs
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg8')" data-target="ch_mg8">
-    <span class="bc-n">8</span> Carts and Wheels
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg9')" data-target="ch_mg9">
-    <span class="bc-n">9</span> Halves and Quarters
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg10')" data-target="ch_mg10">
-    <span class="bc-n">10</span> Play with Patterns
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg11')" data-target="ch_mg11">
-    <span class="bc-n">11</span> Tables and Shares
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg12')" data-target="ch_mg12">
-    <span class="bc-n">12</span> How Heavy? How Light?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg13')" data-target="ch_mg13">
-    <span class="bc-n">13</span> Fields and Fences
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_mg14')" data-target="ch_mg14">
-    <span class="bc-n">14</span> Smart Charts
-  </span>
-
-    </div>
-  </div>
+  
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -26293,12 +26173,12 @@ In total, <strong>135 students were present</strong> on that rainy day.</div>
       if (sbTabMagic) sbTabMagic.classList.toggle('active', !isMela);
 
       // Update chips & sidebars
-      document.getElementById('chipsMela').style.display = isMela ? 'flex' : 'none';
-      document.getElementById('chipsMagic').style.display = isMela ? 'none' : 'flex';
+      if (document.getElementById('chipsMela')) document.getElementById('chipsMela').style.display = isMela ? 'flex' : 'none';
+      if (document.getElementById('chipsMagic')) document.getElementById('chipsMagic').style.display = isMela ? 'none' : 'flex';
       document.getElementById('navMela').style.display = isMela ? 'block' : 'none';
       document.getElementById('navMagic').style.display = isMela ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isMela ? '📐 Quick Jump To Chapter — Maths Mela (NEP 2020):' : '📐 Quick Jump To Chapter — Math-Magic:';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isMela ? '📐 Quick Jump To Chapter — Maths Mela (NEP 2020):' : '📐 Quick Jump To Chapter — Math-Magic:';
       document.getElementById('sidebarTitleText').innerText = isMela ? '📘 Maths Mela (14 Chapters)' : '📙 Math-Magic (14 Chapters)';
 
       // Show first chapter of that book

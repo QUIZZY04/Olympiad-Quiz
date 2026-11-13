@@ -180,7 +180,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -373,119 +373,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📐 Quick Jump To Chapter — Joyful Mathematics:</div>
-    <div class="breadcrumb-chips" id="chipsTrack1">
-      
-    <span class="bc-chip active" onclick="showChapter('ch_jm1')" data-target="ch_jm1">
-      <span class="bc-n">1</span> A Day at the Beach
-    </span>
   
-    <span class="bc-chip" onclick="showChapter('ch_jm2')" data-target="ch_jm2">
-      <span class="bc-n">2</span> Shapes Around Us
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm3')" data-target="ch_jm3">
-      <span class="bc-n">3</span> Fun with Numbers
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm4')" data-target="ch_jm4">
-      <span class="bc-n">4</span> Shadow Story
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm5')" data-target="ch_jm5">
-      <span class="bc-n">5</span> Playing with Lines
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm6')" data-target="ch_jm6">
-      <span class="bc-n">6</span> Decoration for Festival
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm7')" data-target="ch_jm7">
-      <span class="bc-n">7</span> Rani's Gift
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm8')" data-target="ch_jm8">
-      <span class="bc-n">8</span> Grouping and Sharing
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm9')" data-target="ch_jm9">
-      <span class="bc-n">9</span> Which Season is It?
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm10')" data-target="ch_jm10">
-      <span class="bc-n">10</span> Fun at the Fair
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_jm11')" data-target="ch_jm11">
-      <span class="bc-n">11</span> Data Handling
-    </span>
-  
-    </div>
-    <div class="breadcrumb-chips" id="chipsTrack2" style="display:none;">
-      
-    <span class="bc-chip active" onclick="showChapter('ch_mmg1')" data-target="ch_mmg1">
-      <span class="bc-n">1</span> What is Long, What is Round?
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg2')" data-target="ch_mmg2">
-      <span class="bc-n">2</span> Counting in Groups
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg3')" data-target="ch_mmg3">
-      <span class="bc-n">3</span> How Much Can You Carry?
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg4')" data-target="ch_mmg4">
-      <span class="bc-n">4</span> Counting in Tens
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg5')" data-target="ch_mmg5">
-      <span class="bc-n">5</span> Patterns
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg6')" data-target="ch_mmg6">
-      <span class="bc-n">6</span> Footprints
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg7')" data-target="ch_mmg7">
-      <span class="bc-n">7</span> Jugs and Mugs
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg8')" data-target="ch_mmg8">
-      <span class="bc-n">8</span> Tens and Ones
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg9')" data-target="ch_mmg9">
-      <span class="bc-n">9</span> My Funday
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg10')" data-target="ch_mmg10">
-      <span class="bc-n">10</span> Add Our Points
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg11')" data-target="ch_mmg11">
-      <span class="bc-n">11</span> Lines and Lines
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg12')" data-target="ch_mmg12">
-      <span class="bc-n">12</span> Give and Take
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg13')" data-target="ch_mmg13">
-      <span class="bc-n">13</span> The Longest Step
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg14')" data-target="ch_mmg14">
-      <span class="bc-n">14</span> Birds Come, Birds Go
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_mmg15')" data-target="ch_mmg15">
-      <span class="bc-n">15</span> How Many Ponytails?
-    </span>
-  
-    </div>
-  </div>
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -17018,12 +16906,12 @@
       if (sbTab1) sbTab1.classList.toggle('active', isT1);
       if (sbTab2) sbTab2.classList.toggle('active', !isT1);
 
-      document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
-      document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
+      if (document.getElementById('chipsTrack1')) document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
+      if (document.getElementById('chipsTrack2')) document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
       document.getElementById('navTrack1').style.display = isT1 ? 'block' : 'none';
       document.getElementById('navTrack2').style.display = isT1 ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
       document.getElementById('sidebarTitleText').innerText = isT1 ? track1Name + ' (' + track1Count + ' Chapters)' : track2Name + ' (' + track2Count + ' Chapters)';
     }
 

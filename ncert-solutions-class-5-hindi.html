@@ -173,7 +173,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -364,119 +364,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📖 त्वरित पाठ चयन — वीणा (NEP 2020):</div>
-    <div class="breadcrumb-chips" id="chipsVeena">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_v1')" data-target="ch_v1">
-    <span class="bc-n">1</span> किरन
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v2')" data-target="ch_v2">
-    <span class="bc-n">2</span> न्याय की कुर्सी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v3')" data-target="ch_v3">
-    <span class="bc-n">3</span> चाँद का कुरता
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v4')" data-target="ch_v4">
-    <span class="bc-n">4</span> साङ्केन
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v5')" data-target="ch_v5">
-    <span class="bc-n">5</span> सुंदरिया
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v6')" data-target="ch_v6">
-    <span class="bc-n">6</span> चतुर चित्रकार
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v7')" data-target="ch_v7">
-    <span class="bc-n">7</span> मेरा बचपन
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v8')" data-target="ch_v8">
-    <span class="bc-n">8</span> काजीरंगा राष्ट्रीय उद्यान की यात्रा
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v9')" data-target="ch_v9">
-    <span class="bc-n">9</span> न्याय
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v10')" data-target="ch_v10">
-    <span class="bc-n">10</span> तीन मछलियाँ
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v11')" data-target="ch_v11">
-    <span class="bc-n">11</span> हमारे ये कलामंदिर
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_v12')" data-target="ch_v12">
-    <span class="bc-n">12</span> गंगा की कहानी
-  </span>
-
-    </div>
-    <div class="breadcrumb-chips" id="chipsRimjhim" style="display:none;">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_r1')" data-target="ch_r1">
-    <span class="bc-n">1</span> राख की रस्सी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r2')" data-target="ch_r2">
-    <span class="bc-n">2</span> फसलों के त्योहार
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r3')" data-target="ch_r3">
-    <span class="bc-n">3</span> खिलौनेवाला
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r4')" data-target="ch_r4">
-    <span class="bc-n">4</span> नन्हा फ़नकार
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r5')" data-target="ch_r5">
-    <span class="bc-n">5</span> जहाँ चाह वहाँ राह
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r6')" data-target="ch_r6">
-    <span class="bc-n">6</span> चिट्ठी का सफ़र
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r7')" data-target="ch_r7">
-    <span class="bc-n">7</span> डाकिए की कहानी, कंवरसिंह की ज़ुबानी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r8')" data-target="ch_r8">
-    <span class="bc-n">8</span> वे दिन भी क्या दिन थे
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r9')" data-target="ch_r9">
-    <span class="bc-n">9</span> एक माँ की बेबसी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r10')" data-target="ch_r10">
-    <span class="bc-n">10</span> एक दिन की बादशाहत
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r11')" data-target="ch_r11">
-    <span class="bc-n">11</span> चावल की रोटियाँ
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r12')" data-target="ch_r12">
-    <span class="bc-n">12</span> गुरु और चेला
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r13')" data-target="ch_r13">
-    <span class="bc-n">13</span> स्वामी की दादी
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_r14')" data-target="ch_r14">
-    <span class="bc-n">14</span> बाघ आया उस रात
-  </span>
-
-    </div>
-  </div>
+  
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -23023,11 +22911,11 @@
       if (nav2) nav2.style.display = isB1 ? 'none' : 'block';
 
       // Toggle Breadcrumb Chips
-      document.getElementById('chipsVeena').style.display = isB1 ? 'flex' : 'none';
-      document.getElementById('chipsRimjhim').style.display = isB1 ? 'none' : 'flex';
+      if (document.getElementById('chipsVeena')) document.getElementById('chipsVeena').style.display = isB1 ? 'flex' : 'none';
+      if (document.getElementById('chipsRimjhim')) document.getElementById('chipsRimjhim').style.display = isB1 ? 'none' : 'flex';
 
       // Update Label
-      document.getElementById('chipBarLabel').innerText = isB1
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB1
         ? '📖 त्वरित पाठ चयन — वीणा (NEP 2020):'
         : '📙 त्वरित पाठ चयन — रिमझिम (क्लासिक सीबीएसई):';
 
@@ -23062,10 +22950,10 @@
         if (nav1) nav1.style.display = !isB2 ? 'block' : 'none';
         if (nav2) nav2.style.display = isB2 ? 'block' : 'none';
 
-        document.getElementById('chipsVeena').style.display = !isB2 ? 'flex' : 'none';
-        document.getElementById('chipsRimjhim').style.display = isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsVeena')) document.getElementById('chipsVeena').style.display = !isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsRimjhim')) document.getElementById('chipsRimjhim').style.display = isB2 ? 'flex' : 'none';
 
-        document.getElementById('chipBarLabel').innerText = isB2
+        if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB2
           ? '📙 त्वरित पाठ चयन — रिमझिम (क्लासिक सीबीएसई):'
           : '📖 त्वरित पाठ चयन — वीणा (NEP 2020):';
 

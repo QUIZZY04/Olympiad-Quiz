@@ -198,8 +198,8 @@
     /* Sidebar Navigation */
     .sidebar {
       width:var(--sidebar-w); flex-shrink:0; background:#ffffff;
-      border-right:1px solid var(--border); height:calc(100vh - 105px);
-      position:sticky; top:105px; overflow-y:auto; padding:20px;
+      border-right:1px solid var(--border); height:calc(100vh - 60px);
+      position:sticky; top:60px; overflow-y:auto; padding:20px;
       display:flex; flex-direction:column; gap:16px;
     }
     .sidebar-header { display:flex; align-items:center; justify-content:space-between; }
@@ -456,179 +456,7 @@
   </section>
 
   <!-- Horizontal Chapter Quick Jump Bar -->
-  <div class="chapter-chips-bar" id="chipsBar">
-    <div class="chip-bar-label" id="chipBarLabel">📐 Quick Jump To Chapter — सारंगी (Sarangi):</div>
-    <div class="chips-group" id="chipsTrack1">
-    <span class="bc-chip active" onclick="showChapter('ch_sr1')" data-target="ch_sr1">
-      <span class="bc-n">1</span> मीना का परिवार
-    </span>
   
-    <span class="bc-chip" onclick="showChapter('ch_sr2')" data-target="ch_sr2">
-      <span class="bc-n">2</span> दादा-दादी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr3')" data-target="ch_sr3">
-      <span class="bc-n">3</span> रीना का दिन
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr4')" data-target="ch_sr4">
-      <span class="bc-n">4</span> रानी भी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr5')" data-target="ch_sr5">
-      <span class="bc-n">5</span> मिठाई
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr6')" data-target="ch_sr6">
-      <span class="bc-n">6</span> तीन साथी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr7')" data-target="ch_sr7">
-      <span class="bc-n">7</span> वाह मेरे घोड़े!
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr8')" data-target="ch_sr8">
-      <span class="bc-n">8</span> खतरे में साँप
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr9')" data-target="ch_sr9">
-      <span class="bc-n">9</span> आलू की सड़क
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr10')" data-target="ch_sr10">
-      <span class="bc-n">10</span> झूलम-झूली
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr11')" data-target="ch_sr11">
-      <span class="bc-n">11</span> भुट्टे
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr12')" data-target="ch_sr12">
-      <span class="bc-n">12</span> फूली रोटी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr13')" data-target="ch_sr13">
-      <span class="bc-n">13</span> मेला
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr14')" data-target="ch_sr14">
-      <span class="bc-n">14</span> बरखा और मेघा
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr15')" data-target="ch_sr15">
-      <span class="bc-n">15</span> होली
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr16')" data-target="ch_sr16">
-      <span class="bc-n">16</span> जन्मदिवस पर पेड़ लगाओ
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr17')" data-target="ch_sr17">
-      <span class="bc-n">17</span> हवा
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr18')" data-target="ch_sr18">
-      <span class="bc-n">18</span> कितनी प्यारी है ये दुनिया
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_sr19')" data-target="ch_sr19">
-      <span class="bc-n">19</span> चाँद का बच्चा
-    </span>
-  </div>
-    <div class="chips-group" id="chipsTrack2" style="display:none;">
-    <span class="bc-chip active" onclick="showChapter('ch_rj1')" data-target="ch_rj1">
-      <span class="bc-n">1</span> झूला
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj2')" data-target="ch_rj2">
-      <span class="bc-n">2</span> आम की कहानी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj3')" data-target="ch_rj3">
-      <span class="bc-n">3</span> आम की टोकरी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj4')" data-target="ch_rj4">
-      <span class="bc-n">4</span> पत्ते ही पत्ते
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj5')" data-target="ch_rj5">
-      <span class="bc-n">5</span> पकौड़ी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj6')" data-target="ch_rj6">
-      <span class="bc-n">6</span> छुक-छुक गाड़ी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj7')" data-target="ch_rj7">
-      <span class="bc-n">7</span> रसोईघर
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj8')" data-target="ch_rj8">
-      <span class="bc-n">8</span> चूहो! म्याऊँ सो रही है
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj9')" data-target="ch_rj9">
-      <span class="bc-n">9</span> बंदर और गिलहरी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj10')" data-target="ch_rj10">
-      <span class="bc-n">10</span> पगड़ी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj11')" data-target="ch_rj11">
-      <span class="bc-n">11</span> पतंग
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj12')" data-target="ch_rj12">
-      <span class="bc-n">12</span> गेंद-बल्ला
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj13')" data-target="ch_rj13">
-      <span class="bc-n">13</span> बंदर गया खेत में भाग
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj14')" data-target="ch_rj14">
-      <span class="bc-n">14</span> एक बुढ़िया
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj15')" data-target="ch_rj15">
-      <span class="bc-n">15</span> मैं भी...
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj16')" data-target="ch_rj16">
-      <span class="bc-n">16</span> लालू और पीलू
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj17')" data-target="ch_rj17">
-      <span class="bc-n">17</span> चकई के चकदुम
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj18')" data-target="ch_rj18">
-      <span class="bc-n">18</span> छोटी का कमाल
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj19')" data-target="ch_rj19">
-      <span class="bc-n">19</span> चार चने
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj20')" data-target="ch_rj20">
-      <span class="bc-n">20</span> भगदड़
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj21')" data-target="ch_rj21">
-      <span class="bc-n">21</span> हलीम चला चाँद पर
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj22')" data-target="ch_rj22">
-      <span class="bc-n">22</span> हाथी चल्लम चल्लम
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_rj23')" data-target="ch_rj23">
-      <span class="bc-n">23</span> सात पूँछ का चूहा
-    </span>
-  </div>
-  </div>
 
   <!-- Layout: Sidebar + Main Content -->
   <div class="layout-wrapper">
@@ -21528,12 +21356,12 @@
       if (sbTab1) sbTab1.classList.toggle('active', isT1);
       if (sbTab2) sbTab2.classList.toggle('active', !isT1);
 
-      document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
-      document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
+      if (document.getElementById('chipsTrack1')) document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
+      if (document.getElementById('chipsTrack2')) document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
       document.getElementById('navTrack1').style.display = isT1 ? 'block' : 'none';
       document.getElementById('navTrack2').style.display = isT1 ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
       document.getElementById('sidebarTitleText').innerText = isT1 ? track1Name + ' (' + track1Count + ' Chapters)' : track2Name + ' (' + track2Count + ' Chapters)';
     }
 

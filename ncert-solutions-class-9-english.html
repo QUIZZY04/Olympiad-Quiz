@@ -175,7 +175,7 @@
     .bc-chip.active .bc-n{background:rgba(255,255,255,.25);}
     
     .main-layout{display:flex;max-width:1380px;margin:0 auto;}
-    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:152px;height:calc(100vh - 152px);overflow-y:auto;flex-shrink:0;}
+    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;}
     .sidebar-title{font-size:.82rem;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
     .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;margin-bottom:16px;font-family:inherit;}
     .search-box:focus{outline:none;border-color:var(--brand);}
@@ -428,45 +428,7 @@
   </div>
 </header>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-controls">
-    <div class="breadcrumb-label">📖 Class 9 English — Filter by Book:</div>
-    <div class="book-tabs">
-      <span class="book-tab active" onclick="filterBook('all')">🌟 All 26 Units</span>
-      <span class="book-tab" onclick="filterBook('beehive')">📚 Beehive Prose (9)</span>
-      <span class="book-tab" onclick="filterBook('poems')">📝 Beehive Poems (8)</span>
-      <span class="book-tab" onclick="filterBook('moments')">📖 Moments (9)</span>
-    </div>
-  </div>
-  <div class="breadcrumb-chips" id="breadcrumbChips">
-    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1" data-book="beehive"><span class="bc-n">B1</span>The Fun They Had</span>
-    <span class="bc-chip" onclick="showChapter(2)" data-ch="2" data-book="beehive"><span class="bc-n">B2</span>The Sound of M…</span>
-    <span class="bc-chip" onclick="showChapter(3)" data-ch="3" data-book="beehive"><span class="bc-n">B3</span>The Little Girl</span>
-    <span class="bc-chip" onclick="showChapter(4)" data-ch="4" data-book="beehive"><span class="bc-n">B4</span>A Truly Beauti…</span>
-    <span class="bc-chip" onclick="showChapter(5)" data-ch="5" data-book="beehive"><span class="bc-n">B5</span>The Snake and …</span>
-    <span class="bc-chip" onclick="showChapter(6)" data-ch="6" data-book="beehive"><span class="bc-n">B6</span>My Childhood</span>
-    <span class="bc-chip" onclick="showChapter(7)" data-ch="7" data-book="beehive"><span class="bc-n">B7</span>Reach for the …</span>
-    <span class="bc-chip" onclick="showChapter(8)" data-ch="8" data-book="beehive"><span class="bc-n">B8</span>Kathmandu</span>
-    <span class="bc-chip" onclick="showChapter(9)" data-ch="9" data-book="beehive"><span class="bc-n">B9</span>If I Were You</span>
-    <span class="bc-chip" onclick="showChapter(10)" data-ch="10" data-book="poems"><span class="bc-n">P1</span>The Road Not T…</span>
-    <span class="bc-chip" onclick="showChapter(11)" data-ch="11" data-book="poems"><span class="bc-n">P2</span>Wind</span>
-    <span class="bc-chip" onclick="showChapter(12)" data-ch="12" data-book="poems"><span class="bc-n">P3</span>Rain on the Roof</span>
-    <span class="bc-chip" onclick="showChapter(13)" data-ch="13" data-book="poems"><span class="bc-n">P4</span>The Lake Isle …</span>
-    <span class="bc-chip" onclick="showChapter(14)" data-ch="14" data-book="poems"><span class="bc-n">P5</span>A Legend of th…</span>
-    <span class="bc-chip" onclick="showChapter(15)" data-ch="15" data-book="poems"><span class="bc-n">P6</span>No Men Are For…</span>
-    <span class="bc-chip" onclick="showChapter(16)" data-ch="16" data-book="poems"><span class="bc-n">P7</span>On Killing a T…</span>
-    <span class="bc-chip" onclick="showChapter(17)" data-ch="17" data-book="poems"><span class="bc-n">P8</span>A Slumber Did …</span>
-    <span class="bc-chip" onclick="showChapter(18)" data-ch="18" data-book="moments"><span class="bc-n">M1</span>The Lost Child</span>
-    <span class="bc-chip" onclick="showChapter(19)" data-ch="19" data-book="moments"><span class="bc-n">M2</span>The Adventures…</span>
-    <span class="bc-chip" onclick="showChapter(20)" data-ch="20" data-book="moments"><span class="bc-n">M3</span>Iswaran the St…</span>
-    <span class="bc-chip" onclick="showChapter(21)" data-ch="21" data-book="moments"><span class="bc-n">M4</span>In the Kingdom…</span>
-    <span class="bc-chip" onclick="showChapter(22)" data-ch="22" data-book="moments"><span class="bc-n">M5</span>The Happy Prince</span>
-    <span class="bc-chip" onclick="showChapter(23)" data-ch="23" data-book="moments"><span class="bc-n">M6</span>Weathering the…</span>
-    <span class="bc-chip" onclick="showChapter(24)" data-ch="24" data-book="moments"><span class="bc-n">M7</span>The Last Leaf</span>
-    <span class="bc-chip" onclick="showChapter(25)" data-ch="25" data-book="moments"><span class="bc-n">M8</span>A House Is Not…</span>
-    <span class="bc-chip" onclick="showChapter(26)" data-ch="26" data-book="moments"><span class="bc-n">M9</span>The Beggar</span>
-  </div>
-</div>
+
 
 <div class="main-layout">
   <div class="sidebar-overlay" id="sidebarOverlay"></div>

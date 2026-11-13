@@ -253,7 +253,7 @@
     /* Sidebar */
     .sidebar {
       background: #ffffff; border: 1px solid #fed7aa; border-radius: 12px; padding: 18px;
-      position: sticky; top: 160px; max-height: calc(100vh - 180px); overflow-y: auto;
+      position: sticky; top: 60px; max-height: calc(100vh - 60px); overflow-y: auto;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03); scrollbar-width: thin;
     }
     .search-box {
@@ -480,54 +480,7 @@
   </div>
 </header>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-controls">
-    <div class="breadcrumb-label">📖 कक्षा 10 हिंदी — पुस्तक के अनुसार देखें:</div>
-    <div class="book-tabs">
-      <span class="book-tab active" onclick="filterBook('all')">🌟 सभी 32 पाठ</span>
-      <span class="book-tab" onclick="filterBook('kshitij-gadh')">📚 क्षितिज - गद्य (6)</span>
-      <span class="book-tab" onclick="filterBook('kshitij-kavya')">📝 क्षितिज - काव्य (6)</span>
-      <span class="book-tab" onclick="filterBook('kritika')">📖 कृतिका (3)</span>
-      <span class="book-tab" onclick="filterBook('sparsh-gadh')">📙 स्पर्श - गद्य (7)</span>
-      <span class="book-tab" onclick="filterBook('sparsh-kavya')">🖋️ स्पर्श - काव्य (7)</span>
-      <span class="book-tab" onclick="filterBook('sanchayan')">📗 संचयन (3)</span>
-    </div>
-  </div>
-  <div class="breadcrumb-chips" id="breadcrumbChips">
-    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1" data-book="kshitij-gadh"><span class="bc-n">K1</span>नेताजी का चश्मा</span>
-    <span class="bc-chip" onclick="showChapter(2)" data-ch="2" data-book="kshitij-gadh"><span class="bc-n">K2</span>बालगोबिन भगत</span>
-    <span class="bc-chip" onclick="showChapter(3)" data-ch="3" data-book="kshitij-gadh"><span class="bc-n">K3</span>लखनवी अंदाज़</span>
-    <span class="bc-chip" onclick="showChapter(4)" data-ch="4" data-book="kshitij-gadh"><span class="bc-n">K4</span>एक कहानी यह भी</span>
-    <span class="bc-chip" onclick="showChapter(5)" data-ch="5" data-book="kshitij-gadh"><span class="bc-n">K5</span>नौबतखाने में इबादत</span>
-    <span class="bc-chip" onclick="showChapter(6)" data-ch="6" data-book="kshitij-gadh"><span class="bc-n">K6</span>संस्कृति</span>
-    <span class="bc-chip" onclick="showChapter(7)" data-ch="7" data-book="kshitij-kavya"><span class="bc-n">KP7</span>पद</span>
-    <span class="bc-chip" onclick="showChapter(8)" data-ch="8" data-book="kshitij-kavya"><span class="bc-n">KP8</span>राम-लक्ष्मण-परशुराम संवाद</span>
-    <span class="bc-chip" onclick="showChapter(9)" data-ch="9" data-book="kshitij-kavya"><span class="bc-n">KP9</span>आत्मकथ्य</span>
-    <span class="bc-chip" onclick="showChapter(10)" data-ch="10" data-book="kshitij-kavya"><span class="bc-n">KP10</span>उत्साह और अट नहीं रही है</span>
-    <span class="bc-chip" onclick="showChapter(11)" data-ch="11" data-book="kshitij-kavya"><span class="bc-n">KP11</span>यह दंतुरित मुस्कान और फसल</span>
-    <span class="bc-chip" onclick="showChapter(12)" data-ch="12" data-book="kshitij-kavya"><span class="bc-n">KP12</span>संगतकार</span>
-    <span class="bc-chip" onclick="showChapter(13)" data-ch="13" data-book="kritika"><span class="bc-n">KR13</span>माता का आँचल</span>
-    <span class="bc-chip" onclick="showChapter(14)" data-ch="14" data-book="kritika"><span class="bc-n">KR14</span>साना-साना हाथ जोड़ि...</span>
-    <span class="bc-chip" onclick="showChapter(15)" data-ch="15" data-book="kritika"><span class="bc-n">KR15</span>मैं क्यों लिखता हूँ?</span>
-    <span class="bc-chip" onclick="showChapter(16)" data-ch="16" data-book="sparsh-gadh"><span class="bc-n">S16</span>बड़े भाई साहब</span>
-    <span class="bc-chip" onclick="showChapter(17)" data-ch="17" data-book="sparsh-gadh"><span class="bc-n">S17</span>डायरी का एक पन्ना</span>
-    <span class="bc-chip" onclick="showChapter(18)" data-ch="18" data-book="sparsh-gadh"><span class="bc-n">S18</span>तताँरा-वामीरो कथा</span>
-    <span class="bc-chip" onclick="showChapter(19)" data-ch="19" data-book="sparsh-gadh"><span class="bc-n">S19</span>तीसरी कसम के शिल्पकार शैलेन्द्र</span>
-    <span class="bc-chip" onclick="showChapter(20)" data-ch="20" data-book="sparsh-gadh"><span class="bc-n">S20</span>अब कहाँ दूसरे के दुख से दुखी होने वाले</span>
-    <span class="bc-chip" onclick="showChapter(21)" data-ch="21" data-book="sparsh-gadh"><span class="bc-n">S21</span>पतझर में टूटी पत्तियाँ</span>
-    <span class="bc-chip" onclick="showChapter(22)" data-ch="22" data-book="sparsh-gadh"><span class="bc-n">S22</span>कारतूस</span>
-    <span class="bc-chip" onclick="showChapter(23)" data-ch="23" data-book="sparsh-kavya"><span class="bc-n">SP23</span>साखी</span>
-    <span class="bc-chip" onclick="showChapter(24)" data-ch="24" data-book="sparsh-kavya"><span class="bc-n">SP24</span>पद</span>
-    <span class="bc-chip" onclick="showChapter(25)" data-ch="25" data-book="sparsh-kavya"><span class="bc-n">SP25</span>मनुष्यता</span>
-    <span class="bc-chip" onclick="showChapter(26)" data-ch="26" data-book="sparsh-kavya"><span class="bc-n">SP26</span>पर्वत प्रदेश में पावस</span>
-    <span class="bc-chip" onclick="showChapter(27)" data-ch="27" data-book="sparsh-kavya"><span class="bc-n">SP27</span>तोप</span>
-    <span class="bc-chip" onclick="showChapter(28)" data-ch="28" data-book="sparsh-kavya"><span class="bc-n">SP28</span>कर चले हम फ़िदा</span>
-    <span class="bc-chip" onclick="showChapter(29)" data-ch="29" data-book="sparsh-kavya"><span class="bc-n">SP29</span>आत्मत्राण</span>
-    <span class="bc-chip" onclick="showChapter(30)" data-ch="30" data-book="sanchayan"><span class="bc-n">SN30</span>हरिहर काका</span>
-    <span class="bc-chip" onclick="showChapter(31)" data-ch="31" data-book="sanchayan"><span class="bc-n">SN31</span>सपनों के-से दिन</span>
-    <span class="bc-chip" onclick="showChapter(32)" data-ch="32" data-book="sanchayan"><span class="bc-n">SN32</span>टोपी शुक्ला</span>
-  </div>
-</div>
+
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebarMobile()"></div>
 

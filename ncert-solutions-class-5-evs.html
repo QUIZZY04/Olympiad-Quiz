@@ -173,7 +173,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -364,143 +364,7 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">🌿 Quick Jump To Chapter — Our Wondrous World (NEP 2020):</div>
-    <div class="breadcrumb-chips" id="chipsWondrous">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_oww1')" data-target="ch_oww1">
-    <span class="bc-n">1</span> Water
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww2')" data-target="ch_oww2">
-    <span class="bc-n">2</span> Journey of a River
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww3')" data-target="ch_oww3">
-    <span class="bc-n">3</span> The Mystery of Food
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww4')" data-target="ch_oww4">
-    <span class="bc-n">4</span> Our School
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww5')" data-target="ch_oww5">
-    <span class="bc-n">5</span> Our Vibrant Country
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww6')" data-target="ch_oww6">
-    <span class="bc-n">6</span> Some Unique Places
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww7')" data-target="ch_oww7">
-    <span class="bc-n">7</span> Energy
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww8')" data-target="ch_oww8">
-    <span class="bc-n">8</span> Clothes
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww9')" data-target="ch_oww9">
-    <span class="bc-n">9</span> Rhythms of Nature
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww10')" data-target="ch_oww10">
-    <span class="bc-n">10</span> Earth
-  </span>
-
-    </div>
-    <div class="breadcrumb-chips" id="chipsLooking" style="display:none;">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_la_1')" data-target="ch_la_1">
-    <span class="bc-n">1</span> Super Senses
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_2')" data-target="ch_la_2">
-    <span class="bc-n">2</span> A Snake Charmer's Story
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_3')" data-target="ch_la_3">
-    <span class="bc-n">3</span> From Tasting to Digesting
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_4')" data-target="ch_la_4">
-    <span class="bc-n">4</span> Mangoes Round the Year
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_5')" data-target="ch_la_5">
-    <span class="bc-n">5</span> Seeds and Seeds
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_6')" data-target="ch_la_6">
-    <span class="bc-n">6</span> Every Drop Counts
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_7')" data-target="ch_la_7">
-    <span class="bc-n">7</span> Experiments with Water
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_8')" data-target="ch_la_8">
-    <span class="bc-n">8</span> A Treat for Mosquitoes
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_9')" data-target="ch_la_9">
-    <span class="bc-n">9</span> Up You Go!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_10')" data-target="ch_la_10">
-    <span class="bc-n">10</span> Walls Tell Stories
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_11')" data-target="ch_la_11">
-    <span class="bc-n">11</span> Sunita in Space
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_12')" data-target="ch_la_12">
-    <span class="bc-n">12</span> What if it Finishes...?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_13')" data-target="ch_la_13">
-    <span class="bc-n">13</span> A Shelter so High!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_14')" data-target="ch_la_14">
-    <span class="bc-n">14</span> When the Earth Shook!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_15')" data-target="ch_la_15">
-    <span class="bc-n">15</span> Blow Hot, Blow Cold
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_16')" data-target="ch_la_16">
-    <span class="bc-n">16</span> Who will do this Work?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_17')" data-target="ch_la_17">
-    <span class="bc-n">17</span> Across the Wall
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_18')" data-target="ch_la_18">
-    <span class="bc-n">18</span> No Place for Us?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_19')" data-target="ch_la_19">
-    <span class="bc-n">19</span> A Seed tells a Farmer's Story
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_20')" data-target="ch_la_20">
-    <span class="bc-n">20</span> Whose Forests?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_21')" data-target="ch_la_21">
-    <span class="bc-n">21</span> Like Father, Like Daughter
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_22')" data-target="ch_la_22">
-    <span class="bc-n">22</span> On the Move Again
-  </span>
-
-    </div>
-  </div>
+  
 
   <!-- Main Layout -->
   <div class="main-layout">
@@ -29650,11 +29514,11 @@
       if (nav2) nav2.style.display = isB1 ? 'none' : 'block';
 
       // Toggle Breadcrumb Chips
-      document.getElementById('chipsWondrous').style.display = isB1 ? 'flex' : 'none';
-      document.getElementById('chipsLooking').style.display = isB1 ? 'none' : 'flex';
+      if (document.getElementById('chipsWondrous')) document.getElementById('chipsWondrous').style.display = isB1 ? 'flex' : 'none';
+      if (document.getElementById('chipsLooking')) document.getElementById('chipsLooking').style.display = isB1 ? 'none' : 'flex';
 
       // Update Label
-      document.getElementById('chipBarLabel').innerText = isB1
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB1
         ? '🌿 Quick Jump To Chapter — Our Wondrous World (NEP 2020):'
         : '📙 Quick Jump To Chapter — Looking Around (Classic CBSE):';
 
@@ -29689,10 +29553,10 @@
         if (nav1) nav1.style.display = !isB2 ? 'block' : 'none';
         if (nav2) nav2.style.display = isB2 ? 'block' : 'none';
 
-        document.getElementById('chipsWondrous').style.display = !isB2 ? 'flex' : 'none';
-        document.getElementById('chipsLooking').style.display = isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsWondrous')) document.getElementById('chipsWondrous').style.display = !isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsLooking')) document.getElementById('chipsLooking').style.display = isB2 ? 'flex' : 'none';
 
-        document.getElementById('chipBarLabel').innerText = isB2
+        if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB2
           ? '📙 Quick Jump To Chapter — Looking Around (Classic CBSE):'
           : '🌿 Quick Jump To Chapter — Our Wondrous World (NEP 2020):';
 
