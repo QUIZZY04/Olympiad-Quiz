@@ -97,8 +97,15 @@ function renderChapterSection(ch, bookKey, idx, arr) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const isSantoor = (bookKey === 'st');
 
-  // 100% Genuine Physical NCERT Verbatim Questions
-  const currentQs = ch.questions || [];
+  // Collect 100% full questions for this chapter
+  const baseQs = ch.questions || [];
+  const extraQs = isSantoor ? (santoorExtra[ch.id] || []) : (marigoldExtra[ch.id] || []);
+  let currentQs = [...baseQs, ...extraQs];
+  const target = targetCounts[ch.id] || 20;
+  if (currentQs.length < target) {
+    const generated = generateEnglishQuestions(ch, currentQs.length, target);
+    currentQs = [...currentQs, ...generated];
+  }
 
   const prevCh = idx > 0 ? arr[idx - 1] : null;
   const nextCh = idx < arr.length - 1 ? arr[idx + 1] : null;

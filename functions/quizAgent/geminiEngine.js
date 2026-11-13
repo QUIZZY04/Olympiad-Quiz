@@ -10,17 +10,10 @@ const crypto = require("crypto");
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
 const GEMINI_MODELS = [
-  "gemini-3.5-flash-lite",   // Verified active model
-  "gemini-3.5-flash",        // High-speed tier
-  "gemini-3.8-flash",        // Reasoning tier
-  "gemini-2.5-flash",
-  "gemini-2.0-flash",
-  "gemini-2.0-flash-lite",
-  "gemini-1.5-flash"
+  "gemini-3.5-flash-lite",   // Highest free quota, fastest
+  "gemini-3.8-flash",        // Flagship, lower daily free quota
+  "gemini-3.5-flash"         // Mid-tier fallback
 ];
-
-let activeGeminiModel = "gemini-3.5-flash-lite";
-const deadGeminiModels = new Set();
 
 // OpenAI is the primary provider when a key is available (higher rate limits,
 // more reliable than Gemini's free tier) - Gemini remains the fallback.
@@ -106,7 +99,8 @@ function countWords(str) {
 function normalizeForFingerprint(text) {
   return String(text || "")
     .toLowerCase()
-    .replace(/[^\w\s]/g, "")
+    .replace(/[0-9]+/g, "#")
+    .replace(/[^\w\s#]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -169,8 +163,8 @@ function getDifficultyGuidance(classNum, isAchiever) {
 // cascading generation failures across most classes).
 const DIAGRAM_KEYWORDS = /\b(shown|given|depicted|illustrated)\s+(in\s+the\s+)?(figure|diagram|image|picture|chart|graph|table)\b|\b(figure|diagram|image|picture|chart|graph|table)\s+(shown|given|below|above)\b|\bnumber\s*line\s+(shown|given|below|above)\b|\bclock\s*(face)?\s*(shown|given|below|above)\b|\bpictograph\b|\bbar\s*graph\b|\bsee\s+the\s+(figure|diagram|image|picture|chart|graph)\b/i;
 
-function questionNeedsDiagram(questionText) {
-  return DIAGRAM_KEYWORDS.test(questionText);
+function questionNeedsDiagram(questionText, topicName) {
+  return DIAGRAM_KEYWORDS.test(questionText) || DIAGRAM_KEYWORDS.test(topicName || "");
 }
 
 function isPlausibleSvg(svgData) {
@@ -196,126 +190,63 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
   let q = String(qObj.q || qObj.question || "").trim();
   if (!q) throw new Error(`Question ${index + 1} is missing question text ('q').`);
 
-  // Word Count Sanity Enforcement: The prompt already instructs the model
-  // on standard Olympiad targets (15-50 words). Here we enforce generous
-  // safety bounds (min 5-12 words, max 115-130 words) so that valid, high-quality
-  // questions are never discarded prematurely, preventing top-up exhaustion.
+  // Word Count Enforcement: reject and let the caller regenerate rather than
+  // gluing generic filler text onto short questions (the old approach, which
+  // produced artificially bloated, formulaic-sounding questions and had no
+  // ceiling at all, letting naturally verbose ones run past 60+ words).
+  const { min: minWords, max: maxWords } = getWordLimits(classNum, isAchiever);
   const words = countWords(q);
-  const minThreshold = isAchiever ? 12 : (parseInt(classNum, 10) <= 2 ? 5 : 7);
-  const maxThreshold = isAchiever ? 130 : 115;
-  if (words < minThreshold) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too short (${words} words, minimum ${minThreshold}).`);
+  if (words < minWords) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too short (${words} words, minimum ${minWords}).`);
   }
-  if (words > maxThreshold) {
-    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too long (${words} words, maximum ${maxThreshold}).`);
+  if (words > maxWords) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too long (${words} words, maximum ${maxWords}).`);
   }
 
-  // Options: pad/slice to exactly 4 non-empty strings
+  // Options: must be exactly 4 strings
   let o = Array.isArray(qObj.o) ? qObj.o : (Array.isArray(qObj.options) ? qObj.options : []);
   o = o.map(opt => String(opt != null ? opt : "").trim());
-  if (o.length < 4) {
-    while (o.length < 4) {
-      o.push(`Option ${String.fromCharCode(65 + o.length)}`);
-    }
-  } else if (o.length > 4) {
-    o = o.slice(0, 4);
+  if (o.length !== 4 || o.some(opt => opt.length === 0)) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") does not have exactly 4 non-empty options.`);
   }
-  o = o.map((opt, oi) => opt.length === 0 ? `Option ${String.fromCharCode(65 + oi)}` : opt);
+  const normalizedOptionSet = new Set(o.map(opt => opt.toLowerCase().replace(/\s+/g, " ").trim()));
+  if (normalizedOptionSet.size !== o.length) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has duplicate option values.`);
+  }
 
-  // Robust Answer Resolution (handles index 0-3, letter A-D, text matches, and solution cross-checks)
-  const rawA = qObj.a !== undefined ? qObj.a : (qObj.answer !== undefined ? qObj.answer : (qObj.correct_option !== undefined ? qObj.correct_option : qObj.ans));
-  let a = -1;
-
-  if (typeof rawA === "number" && rawA >= 0 && rawA <= 3) {
-    a = Math.floor(rawA);
-  } else if (typeof rawA === "string") {
-    const trimmed = rawA.trim();
-    if (/^[0-3]$/.test(trimmed)) {
-      a = parseInt(trimmed, 10);
+  // Answer index: 0, 1, 2, or 3
+  let a = parseInt(qObj.a != null ? qObj.a : qObj.answer, 10);
+  if (isNaN(a) || a < 0 || a > 3) {
+    if (typeof qObj.a === "string" && /^[A-D]$/i.test(qObj.a.trim())) {
+      a = qObj.a.trim().toUpperCase().charCodeAt(0) - 65;
     } else {
-      const letterMatch = trimmed.match(/\b([A-D])\b/i) || trimmed.match(/^[A-D]$/i);
-      if (letterMatch) {
-        a = letterMatch[1].toUpperCase().charCodeAt(0) - 65;
-      } else {
-        const normRaw = trimmed.toLowerCase();
-        const matchIdx = o.findIndex(opt => opt.toLowerCase() === normRaw);
-        if (matchIdx !== -1) a = matchIdx;
-      }
+      a = 0;
     }
   }
 
-  // Cross-check with solution explanation if a is not yet resolved
-  let sol = String(qObj.sol || qObj.solution || qObj.explanation || "").trim();
-  if (a < 0 || a > 3) {
-    const solLetterMatch = sol.match(/(?:option|answer|choice)\s*[:=\-]?\s*\(?([A-D])\)?/i);
-    if (solLetterMatch) {
-      a = solLetterMatch[1].toUpperCase().charCodeAt(0) - 65;
-    } else {
-      const matchIdx = o.findIndex(opt => opt.length > 2 && sol.toLowerCase().includes(opt.toLowerCase()));
-      a = matchIdx !== -1 ? matchIdx : 0;
-    }
+  // Shuffle option order
+  const correctOptionText = o[a];
+  for (let i = o.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [o[i], o[j]] = [o[j], o[i]];
   }
-
-  // Auto-repair duplicate options to ensure 4 distinct choices without dropping the question
-  const seenOptVals = new Set();
-  for (let oi = 0; oi < o.length; oi++) {
-    const norm = o[oi].toLowerCase().replace(/\s+/g, " ").trim();
-    if (seenOptVals.has(norm)) {
-      if (oi !== a) {
-        if (/^-?\d+(\.\d+)?$/.test(o[oi])) {
-          const num = parseFloat(o[oi]);
-          o[oi] = String(num + oi + 1);
-        } else {
-          o[oi] = `${o[oi]} (Different choice)`;
-        }
-      }
-    }
-    seenOptVals.add(o[oi].toLowerCase().replace(/\s+/g, " ").trim());
-  }
+  a = o.indexOf(correctOptionText);
 
   // Topic Code
   const topic = String(qObj.topic || `${subPrefix}01`).trim().toUpperCase();
 
-  // Hint & Solution: guarantee solution explicitly states the correct option clearly
+  // Hint & Solution
   const hint = String(qObj.hint || "").trim();
-  if (!sol) {
-    sol = `Correct option is ${String.fromCharCode(65 + a)}: ${o[a]}`;
-  } else if (!/correct option/i.test(sol)) {
-    sol = `Correct option is ${String.fromCharCode(65 + a)} (${o[a]}). ${sol}`;
-  }
+  const sol = String(qObj.sol || qObj.solution || qObj.explanation || "Correct option is: " + o[a]).trim();
 
-  // Inline SVG / images and code-fence sanitization
-  let svgData = String(qObj.svg_data || "").trim();
-  if (svgData) {
-    if (svgData.startsWith("```")) {
-      svgData = svgData.replace(/^```(?:xml|svg|html)?\s*/i, "").replace(/\s*```$/, "").trim();
-    }
-    const svgStart = svgData.indexOf("<svg");
-    const svgEnd = svgData.lastIndexOf("</svg>");
-    if (svgStart !== -1 && svgEnd !== -1 && svgEnd > svgStart) {
-      svgData = svgData.substring(svgStart, svgEnd + 6);
-    }
-  }
+  // Inline SVG / images
+  const svgData = String(qObj.svg_data || "").trim();
   if (svgData && !isPlausibleSvg(svgData)) {
-    svgData = "";
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has svg_data that isn't valid SVG markup.`);
   }
-
-  // If no SVG provided but phrasing refers to a figure/table, salvage the question if self-contained
   if (!svgData && questionNeedsDiagram(q)) {
-    const cleanedQ = q
-      .replace(/\s*(?:as\s+)?(?:shown|given|depicted|illustrated)\s+(?:in\s+the\s+)?(?:figure|diagram|image|picture|chart|graph|table)(?:\s+(?:below|above))?/gi, "")
-      .replace(/\s*(?:figure|diagram|image|picture|chart|graph|table)\s+(?:shown|given|below|above)\b/gi, "")
-      .replace(/\s*see\s+the\s+(?:figure|diagram|image|picture|chart|graph)\b/gi, "")
-      .replace(/\s{2,}/g, " ")
-      .trim();
-
-    if (countWords(cleanedQ) >= minThreshold) {
-      q = cleanedQ;
-    } else {
-      throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
-    }
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
   }
-
   const imageName = svgData ? `svg_inline_${padIndex}` : String(qObj.image_name || "").trim();
   const imageDescription = String(qObj.image_description || "").trim();
 
@@ -356,13 +287,7 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
 async function callGeminiRaw({ apiKey, prompt }) {
   let lastError = null;
 
-  const candidateModels = [
-    activeGeminiModel,
-    ...GEMINI_MODELS.filter(m => m !== activeGeminiModel && !deadGeminiModels.has(m))
-  ];
-
-  for (const model of candidateModels) {
-    if (deadGeminiModels.has(model)) continue;
+  for (const model of GEMINI_MODELS) {
     const maxRetries = 2;
 
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -386,17 +311,9 @@ async function callGeminiRaw({ apiKey, prompt }) {
         if (!response.ok) {
           const errorText = await response.text();
 
-          if (response.status === 404) {
-            deadGeminiModels.add(model);
-            break;
-          }
-
           // Check if retryable (503 high demand spike, 429 rate limit, 500/502/504)
           if (RETRYABLE_STATUS_CODES.includes(response.status) && attempt < maxRetries) {
-            let waitSec = (attempt + 1) * 3;
-            if (response.status === 429) {
-              waitSec = (attempt + 1) * 8; // 8s, 16s, 24s backoff for 429 rate limit
-            }
+            const waitSec = (attempt + 1) * 2;
             console.warn(`Model ${model} returned HTTP ${response.status}. Retrying in ${waitSec}s (attempt ${attempt + 1}/${maxRetries})...`);
             await new Promise(r => setTimeout(r, waitSec * 1000));
             continue;
@@ -423,13 +340,12 @@ async function callGeminiRaw({ apiKey, prompt }) {
 
         const parsed = JSON.parse(cleaned);
         if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
-        activeGeminiModel = model;
         return parsed;
 
       } catch (err) {
         lastError = err;
         if (err.message && err.message.includes("404")) {
-          deadGeminiModels.add(model);
+          console.warn(`Model ${model} 404 not found. Trying next fallback...`);
           break;
         }
 
@@ -443,6 +359,8 @@ async function callGeminiRaw({ apiKey, prompt }) {
         break;
       }
     }
+
+    console.warn(`Model ${model} unavailable or overloaded. Trying next fallback model...`);
   }
 
   throw lastError || new Error("All Gemini model endpoints failed.");
@@ -565,7 +483,7 @@ async function callAIRaw({ openAIKey, geminiKey, prompt }) {
 }
 
 const ANSWER_LETTERS = ["A", "B", "C", "D"];
-const VERIFY_CHUNK_SIZE = 20;
+const VERIFY_CHUNK_SIZE = 12;
 
 /**
  * Independently re-solves a batch of already-generated questions (blind to
@@ -690,7 +608,6 @@ async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum
    */
   async function acceptValidatedItems(rawArray, startIndex) {
     const valid = [];
-    if (!Array.isArray(rawArray)) return valid;
     for (let i = 0; i < rawArray.length; i++) {
       let item;
       try {
@@ -701,16 +618,15 @@ async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum
       }
       const fp = fingerprintOf(item.q);
       if (seenFingerprints.has(fp)) {
+        console.warn(`Regular item skipped: duplicate/near-duplicate of another question in this run ("${item.q.slice(0, 40)}...").`);
         continue;
       }
       if (db) {
         try {
           const fpDoc = await db.collection("quiz_question_fingerprints").doc(`c${classNum}_${subject}_${fp}`).get();
           if (fpDoc.exists) {
-            const data = fpDoc.data();
-            if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
-              continue;
-            }
+            console.warn(`Regular item skipped: duplicate of a previously published question ("${item.q.slice(0, 40)}...").`);
+            continue;
           }
         } catch (err) {
           console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", err.message);
@@ -773,30 +689,29 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     return acceptValidatedItems(rawArray, collected.length);
   }
 
-  // Split into 2 batches of 25 (total 50 candidate questions) to ensure
-  // that even after dedup and validation, at least 40 valid questions are ready on the first try.
-  const batchTarget = 25;
-  const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), batchTarget);
-  const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), batchTarget);
+  // Split into 2 batches of 20 to avoid token cutoff
+  const halfCount = 20;
+  const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
+  const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
 
-  const batch1 = await fetchRegularBatch(plan1, batchTarget);
+  const batch1 = await fetchRegularBatch(plan1, halfCount);
   collected.push(...batch1);
-  await new Promise(r => setTimeout(r, 1800));
+  await new Promise(r => setTimeout(r, 1200));
 
-  const batch2 = await fetchRegularBatch(plan2, batchTarget);
+  const batch2 = await fetchRegularBatch(plan2, halfCount);
   collected.push(...batch2);
 
-  // Top-up replenishment loop if total < 40 (absorbs duplicate items or diagram issues)
+  // Top-up replenishment loop if total < 40 (also absorbs items dropped for
+  // being duplicates, having bad diagrams, etc. - any shortfall gets topped up)
   let topUpAttempts = 0;
-  while (collected.length < targetCount && topUpAttempts < 6) {
+  while (collected.length < targetCount && topUpAttempts < 4) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
-    const requestedCount = Math.max(missing + 4, 8);
-    console.log(`Finalizing regular questions (${collected.length}/40). Requesting supplemental batch of ${requestedCount}...`);
-    const topUpPlan = buildTopicPlan(topics, requestedCount);
-    const topUp = await fetchRegularBatch(topUpPlan, requestedCount);
+    console.warn(`Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
+    const topUpPlan = buildTopicPlan(topics, missing);
+    const topUp = await fetchRegularBatch(topUpPlan, missing);
     collected.push(...topUp);
-    await new Promise(r => setTimeout(r, 1800));
+    await new Promise(r => setTimeout(r, 1200));
   }
 
   if (collected.length < targetCount) {
@@ -851,7 +766,6 @@ async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNu
 
   async function acceptValidatedItems(rawArray, startIndex) {
     const valid = [];
-    if (!Array.isArray(rawArray)) return valid;
     for (let i = 0; i < rawArray.length; i++) {
       let item;
       try {
@@ -862,16 +776,15 @@ async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNu
       }
       const fp = fingerprintOf(item.q);
       if (seenFingerprints.has(fp)) {
+        console.warn(`Achiever item skipped: duplicate/near-duplicate of another question in this run ("${item.q.slice(0, 40)}...").`);
         continue;
       }
       if (db) {
         try {
           const fpDoc = await db.collection("quiz_question_fingerprints").doc(`c${classNum}_${subject}_${fp}`).get();
           if (fpDoc.exists) {
-            const data = fpDoc.data();
-            if (data?.targetSunday !== dateCompact && (collected.length + valid.length >= targetCount)) {
-              continue;
-            }
+            console.warn(`Achiever item skipped: duplicate of a previously published question ("${item.q.slice(0, 40)}...").`);
+            continue;
           }
         } catch (err) {
           console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", err.message);
@@ -935,24 +848,21 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     return acceptValidatedItems(rawArray, 40 + collected.length);
   }
 
-  // Generate 15 candidate Achiever questions (50% buffer) to guarantee 10 valid questions on the first pass
-  const achieverQuota = 15;
-  const plan = buildTopicPlan(topics, achieverQuota);
-  const batch = await fetchAchieverBatch(plan, achieverQuota);
+  const plan = buildTopicPlan(topics, targetCount);
+  const batch = await fetchAchieverBatch(plan, targetCount);
   collected.push(...batch);
 
   // Top-up replenishment loop if total < 10 (also absorbs items dropped for
   // being duplicates, having bad diagrams, etc.)
   let topUpAttempts = 0;
-  while (collected.length < targetCount && topUpAttempts < 6) {
+  while (collected.length < targetCount && topUpAttempts < 4) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
-    const requestedCount = Math.max(missing + 3, 6);
-    console.log(`Finalizing achiever questions (${collected.length}/10). Requesting supplemental batch of ${requestedCount}...`);
-    const topUpPlan = buildTopicPlan(topics, requestedCount);
-    const topUp = await fetchAchieverBatch(topUpPlan, requestedCount);
+    console.warn(`Achievers shortfall detected (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
+    const topUpPlan = buildTopicPlan(topics, missing);
+    const topUp = await fetchAchieverBatch(topUpPlan, missing);
     collected.push(...topUp);
-    await new Promise(r => setTimeout(r, 1800));
+    await new Promise(r => setTimeout(r, 1200));
   }
 
   if (collected.length < targetCount) {
