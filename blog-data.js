@@ -1,6 +1,15 @@
 /* Lightweight JSON array of blogs */
 const blogs = [
     {
+        title: "Olympiad Exams in November 2026: Your Final-Week Revision Checklist (IEO, ISO, IMO)",
+        excerpt: "IEO, ISO (NSO), IHO and IMO all fall in the next few weeks. Here's exactly what to revise, what to skip, and how to spend your final 7 days before the exam.",
+        date: "November 13, 2026",
+        readTime: "7 min read",
+        category: "Strategy",
+        image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?auto=format&fit=crop&w=600&q=80&fm=webp",
+        link: "blog-november-2026-final-week-revision-checklist.html"
+    },
+    {
         title: "Olympiad Exam Schedule 2026-27: Every Upcoming Date You Need to Know",
         excerpt: "The complete, officially-sourced schedule for every SOF Olympiad exam this year - IMO, NSO (ISO), IEO, IGKO, ICSO, ISSO, IHO and ICO - plus registration deadlines and Level 2 dates.",
         date: "September 9, 2026",
