@@ -1431,46 +1431,184 @@ img {
     .exams-covered { padding-top: 16px !important; padding-bottom: 36px !important; }
 }
 
-/* Homepage NCERT subject cards */
+/* Homepage NCERT Solutions Section - Compact & Sober */
+.home-ncert-wrapper {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.home-class-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.home-class-tab {
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+    line-height: 1.4;
+    outline: none;
+}
+
+.home-class-tab:hover {
+    color: var(--navy);
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.home-class-tab.active {
+    background: var(--navy);
+    color: #ffffff;
+    border-color: var(--navy);
+}
+
+.home-ncert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+}
+
 .home-ncert-card {
-    border-radius: 12px;
-    padding: 14px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
     text-decoration: none;
-    transition: 0.2s;
+    transition: all 0.15s ease;
     display: block;
 }
-.home-ncert-card-row { display: flex; align-items: center; gap: 10px; }
-.home-ncert-card-icon { font-size: 1.5rem; }
-.home-ncert-card-title { color: #fff; font-weight: 800; font-size: 0.88rem; }
-.home-ncert-card-subtitle { font-size: 0.72rem; }
-.home-ncert-card-badge {
-    color: #fff;
-    font-size: 0.58rem;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-weight: 800;
+
+.home-ncert-card:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
 }
 
-.home-ncert-card.theme-orange { background: rgba(234,88,12,0.35); border: 1.5px solid #fb923c; }
-.home-ncert-card.theme-orange .home-ncert-card-subtitle { color: #fed7aa; }
-.home-ncert-card.theme-blue { background: rgba(37,99,235,0.35); border: 1.5px solid #60a5fa; }
-.home-ncert-card.theme-blue .home-ncert-card-subtitle { color: #bfdbfe; }
-.home-ncert-card.theme-green { background: rgba(5,150,105,0.35); border: 1.5px solid #34d399; }
-.home-ncert-card.theme-green .home-ncert-card-subtitle { color: #a7f3d0; }
-.home-ncert-card.theme-rust { background: rgba(194,65,12,0.35); border: 1.5px solid #f97316; }
-.home-ncert-card.theme-rust .home-ncert-card-subtitle { color: #fed7aa; }
-.home-ncert-card.theme-purple { background: rgba(124,58,237,0.35); border: 1.5px solid #a78bfa; }
-.home-ncert-card.theme-purple .home-ncert-card-subtitle { color: #ddd6fe; }
-.home-ncert-card.theme-amber { background: rgba(217,119,6,0.35); border: 1.5px solid #fbbf24; }
-.home-ncert-card.theme-amber .home-ncert-card-subtitle { color: #fde68a; }
-.home-ncert-card.theme-violet { background: rgba(147,51,234,0.35); border: 1.5px solid #c084fc; }
-.home-ncert-card.theme-violet .home-ncert-card-subtitle { color: #f3e8ff; }
-.home-ncert-card.theme-sky { background: rgba(2,132,199,0.35); border: 1.5px solid #38bdf8; }
-.home-ncert-card.theme-sky .home-ncert-card-subtitle { color: #bae6fd; }
-.home-ncert-card.theme-neutral { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
-.home-ncert-card.theme-neutral .home-ncert-card-subtitle { color: #a78bfa; }
+.home-ncert-card-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-.home-ncert-card-badge.badge-orange { background: #ea580c; }
-.home-ncert-card-badge.badge-blue { background: #3b82f6; }
-.home-ncert-card-badge.badge-green { background: #10b981; }
-.home-ncert-card-badge.badge-rust { background: #f97316; }
+.home-ncert-card-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.home-ncert-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.home-ncert-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.home-ncert-card-title {
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.84rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home-ncert-card-subtitle {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.3;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home-ncert-card-badge {
+    color: #0369a1;
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    font-size: 0.6rem;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.home-ncert-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.home-ncert-footer-text {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.home-ncert-footer-link {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: 0.15s;
+}
+
+.home-ncert-footer-link:hover {
+    color: #c2410c;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .home-ncert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .home-ncert-wrapper {
+        padding: 16px 12px;
+        border-radius: 12px;
+    }
+    .home-ncert-grid {
+        grid-template-columns: 1fr;
+    }
+    .home-ncert-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

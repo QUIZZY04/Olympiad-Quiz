@@ -496,325 +496,397 @@
 
 
         <!-- ================= NCERT SOLUTIONS SECTION ================= -->
-    <section class="container" style="padding: 20px 0 60px 0;" id="ncert-solutions-section">
+    <section class="container" style="padding: 30px 0 50px 0;" id="ncert-solutions-section">
         <div class="section-header">
-            <h2>Free NCERT Solutions — <span class="text-orange">Class 5, 6, 7, 8, 9 &amp; 10 (CBSE 2026-27)</span></h2>
-            <p>Complete chapter-wise NCERT solutions with maximum word-count answers as per CBSE marking scheme. Class 5 (Santoor, Maths Mela, Looking Around), Class 6 (Ganita Prakash, Curiosity, Exploring Society, Poorvi, Malhar, Deepakam), Class 7, Class 8, Class 9 &amp; Class 10 all covered with 100% question solutions.</p>
+            <h2>Free NCERT Solutions — <span class="text-orange">Class 1 to 10 (CBSE 2026-27)</span></h2>
+            <p>Chapter-wise solutions with step-by-step explanations, maximum word-count answers, and CBSE marking scheme.</p>
         </div>
         
-        <!-- Class Quick Navigation Pills -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;">
-            <button class="home-class-tab active" onclick="filterHomeNcert('all', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #7c3aed;background:#7c3aed;color:white;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🌟 All Classes</button>
-            <button class="home-class-tab" onclick="filterHomeNcert('c5', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🌟 Class 5 (New 2026-27) ✨</button>
-            <button class="home-class-tab" onclick="filterHomeNcert('c6', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📘 Class 6 (New 2026-27) ✨</button>
-            <button class="home-class-tab" onclick="filterHomeNcert('c10', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🎓 Class 10</button>
-            <button class="home-class-tab" onclick="filterHomeNcert('c9', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📕 Class 9</button>
-            <button class="home-class-tab" onclick="filterHomeNcert('c8', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📙 Class 8</button>
-            <button class="home-class-tab" onclick="filterHomeNcert('c7', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📗 Class 7</button>
-        </div>
-
-        <div style="background:linear-gradient(135deg,#0f172a 0%,#4c1d95 100%);border-radius:24px;padding:36px 40px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;box-shadow:0 20px 50px rgba(15,23,42,0.25);">
-            <div style="flex:1;min-width:260px;">
-                <div style="display:inline-block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;color:#c4b5fd;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;">📚 CBSE Syllabus 2026-27</div>
-                <h3 style="font-size:1.8rem;font-weight:800;color:white;margin:0 0 10px 0;line-height:1.3;">NCERT Solutions Hub</h3>
-                <p style="color:#c4b5fd;font-size:0.95rem;margin:0 0 20px 0;line-height:1.6;">All questions solved with detailed explanations. Max word-count answers. Official CBSE board marking scheme and NEP 2020 Competency-Based Questions.</p>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                    <a href="ncert-solutions.html" style="background:#7c3aed;color:white;padding:12px 24px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:0.2s;" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">View All NCERT Solutions &#8594;</a>
-                    <a href="ncert-solutions.html#class5" style="background:rgba(255,255,255,0.15);color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.25);">Class 5 Solutions 🌟</a>
-                    <a href="ncert-solutions.html#class6" style="background:rgba(255,255,255,0.15);color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.25);">Class 6 Solutions ✨</a>
-                </div>
+        <div class="home-ncert-wrapper">
+            <!-- Class Quick Navigation Pills -->
+            <div class="home-class-tabs">
+                <button type="button" class="home-class-tab active" onclick="filterHomeNcert('all', this)">All Classes</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c10', this)">Class 10</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c9', this)">Class 9</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c8', this)">Class 8</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c7', this)">Class 7</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c6', this)">Class 6</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c5', this)">Class 5</button>
+                <button type="button" class="home-class-tab" onclick="filterHomeNcert('c1-4', this)">Classes 1–4</button>
             </div>
-            
-            <div id="homeNcertCardsGrid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px;flex:2;min-width:300px;max-width:800px;">
 
-                <!-- CLASS 1 CARDS -->
-                <a href="ncert-solutions-class-1-maths.html" class="home-ncert-card theme-orange c1">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 1 Joyful Mathematics <span class="home-ncert-card-badge badge-orange">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">आनंदमय गणित • 13 Chapters • 100% Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-1-english.html" class="home-ncert-card theme-blue c1">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📖</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 1 English (Mridang) <span class="home-ncert-card-badge badge-blue">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">मृदंग • All Units &amp; Exercises Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- CLASS 2 CARDS -->
-                <a href="ncert-solutions-class-2-maths.html" class="home-ncert-card theme-orange c2">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 2 Joyful Mathematics <span class="home-ncert-card-badge badge-orange">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">11 Chapters • Step-by-Step Solutions</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-2-english.html" class="home-ncert-card theme-blue c2">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📖</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 2 English (Mridang) <span class="home-ncert-card-badge badge-blue">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">Complete Answers &amp; Activities</div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- CLASS 3 CARDS -->
-                <a href="ncert-solutions-class-3-maths.html" class="home-ncert-card theme-orange c3">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 3 Maths Mela <span class="home-ncert-card-badge badge-orange">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">गणित मेला • 14 Chapters • 100% Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-3-evs.html" class="home-ncert-card theme-green c3">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🌿</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 3 EVS (Our Wondrous World) <span class="home-ncert-card-badge badge-green">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">हमारी अद्भुत दुनिया • Full Solutions</div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- CLASS 4 CARDS -->
-                <a href="ncert-solutions-class-4-maths.html" class="home-ncert-card theme-orange c4">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 4 Maths (Math-Magic)</div>
-                            <div class="home-ncert-card-subtitle">गणित का जादू • 14 Chapters Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-4-evs.html" class="home-ncert-card theme-green c4">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🌿</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 4 EVS (Looking Around)</div>
-                            <div class="home-ncert-card-subtitle">आस-पास • 27 Chapters Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-
-                <!-- CLASS 5 CARDS -->
-                <a href="ncert-solutions-class-5-hindi.html" class="home-ncert-card theme-rust c5">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📖</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 5 Hindi <span class="home-ncert-card-badge badge-orange">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">वीणा (Veena) &amp; रिमझिम • 100% Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-5-english.html" class="home-ncert-card theme-blue c5">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📖</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 5 English <span class="home-ncert-card-badge badge-blue">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">Santoor (NEP 2020) &amp; Marigold • 100% Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-5-maths.html" class="home-ncert-card theme-orange c5">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 5 Maths <span class="home-ncert-card-badge badge-rust">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">Maths Mela &amp; Math-Magic • 29 Chapters</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-5-evs.html" class="home-ncert-card theme-green c5">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🌿</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 5 The World Around Us <span class="home-ncert-card-badge badge-green">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">Our Wondrous World • 10 Chapters • 100% Solved</div>
-                        </div>
-                    </div>
-                </a>
-                <!-- CLASS 6 CARDS -->
-                <a href="ncert-solutions-class-6-maths.html" class="home-ncert-card theme-purple c6">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 6 Maths (Ganita Prakash) <span style="background:#22c55e;color:#0f172a;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">10 Chapters • Step-by-Step Solutions</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-6-science.html" class="home-ncert-card theme-green c6">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🔬</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 6 Science (Curiosity) <span style="background:#34d399;color:#064e3b;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">12 Chapters • 100% Questions Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-6-sst.html" class="home-ncert-card theme-amber c6">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🌍</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 6 Social Science <span style="background:#f59e0b;color:#451a03;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">Exploring Society • All Units Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-6-sanskrit.html" class="home-ncert-card theme-violet c6">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🕉️</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 6 Sanskrit (दीपकम् - Deepakam) <span style="background:#c084fc;color:#3b0764;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">16 Ch Deepakam + 15 Ch Ruchira • 100% Solved</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-6-english.html" class="home-ncert-card theme-sky c6">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">📖</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 6 English (Poorvi) <span style="background:#38bdf8;color:#082f49;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">13 Units • Prose, Poetry &amp; Grammar</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="ncert-solutions-class-6-hindi.html" class="home-ncert-card theme-orange c6">
-                    <div class="home-ncert-card-row">
-                        <span class="home-ncert-card-icon">🇮🇳</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 6 Hindi (मल्हार - Malhar) <span style="background:#f97316;color:#431407;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
-                            <div class="home-ncert-card-subtitle">17 Ch • सरल हिंदी व्याख्या व प्रश्नोत्तर</div>
-                        </div>
-                    </div>
-                </a>
-
+            <!-- Subject Cards Grid -->
+            <div id="homeNcertCardsGrid" class="home-ncert-grid">
                 <!-- CLASS 10 CARDS -->
-                <a href="ncert-solutions-class-10-maths.html" class="home-ncert-card theme-neutral c10">
+                <a href="ncert-solutions-class-10-maths.html" class="home-ncert-card c10">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 10 Mathematics</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 10 Mathematics</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">14 Chapters • Complete Step Proofs</div>
                         </div>
                     </div>
                 </a>
 
-                <a href="ncert-solutions-class-10-science.html" class="home-ncert-card theme-neutral c10">
+                <a href="ncert-solutions-class-10-science.html" class="home-ncert-card c10">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">🔬</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 10 Science</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 10 Science</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">13 Chapters • Physics, Chem, Bio</div>
                         </div>
                     </div>
                 </a>
 
-                <a href="ncert-solutions-class-10-social-science.html" class="home-ncert-card theme-neutral c10">
+                <a href="ncert-solutions-class-10-social-science.html" class="home-ncert-card c10">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">🌍</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 10 Social Science</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 10 Social Science</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">History, Geo, Civics &amp; Eco</div>
                         </div>
                     </div>
                 </a>
 
                 <!-- CLASS 9 CARDS -->
-                <a href="ncert-solutions-class-9-maths.html" class="home-ncert-card theme-neutral c9">
+                <a href="ncert-solutions-class-9-maths.html" class="home-ncert-card c9">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 9 Maths (Ganita Manjari)</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 9 Maths (Ganita Manjari)</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">14 Chapters • Step Marking</div>
                         </div>
                     </div>
                 </a>
 
-                <a href="ncert-solutions-class-9-science.html" class="home-ncert-card theme-neutral c9">
+                <a href="ncert-solutions-class-9-science.html" class="home-ncert-card c9">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">🔬</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 9 Science</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 9 Science</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">12 Chapters • 100% Q&amp;A</div>
                         </div>
                     </div>
                 </a>
 
-                <a href="ncert-solutions-class-9-english.html" class="home-ncert-card theme-neutral c9">
+                <a href="ncert-solutions-class-9-english.html" class="home-ncert-card c9">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">📖</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 9 English</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 9 English</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">Beehive &amp; Moments (26 Units)</div>
                         </div>
                     </div>
                 </a>
 
                 <!-- CLASS 8 CARDS -->
-                <a href="ncert-solutions-class-8-maths.html" class="home-ncert-card theme-neutral c8">
+                <a href="ncert-solutions-class-8-maths.html" class="home-ncert-card c8">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 8 Maths</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 8 Maths</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">14 Ch (Ganita Prakash)</div>
                         </div>
                     </div>
                 </a>
 
-                <a href="ncert-solutions-class-8-science.html" class="home-ncert-card theme-neutral c8">
+                <a href="ncert-solutions-class-8-science.html" class="home-ncert-card c8">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">🔬</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 8 Science</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 8 Science</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">18 Chapters • Full Solutions</div>
                         </div>
                     </div>
                 </a>
 
                 <!-- CLASS 7 CARDS -->
-                <a href="ncert-solutions-class-7-maths.html" class="home-ncert-card theme-neutral c7">
+                <a href="ncert-solutions-class-7-maths.html" class="home-ncert-card c7">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">📐</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 7 Maths</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 7 Maths</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">13 Chapters • Step-by-Step</div>
                         </div>
                     </div>
                 </a>
 
-                <a href="ncert-solutions-class-7-science.html" class="home-ncert-card theme-neutral c7">
+                <a href="ncert-solutions-class-7-science.html" class="home-ncert-card c7">
                     <div class="home-ncert-card-row">
                         <span class="home-ncert-card-icon">🔬</span>
-                        <div>
-                            <div class="home-ncert-card-title">Class 7 Science</div>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 7 Science</span>
+                            </div>
                             <div class="home-ncert-card-subtitle">13 Chapters • Complete Solutions</div>
                         </div>
                     </div>
+                </a>
+
+                <!-- CLASS 6 CARDS -->
+                <a href="ncert-solutions-class-6-maths.html" class="home-ncert-card c6">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📐</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 6 Maths (Ganita Prakash)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">10 Chapters • Step-by-Step</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-6-science.html" class="home-ncert-card c6">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🔬</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 6 Science (Curiosity)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">12 Chapters • 100% Solved</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-6-sst.html" class="home-ncert-card c6">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🌍</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 6 Social Science</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">Exploring Society • All Units</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-6-sanskrit.html" class="home-ncert-card c6">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🕉️</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 6 Sanskrit (Deepakam)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">Deepakam &amp; Ruchira • Solved</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-6-english.html" class="home-ncert-card c6">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📖</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 6 English (Poorvi)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">13 Units • Prose &amp; Poetry</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-6-hindi.html" class="home-ncert-card c6">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🇮🇳</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 6 Hindi (Malhar)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">मल्हार • 17 Ch व्याख्या व प्रश्नोत्तर</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 5 CARDS -->
+                <a href="ncert-solutions-class-5-maths.html" class="home-ncert-card c5">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📐</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 5 Maths</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">Maths Mela &amp; Math-Magic</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-5-english.html" class="home-ncert-card c5">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📖</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 5 English</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">Santoor &amp; Marigold • Solved</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-5-hindi.html" class="home-ncert-card c5">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📖</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 5 Hindi</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">वीणा (Veena) &amp; रिमझिम</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-5-evs.html" class="home-ncert-card c5">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🌿</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 5 World Around Us</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">Our Wondrous World • 10 Ch</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 4 CARDS -->
+                <a href="ncert-solutions-class-4-maths.html" class="home-ncert-card c4">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📐</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 4 Maths (Math-Magic)</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">गणित का जादू • 14 Chapters</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-4-evs.html" class="home-ncert-card c4">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🌿</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 4 EVS (Looking Around)</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">आस-पास • 27 Chapters Solved</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 3 CARDS -->
+                <a href="ncert-solutions-class-3-maths.html" class="home-ncert-card c3">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📐</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 3 Maths Mela</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">गणित मेला • 14 Chapters</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-3-evs.html" class="home-ncert-card c3">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">🌿</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 3 EVS (Wondrous World)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">हमारी अद्भुत दुनिया • Solved</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 2 CARDS -->
+                <a href="ncert-solutions-class-2-maths.html" class="home-ncert-card c2">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📐</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 2 Joyful Mathematics</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">11 Chapters • Step-by-Step</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-2-english.html" class="home-ncert-card c2">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📖</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 2 English (Mridang)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">All Units &amp; Activities</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 1 CARDS -->
+                <a href="ncert-solutions-class-1-maths.html" class="home-ncert-card c1">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📐</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 1 Joyful Mathematics</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">आनंदमय गणित • 13 Chapters</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-1-english.html" class="home-ncert-card c1">
+                    <div class="home-ncert-card-row">
+                        <span class="home-ncert-card-icon">📖</span>
+                        <div class="home-ncert-card-body">
+                            <div class="home-ncert-card-header">
+                                <span class="home-ncert-card-title">Class 1 English (Mridang)</span>
+                                <span class="home-ncert-card-badge">NEW</span>
+                            </div>
+                            <div class="home-ncert-card-subtitle">मृदंग • All Units Solved</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Bottom Sober Action Link -->
+            <div class="home-ncert-footer">
+                <div class="home-ncert-footer-text">
+                    <strong style="color:var(--navy);">CBSE 2026-27 Syllabus:</strong> Complete chapter-wise solutions with step marking &amp; competency-based answers.
+                </div>
+                <a href="ncert-solutions.html" class="home-ncert-footer-link">
+                    Explore All NCERT Portals &rarr;
                 </a>
             </div>
         </div>
@@ -823,20 +895,19 @@
     <script>
         function filterHomeNcert(cls, btn) {
             document.querySelectorAll('.home-class-tab').forEach(b => {
-                b.style.background = 'white';
-                b.style.color = '#334155';
-                b.style.borderColor = '#cbd5e1';
+                b.classList.remove('active');
             });
-            btn.style.background = '#7c3aed';
-            btn.style.color = 'white';
-            btn.style.borderColor = '#7c3aed';
+            btn.classList.add('active');
 
             const cards = document.querySelectorAll('.home-ncert-card');
             cards.forEach(card => {
-                if (cls === 'all' || card.classList.contains(cls)) {
-                    card.style.display = 'block';
+                if (cls === 'all') {
+                    card.style.display = '';
+                } else if (cls === 'c1-4') {
+                    const isJunior = card.classList.contains('c1') || card.classList.contains('c2') || card.classList.contains('c3') || card.classList.contains('c4');
+                    card.style.display = isJunior ? '' : 'none';
                 } else {
-                    card.style.display = 'none';
+                    card.style.display = card.classList.contains(cls) ? '' : 'none';
                 }
             });
         }
