@@ -48,7 +48,7 @@
         "@type": "ListItem",
         "position": 3,
         "name": "Class 10",
-        "item": "https://olympiadquiz.org/ncert-solutions-class-10.html"
+        "item": "https://olympiadquiz.org/ncert-solutions.html#class10"
       },
       {
         "@type": "ListItem",
@@ -190,7 +190,7 @@
     .bc-chip.active .bc-n { background: rgba(255,255,255,.25); }
     
     .main-layout { display: flex; max-width: 1380px; margin: 0 auto; }
-    .sidebar { width: 340px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 156px; height: calc(100vh - 156px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 340px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .82rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
@@ -261,221 +261,15 @@
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 950; }
     .mob-sidebar-toggle { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 900; background: var(--brand); color: white; border: none; border-radius: 999px; padding: 12px 22px; font-weight: 700; font-size: .85rem; box-shadow: 0 4px 16px rgba(13,148,136,.4); cursor: pointer; }
     
-    /* Uniform Mobile Control Bar & Viewport Optimization */
-    .mobile-chapter-selector-bar { display: none; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @media (max-width: 900px), (max-width: 960px) {
-      .mobile-chapter-selector-bar {
-        display: block !important;
-        position: sticky;
-        top: 56px;
-        z-index: 850;
-        background: #ffffff;
-        padding: 7px 10px 8px;
-        border-bottom: 2px solid var(--brand, #0284c7);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-        box-sizing: border-box;
-        width: 100%;
-      }
-      .mob-selector-card {
-        width: 100%;
-        margin: 0 auto;
-        max-width: 100%;
-      }
-      .mob-selector-row {
-        display: grid;
-        grid-template-columns: minmax(115px, 34%) 1fr;
-        gap: 8px;
-        align-items: flex-end;
-        width: 100%;
-      }
-      .mob-select-group {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        min-width: 0;
-      }
-      .mob-select-label {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 0.68rem;
-        font-weight: 800;
-        color: var(--brand, #0284c7);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        line-height: 1;
-      }
-      .mob-label-with-badge {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 4px;
-        min-width: 0;
-      }
-      .mob-current-badge {
-        font-size: 0.68rem;
-        font-weight: 800;
-        background: var(--brand-light, #f0f9ff);
-        color: var(--brand, #0284c7);
-        padding: 1px 7px;
-        border-radius: 999px;
-        border: 1px solid var(--brand, #0284c7);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 120px;
-        line-height: 1.2;
-      }
-      .mob-dropdown-wrap {
-        position: relative;
-        width: 100%;
-        min-width: 0;
-      }
-      .mob-dropdown {
-        width: 100%;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: #ffffff;
-        border: 1.5px solid #cbd5e1;
-        border-radius: 8px;
-        padding: 8px 24px 8px 9px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: #1e293b;
-        cursor: pointer;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        outline: none;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        box-sizing: border-box;
-        line-height: 1.2;
-        height: 36px;
-      }
-      .mob-dropdown:focus {
-        border-color: var(--brand, #0284c7);
-        box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-      }
-      .mob-dropdown-arrow {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        font-size: 0.62rem;
-        color: var(--brand, #0284c7);
-        opacity: 0.85;
-      }
-
-      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
-      .breadcrumb-bar, .chapter-chips-bar, .chapter-chips, .chips-bar { display: none !important; }
-      .sidebar { display: none !important; }
-      .sidebar-overlay { display: none !important; }
-      .mob-sidebar-toggle, .mob-toggle { display: none !important; }
-      .navbar-links, .nav-links { display: none !important; }
-
-      /* Compact hero banner on mobile */
-      .hero-banner { padding: 14px 10px 12px; }
-      .hero-banner h1 { font-size: 1.25rem; margin-bottom: 2px; }
-      .hero-banner p { font-size: 0.78rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .hero-badges, .hero-meta-pills, .book-tabs { display: none !important; }
-
-      /* Full width for main layout and content */
-      .main-layout, .layout-container, .layout-wrapper { display: block !important; width: 100% !important; margin: 0 !important; }
-      .main-content, .content-area { padding: 8px 4px 36px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
-
-      /* Compact Chapter Header & full width */
-      .chapter-header { padding-bottom: 10px; margin-bottom: 12px; gap: 10px; }
-      .ch-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; line-height: 38px; }
-      .chapter-header-info h2 { font-size: 1.15rem; line-height: 1.35; }
-      .chapter-header-info p { font-size: 0.76rem; }
-
-      .ex-div, .exercise-div { padding: 8px 10px; font-size: 0.82rem; margin: 16px 0 10px; }
-
-      /* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
-      .q-card, .q-card-box {
-        border-radius: 10px !important;
-        margin-bottom: 12px !important;
-        border: 1px solid #e2e8f0 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-      }
-      .q-head, .q-header {
-        padding: 10px 12px !important;
-        gap: 8px 10px !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .q-num, .q-type {
-        order: 1 !important;
-        font-size: 0.72rem !important;
-        padding: 3px 8px !important;
-        border-radius: 6px !important;
-        white-space: normal !important;
-        max-width: calc(100% - 100px) !important;
-        line-height: 1.25 !important;
-      }
-      .q-marks {
-        order: 2 !important;
-        margin-left: auto !important;
-        font-size: 0.68rem !important;
-        padding: 3px 7px !important;
-        flex-shrink: 0 !important;
-      }
-      .q-toggle {
-        order: 3 !important;
-        width: 22px !important;
-        height: 22px !important;
-        flex-shrink: 0 !important;
-      }
-      .q-text, .q-title {
-        order: 4 !important;
-        width: 100% !important;
-        flex: 0 0 100% !important;
-        font-size: 0.90rem !important;
-        line-height: 1.55 !important;
-        padding-top: 4px !important;
-        word-break: break-word !important;
-      }
-      .q-answer, .q-body {
-        padding: 0 10px 14px !important;
-      }
-      .answer-box {
-        padding: 12px 10px !important;
-        margin-top: 8px !important;
-        border-radius: 8px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .answer-label { font-size: 0.7rem !important; margin-bottom: 6px !important; }
-      .answer-text {
-        font-size: 0.88rem !important;
-        line-height: 1.65 !important;
-        word-break: break-word !important;
-      }
-      .step {
-        font-size: 0.85rem !important;
-        padding: 6px 10px !important;
-        margin: 6px 0 !important;
-        word-break: break-word !important;
-      }
-      .marking-scheme { margin-top: 10px !important; padding-top: 8px !important; }
-      .marking-title { font-size: 0.7rem !important; margin-bottom: 6px !important; }
-      .marking-row { font-size: 0.75rem !important; padding: 3px 0 !important; }
-      .marking-marks { font-size: 0.7rem !important; }
-
-      .chapter-nav-btns, .ch-nav-btns { margin-top: 20px !important; padding: 12px 2px 0 !important; gap: 6px !important; }
-      .ch-nav-btn { padding: 8px 10px !important; font-size: 0.76rem !important; border-radius: 8px !important; }
+    @media (max-width: 900px) {
+      .sidebar { position: fixed; top: 0; left: -350px; height: 100vh; z-index: 1000; transition: left .3s; box-shadow: 4px 0 20px rgba(0,0,0,.2); }
+      .sidebar.open { left: 0; }
+      .sidebar-overlay.show { display: block; }
+      .mob-sidebar-toggle { display: block; }
+      .main-content { padding: 20px 16px 40px; }
+      .breadcrumb-bar { padding: 12px 16px; top: 57px; }
     }
-  
-</style>
+  </style>
 
 <style>
 /* ── NCERT SUBJECT BREADCRUMB & SWITCHER ── */
@@ -568,10 +362,12 @@
   .ncert-bc-switch { overflow-x: auto; width: 100%; padding-bottom: 2px; }
 }
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 <div class="top-progress" id="progressBar"></div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="navbar-logo">
@@ -581,31 +377,30 @@
     <div class="navbar-links" id="navLinks">
       <a href="index.html" class="nav-link">Home</a>
       <div class="nav-dropdown">
-        <a href="ncert-solutions.html" class="nav-link" style="color:white;font-weight:700;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#0f766e;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-6.html" style="font-weight:700;color:#7c3aed;">Class 6 Solutions (All 6 Subjects) ✨</a>
-          <a href="ncert-solutions-class-10-hindi.html">Class 10 Hindi 🇮🇳</a>
-          <a href="ncert-solutions-class-10-maths.html" style="font-weight:700;color:#4f46e5;">Class 10 Maths 📐</a>
-          <a href="ncert-solutions-class-10-social-science.html" style="font-weight:700;color:#0d9488;background:#f0fdfa;">Class 10 Social Science 🏆 (Active)</a>
-          <a href="ncert-solutions-class-9-social-science.html" style="font-weight:700;color:#0d9488;">Class 9 Social Science 🌍</a>
-          <a href="ncert-solutions-class-9-hindi.html" style="font-weight:700;color:#ea580c;">Class 9 Hindi 🇮🇳</a>
-          <a href="ncert-solutions-class-9-english.html" style="font-weight:700;color:#0284c7;">Class 9 English 📖</a>
-          <a href="ncert-solutions-class-9-science.html" style="font-weight:700;color:#059669;">Class 9 Science 🔬</a>
-          <a href="ncert-solutions-class-9-maths.html" style="font-weight:700;color:#4f46e5;">Class 9 Maths 📐</a>
-          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
-          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
-          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
-          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
-          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
-          <a href="ncert-solutions-class-8-sanskrit.html">Class 8 Sanskrit</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
       <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -620,7 +415,7 @@
       <li class="ncert-bc-sep">/</li>
       <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
       <li class="ncert-bc-sep">/</li>
-      <li><a href="ncert-solutions-class-10.html">Class 10</a></li>
+      <li><a href="ncert-solutions.html#class10">Class 10</a></li>
       <li class="ncert-bc-sep">/</li>
       <li class="ncert-bc-current">Social Science</li>
     </ol>
@@ -650,108 +445,9 @@
   </div>
 </header>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-controls">
-    <div class="breadcrumb-label">🏆 Class 10 Social Science — Filter by Book:</div>
-    <div class="book-tabs">
-      <span class="book-tab active" onclick="filterBook('all')">🌟 All 22 Units</span>
-      <span class="book-tab" onclick="filterBook('history')">🏛️ History (5)</span>
-      <span class="book-tab" onclick="filterBook('geography')">🗺️ Geography (7)</span>
-      <span class="book-tab" onclick="filterBook('civics')">⚖️ Civics (5)</span>
-      <span class="book-tab" onclick="filterBook('economics')">📈 Economics (5)</span>
-    </div>
-  </div>
-  <div class="breadcrumb-chips" id="breadcrumbChips">
-    <a class="bc-chip active" href="chapters-c10sst/ch1.html" onclick="showChapter(1); return false;" data-ch="1" data-book="history"><span class="bc-n">H1</span>The Rise of Nationali…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch2.html" onclick="showChapter(2); return false;" data-ch="2" data-book="history"><span class="bc-n">H2</span>Nationalism in India</a>
-    <a class="bc-chip" href="chapters-c10sst/ch3.html" onclick="showChapter(3); return false;" data-ch="3" data-book="history"><span class="bc-n">H3</span>The Making of a Globa…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch4.html" onclick="showChapter(4); return false;" data-ch="4" data-book="history"><span class="bc-n">H4</span>The Age of Industrial…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch5.html" onclick="showChapter(5); return false;" data-ch="5" data-book="history"><span class="bc-n">H5</span>Print Culture and the…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch6.html" onclick="showChapter(6); return false;" data-ch="6" data-book="geography"><span class="bc-n">G6</span>Resources and Develop…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch7.html" onclick="showChapter(7); return false;" data-ch="7" data-book="geography"><span class="bc-n">G7</span>Forest and Wildlife R…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch8.html" onclick="showChapter(8); return false;" data-ch="8" data-book="geography"><span class="bc-n">G8</span>Water Resources</a>
-    <a class="bc-chip" href="chapters-c10sst/ch9.html" onclick="showChapter(9); return false;" data-ch="9" data-book="geography"><span class="bc-n">G9</span>Agriculture</a>
-    <a class="bc-chip" href="chapters-c10sst/ch10.html" onclick="showChapter(10); return false;" data-ch="10" data-book="geography"><span class="bc-n">G10</span>Minerals and Energy R…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch11.html" onclick="showChapter(11); return false;" data-ch="11" data-book="geography"><span class="bc-n">G11</span>Manufacturing Industr…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch12.html" onclick="showChapter(12); return false;" data-ch="12" data-book="geography"><span class="bc-n">G12</span>Lifelines of National…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch13.html" onclick="showChapter(13); return false;" data-ch="13" data-book="civics"><span class="bc-n">C13</span>Power Sharing</a>
-    <a class="bc-chip" href="chapters-c10sst/ch14.html" onclick="showChapter(14); return false;" data-ch="14" data-book="civics"><span class="bc-n">C14</span>Federalism</a>
-    <a class="bc-chip" href="chapters-c10sst/ch15.html" onclick="showChapter(15); return false;" data-ch="15" data-book="civics"><span class="bc-n">C15</span>Gender, Religion and …</a>
-    <a class="bc-chip" href="chapters-c10sst/ch16.html" onclick="showChapter(16); return false;" data-ch="16" data-book="civics"><span class="bc-n">C16</span>Political Parties</a>
-    <a class="bc-chip" href="chapters-c10sst/ch17.html" onclick="showChapter(17); return false;" data-ch="17" data-book="civics"><span class="bc-n">C17</span>Outcomes of Democracy</a>
-    <a class="bc-chip" href="chapters-c10sst/ch18.html" onclick="showChapter(18); return false;" data-ch="18" data-book="economics"><span class="bc-n">E18</span>Development</a>
-    <a class="bc-chip" href="chapters-c10sst/ch19.html" onclick="showChapter(19); return false;" data-ch="19" data-book="economics"><span class="bc-n">E19</span>Sectors of the Indian…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch20.html" onclick="showChapter(20); return false;" data-ch="20" data-book="economics"><span class="bc-n">E20</span>Money and Credit</a>
-    <a class="bc-chip" href="chapters-c10sst/ch21.html" onclick="showChapter(21); return false;" data-ch="21" data-book="economics"><span class="bc-n">E21</span>Globalisation and the…</a>
-    <a class="bc-chip" href="chapters-c10sst/ch22.html" onclick="showChapter(22); return false;" data-ch="22" data-book="economics"><span class="bc-n">E22</span>Consumer Rights</a>
-  </div>
-</div>
 
-<!-- Mobile Subject & Chapter Sticky Navigation Bar -->
-<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
-  <div class="mob-selector-card">
-    <div class="mob-selector-row">
-      <!-- Subject Dropdown Group -->
-      <div class="mob-select-group mob-subject-group">
-        <label class="mob-select-label" for="mobileSubjectSelect">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          <span>Subject</span>
-        </label>
-        <div class="mob-dropdown-wrap">
-          <select id="mobileSubjectSelect" class="mob-dropdown" aria-label="Select Subject" onchange="if(this.value) window.location.href=this.value;">
-            <option value="ncert-solutions-class-10-maths.html">📐 Maths</option>
-            <option value="ncert-solutions-class-10-science.html">🔬 Science</option>
-            <option value="ncert-solutions-class-10-social-science.html" selected>🏛️ Social Science</option>
-            <option value="ncert-solutions-class-10-english.html">📘 English</option>
-            <option value="ncert-solutions-class-10-english-communicative.html">📝 English Comm.</option>
-            <option value="ncert-solutions-class-10-hindi.html">🇮🇳 Hindi</option>
-            <option value="ncert-solutions-class-10-sanskrit.html">🕉️ Sanskrit</option>
-            <option value="ncert-solutions-class-10.html">📚 Class 10 All Subjects</option>
-          </select>
-          <div class="mob-dropdown-arrow">▼</div>
-        </div>
-      </div>
 
-      <!-- Chapter Dropdown Group -->
-      <div class="mob-select-group mob-chapter-group">
-        <div class="mob-label-with-badge">
-          <label class="mob-select-label" for="mobileChapterSelect">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            <span>Chapter</span>
-          </label>
-          <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
-        </div>
-        <div class="mob-dropdown-wrap">
-          <select id="mobileChapterSelect" class="mob-dropdown" aria-label="Select Chapter" onchange="showChapter(parseInt(this.value))">
-        <option value="1">Ch 1: The Rise of Nationalism in Europe</option>
-        <option value="2">Ch 2: Nationalism in India</option>
-        <option value="3">Ch 3: The Making of a Global World</option>
-        <option value="4">Ch 4: The Age of Industrialisation</option>
-        <option value="5">Ch 5: Print Culture and the Modern World</option>
-        <option value="6">Ch 6: Resources and Development</option>
-        <option value="7">Ch 7: Forest and Wildlife Resources</option>
-        <option value="8">Ch 8: Water Resources</option>
-        <option value="9">Ch 9: Agriculture</option>
-        <option value="10">Ch 10: Minerals and Energy Resources</option>
-        <option value="11">Ch 11: Manufacturing Industries</option>
-        <option value="12">Ch 12: Lifelines of National Economy</option>
-        <option value="13">Ch 13: Power Sharing Political Science: Unit 1</option>
-        <option value="14">Ch 14: Federalism Political Science: Unit 2</option>
-        <option value="15">Ch 15: Gender, Religion and Caste Political Science: Unit 3</option>
-        <option value="16">Ch 16: Political Parties Political Science: Unit 4</option>
-        <option value="17">Ch 17: Outcomes of Democracy Political Science: Unit 5</option>
-        <option value="18">Ch 18: Development</option>
-        <option value="19">Ch 19: Sectors of the Indian Economy</option>
-        <option value="20">Ch 20: Money and Credit</option>
-        <option value="21">Ch 21: Globalisation and the Indian Economy</option>
-        <option value="22">Ch 22: Consumer Rights</option>
-      </select>
-          <div class="mob-dropdown-arrow">▼</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <div class="main-layout">
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -1146,12 +842,6 @@
   }
 
   function showChapter(num) {
-    // Sync mobile select & badge
-    const mobSelect = document.getElementById('mobileChapterSelect');
-    if (mobSelect) mobSelect.value = String(typeof num !== 'undefined' ? num : (typeof n !== 'undefined' ? n : currentCh));
-    const mobBadge = document.getElementById('mobCurrentBadge');
-    if (mobBadge) mobBadge.textContent = 'Chapter ' + (typeof num !== 'undefined' ? num : (typeof n !== 'undefined' ? n : currentCh));
-
     currentCh = num;
     const area = document.getElementById('chapter-content-area');
     
@@ -1205,12 +895,7 @@
     if (firstTwo.length > 0) firstTwo[0].classList.add('open');
     if (firstTwo.length > 1) firstTwo[1].classList.add('open');
     
-    const mobBar = document.getElementById('mobileChapterBar');
-      if (window.innerWidth <= 900 && mobBar) {
-        mobBar.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     closeSidebarMobile();
   }
 
@@ -1300,5 +985,6 @@
     if (firstTwo.length > 1) firstTwo[1].classList.add('open');
   });
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

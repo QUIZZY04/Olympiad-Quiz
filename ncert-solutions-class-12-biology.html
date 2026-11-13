@@ -158,7 +158,7 @@
     .mob-dropdown-arrow { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 0.7rem; color: var(--muted); }
 
     /* Sidebar */
-    .sidebar { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; }
+    .sidebar { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); position: sticky; top: 60px; max-height: calc(100vh - 60px); overflow-y: auto; }
     .sidebar-title { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.88rem; font-family: inherit; margin-bottom: 12px; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -229,23 +229,49 @@
       .footer-inner { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
   <!-- Header Navigation -->
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-brand">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        <span>Olympiad</span>Quiz
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
-        <li><a href="ncert-solutions-class-12.html">Class 12 Hub</a></li>
-        <li><a href="ncert-solutions-class-12-biology.html" style="font-weight:700; color:#059669;">Class 12 Biology</a></li>
-      </ul>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 12 Solutions (Science) ✨</a>
+        </div>
+      </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
-  </nav>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- Breadcrumb Navigation & Quick Subject Switcher -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
@@ -284,24 +310,9 @@
   </header>
 
   <!-- Breadcrumb Bar & Quick Chips (Desktop) -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" style="font-size:0.8rem; font-weight:700; color:#64748b; margin-bottom:4px;">Class 12 Biology Chapters (NCERT Rationalised 2026–27)</div>
-    <div class="breadcrumb-chips">
-      <a class="bc-chip active" href="chapters-c12b/ch1.html" onclick="showChapter(1); return false;" data-ch="1"><span class="bc-n">1</span> Flowering Plants</a>
-      <a class="bc-chip" href="chapters-c12b/ch2.html" onclick="showChapter(2); return false;" data-ch="2"><span class="bc-n">2</span> Human Reproduction</a>
-      <a class="bc-chip" href="chapters-c12b/ch3.html" onclick="showChapter(3); return false;" data-ch="3"><span class="bc-n">3</span> Reproductive Health</a>
-      <a class="bc-chip" href="chapters-c12b/ch4.html" onclick="showChapter(4); return false;" data-ch="4"><span class="bc-n">4</span> Inheritance &amp; Variation</a>
-      <a class="bc-chip" href="chapters-c12b/ch5.html" onclick="showChapter(5); return false;" data-ch="5"><span class="bc-n">5</span> Molecular Basis</a>
-      <a class="bc-chip" href="chapters-c12b/ch6.html" onclick="showChapter(6); return false;" data-ch="6"><span class="bc-n">6</span> Evolution</a>
-      <a class="bc-chip" href="chapters-c12b/ch7.html" onclick="showChapter(7); return false;" data-ch="7"><span class="bc-n">7</span> Human Health</a>
-      <a class="bc-chip" href="chapters-c12b/ch8.html" onclick="showChapter(8); return false;" data-ch="8"><span class="bc-n">8</span> Microbes in Welfare</a>
-      <a class="bc-chip" href="chapters-c12b/ch9.html" onclick="showChapter(9); return false;" data-ch="9"><span class="bc-n">9</span> Biotech: Principles</a>
-      <a class="bc-chip" href="chapters-c12b/ch10.html" onclick="showChapter(10); return false;" data-ch="10"><span class="bc-n">10</span> Biotech: Applications</a>
-      <a class="bc-chip" href="chapters-c12b/ch11.html" onclick="showChapter(11); return false;" data-ch="11"><span class="bc-n">11</span> Organisms &amp; Populations</a>
-      <a class="bc-chip" href="chapters-c12b/ch12.html" onclick="showChapter(12); return false;" data-ch="12"><span class="bc-n">12</span> Ecosystem</a>
-      <a class="bc-chip" href="chapters-c12b/ch13.html" onclick="showChapter(13); return false;" data-ch="13"><span class="bc-n">13</span> Biodiversity</a>
-    </div>
-  </div>
+
+  
+
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
   <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
@@ -515,5 +526,6 @@
       showChapter(initialCh);
     });
   </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

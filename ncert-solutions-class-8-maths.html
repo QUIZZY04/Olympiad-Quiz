@@ -157,7 +157,7 @@
     .bc-chip .bc-n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:rgba(0,0,0,.12);border-radius:50%;font-size:.68rem;font-weight:800;}
     .bc-chip.active .bc-n{background:rgba(255,255,255,.25);}
     .main-layout{display:flex;max-width:1380px;margin:0 auto;}
-    .sidebar{width:300px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:125px;height:calc(100vh - 125px);overflow-y:auto;flex-shrink:0;}
+    .sidebar{width:300px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;}
     .sidebar-title{font-size:.85rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
     .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;margin-bottom:16px;font-family:inherit;}
     .search-box:focus{outline:none;border-color:var(--brand);}
@@ -466,10 +466,12 @@
     }
   }
   </script>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 <div class="top-progress" id="progressBar"></div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="navbar-logo">
@@ -479,31 +481,30 @@
     <div class="navbar-links" id="navLinks">
       <a href="index.html" class="nav-link">Home</a>
       <div class="nav-dropdown">
-        <a href="ncert-solutions.html" class="nav-link" style="color:white;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-6.html" style="font-weight:700;color:#7c3aed;">Class 6 Solutions (All 6 Subjects) ✨</a>
-          <a href="ncert-solutions-class-10-maths.html">Class 10 Mathematics</a>
-          <a href="ncert-solutions-class-10-social-science.html">Class 10 Social Science</a>
-          <a href="ncert-solutions-class-9-maths.html">Class 9 Maths (Ganita Manjari)</a>
-          <a href="ncert-solutions-class-9-science.html">Class 9 Science</a>
-          <a href="ncert-solutions-class-8-maths.html" style="font-weight:700;color:#4f46e5;background:#eef2ff;">Class 8 Maths (Ganita Prakash) ✨ (Active)</a>
-          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
-          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
-          <a href="ncert-solutions-class-8-sanskrit.html">Class 8 Sanskrit</a>
-          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
-          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
-          <a href="ncert-solutions-class-7-maths.html">Class 7 Mathematics</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
-      <a href="study.html" class="nav-link">Study Material</a>
-      <a href="chapterwise.html" class="nav-link">Chapterwise Test</a>
       <a href="mock.html" class="nav-link">Mock Tests</a>
       <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -548,27 +549,9 @@
   </div>
 </header>
 
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-inner">
-    <div class="breadcrumb-label">📐 Class 8 Maths — Jump to Chapter</div>
-    <div class="breadcrumb-chips" id="breadcrumbChips">
-      <a class="bc-chip active" href="chapters-c8m/ch1.html" onclick="showChapter(1); return false;" data-ch="1"><span class="bc-n">1</span>A Square and A Cube</a>
-      <a class="bc-chip" href="chapters-c8m/ch2.html" onclick="showChapter(2); return false;" data-ch="2"><span class="bc-n">2</span>Power Play</a>
-      <a class="bc-chip" href="chapters-c8m/ch3.html" onclick="showChapter(3); return false;" data-ch="3"><span class="bc-n">3</span>A Story of Numbers</a>
-      <a class="bc-chip" href="chapters-c8m/ch4.html" onclick="showChapter(4); return false;" data-ch="4"><span class="bc-n">4</span>Quadrilaterals</a>
-      <a class="bc-chip" href="chapters-c8m/ch5.html" onclick="showChapter(5); return false;" data-ch="5"><span class="bc-n">5</span>Number Play</a>
-      <a class="bc-chip" href="chapters-c8m/ch6.html" onclick="showChapter(6); return false;" data-ch="6"><span class="bc-n">6</span>We Distribute, Yet Things Multiply</a>
-      <a class="bc-chip" href="chapters-c8m/ch7.html" onclick="showChapter(7); return false;" data-ch="7"><span class="bc-n">7</span>Proportional Reasoning - 1</a>
-      <a class="bc-chip" href="chapters-c8m/ch8.html" onclick="showChapter(8); return false;" data-ch="8"><span class="bc-n">8</span>Fractions in Disguise</a>
-      <a class="bc-chip" href="chapters-c8m/ch9.html" onclick="showChapter(9); return false;" data-ch="9"><span class="bc-n">9</span>The Baudhāyana - Pythagoras Theorem</a>
-      <a class="bc-chip" href="chapters-c8m/ch10.html" onclick="showChapter(10); return false;" data-ch="10"><span class="bc-n">10</span>Proportional Reasoning - 2</a>
-      <a class="bc-chip" href="chapters-c8m/ch11.html" onclick="showChapter(11); return false;" data-ch="11"><span class="bc-n">11</span>Exploring Some Geometric Themes</a>
-      <a class="bc-chip" href="chapters-c8m/ch12.html" onclick="showChapter(12); return false;" data-ch="12"><span class="bc-n">12</span>Tales by Dots and Lines</a>
-      <a class="bc-chip" href="chapters-c8m/ch13.html" onclick="showChapter(13); return false;" data-ch="13"><span class="bc-n">13</span>Algebra Play</a>
-      <a class="bc-chip" href="chapters-c8m/ch14.html" onclick="showChapter(14); return false;" data-ch="14"><span class="bc-n">14</span>Area</a>
-    </div>
-  </div>
-</div>
+
+
+
 
 <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
 <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
@@ -8872,5 +8855,6 @@
     });
   }
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

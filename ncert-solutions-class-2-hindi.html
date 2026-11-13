@@ -180,7 +180,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -280,258 +280,52 @@
     /* Footer */
     .site-footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
     .site-footer a { color: #38bdf8; text-decoration: none; font-weight: 600; }
-  
-/* Uniform Mobile Control Bar & Viewport Optimization */
-    .mobile-chapter-selector-bar { display: none; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @media (max-width: 900px), (max-width: 960px) {
-      .mobile-chapter-selector-bar {
-        display: block !important;
-        position: sticky;
-        top: 56px;
-        z-index: 850;
-        background: #ffffff;
-        padding: 7px 10px 8px;
-        border-bottom: 2px solid var(--brand, #0284c7);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-        box-sizing: border-box;
-        width: 100%;
-      }
-      .mob-selector-card {
-        width: 100%;
-        margin: 0 auto;
-        max-width: 100%;
-      }
-      .mob-selector-row {
-        display: grid;
-        grid-template-columns: minmax(115px, 34%) 1fr;
-        gap: 8px;
-        align-items: flex-end;
-        width: 100%;
-      }
-      .mob-select-group {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        min-width: 0;
-      }
-      .mob-select-label {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 0.68rem;
-        font-weight: 800;
-        color: var(--brand, #0284c7);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        line-height: 1;
-      }
-      .mob-label-with-badge {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 4px;
-        min-width: 0;
-      }
-      .mob-current-badge {
-        font-size: 0.68rem;
-        font-weight: 800;
-        background: var(--brand-light, #f0f9ff);
-        color: var(--brand, #0284c7);
-        padding: 1px 7px;
-        border-radius: 999px;
-        border: 1px solid var(--brand, #0284c7);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 120px;
-        line-height: 1.2;
-      }
-      .mob-dropdown-wrap {
-        position: relative;
-        width: 100%;
-        min-width: 0;
-      }
-      .mob-dropdown {
-        width: 100%;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: #ffffff;
-        border: 1.5px solid #cbd5e1;
-        border-radius: 8px;
-        padding: 8px 24px 8px 9px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: #1e293b;
-        cursor: pointer;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        outline: none;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        box-sizing: border-box;
-        line-height: 1.2;
-        height: 36px;
-      }
-      .mob-dropdown:focus {
-        border-color: var(--brand, #0284c7);
-        box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-      }
-      .mob-dropdown-arrow {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        font-size: 0.62rem;
-        color: var(--brand, #0284c7);
-        opacity: 0.85;
-      }
-
-      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
-      .breadcrumb-bar, .chapter-chips-bar, .chapter-chips, .chips-bar { display: none !important; }
-      .sidebar { display: none !important; }
-      .sidebar-overlay { display: none !important; }
-      .mob-sidebar-toggle, .mob-toggle { display: none !important; }
-      .navbar-links, .nav-links { display: none !important; }
-
-      /* Compact hero banner on mobile */
-      .hero-banner { padding: 14px 10px 12px; }
-      .hero-banner h1 { font-size: 1.25rem; margin-bottom: 2px; }
-      .hero-banner p { font-size: 0.78rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .hero-badges, .hero-meta-pills, .book-tabs { display: none !important; }
-
-      /* Full width for main layout and content */
-      .main-layout, .layout-container, .layout-wrapper { display: block !important; width: 100% !important; margin: 0 !important; }
-      .main-content, .content-area { padding: 8px 4px 36px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
-
-      /* Compact Chapter Header & full width */
-      .chapter-header { padding-bottom: 10px; margin-bottom: 12px; gap: 10px; }
-      .ch-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; line-height: 38px; }
-      .chapter-header-info h2 { font-size: 1.15rem; line-height: 1.35; }
-      .chapter-header-info p { font-size: 0.76rem; }
-
-      .ex-div, .exercise-div { padding: 8px 10px; font-size: 0.82rem; margin: 16px 0 10px; }
-
-      /* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
-      .q-card, .q-card-box {
-        border-radius: 10px !important;
-        margin-bottom: 12px !important;
-        border: 1px solid #e2e8f0 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-      }
-      .q-head, .q-header {
-        padding: 10px 12px !important;
-        gap: 8px 10px !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .q-num, .q-type {
-        order: 1 !important;
-        font-size: 0.72rem !important;
-        padding: 3px 8px !important;
-        border-radius: 6px !important;
-        white-space: normal !important;
-        max-width: calc(100% - 100px) !important;
-        line-height: 1.25 !important;
-      }
-      .q-marks {
-        order: 2 !important;
-        margin-left: auto !important;
-        font-size: 0.68rem !important;
-        padding: 3px 7px !important;
-        flex-shrink: 0 !important;
-      }
-      .q-toggle {
-        order: 3 !important;
-        width: 22px !important;
-        height: 22px !important;
-        flex-shrink: 0 !important;
-      }
-      .q-text, .q-title {
-        order: 4 !important;
-        width: 100% !important;
-        flex: 0 0 100% !important;
-        font-size: 0.90rem !important;
-        line-height: 1.55 !important;
-        padding-top: 4px !important;
-        word-break: break-word !important;
-      }
-      .q-answer, .q-body {
-        padding: 0 10px 14px !important;
-      }
-      .answer-box {
-        padding: 12px 10px !important;
-        margin-top: 8px !important;
-        border-radius: 8px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .answer-label { font-size: 0.7rem !important; margin-bottom: 6px !important; }
-      .answer-text {
-        font-size: 0.88rem !important;
-        line-height: 1.65 !important;
-        word-break: break-word !important;
-      }
-      .step {
-        font-size: 0.85rem !important;
-        padding: 6px 10px !important;
-        margin: 6px 0 !important;
-        word-break: break-word !important;
-      }
-      .marking-scheme { margin-top: 10px !important; padding-top: 8px !important; }
-      .marking-title { font-size: 0.7rem !important; margin-bottom: 6px !important; }
-      .marking-row { font-size: 0.75rem !important; padding: 3px 0 !important; }
-      .marking-marks { font-size: 0.7rem !important; }
-
-      .chapter-nav-btns, .ch-nav-btns { margin-top: 20px !important; padding: 12px 2px 0 !important; gap: 6px !important; }
-      .ch-nav-btn { padding: 8px 10px !important; font-size: 0.76rem !important; border-radius: 8px !important; }
-    }
-  
-</style>
+  </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
   <div class="top-progress" id="progressBar"></div>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
-        <span class="logo-text">Olympiad<span>Quiz</span></span>
-      </a>
-      <div class="navbar-links" id="navLinks">
-        <a href="index.html" class="nav-link">Home</a>
-        <div class="nav-dropdown">
-          <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-          <div class="nav-dropdown-content">
-            <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-            <a href="ncert-solutions-class-2.html" style="font-weight:700;color:var(--brand);background:var(--brand-light);">Class 2 Hub ✨</a>
-            <a href="ncert-solutions-class-2-maths.html">Class 2 Maths</a>
-            <a href="ncert-solutions-class-2-english.html">Class 2 English</a>
-            <a href="ncert-solutions-class-2-hindi.html">Class 2 Hindi</a>
-            <a href="ncert-solutions-class-2-evs.html">Class 2 EVS</a>
-            <a href="ncert-solutions-class-3.html">Class 3 Solutions</a>
-            <a href="ncert-solutions-class-10-maths.html">Class 10 Maths</a>
-          </div>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
-        <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
       </div>
-      <div class="navbar-actions">
-        <a href="login.html" class="btn-login">Login</a>
-        <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
-  </nav>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- NCERT SUBJECT BREADCRUMB -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
@@ -579,264 +373,10 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">📐 Quick Jump To Chapter — सारंगी (Sarangi):</div>
-    <div class="breadcrumb-chips" id="chipsTrack1">
-      
-    <span class="bc-chip active" onclick="showChapter('ch_srg1')" data-target="ch_srg1">
-      <span class="bc-n">1</span> नीमा की दादी
-    </span>
   
-    <span class="bc-chip" onclick="showChapter('ch_srg2')" data-target="ch_srg2">
-      <span class="bc-n">2</span> घर
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg3')" data-target="ch_srg3">
-      <span class="bc-n">3</span> माला की चाँदी की पायल
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg4')" data-target="ch_srg4">
-      <span class="bc-n">4</span> माँ
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg5')" data-target="ch_srg5">
-      <span class="bc-n">5</span> थाथू और मैं
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg6')" data-target="ch_srg6">
-      <span class="bc-n">6</span> चींटा
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg7')" data-target="ch_srg7">
-      <span class="bc-n">7</span> टिल्लू जी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg8')" data-target="ch_srg8">
-      <span class="bc-n">8</span> तीन दोस्त
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg9')" data-target="ch_srg9">
-      <span class="bc-n">9</span> दुनिया रंग-बिरंगी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg10')" data-target="ch_srg10">
-      <span class="bc-n">10</span> कौन
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg11')" data-target="ch_srg11">
-      <span class="bc-n">11</span> बैंगनी जोजो
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg12')" data-target="ch_srg12">
-      <span class="bc-n">12</span> तोसिया का सपना
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg13')" data-target="ch_srg13">
-      <span class="bc-n">13</span> तालाब
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg14')" data-target="ch_srg14">
-      <span class="bc-n">14</span> बीज
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg15')" data-target="ch_srg15">
-      <span class="bc-n">15</span> किसान
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg16')" data-target="ch_srg16">
-      <span class="bc-n">16</span> मूली
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg17')" data-target="ch_srg17">
-      <span class="bc-n">17</span> बरसात और मेंढक
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg18')" data-target="ch_srg18">
-      <span class="bc-n">18</span> शेर और चूहे की दोस्ती
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg19')" data-target="ch_srg19">
-      <span class="bc-n">19</span> आउट
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg20')" data-target="ch_srg20">
-      <span class="bc-n">20</span> छुपन-छुपाई
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg21')" data-target="ch_srg21">
-      <span class="bc-n">21</span> हाथी साइकिल चला रहा था
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg22')" data-target="ch_srg22">
-      <span class="bc-n">22</span> चार दिशाएँ
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg23')" data-target="ch_srg23">
-      <span class="bc-n">23</span> चंदा मामा
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg24')" data-target="ch_srg24">
-      <span class="bc-n">24</span> गिरे ताल में चंदा मामा
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg25')" data-target="ch_srg25">
-      <span class="bc-n">25</span> सबसे बड़ा छाता
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_srg26')" data-target="ch_srg26">
-      <span class="bc-n">26</span> बादल
-    </span>
-  
-    </div>
-    <div class="breadcrumb-chips" id="chipsTrack2" style="display:none;">
-      
-    <span class="bc-chip active" onclick="showChapter('ch_c2h-rj-ch1')" data-target="ch_c2h-rj-ch1">
-      <span class="bc-n">1</span> ऊँट चला
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch2')" data-target="ch_c2h-rj-ch2">
-      <span class="bc-n">2</span> भालू ने खेली फुटबॉल
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch3')" data-target="ch_c2h-rj-ch3">
-      <span class="bc-n">3</span> म्याऊँ, म्याऊँ!!
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch4')" data-target="ch_c2h-rj-ch4">
-      <span class="bc-n">4</span> अधिक बलवान कौन?
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch5')" data-target="ch_c2h-rj-ch5">
-      <span class="bc-n">5</span> दोस्त की मदद
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch6')" data-target="ch_c2h-rj-ch6">
-      <span class="bc-n">6</span> बहुत हुआ
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch7')" data-target="ch_c2h-rj-ch7">
-      <span class="bc-n">7</span> मेरी किताब
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch8')" data-target="ch_c2h-rj-ch8">
-      <span class="bc-n">8</span> तितली और कली
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch9')" data-target="ch_c2h-rj-ch9">
-      <span class="bc-n">9</span> बुलबुल
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch10')" data-target="ch_c2h-rj-ch10">
-      <span class="bc-n">10</span> मीठी सारंगी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch11')" data-target="ch_c2h-rj-ch11">
-      <span class="bc-n">11</span> टेसू राजा बीच बाज़ार
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch12')" data-target="ch_c2h-rj-ch12">
-      <span class="bc-n">12</span> बस के नीचे बाघ
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch13')" data-target="ch_c2h-rj-ch13">
-      <span class="bc-n">13</span> सूरज जल्दी आना जी
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch14')" data-target="ch_c2h-rj-ch14">
-      <span class="bc-n">14</span> नटखट चूहा
-    </span>
-  
-    <span class="bc-chip" onclick="showChapter('ch_c2h-rj-ch15')" data-target="ch_c2h-rj-ch15">
-      <span class="bc-n">15</span> एक्की-दोक्की
-    </span>
-  
-    </div>
-  </div>
 
   <!-- Main Layout -->
-  <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
-<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
-  <div class="mob-selector-card">
-    <div class="mob-selector-row">
-      <!-- Subject Dropdown Group -->
-      <div class="mob-select-group mob-subject-group">
-        <label class="mob-select-label" for="mobileSubjectSelect">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          <span>Subject</span>
-        </label>
-        <div class="mob-dropdown-wrap">
-          <select id="mobileSubjectSelect" class="mob-dropdown" aria-label="Select Subject" onchange="if(this.value) window.location.href=this.value;">
-            <option value="ncert-solutions-class-2-english.html">📘 English</option>
-            <option value="ncert-solutions-class-2-hindi.html" selected>🇮🇳 Hindi</option>
-            <option value="ncert-solutions-class-2-maths.html">📐 Maths</option>
-            <option value="ncert-solutions-class-2-evs.html">🌱 EVS</option>
-            <option value="ncert-solutions-class-2.html">📚 Class 2 All Subjects</option>
-          </select>
-          <div class="mob-dropdown-arrow">▼</div>
-        </div>
-      </div>
-
-      <!-- Chapter Dropdown Group -->
-      <div class="mob-select-group mob-chapter-group">
-        <div class="mob-label-with-badge">
-          <label class="mob-select-label" for="mobileChapterSelect">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            <span>Chapter</span>
-          </label>
-          <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
-        </div>
-        <div class="mob-dropdown-wrap">
-          <select id="mobileChapterSelect" class="mob-dropdown" aria-label="Select Chapter" onchange="showChapter(this.value)">
-        <option value="ch_srg1">1 नीमा की दादी</option>
-        <option value="ch_srg2">2 घर</option>
-        <option value="ch_srg3">3 माला की चाँदी की पायल</option>
-        <option value="ch_srg4">4 माँ</option>
-        <option value="ch_srg5">5 थाथू और मैं</option>
-        <option value="ch_srg6">6 चींटा</option>
-        <option value="ch_srg7">7 टिल्लू जी</option>
-        <option value="ch_srg8">8 तीन दोस्त</option>
-        <option value="ch_srg9">9 दुनिया रंग-बिरंगी</option>
-        <option value="ch_srg10">10 कौन</option>
-        <option value="ch_srg11">11 बैंगनी जोजो</option>
-        <option value="ch_srg12">12 तोसिया का सपना</option>
-        <option value="ch_srg13">13 तालाब</option>
-        <option value="ch_srg14">14 बीज</option>
-        <option value="ch_srg15">15 किसान</option>
-        <option value="ch_srg16">16 मूली</option>
-        <option value="ch_srg17">17 बरसात और मेंढक</option>
-        <option value="ch_srg18">18 शेर और चूहे की दोस्ती</option>
-        <option value="ch_srg19">19 आउट</option>
-        <option value="ch_srg20">20 छुपन-छुपाई</option>
-        <option value="ch_srg21">21 हाथी साइकिल चला रहा था</option>
-        <option value="ch_srg22">22 चार दिशाएँ</option>
-        <option value="ch_srg23">23 चंदा मामा</option>
-        <option value="ch_srg24">24 गिरे ताल में चंदा मामा</option>
-        <option value="ch_srg25">25 सबसे बड़ा छाता</option>
-        <option value="ch_srg26">26 बादल</option>
-        <option value="ch_c2h-rj-ch1">1 ऊँट चला</option>
-        <option value="ch_c2h-rj-ch2">2 भालू ने खेली फुटबॉल</option>
-        <option value="ch_c2h-rj-ch3">3 म्याऊँ, म्याऊँ!!</option>
-        <option value="ch_c2h-rj-ch4">4 अधिक बलवान कौन?</option>
-        <option value="ch_c2h-rj-ch5">5 दोस्त की मदद</option>
-        <option value="ch_c2h-rj-ch6">6 बहुत हुआ</option>
-        <option value="ch_c2h-rj-ch7">7 मेरी किताब</option>
-        <option value="ch_c2h-rj-ch8">8 तितली और कली</option>
-        <option value="ch_c2h-rj-ch9">9 बुलबुल</option>
-        <option value="ch_c2h-rj-ch10">10 मीठी सारंगी</option>
-        <option value="ch_c2h-rj-ch11">11 टेसू राजा बीच बाज़ार</option>
-        <option value="ch_c2h-rj-ch12">12 बस के नीचे बाघ</option>
-        <option value="ch_c2h-rj-ch13">13 सूरज जल्दी आना जी</option>
-        <option value="ch_c2h-rj-ch14">14 नटखट चूहा</option>
-        <option value="ch_c2h-rj-ch15">15 एक्की-दोक्की</option>
-      </select>
-          <div class="mob-dropdown-arrow">▼</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="main-layout">
+  <div class="main-layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-title" id="sidebarTitleText">📕 सारंगी (26 Chapters)</div>
@@ -21145,12 +20685,12 @@
       if (sbTab1) sbTab1.classList.toggle('active', isT1);
       if (sbTab2) sbTab2.classList.toggle('active', !isT1);
 
-      document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
-      document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
+      if (document.getElementById('chipsTrack1')) document.getElementById('chipsTrack1').style.display = isT1 ? 'flex' : 'none';
+      if (document.getElementById('chipsTrack2')) document.getElementById('chipsTrack2').style.display = isT1 ? 'none' : 'flex';
       document.getElementById('navTrack1').style.display = isT1 ? 'block' : 'none';
       document.getElementById('navTrack2').style.display = isT1 ? 'none' : 'block';
 
-      document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isT1 ? '📐 Quick Jump To Chapter — ' + track1Name + ':' : '📐 Quick Jump To Chapter — ' + track2Name + ':';
       document.getElementById('sidebarTitleText').innerText = isT1 ? track1Name + ' (' + track1Count + ' Chapters)' : track2Name + ' (' + track2Count + ' Chapters)';
     }
 
@@ -21162,18 +20702,6 @@
     }
 
     function showChapter(targetId, updateHistory = true) {
-      const mobSelect = document.getElementById('mobileChapterSelect');
-      if (mobSelect) mobSelect.value = targetId;
-      const mobBadge = document.getElementById('mobCurrentBadge');
-      if (mobBadge) {
-        const activeOpt = mobSelect ? mobSelect.options[mobSelect.selectedIndex] : null;
-        mobBadge.textContent = activeOpt ? activeOpt.text.split('—')[0].split(':')[0].trim() : 'Chapter';
-      }
-      const mobBar = document.getElementById('mobileChapterBar');
-      if (window.innerWidth <= 900 && mobBar) {
-        mobBar.scrollIntoView({ behavior: 'smooth' });
-      }
-
       const targetEl = document.getElementById(targetId);
       if (!targetEl) return;
 
@@ -21269,5 +20797,6 @@
       showChapter('ch_srg1', false);
     });
   </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

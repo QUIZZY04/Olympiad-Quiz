@@ -173,7 +173,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -271,257 +271,52 @@
     /* Footer */
     .site-footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
     .site-footer a { color: #38bdf8; text-decoration: none; font-weight: 600; }
-  
-/* Uniform Mobile Control Bar & Viewport Optimization */
-    .mobile-chapter-selector-bar { display: none; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @media (max-width: 900px), (max-width: 960px) {
-      .mobile-chapter-selector-bar {
-        display: block !important;
-        position: sticky;
-        top: 56px;
-        z-index: 850;
-        background: #ffffff;
-        padding: 7px 10px 8px;
-        border-bottom: 2px solid var(--brand, #0284c7);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-        box-sizing: border-box;
-        width: 100%;
-      }
-      .mob-selector-card {
-        width: 100%;
-        margin: 0 auto;
-        max-width: 100%;
-      }
-      .mob-selector-row {
-        display: grid;
-        grid-template-columns: minmax(115px, 34%) 1fr;
-        gap: 8px;
-        align-items: flex-end;
-        width: 100%;
-      }
-      .mob-select-group {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        min-width: 0;
-      }
-      .mob-select-label {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 0.68rem;
-        font-weight: 800;
-        color: var(--brand, #0284c7);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        line-height: 1;
-      }
-      .mob-label-with-badge {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 4px;
-        min-width: 0;
-      }
-      .mob-current-badge {
-        font-size: 0.68rem;
-        font-weight: 800;
-        background: var(--brand-light, #f0f9ff);
-        color: var(--brand, #0284c7);
-        padding: 1px 7px;
-        border-radius: 999px;
-        border: 1px solid var(--brand, #0284c7);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 120px;
-        line-height: 1.2;
-      }
-      .mob-dropdown-wrap {
-        position: relative;
-        width: 100%;
-        min-width: 0;
-      }
-      .mob-dropdown {
-        width: 100%;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: #ffffff;
-        border: 1.5px solid #cbd5e1;
-        border-radius: 8px;
-        padding: 8px 24px 8px 9px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: #1e293b;
-        cursor: pointer;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        outline: none;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        box-sizing: border-box;
-        line-height: 1.2;
-        height: 36px;
-      }
-      .mob-dropdown:focus {
-        border-color: var(--brand, #0284c7);
-        box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-      }
-      .mob-dropdown-arrow {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        font-size: 0.62rem;
-        color: var(--brand, #0284c7);
-        opacity: 0.85;
-      }
-
-      /* Hide bulky desktop breadcrumbs and sidebar on mobile */
-      .breadcrumb-bar, .chapter-chips-bar, .chapter-chips, .chips-bar { display: none !important; }
-      .sidebar { display: none !important; }
-      .sidebar-overlay { display: none !important; }
-      .mob-sidebar-toggle, .mob-toggle { display: none !important; }
-      .navbar-links, .nav-links { display: none !important; }
-
-      /* Compact hero banner on mobile */
-      .hero-banner { padding: 14px 10px 12px; }
-      .hero-banner h1 { font-size: 1.25rem; margin-bottom: 2px; }
-      .hero-banner p { font-size: 0.78rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .hero-badges, .hero-meta-pills, .book-tabs { display: none !important; }
-
-      /* Full width for main layout and content */
-      .main-layout, .layout-container, .layout-wrapper { display: block !important; width: 100% !important; margin: 0 !important; }
-      .main-content, .content-area { padding: 8px 4px 36px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
-
-      /* Compact Chapter Header & full width */
-      .chapter-header { padding-bottom: 10px; margin-bottom: 12px; gap: 10px; }
-      .ch-badge { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; line-height: 38px; }
-      .chapter-header-info h2 { font-size: 1.15rem; line-height: 1.35; }
-      .chapter-header-info p { font-size: 0.76rem; }
-
-      .ex-div, .exercise-div { padding: 8px 10px; font-size: 0.82rem; margin: 16px 0 10px; }
-
-      /* Question Card: 2-Row Stacked Layout for Full-Width Question Text on Mobile */
-      .q-card, .q-card-box {
-        border-radius: 10px !important;
-        margin-bottom: 12px !important;
-        border: 1px solid #e2e8f0 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-      }
-      .q-head, .q-header {
-        padding: 10px 12px !important;
-        gap: 8px 10px !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .q-num, .q-type {
-        order: 1 !important;
-        font-size: 0.72rem !important;
-        padding: 3px 8px !important;
-        border-radius: 6px !important;
-        white-space: normal !important;
-        max-width: calc(100% - 100px) !important;
-        line-height: 1.25 !important;
-      }
-      .q-marks {
-        order: 2 !important;
-        margin-left: auto !important;
-        font-size: 0.68rem !important;
-        padding: 3px 7px !important;
-        flex-shrink: 0 !important;
-      }
-      .q-toggle {
-        order: 3 !important;
-        width: 22px !important;
-        height: 22px !important;
-        flex-shrink: 0 !important;
-      }
-      .q-text, .q-title {
-        order: 4 !important;
-        width: 100% !important;
-        flex: 0 0 100% !important;
-        font-size: 0.90rem !important;
-        line-height: 1.55 !important;
-        padding-top: 4px !important;
-        word-break: break-word !important;
-      }
-      .q-answer, .q-body {
-        padding: 0 10px 14px !important;
-      }
-      .answer-box {
-        padding: 12px 10px !important;
-        margin-top: 8px !important;
-        border-radius: 8px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-      .answer-label { font-size: 0.7rem !important; margin-bottom: 6px !important; }
-      .answer-text {
-        font-size: 0.88rem !important;
-        line-height: 1.65 !important;
-        word-break: break-word !important;
-      }
-      .step {
-        font-size: 0.85rem !important;
-        padding: 6px 10px !important;
-        margin: 6px 0 !important;
-        word-break: break-word !important;
-      }
-      .marking-scheme { margin-top: 10px !important; padding-top: 8px !important; }
-      .marking-title { font-size: 0.7rem !important; margin-bottom: 6px !important; }
-      .marking-row { font-size: 0.75rem !important; padding: 3px 0 !important; }
-      .marking-marks { font-size: 0.7rem !important; }
-
-      .chapter-nav-btns, .ch-nav-btns { margin-top: 20px !important; padding: 12px 2px 0 !important; gap: 6px !important; }
-      .ch-nav-btn { padding: 8px 10px !important; font-size: 0.76rem !important; border-radius: 8px !important; }
-    }
-  
-</style>
+  </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
   <div class="top-progress" id="progressBar"></div>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
-        <span class="logo-text">Olympiad<span>Quiz</span></span>
-      </a>
-      <div class="navbar-links" id="navLinks">
-        <a href="index.html" class="nav-link">Home</a>
-        <div class="nav-dropdown" style="position:relative;">
-          <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-          <div class="nav-dropdown-content">
-            <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-            <a href="ncert-solutions-class-5-maths.html" style="">Class 5 Maths</a>
-            <a href="ncert-solutions-class-5-english.html" style="">Class 5 English</a>
-            <a href="ncert-solutions-class-5-hindi.html" style="">Class 5 Hindi</a>
-            <a href="ncert-solutions-class-5-evs.html" style="font-weight:700;color:#059669;background:#ecfdf5;">Class 5 EVS</a>
-            <a href="ncert-solutions-class-4-maths.html">Class 4 Solutions</a>
-            <a href="ncert-solutions-class-3-maths.html">Class 3 Solutions</a>
-          </div>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
-        <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
       </div>
-      <div class="navbar-actions">
-        <a href="login.html" class="btn-login">Login</a>
-        <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
-  </nav>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- NCERT SUBJECT BREADCRUMB -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
@@ -569,219 +364,10 @@
   </header>
 
   <!-- Sticky Chapter Chips Bar -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label" id="chipBarLabel">🌿 Quick Jump To Chapter — Our Wondrous World (NEP 2020):</div>
-    <div class="breadcrumb-chips" id="chipsWondrous">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_oww1')" data-target="ch_oww1">
-    <span class="bc-n">1</span> Water
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww2')" data-target="ch_oww2">
-    <span class="bc-n">2</span> Journey of a River
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww3')" data-target="ch_oww3">
-    <span class="bc-n">3</span> The Mystery of Food
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww4')" data-target="ch_oww4">
-    <span class="bc-n">4</span> Our School
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww5')" data-target="ch_oww5">
-    <span class="bc-n">5</span> Our Vibrant Country
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww6')" data-target="ch_oww6">
-    <span class="bc-n">6</span> Some Unique Places
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww7')" data-target="ch_oww7">
-    <span class="bc-n">7</span> Energy
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww8')" data-target="ch_oww8">
-    <span class="bc-n">8</span> Clothes
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww9')" data-target="ch_oww9">
-    <span class="bc-n">9</span> Rhythms of Nature
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_oww10')" data-target="ch_oww10">
-    <span class="bc-n">10</span> Earth
-  </span>
-
-    </div>
-    <div class="breadcrumb-chips" id="chipsLooking" style="display:none;">
-      
-  <span class="bc-chip active" onclick="showChapter('ch_la_1')" data-target="ch_la_1">
-    <span class="bc-n">1</span> Super Senses
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_2')" data-target="ch_la_2">
-    <span class="bc-n">2</span> A Snake Charmer's Story
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_3')" data-target="ch_la_3">
-    <span class="bc-n">3</span> From Tasting to Digesting
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_4')" data-target="ch_la_4">
-    <span class="bc-n">4</span> Mangoes Round the Year
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_5')" data-target="ch_la_5">
-    <span class="bc-n">5</span> Seeds and Seeds
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_6')" data-target="ch_la_6">
-    <span class="bc-n">6</span> Every Drop Counts
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_7')" data-target="ch_la_7">
-    <span class="bc-n">7</span> Experiments with Water
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_8')" data-target="ch_la_8">
-    <span class="bc-n">8</span> A Treat for Mosquitoes
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_9')" data-target="ch_la_9">
-    <span class="bc-n">9</span> Up You Go!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_10')" data-target="ch_la_10">
-    <span class="bc-n">10</span> Walls Tell Stories
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_11')" data-target="ch_la_11">
-    <span class="bc-n">11</span> Sunita in Space
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_12')" data-target="ch_la_12">
-    <span class="bc-n">12</span> What if it Finishes...?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_13')" data-target="ch_la_13">
-    <span class="bc-n">13</span> A Shelter so High!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_14')" data-target="ch_la_14">
-    <span class="bc-n">14</span> When the Earth Shook!
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_15')" data-target="ch_la_15">
-    <span class="bc-n">15</span> Blow Hot, Blow Cold
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_16')" data-target="ch_la_16">
-    <span class="bc-n">16</span> Who will do this Work?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_17')" data-target="ch_la_17">
-    <span class="bc-n">17</span> Across the Wall
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_18')" data-target="ch_la_18">
-    <span class="bc-n">18</span> No Place for Us?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_19')" data-target="ch_la_19">
-    <span class="bc-n">19</span> A Seed tells a Farmer's Story
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_20')" data-target="ch_la_20">
-    <span class="bc-n">20</span> Whose Forests?
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_21')" data-target="ch_la_21">
-    <span class="bc-n">21</span> Like Father, Like Daughter
-  </span>
-
-  <span class="bc-chip" onclick="showChapter('ch_la_22')" data-target="ch_la_22">
-    <span class="bc-n">22</span> On the Move Again
-  </span>
-
-    </div>
-  </div>
+  
 
   <!-- Main Layout -->
-  <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
-<div class="mobile-chapter-selector-bar" id="mobileChapterBar">
-  <div class="mob-selector-card">
-    <div class="mob-selector-row">
-      <!-- Subject Dropdown Group -->
-      <div class="mob-select-group mob-subject-group">
-        <label class="mob-select-label" for="mobileSubjectSelect">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          <span>Subject</span>
-        </label>
-        <div class="mob-dropdown-wrap">
-          <select id="mobileSubjectSelect" class="mob-dropdown" aria-label="Select Subject" onchange="if(this.value) window.location.href=this.value;">
-            <option value="ncert-solutions-class-5-english.html">📘 English</option>
-            <option value="ncert-solutions-class-5-hindi.html">🇮🇳 Hindi</option>
-            <option value="ncert-solutions-class-5-maths.html">📐 Maths</option>
-            <option value="ncert-solutions-class-5-evs.html" selected>🌱 EVS</option>
-            <option value="ncert-solutions-class-5.html">📚 Class 5 All Subjects</option>
-          </select>
-          <div class="mob-dropdown-arrow">▼</div>
-        </div>
-      </div>
-
-      <!-- Chapter Dropdown Group -->
-      <div class="mob-select-group mob-chapter-group">
-        <div class="mob-label-with-badge">
-          <label class="mob-select-label" for="mobileChapterSelect">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            <span>Chapter</span>
-          </label>
-          <span class="mob-current-badge" id="mobCurrentBadge">Selected</span>
-        </div>
-        <div class="mob-dropdown-wrap">
-          <select id="mobileChapterSelect" class="mob-dropdown" aria-label="Select Chapter" onchange="showChapter(this.value)">
-        <option value="ch_oww1">1 Water — The Essence of Life</option>
-        <option value="ch_oww2">2 Journey of a River</option>
-        <option value="ch_oww3">3 The Mystery of Food</option>
-        <option value="ch_oww4">4 Our School — A Happy Place</option>
-        <option value="ch_oww5">5 Our Vibrant Country</option>
-        <option value="ch_oww6">6 Some Unique Places</option>
-        <option value="ch_oww7">7 Energy — How Things Work</option>
-        <option value="ch_oww8">8 Clothes — How Things are Made</option>
-        <option value="ch_oww9">9 Rhythms of Nature</option>
-        <option value="ch_oww10">10 Earth — Our Shared Home</option>
-        <option value="ch_la_1">1 Super Senses Animal Senses</option>
-        <option value="ch_la_2">2 A Snake Charmer's Story Kalbeliyas</option>
-        <option value="ch_la_3">3 From Tasting to Digesting Taste Buds</option>
-        <option value="ch_la_4">4 Mangoes Round the Year Food Spoilage</option>
-        <option value="ch_la_5">5 Seeds and Seeds Seed Germination</option>
-        <option value="ch_la_6">6 Every Drop Counts Ghadsisar Lake</option>
-        <option value="ch_la_7">7 Experiments with Water Floating & Sinking</option>
-        <option value="ch_la_8">8 A Treat for Mosquitoes Malaria</option>
-        <option value="ch_la_9">9 Up You Go! Mountaineering at NIM Uttarkashi</option>
-        <option value="ch_la_10">10 Walls Tell Stories Golconda Fort</option>
-        <option value="ch_la_11">11 Sunita in Space Space Travel</option>
-        <option value="ch_la_12">12 What if it Finishes...? Fossil Fuels</option>
-        <option value="ch_la_13">13 A Shelter so High! Gaurav Jani's Journey</option>
-        <option value="ch_la_14">14 When the Earth Shook! 2001 Gujarat Earthquake</option>
-        <option value="ch_la_15">15 Blow Hot, Blow Cold Dr. Zakir Hussain's Story</option>
-        <option value="ch_la_16">16 Who will do this Work? Sanitation Workers</option>
-        <option value="ch_la_17">17 Across the Wall Afsana Mansuri</option>
-        <option value="ch_la_18">18 No Place for Us? Dam Construction Displacement</option>
-        <option value="ch_la_19">19 A Seed tells a Farmer's Story Damjibhai vs Hasmukh</option>
-        <option value="ch_la_20">20 Whose Forests? Suryamani's Torang</option>
-        <option value="ch_la_21">21 Like Father, Like Daughter Inherited vs Acquired Traits</option>
-        <option value="ch_la_22">22 On the Move Again Dhanu's Story</option>
-      </select>
-          <div class="mob-dropdown-arrow">▼</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="main-layout">
+  <div class="main-layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-title" id="sidebarTitleText">📘 Our Wondrous World (10 Chapters)</div>
@@ -29900,7 +29486,7 @@
   <footer class="site-footer">
     <div style="max-width:1200px;margin:0 auto;">
       <p style="margin-bottom:8px;">© 2026-27 OlympiadQuiz. All official NCERT textbook questions and solutions are strictly aligned with CBSE curriculum guidelines.</p>
-      <p><a href="index.html">Home</a> • <a href="ncert-solutions.html">NCERT Solutions Directory</a> • <a href="ncert-solutions-class-5.html">Class 5 Hub</a> • <a href="privacy-policy.html">Privacy</a></p>
+      <p><a href="index.html">Home</a> • <a href="ncert-solutions.html">NCERT Solutions Directory</a> • <a href="ncert-solutions-class-5.html">Class 5 Hub</a> • <a href="privacy.html">Privacy</a></p>
     </div>
   </footer>
 
@@ -29928,11 +29514,11 @@
       if (nav2) nav2.style.display = isB1 ? 'none' : 'block';
 
       // Toggle Breadcrumb Chips
-      document.getElementById('chipsWondrous').style.display = isB1 ? 'flex' : 'none';
-      document.getElementById('chipsLooking').style.display = isB1 ? 'none' : 'flex';
+      if (document.getElementById('chipsWondrous')) document.getElementById('chipsWondrous').style.display = isB1 ? 'flex' : 'none';
+      if (document.getElementById('chipsLooking')) document.getElementById('chipsLooking').style.display = isB1 ? 'none' : 'flex';
 
       // Update Label
-      document.getElementById('chipBarLabel').innerText = isB1
+      if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB1
         ? '🌿 Quick Jump To Chapter — Our Wondrous World (NEP 2020):'
         : '📙 Quick Jump To Chapter — Looking Around (Classic CBSE):';
 
@@ -29947,18 +29533,6 @@
     }
 
     function showChapter(targetId, updateHistory = true) {
-      const mobSelect = document.getElementById('mobileChapterSelect');
-      if (mobSelect) mobSelect.value = targetId;
-      const mobBadge = document.getElementById('mobCurrentBadge');
-      if (mobBadge) {
-        const activeOpt = mobSelect ? mobSelect.options[mobSelect.selectedIndex] : null;
-        mobBadge.textContent = activeOpt ? activeOpt.text.split('—')[0].split(':')[0].trim() : 'Chapter';
-      }
-      const mobBar = document.getElementById('mobileChapterBar');
-      if (window.innerWidth <= 900 && mobBar) {
-        mobBar.scrollIntoView({ behavior: 'smooth' });
-      }
-
       if (!targetId) return;
 
       // Ensure correct book tab is active
@@ -29979,10 +29553,10 @@
         if (nav1) nav1.style.display = !isB2 ? 'block' : 'none';
         if (nav2) nav2.style.display = isB2 ? 'block' : 'none';
 
-        document.getElementById('chipsWondrous').style.display = !isB2 ? 'flex' : 'none';
-        document.getElementById('chipsLooking').style.display = isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsWondrous')) document.getElementById('chipsWondrous').style.display = !isB2 ? 'flex' : 'none';
+        if (document.getElementById('chipsLooking')) document.getElementById('chipsLooking').style.display = isB2 ? 'flex' : 'none';
 
-        document.getElementById('chipBarLabel').innerText = isB2
+        if (document.getElementById('chipBarLabel')) document.getElementById('chipBarLabel').innerText = isB2
           ? '📙 Quick Jump To Chapter — Looking Around (Classic CBSE):'
           : '🌿 Quick Jump To Chapter — Our Wondrous World (NEP 2020):';
 
@@ -30084,5 +29658,6 @@
       showChapter('ch_oww1', false);
     });
   </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

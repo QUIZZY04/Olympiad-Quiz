@@ -1980,10 +1980,3 @@ exports.claimIncludedLiveTest = liveTestCredits.claimIncludedLiveTest;
 
 const userModeration = require("./userModeration");
 exports.setUserDisabledStatus = userModeration.setUserDisabledStatus;
-
-// =================================================================
-// 11. MONDAY AI LIVE QUIZ SCHEDULER & GENERATOR
-// =================================================================
-const quizAgentScheduler = require("./quizAgent/scheduler");
-exports.mondayLiveQuizScheduler = quizAgentScheduler.mondayLiveQuizScheduler;
-exports.generateMondayQuizManual = quizAgentScheduler.generateMondayQuizManual;

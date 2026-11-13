@@ -154,7 +154,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1380px; margin: 0 auto; min-height: calc(100vh - 180px); }
-    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 156px; height: calc(100vh - 156px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .82rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(234,88,12,0.15); }
@@ -456,10 +456,12 @@
     }
   
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 <div class="top-progress" id="progressBar"></div>
 
+<!-- NAVBAR -->
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
@@ -472,26 +474,28 @@
       <div class="nav-dropdown">
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#ea580c;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-10-maths.html">Class 10 Maths</a>
-          <a href="ncert-solutions-class-10-social-science.html">Class 10 Social Science</a>
-          <a href="ncert-solutions-class-9-hindi.html">Class 9 Hindi</a>
-          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
-          <a href="ncert-solutions-class-7-maths.html">Class 7 Maths</a>
-          <a href="ncert-solutions-class-7-science.html">Class 7 Science</a>
-          <a href="ncert-solutions-class-7-english.html">Class 7 English</a>
-          <a href="ncert-solutions-class-7-sst.html">Class 7 Social Science</a>
-          <a href="ncert-solutions-class-7-hindi.html" style="font-weight:700;color:#ea580c;background:#fff7ed;">Class 7 Hindi 🇮🇳</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
-      <a href="study.html" class="nav-link">Study Material</a>
-      <a href="chapterwise.html" class="nav-link">Chapterwise Test</a>
-      <a href="mock.html" class="nav-link">Mock Test</a>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
       <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <button class="navbar-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -512,211 +516,7 @@
 </header>
 
 <!-- STICKY BREADCRUMB & BOOK TABS BAR -->
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-controls">
-    <div class="breadcrumb-label">पुस्तक और पाठ चुनें:</div>
-    <div class="book-tabs">
-      <span class="book-tab active" id="tab-vasant" onclick="switchBookTab('vasant')">📖 वसंत भाग - 2 (20)</span>
-      <span class="book-tab" id="tab-mahabharat" onclick="switchBookTab('mahabharat')">🏹 बाल महाभारत कथा (10)</span>
-      <span class="book-tab" id="tab-durva" onclick="switchBookTab('durva')">📜 दूर्वा भाग - 2 (18)</span>
-    </div>
-  </div>
-  <div class="breadcrumb-chips" id="breadcrumbChips">
-    
-    <div class="bc-chip active" data-id="v1" data-book="vasant" onclick="showChapter('v1')">
-      <span class="bc-n">1</span>
-      <span>1: हम पंछी उन्मुक्त गगन के</span>
-    </div>
-    <div class="bc-chip" data-id="v2" data-book="vasant" onclick="showChapter('v2')">
-      <span class="bc-n">2</span>
-      <span>2: दादी माँ</span>
-    </div>
-    <div class="bc-chip" data-id="v3" data-book="vasant" onclick="showChapter('v3')">
-      <span class="bc-n">3</span>
-      <span>3: हिमालय की बेटियाँ</span>
-    </div>
-    <div class="bc-chip" data-id="v4" data-book="vasant" onclick="showChapter('v4')">
-      <span class="bc-n">4</span>
-      <span>4: कठपुतली</span>
-    </div>
-    <div class="bc-chip" data-id="v5" data-book="vasant" onclick="showChapter('v5')">
-      <span class="bc-n">5</span>
-      <span>5: मिठाईवाला</span>
-    </div>
-    <div class="bc-chip" data-id="v6" data-book="vasant" onclick="showChapter('v6')">
-      <span class="bc-n">6</span>
-      <span>6: रक्त और हमारा शरीर</span>
-    </div>
-    <div class="bc-chip" data-id="v7" data-book="vasant" onclick="showChapter('v7')">
-      <span class="bc-n">7</span>
-      <span>7: पापा खो गए</span>
-    </div>
-    <div class="bc-chip" data-id="v8" data-book="vasant" onclick="showChapter('v8')">
-      <span class="bc-n">8</span>
-      <span>8: शाम एक किसान</span>
-    </div>
-    <div class="bc-chip" data-id="v9" data-book="vasant" onclick="showChapter('v9')">
-      <span class="bc-n">9</span>
-      <span>9: चिड़िया की बच्ची</span>
-    </div>
-    <div class="bc-chip" data-id="v10" data-book="vasant" onclick="showChapter('v10')">
-      <span class="bc-n">10</span>
-      <span>10: अपूर्व अनुभव</span>
-    </div>
-    <div class="bc-chip" data-id="v11" data-book="vasant" onclick="showChapter('v11')">
-      <span class="bc-n">11</span>
-      <span>11: रहीम के दोहे</span>
-    </div>
-    <div class="bc-chip" data-id="v12" data-book="vasant" onclick="showChapter('v12')">
-      <span class="bc-n">12</span>
-      <span>12: कंचा</span>
-    </div>
-    <div class="bc-chip" data-id="v13" data-book="vasant" onclick="showChapter('v13')">
-      <span class="bc-n">13</span>
-      <span>13: एक तिनका</span>
-    </div>
-    <div class="bc-chip" data-id="v14" data-book="vasant" onclick="showChapter('v14')">
-      <span class="bc-n">14</span>
-      <span>14: खानपान की बदलती तस्वीर</span>
-    </div>
-    <div class="bc-chip" data-id="v15" data-book="vasant" onclick="showChapter('v15')">
-      <span class="bc-n">15</span>
-      <span>15: नीलकंठ</span>
-    </div>
-    <div class="bc-chip" data-id="v16" data-book="vasant" onclick="showChapter('v16')">
-      <span class="bc-n">16</span>
-      <span>16: भोर और बरखा</span>
-    </div>
-    <div class="bc-chip" data-id="v17" data-book="vasant" onclick="showChapter('v17')">
-      <span class="bc-n">17</span>
-      <span>17: वीर कुंवर सिंह</span>
-    </div>
-    <div class="bc-chip" data-id="v18" data-book="vasant" onclick="showChapter('v18')">
-      <span class="bc-n">18</span>
-      <span>18: संघर्ष के कारण मैं तुनुकमिज़ाज हो गया: धनराज</span>
-    </div>
-    <div class="bc-chip" data-id="v19" data-book="vasant" onclick="showChapter('v19')">
-      <span class="bc-n">19</span>
-      <span>19: आश्रम का अनुमानित व्यय</span>
-    </div>
-    <div class="bc-chip" data-id="v20" data-book="vasant" onclick="showChapter('v20')">
-      <span class="bc-n">20</span>
-      <span>20: विप्लव-गायन</span>
-    </div>
-    <div class="bc-chip" data-id="m1" data-book="mahabharat" onclick="showChapter('m1')">
-      <span class="bc-n">M1</span>
-      <span>1: महाभारत कथा व आदि पर्व: देवव्रत और भीष्म प्रतिज्ञा</span>
-    </div>
-    <div class="bc-chip" data-id="m2" data-book="mahabharat" onclick="showChapter('m2')">
-      <span class="bc-n">M2</span>
-      <span>2: कुंती, विदुर और कर्ण का प्रादुर्भाव</span>
-    </div>
-    <div class="bc-chip" data-id="m3" data-book="mahabharat" onclick="showChapter('m3')">
-      <span class="bc-n">M3</span>
-      <span>3: आचार्य द्रोण और लाक्षागृह का षड्यंत्र</span>
-    </div>
-    <div class="bc-chip" data-id="m4" data-book="mahabharat" onclick="showChapter('m4')">
-      <span class="bc-n">M4</span>
-      <span>4: द्रौपदी स्वयंवर और इंद्रप्रस्थ की स्थापना</span>
-    </div>
-    <div class="bc-chip" data-id="m5" data-book="mahabharat" onclick="showChapter('m5')">
-      <span class="bc-n">M5</span>
-      <span>5: द्यूतक्रीड़ा, द्रौपदी चीरहरण और बारह वर्ष का वनवास</span>
-    </div>
-    <div class="bc-chip" data-id="m6" data-book="mahabharat" onclick="showChapter('m6')">
-      <span class="bc-n">M6</span>
-      <span>6: मत्स्य देश में अज्ञातवास और विराट का दरबार</span>
-    </div>
-    <div class="bc-chip" data-id="m7" data-book="mahabharat" onclick="showChapter('m7')">
-      <span class="bc-n">M7</span>
-      <span>7: शांति दूत श्री कृष्ण और युद्ध की घोषणा</span>
-    </div>
-    <div class="bc-chip" data-id="m8" data-book="mahabharat" onclick="showChapter('m8')">
-      <span class="bc-n">M8</span>
-      <span>8: कुरुक्षेत्र महासमर: भीष्म और द्रोण पर्व</span>
-    </div>
-    <div class="bc-chip" data-id="m9" data-book="mahabharat" onclick="showChapter('m9')">
-      <span class="bc-n">M9</span>
-      <span>9: चक्रव्यूह: अभिमन्यु और जयद्रथ वध</span>
-    </div>
-    <div class="bc-chip" data-id="m10" data-book="mahabharat" onclick="showChapter('m10')">
-      <span class="bc-n">M10</span>
-      <span>10: कर्ण वध, दुर्योधन का अंत और युधिष्ठिर का राज्याभिषेक</span>
-    </div>
-    <div class="bc-chip" data-id="d1" data-book="durva" onclick="showChapter('d1')">
-      <span class="bc-n">D1</span>
-      <span>1: चिड़िया और चुरुंगुन</span>
-    </div>
-    <div class="bc-chip" data-id="d2" data-book="durva" onclick="showChapter('d2')">
-      <span class="bc-n">D2</span>
-      <span>2: सबसे सुंदर लड़की</span>
-    </div>
-    <div class="bc-chip" data-id="d3" data-book="durva" onclick="showChapter('d3')">
-      <span class="bc-n">D3</span>
-      <span>3: मैं हूँ रोबोट</span>
-    </div>
-    <div class="bc-chip" data-id="d4" data-book="durva" onclick="showChapter('d4')">
-      <span class="bc-n">D4</span>
-      <span>4: गुब्बारे पर चीता</span>
-    </div>
-    <div class="bc-chip" data-id="d5" data-book="durva" onclick="showChapter('d5')">
-      <span class="bc-n">D5</span>
-      <span>5: थोड़ी धरती पाऊँ</span>
-    </div>
-    <div class="bc-chip" data-id="d6" data-book="durva" onclick="showChapter('d6')">
-      <span class="bc-n">D6</span>
-      <span>6: गारो</span>
-    </div>
-    <div class="bc-chip" data-id="d7" data-book="durva" onclick="showChapter('d7')">
-      <span class="bc-n">D7</span>
-      <span>7: पुस्तकें जो अमर हैं</span>
-    </div>
-    <div class="bc-chip" data-id="d8" data-book="durva" onclick="showChapter('d8')">
-      <span class="bc-n">D8</span>
-      <span>8: काबुलीवाला</span>
-    </div>
-    <div class="bc-chip" data-id="d9" data-book="durva" onclick="showChapter('d9')">
-      <span class="bc-n">D9</span>
-      <span>9: विश्वेश्वरैया</span>
-    </div>
-    <div class="bc-chip" data-id="d10" data-book="durva" onclick="showChapter('d10')">
-      <span class="bc-n">D10</span>
-      <span>10: हम धरती के लाल</span>
-    </div>
-    <div class="bc-chip" data-id="d11" data-book="durva" onclick="showChapter('d11')">
-      <span class="bc-n">D11</span>
-      <span>11: पोंगल</span>
-    </div>
-    <div class="bc-chip" data-id="d12" data-book="durva" onclick="showChapter('d12')">
-      <span class="bc-n">D12</span>
-      <span>12: शहीद झलकारीबाई</span>
-    </div>
-    <div class="bc-chip" data-id="d13" data-book="durva" onclick="showChapter('d13')">
-      <span class="bc-n">D13</span>
-      <span>13: नृत्यांगना सुधा चंद्रन</span>
-    </div>
-    <div class="bc-chip" data-id="d14" data-book="durva" onclick="showChapter('d14')">
-      <span class="bc-n">D14</span>
-      <span>14: पानी और धूप</span>
-    </div>
-    <div class="bc-chip" data-id="d15" data-book="durva" onclick="showChapter('d15')">
-      <span class="bc-n">D15</span>
-      <span>15: गीत</span>
-    </div>
-    <div class="bc-chip" data-id="d16" data-book="durva" onclick="showChapter('d16')">
-      <span class="bc-n">D16</span>
-      <span>16: मिट्टी की मूर्तियाँ</span>
-    </div>
-    <div class="bc-chip" data-id="d17" data-book="durva" onclick="showChapter('d17')">
-      <span class="bc-n">D17</span>
-      <span>17: मौत का पहाड़</span>
-    </div>
-    <div class="bc-chip" data-id="d18" data-book="durva" onclick="showChapter('d18')">
-      <span class="bc-n">D18</span>
-      <span>18: हम होंगे कामयाब एक दिन</span>
-    </div>
-  </div>
-</div>
+
 
 <button class="mob-sidebar-toggle" onclick="toggleSidebar()">
   <span>📖</span>
@@ -12667,5 +12467,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

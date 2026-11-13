@@ -134,7 +134,7 @@
 
     /* Main Layout */
     .main-layout{display:flex;max-width:1380px;margin:0 auto;}
-    .sidebar{width:310px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:135px;height:calc(100vh - 135px);overflow-y:auto;flex-shrink:0;}
+    .sidebar{width:310px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;}
     .sidebar-title{font-size:.85rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;margin-bottom:12px;}
     .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;margin-bottom:14px;font-family:inherit;}
     .search-box:focus{outline:none;border-color:var(--brand);}
@@ -458,11 +458,13 @@
     }
   }
   </script>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 <div class="top-progress" id="progressBar"></div>
 
 <!-- Top Navbar -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="navbar-logo">
@@ -472,28 +474,30 @@
     <div class="navbar-links" id="navLinks">
       <a href="index.html" class="nav-link">Home</a>
       <div class="nav-dropdown">
-        <a href="ncert-solutions.html" class="nav-link" style="color:white;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-10-maths.html">Class 10 Mathematics</a>
-          <a href="ncert-solutions-class-10-social-science.html">Class 10 Social Science</a>
-          <a href="ncert-solutions-class-9-maths.html">Class 9 Mathematics</a>
-          <a href="ncert-solutions-class-9-science.html">Class 9 Science</a>
-          <a href="ncert-solutions-class-8-maths.html">Class 8 Mathematics</a>
-          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
-          <a href="ncert-solutions-class-7-maths.html">Class 7 Mathematics</a>
-          <a href="ncert-solutions-class-7-science.html">Class 7 Science</a>
-          <a href="ncert-solutions-class-7-english.html" style="font-weight:700;color:#0284c7;background:#f0f9ff;">Class 7 English 📖 (Active)</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
-      <a href="study.html" class="nav-link">Study Material</a>
-      <a href="chapterwise.html" class="nav-link">Chapterwise Test</a>
-      <a href="mock.html" class="nav-link">Mock Test</a>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
       <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
       <a href="login.html" class="btn-login">Login</a>
-      <button class="navbar-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation">
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -514,41 +518,7 @@
 </header>
 
 <!-- Sticky Breadcrumb Bar with Book Tabs -->
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-inner">
-    <div class="breadcrumb-label">Select Book &amp; Chapter:</div>
-    <div class="book-tabs">
-      <div class="book-tab active" onclick="switchBookTab('prose')" id="tab-prose">🍯 Honeycomb (Prose)</div>
-      <div class="book-tab" onclick="switchBookTab('poems')" id="tab-poems">📝 Poems</div>
-      <div class="book-tab" onclick="switchBookTab('alien')" id="tab-alien">📖 An Alien Hand</div>
-    </div>
-    <div class="breadcrumb-chips" id="chipsContainer">
-      <span class="bc-chip active" onclick="showChapter('h1')" data-id="h1" data-book="prose"><span class="bc-n">1</span>Three Questions</span>
-        <span class="bc-chip" onclick="showChapter('h2')" data-id="h2" data-book="prose"><span class="bc-n">2</span>A Gift of Chappals</span>
-        <span class="bc-chip" onclick="showChapter('h3')" data-id="h3" data-book="prose"><span class="bc-n">3</span>Gopal and the Hilsa Fish</span>
-        <span class="bc-chip" onclick="showChapter('h4')" data-id="h4" data-book="prose"><span class="bc-n">4</span>The Ashes That Made Trees Bloom</span>
-        <span class="bc-chip" onclick="showChapter('h5')" data-id="h5" data-book="prose"><span class="bc-n">5</span>Quality</span>
-        <span class="bc-chip" onclick="showChapter('h6')" data-id="h6" data-book="prose"><span class="bc-n">6</span>Expert Detectives</span>
-        <span class="bc-chip" onclick="showChapter('h7')" data-id="h7" data-book="prose"><span class="bc-n">7</span>The Invention of Vita-Wonk</span>
-        <span class="bc-chip" onclick="showChapter('h8')" data-id="h8" data-book="prose"><span class="bc-n">8</span>A Homage to Our Brave Soldiers</span>
-      <span class="bc-chip" onclick="showChapter('p1')" data-id="p1" data-book="poems"><span class="bc-n">P1</span>The Squirrel</span>
-        <span class="bc-chip" onclick="showChapter('p2')" data-id="p2" data-book="poems"><span class="bc-n">P2</span>The Rebel</span>
-        <span class="bc-chip" onclick="showChapter('p3')" data-id="p3" data-book="poems"><span class="bc-n">P3</span>The Shed</span>
-        <span class="bc-chip" onclick="showChapter('p4')" data-id="p4" data-book="poems"><span class="bc-n">P4</span>Chivvy</span>
-        <span class="bc-chip" onclick="showChapter('p5')" data-id="p5" data-book="poems"><span class="bc-n">P5</span>Trees</span>
-        <span class="bc-chip" onclick="showChapter('p6')" data-id="p6" data-book="poems"><span class="bc-n">P6</span>Mystery of the Talking Fan</span>
-        <span class="bc-chip" onclick="showChapter('p7')" data-id="p7" data-book="poems"><span class="bc-n">P7</span>Meadow Surprises</span>
-        <span class="bc-chip" onclick="showChapter('p8')" data-id="p8" data-book="poems"><span class="bc-n">P8</span>Garden Snake</span>
-      <span class="bc-chip" onclick="showChapter('a1')" data-id="a1" data-book="alien"><span class="bc-n">1</span>The Tiny Teacher</span>
-        <span class="bc-chip" onclick="showChapter('a2')" data-id="a2" data-book="alien"><span class="bc-n">2</span>Bringing Up Kari</span>
-        <span class="bc-chip" onclick="showChapter('a3')" data-id="a3" data-book="alien"><span class="bc-n">3</span>Golu Grows a Nose</span>
-        <span class="bc-chip" onclick="showChapter('a4')" data-id="a4" data-book="alien"><span class="bc-n">4</span>Chandni</span>
-        <span class="bc-chip" onclick="showChapter('a5')" data-id="a5" data-book="alien"><span class="bc-n">5</span>The Bear Story</span>
-        <span class="bc-chip" onclick="showChapter('a6')" data-id="a6" data-book="alien"><span class="bc-n">6</span>A Tiger in the House</span>
-        <span class="bc-chip" onclick="showChapter('a7')" data-id="a7" data-book="alien"><span class="bc-n">7</span>An Alien Hand</span>
-    </div>
-  </div>
-</div>
+
 
 <!-- Main Layout -->
 <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
@@ -7726,5 +7696,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

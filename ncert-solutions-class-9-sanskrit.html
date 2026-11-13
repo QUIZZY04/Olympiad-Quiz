@@ -110,7 +110,7 @@
 
     /* Layout */
     .main-layout { display: flex; max-width: 1380px; margin: 0 auto; min-height: calc(100vh - 180px); }
-    .sidebar { width: 320px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 122px; height: calc(100vh - 122px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 320px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-header { margin-bottom: 14px; }
     .sidebar-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 10px; }
     .search-box { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; font-family: inherit; margin-bottom: 12px; }
@@ -415,37 +415,49 @@
     }
   
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 
 <div class="top-progress" id="progressBar"></div>
 
 <!-- NAVBAR -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="navbar-logo">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      <div class="logo-text">Olympiad<span>Quiz</span></div>
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
     </a>
     <div class="navbar-links" id="navLinks">
       <a href="index.html" class="nav-link">Home</a>
       <div class="nav-dropdown">
-        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions ▾</a>
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#a78bfa;">📚 All NCERT Hub</a>
-          <a href="ncert-solutions-class-9.html" style="font-weight:700;color:#7c3aed;">Class 9 Solutions Hub</a>
-          <a href="ncert-solutions-class-9-maths.html">Class 9 Mathematics</a>
-          <a href="ncert-solutions-class-9-science.html">Class 9 Science</a>
-          <a href="ncert-solutions-class-9-hindi.html">Class 9 Hindi</a>
-          <a href="ncert-solutions-class-9-english.html">Class 9 English</a>
-          <a href="ncert-solutions-class-9-sanskrit.html" style="color:#7c3aed;font-weight:700;">🕉️ Class 9 Sanskrit</a>
-          <a href="ncert-solutions-class-10-sanskrit.html">Class 10 Sanskrit</a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
       </div>
-      <a href="ncert-solutions-class-9.html" class="nav-link">Class 9 Hub</a>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
-      <a href="index.html" class="btn-login">Home</a>
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -504,28 +516,9 @@
 </div>
 
 <!-- BREADCRUMB & FILTER BAR (DESKTOP) -->
-<div class="breadcrumb-bar">
-  <div class="breadcrumb-inner">
-    <div class="filter-pills">
-      <button class="filter-tab active" onclick="filterCategory('all', this)">सर्वे पाठाः (10)</button>
-      <button class="filter-tab" onclick="filterCategory('poetry', this)">पद्यभागः (3)</button>
-      <button class="filter-tab" onclick="filterCategory('prose', this)">गद्यभागः (5)</button>
-      <button class="filter-tab" onclick="filterCategory('drama', this)">नाटकम् (2)</button>
-    </div>
-    <div class="breadcrumb-chips">
-      <a class="bc-chip active" data-ch="1" data-cat="poetry" href="chapters-c9sk/ch1.html" onclick="showChapter(1); return false;"><span class="bc-n">१</span> भारतीवसन्तगीतिः</a>
-      <a class="bc-chip" data-ch="2" data-cat="prose" href="chapters-c9sk/ch2.html" onclick="showChapter(2); return false;"><span class="bc-n">२</span> स्वर्णकाकः</a>
-      <a class="bc-chip" data-ch="3" data-cat="drama" href="chapters-c9sk/ch3.html" onclick="showChapter(3); return false;"><span class="bc-n">३</span> गोदोहनम्</a>
-      <div class="bc-chip" data-ch="4" data-cat="poetry" onclick="showChapter(4)"><span class="bc-n">४</span> सूक्तिमौक्तिकम्</div>
-      <div class="bc-chip" data-ch="5" data-cat="prose" onclick="showChapter(5)"><span class="bc-n">५</span> भ्रान्तो बालः</div>
-      <div class="bc-chip" data-ch="6" data-cat="prose" onclick="showChapter(6)"><span class="bc-n">६</span> लौहतुला</div>
-      <div class="bc-chip" data-ch="7" data-cat="drama" onclick="showChapter(7)"><span class="bc-n">७</span> सिकतासेतुः</div>
-      <div class="bc-chip" data-ch="8" data-cat="poetry" onclick="showChapter(8)"><span class="bc-n">८</span> जटायोः शौर्यम्</div>
-      <div class="bc-chip" data-ch="9" data-cat="prose" onclick="showChapter(9)"><span class="bc-n">९</span> पर्यावरणम्</div>
-      <div class="bc-chip" data-ch="10" data-cat="prose" onclick="showChapter(10)"><span class="bc-n">१०</span> वाङ्मनःप्राणस्वरूपम्</div>
-    </div>
-  </div>
-</div>
+
+
+
 
 <!-- MOBILE CHAPTER SELECTOR (TOP AREA FOR MOBILE USERS) -->
 <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
@@ -770,5 +763,6 @@
     }
   });
 </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

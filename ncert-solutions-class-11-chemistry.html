@@ -147,7 +147,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -415,36 +415,50 @@
     }
   
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <div class="logo-text">Olympiad<span>Quiz</span></div>
-      </a>
-      <div class="navbar-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <div class="nav-dropdown">
-          <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions ▾</a>
-          <div class="nav-dropdown-content">
-            <a href="ncert-solutions-class-11.html" style="font-weight:700; color:var(--brand);">Class 11 Hub</a>
-            <a href="ncert-solutions-class-11-maths.html">Class 11 Mathematics</a>
-            <a href="ncert-solutions-class-11-physics.html">Class 11 Physics</a>
-            <a href="ncert-solutions-class-11-chemistry.html" style="font-weight:700; color:#059669;">Class 11 Chemistry</a>
-            <a href="ncert-solutions-class-11-biology.html">Class 11 Biology</a>
-            <a href="ncert-solutions-class-11-english.html">Class 11 English Core</a>
-            <a href="ncert-solutions-class-11-hindi.html">Class 11 Hindi Core</a>
-          </div>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
-        <a href="mock.html" class="nav-link">Mock Tests</a>
       </div>
-      <div class="navbar-actions">
-        <a href="dashboard.html" class="btn-login">Dashboard</a>
-      </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
-  </nav>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- Breadcrumb Navigation & Quick Subject Switcher -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
@@ -486,21 +500,9 @@
     </div>
   </header>
 
-  <!-- Breadcrumb Bar & Quick Chips (Desktop) -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label">Class 11 Chemistry Chapters (NCERT Rationalised 2026–27)</div>
-    <div class="breadcrumb-chips">
-      <a class="bc-chip active" href="chapters-c11c/ch1.html" onclick="showChapter(1); return false;" data-ch="1"><span class="bc-n">1</span> Basic Concepts</a>
-      <a class="bc-chip" href="chapters-c11c/ch2.html" onclick="showChapter(2); return false;" data-ch="2"><span class="bc-n">2</span> Structure of Atom</a>
-      <a class="bc-chip" href="chapters-c11c/ch3.html" onclick="showChapter(3); return false;" data-ch="3"><span class="bc-n">3</span> Periodicity</a>
-      <a class="bc-chip" href="chapters-c11c/ch4.html" onclick="showChapter(4); return false;" data-ch="4"><span class="bc-n">4</span> Chemical Bonding</a>
-      <a class="bc-chip" href="chapters-c11c/ch5.html" onclick="showChapter(5); return false;" data-ch="5"><span class="bc-n">5</span> Thermodynamics</a>
-      <a class="bc-chip" href="chapters-c11c/ch6.html" onclick="showChapter(6); return false;" data-ch="6"><span class="bc-n">6</span> Equilibrium</a>
-      <a class="bc-chip" href="chapters-c11c/ch7.html" onclick="showChapter(7); return false;" data-ch="7"><span class="bc-n">7</span> Redox Reactions</a>
-      <a class="bc-chip" href="chapters-c11c/ch8.html" onclick="showChapter(8); return false;" data-ch="8"><span class="bc-n">8</span> Organic Principles</a>
-      <a class="bc-chip" href="chapters-c11c/ch9.html" onclick="showChapter(9); return false;" data-ch="9"><span class="bc-n">9</span> Hydrocarbons</a>
-    </a>
-  </div>
+
+
+
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
 <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
@@ -752,5 +754,6 @@
       showChapter(1);
     });
   </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

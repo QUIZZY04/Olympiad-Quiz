@@ -148,7 +148,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 320px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 320px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -411,35 +411,50 @@
     }
   
 </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 
   <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <div class="logo-text">Olympiad<span>Quiz</span></div>
-      </a>
-      <nav class="navbar-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <div class="nav-dropdown">
-          <a href="ncert-solutions.html" class="nav-link">NCERT Solutions &#9662;</a>
-          <div class="nav-dropdown-content">
-            <a href="ncert-solutions-class-11.html">Class 11 Hub (All Subjects)</a>
-            <a href="ncert-solutions-class-11-physics.html" style="font-weight:700;color:#7c3aed;">Class 11 Physics (Current)</a>
-            <a href="ncert-solutions-class-11-chemistry.html">Class 11 Chemistry</a>
-            <a href="ncert-solutions-class-11-maths.html">Class 11 Mathematics</a>
-            <a href="ncert-solutions-class-11-biology.html">Class 11 Biology</a>
-            <a href="ncert-solutions-class-11-english.html">Class 11 English Core</a>
-            <a href="ncert-solutions-class-11-hindi.html">Class 11 Hindi Core</a>
-          </div>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
-      </nav>
-      <div class="navbar-actions">
-        <a href="ncert-solutions-class-11.html" class="btn-login">&larr; Class 11 Hub</a>
       </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
-  </header>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- Breadcrumb Navigation & Quick Subject Switcher -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
@@ -478,68 +493,9 @@
   </section>
 
   <!-- Sticky Chapter Chips -->
-  <nav class="breadcrumb-bar" aria-label="Chapter quick navigation">
-    <div class="breadcrumb-label">Quick Jump to Chapter:</div>
-    <div class="breadcrumb-chips">
-      
-      <a class="bc-chip active" href="chapters-c11p/ch1.html" data-ch="1" onclick="showChapter(1); return false;">
-        <span class="bc-n">1</span>
-        <span>Units and Measurements</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch2.html" data-ch="2" onclick="showChapter(2); return false;">
-        <span class="bc-n">2</span>
-        <span>Motion in a Straight Line</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch3.html" data-ch="3" onclick="showChapter(3); return false;">
-        <span class="bc-n">3</span>
-        <span>Motion in a Plane</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch4.html" data-ch="4" onclick="showChapter(4); return false;">
-        <span class="bc-n">4</span>
-        <span>Laws of Motion</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch5.html" data-ch="5" onclick="showChapter(5); return false;">
-        <span class="bc-n">5</span>
-        <span>Work, Energy and Power</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch6.html" data-ch="6" onclick="showChapter(6); return false;">
-        <span class="bc-n">6</span>
-        <span>System of Particles & Rotational Motion</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch7.html" data-ch="7" onclick="showChapter(7); return false;">
-        <span class="bc-n">7</span>
-        <span>Gravitation</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch8.html" data-ch="8" onclick="showChapter(8); return false;">
-        <span class="bc-n">8</span>
-        <span>Mechanical Properties of Solids</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch9.html" data-ch="9" onclick="showChapter(9); return false;">
-        <span class="bc-n">9</span>
-        <span>Mechanical Properties of Fluids</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch10.html" data-ch="10" onclick="showChapter(10); return false;">
-        <span class="bc-n">10</span>
-        <span>Thermal Properties of Matter</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch11.html" data-ch="11" onclick="showChapter(11); return false;">
-        <span class="bc-n">11</span>
-        <span>Thermodynamics</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch12.html" data-ch="12" onclick="showChapter(12); return false;">
-        <span class="bc-n">12</span>
-        <span>Kinetic Theory</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch13.html" data-ch="13" onclick="showChapter(13); return false;">
-        <span class="bc-n">13</span>
-        <span>Oscillations</span>
-      </a>
-      <a class="bc-chip " href="chapters-c11p/ch14.html" data-ch="14" onclick="showChapter(14); return false;">
-        <span class="bc-n">14</span>
-        <span>Waves</span>
-      </a>
-    </div>
-  </nav>
+
+  
+
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
 <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
@@ -880,5 +836,6 @@
       showChapter(1);
     });
   </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>

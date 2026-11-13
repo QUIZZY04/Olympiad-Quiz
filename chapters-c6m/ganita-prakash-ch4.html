@@ -539,21 +539,29 @@
       .content-area { padding: 24px 20px; }
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
+  
+  @media print {
+    .site-nav, .breadcrumb-bar, .chapter-nav-btns, .site-footer, .pdf-download-bar {
+      display: none !important;
+    }
+    body, .main-layout, .content-area {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+    .q-card {
+      border: 1px solid #cbd5e1 !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 16px !important;
+    }
+    .q-answer {
+      display: block !important;
+    }
+  }
+
   </style>
-  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    };
-  </script>
-  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -718,6 +726,24 @@
       <h2>Chapter 4: Data Handling and Presentation</h2>
       <p>NCERT Ganita Prakash (Class 6) — Tally Marks, Frequency Tables, Pictographs with Scales, Bar Graphs &amp; Statistical Interpretation | CBSE 2026-27</p>
     </div>
+  </div>
+
+  <!-- PDF Download Bar -->
+  <div class="pdf-download-bar" style="margin: 18px 0 24px 0; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid #86efac; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #16a34a; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #15803d; margin-bottom: 2px;">Free Offline PDF • CBSE 2026–27</div>
+        <div style="font-size: 1.02rem; font-weight: 800; color: #14532d;">Download Chapter 4: Data Handling and Presentation (PDF)</div>
+        <div style="font-size: 0.8rem; color: #475569;">Verbatim textbook solutions, step-by-step marking rubrics &amp; geometry diagrams.</div>
+      </div>
+    </div>
+    <button onclick="downloadChapterPDF('Chapter 4: Data Handling and Presentation')" class="download-pdf-btn" style="background: #16a34a; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); transition: all 0.2s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
   </div>
 
   <div class="concept-card">
@@ -907,53 +933,7 @@
   <div class="q-card" id="c6m-ch4-q4">
     <div class="q-head" onclick="toggleQ('c6m-ch4-q4')">
       <div class="q-num">Q4</div>
-      <div class="q-text">Observe the bar graph given in Figure 4.1 and answer the following questions:<br>(a) What information does the bar graph give?<br>(b) In which subject has the student scored maximum marks?<br>(c) In which subject has the student scored minimum marks?<br>(d) State the marks obtained in Science and Social Studies.
-<div class="math-diagram-wrap" style="margin: 16px auto; text-align: center; max-width: 600px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
-  <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 6px;">Figure 4.1: Examination Marks Obtained by a Student</div>
-  <svg viewBox="0 0 540 260" width="100%" height="260" xmlns="http://www.w3.org/2000/svg">
-    <!-- Gridlines & Y-axis labels (Scale: 1 unit = 10 marks, height 20px per 10 marks) -->
-    <!-- Base y = 210 (0 marks), Top y = 30 (90 marks) -->
-    <line x1="70" y1="210" x2="510" y2="210" stroke="#334155" stroke-width="2"/>
-    <line x1="70" y1="20" x2="70" y2="210" stroke="#334155" stroke-width="2"/>
-    <text x="25" y="115" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" transform="rotate(-90 25 115)" text-anchor="middle">Marks Obtained</text>
-    
-    <!-- Y Marks: 0, 20, 40, 60, 80 -->
-    <line x1="65" y1="210" x2="510" y2="210" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="214" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">0</text>
-    <line x1="65" y1="170" x2="510" y2="170" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="174" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">20</text>
-    <line x1="65" y1="130" x2="510" y2="130" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="134" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">40</text>
-    <line x1="65" y1="90" x2="510" y2="90" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="94" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">60</text>
-    <line x1="65" y1="50" x2="510" y2="50" stroke="#e2e8f0" stroke-width="1"/><text x="60" y="54" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="end">80</text>
-    
-    <!-- Bars: Width = 48px, Gap = 36px -->
-    <!-- 1. Hindi: 45 marks -> Height = 45 * 2 = 90px -> y = 210 - 90 = 120 -->
-    <rect x="95" y="120" width="50" height="90" rx="4" fill="#f59e0b"/>
-    <text x="120" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#b45309" text-anchor="middle">45</text>
-    <text x="120" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Hindi</text>
-    
-    <!-- 2. English: 60 marks -> Height = 120px -> y = 210 - 120 = 90 -->
-    <rect x="180" y="90" width="50" height="120" rx="4" fill="#3b82f6"/>
-    <text x="205" y="82" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1d4ed8" text-anchor="middle">60</text>
-    <text x="205" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">English</text>
-    
-    <!-- 3. Mathematics: 75 marks (MAX) -> Height = 150px -> y = 210 - 150 = 60 -->
-    <rect x="265" y="60" width="50" height="150" rx="4" fill="#10b981"/>
-    <text x="290" y="52" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#047857" text-anchor="middle">75 ⭐</text>
-    <text x="290" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Maths</text>
-    
-    <!-- 4. Science: 65 marks -> Height = 130px -> y = 210 - 130 = 80 -->
-    <rect x="350" y="80" width="50" height="130" rx="4" fill="#8b5cf6"/>
-    <text x="375" y="72" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#6d28d9" text-anchor="middle">65</text>
-    <text x="375" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Science</text>
-    
-    <!-- 5. Social Studies: 50 marks -> Height = 100px -> y = 210 - 100 = 110 -->
-    <rect x="435" y="110" width="50" height="100" rx="4" fill="#ec4899"/>
-    <text x="460" y="102" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#be185d" text-anchor="middle">50</text>
-    <text x="460" y="230" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">Soc. Studies</text>
-    
-    <!-- X-axis Label -->
-    <text x="290" y="252" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">School Subjects (1 cm = 10 marks)</text>
-  </svg>
-</div></div>
+      <div class="q-text">Observe the bar graph given in Figure 4.1 and answer the following questions:<br>(a) What information does the bar graph give?<br>(b) In which subject has the student scored maximum marks?<br>(c) In which subject has the student scored minimum marks?<br>(d) State the marks obtained in Science and Social Studies.</div>
       <div class="q-marks">[3 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
@@ -1244,12 +1224,7 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) {
-        el.classList.toggle('open');
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([el]);
-        }
-      }
+      if (el) el.classList.toggle('open');
     }
 
     // Toggle Competency Answer
@@ -1266,6 +1241,27 @@
       const bar = document.getElementById('progressBar');
       if (bar) bar.style.width = scrolled + '%';
     });
+  </script>
+
+
+  <script>
+    function downloadChapterPDF(title) {
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.add('open');
+        const ans = card.querySelector('.q-answer');
+        if (ans) ans.style.display = 'block';
+      });
+      const originalTitle = document.title;
+      const cleanName = (title || 'Class-6-Maths').replace(/[^a-zA-Z0-9]+/g, '-');
+      document.title = 'CBSE-Class-6-Mathematics-' + cleanName + '-NCERT-Solutions-OlympiadQuiz';
+      try {
+        window.print();
+      } catch(e) {
+        alert("Please press Ctrl+P (Cmd+P on Mac) and choose 'Save as PDF'.");
+      }
+      setTimeout(() => { document.title = originalTitle; }, 1500);
+    }
+    window.downloadChapterPDF = downloadChapterPDF;
   </script>
 
 </body>

@@ -72,6 +72,11 @@ node_modules/
 scripts/backups/
 *.bak
 *.bak.*
+*-aryan.*
+*-aryan
+*aryan.html
+*aryan.js
+*aryan.json
 
 # Local-only quiz-question validation tooling (holds its own .env with API keys)
 validator/

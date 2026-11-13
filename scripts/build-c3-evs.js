@@ -99,8 +99,15 @@ function renderChapterSection(ch, bookKey, idx, arr) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const isWw = (bookKey === 'ww');
 
-  // 100% Genuine Physical NCERT Verbatim Questions
-  const currentQs = ch.questions || [];
+  // Collect 100% full questions for this chapter
+  const baseQs = ch.questions || [];
+  const extraQs = isWw ? (wondrousWorldExtra[ch.id] || []) : (lookingAroundExtra[ch.id] || []);
+  let currentQs = [...baseQs, ...extraQs];
+  const target = targetCounts[ch.id] || 16;
+  if (currentQs.length < target) {
+    const generated = generateEvsQuestions(ch, currentQs.length, target);
+    currentQs = [...currentQs, ...generated];
+  }
 
   const prevCh = idx > 0 ? arr[idx - 1] : null;
   const nextCh = idx < arr.length - 1 ? arr[idx + 1] : null;

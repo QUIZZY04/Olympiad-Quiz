@@ -147,7 +147,7 @@
 
     /* Main Layout */
     .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
-    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -412,36 +412,50 @@
       .ch-nav-btn { padding: 8px 10px !important; font-size: 0.76rem !important; border-radius: 8px !important; }
     }
   </style>
+  <link rel="stylesheet" href="ncert-nav.css">
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <div class="logo-text">Olympiad<span>Quiz</span></div>
-      </a>
-      <div class="navbar-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <div class="nav-dropdown">
-          <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions ▾</a>
-          <div class="nav-dropdown-content">
-            <a href="ncert-solutions-class-11.html" style="font-weight:700; color:var(--brand);">Class 11 Hub</a>
-            <a href="ncert-solutions-class-11-physics.html">Class 11 Physics</a>
-            <a href="ncert-solutions-class-11-chemistry.html">Class 11 Chemistry</a>
-            <a href="ncert-solutions-class-11-maths.html">Class 11 Mathematics</a>
-            <a href="ncert-solutions-class-11-biology.html" style="font-weight:700; color:#16a34a;">Class 11 Biology</a>
-            <a href="ncert-solutions-class-11-english.html">Class 11 English Core</a>
-            <a href="ncert-solutions-class-11-hindi.html">Class 11 Hindi Core</a>
-          </div>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-1.html">Class 1 Solutions ✨</a>
+          <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+          <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-6.html">Class 6 Solutions (All Subjects)</a>
+          <a href="ncert-solutions-class-7.html">Class 7 Solutions</a>
+          <a href="ncert-solutions-class-8.html">Class 8 Solutions</a>
+          <a href="ncert-solutions-class-9.html">Class 9 Solutions</a>
+          <a href="ncert-solutions-class-10.html">Class 10 Solutions</a>
+          <a href="ncert-solutions-class-11.html" style="font-weight:700;color:#ff6b00;background:rgba(255,107,0,0.1);">Class 11 Solutions ✨</a>
+          <a href="ncert-solutions-class-12.html">Class 12 Solutions (Science) ✨</a>
         </div>
-        <a href="mock.html" class="nav-link">Mock Tests</a>
       </div>
-      <div class="navbar-actions">
-        <a href="dashboard.html" class="btn-login">Dashboard</a>
-      </div>
+      <a href="mock.html" class="nav-link">Mock Tests</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
-  </nav>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
   <!-- Breadcrumb Navigation & Quick Subject Switcher -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
@@ -484,30 +498,9 @@
   </header>
 
   <!-- Breadcrumb Bar & Quick Chips (Desktop) -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-label">Class 11 Biology Chapters (NCERT Rationalised 2026–27)</div>
-    <div class="breadcrumb-chips">
-      <a class="bc-chip active" href="chapters-c11b/ch1.html" onclick="showChapter(1); return false;" data-ch="1"><span class="bc-n">1</span> Living World</a>
-      <a class="bc-chip" href="chapters-c11b/ch2.html" onclick="showChapter(2); return false;" data-ch="2"><span class="bc-n">2</span> Classification</a>
-      <a class="bc-chip" href="chapters-c11b/ch3.html" onclick="showChapter(3); return false;" data-ch="3"><span class="bc-n">3</span> Plant Kingdom</a>
-      <a class="bc-chip" href="chapters-c11b/ch4.html" onclick="showChapter(4); return false;" data-ch="4"><span class="bc-n">4</span> Animal Kingdom</a>
-      <a class="bc-chip" href="chapters-c11b/ch5.html" onclick="showChapter(5); return false;" data-ch="5"><span class="bc-n">5</span> Plant Morphology</a>
-      <a class="bc-chip" href="chapters-c11b/ch6.html" onclick="showChapter(6); return false;" data-ch="6"><span class="bc-n">6</span> Plant Anatomy</a>
-      <a class="bc-chip" href="chapters-c11b/ch7.html" onclick="showChapter(7); return false;" data-ch="7"><span class="bc-n">7</span> Animal Organisation</a>
-      <a class="bc-chip" href="chapters-c11b/ch8.html" onclick="showChapter(8); return false;" data-ch="8"><span class="bc-n">8</span> Cell: Unit of Life</a>
-      <a class="bc-chip" href="chapters-c11b/ch9.html" onclick="showChapter(9); return false;" data-ch="9"><span class="bc-n">9</span> Biomolecules</a>
-      <a class="bc-chip" href="chapters-c11b/ch10.html" onclick="showChapter(10); return false;" data-ch="10"><span class="bc-n">10</span> Cell Cycle</a>
-      <a class="bc-chip" href="chapters-c11b/ch11.html" onclick="showChapter(11); return false;" data-ch="11"><span class="bc-n">11</span> Photosynthesis</a>
-      <a class="bc-chip" href="chapters-c11b/ch12.html" onclick="showChapter(12); return false;" data-ch="12"><span class="bc-n">12</span> Respiration</a>
-      <a class="bc-chip" href="chapters-c11b/ch13.html" onclick="showChapter(13); return false;" data-ch="13"><span class="bc-n">13</span> Plant Growth</a>
-      <a class="bc-chip" href="chapters-c11b/ch14.html" onclick="showChapter(14); return false;" data-ch="14"><span class="bc-n">14</span> Breathing</a>
-      <a class="bc-chip" href="chapters-c11b/ch15.html" onclick="showChapter(15); return false;" data-ch="15"><span class="bc-n">15</span> Body Fluids</a>
-      <a class="bc-chip" href="chapters-c11b/ch16.html" onclick="showChapter(16); return false;" data-ch="16"><span class="bc-n">16</span> Excretion</a>
-      <a class="bc-chip" href="chapters-c11b/ch17.html" onclick="showChapter(17); return false;" data-ch="17"><span class="bc-n">17</span> Locomotion</a>
-      <a class="bc-chip" href="chapters-c11b/ch18.html" onclick="showChapter(18); return false;" data-ch="18"><span class="bc-n">18</span> Neural Control</a>
-      <a class="bc-chip" href="chapters-c11b/ch19.html" onclick="showChapter(19); return false;" data-ch="19"><span class="bc-n">19</span> Chemical Coord</a>
-    </a>
-  </div>
+
+  
+
 
   <!-- Mobile Subject & Chapter Sticky Navigation Bar -->
   <div class="mobile-chapter-selector-bar" id="mobileChapterBar">
@@ -872,5 +865,6 @@
       showChapter(initialCh >= 1 && initialCh <= 19 ? initialCh : 1);
     });
   </script>
+  <script src="ncert-nav.js"></script>
 </body>
 </html>
