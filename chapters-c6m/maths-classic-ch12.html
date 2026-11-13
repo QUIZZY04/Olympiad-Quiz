@@ -59,7 +59,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"Find the ratio of: (a) 81 to 108 (b) 98 to 63 (c) 33 km to 121 km (d) 30 minutes to 45 minutes.","acceptedAnswer":{"@type":"Answer","text":"Simplest Ratios: • (a) 81/108: Divide by 27 = 3 : 4 . • (b) 98/63: Divide by 7 = 14 : 9 . • (c) 33/121: Divide by 11 = 3 : 11 . • (d) 30/45: Divide by 15 = 2 : 3 ."}},{"@type":"Question","name":"Determine if the following are in proportion: (a) 15, 45, 40, 120 (b) 33, 121, 9, 96 (c) 24, 28, 36, 48.","acceptedAnswer":{"@type":"Answer","text":"Proportion Verification: • (a) 15/45 = 1/3; 40/120 = 1/3. Since ratios are equal, Yes, they are in proportion . • (b) 33/121 = 3/11; 9/96 = 3/32. 3/11 ≠ 3/32. No, not in proportion . • (c) 24/28 = 6/7; 36/48 = 3/4. 6/7 ≠ 3/4. No, not in proportion ."}},{"@type":"Question","name":"Cost of 5 kg of wheat is ₹91.50. (a) What will be the cost of 8 kg of wheat? (b) What quantity of wheat can be purchased in ₹183?","acceptedAnswer":{"@type":"Answer","text":"Unitary Method: • Cost of 1 kg of wheat = ₹91.50 ÷ 5 = ₹18.30 . • (a) Cost of 8 kg = 8 × 18.30 = ₹146.40 . • (b) Quantity in ₹183 = 183 ÷ 18.30 = 10 kg of wheat ."}},{"@type":"Question","name":"Cartography &amp; Scale Modeling: State Highway Map: On a state highway roadmap, 2 cm represents an actual ground distance of 75 km. (a) Find the representative rat","acceptedAnswer":{"@type":"Answer","text":"(a) Representative Ratio: 2 cm to 75 km = 2 cm : 7,500,000 cm = 1 : 3,750,000 . (b) Ground Distance: 1 cm = 37.5 km. 8 cm = 8 × 37.5 = 300 km . (c) Map Distance: 450 ÷ 37.5 = 12 cm ."}}]
+    "mainEntity": [{"@type":"Question","name":"Find the ratio of: (a) 81 to 108 (b) 98 to 63 (c) 33 km to 121 km (d) 30 minutes to 45 minutes.","acceptedAnswer":{"@type":"Answer","text":"Simplest Ratios: • (a) 81/108: Divide by 27 = 3 : 4 . • (b) 98/63: Divide by 7 = 14 : 9 . • (c) 33/121: Divide by 11 = 3 : 11 . • (d) 30/45: Divide by 15 = 2 : 3 ."}},{"@type":"Question","name":"Determine if the following are in proportion: (a) 15, 45, 40, 120 (b) 33, 121, 9, 96 (c) 24, 28, 36, 48.","acceptedAnswer":{"@type":"Answer","text":"Proportion Verification: • (a) 15/45 = 1/3; 40/120 = 1/3. Since ratios are equal, Yes, they are in proportion . • (b) 33/121 = 3/11; 9/96 = 3/32. 3/11 ≠ 3/32. No, not in proportion . • (c) 24/28 = 6/7; 36/48 = 3/4. 6/7 ≠ 3/4. No, not in proportion ."}},{"@type":"Question","name":"Cost of 5 kg of wheat is ₹91.50. (a) What will be the cost of 8 kg of wheat? (b) What quantity of wheat can be purchased in ₹183?","acceptedAnswer":{"@type":"Answer","text":"Unitary Method: • Cost of 1 kg of wheat = ₹91.50 ÷ 5 = ₹18.30 . • (a) Cost of 8 kg = 8 × 18.30 = ₹146.40 . • (b) Quantity in ₹183 = 183 ÷ 18.30 = 10 kg of wheat ."}},{"@type":"Question","name":"Cartography & Scale Modeling: State Highway Map: On a state highway roadmap, 2 cm represents an actual ground distance of 75 km. (a) Find the representative rat","acceptedAnswer":{"@type":"Answer","text":"(a) Representative Ratio: 2 cm to 75 km = 2 cm : 7,500,000 cm = 1 : 3,750,000 . (b) Ground Distance: 1 cm = 37.5 km. 8 cm = 8 × 37.5 = 300 km . (c) Map Distance: 450 ÷ 37.5 = 12 cm ."}}]
   }
   </script>
   
@@ -539,21 +539,29 @@
       .content-area { padding: 24px 20px; }
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
+  
+  @media print {
+    .site-nav, .breadcrumb-bar, .chapter-nav-btns, .site-footer, .pdf-download-bar {
+      display: none !important;
+    }
+    body, .main-layout, .content-area {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+    .q-card {
+      border: 1px solid #cbd5e1 !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 16px !important;
+    }
+    .q-answer {
+      display: block !important;
+    }
+  }
+
   </style>
-  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    };
-  </script>
-  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -734,6 +742,24 @@
           <p>NCERT Mathematics (Classic) (Class 6) — Concept of Ratio, Equivalent Ratios, Ratio in Simplest Form, Proportion (Product of Extremes = Product of Means), Unitary Method | CBSE 2026-27</p>
         </div>
       </div>
+
+  <!-- PDF Download Bar -->
+  <div class="pdf-download-bar" style="margin: 18px 0 24px 0; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid #86efac; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #16a34a; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #15803d; margin-bottom: 2px;">Free Offline PDF • CBSE 2026–27</div>
+        <div style="font-size: 1.02rem; font-weight: 800; color: #14532d;">Download Chapter 12: Ratio and Proportion (PDF)</div>
+        <div style="font-size: 0.8rem; color: #475569;">Verbatim textbook solutions, step-by-step marking rubrics &amp; geometry diagrams.</div>
+      </div>
+    </div>
+    <button onclick="downloadChapterPDF('Chapter 12: Ratio and Proportion')" class="download-pdf-btn" style="background: #16a34a; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); transition: all 0.2s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+  </div>
       
     <div class="concept-card">
       <div class="concept-header">📌 Key Concepts &amp; Formulas</div>
@@ -832,7 +858,7 @@
       
     <div class="cbq-card">
       <div class="cbq-badge">CBSE Competency-Based Case Study (NEP 2020)</div>
-      <div class="q-text"><strong>Cartography &amp; Scale Modeling: State Highway Map:</strong><br>On a state highway roadmap, 2 cm represents an actual ground distance of 75 km. (a) Find the representative ratio in simplest form. (b) If two cities are 8 cm apart on the map, find their actual distance. (c) If two tourist spots are actually 450 km apart, find their map distance.</div>
+      <div class="q-text"><strong>Cartography & Scale Modeling: State Highway Map:</strong><br>On a state highway roadmap, 2 cm represents an actual ground distance of 75 km. (a) Find the representative ratio in simplest form. (b) If two cities are 8 cm apart on the map, find their actual distance. (c) If two tourist spots are actually 450 km apart, find their map distance.</div>
       <div class="answer-box" style="margin-top: 15px;">
         <div class="answer-label">Detailed Analytical Solution &amp; Rubric</div>
         <div class="answer-text"><strong>(a) Representative Ratio:</strong> 2 cm to 75 km = 2 cm : 7,500,000 cm = <strong>1 : 3,750,000</strong>.<br><strong>(b) Ground Distance:</strong> 1 cm = 37.5 km. 8 cm = 8 × 37.5 = <strong>300 km</strong>.<br><strong>(c) Map Distance:</strong> 450 ÷ 37.5 = <strong>12 cm</strong>.</div>
@@ -871,12 +897,7 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) {
-        el.classList.toggle('open');
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([el]);
-        }
-      }
+      if (el) el.classList.toggle('open');
     }
 
     // Toggle Competency Answer
@@ -893,6 +914,27 @@
       const bar = document.getElementById('progressBar');
       if (bar) bar.style.width = scrolled + '%';
     });
+  </script>
+
+
+  <script>
+    function downloadChapterPDF(title) {
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.add('open');
+        const ans = card.querySelector('.q-answer');
+        if (ans) ans.style.display = 'block';
+      });
+      const originalTitle = document.title;
+      const cleanName = (title || 'Class-6-Maths').replace(/[^a-zA-Z0-9]+/g, '-');
+      document.title = 'CBSE-Class-6-Mathematics-' + cleanName + '-NCERT-Solutions-OlympiadQuiz';
+      try {
+        window.print();
+      } catch(e) {
+        alert("Please press Ctrl+P (Cmd+P on Mac) and choose 'Save as PDF'.");
+      }
+      setTimeout(() => { document.title = originalTitle; }, 1500);
+    }
+    window.downloadChapterPDF = downloadChapterPDF;
   </script>
 
 </body>

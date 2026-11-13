@@ -539,21 +539,29 @@
       .content-area { padding: 24px 20px; }
       .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
     }
+  
+  @media print {
+    .site-nav, .breadcrumb-bar, .chapter-nav-btns, .site-footer, .pdf-download-bar {
+      display: none !important;
+    }
+    body, .main-layout, .content-area {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+    .q-card {
+      border: 1px solid #cbd5e1 !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 16px !important;
+    }
+    .q-answer {
+      display: block !important;
+    }
+  }
+
   </style>
-  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    };
-  </script>
-  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -731,9 +739,27 @@
         <div class="ch-badge">9</div>
         <div class="chapter-header-info">
           <h2>Chapter 9: Data Handling</h2>
-          <p>NCERT Mathematics (Classic) (Class 6) — Recording &amp; Organization of Data, Tally Marks, Pictographs &amp; Scale Factors, Bar Graphs (Interpretation &amp; Construction) | CBSE 2026-27</p>
+          <p>NCERT Mathematics (Classic) (Class 6) — Recording & Organization of Data, Tally Marks, Pictographs & Scale Factors, Bar Graphs (Interpretation & Construction) | CBSE 2026-27</p>
         </div>
       </div>
+
+  <!-- PDF Download Bar -->
+  <div class="pdf-download-bar" style="margin: 18px 0 24px 0; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid #86efac; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #16a34a; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #15803d; margin-bottom: 2px;">Free Offline PDF • CBSE 2026–27</div>
+        <div style="font-size: 1.02rem; font-weight: 800; color: #14532d;">Download Chapter 9: Data Handling (PDF)</div>
+        <div style="font-size: 0.8rem; color: #475569;">Verbatim textbook solutions, step-by-step marking rubrics &amp; geometry diagrams.</div>
+      </div>
+    </div>
+    <button onclick="downloadChapterPDF('Chapter 9: Data Handling')" class="download-pdf-btn" style="background: #16a34a; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); transition: all 0.2s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+  </div>
       
     <div class="concept-card">
       <div class="concept-header">📌 Key Concepts &amp; Formulas</div>
@@ -845,12 +871,7 @@
     // Toggle Question Accordion
     function toggleQ(id) {
       const el = document.getElementById(id);
-      if (el) {
-        el.classList.toggle('open');
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([el]);
-        }
-      }
+      if (el) el.classList.toggle('open');
     }
 
     // Toggle Competency Answer
@@ -867,6 +888,27 @@
       const bar = document.getElementById('progressBar');
       if (bar) bar.style.width = scrolled + '%';
     });
+  </script>
+
+
+  <script>
+    function downloadChapterPDF(title) {
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.add('open');
+        const ans = card.querySelector('.q-answer');
+        if (ans) ans.style.display = 'block';
+      });
+      const originalTitle = document.title;
+      const cleanName = (title || 'Class-6-Maths').replace(/[^a-zA-Z0-9]+/g, '-');
+      document.title = 'CBSE-Class-6-Mathematics-' + cleanName + '-NCERT-Solutions-OlympiadQuiz';
+      try {
+        window.print();
+      } catch(e) {
+        alert("Please press Ctrl+P (Cmd+P on Mac) and choose 'Save as PDF'.");
+      }
+      setTimeout(() => { document.title = originalTitle; }, 1500);
+    }
+    window.downloadChapterPDF = downloadChapterPDF;
   </script>
 
 </body>
