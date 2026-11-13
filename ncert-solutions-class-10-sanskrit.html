@@ -621,18 +621,18 @@
       <button class="filter-tab" onclick="filterCategory('drama', this)">नाटकम् (3)</button>
     </div>
     <div class="breadcrumb-chips">
-      <div class="bc-chip active" data-ch="1" data-cat="poetry" onclick="showChapter(1)"><span class="bc-n">१</span> शुचिपर्यावरणम्</div>
-      <div class="bc-chip" data-ch="2" data-cat="prose" onclick="showChapter(2)"><span class="bc-n">२</span> बुद्धिर्बलवती सदा</div>
-      <div class="bc-chip" data-ch="3" data-cat="poetry" onclick="showChapter(3)"><span class="bc-n">३</span> व्यायामः सर्वदा पथ्यः</div>
-      <div class="bc-chip" data-ch="4" data-cat="drama" onclick="showChapter(4)"><span class="bc-n">४</span> शिशुलालनम्</div>
-      <div class="bc-chip" data-ch="5" data-cat="prose" onclick="showChapter(5)"><span class="bc-n">५</span> जननी तुल्यवत्सला</div>
-      <div class="bc-chip" data-ch="6" data-cat="poetry" onclick="showChapter(6)"><span class="bc-n">६</span> सुभाषितानि</div>
-      <div class="bc-chip" data-ch="7" data-cat="drama" onclick="showChapter(7)"><span class="bc-n">७</span> सौहार्दं प्रकृतेः शोभा</div>
-      <div class="bc-chip" data-ch="8" data-cat="prose" onclick="showChapter(8)"><span class="bc-n">८</span> विचित्रः साक्षी</div>
-      <div class="bc-chip" data-ch="9" data-cat="poetry" onclick="showChapter(9)"><span class="bc-n">९</span> सूक्तयः</div>
-      <div class="bc-chip" data-ch="10" data-cat="prose" onclick="showChapter(10)"><span class="bc-n">१०</span> भूकम्पविभीषिका</div>
-      <div class="bc-chip" data-ch="11" data-cat="drama" onclick="showChapter(11)"><span class="bc-n">११</span> प्राणेभ्योऽपि प्रियः सुहृद्</div>
-      <div class="bc-chip" data-ch="12" data-cat="poetry" onclick="showChapter(12)"><span class="bc-n">१२</span> अन्योक्तयः</div>
+      <a class="bc-chip active" href="chapters-c10sk/ch1.html" data-ch="1" data-cat="poetry" onclick="showChapter(1); return false;"><span class="bc-n">१</span> शुचिपर्यावरणम्</a>
+      <a class="bc-chip" href="chapters-c10sk/ch2.html" data-ch="2" data-cat="prose" onclick="showChapter(2); return false;"><span class="bc-n">२</span> बुद्धिर्बलवती सदा</a>
+      <a class="bc-chip" href="chapters-c10sk/ch3.html" data-ch="3" data-cat="poetry" onclick="showChapter(3); return false;"><span class="bc-n">३</span> व्यायामः सर्वदा पथ्यः</a>
+      <a class="bc-chip" href="chapters-c10sk/ch4.html" data-ch="4" data-cat="drama" onclick="showChapter(4); return false;"><span class="bc-n">४</span> शिशुलालनम्</a>
+      <a class="bc-chip" href="chapters-c10sk/ch5.html" data-ch="5" data-cat="prose" onclick="showChapter(5); return false;"><span class="bc-n">५</span> जननी तुल्यवत्सला</a>
+      <a class="bc-chip" href="chapters-c10sk/ch6.html" data-ch="6" data-cat="poetry" onclick="showChapter(6); return false;"><span class="bc-n">६</span> सुभाषितानि</a>
+      <a class="bc-chip" href="chapters-c10sk/ch7.html" data-ch="7" data-cat="drama" onclick="showChapter(7); return false;"><span class="bc-n">७</span> सौहार्दं प्रकृतेः शोभा</a>
+      <a class="bc-chip" href="chapters-c10sk/ch8.html" data-ch="8" data-cat="prose" onclick="showChapter(8); return false;"><span class="bc-n">८</span> विचित्रः साक्षी</a>
+      <a class="bc-chip" href="chapters-c10sk/ch9.html" data-ch="9" data-cat="poetry" onclick="showChapter(9); return false;"><span class="bc-n">९</span> सूक्तयः</a>
+      <a class="bc-chip" href="chapters-c10sk/ch10.html" data-ch="10" data-cat="prose" onclick="showChapter(10); return false;"><span class="bc-n">१०</span> भूकम्पविभीषिका</a>
+      <a class="bc-chip" href="chapters-c10sk/ch11.html" data-ch="11" data-cat="drama" onclick="showChapter(11); return false;"><span class="bc-n">११</span> प्राणेभ्योऽपि प्रियः सुहृद्</a>
+      <a class="bc-chip" href="chapters-c10sk/ch12.html" data-ch="12" data-cat="poetry" onclick="showChapter(12); return false;"><span class="bc-n">१२</span> अन्योक्तयः</a>
     </div>
   </div>
 </div>
@@ -702,18 +702,18 @@
       <input type="text" class="search-box" placeholder="पाठं वा शीर्षकम् अन्विष..." oninput="filterChapters(this.value)">
     </div>
     <ul class="chapter-nav" id="chapterNav">
-        <li data-cat="poetry"><a href="#ch1" class="nav-ch-link active" onclick="showChapter(1); return false;"><span class="ch-num">१</span><div class="nav-ch-info"><span class="nav-ch-title">शुचिपर्यावरणम्</span><span class="nav-ch-sub">प्रथमः पाठः • पद्यभागः (लसलल्लतिका)</span></div></a></li>
-        <li data-cat="prose"><a href="#ch2" class="nav-ch-link" onclick="showChapter(2); return false;"><span class="ch-num">२</span><div class="nav-ch-info"><span class="nav-ch-title">बुद्धिर्बलवती सदा</span><span class="nav-ch-sub">द्वितीयः पाठः • गद्यभागः (शुकसप्ततिः)</span></div></a></li>
-        <li data-cat="poetry"><a href="#ch3" class="nav-ch-link" onclick="showChapter(3); return false;"><span class="ch-num">३</span><div class="nav-ch-info"><span class="nav-ch-title">व्यायामः सर्वदा पथ्यः</span><span class="nav-ch-sub">तृतीयः पाठः • पद्यभागः (सुश्रुतसंहिता)</span></div></a></li>
-        <li data-cat="drama"><a href="#ch4" class="nav-ch-link" onclick="showChapter(4); return false;"><span class="ch-num">४</span><div class="nav-ch-info"><span class="nav-ch-title">शिशुलालनम्</span><span class="nav-ch-sub">चतुर्थः पाठः • नाटकम् (कुन्दमाला)</span></div></a></li>
-        <li data-cat="prose"><a href="#ch5" class="nav-ch-link" onclick="showChapter(5); return false;"><span class="ch-num">५</span><div class="nav-ch-info"><span class="nav-ch-title">जननी तुल्यवत्सला</span><span class="nav-ch-sub">पञ्चमः पाठः • गद्यभागः (महाभारतम्)</span></div></a></li>
-        <li data-cat="poetry"><a href="#ch6" class="nav-ch-link" onclick="showChapter(6); return false;"><span class="ch-num">६</span><div class="nav-ch-info"><span class="nav-ch-title">सुभाषितानि</span><span class="nav-ch-sub">षष्ठः पाठः • पद्यभागः (नीतिश्लोकाः)</span></div></a></li>
-        <li data-cat="drama"><a href="#ch7" class="nav-ch-link" onclick="showChapter(7); return false;"><span class="ch-num">७</span><div class="nav-ch-info"><span class="nav-ch-title">सौहार्दं प्रकृतेः शोभा</span><span class="nav-ch-sub">सप्तमः पाठः • नाटकम् (संवादः)</span></div></a></li>
-        <li data-cat="prose"><a href="#ch8" class="nav-ch-link" onclick="showChapter(8); return false;"><span class="ch-num">८</span><div class="nav-ch-info"><span class="nav-ch-title">विचित्रः साक्षी</span><span class="nav-ch-sub">अष्टमः पाठः • गद्यभागः (कथा)</span></div></a></li>
-        <li data-cat="poetry"><a href="#ch9" class="nav-ch-link" onclick="showChapter(9); return false;"><span class="ch-num">९</span><div class="nav-ch-info"><span class="nav-ch-title">सूक्तयः</span><span class="nav-ch-sub">नवमः पाठः • पद्यभागः (तिरुक्कुरल्)</span></div></a></li>
-        <li data-cat="prose"><a href="#ch10" class="nav-ch-link" onclick="showChapter(10); return false;"><span class="ch-num">१०</span><div class="nav-ch-info"><span class="nav-ch-title">भूकम्पविभीषिका</span><span class="nav-ch-sub">दशमः पाठः • गद्यभागः (निबन्धः)</span></div></a></li>
-        <li data-cat="drama"><a href="#ch11" class="nav-ch-link" onclick="showChapter(11); return false;"><span class="ch-num">११</span><div class="nav-ch-info"><span class="nav-ch-title">प्राणेभ्योऽपि प्रियः सुहृद्</span><span class="nav-ch-sub">एकादशः पाठः • नाटकम् (मुद्राराक्षसम्)</span></div></a></li>
-        <li data-cat="poetry"><a href="#ch12" class="nav-ch-link" onclick="showChapter(12); return false;"><span class="ch-num">१२</span><div class="nav-ch-info"><span class="nav-ch-title">अन्योक्तयः</span><span class="nav-ch-sub">द्वादशः पाठः • पद्यभागः (भामिनीविलासः)</span></div></a></li>
+        <li data-cat="poetry"><a href="chapters-c10sk/ch1.html" class="nav-ch-link active" onclick="showChapter(1); return false;"><span class="ch-num">१</span><div class="nav-ch-info"><span class="nav-ch-title">शुचिपर्यावरणम्</span><span class="nav-ch-sub">प्रथमः पाठः • पद्यभागः (लसलल्लतिका)</span></div></a></li>
+        <li data-cat="prose"><a href="chapters-c10sk/ch2.html" class="nav-ch-link" onclick="showChapter(2); return false;"><span class="ch-num">२</span><div class="nav-ch-info"><span class="nav-ch-title">बुद्धिर्बलवती सदा</span><span class="nav-ch-sub">द्वितीयः पाठः • गद्यभागः (शुकसप्ततिः)</span></div></a></li>
+        <li data-cat="poetry"><a href="chapters-c10sk/ch3.html" class="nav-ch-link" onclick="showChapter(3); return false;"><span class="ch-num">३</span><div class="nav-ch-info"><span class="nav-ch-title">व्यायामः सर्वदा पथ्यः</span><span class="nav-ch-sub">तृतीयः पाठः • पद्यभागः (सुश्रुतसंहिता)</span></div></a></li>
+        <li data-cat="drama"><a href="chapters-c10sk/ch4.html" class="nav-ch-link" onclick="showChapter(4); return false;"><span class="ch-num">४</span><div class="nav-ch-info"><span class="nav-ch-title">शिशुलालनम्</span><span class="nav-ch-sub">चतुर्थः पाठः • नाटकम् (कुन्दमाला)</span></div></a></li>
+        <li data-cat="prose"><a href="chapters-c10sk/ch5.html" class="nav-ch-link" onclick="showChapter(5); return false;"><span class="ch-num">५</span><div class="nav-ch-info"><span class="nav-ch-title">जननी तुल्यवत्सला</span><span class="nav-ch-sub">पञ्चमः पाठः • गद्यभागः (महाभारतम्)</span></div></a></li>
+        <li data-cat="poetry"><a href="chapters-c10sk/ch6.html" class="nav-ch-link" onclick="showChapter(6); return false;"><span class="ch-num">६</span><div class="nav-ch-info"><span class="nav-ch-title">सुभाषितानि</span><span class="nav-ch-sub">षष्ठः पाठः • पद्यभागः (नीतिश्लोकाः)</span></div></a></li>
+        <li data-cat="drama"><a href="chapters-c10sk/ch7.html" class="nav-ch-link" onclick="showChapter(7); return false;"><span class="ch-num">७</span><div class="nav-ch-info"><span class="nav-ch-title">सौहार्दं प्रकृतेः शोभा</span><span class="nav-ch-sub">सप्तमः पाठः • नाटकम् (संवादः)</span></div></a></li>
+        <li data-cat="prose"><a href="chapters-c10sk/ch8.html" class="nav-ch-link" onclick="showChapter(8); return false;"><span class="ch-num">८</span><div class="nav-ch-info"><span class="nav-ch-title">विचित्रः साक्षी</span><span class="nav-ch-sub">अष्टमः पाठः • गद्यभागः (कथा)</span></div></a></li>
+        <li data-cat="poetry"><a href="chapters-c10sk/ch9.html" class="nav-ch-link" onclick="showChapter(9); return false;"><span class="ch-num">९</span><div class="nav-ch-info"><span class="nav-ch-title">सूक्तयः</span><span class="nav-ch-sub">नवमः पाठः • पद्यभागः (तिरुक्कुरल्)</span></div></a></li>
+        <li data-cat="prose"><a href="chapters-c10sk/ch10.html" class="nav-ch-link" onclick="showChapter(10); return false;"><span class="ch-num">१०</span><div class="nav-ch-info"><span class="nav-ch-title">भूकम्पविभीषिका</span><span class="nav-ch-sub">दशमः पाठः • गद्यभागः (निबन्धः)</span></div></a></li>
+        <li data-cat="drama"><a href="chapters-c10sk/ch11.html" class="nav-ch-link" onclick="showChapter(11); return false;"><span class="ch-num">११</span><div class="nav-ch-info"><span class="nav-ch-title">प्राणेभ्योऽपि प्रियः सुहृद्</span><span class="nav-ch-sub">एकादशः पाठः • नाटकम् (मुद्राराक्षसम्)</span></div></a></li>
+        <li data-cat="poetry"><a href="chapters-c10sk/ch12.html" class="nav-ch-link" onclick="showChapter(12); return false;"><span class="ch-num">१२</span><div class="nav-ch-info"><span class="nav-ch-title">अन्योक्तयः</span><span class="nav-ch-sub">द्वादशः पाठः • पद्यभागः (भामिनीविलासः)</span></div></a></li>
     </ul>
   </aside>
 
