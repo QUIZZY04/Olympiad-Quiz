@@ -615,6 +615,15 @@
           })
           .then(html => {
             const cleanHtml = cleanChapterHtml(html);
+            let cleanHtml = html;
+            if (html.includes('class="chapter-section"')) {
+              const startIdx = html.indexOf('<section class="chapter-section"');
+              const endTag = '</section>';
+              const endIdx = html.lastIndexOf(endTag);
+              if (startIdx !== -1 && endIdx !== -1) {
+                cleanHtml = html.substring(startIdx, endIdx + endTag.length);
+              }
+            }
             if (!window.CHAPTER_DATA) window.CHAPTER_DATA = {};
             window.CHAPTER_DATA[n] = cleanHtml;
             contentArea.innerHTML = cleanHtml;
