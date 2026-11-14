@@ -614,7 +614,8 @@
 </footer>
 
 <!-- SCRIPTS & CACHE -->
-<script src="chapters-c9sk/chapters-data.js"></script>
+<script>window.CHAPTER_DATA = window.CHAPTER_DATA || {};</script>
+  <script src="chapters-c9sk/chapters-data.js"></script>
 <script>
   let currentCh = 1;
   const chaptersCache = window.PRELOADED_CHAPTERS_C9SK || {};
@@ -643,7 +644,53 @@
     }
   }
 
-  async function showChapter(num, scroll = true) {
+  async 
+  function cleanChapterHtml(html) {
+    if (!html) return '';
+    if (!html.includes('<aside') && !html.includes('<!DOCTYPE') && !html.includes('<html')) {
+      return html;
+    }
+    try {
+      if (typeof DOMParser !== 'undefined') {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var section = doc.querySelector('.chapter-section');
+        if (section) return section.outerHTML;
+        var main = doc.querySelector('main.content-area') || doc.querySelector('main') || doc.querySelector('.content-area');
+        if (main) {
+          var sidebars = main.querySelectorAll('aside, .sidebar, header, nav, footer, .top-nav');
+          sidebars.forEach(function(el) { el.remove(); });
+          return main.innerHTML;
+        }
+        if (doc.body) {
+          var bodySidebars = doc.body.querySelectorAll('aside, .sidebar, header, nav, footer, .top-nav');
+          bodySidebars.forEach(function(el) { el.remove(); });
+          return doc.body.innerHTML;
+        }
+      }
+    } catch (e) {
+      console.error('cleanChapterHtml error:', e);
+    }
+    var clean = html;
+    if (clean.includes('class="chapter-section"')) {
+      var startIdx = clean.indexOf('<section class="chapter-section"');
+      var endTag = '</section>';
+      var endIdx = clean.lastIndexOf(endTag);
+      if (startIdx !== -1 && endIdx !== -1) {
+        clean = clean.substring(startIdx, endIdx + endTag.length);
+      }
+    } else if (clean.includes('<main') && clean.includes('</main>')) {
+      var startIdx = clean.indexOf('<main');
+      var innerStart = clean.indexOf('>', startIdx) + 1;
+      var endIdx = clean.indexOf('</main>', innerStart);
+      if (startIdx !== -1 && endIdx !== -1) {
+        clean = clean.substring(innerStart, endIdx);
+      }
+    }
+    return clean.replace(/<aside[\s\S]*?<\/aside>/gi, '');
+  }
+
+  function showChapter(num, scroll = true) {
     if (num < 1 || num > 10) return;
     currentCh = num;
 
@@ -672,7 +719,8 @@
       try {
         const res = await fetch(`chapters-c9sk/ch${num}.html`);
         if (res.ok) {
-          const html = await res.text();
+          const rawHtml = await res.text();
+          const html = cleanChapterHtml(rawHtml);
           chaptersCache[num] = html;
           area.innerHTML = html;
         }

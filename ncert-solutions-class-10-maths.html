@@ -953,7 +953,8 @@ However, this contradicts the established mathematical fact that <strong>$\sqrt{
 <button class="mob-toggle" onclick="toggleSidebar()">☰ Chapters</button>
 
 <!-- Fallback Preloaded Chapter Data for offline/file:// protocol support -->
-<script src="chapters-c10m/chapters-data.js"></script>
+<script>window.CHAPTER_DATA = window.CHAPTER_DATA || {};</script>
+  <script src="chapters-c10m/chapters-data.js"></script>
 
 <script>
   window.addEventListener('scroll', () => {
@@ -976,7 +977,53 @@ However, this contradicts the established mathematical fact that <strong>$\sqrt{
   let currentCh = 1;
   const chapterCache = {};
 
-  async function showChapter(n, updateHistory = true) {
+  async 
+  function cleanChapterHtml(html) {
+    if (!html) return '';
+    if (!html.includes('<aside') && !html.includes('<!DOCTYPE') && !html.includes('<html')) {
+      return html;
+    }
+    try {
+      if (typeof DOMParser !== 'undefined') {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var section = doc.querySelector('.chapter-section');
+        if (section) return section.outerHTML;
+        var main = doc.querySelector('main.content-area') || doc.querySelector('main') || doc.querySelector('.content-area');
+        if (main) {
+          var sidebars = main.querySelectorAll('aside, .sidebar, header, nav, footer, .top-nav');
+          sidebars.forEach(function(el) { el.remove(); });
+          return main.innerHTML;
+        }
+        if (doc.body) {
+          var bodySidebars = doc.body.querySelectorAll('aside, .sidebar, header, nav, footer, .top-nav');
+          bodySidebars.forEach(function(el) { el.remove(); });
+          return doc.body.innerHTML;
+        }
+      }
+    } catch (e) {
+      console.error('cleanChapterHtml error:', e);
+    }
+    var clean = html;
+    if (clean.includes('class="chapter-section"')) {
+      var startIdx = clean.indexOf('<section class="chapter-section"');
+      var endTag = '</section>';
+      var endIdx = clean.lastIndexOf(endTag);
+      if (startIdx !== -1 && endIdx !== -1) {
+        clean = clean.substring(startIdx, endIdx + endTag.length);
+      }
+    } else if (clean.includes('<main') && clean.includes('</main>')) {
+      var startIdx = clean.indexOf('<main');
+      var innerStart = clean.indexOf('>', startIdx) + 1;
+      var endIdx = clean.indexOf('</main>', innerStart);
+      if (startIdx !== -1 && endIdx !== -1) {
+        clean = clean.substring(innerStart, endIdx);
+      }
+    }
+    return clean.replace(/<aside[\s\S]*?<\/aside>/gi, '');
+  }
+
+  function showChapter(n, updateHistory = true) {
     if (n < 1 || n > 14) return;
     currentCh = n;
 
@@ -990,7 +1037,8 @@ However, this contradicts the established mathematical fact that <strong>$\sqrt{
 
     const container = document.getElementById('chapter-content-area');
 
-    function renderContent(html) {
+    function renderContent(rawHtml) {
+      const html = cleanChapterHtml(rawHtml);
       chapterCache[n] = html;
       container.innerHTML = html;
       if (updateHistory) window.location.hash = 'ch' + n;
