@@ -188,18 +188,15 @@
                     <a href="ncert-solutions.html#class10">Class 10 Solutions</a>
                 </div>
             </div>
-            <div class="nav-dropdown">
+                        <div class="nav-dropdown">
                 <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="study.html">Study Material</a>
-                    <a href="ncert-solutions.html">NCERT Solutions</a>
-                    <a href="blog.html">Success Guides</a>
                     <a href="sof-previous-year-questions.html">SOF PYQs</a>
-                </div>
-            </div>
-            <div class="nav-dropdown">
-                <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                <div class="nav-dropdown-content">
+                    <a href="blog.html">Success Guides</a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-header">Olympiad Syllabus</div>
+                    <a href="olympiad-syllabus.html" style="font-weight:700;color:#ff6b00;">📋 Complete Syllabus Hub</a>
                     <a href="sof-syllabus.html">SOF Olympiads</a>
                     <a href="silverzone-syllabus.html">SilverZone</a>
                     <a href="crest-syllabus.html">CREST Olympiads</a>
@@ -235,6 +232,7 @@
         </div>
     </div>
 </nav>
+<div class="nav-overlay" id="nav-overlay"></div>
 
 <!-- Main Content Area Starts -->
 <main>
@@ -860,14 +858,22 @@
         }
     };
 
-    /* Mobile Menu Toggle */
+        /* Mobile Menu Toggle & Overlay */
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.querySelector('.navbar-links');
+    const navOverlay = document.getElementById('nav-overlay');
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
+        function toggleNav(open) {
+            const shouldOpen = open !== undefined ? open : !navLinks.classList.contains('active');
+            navLinks.classList.toggle('active', shouldOpen);
+            menuToggle.classList.toggle('active', shouldOpen);
+            if (navOverlay) navOverlay.classList.toggle('active', shouldOpen);
+            document.body.classList.toggle('nav-open', shouldOpen);
+        }
+        menuToggle.addEventListener('click', () => toggleNav());
+        if (navOverlay) {
+            navOverlay.addEventListener('click', () => toggleNav(false));
+        }
     }
 
     /* Mobile Dropdown Toggle */
