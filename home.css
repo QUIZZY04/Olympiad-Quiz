@@ -2012,3 +2012,67 @@ img {
         display: none;
     }
 }
+
+/* ==========================================================================
+   18. COMPACT CRAWLABLE NCERT DIRECTORY LINKS (SEO + Quick Class Access)
+   ========================================================================== */
+.ncert-quick-links {
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+}
+.ncert-quick-links-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    text-align: center;
+}
+.ncert-class-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.ncert-class-pill {
+    display: inline-block;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--navy);
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+.ncert-class-pill:hover {
+    background: #fff4ed;
+    border-color: var(--orange);
+    color: #c2410c;
+}
+.ncert-subject-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+}
+.ncert-subject-links a {
+    color: #475569;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+.ncert-subject-links a:hover {
+    color: #c2410c;
+    text-decoration: underline;
+}
