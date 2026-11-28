@@ -1,6 +1,15 @@
 /* Lightweight JSON array of blogs */
 const blogs = [
     {
+        title: "CBSE Board Exams 2027: How to Score 95%+ Using NCERT Solutions & Step Marking",
+        excerpt: "Master NCERT textbooks, Competency-Based Questions (CBQs), and official CBSE step-marking rubrics to score 95%+ in Class 10 and Class 12 Board Exams 2027.",
+        date: "November 28, 2026",
+        readTime: "8 min read",
+        category: "Strategy",
+        image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80&fm=webp",
+        link: "blog-cbse-board-2027-ncert-95-percent-guide.html"
+    },
+    {
         title: "Olympiad Exams in November 2026: Your Final-Week Revision Checklist (IEO, ISO, IMO)",
         excerpt: "IEO, ISO (NSO), IHO and IMO all fall in the next few weeks. Here's exactly what to revise, what to skip, and how to spend your final 7 days before the exam.",
         date: "November 13, 2026",
